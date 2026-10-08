@@ -19,6 +19,7 @@ const zero=async()=>{
 try {
     await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
     const original=await capture('original');await page.locator('#planet-generate-climate').click();await frames();await zero();
+    await page.locator('#planet-layer').selectOption('temperature');
     const range=await page.locator('#thermal-range').evaluate(e=>Number(e.dataset.max)-Number(e.dataset.min));assert.ok(range>15);
     assert.ok(Number(await page.locator('#water-rain').getAttribute('data-value'))>0);
     assert.match(await page.locator('#thermal-status').textContent(),/Generated reference/);assert.match(await page.locator('#water-status').textContent(),/initial flux estimates/);

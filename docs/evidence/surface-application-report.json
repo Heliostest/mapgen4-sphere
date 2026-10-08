@@ -1,0 +1,35 @@
+{
+  "checks": [
+    "Applying rebuilds actual terrain/rivers, resets environment and clears preview; undo restores exact original buffers and pixels",
+    "Repeated application has independent offsets; undo after painting preserves the newer brush constraints",
+    "Portable document restores exact geometry, river buffers and rendered pixels plus authored constraints, planet/time/camera; Reset clears the layer",
+    "Malformed, incompatible and oversized files are nonmutating; a delayed file read is canceled after a newer terrain edit",
+    "Delayed real worker replies coalesce edits, never publish obsolete revisions, recycle detached buffers and handle immediate Apply→Reset and edit→Load",
+    "Document controls fit mobile width while the globe stays visible"
+  ],
+  "errors": [],
+  "originalHash": {
+    "physical": 2174355134,
+    "base": 4212292503,
+    "geometry": 1089792770,
+    "rivers": 243898284,
+    "indices": 4071736500,
+    "count": 1136
+  },
+  "firstHash": {
+    "physical": 806495252,
+    "base": 4212292503,
+    "geometry": 3262781436,
+    "rivers": 2360334930,
+    "indices": 2454208563,
+    "count": 1254
+  },
+  "savedHash": {
+    "physical": 154929351,
+    "base": 1379010992,
+    "geometry": 438275,
+    "rivers": 2611549921,
+    "indices": 1503068269,
+    "count": 1254
+  }
+}

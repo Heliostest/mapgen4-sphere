@@ -17,9 +17,9 @@ try {
     gl.attachShader(program,compile(gl.FRAGMENT_SHADER,`#version 300 es
         precision highp float;
         ${planet_fragment}
-        uniform vec3 u_normal; uniform int u_test_flux;
+        uniform vec3 u_normal; uniform int u_test_flux; uniform float u_test_elevation;
         out vec4 color;
-        void main(){color=vec4(u_test_flux==1 ? vec3(planet_cosine(u_normal)) : planet_color(vec3(.4,.6,.8),u_normal),1);}`));
+        void main(){color=vec4(u_test_flux==1 ? vec3(planet_cosine(u_normal)) : planet_color(surface_color(vec3(.4,.6,.8),u_normal,u_test_elevation),u_normal),1);}`));
     gl.linkProgram(program);
     if(!gl.getProgramParameter(program,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program)!);
     gl.useProgram(program);gl.bindVertexArray(gl.createVertexArray());
@@ -88,6 +88,17 @@ try {
     check(7,[-.5,.8,.5],false,[.12,.25,.75]);check(7,[.5,.8,.5],false,[.80,.20,.08]);
     check(7,[-.5,-.8,.5],false,[.08,.20,.35]);
     check(7,[-1e-7,.8,-1],false,[.12,.25,.75]);check(7,[1e-7,.8,-1],false,[.12,.25,.75]);
+    gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,gl.createTexture());
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2,2,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([40,120,60,255,220,185,120,0,80,140,70,0,150,160,110,255]));
+    gl.uniform1i(gl.getUniformLocation(program,'u_surface'),3);
+    gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),.001);
+    check(9,[-.5,.8,.5],false,[40/255,120/255,60/255]);check(9,[.5,.8,.5],false,[220/255,185/255,120/255]);
+    check(9,[-1e-7,.8,-1],false,[40/255,120/255,60/255]);check(9,[1e-7,.8,-1],false,[40/255,120/255,60/255]);
+    gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),-.001);
+    check(9,[-.5,.8,.5],false,[.79,.88,.90]);check(9,[.5,.8,.5],false,[.4,.6,.8]);
+    check(0,[-.5,.8,.5],false,[.4,.6,.8]);
     if(gl.getError()!==gl.NO_ERROR) throw new Error('WebGL error');
     output.textContent=JSON.stringify({status:'PASS',checks},null,2);
 } catch(error) { output.textContent=`FAIL\n${error.stack || error}`; }

@@ -3,6 +3,7 @@ import {deriveOrbit,type OrbitConfig} from './astronomy.ts';
 import {DEFAULT_THERMAL,ThermalModel,makeThermalGrid,thermalCell,type ThermalCheckpoint} from './thermal.ts';
 import {DEFAULT_WATER,WaterModel,type WaterCheckpoint} from './water.ts';
 import {generateClimate,circulationWinds} from './climate.ts';
+import {generateSurfaceReference,surfaceCover,type SurfaceReference} from './surface.ts';
 
 export interface ThermalTexture {width:number;height:number;pixels:Uint8Array;timeS:number;}
 /** Synchronous ownership avoids stale worker replies. Retain the acknowledged
@@ -13,6 +14,7 @@ export class ThermalRuntime {
     waterConfig={...DEFAULT_WATER};
     water:WaterModel|null=null;
     waterTexture:ThermalTexture|null=null;
+    surfaceTexture:ThermalTexture|null=null;
     config={...DEFAULT_THERMAL};
     model:ThermalModel|null=null;
     status='Thermal model off';
@@ -23,12 +25,21 @@ export class ThermalRuntime {
     private lastTarget=0;
     private texture:ThermalTexture|null=null;
     private wind:{eastMps:Float64Array;northMps:Float64Array}|null=null;
+    private surfaceReference:SurfaceReference|null=null;
+    private initialSoil:Float64Array|null=null;
     constructor(readonly grid=makeThermalGrid()) {}
-    invalidate() {this.key='';this.model=null;this.water=null;this.presented=null;this.texture=null;this.waterTexture=null;this.wind=null;}
+    invalidate() {this.key='';this.model=null;this.water=null;this.presented=null;this.texture=null;this.waterTexture=null;this.wind=null;this.surfaceTexture=null;this.surfaceReference=null;this.initialSoil=null;}
     setTerrain(land:Float64Array,height=new Float64Array(this.grid.count)) {this.land=land.slice();this.landElevation=height.slice();this.invalidate();}
     get maxAdvanceS() {return this.model?32*this.model.stepS:Infinity;}
     sample(u:number,v:number) {return this.model?.temperatureK[thermalCell(this.grid,u,v)]??null;}
     sampleWind(u:number,v:number){if(!this.wind)return null;const k=thermalCell(this.grid,u,v);return {eastMps:this.wind.eastMps[k],northMps:this.wind.northMps[k]};}
+    sampleSurface(u:number,v:number) {return this.surfaceReference&&this.model?this.surfaceAt(thermalCell(this.grid,u,v)):null;}
+    private surfaceAt(k:number) {
+        const r=this.surfaceReference!,w=this.water,f=w?.land[k]??0;
+        const climate={meanTemperatureK:r.meanTemperatureK[k],warmestTemperatureK:r.warmestTemperatureK[k],annualRainMm:r.annualRainMm[k]};
+        const soil=w&&f>0?w.soilKgM2[k]/(f*w.config.soilCapacityKgM2):this.initialSoil![k];
+        return {...climate,...surfaceCover(climate,this.model!.temperatureK[k],soil)};
+    }
     sampleWater(u:number,v:number) {
         if(!this.water)return null;
         const w=this.water,k=thermalCell(this.grid,u,v),f=w.land[k];
@@ -48,6 +59,8 @@ export class ThermalRuntime {
         if(key!==this.key) {
             const heights=this.landElevation!.map(e=>e*planet.reliefM);
             const reference=generateClimate(this.grid,planet,orbit,this.config,this.waterConfig,this.land,heights,timeS);
+            this.surfaceReference=generateSurfaceReference(this.grid,planet,orbit,this.config,this.waterConfig,this.land,heights);
+            this.initialSoil=reference.soilFraction;
             this.model=new ThermalModel(planet,orbit,this.config,this.land,timeS,this.grid,reference);
             this.water=this.waterEnabled?new WaterModel(this.grid,planet.radiusM,this.land,
                 heights,this.model.temperatureK,this.waterConfig,reference):null;
@@ -85,6 +98,13 @@ export class ThermalRuntime {
                 pixels[4*i+2]=128+Math.round(1.27*this.wind.northMps[i]);pixels[4*i+3]=255;
             }
             this.texture={width:this.grid.width,height:this.grid.height,pixels,timeS:m.timeS};
+            const surfacePixels=new Uint8Array(this.grid.count*4);
+            for(let i=0;i<this.grid.count;i++) {
+                const cover=this.surfaceAt(i);
+                for(let c=0;c<3;c++)surfacePixels[4*i+c]=Math.round(cover.color[c]);
+                surfacePixels[4*i+3]=byte(cover.seaIceFraction);
+            }
+            this.surfaceTexture={width:this.grid.width,height:this.grid.height,pixels:surfacePixels,timeS:m.timeS};
             if(this.water) {
                 const w=this.water,waterPixels=new Uint8Array(this.grid.count*4);
                 const byte=(x:number)=>Math.round(Math.max(0,Math.min(1,x))*255);

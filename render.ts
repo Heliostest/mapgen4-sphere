@@ -114,7 +114,7 @@ class WebGLWrapper {
                 gl.bindTexture(gl.TEXTURE_2D, texture);
             },
             activate(register: GLint, uniform: WebGLUniformLocation) {
-                if (register < gl.TEXTURE0 || register >= gl.TEXTURE7) throw "invalid texture register";
+                if (register < gl.TEXTURE0 || register >= gl.TEXTURE8) throw "invalid texture register";
                 gl.uniform1i(uniform, register - gl.TEXTURE0);
                 gl.activeTexture(register);
                 this.bind();
@@ -466,8 +466,9 @@ const frag_drape = `
         );
         if (z <= 0.5 && max(depth1, depth2) > 1.0/256.0 && neighboring_river <= 0.2) { outline += u_outline_coast * 256.0 * (max(depth1, depth2) - 2.0*(z - 0.5)); }
 
-        vec3 base_color=mix(biome_color, water_color.rgb, water_color.a);
         vec3 body_normal=vec3(cos(lat)*sin(lon),sin(lat),cos(lat)*cos(lon));
+        biome_color=surface_color(biome_color,body_normal,v_em.x);
+        vec3 base_color=mix(biome_color, water_color.rgb, water_color.a);
         out_fragcolor = vec4(planet_color(base_color,body_normal) * light / outline, 1);
     }`;
 
@@ -562,6 +563,8 @@ export default class Renderer {
     private waterPixels:Uint8Array|null=null;
     texture_geomorph: Texture;
     private geomorphPixels:Uint8Array|null=null;
+    texture_surface: Texture;
+    private surfacePixels:Uint8Array|null=null;
 
     fbo_river: Framebuffer;
     fbo_land: Framebuffer;
@@ -627,6 +630,9 @@ export default class Renderer {
         this.texture_geomorph = this.webgl.createTexture({width:48,height:24,filter:'linear'});
         this.texture_geomorph.bind();
         this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
+        this.texture_surface = this.webgl.createTexture({width:48,height:24,filter:'linear'});
+        this.texture_surface.bind();
+        this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
 
         this.fbo_land  = this.webgl.createFramebuffer(2*fbo_texture_size, fbo_texture_size, {depth: false, internalFormat: this.webgl.gl.R16F, filter: 'linear'});
         // Radial outline taps move by fractional texels. Nearest sampling
@@ -684,6 +690,10 @@ export default class Renderer {
 
     updatePlanet(view:PlanetView) {
         this.planetView=view;
+        if(view.surface && view.surface.pixels!==this.surfacePixels) {
+            const {gl}=this.webgl,t=view.surface;this.texture_surface.bind();
+            gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,t.width,t.height,gl.RGBA,gl.UNSIGNED_BYTE,t.pixels);this.surfacePixels=t.pixels;
+        }
         const preview=view.geomorph?.preview??null;
         if(preview!==this.terrainPreview){this.terrainPreview=preview;this.rebuildSurface();}
         if(view.thermal && view.thermal.pixels!==this.temperaturePixels) {
@@ -821,7 +831,7 @@ export default class Renderer {
             gl.uniform1f(program.u_outline_threshold, renderParam.outline_threshold / 1000);
             gl.uniform1f(program.u_biome_colors, renderParam.biome_colors);
             const view=this.planetView;
-            gl.uniform1i(program.u_planet_layer, view?.layer==='wind'&&view.thermal?8:view?.layer==='erosion'&&view.geomorph?7:view?.layer==='day-night'?1:view?.layer==='insolation'?2:view?.layer==='temperature'&&view.thermal?3:
+            gl.uniform1i(program.u_planet_layer, view?.layer==='surface'&&view.surface?9:view?.layer==='wind'&&view.thermal?8:view?.layer==='erosion'&&view.geomorph?7:view?.layer==='day-night'?1:view?.layer==='insolation'?2:view?.layer==='temperature'&&view.thermal?3:
                 view?.water?view.layer==='precipitation'?4:view.layer==='soil-moisture'?5:view.layer==='runoff'?6:0:0);
             gl.uniform3fv(program.u_sun_direction, this.planetView?.sunDirection ?? [0,0,1]);
 
@@ -832,6 +842,7 @@ export default class Renderer {
             this.texture_temperature.activate(gl.TEXTURE4, program.u_temperature);
             this.texture_hydrology.activate(gl.TEXTURE5, program.u_hydrology);
             this.texture_geomorph.activate(gl.TEXTURE6, program.u_geomorph);
+            this.texture_surface.activate(gl.TEXTURE7, program.u_surface);
 
             gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });

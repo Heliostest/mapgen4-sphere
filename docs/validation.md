@@ -3,6 +3,16 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Natural surface: ice and vegetation — 2026-10-09
+
+Base `fd53216`, branch `codex/climate-biomes`. The natural surface connects generated climate to terrestrial colors, snow and sea ice while preserving the original layer. Generate climate now opens this layer. Twelve analytical season samples supply an annual reference; current temperature/soil moisture change coverage/tint without reclassifying forests each winter. Thresholds and one-way visual limits are documented in [methods](natural-surface.md).
+
+RED: missing surface module, missing natural layer and missing GPU surface-color function. Browser checks then exposed the renderer wrapper's old seven-texture register cap; its bound now admits the eighth sampler. GREEN: 77 Node tests, typecheck/build and diff-check. New tests cover climate classes, dry/cold/hot cases, seasonal snow versus underlying forest, annual-date independence, altitude/moisture, finite extremes and exact surface/probe rollback to a nonzero presented state across multiple queued futures.
+
+[Surface browser](evidence/surface-report.json): four groups passed with no captured errors. No-Play initialization, legend/probe, immediate season/relief/albedo changes, deterministic regeneration, Play, budget preservation, exact layer/original round trips, disabling and mobile width are checked. Actual GPU diagnostics passed 39 checks, including terrestrial colors versus sea ice selected by fine coastline elevation. Visually inspected [natural surface](evidence/surface-natural.png), [northern summer](evidence/surface-summer.png) and [mobile](evidence/surface-mobile.png); relief and artistic rivers remain visible. Coarse interpolation and shaded colors are not claims of resolved glacier margins.
+
+Regressions: [planet8/DOM20/GPU648+771+30+39](evidence/surface-planet-report.json), [generated climate6](evidence/surface-climate-report.json), [thermal5](evidence/surface-thermal-report.json), [water5](evidence/surface-water-report.json), [geomorph5/renderer19](evidence/surface-geomorph-report.json), [application6](evidence/surface-application-report.json). All captured error lists are empty. Independent final review pending.
+
 ## Generated climate without Play — 2026-10-09
 
 Base `c742c28`, branch `codex/generated-climate`. User requested initial climate from physical/geographic parameters rather than waiting for Play. Temperature, estimated seasonal wind, initial rain/humidity/soil/surface stores and diagnostic outflow now generate directly at the selected date. They spend no integration steps and preserve the paused clock. Play subsequently evolves the generated state. Initial estimates, daily-mean temperature, parameterized winds and lack of a pressure solver are explicit in the UI and [methods](generated-climate.md).
