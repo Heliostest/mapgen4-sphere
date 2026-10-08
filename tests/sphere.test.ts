@@ -109,16 +109,28 @@ test('polar atlas cap has area up to the pole, with the same surface attributes'
     assert.equal(tris[1][2][2],1);
 });
 
-test('terrain picking returns original surface UV under oblique relief and rotated views', () => {
+test('mountain vertices follow their local radial line; oceans stay at sea level', () => {
+    // Literal world positions: a 40-unit peak above a radius-300 sphere.
+    for (const [direction,expected] of [
+        [[0,0,1],[0,0,340]], [[1,0,0],[340,0,0]],
+        [[0,1,0],[0,340,0]], [[0,0,-1],[0,0,-340]],
+        [[.6,.8,0],[204,272,0]],
+    ]) {
+        assert.deepEqual(terrainPosition(direction,.8,50),expected);
+    }
+    assert.deepEqual(terrainPosition([0,0,1],-.4,50),[0,0,300]);
+});
+
+test('terrain picking returns original surface UV under radial relief and rotated views', () => {
     const directions=Float32Array.from([-.05,-.04,1, .05,-.04,1, 0,.07,1]);
     for(let i=0;i<9;i+=3) {
         const len=Math.hypot(...directions.subarray(i,i+3));
         for(let k=0;k<3;k++) directions[i+k]/=len;
     }
     for(const camera of [{x:500,y:500},{x:600,y:350}]) {
-        const {projection,rotation}=sphereProjection({...camera,zoom:.4,tilt_deg:0,rotate_deg:20});
+        const {projection}=sphereProjection({...camera,zoom:.4,tilt_deg:0,rotate_deg:20});
         const positions=new Float32Array(9);
-        for(let i=0;i<3;i++) positions.set(terrainPosition(directions.subarray(3*i,3*i+3),.8,150,rotation),3*i);
+        for(let i=0;i<3;i++) positions.set(terrainPosition(directions.subarray(3*i,3*i+3),.8,150),3*i);
         const center=[0,0,0], base=[0,0,0];
         for(let i=0;i<3;i++) for(let k=0;k<3;k++){center[k]+=positions[3*i+k]/3;base[k]+=directions[3*i+k]/3;}
         const clip=vec3.transformMat4(vec3.create(),center,projection);

@@ -3,6 +3,16 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Mountain perspective correction
+
+The first sphere version added a camera-dependent screen-up offset to radial height. A peak at `[0,0,1]` with elevation 0.8 and height 50 incorrectly became `[0,40,340]` in the default camera. Both the CPU regression and actual WebGL2 shader fixture reproduced this failure before the fix.
+
+Terrain now stays on its local radial line, `[0,0,340]` for that example, and camera transforms only rotate/project the fixed geometry. CPU picking uses the same displacement. Ridge outline samples follow the projected surface normal; coast sampling retains its symmetric neighborhood. Original palette, slope lighting, river shading and atlas passes remain.
+
+After this correction, `npm test` passed 11/11 tests, typecheck and build passed. The browser-only [GPU fixture](../tests/gpu-radial.html), built by `npm test`, passed 72 vertex checks across four cameras and heights 0, 50 and 150. Maximum world-coordinate error was 0.00009273 units (tolerance 0.001). The fixture imports the actual displacement snippet used by the depth and drape shaders; it also compares GPU results with CPU picking positions. This browser run is separate from the Node test runner.
+
+Current in-app browser verification (1280×720, WebGL2): painted a mountain chain, inspected the same chain at longitude controls 500, 450 and 350, rolled 90 degrees, raised mountain height to 150 and restored 50, checked coast outline 0.4 and restored 0. No captured warning/error logs. The images below were replaced with this corrected build. The user's pre-existing painted tab was preserved and a new preview tab opened. Independent read-only review found no actionable issues in the correction.
+
 ## Fresh build
 
 The previous ignored build directory was retained as `.build-before-sphere-validation/`. A new empty `build/` was created by `npm run build`; it contains only the current sphere bundles, build marker, tests, reference fixture and new validation output. The original project outside the clone has no tracked changes. Dependency installation removed the former Three.js dependencies.
@@ -12,7 +22,7 @@ Passed:
 - `pnpm install --frozen-lockfile` (with esbuild's build script explicitly allowed).
 - `npm run build`.
 - `npm run typecheck`.
-- `npm test`: 10/10 tests, including production-density generation and topology.
+- `npm test`: 11/11 tests, including production-density generation, topology and radial mountain positions.
 - `git diff --check`.
 
 ## Geometry and generation
@@ -21,9 +31,9 @@ The default mesh has 26,919 regions and 53,834 triangles. Tests check reciprocal
 
 At production density both ridge and valley folds have zero inverted or collapsed faces. An independent reviewer reproduced a fixed-longitude-jitter defect (794 inverted valley faces), then verified the final tangent-space jitter fix: zero inversions and minimum edge length 3.529 world units. This regression is covered by the full-density test.
 
-Other checks cover longitude wrap, polar-cap atlas area, angular brushes crossing the seam and poles, all-land drainage to a sink, all-ocean empty rivers, acyclic land drainage, finite geometry/river buffers, and ray picking on raised/oblique terrain under rotated views. Seed 187 → 188 → 187 reproduces elevation and element buffers bit for bit at full density.
+Other checks cover longitude wrap, polar-cap atlas area, angular brushes crossing the seam and poles, all-land drainage to a sink, all-ocean empty rivers, acyclic land drainage, finite geometry/river buffers, and ray picking on raised radial terrain under rotated views. Seed 187 → 188 → 187 reproduces elevation and element buffers bit for bit at full density.
 
-## Browser and visual checks
+## Initial implementation browser checks (before perspective correction)
 
 Chrome, WebGL2, desktop viewport 1300×1000; additional mobile emulation 390×844. The original fixture was rebuilt directly from upstream source and checked alongside the new renderer.
 
@@ -45,7 +55,15 @@ Visual inspection confirms the original layered ocean palette, green/tan biome t
 
 ![Spherical mountain brush result](evidence/sphere-painted.png)
 
-The hemisphere and mountain layout differ because the mesh and noise cover a closed sphere. The third image is a real brush result, not the default seed. Screen-up mountain relief from the original oblique projection is preserved and fades at the limb.
+The hemisphere and mountain layout differ because the mesh and noise cover a closed sphere. The third image is a real brush result, not the default seed. In the corrected projection, central mountains are viewed from above, and the same mountains show a side profile as they approach the limb.
+
+### The same painted mountains near the limb, after correction
+
+![Radial mountain profiles](evidence/sphere-radial-side.png)
+
+### Corrected preview at an intermediate angle
+
+![Corrected mountain perspective](evidence/sphere-radial-corrected.png)
 
 ## Limits of verification
 

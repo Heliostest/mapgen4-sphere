@@ -1,15 +1,11 @@
 import {mat4, vec3} from 'gl-matrix';
 import {directionToUV, SPHERE_RADIUS} from './sphere.ts';
 
-/** Mapgen4's oblique relief adds a screen-up component to height. Fade it
- * at the limb, where radial relief already supplies the mountain profile. */
-export function terrainPosition(direction: ArrayLike<number>, elevation: number, height: number, rotation: mat4): [number,number,number] {
-    const e=height*Math.max(0,elevation), radius=SPHERE_RADIUS+e;
-    const facing=Math.max(0,rotation[2]*direction[0]+rotation[6]*direction[1]+rotation[10]*direction[2]);
-    const lift=e*facing*facing;
-    return [direction[0]*radius+rotation[1]*lift,
-            direction[1]*radius+rotation[5]*lift,
-            direction[2]*radius+rotation[9]*lift];
+/** Height follows the local sphere normal, independent of the camera.
+ * Keep this displacement identical to sphere_position in render.ts. */
+export function terrainPosition(direction: ArrayLike<number>, elevation: number, height: number): [number,number,number] {
+    const radius=SPHERE_RADIUS+height*Math.max(0,elevation);
+    return [direction[0]*radius,direction[1]*radius,direction[2]*radius];
 }
 
 export function sphereProjection(param: any): {projection: mat4; rotation: mat4} {
@@ -49,7 +45,7 @@ export function pickTerrain(coords: number[], inverse: mat4, positions: Float32A
         if (distance>=0 && distance<nearest) {
             nearest=distance;
             // Recover the undisplaced surface location using barycentric
-            // coordinates, rather than interpreting oblique lift as latitude.
+            // coordinates, so varying vertex heights do not shift brush UVs.
             for (let k=0;k<3;k++) surface[k]=directions[a+k]*(1-u-v)+directions[b+k]*u+directions[c+k]*v;
         }
     }

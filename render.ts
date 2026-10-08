@@ -306,9 +306,8 @@ const vert_land = `
         out_elevation = vec4(e, 0, 0, 1);
     }`;
 
-const sphere_vertex = `
+export const sphere_vertex = `
     uniform float u_mountain_height;
-    uniform mat4 u_rotation;
     vec3 sphere_direction(vec2 xy) {
         float lon = (xy.x / 1000.0 - 0.5) * 6.28318530718;
         float lat = (0.5 - xy.y / 1000.0) * 3.14159265359;
@@ -317,9 +316,7 @@ const sphere_vertex = `
     vec3 sphere_position(vec2 xy, float e) {
         vec3 n=sphere_direction(xy);
         float height=u_mountain_height*max(0.0,e);
-        float facing=max(0.0,(mat3(u_rotation)*n).z);
-        vec3 up=vec3(u_rotation[0][1],u_rotation[1][1],u_rotation[2][1]);
-        return n*(${SPHERE_RADIUS.toFixed(1)}+height) + up*height*facing*facing;
+        return n*(${SPHERE_RADIUS.toFixed(1)}+height);
     }
 `;
 
@@ -440,7 +437,16 @@ const frag_drape = `
               depth2 = max(max(texture(u_depth, v_xy + u_outline_depth*(screen_dy-screen_dx)).x,
                                texture(u_depth, v_xy + u_outline_depth*(screen_dy+screen_dx)).x),
                            texture(u_depth, v_xy + u_outline_depth*(screen_dy)).x);
-        float outline = 1.0 + u_outline_strength * (max(u_outline_threshold, depth1-depth0) - u_outline_threshold);
+        // Ridge profiles follow the projected local vertical. Its length
+        // naturally fades toward the globe center, where relief is top-down.
+        // Keep the symmetric screen-space samples above for coast outlines.
+        vec3 radial = mat3(u_rotation)*vec3(cos(lat)*sin(lon),sin(lat),cos(lat)*cos(lon));
+        vec2 profile_dy = radial.xy*u_inverse_screen_size;
+        vec2 profile_dx = vec2(radial.y,-radial.x)*u_inverse_screen_size;
+        float profile_depth = max(max(texture(u_depth, v_xy + u_outline_depth*(-profile_dy-profile_dx)).x,
+                                      texture(u_depth, v_xy + u_outline_depth*(-profile_dy+profile_dx)).x),
+                                  texture(u_depth, v_xy - u_outline_depth*profile_dy).x);
+        float outline = 1.0 + u_outline_strength * (max(u_outline_threshold, profile_depth-depth0) - u_outline_threshold);
 
         // Add coast outline, but avoid it if there's a river nearby
         float neighboring_river = max(
@@ -634,7 +640,7 @@ export default class Renderer {
         const {numRegions,xyz_r,xyz_t}=this.mesh;
         for (let v=0;v<this.pickPositions.length/3;v++) {
             const a=v<numRegions ? xyz_r : xyz_t, index=v<numRegions ? v : v-numRegions;
-            const p=terrainPosition(a.subarray(3*index,3*index+3),this.pickElevation[2*v],height,this.rotation);
+            const p=terrainPosition(a.subarray(3*index,3*index+3),this.pickElevation[2*v],height);
             this.pickPositions.set(p,3*v);
         }
     }
@@ -690,7 +696,6 @@ export default class Renderer {
         this.drawGeneric(this.program_depth, this.fbo_depth, (gl, program) => {
             gl.uniformMatrix4fv(program.u_projection, false, this.projection);
             gl.uniform1f(program.u_mountain_height, renderParam.mountain_height);
-            gl.uniformMatrix4fv(program.u_rotation, false, this.rotation);
 
             gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });

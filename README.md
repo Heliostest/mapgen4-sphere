@@ -29,8 +29,8 @@ Open [localhost:8000](http://localhost:8000/embed.html). `npm install`, `npm run
 | Land elevation texture and river-bank depression | Same pass and formula, in a periodic 4096×2048 surface atlas |
 | Valley/ridge quadrilateral folds | Same selection and mountain-fold formula, on a closed spherical dual mesh |
 | Slope/flat/ambient/overhead lighting | Same custom shading; finite differences account for physical distance at each latitude |
-| Depth-based ridge/coast outlines | Same elevation comparison, sampled in screen space after spherical projection |
-| Oblique mountain profiles | Radial height plus original screen-up relief, faded smoothly at the limb |
+| Depth-based ridge/coast outlines | Same elevation comparison; ridge samples follow the projected local vertical, coast samples remain symmetric |
+| Mountain profiles | Fixed radial height along each surface normal, independent of camera orientation |
 | Final texture composition | Same final pass, including its small smoothing offset |
 
 No scene lights, physical materials, or vertex-color palette replacement are used.
@@ -53,6 +53,8 @@ node scripts/build-reference.mjs
 ```
 
 The reference command reconstructs and builds the original source only inside `build/reference/`. Compare it at [the original reference page](http://localhost:8000/build/reference/embed.html).
+
+`pnpm test` also builds the GPU regression fixture. With the server running, open [the mountain projection check](http://localhost:8000/tests/gpu-radial.html): WebGL2 transform feedback checks the actual depth/drape displacement shader against fixed world positions and CPU picking geometry across four camera orientations and three heights. Its browser result must say `PASS`; the Node test command does not execute this browser check.
 
 For automated screenshots and browser interactions, install Playwright in a separate tooling environment (or locally) and have Chrome installed:
 
