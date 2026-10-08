@@ -39,4 +39,4 @@ Interfaces: WorkerRequest {id, params, reset?, strokes?}; WorkerResponse {id, re
 Files: README.md, docs/verification.md.
 - [x] Record actual test/browser results and limitations; independently review the diff.
 - [x] Fix important findings and rerun affected checks.
-- [ ] Commit and push feature branch to the fork, verify remote SHA and show the running page.
+- [x] Commit and push feature branch to the fork and show the running page. Delivery checks compare the final local and remote commit IDs.

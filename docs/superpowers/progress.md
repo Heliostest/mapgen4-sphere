@@ -13,4 +13,4 @@ Visual refinement: increased subdivision to level 6, smoothed terrain normals, r
 
 Independent review found multi-touch painting and BFCache cleanup issues. Both were fixed with tests that failed before the fixes. Final validation: 11/11 tests, strict typecheck, production build and whitespace checks passed. Lockfile installation passed. Browser generation, orbit, zoom, brush/reset, seed/coverage, graticule, PNG download, original demo and mobile layout checks passed. See ../verification.md for the exact scope and limitations.
 
-Current delivery step: commit verified implementation and publish codex/spherical-terrain to the user's fork. The localhost preview is running; no upstream PR or deployment is being created.
+Delivery: implementation commit cf030e4 was published to origin/codex/spherical-terrain in the user's fork. This final documentation update records completion. The localhost preview is running; no upstream PR or deployment was created. The final delivery check compares local HEAD with the published branch after pushing this ledger.
