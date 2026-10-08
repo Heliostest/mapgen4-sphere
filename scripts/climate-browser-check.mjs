@@ -37,6 +37,9 @@ try {
     const after=await page.locator('#planet-probe').textContent();const e=s=>Number(s.match(/estimated wind E ([\d.-]+)/)[1]);assert.equal(e(before),-e(after));
     await page.locator('#planet-inspect').click();await page.locator('#planet-retrograde').uncheck();
     await page.locator('#planet-layer').selectOption('precipitation');const rain=await capture('initial-rain');
+    assert.match(await page.locator('#planet-legend').textContent(),/Generated initial estimate/);
+    await page.locator('#planet-layer').selectOption('runoff');
+    assert.match(await page.locator('#planet-legend').textContent(),/Generated initial estimate/);await zero();
     await page.locator('#planet-layer').selectOption('soil-moisture');assert.ok(!rain.equals(await capture('initial-soil')));await zero();
     await page.locator('#geomorph-panel').evaluate(e=>e.open=true);await page.locator('#geomorph-capture').click();assert.match(await page.locator('#geomorph-source').textContent(),/generated initial discharge estimate/);
     checks.push('Estimated vector wind arrows/probes respond to retrograde; rain/soil and erosion capture are available before Play with honest initial-estimate labels');
@@ -44,6 +47,14 @@ try {
     await page.waitForFunction(()=>Number(document.querySelector('#thermal-age').dataset.days)>3);await page.locator('#planet-play').click();await frames();
     const age=await page.locator('#thermal-age').getAttribute('data-days');assert.match(await page.locator('#water-status').textContent(),/latest simulated step/);
     assert.ok(Math.abs(Number(await page.locator('#water-budget').getAttribute('data-value')))<1e-6);
+    for(const layer of ['precipitation','runoff']) {
+        await page.locator('#planet-layer').selectOption(layer);
+        assert.match(await page.locator('#planet-legend').textContent(),/Latest simulated-step/);
+        assert.doesNotMatch(await page.locator('#planet-legend').textContent(),/Generated initial estimate/);
+        assert.equal(await page.locator('#thermal-age').getAttribute('data-days'),age);
+    }
+    checks.push('Rain and surface-outflow legends distinguish generated initial estimates from latest simulated-step fluxes');
+    await page.locator('#planet-layer').selectOption('temperature');
     const evolved=await capture('evolved');await input('slider-sphere_radius',600);await input('slider-sphere_radius',300);
     assert.equal(await page.locator('#thermal-age').getAttribute('data-days'),age);
     const displayDiff=await compare(evolved,await capture('view-roundtrip'));assert.ok(displayDiff.max<=1&&displayDiff.channels<=32,JSON.stringify(displayDiff));

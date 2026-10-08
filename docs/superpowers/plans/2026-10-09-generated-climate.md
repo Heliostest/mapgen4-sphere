@@ -22,7 +22,7 @@ These support qualitative structure; the numerical templates below are our illus
 1. [x] RED/GREEN pure initialization and wind tests: latitude/season/elevation/sea response, determinism, extreme finite behavior, direction and rain shadow. Runtime integration preserves zero clock/age and budget baselines.
 2. [x] Conservative vector vapor transport, changing seasonal wind, exact pause/checkpoint behavior, initialized hydrology and meaningful stability/budget tests.
 3. [x] No-Play climate shortcut, wind rendering/probes and explanatory UI. Browser verifies initial spatial differences, parameter edits while paused, initial erosion flow, playback continuation, save/load compatibility and mobile layout.
-4. [ ] Full Node/typecheck/build and relevant browser/DOM/GPU regressions, source/method documentation, one independent review and local commits.
+4. [x] Full Node/typecheck/build and relevant browser/DOM/GPU regressions, source/method documentation, one independent review and local commits. Review found one Important initial-flux legend issue; reproduced with a browser regression, then fixed and verified in one pass.
 
 ## Review focus
 - Generated climate must not advance astronomical time, hide simulation steps, reuse a prior terrain/season, or label estimated initial fluxes as measured simulated transfers.
