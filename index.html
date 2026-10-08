@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111e2a"><title>Mapgen4 Sphere · 球面地形编辑器</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%2351bdd1'/%3E%3Cpath d='M9 12L20 6L27 15L19 22L23 33L12 25Z' fill='%2352784b'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="build/globe.css"><script defer src="build/globe.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><ellipse cx="16" cy="16" rx="6" ry="13"/><path d="M3 16h26M6 8h20M6 24h20"/></svg><span>MAPGEN<span class="brand-number">4</span><small>SPHERE</small></span></a>
+    <span class="header-caption">球面地形编辑器</span>
+    <div class="header-actions"><a href="embed.html" target="_blank" rel="noopener">平面版 ↗</a><button id="download" class="button outline" disabled>导出 PNG <span aria-hidden="true">↗</span></button></div>
+  </header>
+  <main class="workspace">
+    <section class="planet-panel" aria-label="交互式球面地图">
+      <div class="world-label"><span class="eyebrow">PROCEDURAL WORLD</span><h1>球面世界 <span id="world-seed">187</span></h1><p>大陆、山脉与河流，在一个连续的球面上。</p></div>
+      <div id="viewport"><canvas id="planet" tabindex="0" aria-label="球面地形，选择旋转工具拖动查看，选择笔刷修改地形"></canvas></div>
+      <div class="world-stats"><span><i class="water-dot"></i>海洋 <b id="ocean-stat">—</b></span><span><i class="land-dot"></i>陆地 <b id="land-stat">—</b></span><span id="timing">准备中</span></div>
+      <div id="status" role="status" aria-live="polite">正在生成球面地形…</div>
+      <div class="canvas-bottom">
+        <div class="tools" role="group" aria-label="地形工具">
+          <button class="tool active" data-tool="rotate" aria-pressed="true" title="旋转 · 快捷键 1"><span aria-hidden="true">↻</span>旋转<kbd>1</kbd></button>
+          <button class="tool" data-tool="ocean" aria-pressed="false" title="海洋 · 快捷键 2"><span aria-hidden="true">≈</span>海洋<kbd>2</kbd></button>
+          <button class="tool" data-tool="land" aria-pressed="false" title="陆地 · 快捷键 3"><span aria-hidden="true">⌁</span>陆地<kbd>3</kbd></button>
+          <button class="tool" data-tool="mountain" aria-pressed="false" title="山脉 · 快捷键 4"><span aria-hidden="true">△</span>山脉<kbd>4</kbd></button>
+        </div>
+        <p id="tool-hint">拖动旋转 · 滚轮缩放 · 选择笔刷绘制地形</p>
+      </div>
+    </section>
+    <aside class="controls" aria-label="地图参数">
+      <div class="panel-heading"><span class="eyebrow">WORLD SETTINGS</span><h2>塑造你的世界</h2></div>
+      <section class="control-section">
+        <label class="field-label" for="seed">随机种子</label>
+        <div class="seed-row"><input id="seed" type="number" min="1" max="2147483647" step="1" value="187"><button id="new-world" class="button accent">新世界 ↻</button></div>
+        <p class="field-note">相同种子生成相同地形。</p>
+      </section>
+      <section class="control-section sliders">
+        <h3>地形与气候</h3>
+        <label for="sea-level">海洋比例 <output id="sea-value">56%</output></label><input id="sea-level" type="range" min="10" max="90" value="56" step="1">
+        <label for="relief">山脉起伏 <output id="relief-value">6%</output></label><input id="relief" type="range" min="1" max="18" value="6" step="1">
+        <label for="rainfall">降雨量 <output id="rain-value">0.9</output></label><input id="rainfall" type="range" min="0" max="1.8" value="0.9" step="0.1">
+      </section>
+      <section class="control-section sliders">
+        <h3>地形笔刷</h3><label for="brush">笔刷半径 <output id="brush-value">8°</output></label><input id="brush" type="range" min="3" max="22" value="8" step="1">
+        <p class="field-note">按住绘制，右键拖动旋转。<br>修改地形后，河流会自动重新计算。</p>
+      </section>
+      <section class="control-section toggles">
+        <h3>显示</h3>
+        <label><span>河流</span><input id="show-rivers" type="checkbox" checked></label>
+        <label><span>经纬网</span><input id="show-grid" type="checkbox"></label>
+        <label><span>自动旋转</span><input id="auto-rotate" type="checkbox"></label>
+      </section>
+      <div class="reset-row"><button id="reset-terrain" class="button outline">重置地形</button><button id="reset-view" class="button outline">复位视角</button></div>
+      <div class="elevation-key"><div></div><span>深海</span><span>低地</span><span>山地</span></div>
+      <footer class="attribution">基于 Red Blob Games · Mapgen4<br><a href="https://github.com/Heliostest/mapgen4-sphere" target="_blank" rel="noopener">查看项目源码 ↗</a></footer>
+    </aside>
+  </main>
+  <noscript>请启用 JavaScript 以使用球面地图编辑器。</noscript>
+</body>
+</html>

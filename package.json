@@ -1,14 +1,28 @@
 {
-    "name": "@redblobgames/mapgen4",
+    "name": "mapgen4-sphere",
     "version": "2.0.0",
     "private": true,
     "type": "module",
+    "scripts": {
+        "dev": "node scripts/dev.mjs",
+        "build": "node scripts/build.mjs",
+        "test": "node scripts/test.mjs",
+        "typecheck": "tsc --project tsconfig.planet.json"
+    },
+    "engines": {"node": ">=22.18"},
     "dependencies": {
         "@redblobgames/prng": "https://github.com/redblobgames/prng",
         "delaunator": "^5",
         "fast-2d-poisson-disk-sampling": "^1",
         "flatqueue": "^2",
         "gl-matrix": "^3",
-        "simplex-noise": "^4"
+        "simplex-noise": "^4",
+        "three": "^0.186.1"
+    },
+    "devDependencies": {
+        "@types/node": "^26.6.4",
+        "@types/three": "^0.186.0",
+        "esbuild": "^0.28.2",
+        "typescript": "^7.0.2"
     }
 }
