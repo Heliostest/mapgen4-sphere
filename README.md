@@ -31,7 +31,8 @@ Open [localhost:8000](http://localhost:8000/embed.html). `npm install`, `npm run
 | Slope/flat/ambient/overhead lighting | Same custom shading; finite differences account for physical distance at each latitude |
 | Depth-based ridge/coast outlines | Same elevation comparison; ridge samples follow the projected local vertical, coast samples remain symmetric |
 | Mountain profiles | Fixed radial height along each surface normal, independent of camera orientation |
-| Final texture composition | Same final pass, including its small smoothing offset |
+| Outer silhouette | Coverage-based outline in the final pass, including mountain peaks against the background |
+| Final texture composition | Original smoothing offset, plus silhouette ink controlled by `outline_depth` and `outline_strength` |
 
 No scene lights, physical materials, or vertex-color palette replacement are used.
 
@@ -57,6 +58,8 @@ The reference command reconstructs and builds the original source only inside `b
 `pnpm test` also builds the GPU regression fixture. With the server running, open [the mountain projection check](http://localhost:8000/tests/gpu-radial.html): WebGL2 transform feedback checks the actual depth/drape displacement shader against fixed world positions and CPU picking geometry across four camera orientations and three heights. Its browser result must say `PASS`; the Node test command does not execute this browser check.
 
 The [outline sampling check](http://localhost:8000/tests/gpu-outlines.html) must also say `PASS`. It samples the renderer's actual outline texture at 771 fractional positions to detect pixel snapping that would cause stationary diamond-shaped bands during rotation.
+
+The [silhouette check](http://localhost:8000/tests/gpu-silhouette.html) checks background/sea coverage and the actual final shader: all eight edge directions, identical foreground/background colors, unchanged interior pixels, opaque output, and disabling either outline control. Like the other GPU fixtures, run it in the browser after `pnpm test` builds it.
 
 For automated screenshots and browser interactions, install Playwright in a separate tooling environment (or locally) and have Chrome installed:
 

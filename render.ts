@@ -474,13 +474,35 @@ const vert_final = `
     }`;
 
 const frag_final = `
-    precision mediump float;
+    precision highp float;
     uniform sampler2D u_texture;
     uniform vec2 u_offset;
+    uniform float u_outline_radius, u_outline_strength;
     in vec2 v_uv;
     out vec4 out_fragcolor;
+    const vec2 outline_taps[8] = vec2[8](
+        vec2(1,0), vec2(-1,0), vec2(0,1), vec2(0,-1),
+        vec2(0.70710678,0.70710678), vec2(-0.70710678,0.70710678),
+        vec2(0.70710678,-0.70710678), vec2(-0.70710678,-0.70710678)
+    );
     void main() {
-         out_fragcolor = texture(u_texture, v_uv + u_offset);
+        vec2 uv = v_uv + u_offset;
+        vec4 color = texture(u_texture, uv);
+        // Drape alpha records terrain coverage, including sea-level water.
+        // The full-screen pass can ink both sides of the silhouette, even
+        // where no terrain fragment exists to carry the internal ridge line.
+        if (u_outline_radius > 0.0 && u_outline_strength > 0.0) {
+            vec2 step_uv = u_outline_radius / vec2(textureSize(u_texture, 0));
+            float lo = color.a, hi = color.a;
+            for (int i=0; i<8; i++) {
+                float coverage = texture(u_texture, uv + step_uv*outline_taps[i]).a;
+                lo = min(lo, coverage);
+                hi = max(hi, coverage);
+            }
+            color.rgb /= 1.0 + 0.2*u_outline_strength*(hi-lo);
+        }
+        // Coverage is internal metadata; the displayed background stays opaque.
+        out_fragcolor = vec4(color.rgb, 1);
     }`;
 
 //////////////////////////////////////////////////////////////////////
@@ -732,9 +754,11 @@ export default class Renderer {
         });
     }
 
-    drawFinal(offset: [number, number]) {
+    drawFinal(offset: [number, number], renderParam: any) {
         this.drawGeneric(this.program_final, null, (gl, program) => {
             gl.uniform2fv(program.u_offset, offset);
+            gl.uniform1f(program.u_outline_radius, 1.5 * renderParam.outline_depth * 5 * renderParam.zoom);
+            gl.uniform1f(program.u_outline_strength, renderParam.outline_strength);
             this.fbo_drape.texture.activate(gl.TEXTURE0, program.u_texture);
 
             gl.drawArrays(gl.TRIANGLES, 0, 3);
@@ -748,7 +772,7 @@ export default class Renderer {
             this.fbo_river.clear(0, 0, 0, 0);
             this.fbo_land.clear(0,0,0,1);
             this.fbo_depth.clear(0, 0, 0, 1);
-            this.fbo_drape.clear(0.3, 0.3, 0.35, 1);
+            this.fbo_drape.clear(0.3, 0.3, 0.35, 0);
             gl.bindFramebuffer(gl.FRAMEBUFFER, null);
         };
 
@@ -782,7 +806,7 @@ export default class Renderer {
             this.drawDrape(renderParam);
 
             /* Draw the final texture to the canvas; this slightly blurs the outlines */
-            this.drawFinal([0.5 / fbo_texture_size, 0.5 / fbo_texture_size]);
+            this.drawFinal([0.5 / fbo_texture_size, 0.5 / fbo_texture_size], renderParam);
 
             if (this.screenshotCallback) {
                 const ctx = this.screenshotCanvas.getContext('2d');

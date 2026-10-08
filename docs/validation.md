@@ -3,6 +3,16 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Exterior silhouette completion
+
+The terrain drape pass cannot shade empty background pixels, so ridge lines previously vanished when the adjacent terrain gave way to the background. Drape alpha now records coverage (background 0, all terrain including sea-level water 1). The existing final pass samples that mask in eight circular directions and darkens the silhouette on both sides, then outputs opaque alpha. Interior colors remain unchanged away from the silhouette. Width and strength follow the existing `outline_depth` and `outline_strength` controls; either at zero disables the new outline. No additional framebuffer or render pass is allocated.
+
+The new `/tests/gpu-silhouette.html` fixture exercises actual drape coverage and final composition. Before implementation, 22 of 30 checks failed; afterward all 30 passed. Checks include eight edge directions, same-colored terrain/background, sea-level coverage, preserved interior/far-background pixels, opaque output, and both disable controls. [GPU report](evidence/silhouette-gpu-report.json). The prior 72 radial-position checks and 771 continuous-sampling checks also passed in the browser. Node tests 11/11, typecheck and build passed.
+
+Visual checks at the user's seed/view and at height 150 with a 45-degree roll show lines around exposed peaks; rotating at height 50 retains the outline as the visible silhouette moves. [Exaggerated peaks](evidence/silhouette-high-peaks.png). Independent read-only review found no actionable issues. The final pass adds eight texture reads per pixel while outlines are enabled; cross-device frame-time performance was not benchmarked.
+
+The user's current page was refreshed after confirming there was no painted edit; all 32 parameter values were restored and compared for equality. Same-view [before](evidence/silhouette-before-current.png) and [after](evidence/silhouette-after-current.png) show the new exterior line. No runtime warnings/errors were captured.
+
 ## Fixed diamond bands during rotation
 
 After the radial perspective correction, the outline texture still used nearest-neighbor sampling inherited from the planar renderer. Radial taps move continuously in screen space; rounding those taps to whole texels introduces jumps along fixed diagonal boundaries (`radial.x ± radial.y = constant`). This caused terrain moving through those boundaries to abruptly acquire ridge outlines.
