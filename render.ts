@@ -554,6 +554,8 @@ export default class Renderer {
     texture_colormap: Texture;
     texture_temperature: Texture;
     private temperaturePixels:Uint8Array|null=null;
+    texture_hydrology: Texture;
+    private waterPixels:Uint8Array|null=null;
 
     fbo_river: Framebuffer;
     fbo_land: Framebuffer;
@@ -612,6 +614,9 @@ export default class Renderer {
         this.texture_colormap = this.webgl.createTexture({data: colormap.data, width: colormap.width, height: colormap.height, filter: 'nearest'});
         this.texture_temperature = this.webgl.createTexture({width:48,height:24,filter:'linear'});
         this.texture_temperature.bind();
+        this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
+        this.texture_hydrology = this.webgl.createTexture({width:48,height:24,filter:'linear'});
+        this.texture_hydrology.bind();
         this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
 
         this.fbo_land  = this.webgl.createFramebuffer(2*fbo_texture_size, fbo_texture_size, {depth: false, internalFormat: this.webgl.gl.R16F, filter: 'linear'});
@@ -673,6 +678,11 @@ export default class Renderer {
             this.texture_temperature.bind();
             gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,view.thermal.width,view.thermal.height,gl.RGBA,gl.UNSIGNED_BYTE,view.thermal.pixels);
             this.temperaturePixels=view.thermal.pixels;
+        }
+        if(view.water && view.water.pixels!==this.waterPixels) {
+            const {gl}=this.webgl;this.texture_hydrology.bind();
+            gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,view.water.width,view.water.height,gl.RGBA,gl.UNSIGNED_BYTE,view.water.pixels);
+            this.waterPixels=view.water.pixels;
         }
     }
 
@@ -785,7 +795,9 @@ export default class Renderer {
             gl.uniform1f(program.u_outline_strength, renderParam.outline_strength);
             gl.uniform1f(program.u_outline_threshold, renderParam.outline_threshold / 1000);
             gl.uniform1f(program.u_biome_colors, renderParam.biome_colors);
-            gl.uniform1i(program.u_planet_layer, this.planetView?.layer==='day-night' ? 1 : this.planetView?.layer==='insolation' ? 2 : this.planetView?.layer==='temperature' && this.planetView.thermal ? 3 : 0);
+            const view=this.planetView;
+            gl.uniform1i(program.u_planet_layer, view?.layer==='day-night'?1:view?.layer==='insolation'?2:view?.layer==='temperature'&&view.thermal?3:
+                view?.water?view.layer==='precipitation'?4:view.layer==='soil-moisture'?5:view.layer==='runoff'?6:0:0);
             gl.uniform3fv(program.u_sun_direction, this.planetView?.sunDirection ?? [0,0,1]);
 
             this.texture_colormap.activate(gl.TEXTURE0, program.u_colormap);
@@ -793,6 +805,7 @@ export default class Renderer {
             this.fbo_river.texture.activate(gl.TEXTURE2, program.u_water);
             this.fbo_depth.texture.activate(gl.TEXTURE3, program.u_depth);
             this.texture_temperature.activate(gl.TEXTURE4, program.u_temperature);
+            this.texture_hydrology.activate(gl.TEXTURE5, program.u_hydrology);
 
             gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });

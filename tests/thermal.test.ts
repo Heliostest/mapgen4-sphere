@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DEFAULT_PLANET} from '../planet.ts';
 import {DEFAULT_ORBIT,deriveOrbit} from '../astronomy.ts';
-import {makeThermalGrid,dailyMeanInsolation,landFractions,heatTransport,ThermalModel,DEFAULT_THERMAL} from '../thermal.ts';
+import {makeThermalGrid,dailyMeanInsolation,landFractions,sampleTerrainGrid,heatTransport,ThermalModel,DEFAULT_THERMAL} from '../thermal.ts';
 import {ThermalRuntime} from '../thermal-runtime.ts';
 import {SimulationClock} from '../simulation-clock.ts';
 
@@ -111,4 +111,40 @@ test('clock reports real work limiting at 20fps and clears it on an uncapped upd
     const c=new SimulationClock(0,864000);c.setPlaying(true,0);
     c.tick(50,35610);assert.equal(c.limited,true);near(c.timeS,35610);
     c.tick(60,35610);assert.equal(c.limited,false);near(c.timeS,44250);
+});
+
+test('shared terrain sampling uses mean land elevation without averaging in seafloor',()=>{
+    const s=sampleTerrainGrid(grid,[0,0,1,0,0,1,0,0,1],[.2,.6,-1]);
+    const k=4*grid.width+8;
+    near(s.landFraction[k],2/3);near(s.landElevation[k],.4);
+    assert.ok(s.landElevation.every(v=>Number.isFinite(v)&&v>=0));
+});
+
+test('coupled water clock restores all stores and fluxes after multiple queued updates',()=>{
+    const rt=new ThermalRuntime(grid);rt.enabled=rt.waterEnabled=true;rt.setTerrain(land);
+    rt.sync(p,o,0,0);assert.ok(rt.water);
+    const dt=rt.model!.stepS;
+    for(let s=1;s<=100;s++)rt.sync(p,o,s*dt,(s-1)*dt);
+    const saved=rt.water!.checkpoint(),pixels=rt.waterTexture!.pixels.slice();
+    rt.sync(p,o,110*dt,100*dt);rt.sync(p,o,120*dt,100*dt);
+    assert.ok(rt.water!.elapsedS>saved.elapsedS);
+    rt.sync(p,o,100*dt,100*dt);
+    assert.deepEqual(rt.water!.checkpoint(),saved);assert.deepEqual(rt.waterTexture!.pixels,pixels);
+    near(rt.water!.elapsedS,rt.model!.timeS,1e-6);
+    rt.sync(p,o,130*dt,100*dt);assert.ok(rt.water!.elapsedS>saved.elapsedS);
+    rt.enabled=false;rt.sync(p,o,130*dt,130*dt);
+    assert.equal(rt.water,null);assert.equal(rt.waterTexture,null);
+});
+
+test('water shares stable thermal substeps and terrain/config resets its history',()=>{
+    const rt=new ThermalRuntime(grid);rt.enabled=rt.waterEnabled=true;rt.setTerrain(land,new Float64Array(grid.count).fill(.2));
+    const small={...p,radiusM:10000};rt.sync(small,o,0,0);
+    assert.ok(rt.model!.stepS<=rt.water!.maxStepS);near(rt.water!.heightM[0],.2*p.reliefM);
+    rt.sync(small,o,rt.maxAdvanceS,0);assert.equal(rt.model!.steps,32);
+    near(rt.water!.elapsedS,rt.model!.timeS,1e-6);
+    rt.waterConfig.windMps=-100;rt.sync(small,o,100,100);assert.equal(rt.water!.elapsedS,0);
+    rt.setTerrain(new Float64Array(grid.count));rt.sync(p,o,100,100);
+    assert.ok(rt.water!.soilKgM2.every(v=>v===0));assert.equal(rt.model!.epochS,100);
+    rt.sync({...p,siderealPeriodS:deriveOrbit(p,o).yearS},o,100,100);
+    assert.equal(rt.water,null);assert.equal(rt.waterTexture,null);
 });

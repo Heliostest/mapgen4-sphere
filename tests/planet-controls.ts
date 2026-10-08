@@ -5,6 +5,7 @@ import type {ThermalTexture} from '../thermal-runtime.ts';
 // reproduce a view queued by controls before the renderer has presented it.
 let now=0,frame:FrameRequestCallback|undefined,presented:number|null=null,queued=0;
 let field:ThermalTexture|null=null;
+let water:ThermalTexture|null=null;
 Object.defineProperty(performance,'now',{value:()=>now});
 window.requestAnimationFrame=callback=>{frame=callback;return 1;};
 const failures:string[]=[];
@@ -14,7 +15,7 @@ function advance(time:number) {now=time;frame!(time);}
 try {
     const controls=installPlanetControls({
         container:document.querySelector('#controls')!,canvas:document.querySelector('#canvas')!,
-        onView:view=>{queued=view.timeS;field=view.thermal??null;},sampleTerrain:()=>null,canInspect:()=>true,
+        onView:view=>{queued=view.timeS;field=view.thermal??null;water=view.water??null;},sampleTerrain:()=>null,canInspect:()=>true,
         presentedTimeS:()=>presented,renderParams:()=>({}),
         terrain:()=>({directions:new Float32Array([0,0,1]),elevation:new Float32Array([1])}),
     });
@@ -42,6 +43,20 @@ try {
     check(JSON.stringify(Array.from(field!.pixels))===JSON.stringify(visibleBytes),'Pause must restore the visible temperature field');
     play.click();advance(now+1000);
     check(field!.timeS>visibleField.timeS,'Thermal model must resume after presented-frame rollback');
+    presented=queued;play.click();layer.value='precipitation';layer.dispatchEvent(new Event('change'));
+    play.click();advance(now+1000);presented=queued;
+    const visibleWater=water!,waterBytes=Array.from(visibleWater.pixels),budget=document.querySelector<HTMLOutputElement>('#water-budget')!.value;
+    advance(now+1000);now+=1000;speed.value='86400';speed.dispatchEvent(new Event('change'));
+    check(water!.timeS>visibleWater.timeS,'Water reproduction must queue two later fields');
+    play.click();
+    check(water!.timeS===visibleWater.timeS&&field!.timeS===visibleWater.timeS,'Pause restores aligned water and thermal time');
+    check(JSON.stringify(Array.from(water!.pixels))===JSON.stringify(waterBytes),'Pause restores all displayed water fields');
+    check(document.querySelector<HTMLOutputElement>('#water-budget')!.value===budget,'Pause restores the displayed water budget');
+    play.click();advance(now+1000);presented=queued;
+    const hiddenWater=water!,hiddenBytes=Array.from(hiddenWater.pixels);advance(now+1000);
+    Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));
+    check(play.textContent==='Play'&&water!.timeS===hiddenWater.timeS,'Hidden tabs pause water at the visible time');
+    check(JSON.stringify(Array.from(water!.pixels))===JSON.stringify(hiddenBytes),'Hidden-tab rollback restores water field contents');
     document.querySelector('pre')!.textContent=JSON.stringify({status:failures.length?'FAIL':'PASS',checks,failures},null,2);
 } catch(error) {
     document.querySelector('pre')!.textContent=JSON.stringify({status:'FAIL',error:String(error)});

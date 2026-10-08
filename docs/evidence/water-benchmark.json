@@ -1,0 +1,27 @@
+{
+  "environment": "Node v24.11.1, this machine; paired solver + checkpoints + texture encoding, not browser rendering or device FPS",
+  "cells": 1152,
+  "substepsPerBatch": 32,
+  "batches": 100,
+  "medianMs": 2.0953999999999837,
+  "p95Ms": 3.0579999999999927,
+  "stepS": 1112.8130870852299,
+  "thermal": {
+    "meanK": 287.8800544540515,
+    "minK": 260.0329390620277,
+    "maxK": 297.73115300621726,
+    "timeS": 3917102.0665400093,
+    "budgetResidualJm2": 0.00001832190901041031
+  },
+  "water": {
+    "totalMm": 333393.2869919453,
+    "residualMm": -2.0954757928848267e-9,
+    "atmosphereMm": 21.88067336165923,
+    "soilMm": 42.258158266334895,
+    "surfaceMm": 0,
+    "oceanMm": 333329.1481603173,
+    "rainMmDay": 0.1017315746968088,
+    "evaporationMmDay": 0.18440070742532474,
+    "maxDischargeM3S": 0
+  }
+}

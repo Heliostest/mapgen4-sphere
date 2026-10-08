@@ -29,17 +29,20 @@ export function thermalCell(grid:ThermalGrid,u:number,v:number) {
     return j*grid.width+i;
 }
 export function landFractions(grid:ThermalGrid,directions:ArrayLike<number>,elevation:ArrayLike<number>) {
+    return sampleTerrainGrid(grid,directions,elevation).landFraction;
+}
+export function sampleTerrainGrid(grid:ThermalGrid,directions:ArrayLike<number>,elevation:ArrayLike<number>) {
     const n=directions.length/3;
     if(n<1 || !Number.isInteger(n) || elevation.length<n) throw new RangeError('Missing terrain snapshot');
-    const count=new Uint32Array(grid.count),land=new Float64Array(grid.count);
+    const count=new Uint32Array(grid.count),land=new Float64Array(grid.count),height=new Float64Array(grid.count);
     for(let r=0;r<n;r++) {
         const u=.5+Math.atan2(directions[3*r],directions[3*r+2])/(2*Math.PI);
         const j=Math.max(0,Math.min(grid.height-1,Math.floor((1-directions[3*r+1])/2*grid.height)));
         const k=j*grid.width+Math.floor(((u%1+1)%1)*grid.width);
-        count[k]++;land[k]+=elevation[r]>0?1:0;
+        count[k]++;land[k]+=elevation[r]>0?1:0;height[k]+=Math.max(0,Math.min(1,elevation[r]));
     }
     for(let k=0;k<grid.count;k++) {
-        if(count[k]) {land[k]/=count[k];continue;}
+        if(count[k]) {height[k]=land[k]>0?height[k]/land[k]:0;land[k]/=count[k];continue;}
         // Only needed on sparse inputs: classify the nearest authored region.
         const y=grid.sinLat[Math.floor(k/grid.width)],lon=((k%grid.width+.5)/grid.width-.5)*2*Math.PI;
         const x=Math.sqrt(1-y*y)*Math.sin(lon),z=Math.sqrt(1-y*y)*Math.cos(lon);
@@ -49,8 +52,9 @@ export function landFractions(grid:ThermalGrid,directions:ArrayLike<number>,elev
             if(dot>best){best=dot;nearest=r;}
         }
         land[k]=elevation[nearest]>0?1:0;
+        height[k]=Math.max(0,Math.min(1,elevation[nearest]));
     }
-    return land;
+    return {landFraction:land,landElevation:height};
 }
 
 /** Exact daily mean at fixed declination, including polar day and night. */
@@ -72,6 +76,7 @@ export type ThermalCheckpoint={temperatureK:Float64Array;steps:number;radiationJ
 
 export class ThermalModel {
     readonly temperatureK:Float64Array;
+    readonly absorbedWm2:Float64Array;
     readonly capacity:Float64Array;
     readonly initialEnergyJm2:number;
     readonly yearS:number;
@@ -97,6 +102,7 @@ export class ThermalModel {
         this.transport=config.diffusion*(DEFAULT_PLANET.radiusM/planet.radiusM)**2;
         const initial=derived.equilibriumK/Math.pow(config.emissivity,.25);
         this.temperatureK=new Float64Array(grid.count).fill(initial);
+        this.absorbedWm2=new Float64Array(grid.count);
         this.capacity=Float64Array.from(land,f=>{
             finiteInRange(f,'land fraction',0,1);
             return f*config.landHeatCapacity+(1-f)*config.oceanDepthM*4.2e6;
@@ -115,11 +121,11 @@ export class ThermalModel {
     private energy() {return this.temperatureK.reduce((sum,t,i)=>sum+this.capacity[i]*t,0)/this.grid.count;}
     checkpoint():ThermalCheckpoint {return {temperatureK:this.temperatureK.slice(),steps:this.steps,radiationJm2:this.radiationJm2};}
     restore(state:ThermalCheckpoint) {this.temperatureK.set(state.temperatureK);this.steps=state.steps;this.radiationJm2=state.radiationJm2;}
-    advanceTo(targetS:number,maxSteps=32) {
+    advanceTo(targetS:number,maxSteps=32,afterStep?:(dt:number,temperatureK:Float64Array,absorbedWm2:Float64Array)=>void) {
         finiteInRange(targetS,'thermal time',this.epochS);
         const targetSteps=Math.floor((targetS-this.epochS)/this.stepS+1e-8);
         const end=Math.min(targetSteps,this.steps+maxSteps);
-        for(;this.steps<end;this.steps++) this.step();
+        for(;this.steps<end;this.steps++) {this.step();afterStep?.(this.stepS,this.temperatureK,this.absorbedWm2);}
         return this.steps>=targetSteps;
     }
     private step() {
@@ -134,7 +140,8 @@ export class ThermalModel {
         heatTransport(grid,t,this.transport,this.tendency);
         let radiation=0;
         for(let i=0;i<grid.count;i++) {
-            const net=(1-this.orbit.bondAlbedo)*q[Math.floor(i/grid.width)]*normalizer-config.emissivity*SIGMA*t[i]**4;
+            this.absorbedWm2[i]=(1-this.orbit.bondAlbedo)*q[Math.floor(i/grid.width)]*normalizer;
+            const net=this.absorbedWm2[i]-config.emissivity*SIGMA*t[i]**4;
             radiation+=net;
             t[i]+=this.stepS*(net+this.tendency[i])/this.capacity[i];
         }

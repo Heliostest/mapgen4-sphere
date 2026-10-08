@@ -1,0 +1,71 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const base=process.env.BASE_URL||'http://localhost:8002',folder='build/validation/water';
+await mkdir(folder,{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
+const page=await browser.newPage({viewport:{width:1300,height:1000}}),errors=[],checks=[];
+page.on('pageerror',e=>errors.push(e.message));
+page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
+await page.addInitScript(()=>{window.generations=0;const W=window.Worker;window.Worker=class extends W{constructor(...a){super(...a);this.addEventListener('message',()=>window.generations++);}};});
+const frames=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+const input=async(id,value)=>{await page.locator(id.startsWith('slider-')?`#${id} input`:`#${id}`).evaluate((e,v)=>{e.value=String(v);e.dispatchEvent(new Event(e.type==='range'?'input':'change',{bubbles:true}));},value);await frames();};
+const capture=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
+try {
+    await page.goto(base+'/embed.html');await page.waitForFunction(()=>window.generations>0);await frames();
+    assert.equal(await page.locator('#planet-layer option[value="precipitation"]').count(),1,'Water layers missing');
+    const baseline=await capture('original'),generations=await page.evaluate(()=>window.generations);
+    assert.equal(await page.locator('#water-enabled').isChecked(),false);
+    await page.locator('#planet-layer').selectOption('precipitation');await frames();
+    assert.equal(await page.locator('#thermal-enabled').isChecked(),true);assert.equal(await page.locator('#water-enabled').isChecked(),true);
+    await page.locator('#planet-speed').selectOption('864000');await page.locator('#planet-play').click();
+    await page.waitForFunction(()=>Number(document.querySelector('#water-age').dataset.days)>90,{},{timeout:60000});
+    await page.locator('#planet-play').click();await frames();
+    const rain=await capture('precipitation'),age=await page.locator('#water-age').textContent();
+    assert.ok(Number(await page.locator('#water-rain').getAttribute('data-value'))>0);
+    assert.ok(Number(await page.locator('#water-evaporation').getAttribute('data-value'))>0);
+    assert.ok(Math.abs(Number(await page.locator('#water-budget').getAttribute('data-value')))<1e-6);
+    assert.equal(Number(await page.locator('#water-age').getAttribute('data-days')),Number(await page.locator('#thermal-age').getAttribute('data-days')));
+    await page.waitForTimeout(150);assert.equal(await page.locator('#water-age').textContent(),age);
+    assert.equal(await page.evaluate(()=>window.generations),generations);
+    checks.push('Water and temperature advance beyond 90 days together, pause, and conserve inventory without terrain generation');
+
+    await page.locator('#planet-layer').selectOption('soil-moisture');const soil=await capture('soil');assert.ok(!soil.equals(rain));
+    await page.locator('#planet-layer').selectOption('runoff');const runoff=await capture('runoff');assert.ok(!runoff.equals(soil));
+    assert.match(await page.locator('#planet-legend').textContent(),/m³\/s.*log/);
+    await input('slider-sphere_radius',1000);await input('slider-sphere_radius',300);
+    await input('slider-mountain_height',75);await input('slider-mountain_height',50);
+    assert.equal(await page.locator('#water-age').textContent(),age);
+    await page.locator('#planet-inspect').click();const box=await page.locator('#mapgen4').boundingBox();
+    await page.mouse.click(box.x+box.width/2,box.y+box.height/2);assert.match(await page.locator('#planet-probe').textContent(),/mm\/day.*m³\/s/);
+    await page.locator('#planet-inspect').click();
+    checks.push('Three unit-labelled layers differ; display scale preserves history and inspection reports water values');
+
+    await input('water-wind',101);assert.equal(await page.locator('#water-wind').getAttribute('aria-invalid'),'true');
+    assert.equal(await page.locator('#water-age').textContent(),age);
+    await input('water-wind',-10);assert.equal(Number(await page.locator('#water-age').getAttribute('data-days')),0);
+    await input('planet-period',8766);assert.match(await page.locator('#water-status').textContent(),/slow|synchronous/);
+    assert.equal(await page.locator('#water-rain').textContent(),'Unavailable');
+    await input('planet-period',23.934469594);
+    await page.mouse.click(box.x+box.width/2,box.y+box.height/2);await page.waitForFunction(n=>window.generations>n,generations);await frames();
+    assert.equal(Number(await page.locator('#water-age').getAttribute('data-days')),0);assert.ok(await page.locator('#button-reset').isEnabled());
+    await page.locator('#planet-layer').selectOption('original');const painted=await capture('painted');
+    await page.locator('#water-reset').click();assert.ok(painted.equals(await capture('environment-reset')));
+    await input('planet-radius',8000);assert.ok(await page.locator('#button-reset').isEnabled());
+    checks.push('Invalid inputs preserve state; wind/physical/terrain edits restart paired history while retaining authored terrain');
+
+    await page.locator('#planet-layer').selectOption('runoff');await page.locator('#thermal-enabled').uncheck();await frames();
+    assert.equal(await page.locator('#water-enabled').isChecked(),false);assert.equal(await page.locator('#planet-layer').inputValue(),'original');
+    await page.locator('#button-reset').click();await page.waitForFunction(()=>document.querySelector('#button-reset').disabled);await page.waitForTimeout(150);
+    await page.locator('#planet-earth').click();assert.ok(baseline.equals(await capture('restored-original')));
+    checks.push('Thermal disable clears water and selected layer; original pixels restore exactly');
+
+    const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});mobile.on('pageerror',e=>errors.push(e.message));
+    await mobile.addInitScript(()=>{window.ready=false;const W=window.Worker;window.Worker=class extends W{constructor(...a){super(...a);this.addEventListener('message',()=>window.ready=true);}};});
+    await mobile.goto(base+'/embed.html');await mobile.waitForFunction(()=>window.ready);
+    await mobile.locator('#planet-layer').selectOption('soil-moisture');await mobile.locator('#water-reset').tap();
+    const mb=await mobile.locator('#mapgen4').boundingBox();assert.ok(mb.y>=-1&&mb.y+mb.height<=844);
+    assert.equal(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true);
+    await mobile.screenshot({path:`${folder}/mobile.png`});await mobile.close();checks.push('Water controls remain usable on mobile without horizontal overflow');
+    assert.deepEqual(errors,[]);const report={checks,errors};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+} finally {await browser.close();}

@@ -4,8 +4,9 @@ import {makePlanetView,type PlanetView,type PlanetLayer,type PlanetCamera} from 
 import {SimulationClock} from './simulation-clock.ts';
 import {uvToDirection} from './sphere.ts';
 import {ThermalRuntime} from './thermal-runtime.ts';
-import {landFractions} from './thermal.ts';
+import {sampleTerrainGrid} from './thermal.ts';
 import {installThermalPanel} from './thermal-panel.ts';
+import {installWaterPanel} from './water-panel.ts';
 
 type Sample={uv:[number,number];elevation:number};
 type Options={
@@ -26,6 +27,7 @@ export function installPlanetControls(options:Options) {
     let probe:Sample|null=null;
     const clock=new SimulationClock();
     const thermal=new ThermalRuntime();
+    const waterLayer=()=>['precipitation','soil-moisture','runoff'].includes(layer);
     const root=document.createElement('div');root.id='planet-controls';
     const header=document.createElement('h3');header.textContent='Planet physics';root.append(header);
     // Keep the legacy paint/navigation buttons in their original positions.
@@ -68,7 +70,12 @@ export function installPlanetControls(options:Options) {
 
     const layerSelect=select('planet-layer','Display layer',[
         ['original','Original map'],['day-night','Day / night'],['insolation','Solar energy'],['temperature','Temperature (daily mean)'],
-    ],layer,v=>{layer=v as PlanetLayer;if(layer==='temperature'){thermal.enabled=true;thermalPanel.reveal();}});
+        ['precipitation','Precipitation'],['soil-moisture','Soil moisture'],['runoff','Surface outflow'],
+    ],layer,v=>{
+        layer=v as PlanetLayer;
+        if(layer==='temperature'||waterLayer()){thermal.enabled=true;thermalPanel.reveal();}
+        if(waterLayer()){thermal.waterEnabled=true;waterPanel.reveal();}
+    });
     select('planet-camera','View',[
         ['surface','Follow surface'],['space','From space'],
     ],camera,v=>camera=v as PlanetCamera);
@@ -121,7 +128,15 @@ export function installPlanetControls(options:Options) {
 
     const thermalPanel=installThermalPanel(root,thermal,mutate=>{
         pause(false);mutate();
-        if(!thermal.enabled && layer==='temperature') {layer='original';layerSelect.value=layer;}
+        if(!thermal.enabled) {
+            thermal.waterEnabled=false;
+            if(layer==='temperature'||waterLayer()){layer='original';layerSelect.value=layer;}
+        }
+        emit();
+    });
+    const waterPanel=installWaterPanel(root,thermal,mutate=>{
+        pause(false);mutate();
+        if(!thermal.waterEnabled&&waterLayer()){layer='original';layerSelect.value=layer;}
         emit();
     });
 
@@ -161,6 +176,7 @@ export function installPlanetControls(options:Options) {
         if(document.activeElement!==season) season.value=(sun.orbitAngleRad*180/Math.PI).toFixed(1);
         phases.textContent=`Spin ${(sun.spinAngleRad*180/Math.PI).toFixed(1)}° · season ${(sun.orbitAngleRad*180/Math.PI).toFixed(1)}° · Sun latitude ${(sun.declinationRad*180/Math.PI).toFixed(1)}°`;
         legend.textContent=layer==='insolation'?`Solar energy: 0–${o.fluxWm2.toFixed(0)} W/m² · dark blue → teal → orange. Colors retain terrain shading.`:
+            waterLayer()?(!thermal.water?thermal.status:layer==='precipitation'?'Precipitation: 0–20 mm/day · dark blue → cyan → cream. Latest-step rate; higher values saturate.':layer==='soil-moisture'?'Soil moisture: 0–100% of soil capacity · brown → green; ocean blue. Fraction per land area.':'Cell surface outflow: 0–10⁷ m³/s · dark blue → cyan, log scale. Latest-step transfer; higher values saturate. Artistic rivers are independent.'):
             layer==='temperature'?(thermal.model?'Temperature: −80 °C blue · 0 °C cream · +60 °C red. Values outside this range saturate. Daily mean; terrain shading retained.':thermal.status):
             layer==='day-night'?'Day / night · night brightness helps editing; night receives 0 W/m².':'Original map · physical settings preserve your terrain.';
         warning.textContent=p.rotationRatio>.05?'Rapid spin: the spherical gravity/sea-level approximation becomes inaccurate.':
@@ -171,12 +187,16 @@ export function installPlanetControls(options:Options) {
             probeOutput.textContent=`${((.5-probe.uv[1])*180).toFixed(2)}° lat, ${((probe.uv[0]-.5)*360).toFixed(2)}° lon · ${height.toFixed(0)} m ${height<0?'seafloor':'elevation'} · ${incidentFlux(direction,sun.direction,o.fluxWm2).toFixed(1)} W/m² · ${local===null?'solar time undefined at pole':`${local.toFixed(2)} h local solar time`}`;
             const cellK=thermal.sample(...probe.uv);
             if(cellK!==null) probeOutput.textContent+=` · ${(cellK-273.15).toFixed(1)} °C daily-mean cell`;
+            const water=thermal.sampleWater(...probe.uv);
+            if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
         }
         thermalPanel.refresh(clock.timeS,clock.limited);
+        waterPanel.refresh();
     }
     function sendView() {
         const view=makePlanetView(planet,orbit,clock.timeS,layer,camera);
         view.thermal=thermal.sync(planet,orbit,clock.timeS,options.presentedTimeS());
+        view.water=thermal.waterTexture;
         options.onView(view);
     }
     function emit() {sendView();refresh();}
@@ -203,7 +223,7 @@ export function installPlanetControls(options:Options) {
         terrainChanged:()=>{
             probe=null;probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
             const terrain=options.terrain?.();
-            if(terrain) thermal.setTerrain(landFractions(thermal.grid,terrain.directions,terrain.elevation));
+            if(terrain){const sampled=sampleTerrainGrid(thermal.grid,terrain.directions,terrain.elevation);thermal.setTerrain(sampled.landFraction,sampled.landElevation);}
             emit();
         },
     };

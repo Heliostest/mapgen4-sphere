@@ -17,7 +17,7 @@ export function installThermalPanel(root:HTMLElement,thermal:ThermalRuntime,chan
           <label><span>Heat transport at Earth radius (W/m²/K)</span><input id="thermal-diffusion" type="number" min="0" max="5" step="any"></label>
           <p class="planet-note">Emissivity is an effective radiation parameter, not measured atmospheric composition. Transport scales with inverse radius squared.</p>
         </details>
-        <button id="thermal-reset" type="button">Reset temperature</button>
+        <button id="thermal-reset" type="button">Reset temperature &amp; water</button>
         <p class="planet-note">Starts at uniform greybody equilibrium. Terrain, physical parameters and manual time edits restart this transient. Camera and display scale preserve it. Nothing is saved on reload.</p>`;
     root.append(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;

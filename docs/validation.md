@@ -3,6 +3,22 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Water cycle stage C — 2026-10-08
+
+Base `b53a739` (local checkpoint of completed stage B), branch `codex/water-cycle`. Optional one-way water tracer shares the thermal grid, terrain snapshot, stable substep and presented-state checkpoint. It adds finite ocean/atmosphere/soil/surface stores, conservative vapor transport, precipitation, hydraulic-head routing and three diagnostic layers. No terrain regeneration or artistic river change is triggered by environmental advancement.
+
+Fresh Node checks: 52/52. New checks cover finite reservoirs, empty ocean, all-land/all-ocean, evaporation bounds, longitude/polar transport, soil overflow, closed basin retention/spill, mixed coastal drainage, discharge volume units, timestep refinement, small-radius stability and full paired rollback after multiple unpresented advances. A coastal regression first failed because a sea-level transfer deposited 0.0746kg/m² on adjacent high land. Separate land and ocean destinations now prevent uphill deposition and preserve total mass.
+
+Typecheck/build passed. Five water browser groups passed after more than 90 simulated days, including positive precipitation and evaporation, residual below 10⁻⁶mm, aligned water/thermal ages, pause, all three layers, inspection units, display-scale independence, invalid inputs, wind/physical/painting resets, unsupported spin, disabling and pixel-exact original restoration. Five thermal, eight planet and nine legacy interaction groups also passed. Legacy tests made 83 generations. Actual-DOM fixture passed 15 assertions, including queued water updates, speed changes and hidden-tab rollback. Actual GPU fixtures passed 648 radial, 771 outline, 30 silhouette and 27 solar/thermal/water checks. No captured runtime errors. Touch was emulated at 390×844; no physical mobile device was tested.
+
+A Node benchmark on this machine (1,152 cells, 10 warmup and 100 measured batches of 32 substeps) measured median 2.10ms and p95 3.06ms for paired solver advancement, checkpoints and texture encoding. It excludes rendering and is not a whole-app FPS claim. The approximately 45-day run closed the water inventory to −2.1×10⁻⁹mm against about 333,393mm total. Surface routing is tested separately under flowing, flooded and basin conditions; the benchmark's simple alternating-land snapshot had no standing water at its final sample.
+
+Visually inspected precipitation, soil and mobile screenshots. The fixed 0–20mm/day precipitation scale can be dark at low rates; soil shows evolving seasonal storage. No dynamic recoloring is used to imply stronger rain. GPU interpolation is for display; all budgets and probe values use cell data. Scientific assumptions, units and reset rules are documented in the README.
+
+Independent final read-only review found no actionable Critical, Important or Minor issue. The reviewer independently passed all 52 Node tests, DOM15, GPU27, diff-check, and 36 additional 200-step stress cases across radius endpoints, signed/zero wind, zero/maximum diffusion, land/ocean/mixed coverage, initially empty ocean and substantial standing water. Stores stayed finite/nonnegative; worst mass error was 4.0×10⁻⁹mm. Full interaction regressions and build/typecheck were reviewed as supplied evidence, not independently rerun. Deferred climate physics and physical-device performance remain the documented limits, not verified capabilities.
+
+Evidence: [water interactions](evidence/water-report.json), [paired benchmark](evidence/water-benchmark.json), [planet/DOM/GPU report](evidence/water-planet-report.json), [thermal regression](evidence/water-thermal-report.json), [legacy regression](evidence/water-legacy-report.json), [soil view](evidence/water-soil.png), [precipitation view](evidence/water-precipitation.png), [mobile controls](evidence/water-mobile.png).
+
 ## Seasonal temperature stage B — 2026-10-08
 
 Base `7750d1e`, feature branch `codex/seasonal-temperature`. Adds an optional daily-mean surface energy-balance approximation on 48×24 equal-area cells, separate from the generator and its rainfall/river fields. Default appearance and initial paused state are unchanged.

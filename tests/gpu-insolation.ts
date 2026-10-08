@@ -62,6 +62,24 @@ try {
     check(3,[.5,-.8,.5],false,[.12,.20,.65]);
     check(3,[-1e-7,.8,-1],false,[.12,.20,.65]);
     check(3,[1e-7,.8,-1],false,[.12,.20,.65]);
+    gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,gl.createTexture());
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2,2,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([
+        0,0,0,255,255,255,255,255,255,255,255,0,0,0,0,0,
+    ]));
+    gl.uniform1i(gl.getUniformLocation(program,'u_hydrology'),1);
+    check(4,[-.5,.8,.5],false,[.08,.12,.22]);
+    check(4,[.5,.8,.5],false,[.96,.95,.72]);
+    check(4,[-.5,-.8,.5],false,[.96,.95,.72]);
+    check(4,[.5,-.8,.5],false,[.08,.12,.22]);
+    check(4,[-1e-7,.8,-1],false,[.08,.12,.22]);
+    check(4,[1e-7,.8,-1],false,[.08,.12,.22]);
+    check(5,[-.5,.8,.5],false,[.55,.31,.12]);
+    check(5,[.5,.8,.5],false,[.12,.65,.40]);
+    check(5,[-.5,-.8,.5],false,[.08,.20,.35]);
+    check(6,[-.5,.8,.5],false,[.08,.12,.22]);
+    check(6,[.5,.8,.5],false,[.20,.75,.80]);
     if(gl.getError()!==gl.NO_ERROR) throw new Error('WebGL error');
     output.textContent=JSON.stringify({status:'PASS',checks},null,2);
 } catch(error) { output.textContent=`FAIL\n${error.stack || error}`; }
