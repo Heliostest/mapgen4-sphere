@@ -1,0 +1,68 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const base=process.env.BASE_URL||'http://localhost:8002',folder='build/validation/geomorph';await mkdir(folder,{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
+const page=await browser.newPage({viewport:{width:1300,height:1000}}),errors=[],checks=[];
+page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
+await page.addInitScript(()=>{window.generations=0;const W=window.Worker;window.Worker=class extends W{constructor(...a){super(...a);this.addEventListener('message',()=>window.generations++);}};});
+const frames=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+const input=async(id,value)=>{await page.locator(id.startsWith('slider-')?`#${id} input`:`#${id}`).evaluate((e,v)=>{e.value=String(v);e.dispatchEvent(new Event(e.type==='range'?'input':'change',{bubbles:true}));},value);await frames();};
+const capture=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
+try {
+    await page.goto(base+'/embed.html');await page.waitForFunction(()=>window.generations>0);await frames();
+    assert.equal(await page.locator('#geomorph-panel').count(),1,'Erosion panel missing');
+    await page.locator('#geomorph-panel').evaluate(e=>e.open=true);
+    assert.ok(await page.locator('#geomorph-capture').isDisabled());const original=await capture('original');
+    await page.locator('#planet-layer').selectOption('soil-moisture');await page.locator('#planet-layer').selectOption('original');
+    await input('geomorph-diffusion',10000000);const generations=await page.evaluate(()=>window.generations);
+    await page.locator('#geomorph-capture').click();const clock=await page.locator('#planet-time-days').inputValue();
+    await page.locator('#geomorph-step').click();await frames();
+    const evolved=await capture('evolved'),age=Number(await page.locator('#geomorph-age').getAttribute('data-years'));
+    assert.ok(age>0&&age<100000);assert.match(await page.locator('#geomorph-status').textContent(),/Work limit/);
+    assert.ok(!evolved.equals(original));assert.equal(await page.locator('#planet-time-days').inputValue(),clock);
+    assert.equal(await page.evaluate(()=>window.generations),generations);
+    assert.ok(Math.abs(Number(await page.locator('#geomorph-budget').getAttribute('data-value')))<1e-5);
+    await page.locator('#geomorph-preview').uncheck();assert.ok(original.equals(await capture('compare-original')));
+    await page.locator('#geomorph-preview').check();assert.ok(evolved.equals(await capture('compare-evolved')));
+    await page.locator('#geomorph-step').click();await page.locator('#geomorph-undo').click();assert.ok(evolved.equals(await capture('undo')));
+    checks.push('Bounded geological steps deform actual terrain, conserve solids, keep astronomy fixed and undo/compare restore exact pixels');
+
+    await page.locator('#planet-layer').selectOption('erosion');await capture('height-change');
+    assert.match(await page.locator('#planet-legend').textContent(),/100.*m/);
+    await page.locator('#planet-inspect').click();const box=await page.locator('#mapgen4').boundingBox();
+    await page.mouse.click(box.x+box.width/2,box.y+box.height/2);assert.match(await page.locator('#planet-probe').textContent(),/bed change.*mobile/);
+    await page.locator('#planet-inspect').click();await page.locator('#planet-layer').selectOption('original');
+    await input('slider-sphere_radius',1000);await input('slider-sphere_radius',300);
+    assert.equal(Number(await page.locator('#geomorph-age').getAttribute('data-years')),age);
+    assert.ok(evolved.equals(await capture('scale-round-trip')));
+    await page.locator('#planet-speed').selectOption('864000');await page.locator('#planet-play').click();await page.waitForTimeout(200);await page.locator('#planet-play').click();
+    assert.equal(Number(await page.locator('#geomorph-age').getAttribute('data-years')),age);
+    checks.push('Change layer and preview probing work; artist radius and climate Play preserve geological history');
+
+    await input('geomorph-duration',-1);await page.locator('#geomorph-step').click();assert.equal(Number(await page.locator('#geomorph-age').getAttribute('data-years')),age);
+    assert.equal(await page.locator('#geomorph-duration').getAttribute('aria-invalid'),'true');await input('geomorph-duration',100000);
+    await input('planet-radius',8000);assert.equal(Number(await page.locator('#geomorph-age').getAttribute('data-years')),0);assert.ok(await page.locator('#geomorph-step').isDisabled());
+    assert.match(await page.locator('#planet-probe').textContent(),/Inspect a surface point/,'Source invalidation must clear the old preview-height probe');
+    await input('planet-radius',6371.0084);await page.locator('#geomorph-capture').click();await page.locator('#geomorph-step').click();
+    const beforePaint=await page.evaluate(()=>window.generations);
+    await page.mouse.click(box.x+box.width/2,box.y+box.height/2);await page.waitForFunction(n=>window.generations>n,beforePaint);await frames();
+    assert.ok(await page.locator('#button-reset').isEnabled());assert.equal(Number(await page.locator('#geomorph-age').getAttribute('data-years')),0);
+    const painted=await capture('painted');await page.locator('#geomorph-capture').click();await page.locator('#geomorph-step').click();
+    await page.locator('#geomorph-reset').click();assert.ok(painted.equals(await capture('reset-preserves-paint')));
+    await page.locator('#geomorph-capture').click();await page.locator('#geomorph-step').click();await page.locator('#water-enabled').uncheck();
+    assert.ok(painted.equals(await capture('water-disable')));assert.ok(await page.locator('#geomorph-capture').isDisabled());
+    checks.push('Invalid duration is harmless; source edits/painting invalidate preview; reset/disable retain authored painting');
+
+    const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});mobile.on('pageerror',e=>errors.push(e.message));
+    await mobile.addInitScript(()=>{window.ready=false;const W=window.Worker;window.Worker=class extends W{constructor(...a){super(...a);this.addEventListener('message',()=>window.ready=true);}};});
+    await mobile.goto(base+'/embed.html');await mobile.waitForFunction(()=>window.ready);await mobile.locator('#planet-layer').selectOption('erosion');
+    await mobile.locator('#geomorph-capture').tap();await mobile.locator('#geomorph-step').tap();
+    const mb=await mobile.locator('#mapgen4').boundingBox();assert.ok(mb.y>=-1&&mb.y+mb.height<=844);
+    assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await mobile.screenshot({path:`${folder}/mobile.png`});await mobile.close();
+    checks.push('Mobile capture/evolve controls fit a scrolling panel while the globe remains visible');
+    await page.goto(base+'/tests/geomorph-render.html');await page.waitForFunction(()=>/PASS|FAIL/.test(document.querySelector('pre').textContent));
+    const renderer=JSON.parse(await page.locator('pre').textContent());assert.equal(renderer.status,'PASS',JSON.stringify(renderer));
+    checks.push('Real renderer uploads matching preview/picking/probe data, retains source buffers and restores while worker buffers are detached');
+    assert.deepEqual(errors,[]);const report={checks,errors,renderer};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+}finally{await browser.close();}

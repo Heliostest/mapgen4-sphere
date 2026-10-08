@@ -7,6 +7,8 @@ import {ThermalRuntime} from './thermal-runtime.ts';
 import {sampleTerrainGrid} from './thermal.ts';
 import {installThermalPanel} from './thermal-panel.ts';
 import {installWaterPanel} from './water-panel.ts';
+import {GeomorphRuntime} from './geomorph-runtime.ts';
+import {installGeomorphPanel} from './geomorph-panel.ts';
 
 type Sample={uv:[number,number];elevation:number};
 type Options={
@@ -27,6 +29,7 @@ export function installPlanetControls(options:Options) {
     let probe:Sample|null=null;
     const clock=new SimulationClock();
     const thermal=new ThermalRuntime();
+    const geomorph=new GeomorphRuntime();
     const waterLayer=()=>['precipitation','soil-moisture','runoff'].includes(layer);
     const root=document.createElement('div');root.id='planet-controls';
     const header=document.createElement('h3');header.textContent='Planet physics';root.append(header);
@@ -71,10 +74,12 @@ export function installPlanetControls(options:Options) {
     const layerSelect=select('planet-layer','Display layer',[
         ['original','Original map'],['day-night','Day / night'],['insolation','Solar energy'],['temperature','Temperature (daily mean)'],
         ['precipitation','Precipitation'],['soil-moisture','Soil moisture'],['runoff','Surface outflow'],
+        ['erosion','Terrain change (erosion)'],
     ],layer,v=>{
         layer=v as PlanetLayer;
         if(layer==='temperature'||waterLayer()){thermal.enabled=true;thermalPanel.reveal();}
         if(waterLayer()){thermal.waterEnabled=true;waterPanel.reveal();}
+        if(layer==='erosion'){thermal.enabled=thermal.waterEnabled=true;geomorphPanel.reveal();}
     });
     select('planet-camera','View',[
         ['surface','Follow surface'],['space','From space'],
@@ -139,6 +144,12 @@ export function installPlanetControls(options:Options) {
         if(!thermal.waterEnabled&&waterLayer()){layer='original';layerSelect.value=layer;}
         emit();
     });
+    const geomorphPanel=installGeomorphPanel(root,geomorph,thermal,action=>{
+        // Pause may roll time back over queued fields. Synchronize that state
+        // before capturing, never capture an unpresented future water field.
+        pause(false);sendView();action();probe=null;
+        probeOutput.textContent='Inspect a surface point to read its location and solar energy.';emit();
+    });
 
     const radiation=group('Radiation reference',true);
     const flux=output('planet-flux','Stellar irradiance',radiation),temperature=output('planet-temperature','Radiative Teq',radiation);
@@ -176,6 +187,7 @@ export function installPlanetControls(options:Options) {
         if(document.activeElement!==season) season.value=(sun.orbitAngleRad*180/Math.PI).toFixed(1);
         phases.textContent=`Spin ${(sun.spinAngleRad*180/Math.PI).toFixed(1)}° · season ${(sun.orbitAngleRad*180/Math.PI).toFixed(1)}° · Sun latitude ${(sun.declinationRad*180/Math.PI).toFixed(1)}°`;
         legend.textContent=layer==='insolation'?`Solar energy: 0–${o.fluxWm2.toFixed(0)} W/m² · dark blue → teal → orange. Colors retain terrain shading.`:
+            layer==='erosion'?(geomorph.model?'Net bed change: −100 m blue · 0 m cream · +100 m red; outside values saturate. Coarse preview; source climate and artistic rivers are retained.':'Capture current water in Erosion & deposition preview to begin.'):
             waterLayer()?(!thermal.water?thermal.status:layer==='precipitation'?'Precipitation: 0–20 mm/day · dark blue → cyan → cream. Latest-step rate; higher values saturate.':layer==='soil-moisture'?'Soil moisture: 0–100% of soil capacity · brown → green; ocean blue. Fraction per land area.':'Cell surface outflow: 0–10⁷ m³/s · dark blue → cyan, log scale. Latest-step transfer; higher values saturate. Artistic rivers are independent.'):
             layer==='temperature'?(thermal.model?'Temperature: −80 °C blue · 0 °C cream · +60 °C red. Values outside this range saturate. Daily mean; terrain shading retained.':thermal.status):
             layer==='day-night'?'Day / night · night brightness helps editing; night receives 0 W/m².':'Original map · physical settings preserve your terrain.';
@@ -183,20 +195,26 @@ export function installPlanetControls(options:Options) {
             Math.max(planet.reliefM,planet.oceanDepthM)>.05*planet.radiusM?'Terrain is large relative to radius: spherical surface diagnostics are approximate.':'';
         if(probe) {
             const direction=uvToDirection(...probe.uv),local=localSolarHour(direction,sun.direction);
-            const height=physicalHeight(Math.max(-1,Math.min(1,probe.elevation)),planet);
+            const height=probe.elevation>0?probe.elevation*planet.reliefM:physicalHeight(Math.max(-1,probe.elevation),planet);
             probeOutput.textContent=`${((.5-probe.uv[1])*180).toFixed(2)}° lat, ${((probe.uv[0]-.5)*360).toFixed(2)}° lon · ${height.toFixed(0)} m ${height<0?'seafloor':'elevation'} · ${incidentFlux(direction,sun.direction,o.fluxWm2).toFixed(1)} W/m² · ${local===null?'solar time undefined at pole':`${local.toFixed(2)} h local solar time`}`;
             const cellK=thermal.sample(...probe.uv);
             if(cellK!==null) probeOutput.textContent+=` · ${(cellK-273.15).toFixed(1)} °C daily-mean cell`;
             const water=thermal.sampleWater(...probe.uv);
             if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
+            const erosion=geomorph.sample(...probe.uv);
+            if(erosion)probeOutput.textContent+=` · bed change ${erosion.deltaM.toFixed(2)} m · mobile sediment ${erosion.mobileMm.toFixed(2)} mm whole-cell equivalent${geomorph.previewEnabled?' · terrain preview':''}`;
         }
         thermalPanel.refresh(clock.timeS,clock.limited);
         waterPanel.refresh();
+        geomorphPanel.refresh();
     }
     function sendView() {
         const view=makePlanetView(planet,orbit,clock.timeS,layer,camera);
         view.thermal=thermal.sync(planet,orbit,clock.timeS,options.presentedTimeS());
         view.water=thermal.waterTexture;
+        const previousGeomorph=geomorph.model;
+        geomorph.reconcile(thermal);view.geomorph=geomorph.view;
+        if(previousGeomorph&&!geomorph.model){probe=null;probeOutput.textContent='Inspect a surface point to read its location and solar energy.';}
         options.onView(view);
     }
     function emit() {sendView();refresh();}

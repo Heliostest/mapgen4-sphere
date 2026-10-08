@@ -70,6 +70,20 @@ Layer scales are fixed: precipitation 0–20mm/day; soil 0–100% of land capaci
 
 Method references: [USGS water cycle](https://www.usgs.gov/water-science-school/water-cycle), [FAO latent heat and water-depth conversion](https://www.fao.org/4/X0490E/x0490e04.htm). This is not an implementation of FAO evapotranspiration.
 
+## Erosion and deposition — stage D preview
+
+Choose **Terrain change (erosion)** to enable the prerequisite water model and open **Erosion & deposition preview**. **Capture current water** freezes its latest discharge field and source date. **Evolve terrain** advances a separate geological clock; requested years default to 100,000 per click, with actual completed years and any work limit reported. Astronomy Play continues climate only. An initially dry capture has zero stream incision; slope smoothing can still operate. For a water-driven experiment, let the water model evolve before capture. A captured instantaneous discharge is not mean annual flow.
+
+The model conserves solid volume at an assumed common bulk density: land bed volume, mobile sediment and retained ocean sediment. Incision follows `E = K sqrt(Q / 1000m³/s) slope`, with default K=1m/year. Pairwise land-only diffusion uses an illustrative broad-scale smoothing coefficient of 10⁴m²/year. Mobile sediment travels downhill and settles using a 10,000-year relaxation parameter. These are uncalibrated controls, not measurements of soil creep or validated planetary erosion rates. Land/sea outlets are separate; closed basins retain sediment. There is no uplift, porosity change, sea-level movement or submarine geometry change. Ocean arrivals remain accounted for even though the visible seafloor stays fixed.
+
+Each click runs at most 32 stable substeps, bounded by diffusion, incision and sediment timescales, never more than 2,500 years each. Small planets or strong coefficients may therefore advance far fewer years than requested. A request shorter than one stable substep advances zero years and reports how to increase it. Geological time never follows wall time, and hidden tabs cannot accumulate erosion work.
+
+**Preview geometry** compares evolved and original geometry. **Undo last evolve** restores the entire preceding click, including sediment inventories and time; **Reset erosion preview** discards the experiment. Preview applies land-weighted coarse height ratios to the retained fine terrain and decorative folds. GPU vertices, picking and physical height probes share these preview elevations, while original author constraints and buffers sent to the worker remain unchanged. The coarse solid-volume budget does not claim a conservative fine-mesh remapping. The change layer uses fixed −100…+100m blue/cream/red colors, saturating outside that range; probes retain cell values.
+
+New terrain, physical/environment parameter changes, manual time resets and disabling water invalidate the experiment. Re-capture starts again from authored source terrain. **Permanent application, saved erosion history, regenerated physical river geometry, and climate recomputation from the evolved terrain are not implemented in this increment.** Live climate and artistic rivers continue to describe the source terrain, which is labelled in the panel. This separation makes the first geological experiment reversible while application and recoupling remain the next step.
+
+Method references: Landlab [stream power](https://landlab.csdms.io/generated/api/landlab.components.stream_power.stream_power.html) and [linear diffusion](https://landlab.csdms.io/generated/api/landlab.components.diffusion.diffusion.html). This is an independent illustrative solid-volume model; its transport/settling closure is not an implementation of Landlab.
+
 ## Rendering preserved
 
 | Original component | Spherical adaptation |
@@ -113,7 +127,7 @@ The [outline sampling check](http://localhost:8000/tests/gpu-outlines.html) must
 
 The [silhouette check](http://localhost:8000/tests/gpu-silhouette.html) checks background/sea coverage and the actual final shader: all eight edge directions, identical foreground/background colors, unchanged interior pixels, opaque output, and disabling either outline control. Like the other GPU fixtures, run it in the browser after `pnpm test` builds it.
 
-The [planet light check](http://localhost:8000/tests/gpu-insolation.html) exercises the actual production lighting snippet: original colors, day/night floor, incidence angles, energy/temperature/water palettes, texture orientation/seam and opaque coverage (27 checks).
+The [planet light check](http://localhost:8000/tests/gpu-insolation.html) exercises the actual production lighting snippet: original colors, day/night floor, incidence angles, energy/temperature/water/erosion palettes, texture orientation/seam and opaque coverage (32 checks).
 
 For automated screenshots and browser interactions, install Playwright in a separate tooling environment (or locally) and have Chrome installed:
 
@@ -130,3 +144,5 @@ Original documentation and credits are in [README.org](README.org). Apache-2.0; 
 `node scripts/thermal-browser-check.mjs` checks a 90-day thermal transient, pause/probing, terrain and configuration resets, display-scale independence, unsupported spin, exact original restoration and mobile controls. `node scripts/thermal-benchmark.mjs` measures batches of the isolated solver on the current Node runtime; it is not a browser-frame or cross-device benchmark. Both save reports in `build/validation/thermal/`.
 
 `node scripts/water-browser-check.mjs` checks a 90-day paired thermal/water transient, closed water budget, three layers, probe units, terrain/config resets, disable rules, exact original restoration and mobile layout. `node scripts/water-benchmark.mjs` measures paired advancement, checkpoints and texture encoding on the current Node runtime, excluding browser rendering. Reports are saved in `build/validation/water/`. Node tests include dry/ocean/land limits, conservative vapor transport, basin filling/spilling, coastal head constraints, discharge units, convergence and complete checkpoint rollback. The actual-DOM fixture additionally tests water rollback after multiple unpresented updates and hidden-tab pause.
+
+`node scripts/geomorph-browser-check.mjs` verifies real terrain deformation, comparison/undo/reset, independent geological time, budget/units, source invalidation, preserved painting, invalid duration and mobile controls. Its [renderer fixture](http://localhost:8002/tests/geomorph-render.html) reads the actual GPU vertex buffer, compares CPU picking across display radii/heights and probes under rotation, then detaches live worker buffers and verifies preview/restoration still work (19 checks). `node scripts/geomorph-benchmark.mjs` measures the isolated 32-step numerical kernel, excluding terrain-atlas reconstruction and rendering. Reports go to `build/validation/geomorph/`.

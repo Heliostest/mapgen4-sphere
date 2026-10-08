@@ -6,10 +6,12 @@ await build({entryPoints: ['tests/sphere.test.ts'], bundle: true, platform: 'nod
 await build({entryPoints: ['tests/planet.test.ts'], bundle: true, platform: 'node', format: 'esm', outfile: 'build/tests/planet.test.mjs'});
 await build({entryPoints: ['tests/thermal.test.ts'], bundle: true, platform: 'node', format: 'esm', outfile: 'build/tests/thermal.test.mjs'});
 await build({entryPoints: ['tests/water.test.ts'], bundle: true, platform: 'node', format: 'esm', outfile: 'build/tests/water.test.mjs'});
+await build({entryPoints: ['tests/geomorph.test.ts'], bundle: true, platform: 'node', format: 'esm', outfile: 'build/tests/geomorph.test.mjs'});
 await build({entryPoints: ['tests/planet-controls.ts'], bundle: true, format: 'esm', outfile: 'build/tests/planet-controls.js'});
+await build({entryPoints: ['tests/geomorph-render.ts'], bundle: true, format: 'esm', outfile: 'build/tests/geomorph-render.js'});
 await build({entryPoints: ['tests/gpu-radial.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-radial.js'});
 await build({entryPoints: ['tests/gpu-outlines.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-outlines.js'});
 await build({entryPoints: ['tests/gpu-silhouette.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-silhouette.js'});
 await build({entryPoints: ['tests/gpu-insolation.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-insolation.js'});
-const run = spawnSync(process.execPath, ['--test', 'build/tests/sphere.test.mjs', 'build/tests/planet.test.mjs', 'build/tests/thermal.test.mjs', 'build/tests/water.test.mjs'], {stdio: 'inherit'});
+const run = spawnSync(process.execPath, ['--test', 'build/tests/sphere.test.mjs', 'build/tests/planet.test.mjs', 'build/tests/thermal.test.mjs', 'build/tests/water.test.mjs', 'build/tests/geomorph.test.mjs'], {stdio: 'inherit'});
 process.exitCode = run.status ?? 1;

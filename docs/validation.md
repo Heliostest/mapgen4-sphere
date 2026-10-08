@@ -3,6 +3,22 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Geomorphology stage D preview — 2026-10-09
+
+Base `d91729e` (local checkpoint of stage C), branch `codex/geomorph-preview`. First D increment: frozen latest-step runoff, stream-power-inspired incision, conservative slope redistribution, mobile/ocean sediment stores, separate geological years, deformed terrain preview, comparison, one-click undo and reset. Applying/saving the experiment or recoupling source climate/river geometry remains later work. Those limitations and uncalibrated coefficients are explicit in the panel and README.
+
+Node tests first failed on missing kernel/projection modules, then passed 61/61 including nine new model/runtime checks. Covered equilibrium, dry smoothing, conservative incision/transport/settling, closed basins, mixed coasts, all-ocean, nonnegative stores, step refinement, copied/frozen forcing, tiny-radius/extreme-coefficient work caps, complete undo and preview projection. Typecheck/build and diff-check passed.
+
+The browser regression first failed on the missing panel. Its five groups now pass: actual geometry changes; exact comparison/undo/reset restoration; independent astronomical/geological clocks; budget and units; invalid input; source reset; authored painting preservation; mobile layout; and the actual renderer fixture. That fixture passed 19 checks against GPU vertex uploads, CPU picking at radii100/300/1000 and heights0/50/150, rotated physical probes, and restoration during detached worker-buffer ownership. The source worker buffers retained the original elevation values. A stale-probe regression failed after source replacement; invalidation now clears the old preview height readout and the browser check passes.
+
+All eight planet interaction groups, five water groups (>90 simulated days) and nine legacy groups (83 generations) passed with no captured runtime errors. Actual DOM controls passed20 checks, including capture after two unpresented climate advances and independent geological time. GPU radial648, outline771, silhouette30 and diagnostic32 passed. Original-map and painted round trips were pixel-exact in the planet test. Touch is browser emulation, not physical-device coverage.
+
+A solver-only Node benchmark on this machine used 1,152 cells and 100 measured32-step batches after10 warmups: median2.50ms, p953.45ms. Over about2.23million geological years, the solid-volume residual was−1.59×10⁻⁷mm global equivalent. This does not include atlas reconstruction, GPU work or click-to-display latency and is not a whole-app performance claim. Explicit clicks rebuild the preview surface; continuous astronomy updates reuse it.
+
+Visually inspected evolved terrain and signed height-change screenshots. Preview retains the authored fine structure and artistic river positions; the coarse colors are diagnostic, not claims of resolved channels. Evidence: [interactions/renderer](evidence/geomorph-report.json), [kernel benchmark](evidence/geomorph-benchmark.json), [planet/DOM/GPU](evidence/geomorph-planet-report.json), [water regression](evidence/geomorph-water-report.json), [legacy regression](evidence/geomorph-legacy-report.json), [evolved terrain](evidence/geomorph-evolved.png), [height change](evidence/geomorph-change.png), [mobile](evidence/geomorph-mobile.png).
+
+Independent final read-only review found no Critical, Important or Minor issue. The reviewer independently passed all nine geomorph Node tests, actual renderer19 and DOM20 fixtures, diff-check, and100 deterministic randomized kernel cases of320 steps each across mixed land fractions and radius/coefficient/discharge extremes. Stores remained finite/nonnegative, with maximum solid-budget residual2.30×10⁻⁷mm. Fine-mesh volume remapping, physical calibration, permanent application/recoupling, cross-device performance and screenshot aesthetics remain outside that review's verified claims, consistent with the disclosed preview scope.
+
 ## Water cycle stage C — 2026-10-08
 
 Base `b53a739` (local checkpoint of completed stage B), branch `codex/water-cycle`. Optional one-way water tracer shares the thermal grid, terrain snapshot, stable substep and presented-state checkpoint. It adds finite ocean/atmosphere/soil/surface stores, conservative vapor transport, precipitation, hydraulic-head routing and three diagnostic layers. No terrain regeneration or artistic river change is triggered by environmental advancement.

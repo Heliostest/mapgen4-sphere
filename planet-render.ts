@@ -3,8 +3,9 @@ import {sunState,type OrbitConfig} from './astronomy.ts';
 import type {PlanetConfig} from './planet.ts';
 import type {Direction} from './sphere.ts';
 import type {ThermalTexture} from './thermal-runtime.ts';
+import type {GeomorphView} from './geomorph-runtime.ts';
 
-export type PlanetLayer='original'|'day-night'|'insolation'|'temperature'|'precipitation'|'soil-moisture'|'runoff';
+export type PlanetLayer='original'|'day-night'|'insolation'|'temperature'|'precipitation'|'soil-moisture'|'runoff'|'erosion';
 export type PlanetCamera='surface'|'space';
 export interface PlanetView {
     timeS:number;
@@ -14,6 +15,7 @@ export interface PlanetView {
     fluxWm2:number;
     thermal?:ThermalTexture|null;
     water?:ThermalTexture|null;
+    geomorph?:GeomorphView|null;
 }
 
 export function makePlanetView(planet:PlanetConfig,orbit:OrbitConfig,timeS:number,layer:PlanetLayer,camera:PlanetCamera):PlanetView {
@@ -33,6 +35,7 @@ export const planet_fragment=`
     uniform vec3 u_sun_direction;
     uniform sampler2D u_temperature;
     uniform sampler2D u_hydrology;
+    uniform sampler2D u_geomorph;
     vec3 temperature_color(float t) {
         vec3 cold=vec3(0.12,0.20,0.65), mild=vec3(0.92,0.94,0.79), hot=vec3(0.80,0.15,0.06);
         return t<0.57142857 ? mix(cold,mild,t/0.57142857) : mix(mild,hot,(t-0.57142857)/0.42857143);
@@ -44,6 +47,11 @@ export const planet_fragment=`
             vec3 body=normalize(n);
             vec2 uv=vec2(0.5+atan(body.x,body.z)/6.28318530718,(1.0-body.y)*0.5);
             if(u_planet_layer==3) return temperature_color(texture(u_temperature,uv).r);
+            if(u_planet_layer==7) {
+                vec4 g=texture(u_geomorph,uv);
+                vec3 change=g.r<0.5?mix(vec3(0.12,0.25,0.75),vec3(0.93,0.92,0.82),g.r*2.0):mix(vec3(0.93,0.92,0.82),vec3(0.80,0.20,0.08),g.r*2.0-1.0);
+                return mix(vec3(0.08,0.20,0.35),change,g.a);
+            }
             vec4 water=texture(u_hydrology,uv);
             vec3 dry=vec3(0.08,0.12,0.22), wet=vec3(0.20,0.75,0.80), rain=vec3(0.96,0.95,0.72);
             if(u_planet_layer==4) return water.r<0.5 ? mix(dry,wet,2.0*water.r) : mix(wet,rain,2.0*water.r-1.0);

@@ -12,6 +12,7 @@ import Geometry from "./geometry.ts";
 import {atlasTriangles, SPHERE_RADIUS} from './sphere.ts';
 import {sphereProjection, pickTerrain, pickTerrainHit, terrainPosition} from './sphere-view.ts';
 import {planet_fragment, type PlanetView} from './planet-render.ts';
+import {previewElevation,type TerrainPreview} from './terrain-preview.ts';
 import type {Mesh} from "./types.d.ts";
 
 //////////////////////////////////////////////////////////////////////
@@ -528,6 +529,8 @@ export default class Renderer {
     pickElements = new Int32Array(0);
     pickElevation = new Float32Array(0);
     physicalElevation = new Float32Array(0);
+    private sourceElevation = new Float32Array(0);
+    private terrainPreview:TerrainPreview|null=null;
     planetView:PlanetView|null=null;
     presentedPlanetTimeS:number|null=null;
     private mapDirty=true;
@@ -556,6 +559,8 @@ export default class Renderer {
     private temperaturePixels:Uint8Array|null=null;
     texture_hydrology: Texture;
     private waterPixels:Uint8Array|null=null;
+    texture_geomorph: Texture;
+    private geomorphPixels:Uint8Array|null=null;
 
     fbo_river: Framebuffer;
     fbo_land: Framebuffer;
@@ -618,6 +623,9 @@ export default class Renderer {
         this.texture_hydrology = this.webgl.createTexture({width:48,height:24,filter:'linear'});
         this.texture_hydrology.bind();
         this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
+        this.texture_geomorph = this.webgl.createTexture({width:48,height:24,filter:'linear'});
+        this.texture_geomorph.bind();
+        this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
 
         this.fbo_land  = this.webgl.createFramebuffer(2*fbo_texture_size, fbo_texture_size, {depth: false, internalFormat: this.webgl.gl.R16F, filter: 'linear'});
         // Radial outline taps move by fractional texels. Nearest sampling
@@ -667,12 +675,16 @@ export default class Renderer {
     sampleTerrain(coords:number[]):{uv:[number,number];elevation:number}|null {
         const hit=pickTerrainHit(coords,this.inverse_projection,this.pickPositions,this.pickElements,this.pickDirections);
         if(!hit || this.physicalElevation.length===0) return null;
-        const elevation=hit.weights.reduce((sum,w,i)=>sum+w*this.physicalElevation[hit.indices[i]],0);
+        const elevation=hit.weights.reduce((sum,w,i)=>{
+            const v=hit.indices[i];return sum+w*previewElevation(this.physicalElevation[v],this.a_quad_xy[2*v]/1000,this.a_quad_xy[2*v+1]/1000,this.terrainPreview);
+        },0);
         return {uv:hit.uv,elevation};
     }
 
     updatePlanet(view:PlanetView) {
         this.planetView=view;
+        const preview=view.geomorph?.preview??null;
+        if(preview!==this.terrainPreview){this.terrainPreview=preview;this.rebuildSurface();}
         if(view.thermal && view.thermal.pixels!==this.temperaturePixels) {
             const {gl}=this.webgl;
             this.texture_temperature.bind();
@@ -684,26 +696,38 @@ export default class Renderer {
             gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,view.water.width,view.water.height,gl.RGBA,gl.UNSIGNED_BYTE,view.water.pixels);
             this.waterPixels=view.water.pixels;
         }
+        if(view.geomorph&&view.geomorph.texture.pixels!==this.geomorphPixels){
+            const {gl}=this.webgl,t=view.geomorph.texture;this.texture_geomorph.bind();
+            gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,t.width,t.height,gl.RGBA,gl.UNSIGNED_BYTE,t.pixels);this.geomorphPixels=t.pixels;
+        }
     }
 
     updateMap() {
+        // Own immutable source copies: live buffers can be detached while the
+        // worker generates a new map. Preview must never write into them.
+        this.sourceElevation=this.a_quad_em.slice();this.pickElements=this.quad_elements.slice();
+        this.rebuildSurface();
+        this.buffer_river_xyww.subdata(0,this.a_river_xyww.subarray(0,7*3*this.numRiverTriangles));
+    }
+
+    private rebuildSurface() {
+        if(!this.sourceElevation.length)return;
+        this.pickElevation=this.sourceElevation.slice();
+        if(this.terrainPreview)for(let v=0;v<this.pickElevation.length/2;v++){
+            this.pickElevation[2*v]=previewElevation(this.sourceElevation[2*v],this.a_quad_xy[2*v]/1000,this.a_quad_xy[2*v+1]/1000,this.terrainPreview);
+        }
         let p=0;
-        for (let i=0;i<this.quad_elements.length;i+=3) {
+        for (let i=0;i<this.pickElements.length;i+=3) {
             const points=[];
             for (let j=0;j<3;j++) {
-                const v=this.quad_elements[i+j];
-                points.push([this.a_quad_xy[2*v],this.a_quad_xy[2*v+1],this.a_quad_em[2*v],this.a_quad_em[2*v+1]]);
+                const v=this.pickElements[i+j];
+                points.push([this.a_quad_xy[2*v],this.a_quad_xy[2*v+1],this.pickElevation[2*v],this.pickElevation[2*v+1]]);
             }
             for (const tri of atlasTriangles(points)) for (const v of tri) for (const value of v) this.atlas[p++]=value;
         }
         if (p>this.atlas.length) throw new Error('Terrain atlas buffer overflow');
         this.atlasVertexCount=p/4;
         this.buffer_quad_xy.subdata(0,this.atlas.subarray(0,p));
-        this.buffer_river_xyww.subdata(0,this.a_river_xyww.subarray(0,7*3*this.numRiverTriangles));
-        // Worker transfer detaches the live arrays; keep the displayed surface
-        // available for picking while the next generation is in flight.
-        this.pickElevation=this.a_quad_em.slice();
-        this.pickElements=this.quad_elements.slice();
         this.mapDirty=true;this.pickingDirty=true;
     }
 
@@ -796,7 +820,7 @@ export default class Renderer {
             gl.uniform1f(program.u_outline_threshold, renderParam.outline_threshold / 1000);
             gl.uniform1f(program.u_biome_colors, renderParam.biome_colors);
             const view=this.planetView;
-            gl.uniform1i(program.u_planet_layer, view?.layer==='day-night'?1:view?.layer==='insolation'?2:view?.layer==='temperature'&&view.thermal?3:
+            gl.uniform1i(program.u_planet_layer, view?.layer==='erosion'&&view.geomorph?7:view?.layer==='day-night'?1:view?.layer==='insolation'?2:view?.layer==='temperature'&&view.thermal?3:
                 view?.water?view.layer==='precipitation'?4:view.layer==='soil-moisture'?5:view.layer==='runoff'?6:0:0);
             gl.uniform3fv(program.u_sun_direction, this.planetView?.sunDirection ?? [0,0,1]);
 
@@ -806,6 +830,7 @@ export default class Renderer {
             this.fbo_depth.texture.activate(gl.TEXTURE3, program.u_depth);
             this.texture_temperature.activate(gl.TEXTURE4, program.u_temperature);
             this.texture_hydrology.activate(gl.TEXTURE5, program.u_hydrology);
+            this.texture_geomorph.activate(gl.TEXTURE6, program.u_geomorph);
 
             gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });
