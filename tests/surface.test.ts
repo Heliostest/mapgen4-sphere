@@ -23,6 +23,11 @@ test('seasonal snow changes cover without reclassifying a forest and needs moist
     assert.equal(surfaceCover(climate,260,.5).seaIceFraction,1);
     const dry=surfaceCover(climate,290,0);assert.notDeepEqual(dry.color,summer.color);assert.equal(dry.biome,summer.biome);
 });
+test('rainless polar land with a short thaw stays barren rather than growing tundra',()=>{
+    const climate={meanTemperatureK:220.842,warmestTemperatureK:279.641,annualRainMm:0};
+    const dry=surfaceCover(climate,275,0);assert.equal(dry.biome,'barren');assert.equal(dry.snowFraction,0);
+    assert.equal(surfaceCover({...climate,annualRainMm:200},275,.5).biome,'tundra');
+});
 test('annual reference ignores selected date, responds to elevation and water supply, and stays finite',()=>{
     const grid=makeThermalGrid(16,8),land=new Float64Array(grid.count).fill(.6),height=new Float64Array(grid.count);
     const reference=(orbit=DEFAULT_ORBIT,h=height,water=DEFAULT_WATER)=>generateSurfaceReference(grid,DEFAULT_PLANET,orbit,DEFAULT_THERMAL,water,land,h);

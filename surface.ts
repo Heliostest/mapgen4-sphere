@@ -25,7 +25,7 @@ const clamp=(x:number)=>Math.max(0,Math.min(1,x));
 /** Illustrative Earth-inspired thresholds; not a Köppen classification. */
 export function classifyBiome(meanK:number,warmestK:number,rainMm:number):Biome {
     const mean=meanK-273.15,warmest=warmestK-273.15;
-    if(mean>45 || (warmest<0 && rainMm<50))return 'barren';
+    if(mean>45 || (warmest<10 && rainMm<50))return 'barren';
     if(warmest<0)return 'ice';
     if(warmest<10)return 'tundra';
     if(rainMm<250)return 'desert';
