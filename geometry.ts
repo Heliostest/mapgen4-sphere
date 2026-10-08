@@ -6,6 +6,7 @@
 
 import Map from "./map.ts";
 import type {Mesh} from "./types.d.ts";
+import {atlasTriangles} from './sphere.ts';
 
 /**
  * Fill a buffer with data from the mesh.
@@ -119,18 +120,13 @@ function setRiverGeometry(map: Map, spacing: number, riversParam: any, P: Float3
             let r1 = mesh.r_begin_s(s1),
                 r2 = mesh.r_begin_s(s2),
                 r3 = mesh.r_begin_s(s3);
-            P[p++] = mesh.x_of_r(r1);
-            P[p++] = mesh.y_of_r(r1);
-            P[p++] = width1;
-            P[p++] = width2;
-            P[p++] = mesh.x_of_r(r2);
-            P[p++] = mesh.y_of_r(r2);
-            P[p++] = width1;
-            P[p++] = width2;
-            P[p++] = mesh.x_of_r(r3);
-            P[p++] = mesh.y_of_r(r3);
-            P[p++] = width1;
-            P[p++] = width2;
+            const vertices = [r1,r2,r3].map((r,i)=>[
+                mesh.x_of_r(r),mesh.y_of_r(r),width1,width2,
+                +(i===0),+(i===1),+(i===2),
+            ]);
+            for (const triangle of atlasTriangles(vertices)) {
+                for (const vertex of triangle) for (const value of vertex) P[p++] = value;
+            }
         }
 
         if (flow_in1 >= MIN_FLOW) {
@@ -141,7 +137,8 @@ function setRiverGeometry(map: Map, spacing: number, riversParam: any, P: Float3
         }
     }
 
-    return p / 12;
+    if (p > P.length) throw new Error('River atlas buffer overflow');
+    return p / 21;
 };
 
 export default {setMeshGeometry, setMapGeometry, setRiverGeometry};

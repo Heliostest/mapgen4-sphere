@@ -7,7 +7,8 @@
  * This module has the procedural map generation algorithms (elevations, rivers)
  */
 
-import {createNoise2D} from 'simplex-noise';
+import {createNoise3D} from 'simplex-noise';
+import {sampleSphere} from './sphere.ts';
 import FlatQueue from 'flatqueue';
 import {makeRandFloat} from '@redblobgames/prng';
 import {clamp} from "./geometry.ts";
@@ -40,6 +41,7 @@ const mountain = {
 function calculateMountainDistance(mesh: Mesh, t_peaks: number[], spacing: number, jaggedness: number, randFloat: () => number, distance_t: Float32Array) {
     distance_t.fill(-1);
     let t_queue = t_peaks.concat([]);
+    for (const t of t_peaks) distance_t[t] = 0;
     for (let i = 0; i < t_queue.length; i++) {
         let t_current = t_queue[i];
         for (let j = 0; j < 3; j++) {
@@ -58,7 +60,7 @@ function calculateMountainDistance(mesh: Mesh, t_peaks: number[], spacing: numbe
  * Save noise values in arrays.
  */
 function precalculateNoise(randFloat: () => number, mesh: Mesh): PrecalculatedNoise {
-    const noise2D = createNoise2D(randFloat);
+    const noise3D = createNoise3D(randFloat);
     let {numTriangles} = mesh;
     let noise0_t = new Float32Array(numTriangles),
         noise1_t = new Float32Array(numTriangles),
@@ -67,14 +69,13 @@ function precalculateNoise(randFloat: () => number, mesh: Mesh): PrecalculatedNo
         noise5_t = new Float32Array(numTriangles),
         noise6_t = new Float32Array(numTriangles);
     for (let t = 0; t < numTriangles; t++) {
-        let nx = (mesh.x_of_t(t)-500) / 500,
-            ny = (mesh.y_of_t(t)-500) / 500;
-        noise0_t[t] = noise2D(nx, ny);
-        noise1_t[t] = noise2D(2*nx + 5, 2*ny + 5);
-        noise2_t[t] = noise2D(4*nx + 7, 4*ny + 7);
-        noise4_t[t] = noise2D(16*nx + 15, 16*ny + 15);
-        noise5_t[t] = noise2D(32*nx + 31, 32*ny + 31);
-        noise6_t[t] = noise2D(64*nx + 67, 64*ny + 67);
+        const nx=1.5*mesh.xyz_t[3*t], ny=1.5*mesh.xyz_t[3*t+1], nz=1.5*mesh.xyz_t[3*t+2];
+        noise0_t[t] = noise3D(nx,ny,nz);
+        noise1_t[t] = noise3D(2*nx+5,2*ny+5,2*nz+5);
+        noise2_t[t] = noise3D(4*nx+7,4*ny+7,4*nz+7);
+        noise4_t[t] = noise3D(16*nx+15,16*ny+15,16*nz+15);
+        noise5_t[t] = noise3D(32*nx+31,32*ny+31,32*nz+31);
+        noise6_t[t] = noise3D(64*nx+67,64*ny+67,64*nz+67);
     }
     return {noise0_t, noise1_t, noise2_t, noise4_t, noise5_t, noise6_t};
 }
@@ -130,26 +131,7 @@ export default class Map {
         // drawing positions and parameters and let the painting happen
         // in this thread.
         function constraintAt(x: number, y: number): number {
-            // https://en.wikipedia.org/wiki/Bilinear_interpolation
-            const C = constraints.constraints, size = constraints.size;
-            // NOTE: there's a tricky "off by one" problem here. Since
-            // x can be from 0.000 to 0.999, and I want xInt+1 < size
-            // to leave one extra tile for bilinear filtering, that
-            // means I want xInt < size-1. So I need to multiply x and
-            // y by size-1, not by size.
-            x = clamp(x * (size-1), 0, size-2);
-            y = clamp(y * (size-1), 0, size-2);
-            let xInt = Math.floor(x),
-                yInt = Math.floor(y),
-                xFrac = x - xInt,
-                yFrac = y - yInt;
-            let p = size * yInt + xInt;
-            let e00 = C[p],
-            e01 = C[p + 1],
-            e10 = C[p + size],
-            e11 = C[p + size + 1];
-            return ((e00 * (1 - xFrac) + e01 * xFrac) * (1 - yFrac)
-                + (e10 * (1 - xFrac) + e11 * xFrac) * yFrac);
+            return sampleSphere(constraints.constraints, constraints.size, x, y);
         }
         for (let t = 0; t < numSolidTriangles; t++) {
             let e = constraintAt(mesh.x_of_t(t)/1000, mesh.y_of_t(t)/1000);
@@ -249,7 +231,7 @@ export default class Map {
             const windAngleVec = [Math.cos(windAngleRad), Math.sin(windAngleRad)];
             for (let r = 0; r < numRegions; r++) {
                 r_wind_order[r] = r;
-                wind_sort_r[r] = mesh.x_of_r(r) * windAngleVec[0] + mesh.y_of_r(r) * windAngleVec[1];
+                wind_sort_r[r] = mesh.xyz_r[3*r] * windAngleVec[0] + mesh.xyz_r[3*r+2] * windAngleVec[1];
             }
             r_wind_order.sort((r1, r2) => wind_sort_r[r1] - wind_sort_r[r2]);
         }
@@ -312,6 +294,7 @@ function assignDownslope(mesh: Mesh, elevation_t: Float32Array, /* out */ s_down
      * the land triangles */
     let {numTriangles} = mesh,
         queue_in = 0;
+    queue.clear();
     s_downslope_t.fill(-999);
     /* Part 1: non-shallow ocean triangles get downslope assigned to the lowest neighbor */
     for (let t = 0; t < numTriangles; t++) {
@@ -329,6 +312,14 @@ function assignDownslope(mesh: Mesh, elevation_t: Float32Array, /* out */ s_down
             s_downslope_t[t] = s_best;
             queue.push(t, elevation_t[t]);
         }
+    }
+    // Without an ocean, drain into the lowest point (an endorheic basin).
+    if (queue_in === 0) {
+        let sink=0;
+        for (let t=1;t<numTriangles;t++) if (elevation_t[t]<elevation_t[sink]) sink=t;
+        t_order[queue_in++]=sink;
+        s_downslope_t[sink]=-1;
+        queue.push(sink,elevation_t[sink]);
     }
     /* Part 2: land triangles get visited in elevation priority */
     for (let queue_out = 0; queue_out < numTriangles; queue_out++) {

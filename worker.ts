@@ -6,7 +6,7 @@
  * This module runs the worker thread that calculates the map data.
  */
 
-import {TriangleMesh} from "./dual-mesh/index.ts";
+import {SphereMesh} from "./sphere-mesh.ts";
 import Map      from "./map.ts";
 import Geometry from "./geometry.ts";
 import type {Mesh} from "./types.d.ts";
@@ -19,7 +19,7 @@ let handler = (event) => {
     // NOTE: web worker messages only include the data; to
     // reconstruct the full object I call the constructor again
     // and then copy the data over
-    const mesh = new TriangleMesh(event.data.mesh as TriangleMesh);
+    const mesh = new SphereMesh(event.data.mesh);
     const map = new Map(mesh as Mesh, event.data.t_peaks, event.data.param);
 
     // TODO: placeholder - calculating elevation+biomes takes 35% of

@@ -3,6 +3,16 @@
     "version": "2.0.0",
     "private": true,
     "type": "module",
+    "scripts": {
+        "build": "node scripts/build.mjs",
+        "start": "node scripts/serve.mjs",
+        "test": "node scripts/test.mjs",
+        "typecheck": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "esbuild": "0.28.2",
+        "typescript": "7.0.2"
+    },
     "dependencies": {
         "@redblobgames/prng": "https://github.com/redblobgames/prng",
         "delaunator": "^5",

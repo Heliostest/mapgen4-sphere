@@ -17,6 +17,7 @@ import param from "./config.js";
 import {makeMesh} from "./mesh.ts";
 import Painting from "./painting.ts";
 import Renderer from "./render.ts";
+import {installNavigation} from './navigation.ts';
 import type {Mesh} from "./types.d.ts";
 
 
@@ -45,7 +46,7 @@ const initialParams = {
         ['flow', 0.2, 0, 1],
     ],
     render: [
-        ['zoom', 100/480, 100/1000, 100/50],
+        ['zoom', 100/350, 100/1000, 100/50],
         ['x', 500, 0, 1000],
         ['y', 500, 0, 1000],
         ['light_angle_deg', 80, 0, 360],
@@ -128,6 +129,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     function redraw() {
         render.updateView(param.render);
     }
+    installNavigation(param.render, redraw);
 
     /* Ask render module to copy WebGL into Canvas */
     function download() {
@@ -145,8 +147,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     }
     
     Painting.screenToWorldCoords = (coords) => {
-        let out = render.screenToWorld(coords);
-        return [out[0] / 1000, out[1] / 1000];
+        return render.screenToWorld(coords);
     };
 
     Painting.onUpdate = () => {
@@ -222,4 +223,9 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     if (downloadButton) downloadButton.addEventListener('click', download);
 }
 
-makeMesh().then(main);
+makeMesh().then(main).catch(error => {
+    console.error(error);
+    const message=document.createElement('p');
+    message.textContent=`Unable to start Mapgen4: ${error.message ?? error}`;
+    document.getElementById('sliders').prepend(message);
+});

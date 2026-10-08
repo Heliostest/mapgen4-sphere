@@ -1,0 +1,58 @@
+import {mat4, vec3} from 'gl-matrix';
+import {directionToUV, SPHERE_RADIUS} from './sphere.ts';
+
+/** Mapgen4's oblique relief adds a screen-up component to height. Fade it
+ * at the limb, where radial relief already supplies the mountain profile. */
+export function terrainPosition(direction: ArrayLike<number>, elevation: number, height: number, rotation: mat4): [number,number,number] {
+    const e=height*Math.max(0,elevation), radius=SPHERE_RADIUS+e;
+    const facing=Math.max(0,rotation[2]*direction[0]+rotation[6]*direction[1]+rotation[10]*direction[2]);
+    const lift=e*facing*facing;
+    return [direction[0]*radius+rotation[1]*lift,
+            direction[1]*radius+rotation[5]*lift,
+            direction[2]*radius+rotation[9]*lift];
+}
+
+export function sphereProjection(param: any): {projection: mat4; rotation: mat4} {
+    const rotation=mat4.create(), radians=Math.PI/180;
+    mat4.rotateZ(rotation,rotation,param.rotate_deg*radians);
+    mat4.rotateX(rotation,rotation,(90-param.y*.18+param.tilt_deg)*radians);
+    mat4.rotateY(rotation,rotation,-(param.x*.36-180)*radians);
+    const extent=100/param.zoom;
+    const projection=mat4.ortho(mat4.create(),-extent,extent,-extent,extent,-2000,2000);
+    mat4.multiply(projection,projection,rotation);
+    return {projection,rotation};
+}
+
+/** Ray/triangle picking uses the same displaced vertices as the GPU, so high
+ * mountains and the silhouette are editable without painting the far side. */
+export function pickTerrain(coords: number[], inverse: mat4, positions: Float32Array, indices: Int32Array, directions: Float32Array): [number,number] | null {
+    const origin=vec3.transformMat4(vec3.create(),[coords[0]*2-1,1-coords[1]*2,-1],inverse);
+    const end=vec3.transformMat4(vec3.create(),[coords[0]*2-1,1-coords[1]*2,1],inverse);
+    const dx=end[0]-origin[0], dy=end[1]-origin[1], dz=end[2]-origin[2];
+    let nearest=Infinity;
+    let surface: [number,number,number] = [0,0,0];
+    for (let i=0;i<indices.length;i+=3) {
+        const a=3*indices[i], b=3*indices[i+1], c=3*indices[i+2];
+        const ax=positions[a], ay=positions[a+1], az=positions[a+2];
+        const e1x=positions[b]-ax,e1y=positions[b+1]-ay,e1z=positions[b+2]-az;
+        const e2x=positions[c]-ax,e2y=positions[c+1]-ay,e2z=positions[c+2]-az;
+        const px=dy*e2z-dz*e2y,py=dz*e2x-dx*e2z,pz=dx*e2y-dy*e2x;
+        const det=e1x*px+e1y*py+e1z*pz;
+        if (Math.abs(det)<1e-9) continue;
+        const tx=origin[0]-ax,ty=origin[1]-ay,tz=origin[2]-az;
+        const u=(tx*px+ty*py+tz*pz)/det;
+        if (u<0 || u>1) continue;
+        const qx=ty*e1z-tz*e1y,qy=tz*e1x-tx*e1z,qz=tx*e1y-ty*e1x;
+        const v=(dx*qx+dy*qy+dz*qz)/det;
+        if (v<0 || u+v>1) continue;
+        const distance=(e2x*qx+e2y*qy+e2z*qz)/det;
+        if (distance>=0 && distance<nearest) {
+            nearest=distance;
+            // Recover the undisplaced surface location using barycentric
+            // coordinates, rather than interpreting oblique lift as latitude.
+            for (let k=0;k<3;k++) surface[k]=directions[a+k]*(1-u-v)+directions[b+k]*u+directions[c+k]*v;
+        }
+    }
+    if (!Number.isFinite(nearest)) return null;
+    return directionToUV(surface);
+}

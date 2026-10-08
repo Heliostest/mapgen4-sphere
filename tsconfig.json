@@ -1,10 +1,14 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "module": "bundler",
-        "moduleResolution": "nodenext",
-        "allowImportingTsExtensions": true
+        "target": "es2022",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "strict": false,
+        "skipLibCheck": true,
+        "lib": ["dom", "webworker", "es2022"]
     },
-    "include": ["./*.ts"],
+    "include": ["mapgen4.ts", "worker.ts"],
     "exclude": ["node_modules", "build"]
 }

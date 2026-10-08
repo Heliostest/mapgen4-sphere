@@ -6,9 +6,11 @@
  * This module uses webgl to render the generated maps
  */
 
-import {vec2, vec4, mat4} from 'gl-matrix';
+import {mat4} from 'gl-matrix';
 import colormap from "./colormap.ts";
 import Geometry from "./geometry.ts";
+import {atlasTriangles, SPHERE_RADIUS} from './sphere.ts';
+import {sphereProjection, pickTerrain, terrainPosition} from './sphere-view.ts';
 import type {Mesh} from "./types.d.ts";
 
 //////////////////////////////////////////////////////////////////////
@@ -238,12 +240,12 @@ const vert_river = `
     precision highp float;
     uniform mat4 u_projection;
     in vec4 a_xyww; // x, y, width1, width2 (widths are constant across vertices)
+    in vec3 a_barycentric;
     out vec2 v_riverwidth;
     out vec3 v_barycentric;
     void main() {
         v_riverwidth = a_xyww.ba;
-        int index = gl_VertexID % 3;
-        v_barycentric = vec3(index == 0, index == 1, index == 2);
+        v_barycentric = a_barycentric;
         gl_Position = u_projection * vec4(a_xyww.xy, 0, 1);
     }`;
 
@@ -304,14 +306,32 @@ const vert_land = `
         out_elevation = vec4(e, 0, 0, 1);
     }`;
 
+const sphere_vertex = `
+    uniform float u_mountain_height;
+    uniform mat4 u_rotation;
+    vec3 sphere_direction(vec2 xy) {
+        float lon = (xy.x / 1000.0 - 0.5) * 6.28318530718;
+        float lat = (0.5 - xy.y / 1000.0) * 3.14159265359;
+        return vec3(cos(lat)*sin(lon), sin(lat), cos(lat)*cos(lon));
+    }
+    vec3 sphere_position(vec2 xy, float e) {
+        vec3 n=sphere_direction(xy);
+        float height=u_mountain_height*max(0.0,e);
+        float facing=max(0.0,(mat3(u_rotation)*n).z);
+        vec3 up=vec3(u_rotation[0][1],u_rotation[1][1],u_rotation[2][1]);
+        return n*(${SPHERE_RADIUS.toFixed(1)}+height) + up*height*facing*facing;
+    }
+`;
+
 const vert_depth = `
     precision highp float;
+    ${sphere_vertex}
     uniform mat4 u_projection;
     in vec2 a_xy;
     in vec2 a_em;
     out float v_z;
     void main() {
-        vec4 pos = u_projection * vec4(a_xy, max(0.0, a_em.x), 1);
+        vec4 pos = u_projection * vec4(sphere_position(a_xy, a_em.x), 1);
         v_z = a_em.x;
         gl_Position = pos;
     }`;
@@ -326,6 +346,7 @@ const frag_depth = `
 
 const vert_drape = `
     precision highp float;
+    ${sphere_vertex}
     uniform mat4 u_projection;
     in vec2 a_xy;
     in vec2 a_em;
@@ -333,13 +354,8 @@ const vert_drape = `
     out float v_z;
     void main() {
         v_em = a_em;
-        vec2 xy_clamped = clamp(a_xy, vec2(0, 0), vec2(1000, 1000));
-        v_z = max(0.0, a_em.x); // oceans with e<0 still rendered at z=0
-        if (xy_clamped != a_xy) { // boundary points
-            v_z = -0.5;
-            v_em = vec2(0.0, 0.0);
-        }
-        vec4 pos = vec4(u_projection * vec4(xy_clamped, v_z, 1));
+        v_z = max(0.0, a_em.x); // sea stays on the base sphere
+        vec4 pos = u_projection * vec4(sphere_position(a_xy, a_em.x), 1);
         v_uv = a_xy / 1000.0;
         v_xy = (1.0 + pos.xy) * 0.5;
         gl_Position = pos;
@@ -351,7 +367,8 @@ const frag_drape = `
     uniform sampler2D u_elevation;
     uniform sampler2D u_water;
     uniform sampler2D u_depth;
-    uniform vec2 u_light_angle, u_inverse_texture_size;
+    uniform vec2 u_light_angle, u_inverse_texture_size, u_inverse_screen_size;
+    uniform mat4 u_rotation;
     uniform float u_slope, u_flat,
                   u_ambient, u_overhead,
                   u_outline_strength, u_outline_coast, u_outline_water,
@@ -375,8 +392,20 @@ const frag_drape = `
         float zN = texture(u_elevation, pos - dy).x;
         float zW = texture(u_elevation, pos - dx).x;
         float zS = texture(u_elevation, pos + dy).x;
-        vec3 slope_vector = normalize(vec3(zS-zN, zE-zW, u_overhead * (u_inverse_texture_size.x + u_inverse_texture_size.y)));
-        vec3 light_vector = normalize(vec3(u_light_angle, mix(u_slope, u_flat, slope_vector.z)));
+        // Same artist-controlled Mapgen4 slope lighting, with derivatives
+        // measured in equal surface distances instead of stretched atlas pixels.
+        float lat = (0.5-v_uv.y)*3.14159265359;
+        float lon = (v_uv.x-0.5)*6.28318530718;
+        float metric_y = 3.14159265359 * ${SPHERE_RADIUS.toFixed(1)} / 1000.0;
+        float metric_x = 2.0 * metric_y * max(0.035, cos(lat));
+        vec3 slope_vector = normalize(vec3((zS-zN)/(2.0*dy.y*metric_y),
+                                          (zE-zW)/(2.0*dx.x*metric_x), max(0.001,u_overhead)));
+        vec3 east = mat3(u_rotation)*vec3(cos(lon),0,-sin(lon));
+        vec3 south = mat3(u_rotation)*vec3(sin(lat)*sin(lon),-cos(lat),sin(lat)*cos(lon));
+        vec2 screen_light = vec2(u_light_angle.y,-u_light_angle.x);
+        vec2 local_light = vec2(dot(screen_light,south.xy),dot(screen_light,east.xy));
+        local_light /= max(0.001,length(local_light));
+        vec3 light_vector = normalize(vec3(local_light, mix(u_slope, u_flat, slope_vector.z)));
         float light = u_ambient + max(0.0, dot(light_vector, slope_vector));
         vec3 neutral_biome_color = neutral_land_biome;
         vec4 water_color = texture(u_water, pos);
@@ -403,13 +432,14 @@ const frag_drape = `
 
         // TODO: add noise texture based on biome
 
+        vec2 screen_dx=vec2(u_inverse_screen_size.x,0), screen_dy=vec2(0,u_inverse_screen_size.y);
         float depth0 = texture(u_depth, v_xy).x,
-              depth1 = max(max(texture(u_depth, v_xy + u_outline_depth*(-dy-dx)).x,
-                               texture(u_depth, v_xy + u_outline_depth*(-dy+dx)).x),
-                           texture(u_depth, v_xy + u_outline_depth*(-dy)).x),
-              depth2 = max(max(texture(u_depth, v_xy + u_outline_depth*(dy-dx)).x,
-                               texture(u_depth, v_xy + u_outline_depth*(dy+dx)).x),
-                           texture(u_depth, v_xy + u_outline_depth*(dy)).x);
+              depth1 = max(max(texture(u_depth, v_xy + u_outline_depth*(-screen_dy-screen_dx)).x,
+                               texture(u_depth, v_xy + u_outline_depth*(-screen_dy+screen_dx)).x),
+                           texture(u_depth, v_xy + u_outline_depth*(-screen_dy)).x),
+              depth2 = max(max(texture(u_depth, v_xy + u_outline_depth*(screen_dy-screen_dx)).x,
+                               texture(u_depth, v_xy + u_outline_depth*(screen_dy+screen_dx)).x),
+                           texture(u_depth, v_xy + u_outline_depth*(screen_dy)).x);
         float outline = 1.0 + u_outline_strength * (max(u_outline_threshold, depth1-depth0) - u_outline_threshold);
 
         // Add coast outline, but avoid it if there's a river nearby
@@ -455,6 +485,14 @@ const fbo_texture_size: number = 2048;
 export default class Renderer {
     numRiverTriangles: number = 0;
 
+    mesh: Mesh;
+    atlas: Float32Array;
+    atlasVertexCount = 0;
+    rotation = mat4.create();
+    pickPositions: Float32Array;
+    pickDirections: Float32Array;
+    pickElements = new Int32Array(0);
+    pickElevation = new Float32Array(0);
     topdown: mat4;
     projection: mat4;
     inverse_projection: mat4;
@@ -486,11 +524,10 @@ export default class Renderer {
 
     buffer_fullscreen: Buffer;
     buffer_quad_xy: Buffer;
-    buffer_quad_em: Buffer;
-    buffer_quad_elements: Buffer;
     buffer_river_xyww: Buffer;
 
     constructor (mesh: Mesh) {
+        this.mesh = mesh;
         const canvas = document.getElementById('mapgen4') as HTMLCanvasElement;
         this.webgl = new WebGLWrapper(canvas);
 
@@ -511,43 +548,50 @@ export default class Renderer {
          * there's a single binary tree that has every node filled.
          * Each of the N/2 leaves will produce 1 output triangle and
          * each of the N/2 nodes will produce 2 triangles. On average
-         * there will be 1.5 output triangles per input triangle. */
-        const numRiverVertices = 1.5 /* river triangles per input triangle */ * 3 /* vertices per triangle */ * mesh.numSolidTriangles;
-        this.a_river_xyww = new Float32Array(numRiverVertices * 4);
+         * there will be 1.5 output triangles per input triangle.
+         * Double that capacity for atlas seam copies and polar caps. */
+        const numRiverVertices = 3 * 3 * mesh.numSolidTriangles;
+        this.a_river_xyww = new Float32Array(numRiverVertices * 7);
 
         Geometry.setMeshGeometry(mesh, this.a_quad_xy);
 
-        this.buffer_quad_xy = this.webgl.createBuffer({update: 'static', data: this.a_quad_xy});
-        this.buffer_quad_em = this.webgl.createBuffer({update: 'dynamic', data: this.a_quad_em});
-        this.buffer_quad_elements = this.webgl.createBuffer({indices: true, update: 'dynamic', data: this.quad_elements});
+        this.atlas = new Float32Array(this.quad_elements_length * 2 * 4);
+        this.pickPositions = new Float32Array(3*(mesh.numRegions+mesh.numTriangles));
+        this.pickDirections = new Float32Array(this.pickPositions.length);
+        this.pickDirections.set(mesh.xyz_r);
+        this.pickDirections.set(mesh.xyz_t,mesh.xyz_r.length);
+        this.buffer_quad_xy = this.webgl.createBuffer({update: 'dynamic', data: this.atlas});
 
         this.buffer_fullscreen = this.webgl.createBuffer({update: 'static', data: new Float32Array([-2, 0, 0, -2, 2, 2])});
         this.buffer_river_xyww = this.webgl.createBuffer({update: 'dynamic', data: this.a_river_xyww});
 
         this.texture_colormap = this.webgl.createTexture({data: colormap.data, width: colormap.width, height: colormap.height, filter: 'nearest'});
 
-        this.fbo_land  = this.webgl.createFramebuffer(fbo_texture_size, fbo_texture_size, {depth: false, internalFormat: this.webgl.gl.R16F, filter: 'linear'});
+        this.fbo_land  = this.webgl.createFramebuffer(2*fbo_texture_size, fbo_texture_size, {depth: false, internalFormat: this.webgl.gl.R16F, filter: 'linear'});
         this.fbo_depth = this.webgl.createFramebuffer(fbo_texture_size, fbo_texture_size, {depth: true, internalFormat: this.webgl.gl.R16F, filter: 'nearest'}); // NOTE: linear requires adjusting parameters
-        this.fbo_river = this.webgl.createFramebuffer(fbo_texture_size, fbo_texture_size, {depth: false, filter: 'linear'}); // linear makes rivers look better
+        this.fbo_river = this.webgl.createFramebuffer(2*fbo_texture_size, fbo_texture_size, {depth: false, filter: 'linear'}); // linear makes rivers look better
         this.fbo_drape = this.webgl.createFramebuffer(fbo_texture_size, fbo_texture_size, {depth: true, filter: 'linear'}); // linear to smooth out edges
 
+        // Both surface atlases wrap only longitude; latitude clamps at poles.
+        for (const fbo of [this.fbo_land,this.fbo_river]) {
+            fbo.texture.bind();
+            this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
+        }
         this.program_river = this.webgl.createProgram('river', vert_river, frag_river, (gl, program) => {
-            this.buffer_river_xyww.vertexAttribPointer(program.a_xyww, 4, gl.FLOAT, false, 0, 0);
+            this.buffer_river_xyww.vertexAttribPointer(program.a_xyww, 4, gl.FLOAT, false, 28, 0);
+            this.buffer_river_xyww.vertexAttribPointer(program.a_barycentric, 3, gl.FLOAT, false, 28, 16);
         });
         this.program_land  = this.webgl.createProgram('land', vert_land,  frag_land, (gl, program) => {
-            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 0, 0);
-            this.buffer_quad_em.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 0, 0);
-            this.buffer_quad_elements.bind();
+            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 16, 0);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 16, 8);
         });
         this.program_depth = this.webgl.createProgram('depth', vert_depth, frag_depth, (gl, program) => {
-            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 0, 0);
-            this.buffer_quad_em.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 0, 0);
-            this.buffer_quad_elements.bind();
+            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 16, 0);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 16, 8);
         });
         this.program_drape = this.webgl.createProgram('drape', vert_drape, frag_drape, (gl, program) => {
-            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 0, 0);
-            this.buffer_quad_em.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 0, 0);
-            this.buffer_quad_elements.bind();
+            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 16, 0);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 16, 8);
         });
         this.program_final = this.webgl.createProgram('final', vert_final, frag_final, (gl, program) => {
             this.buffer_fullscreen.vertexAttribPointer(program.a_uv, 2, gl.FLOAT, false, 0, 0);
@@ -562,26 +606,37 @@ export default class Renderer {
         this.startDrawingLoop();
     }
 
-    screenToWorld(coords: [number, number]): vec2 {
-        /* convert from screen 2d (inverted y) to 4d for matrix multiply */
-        let glCoords = vec4.fromValues(
-            coords[0] * 2 - 1,
-            1 - coords[1] * 2,
-            /* TODO: z should be 0 only when tilt_deg is 0;
-             * need to figure out the proper z value here */
-            0,
-            1
-        );
-        /* it returns vec4 but we only need vec2; they're compatible */
-        let transformed = vec4.transformMat4(vec4.create(), glCoords, this.inverse_projection);
-        return [transformed[0], transformed[1]];
+    screenToWorld(coords: number[]): [number,number] | null {
+        return pickTerrain(coords,this.inverse_projection,this.pickPositions,this.pickElements,this.pickDirections);
     }
 
-    /* Update the buffers with the latest map data */
     updateMap() {
-        this.buffer_quad_em.subdata(0, this.a_quad_em);
-        this.buffer_quad_elements.subdata(0, this.quad_elements);
-        this.buffer_river_xyww.subdata(0, this.a_river_xyww.subarray(0, 4 * 3 * this.numRiverTriangles));
+        let p=0;
+        for (let i=0;i<this.quad_elements.length;i+=3) {
+            const points=[];
+            for (let j=0;j<3;j++) {
+                const v=this.quad_elements[i+j];
+                points.push([this.a_quad_xy[2*v],this.a_quad_xy[2*v+1],this.a_quad_em[2*v],this.a_quad_em[2*v+1]]);
+            }
+            for (const tri of atlasTriangles(points)) for (const v of tri) for (const value of v) this.atlas[p++]=value;
+        }
+        if (p>this.atlas.length) throw new Error('Terrain atlas buffer overflow');
+        this.atlasVertexCount=p/4;
+        this.buffer_quad_xy.subdata(0,this.atlas.subarray(0,p));
+        this.buffer_river_xyww.subdata(0,this.a_river_xyww.subarray(0,7*3*this.numRiverTriangles));
+        // Worker transfer detaches the live arrays; keep the displayed surface
+        // available for picking while the next generation is in flight.
+        this.pickElevation=this.a_quad_em.slice();
+        this.pickElements=this.quad_elements.slice();
+    }
+
+    updatePicking(height: number) {
+        const {numRegions,xyz_r,xyz_t}=this.mesh;
+        for (let v=0;v<this.pickPositions.length/3;v++) {
+            const a=v<numRegions ? xyz_r : xyz_t, index=v<numRegions ? v : v-numRegions;
+            const p=terrainPosition(a.subarray(3*index,3*index+3),this.pickElevation[2*v],height,this.rotation);
+            this.pickPositions.set(p,3*v);
+        }
     }
 
     /* Allow drawing at a different resolution than the internal texture size */
@@ -617,6 +672,7 @@ export default class Renderer {
             gl.blendEquation(gl.FUNC_ADD);
 
             gl.drawArrays(gl.TRIANGLES, 0, 3 * this.numRiverTriangles);
+            gl.disable(gl.BLEND);
         });
     }
 
@@ -626,24 +682,29 @@ export default class Renderer {
             gl.uniform1f(program.u_outline_water, outline_water);
             this.fbo_river.texture.activate(gl.TEXTURE0, program.u_water);
 
-            gl.drawElements(gl.TRIANGLES, this.quad_elements_length, gl.UNSIGNED_INT, 0);
+            gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });
     }
 
-    drawDepth() {
+    drawDepth(renderParam: any) {
         this.drawGeneric(this.program_depth, this.fbo_depth, (gl, program) => {
             gl.uniformMatrix4fv(program.u_projection, false, this.projection);
+            gl.uniform1f(program.u_mountain_height, renderParam.mountain_height);
+            gl.uniformMatrix4fv(program.u_rotation, false, this.rotation);
 
-            gl.drawElements(gl.TRIANGLES, this.quad_elements_length, gl.UNSIGNED_INT, 0);
+            gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });
     }
 
     drawDrape(renderParam: any) {
-        const light_angle_rad = Math.PI / 180 * (renderParam.light_angle_deg + renderParam.rotate_deg);
+        const light_angle_rad = Math.PI / 180 * renderParam.light_angle_deg;
         this.drawGeneric(this.program_drape, this.fbo_drape, (gl, program) => {
             gl.uniformMatrix4fv(program.u_projection, false, this.projection);
+            gl.uniform1f(program.u_mountain_height, renderParam.mountain_height);
             gl.uniform2fv(program.u_light_angle, [Math.cos(light_angle_rad), Math.sin(light_angle_rad)]);
-            gl.uniform2fv(program.u_inverse_texture_size, [1.5 / this.fbo_drape.texture.width, 1.5 / this.fbo_drape.texture.height]);
+            gl.uniform2fv(program.u_inverse_texture_size, [1.5 / this.fbo_land.texture.width, 1.5 / this.fbo_land.texture.height]);
+            gl.uniform2fv(program.u_inverse_screen_size, [1.5/fbo_texture_size,1.5/fbo_texture_size]);
+            gl.uniformMatrix4fv(program.u_rotation,false,this.rotation);
             gl.uniform1f(program.u_slope, renderParam.slope);
             gl.uniform1f(program.u_flat, renderParam.flat);
             gl.uniform1f(program.u_ambient, renderParam.ambient);
@@ -660,7 +721,7 @@ export default class Renderer {
             this.fbo_river.texture.activate(gl.TEXTURE2, program.u_water);
             this.fbo_depth.texture.activate(gl.TEXTURE3, program.u_depth);
 
-            gl.drawElements(gl.TRIANGLES, this.quad_elements_length, gl.UNSIGNED_INT, 0);
+            gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });
     }
 
@@ -678,6 +739,7 @@ export default class Renderer {
 
         const clearBuffers = () => {
             this.fbo_river.clear(0, 0, 0, 0);
+            this.fbo_land.clear(0,0,0,1);
             this.fbo_depth.clear(0, 0, 0, 1);
             this.fbo_drape.clear(0.3, 0.3, 0.35, 1);
             gl.bindFramebuffer(gl.FRAMEBUFFER, null);
@@ -698,29 +760,16 @@ export default class Renderer {
 
             this.drawLand(renderParam.outline_water);
 
-            /* Standard rotation for orthographic view */
-            mat4.identity(this.projection);
-            mat4.rotateX(this.projection, this.projection, (180 + renderParam.tilt_deg) * Math.PI/180);
-            mat4.rotateZ(this.projection, this.projection, renderParam.rotate_deg * Math.PI/180);
-
-            /* Top-down oblique copies column 2 (y input) to row 3 (z
-             * output). Typical matrix libraries such as glm's mat4 or
-             * Unity's Matrix4x4 or Unreal's FMatrix don't have this
-             * this.projection built-in. For mapgen4 I merge orthographic
-             * (which will *move* part of y-input to z-output) and
-             * top-down oblique (which will *copy* y-input to z-output).
-             * <https://en.wikipedia.org/wiki/Oblique_projection> */
-            this.projection[9] = 1;
-
-            /* Scale and translate works on the hybrid this.projection */
-            mat4.scale(this.projection, this.projection, [renderParam.zoom/100, renderParam.zoom/100, renderParam.mountain_height * renderParam.zoom/100]);
-            mat4.translate(this.projection, this.projection, [-renderParam.x, -renderParam.y, 0]);
+            const view=sphereProjection(renderParam);
+            this.projection=view.projection;
+            this.rotation=view.rotation;
+            this.updatePicking(renderParam.mountain_height);
 
             /* Keep track of the inverse matrix for mapping mouse to world coordinates */
             mat4.invert(this.inverse_projection, this.projection);
 
             if (renderParam.outline_depth > 0) {
-                this.drawDepth();
+                this.drawDepth(renderParam);
             }
 
             this.drawDrape(renderParam);
