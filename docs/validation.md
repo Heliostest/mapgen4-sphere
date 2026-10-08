@@ -3,6 +3,16 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Generated climate without Play — 2026-10-09
+
+Base `c742c28`, branch `codex/generated-climate`. User requested initial climate from physical/geographic parameters rather than waiting for Play. Temperature, estimated seasonal wind, initial rain/humidity/soil/surface stores and diagnostic outflow now generate directly at the selected date. They spend no integration steps and preserve the paused clock. Play subsequently evolves the generated state. Initial estimates, daily-mean temperature, parameterized winds and lack of a pressure solver are explicit in the UI and [methods](generated-climate.md).
+
+RED: climate module missing, then runtime still uniform and vector wind setter missing. GREEN:73 Node tests including7 new groups; typecheck/build/diff-check passed. New checks cover latitude/season, sea response, altitude, wind belts/retrograde, windward/lee contrast, generated zero-age budgets, changing vector-wind positivity/conservation, and320-step cases spanning radius10–100,000km, high relief and albedo0/0.3/1. The prior rollback comparison now uses the same generated reference instead of a uniform direct-kernel initial condition; checkpoint assertions remain exact.
+
+Browser:5 new [climate groups](evidence/climate-report.json) pass with no page/console errors. At day0 and age0, initial temperature range is88.645K and initial rain is nonzero. Manual season/tilt/physical height edits update while paused; zero tilt removes seasonal contrast. Arrows and signed probes respond to retrograde; erosion capture explicitly labels generated discharge estimates. Play changes fields and preserves budgets; camera/display changes preserve history. Original terrain art restores and mobile controls fit. A display-radius round trip initially differed in one color channel by1/255, consistent with existing renderer rounding tolerance; final evidence had zero differing channels. [Temperature](evidence/climate-temperature.png), [initial rain](evidence/climate-rain.png), [wind](evidence/climate-wind.png), [mobile](evidence/climate-mobile.png) were visually inspected.
+
+Regression reports: [planet8/DOM20/GPU648+771+30+32](evidence/climate-planet-report.json), [water5](evidence/climate-water-report.json), [thermal5](evidence/climate-thermal-report.json), [geomorph5/renderer19](evidence/climate-geomorph-report.json), [application6](evidence/climate-application-report.json), [legacy9/83 generations](evidence/climate-legacy-report.json). All error lists are empty. Independent review pending.
+
 ## Applied erosion and portable terrain — 2026-10-09
 
 Base `007e3a9` (completed D preview), branch `codex/apply-erosion`. This increment stores bed-height offsets before regenerated regions/rainfall/drainage, adds one application undo that preserves later painting, and exports/imports versioned terrain JSON with physical/time/view settings. It recouples environment classification to accepted terrain; it does not persist climate, transfer mobile sediment, conserve volume across fine remapping, or replace the artistic river model.

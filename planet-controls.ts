@@ -80,9 +80,10 @@ export function installPlanetControls(options:Options) {
         ['original','Original map'],['day-night','Day / night'],['insolation','Solar energy'],['temperature','Temperature (daily mean)'],
         ['precipitation','Precipitation'],['soil-moisture','Soil moisture'],['runoff','Surface outflow'],
         ['erosion','Terrain change (erosion)'],
+        ['wind','Surface wind (estimated)'],
     ],layer,v=>{
         layer=v as PlanetLayer;
-        if(layer==='temperature'||waterLayer()){thermal.enabled=true;thermalPanel.reveal();}
+        if(layer==='temperature'||layer==='wind'||waterLayer()){thermal.enabled=true;thermalPanel.reveal();}
         if(waterLayer()){thermal.waterEnabled=true;waterPanel.reveal();}
         if(layer==='erosion'){thermal.enabled=thermal.waterEnabled=true;geomorphPanel.reveal();}
     });
@@ -90,6 +91,11 @@ export function installPlanetControls(options:Options) {
         ['surface','Follow surface'],['space','From space'],
     ],camera,v=>camera=v as PlanetCamera);
     const legend=note('Original map · physical settings preserve your terrain.');legend.id='planet-legend';
+    button('planet-generate-climate','Generate climate now',()=>{
+        pause(false);thermal.enabled=thermal.waterEnabled=true;thermal.invalidate();
+        layer='temperature';layerSelect.value=layer;thermalPanel.reveal();waterPanel.reveal();emit();
+    });
+    note('Generate temperature, rain and wind belts at the current date without Play. Change season, tilt or terrain to regenerate; Play evolves the result.');
     const play=button('planet-play','Play',()=>{
         if(inspecting) {inspecting=false;updateInspectButton();}
         if(clock.playing) pause(false);
@@ -140,7 +146,7 @@ export function installPlanetControls(options:Options) {
         pause(false);mutate();
         if(!thermal.enabled) {
             thermal.waterEnabled=false;
-            if(layer==='temperature'||waterLayer()){layer='original';layerSelect.value=layer;}
+            if(layer==='temperature'||layer==='wind'||waterLayer()){layer='original';layerSelect.value=layer;}
         }
         emit();
     });
@@ -196,9 +202,10 @@ export function installPlanetControls(options:Options) {
         if(document.activeElement!==season) season.value=(sun.orbitAngleRad*180/Math.PI).toFixed(1);
         phases.textContent=`Spin ${(sun.spinAngleRad*180/Math.PI).toFixed(1)}° · season ${(sun.orbitAngleRad*180/Math.PI).toFixed(1)}° · Sun latitude ${(sun.declinationRad*180/Math.PI).toFixed(1)}°`;
         legend.textContent=layer==='insolation'?`Solar energy: 0–${o.fluxWm2.toFixed(0)} W/m² · dark blue → teal → orange. Colors retain terrain shading.`:
+            layer==='wind'?(thermal.model?'Estimated surface wind: arrows point toward flow; dark blue → green = 0–30 m/s. Geographic circulation template, not a pressure solver.':thermal.status):
             layer==='erosion'?(geomorph.model?'Net bed change: −100 m blue · 0 m cream · +100 m red; outside values saturate. Coarse preview; source climate and artistic rivers are retained.':'Capture current water in Erosion & deposition preview to begin.'):
             waterLayer()?(!thermal.water?thermal.status:layer==='precipitation'?'Precipitation: 0–20 mm/day · dark blue → cyan → cream. Latest-step rate; higher values saturate.':layer==='soil-moisture'?'Soil moisture: 0–100% of soil capacity · brown → green; ocean blue. Fraction per land area.':'Cell surface outflow: 0–10⁷ m³/s · dark blue → cyan, log scale. Latest-step transfer; higher values saturate. Artistic rivers are independent.'):
-            layer==='temperature'?(thermal.model?'Temperature: −80 °C blue · 0 °C cream · +60 °C red. Values outside this range saturate. Daily mean; terrain shading retained.':thermal.status):
+            layer==='temperature'?(thermal.model?'Temperature: −80 °C blue · 0 °C cream · +60 °C red. Generated daily-mean reference is ready while paused; Play evolves it. Outside values saturate.':thermal.status):
             layer==='day-night'?'Day / night · night brightness helps editing; night receives 0 W/m².':'Original map · physical settings preserve your terrain.';
         warning.textContent=p.rotationRatio>.05?'Rapid spin: the spherical gravity/sea-level approximation becomes inaccurate.':
             Math.max(planet.reliefM,planet.oceanDepthM)>.05*planet.radiusM?'Terrain is large relative to radius: spherical surface diagnostics are approximate.':'';
@@ -208,6 +215,8 @@ export function installPlanetControls(options:Options) {
             probeOutput.textContent=`${((.5-probe.uv[1])*180).toFixed(2)}° lat, ${((probe.uv[0]-.5)*360).toFixed(2)}° lon · ${height.toFixed(0)} m ${height<0?'seafloor':'elevation'} · ${incidentFlux(direction,sun.direction,o.fluxWm2).toFixed(1)} W/m² · ${local===null?'solar time undefined at pole':`${local.toFixed(2)} h local solar time`}`;
             const cellK=thermal.sample(...probe.uv);
             if(cellK!==null) probeOutput.textContent+=` · ${(cellK-273.15).toFixed(1)} °C daily-mean cell`;
+            const wind=thermal.sampleWind(...probe.uv);
+            if(wind)probeOutput.textContent+=` · estimated wind E ${wind.eastMps.toFixed(1)} / N ${wind.northMps.toFixed(1)} m/s`;
             const water=thermal.sampleWater(...probe.uv);
             if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
             const erosion=geomorph.sample(...probe.uv);

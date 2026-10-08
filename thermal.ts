@@ -73,6 +73,7 @@ export function heatTransport(grid:ThermalGrid,temperature:ArrayLike<number>,dif
     return out;
 }
 export type ThermalCheckpoint={temperatureK:Float64Array;steps:number;radiationJm2:number};
+export interface ThermalInitial {temperatureK:ArrayLike<number>;radiationScale:ArrayLike<number>;absorbedWm2:ArrayLike<number>}
 
 export class ThermalModel {
     readonly temperatureK:Float64Array;
@@ -82,6 +83,7 @@ export class ThermalModel {
     readonly yearS:number;
     readonly fluxWm2:number;
     readonly transport:number;
+    readonly radiationScale:Float64Array;
     readonly planet:PlanetConfig;
     readonly orbit:OrbitConfig;
     readonly config:ThermalConfig;
@@ -89,7 +91,7 @@ export class ThermalModel {
     stepS:number;
     steps=0;
     radiationJm2=0;
-    constructor(planet:PlanetConfig,orbit:OrbitConfig,config:ThermalConfig,land:ArrayLike<number>,readonly epochS=0,readonly grid=makeThermalGrid()) {
+    constructor(planet:PlanetConfig,orbit:OrbitConfig,config:ThermalConfig,land:ArrayLike<number>,readonly epochS=0,readonly grid=makeThermalGrid(),reference?:ThermalInitial) {
         const derived=deriveOrbit(planet,orbit);
         finiteInRange(epochS,'thermal epoch',0);
         finiteInRange(config.emissivity,'effective emissivity',.1,1);
@@ -103,6 +105,16 @@ export class ThermalModel {
         const initial=derived.equilibriumK/Math.pow(config.emissivity,.25);
         this.temperatureK=new Float64Array(grid.count).fill(initial);
         this.absorbedWm2=new Float64Array(grid.count);
+        this.radiationScale=new Float64Array(grid.count).fill(1);
+        if(reference) {
+            if([reference.temperatureK,reference.radiationScale,reference.absorbedWm2].some(a=>a.length!==grid.count))throw new RangeError('Thermal initial state size mismatch');
+            for(let i=0;i<grid.count;i++) {
+                finiteInRange(reference.temperatureK[i],'initial temperature',0);
+                finiteInRange(reference.radiationScale[i],'altitude factor',.55,1);
+                finiteInRange(reference.absorbedWm2[i],'initial absorbed sunlight',0);
+            }
+            this.temperatureK.set(reference.temperatureK);this.radiationScale.set(reference.radiationScale);this.absorbedWm2.set(reference.absorbedWm2);
+        }
         this.capacity=Float64Array.from(land,f=>{
             finiteInRange(f,'land fraction',0,1);
             return f*config.landHeatCapacity+(1-f)*config.oceanDepthM*4.2e6;
@@ -111,9 +123,10 @@ export class ThermalModel {
         const loss=new Float64Array(grid.count);
         for(const e of grid.edges) {const k=this.transport*e.geometry/grid.solidAngle;loss[e.a]+=k;loss[e.b]+=k;}
         const maxT=Math.max(initial,Math.pow((1-orbit.bondAlbedo)*this.fluxWm2/(config.emissivity*SIGMA),.25));
-        const radiativeDerivative=4*config.emissivity*SIGMA*maxT**3;
+        // T/scale is the effective emitting temperature; differentiation adds
+        // 1/scale^4. The upper bound is conservative even under heat exchange.
         let stable=Infinity;
-        for(let i=0;i<grid.count;i++) stable=Math.min(stable,.45*this.capacity[i]/(loss[i]+radiativeDerivative));
+        for(let i=0;i<grid.count;i++) stable=Math.min(stable,.45*this.capacity[i]/(loss[i]+4*config.emissivity*SIGMA*maxT**3/this.radiationScale[i]**4));
         this.stepS=Math.min(1800,this.yearS/720,stable);
         this.initialEnergyJm2=this.energy();
     }
@@ -141,7 +154,7 @@ export class ThermalModel {
         let radiation=0;
         for(let i=0;i<grid.count;i++) {
             this.absorbedWm2[i]=(1-this.orbit.bondAlbedo)*q[Math.floor(i/grid.width)]*normalizer;
-            const net=this.absorbedWm2[i]-config.emissivity*SIGMA*t[i]**4;
+            const net=this.absorbedWm2[i]-config.emissivity*SIGMA*(t[i]/this.radiationScale[i])**4;
             radiation+=net;
             t[i]+=this.stepS*(net+this.tendency[i])/this.capacity[i];
         }

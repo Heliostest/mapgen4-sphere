@@ -1,5 +1,6 @@
 import {finiteInRange} from './planet.ts';
 import type {ThermalGrid} from './thermal.ts';
+import type {GeneratedClimate} from './climate.ts';
 
 export interface WaterConfig {
     evaporationFraction:number;soilCapacityKgM2:number;initialOceanDepthM:number;
@@ -16,6 +17,7 @@ export interface WaterCheckpoint {
     atmosphereKgM2:Float64Array;soilKgM2:Float64Array;surfaceKgM2:Float64Array;
     precipitationKgM2S:Float64Array;evaporationKgM2S:Float64Array;dischargeM3S:Float64Array;
     oceanGlobalKgM2:number;elapsedS:number;
+    windEastMps:Float64Array;windNorthMps:Float64Array;
 }
 
 /** One-way water tracer. All columns are per WHOLE cell area. Ocean storage is
@@ -32,15 +34,18 @@ export class WaterModel {
     readonly land:Float64Array;
     readonly heightM:Float64Array;
     readonly config:WaterConfig;
+    readonly windEastMps:Float64Array;
+    readonly windNorthMps:Float64Array;
     readonly initialTotalMm:number;
     oceanGlobalKgM2=0;
     elapsedS=0;
     private readonly delta:Float64Array;
     private readonly oceanDemand:Float64Array;
     private readonly airRates:Float64Array;
-    private readonly zonalRates:Float64Array;
+    private readonly windRates:Float64Array;
+    private readonly windFactors:Float64Array;
     private readonly neighbors:{cell:number;distanceM:number}[][];
-    constructor(readonly grid:ThermalGrid,readonly radiusM:number,land:ArrayLike<number>,heightM:ArrayLike<number>,initialTemperatureK:ArrayLike<number>,config:WaterConfig) {
+    constructor(readonly grid:ThermalGrid,readonly radiusM:number,land:ArrayLike<number>,heightM:ArrayLike<number>,initialTemperatureK:ArrayLike<number>,config:WaterConfig,reference?:GeneratedClimate) {
         finiteInRange(radiusM,'water radius',1);
         finiteInRange(config.evaporationFraction,'evaporation fraction',0,1);
         finiteInRange(config.soilCapacityKgM2,'soil capacity',1,1000);
@@ -60,7 +65,15 @@ export class WaterModel {
         this.delta=new Float64Array(grid.count);this.oceanDemand=new Float64Array(grid.count);
         const outgoing=new Float64Array(grid.count),dl=2*Math.PI/grid.width;
         this.airRates=Float64Array.from(grid.edges,e=>config.moistureDiffusivityM2s/radiusM**2*e.geometry/grid.solidAngle);
-        this.zonalRates=Float64Array.from(grid.sinLat,y=>Math.abs(config.windMps)/(radiusM*Math.sqrt(1-y*y)*dl));
+        const dx=2/grid.height;
+        this.windFactors=Float64Array.from(grid.edges,e=>{
+            const row=Math.floor(e.a/grid.width);
+            return Math.floor(e.b/grid.width)===row?1/(radiusM*Math.sqrt(1-grid.sinLat[row]**2)*dl):
+                -Math.sqrt(Math.max(0,1-(1-(row+1)*dx)**2))/(radiusM*dx);
+        });
+        this.windRates=new Float64Array(grid.edges.length);
+        this.windEastMps=new Float64Array(grid.count);this.windNorthMps=new Float64Array(grid.count);
+        this.setWinds(reference?.windEastMps??new Float64Array(grid.count).fill(config.windMps),reference?.windNorthMps??new Float64Array(grid.count));
         const xyz=Array.from({length:grid.count},(_,i)=>{
             const y=grid.sinLat[Math.floor(i/grid.width)],lon=((i%grid.width+.5)/grid.width-.5)*2*Math.PI,r=Math.sqrt(1-y*y);
             return [r*Math.sin(lon),y,r*Math.cos(lon)];
@@ -69,13 +82,42 @@ export class WaterModel {
         let shortest=Infinity;
         grid.edges.forEach((e,k)=>{
             outgoing[e.a]+=this.airRates[k];outgoing[e.b]+=this.airRates[k];
+            // Bound both possible donors, independent of future wind direction.
+            const windLimit=Math.abs(config.windMps*this.windFactors[k]);outgoing[e.a]+=windLimit;outgoing[e.b]+=windLimit;
             const dot=xyz[e.a].reduce((sum,v,i)=>sum+v*xyz[e.b][i],0),distanceM=radiusM*Math.acos(Math.max(-1,Math.min(1,dot)));
             this.neighbors[e.a].push({cell:e.b,distanceM});this.neighbors[e.b].push({cell:e.a,distanceM});shortest=Math.min(shortest,distanceM);
         });
         let maxRate=0;
-        for(let i=0;i<grid.count;i++)maxRate=Math.max(maxRate,outgoing[i]+this.zonalRates[Math.floor(i/grid.width)]);
+        for(let i=0;i<grid.count;i++)maxRate=Math.max(maxRate,outgoing[i]);
         this.maxStepS=Math.min(maxRate>0?.45/maxRate:Infinity,.45*shortest/config.routingSpeedMps,21600);
+        if(reference) {
+            const fields=['humidityFraction','soilFraction','surfaceMm','rainMmDay','evaporationMmDay'] as const;
+            for(const key of fields) {
+                if(reference[key].length!==grid.count)throw new RangeError('Water reference size mismatch');
+                for(const v of reference[key])finiteInRange(v,key,0,key.endsWith('Fraction')?1:1e6);
+            }
+            for(let i=0;i<grid.count;i++) {
+                this.atmosphereKgM2[i]=reference.humidityFraction[i]*moistureCapacity(initialTemperatureK[i]);
+                this.soilKgM2[i]=land[i]*config.soilCapacityKgM2*reference.soilFraction[i];
+                this.surfaceKgM2[i]=land[i]*reference.surfaceMm[i];
+                this.precipitationKgM2S[i]=reference.rainMmDay[i]/DAY;this.evaporationKgM2S[i]=reference.evaporationMmDay[i]/DAY;
+            }
+            // Diagnose routing from generated stores without transferring water
+            // or claiming elapsed simulation time. These are initial estimates.
+            const surface=this.surfaceKgM2.slice(),ocean=this.oceanGlobalKgM2;
+            this.routeSurface(this.maxStepS);this.surfaceKgM2.set(surface);this.oceanGlobalKgM2=ocean;
+        }
         this.initialTotalMm=this.total();
+    }
+    setWinds(east:ArrayLike<number>,north:ArrayLike<number>) {
+        if(east.length!==this.grid.count||north.length!==this.grid.count)throw new RangeError('Wind field size mismatch');
+        const limit=Math.abs(this.config.windMps)+1e-9;
+        for(let i=0;i<this.grid.count;i++){finiteInRange(east[i],'east wind',-limit,limit);finiteInRange(north[i],'north wind',-limit,limit);}
+        this.windEastMps.set(east);this.windNorthMps.set(north);
+        this.grid.edges.forEach((e,k)=>{
+            const wind=this.windFactors[k]>0?east:north;
+            this.windRates[k]=.5*(wind[e.a]+wind[e.b])*this.windFactors[k];
+        });
     }
     private total() {
         return this.oceanGlobalKgM2+this.atmosphereKgM2.reduce((sum,v,i)=>sum+v+this.soilKgM2[i]+this.surfaceKgM2[i],0)/this.grid.count;
@@ -107,12 +149,9 @@ export class WaterModel {
         this.grid.edges.forEach((e,k)=>{
             const q=dt*this.airRates[k]*(this.atmosphereKgM2[e.b]-this.atmosphereKgM2[e.a]);
             this.delta[e.a]+=q;this.delta[e.b]-=q;
+            const rate=this.windRates[k],from=rate>=0?e.a:e.b,to=rate>=0?e.b:e.a;
+            const amount=dt*Math.abs(rate)*this.atmosphereKgM2[from];this.delta[from]-=amount;this.delta[to]+=amount;
         });
-        for(let i=0;i<n;i++) {
-            const row=Math.floor(i/this.grid.width),col=i%this.grid.width;
-            const next=row*this.grid.width+(col+(config.windMps>=0?1:this.grid.width-1))%this.grid.width;
-            const amount=dt*this.zonalRates[row]*this.atmosphereKgM2[i];this.delta[i]-=amount;this.delta[next]+=amount;
-        }
         const rainFraction=-Math.expm1(-dt/21600),drainFraction=-Math.expm1(-dt/(3*DAY));
         for(let i=0;i<n;i++) {
             this.atmosphereKgM2[i]+=this.delta[i];
@@ -158,11 +197,12 @@ export class WaterModel {
     checkpoint():WaterCheckpoint {
         return {atmosphereKgM2:this.atmosphereKgM2.slice(),soilKgM2:this.soilKgM2.slice(),surfaceKgM2:this.surfaceKgM2.slice(),
             precipitationKgM2S:this.precipitationKgM2S.slice(),evaporationKgM2S:this.evaporationKgM2S.slice(),dischargeM3S:this.dischargeM3S.slice(),
-            oceanGlobalKgM2:this.oceanGlobalKgM2,elapsedS:this.elapsedS};
+            oceanGlobalKgM2:this.oceanGlobalKgM2,elapsedS:this.elapsedS,windEastMps:this.windEastMps.slice(),windNorthMps:this.windNorthMps.slice()};
     }
     restore(state:WaterCheckpoint) {
         for(const key of ['atmosphereKgM2','soilKgM2','surfaceKgM2','precipitationKgM2S','evaporationKgM2S','dischargeM3S'] as const)this[key].set(state[key]);
         this.oceanGlobalKgM2=state.oceanGlobalKgM2;this.elapsedS=state.elapsedS;
+        this.setWinds(state.windEastMps,state.windNorthMps);
     }
     diagnostics() {
         const mean=(a:Float64Array)=>a.reduce((sum,v)=>sum+v,0)/this.grid.count,totalMm=this.total();

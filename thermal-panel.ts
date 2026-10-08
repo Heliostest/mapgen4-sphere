@@ -5,7 +5,7 @@ export function installThermalPanel(root:HTMLElement,thermal:ThermalRuntime,chan
     const panel=document.createElement('details');panel.id='thermal-panel';
     panel.innerHTML=`<summary>Seasonal temperature</summary>
         <label><input id="thermal-enabled" type="checkbox"> Enable thermal model</label>
-        <p class="planet-note">Daily-mean surface model. Use Play and Time speed; ocean temperatures respond more slowly. No hourly weather or ice feedback.</p>
+        <p class="planet-note">Ready without Play: latitude, season, sea influence and altitude generate a daily-mean reference climate. Play evolves that state; oceans respond more slowly. No hourly temperature, pressure solver or ice feedback.</p>
         <label><span>Global mean</span><output id="thermal-mean">Off</output></label>
         <label><span>Temperature range</span><output id="thermal-range">—</output></label>
         <label><span>Time since thermal reset</span><output id="thermal-age" data-days="0">—</output></label>
@@ -18,7 +18,7 @@ export function installThermalPanel(root:HTMLElement,thermal:ThermalRuntime,chan
           <p class="planet-note">Emissivity is an effective radiation parameter, not measured atmospheric composition. Transport scales with inverse radius squared.</p>
         </details>
         <button id="thermal-reset" type="button">Reset temperature &amp; water</button>
-        <p class="planet-note">Starts at uniform greybody equilibrium. Terrain, physical parameters and manual time edits restart this transient. Camera and display scale preserve it. Nothing is saved on reload.</p>`;
+        <p class="planet-note">Terrain, physical parameters and manual time edits regenerate the reference climate at the selected date. Camera and display scale preserve history. The reference is an illustrative estimate, not a spun-up equilibrium. Runtime fields are not saved.</p>`;
     root.append(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
     const enabled=el<HTMLInputElement>('thermal-enabled');
@@ -43,6 +43,7 @@ export function installThermalPanel(root:HTMLElement,thermal:ThermalRuntime,chan
             const m=thermal.model,d=m?.diagnostics();
             el<HTMLOutputElement>('thermal-mean').value=d?`${(d.meanK-273.15).toFixed(1)} °C`:'Unavailable';
             el<HTMLOutputElement>('thermal-range').value=d?`${(d.minK-273.15).toFixed(1)} to ${(d.maxK-273.15).toFixed(1)} °C`:'—';
+            el('thermal-range').dataset.min=String(d?.minK??0);el('thermal-range').dataset.max=String(d?.maxK??0);
             const age=el<HTMLOutputElement>('thermal-age');age.dataset.days=String(m?(m.timeS-m.epochS)/86400:0);
             age.value=m?`${((m.timeS-m.epochS)/86400).toFixed(2)} d · sampled at day ${(m.timeS/86400).toFixed(3)}`:'—';
             el('thermal-status').textContent=thermal.status+(m?` · energy residual ${d!.budgetResidualJm2.toExponential(1)} J/m² · field lag ${Math.max(0,(clockTimeS-m.timeS)/60).toFixed(1)} min`:'')+

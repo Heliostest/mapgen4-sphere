@@ -8,6 +8,7 @@ export interface GeomorphView {preview:TerrainPreview|null;texture:ThermalTextur
 export class GeomorphRuntime {
     config={...DEFAULT_GEOMORPH};model:GeomorphModel|null=null;previewEnabled=true;
     sourceTimeS=0;status='Enable water, then capture a snapshot.';view:GeomorphView|null=null;
+    sourceEstimated=false;
     private source:WaterModel|null=null;private previous:GeomorphCheckpoint|null=null;
     get canUndo(){return this.previous!==null;}
     reset(message='Preview reset. Authored terrain is unchanged.') {this.model=null;this.source=null;this.previous=null;this.view=null;this.status=message;}
@@ -17,7 +18,7 @@ export class GeomorphRuntime {
     capture(thermal:ThermalRuntime) {
         const w=thermal.water;
         if(!w){this.reset('Water model unavailable. Enable water and use a supported rotation.');return;}
-        this.source=w;this.sourceTimeS=thermal.model!.timeS;this.previous=null;
+        this.source=w;this.sourceTimeS=thermal.model!.timeS;this.sourceEstimated=w.elapsedS===0;this.previous=null;
         this.model=new GeomorphModel(w.grid,w.radiusM,w.land,w.heightM,w.dischargeM3S,this.config);
         this.status='Snapshot captured. Geological time advances only with Evolve.';this.refreshView();
     }

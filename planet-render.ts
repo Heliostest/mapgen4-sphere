@@ -5,7 +5,7 @@ import type {Direction} from './sphere.ts';
 import type {ThermalTexture} from './thermal-runtime.ts';
 import type {GeomorphView} from './geomorph-runtime.ts';
 
-export type PlanetLayer='original'|'day-night'|'insolation'|'temperature'|'precipitation'|'soil-moisture'|'runoff'|'erosion';
+export type PlanetLayer='original'|'day-night'|'insolation'|'temperature'|'precipitation'|'soil-moisture'|'runoff'|'erosion'|'wind';
 export type PlanetCamera='surface'|'space';
 export interface PlanetView {
     timeS:number;
@@ -41,12 +41,24 @@ export const planet_fragment=`
         return t<0.57142857 ? mix(cold,mild,t/0.57142857) : mix(mild,hot,(t-0.57142857)/0.42857143);
     }
     float planet_cosine(vec3 n) { return max(0.0,dot(normalize(n),u_sun_direction)); }
+    float wind_segment(vec2 p,vec2 a,vec2 b) {
+        vec2 d=b-a;return length(p-a-d*clamp(dot(p-a,d)/dot(d,d),0.0,1.0));
+    }
     vec3 planet_color(vec3 base,vec3 n) {
         if(u_planet_layer==0) return base;
         if(u_planet_layer>=3) {
             vec3 body=normalize(n);
             vec2 uv=vec2(0.5+atan(body.x,body.z)/6.28318530718,(1.0-body.y)*0.5);
             if(u_planet_layer==3) return temperature_color(texture(u_temperature,uv).r);
+            if(u_planet_layer==8) {
+                vec2 cells=vec2(48.0,24.0),center=(floor(uv*cells)+0.5)/cells;
+                vec2 wind=(texture(u_temperature,center).gb*255.0-128.0)/1.27;
+                float speed=length(wind);vec2 d=vec2(wind.x,-wind.y)/max(speed,0.001),p=fract(uv*cells)-0.5;
+                p=vec2(dot(p,d),dot(p,vec2(-d.y,d.x)));
+                float line=min(wind_segment(p,vec2(-0.28,0.0),vec2(0.28,0.0)),min(wind_segment(p,vec2(0.28,0.0),vec2(0.08,0.15)),wind_segment(p,vec2(0.28,0.0),vec2(0.08,-0.15))));
+                vec3 background=mix(vec3(0.08,0.16,0.30),vec3(0.12,0.65,0.55),clamp(speed/30.0,0.0,1.0));
+                return mix(background,vec3(0.96,0.93,0.73),(1.0-smoothstep(0.02,0.05,line))*step(0.4,speed));
+            }
             if(u_planet_layer==7) {
                 vec4 g=texture(u_geomorph,uv);
                 vec3 change=g.r<0.5?mix(vec3(0.12,0.25,0.75),vec3(0.93,0.92,0.82),g.r*2.0):mix(vec3(0.93,0.92,0.82),vec3(0.80,0.20,0.08),g.r*2.0-1.0);

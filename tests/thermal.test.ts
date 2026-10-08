@@ -5,6 +5,8 @@ import {DEFAULT_ORBIT,deriveOrbit} from '../astronomy.ts';
 import {makeThermalGrid,dailyMeanInsolation,landFractions,sampleTerrainGrid,heatTransport,ThermalModel,DEFAULT_THERMAL} from '../thermal.ts';
 import {ThermalRuntime} from '../thermal-runtime.ts';
 import {SimulationClock} from '../simulation-clock.ts';
+import {generateClimate} from '../climate.ts';
+import {DEFAULT_WATER} from '../water.ts';
 
 const p={...DEFAULT_PLANET},o={...DEFAULT_ORBIT};
 const grid=makeThermalGrid(16,8);
@@ -104,7 +106,7 @@ test('two unpresented thermal updates cannot replace the acknowledged visible ch
     assert.equal(rt.model!.epochS,0,'Pause must not restart the transient');
     assert.deepEqual(rt.model!.temperatureK,seen);
     rt.sync(p,o,103*dt,visible);
-    const expected=model();advance(expected,103*dt);
+    const expected=new ThermalModel(p,o,DEFAULT_THERMAL,land,0,grid,generateClimate(grid,p,o,DEFAULT_THERMAL,DEFAULT_WATER,land,new Float64Array(grid.count),0));advance(expected,103*dt);
     assert.deepEqual(rt.model!.temperatureK,expected.temperatureK);
 });
 test('clock reports real work limiting at 20fps and clears it on an uncapped update',()=>{

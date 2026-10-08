@@ -56,6 +56,6 @@ export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:
         el<HTMLOutputElement>('geomorph-sediment').value=d?`${d.mobileKm3.toExponential(2)} / ${d.oceanKm3.toExponential(2)} km³`:'—';
         const budget=el<HTMLOutputElement>('geomorph-budget');budget.value=d?`${d.residualMm.toExponential(2)} mm global equivalent`:'—';budget.dataset.value=String(d?.residualMm??0);
         el('geomorph-status').textContent=g.status;
-        el('geomorph-source').textContent=m?`Frozen latest-step discharge from day ${(g.sourceTimeS/86400).toFixed(3)}; not a yearly average. Max ${(Math.max(...m.dischargeM3S)).toExponential(2)} m³/s. Stable step ${m.stepYears.toPrecision(4)} yr; ≤32 per click.`:'Enable Water cycle or select a water layer before capture.';
+        el('geomorph-source').textContent=m?`Frozen ${g.sourceEstimated?'generated initial discharge estimate':'latest-step discharge'} from day ${(g.sourceTimeS/86400).toFixed(3)}; not a yearly average. Max ${(Math.max(...m.dischargeM3S)).toExponential(2)} m³/s. Stable step ${m.stepYears.toPrecision(4)} yr; ≤32 per click.`:'Enable Water cycle or select a water layer before capture.';
     }};
 }

@@ -821,7 +821,7 @@ export default class Renderer {
             gl.uniform1f(program.u_outline_threshold, renderParam.outline_threshold / 1000);
             gl.uniform1f(program.u_biome_colors, renderParam.biome_colors);
             const view=this.planetView;
-            gl.uniform1i(program.u_planet_layer, view?.layer==='erosion'&&view.geomorph?7:view?.layer==='day-night'?1:view?.layer==='insolation'?2:view?.layer==='temperature'&&view.thermal?3:
+            gl.uniform1i(program.u_planet_layer, view?.layer==='wind'&&view.thermal?8:view?.layer==='erosion'&&view.geomorph?7:view?.layer==='day-night'?1:view?.layer==='insolation'?2:view?.layer==='temperature'&&view.thermal?3:
                 view?.water?view.layer==='precipitation'?4:view.layer==='soil-moisture'?5:view.layer==='runoff'?6:0:0);
             gl.uniform3fv(program.u_sun_direction, this.planetView?.sunDirection ?? [0,0,1]);
 
