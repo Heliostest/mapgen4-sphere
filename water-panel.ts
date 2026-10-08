@@ -45,6 +45,7 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
     el('water-reset').addEventListener('click',()=>change(()=>runtime.invalidate()));
     const value=(id:string,text:string,n?:number)=>{const o=el<HTMLOutputElement>(id);o.value=text;if(n===undefined)delete o.dataset.value;else o.dataset.value=String(n);};
     return {
+        restoreInputs(){for(const [id,key] of specs){const input=el<HTMLInputElement>(id);input.value=String(runtime.waterConfig[key]);input.removeAttribute('aria-invalid');}},
         reveal(){panel.open=true;},
         refresh() {
             enabled.checked=runtime.waterEnabled;

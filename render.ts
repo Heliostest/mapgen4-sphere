@@ -529,6 +529,7 @@ export default class Renderer {
     pickElements = new Int32Array(0);
     pickElevation = new Float32Array(0);
     physicalElevation = new Float32Array(0);
+    baseTriangleElevation = new Float32Array(0);
     private sourceElevation = new Float32Array(0);
     private terrainPreview:TerrainPreview|null=null;
     planetView:PlanetView|null=null;

@@ -19,6 +19,8 @@ const heightMap = new SphericalConstraints(CANVAS_SIZE);
 let exported = {
     size: CANVAS_SIZE,
     onUpdate: () => {},
+    onReset: () => {},
+    stopStroke: () => {},
     screenToWorldCoords: (coords: number[]): number[] | null => coords,
     navigating: () => false,
     inspecting: () => false,
@@ -26,9 +28,13 @@ let exported = {
     constraints: heightMap.elevation,
     setElevationParam: elevationParam => heightMap.setElevationParam(elevationParam),
     userHasPainted: () => heightMap.userHasPainted,
+    restore: (params:{seed:number;island:number},values:Float32Array,painted:boolean) => {
+        exported.stopStroke();heightMap.restore(params,values,painted);
+    },
 };
 
 document.getElementById('button-reset').addEventListener('click', () => {
+    exported.stopStroke();exported.onReset();
     heightMap.generate();
     exported.onUpdate();
 });
@@ -103,6 +109,7 @@ function setUpPaintEventHandling() {
     function end(_event) {
         dragging = false;
     }
+    exported.stopStroke=()=>{dragging=false;};
 
     function move(event: PointerEvent) {
         if (!dragging || exported.navigating()) return;

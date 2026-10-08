@@ -9,6 +9,9 @@ import {installThermalPanel} from './thermal-panel.ts';
 import {installWaterPanel} from './water-panel.ts';
 import {GeomorphRuntime} from './geomorph-runtime.ts';
 import {installGeomorphPanel} from './geomorph-panel.ts';
+import type {PhysicalSettings} from './terrain-document.ts';
+import {DEFAULT_THERMAL} from './thermal.ts';
+import {DEFAULT_WATER} from './water.ts';
 
 type Sample={uv:[number,number];elevation:number};
 type Options={
@@ -19,6 +22,8 @@ type Options={
     presentedTimeS:()=>number|null;
     renderParams:()=>{sphere_radius?:number;mountain_height?:number};
     terrain?:()=>{directions:ArrayLike<number>;elevation:ArrayLike<number>}|null;
+    terrainReady?:()=>boolean;
+    applyErosion?:(g:GeomorphRuntime)=>void;
 };
 
 /** Physical settings deliberately live outside generator parameters: changing
@@ -81,7 +86,7 @@ export function installPlanetControls(options:Options) {
         if(waterLayer()){thermal.waterEnabled=true;waterPanel.reveal();}
         if(layer==='erosion'){thermal.enabled=thermal.waterEnabled=true;geomorphPanel.reveal();}
     });
-    select('planet-camera','View',[
+    const cameraSelect=select('planet-camera','View',[
         ['surface','Follow surface'],['space','From space'],
     ],camera,v=>camera=v as PlanetCamera);
     const legend=note('Original map · physical settings preserve your terrain.');legend.id='planet-legend';
@@ -149,13 +154,17 @@ export function installPlanetControls(options:Options) {
         // before capturing, never capture an unpresented future water field.
         pause(false);sendView();action();probe=null;
         probeOutput.textContent='Inspect a surface point to read its location and solar energy.';emit();
-    });
+    },{ready:()=>options.terrainReady?.()??true,apply:()=>{
+        if(geomorph.model&&geomorph.model.years>0&&geomorph.view?.preview&&(options.terrainReady?.()??true)) {
+            options.applyErosion?.(geomorph);layer='original';layerSelect.value=layer;
+        }
+    }});
 
     const radiation=group('Radiation reference',true);
     const flux=output('planet-flux','Stellar irradiance',radiation),temperature=output('planet-temperature','Radiative Teq',radiation);
     note('Global blackbody reference, not surface air temperature. The optional thermal model has its own effective emissivity and heat transport.',radiation);
     const warning=note('');warning.id='planet-model-note';
-    note('Painting pauses time. Hidden tabs pause until you press Play. Terrain Reset only resets your painting.');
+    note('Painting pauses time. Hidden tabs pause until you press Play. Terrain Reset clears painting and applied erosion.');
     button('planet-earth','Earth preset',()=>{
         pause(false);planet={...DEFAULT_PLANET};orbit={...DEFAULT_ORBIT};clock.seek(0,performance.now());thermal.invalidate();
         retro.checked=false;
@@ -238,6 +247,17 @@ export function installPlanetControls(options:Options) {
     requestAnimationFrame(frame);emit();
     return {
         pause,refresh,isInspecting:()=>inspecting,
+        settings:():PhysicalSettings=>({planet:{...planet},orbit:{...orbit},timeS:clock.timeS,camera}),
+        restoreSettings:(settings:PhysicalSettings)=>{
+            pause(false);planet={...settings.planet};orbit={...settings.orbit};camera=settings.camera;
+            clock.seek(settings.timeS,performance.now());layer='original';layerSelect.value=layer;cameraSelect.value=camera;
+            inspecting=false;updateInspectButton();retro.checked=planet.retrograde;probe=null;
+            probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
+            thermal.enabled=thermal.waterEnabled=false;thermal.config={...DEFAULT_THERMAL};thermal.waterConfig={...DEFAULT_WATER};thermal.invalidate();
+            geomorph.reset();thermalPanel.restoreInputs();waterPanel.restoreInputs();
+            for(const {input,get} of inputs.values()){input.value=String(Number(get().toPrecision(12)));input.removeAttribute('aria-invalid');}
+            emit();
+        },
         terrainChanged:()=>{
             probe=null;probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
             const terrain=options.terrain?.();

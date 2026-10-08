@@ -88,6 +88,7 @@ export default class Map {
     mountainJaggedness: number = -Infinity;
     windAngleDeg: number = Infinity;
     elevation_t: Float32Array;
+    baseElevation_t: Float32Array;
     elevation_r: Float32Array;
     humidity_r: Float32Array;
     moisture_t: Float32Array;
@@ -103,6 +104,7 @@ export default class Map {
     constructor (public mesh: Mesh, public t_peaks: number[], param: any) {
         this.spacing = param.spacing;
         this.elevation_t         = new Float32Array(mesh.numTriangles);
+        this.baseElevation_t     = new Float32Array(mesh.numTriangles);
         this.elevation_r         = new Float32Array(mesh.numRegions);
         this.humidity_r          = new Float32Array(mesh.numRegions);
         this.moisture_t          = new Float32Array(mesh.numTriangles);
@@ -201,7 +203,7 @@ export default class Map {
         }
     }
 
-    assignElevation(elevationParam, constraints) {
+    assignElevation(elevationParam, constraints, offsets:Float32Array|null=null) {
         if (this.seed !== elevationParam.seed || this.mountainJaggedness !== elevationParam.mountain_jagged) {
             this.mountainJaggedness = elevationParam.mountain_jagged;
             calculateMountainDistance(
@@ -218,6 +220,11 @@ export default class Map {
         }
 
         this.assignTriangleElevation(elevationParam, constraints);
+        this.baseElevation_t.set(this.elevation_t);
+        if(offsets) {
+            if(offsets.length!==this.elevation_t.length)throw new RangeError('Terrain layer size mismatch');
+            for(let t=0;t<offsets.length;t++)this.elevation_t[t]=Math.max(-1,Math.min(1,this.elevation_t[t]+offsets[t]));
+        }
         this.assignRegionElevation();
     }
 

@@ -52,6 +52,11 @@ export class SphericalConstraints {
         this.userHasPainted=false;
     }
 
+    restore({seed,island}:{seed:number;island:number},values:Float32Array,painted:boolean) {
+        if(values.length!==this.elevation.length)throw new RangeError('Painting size mismatch');
+        this.seed=seed;this.island=island;this.elevation.set(values);this.userHasPainted=painted;this.beginStroke();
+    }
+
     beginStroke() {
         this.previous.set(this.elevation); this.time.fill(0); this.strength.fill(0);
     }

@@ -3,6 +3,14 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Applied erosion and portable terrain — 2026-10-09
+
+Base `007e3a9` (completed D preview), branch `codex/apply-erosion`. This increment stores bed-height offsets before regenerated regions/rainfall/drainage, adds one application undo that preserves later painting, and exports/imports versioned terrain JSON with physical/time/view settings. It recouples environment classification to accepted terrain; it does not persist climate, transfer mobile sediment, conserve volume across fine remapping, or replace the artistic river model.
+
+Node RED: missing gate/application/document modules; GREEN: 66/66, including five new application/schema/gate/real-generator groups. Browser RED: missing Apply button. Six application browser groups passed, including exact original buffer/pixel undo, two applications followed by painting/undo, portable document round trips with space camera and changed physical radius/time, nonmutating invalid/oversized/incompatible files, delayed read cancellation, and delayed real-worker reply coalescing plus Apply→Reset and edit→Load. Buffer checks include only the active river prefix; unused capacity intentionally retains old bytes and is never rendered. Desktop and mobile screenshots were inspected. Typecheck/build passed.
+
+Evidence: [application report](evidence/application-report.json), [restored terrain](evidence/application-loaded.png), [mobile document controls](evidence/application-mobile.png). Regression passes: [planet8/DOM20/GPU648+771+30+32](evidence/application-planet-report.json), [geomorph5/renderer19](evidence/application-geomorph-report.json), [thermal5](evidence/application-thermal-report.json), [water5](evidence/application-water-report.json), [legacy9/83 generations](evidence/application-legacy-report.json). All browser error lists are empty. Independent review is pending.
+
 ## Geomorphology stage D preview — 2026-10-09
 
 Base `d91729e` (local checkpoint of stage C), branch `codex/geomorph-preview`. First D increment: frozen latest-step runoff, stream-power-inspired incision, conservative slope redistribution, mobile/ocean sediment stores, separate geological years, deformed terrain preview, comparison, one-click undo and reset. Applying/saving the experiment or recoupling source climate/river geometry remains later work. Those limitations and uncalibrated coefficients are explicit in the panel and README.

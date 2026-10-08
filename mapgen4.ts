@@ -18,65 +18,28 @@ import {makeMesh} from "./mesh.ts";
 import Painting from "./painting.ts";
 import Renderer from "./render.ts";
 import {installNavigation} from './navigation.ts';
-import {SPHERE_RADIUS} from './sphere.ts';
-import {MIN_ZOOM, MAX_ZOOM} from './sphere-view.ts';
+import {initialParams} from './terrain-parameters.ts';
+
 import {installPlanetControls} from './planet-controls.ts';
+import {GenerationGate} from './generation-gate.ts';
+import {TerrainApplication,bakeTerrainOffsets} from './terrain-application.ts';
+import {meshIdentity,decodeTerrainDocument,encodeTerrainDocument} from './terrain-document.ts';
+import {installTerrainSessionPanel} from './terrain-session-panel.ts';
 import type {Mesh} from "./types.d.ts";
 
 
 
-// each parameter is [initial value, low, high]
-const initialParams = {
-    elevation: [
-        ['seed', 187, 1, 1 << 30],
-        ['island', 0.5, 0, 1],
-        ['noisy_coastlines', 0.01, 0, 0.1],
-        ['hill_height', 0.02, 0, 0.1],
-        ['mountain_jagged', 0, 0, 1],
-        ['mountain_sharpness', 9.8, 9.1, 12.5],
-        ['mountain_folds', 0.05, 0.0, 0.5],
-        ['ocean_depth', 1.40, 1, 3],
-    ],
-    biomes: [
-        ['wind_angle_deg', 0, 0, 360],
-        ['raininess', 0.9, 0, 2],
-        ['rain_shadow', 0.5, 0.1, 2],
-        ['evaporation', 0.5, 0, 1],
-    ],
-    rivers: [
-        ['lg_min_flow', 2.7, -5, 5],
-        ['lg_river_width', -2.4, -5, 5],
-        ['flow', 0.2, 0, 1],
-    ],
-    render: [
-        ['sphere_radius', SPHERE_RADIUS, 100, 1000],
-        ['zoom', 100/350, MIN_ZOOM, MAX_ZOOM],
-        ['x', 500, 0, 1000],
-        ['y', 500, 0, 1000],
-        ['light_angle_deg', 80, 0, 360],
-        ['slope', 2, 0, 5],
-        ['flat', 2.5, 0, 5],
-        ['ambient', 0.25, 0, 1],
-        ['overhead', 30, 0, 60],
-        ['tilt_deg', 0, 0, 90],
-        ['rotate_deg', 0, -180, 180],
-        ['mountain_height', 50, 0, 250],
-        ['outline_depth', 1, 0, 2],
-        ['outline_strength', 15, 0, 30],
-        ['outline_threshold', 0, 0, 100],
-        ['outline_coast', 0, 0, 1],
-        ['outline_water', 13.0, 0, 20], // things start going wrong when this is high
-        ['biome_colors', 1, 0, 1],
-    ],
-};
-
-    
 /**
  * Starts the UI, once the mesh has been loaded in.
  */
 function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     let render = new Renderer(mesh);
     let planetControls:ReturnType<typeof installPlanetControls>|undefined;
+    let sessionPanel:ReturnType<typeof installTerrainSessionPanel>|undefined;
+    const gate=new GenerationGate(),application=new TerrainApplication(),identity=meshIdentity(mesh,param);
+    let documentRevision=0;
+    const sliders=document.getElementById('sliders');
+    for(const event of ['input','change','click'])sliders.addEventListener(event,()=>documentRevision++,true);
 
     /* set initial parameters */
     for (let phase of ['elevation', 'biomes', 'rivers', 'render']) {
@@ -95,8 +58,8 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
             
             let slider = document.createElement('input');
             slider.setAttribute('type', name === 'seed'? 'number' : 'range');
-            slider.setAttribute('min', min);
-            slider.setAttribute('max', max);
+            slider.setAttribute('min', String(min));
+            slider.setAttribute('max', String(max));
             slider.setAttribute('step', step.toString());
             const radiusValue = isRadius? document.createElement('span') : null;
             if (radiusValue) {
@@ -107,12 +70,11 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
                 slider.title = 'Base sphere radius, independent of zoom. Mountain height stays the same.';
             }
             slider.addEventListener('input', _event => {
+                if(!Number.isFinite(slider.valueAsNumber)||!slider.checkValidity())return;
                 param[phase][name] = slider.valueAsNumber;
                 if (radiusValue) radiusValue.textContent = slider.value;
-                requestAnimationFrame(() => {
-                    if (phase == 'render') { redraw(); }
-                    else { generate(); }
-                });
+                if(phase==='render')redraw();
+                else {planetControls?.pause();generate();}
             });
 
             /* improve slider behavior on iOS */
@@ -138,14 +100,14 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
             label.appendChild(slider);
 
             container.appendChild(label);
-            slider.value = initialValue;
+            slider.value = String(initialValue);
         }
     }
     
     function redraw() {
         render.updateView(param.render);
     }
-    installNavigation(param.render, redraw);
+    installNavigation(param.render, ()=>{documentRevision++;redraw();});
     planetControls=installPlanetControls({
         container:document.getElementById('sliders'),
         canvas:document.getElementById('mapgen4') as HTMLCanvasElement,
@@ -155,6 +117,40 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         presentedTimeS:()=>render.presentedPlanetTimeS,
         renderParams:()=>param.render,
         terrain:()=>render.physicalElevation.length?{directions:mesh.xyz_r,elevation:render.physicalElevation}:null,
+        terrainReady:()=>!gate.pending&&render.baseTriangleElevation.length===mesh.numTriangles,
+        applyErosion:g=>{
+            if(gate.pending||!g.model||g.model.years<=0||!g.view?.preview)return;
+            const baked=bakeTerrainOffsets(render.baseTriangleElevation,render.physicalElevation.subarray(mesh.numRegions),mesh.xyz_t,g.view.preview);
+            const d=g.model.diagnostics();
+            application.apply(baked.offsets,{years:g.model.years,sourceTimeS:g.sourceTimeS,clipped:baked.clipped,mobileKm3:d.mobileKm3,oceanKm3:d.oceanKm3});
+            g.reset('Erosion applied. Rivers and environment are being rebuilt.');generate();
+        },
+    });
+    sessionPanel=installTerrainSessionPanel(document.getElementById('planet-controls'),{
+        revision:()=>`${gate.desired}:${documentRevision}`,
+        state:()=>({pending:gate.pending,canUndo:application.canUndo,report:application.report,revision:gate.desired,accepted:gate.accepted}),
+        undo:()=>{if(!application.canUndo)return;planetControls.pause();application.undo();generate();},
+        save:()=>{
+            if(gate.pending)throw new Error('Wait for terrain generation');
+            planetControls.pause();
+            return encodeTerrainDocument({format:'mapgen4-sphere-terrain',version:1,mesh:identity,
+                constraints:{size:Painting.size,painted:Painting.userHasPainted(),values:Array.from(Painting.constraints)},
+                offsets:application.offsets?Array.from(application.offsets):null,report:application.report,
+                parameters:Object.fromEntries(Object.entries(initialParams).map(([phase,fields])=>[phase,Object.fromEntries(fields.map(([key])=>[key,param[phase][key]]))])),
+                settings:planetControls.settings()});
+        },
+        load:text=>{
+            // Fully validate before touching any live settings, author arrays or history.
+            const d=decodeTerrainDocument(text,identity,Painting.size);
+            for(const [phase,values] of Object.entries(d.parameters))for(const [key,value] of Object.entries(values)) {
+                param[phase][key]=value;
+                (document.querySelector(`#slider-${key} input`) as HTMLInputElement).value=String(value);
+            }
+            document.querySelector('#slider-sphere_radius .radius-value').textContent=String(d.parameters.render.sphere_radius);
+            Painting.restore(d.parameters.elevation as {seed:number;island:number},new Float32Array(d.constraints.values),d.constraints.painted);
+            application.restore(d.offsets?new Float32Array(d.offsets):null,d.report);
+            planetControls.restoreSettings(d.settings);generate();
+        },
     });
     // Legacy artist controls only update physical scale readouts, never SI state.
     for(const name of ['sphere_radius','mountain_height']) {
@@ -162,6 +158,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     }
     Painting.inspecting=()=>planetControls.isInspecting();
     Painting.onBeforePaint=()=>planetControls.pause();
+    Painting.onReset=()=>{planetControls.pause();application.reset();};
 
     /* Ask render module to copy WebGL into Canvas */
     function download() {
@@ -187,8 +184,6 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     };
 
     const worker = new window.Worker("build/_worker.js");
-    let working = false;
-    let workRequested = false;
     let elapsedTimeHistory = [];
 
     worker.addEventListener('messageerror', event => {
@@ -196,8 +191,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     });
     
     worker.addEventListener('message', event => {
-        working = false;
-        let {elapsed, numRiverTriangles, quad_elements_buffer, a_quad_em_buffer, a_river_xyww_buffer, terrain_elevation_buffer} = event.data;
+        let {elapsed, revision, numRiverTriangles, quad_elements_buffer, a_quad_em_buffer, a_river_xyww_buffer, terrain_elevation_buffer, base_triangle_elevation_buffer} = event.data;
         elapsedTimeHistory.push(elapsed | 0);
         if (elapsedTimeHistory.length > 10) { elapsedTimeHistory.splice(0, 1); }
         const timingDiv = document.getElementById('timing');
@@ -205,33 +199,34 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         render.quad_elements = new Int32Array(quad_elements_buffer);
         render.a_quad_em = new Float32Array(a_quad_em_buffer);
         render.a_river_xyww = new Float32Array(a_river_xyww_buffer);
-        render.numRiverTriangles = numRiverTriangles;
-        render.physicalElevation = new Float32Array(terrain_elevation_buffer);
-        render.updateMap();
-        planetControls.terrainChanged();
-        redraw();
-        if (workRequested) {
-            requestAnimationFrame(() => {
-                workRequested = false;
-                generate();
-            });
+        // Recycle transferred buffers even for stale replies. Publish only a
+        // complete accepted snapshot; retained renderer copies remain drawable.
+        if(gate.complete(revision)) {
+            render.numRiverTriangles = numRiverTriangles;
+            render.physicalElevation = new Float32Array(terrain_elevation_buffer);
+            render.baseTriangleElevation = new Float32Array(base_triangle_elevation_buffer);
+            render.updateMap();planetControls.terrainChanged();redraw();
         }
+        submitLatest();updateUI();
     });
 
     function updateUI() {
-        let userHasPainted = Painting.userHasPainted();
+        let userHasPainted = Painting.userHasPainted()||application.offsets!==null;
         (document.querySelector("#slider-seed input") as HTMLInputElement).disabled = userHasPainted;
         (document.querySelector("#slider-island input") as HTMLInputElement).disabled = userHasPainted;
         (document.querySelector("#button-reset") as HTMLInputElement).disabled = !userHasPainted;
+        sessionPanel?.refresh();planetControls?.refresh();
     }
     
     function generate() {
-        if (!working) {
-            working = true;
-            Painting.setElevationParam(param.elevation);
-            updateUI();
+        Painting.setElevationParam(param.elevation);
+        gate.request();documentRevision++;updateUI();submitLatest();
+    }
+    function submitLatest() {
+        const revision=gate.start();
+        if(revision!==null) {
             worker.postMessage({
-                param,
+                param,revision,offsets:application.offsets,
                 constraints: {
                     size: Painting.size,
                     constraints: Painting.constraints,
@@ -245,8 +240,6 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
                 render.a_river_xyww.buffer,
             ]
             );
-        } else {
-            workRequested = true;
         }
     }
 

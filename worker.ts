@@ -39,13 +39,13 @@ let handler = (event) => {
     
     // This handler is for all subsequent messages
     handler = (event) => {
-        let {param, constraints, quad_elements_buffer, a_quad_em_buffer, a_river_xyww_buffer} = event.data;
+        let {param, constraints, offsets, revision, quad_elements_buffer, a_quad_em_buffer, a_river_xyww_buffer} = event.data;
 
         let numRiverTriangles = 0;
         let start_time = performance.now();
         
         if (run.biomes) {
-            map.assignElevation(param.elevation, constraints);
+            map.assignElevation(param.elevation, constraints, offsets);
             map.assignRainfall(param.biomes);
         }
         if (run.rivers) {
@@ -63,20 +63,23 @@ let handler = (event) => {
         const terrainElevation=new Float32Array(mesh.numRegions+mesh.numTriangles);
         terrainElevation.set(map.elevation_r);
         terrainElevation.set(map.elevation_t,mesh.numRegions);
+        const baseline=map.baseElevation_t.slice();
 
         worker.postMessage(
-            {elapsed,
+            {elapsed,revision,
              numRiverTriangles,
              quad_elements_buffer,
              a_quad_em_buffer,
              a_river_xyww_buffer,
              terrain_elevation_buffer:terrainElevation.buffer,
+             base_triangle_elevation_buffer:baseline.buffer,
             },
             [
                 quad_elements_buffer,
                 a_quad_em_buffer,
                 a_river_xyww_buffer,
                 terrainElevation.buffer,
+                baseline.buffer,
             ]
         );
     };

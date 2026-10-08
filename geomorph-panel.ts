@@ -1,7 +1,8 @@
 import type {GeomorphRuntime} from './geomorph-runtime.ts';
 import type {ThermalRuntime} from './thermal-runtime.ts';
 
-export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:ThermalRuntime,change:(action:()=>void)=>void) {
+export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:ThermalRuntime,change:(action:()=>void)=>void,
+    application:{ready:()=>boolean;apply:()=>void}={ready:()=>true,apply:()=>{}}) {
     const panel=document.createElement('details');panel.id='geomorph-panel';
     panel.innerHTML=`<summary>Erosion &amp; deposition preview</summary>
       <p class="planet-note">Stage D preview. Capture the current water discharge, then evolve in separate geological years. Astronomy Play does not advance erosion. Dry cells can still undergo slope smoothing.</p>
@@ -11,6 +12,7 @@ export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:
       <button id="geomorph-undo" type="button">Undo last evolve</button>
       <label><input id="geomorph-preview" type="checkbox" checked> Preview geometry</label>
       <button id="geomorph-reset" type="button">Reset erosion preview</button>
+      <button id="geomorph-apply" type="button">Apply erosion to terrain</button>
       <label><span>Geological time</span><output id="geomorph-age" data-years="0"></output></label>
       <label><span>Net height change</span><output id="geomorph-range"></output></label>
       <label><span>Mobile / ocean sediment</span><output id="geomorph-sediment"></output></label>
@@ -23,14 +25,15 @@ export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:
         <label><span>Sediment settling time (yr)</span><input id="geomorph-settling" type="number" min="1" max="1000000" step="any"></label>
         <p class="planet-note">Illustrative, uncalibrated coefficients. Incision uses sqrt(discharge / 1000m³/s) × slope. Equal bulk density, no uplift or compaction. Changing these parameters clears the preview.</p>
       </details>
-      <p class="planet-note">Preview preserves authored detail. Climate and artistic rivers still describe the source terrain. No permanent application or persistence yet. Painting, physical/environment resets or disabling water clear this experiment; comparison and undo preserve your painting.</p>`;
+      <p class="planet-note">Preview retains source climate and artistic rivers. Apply stores bed-height changes, rebuilds rivers and restarts the environment; rebuilt geometry may differ from preview. Heights clamp to the terrain range. Mobile and ocean sediment are recorded in the application report only; applying is not a conservative transfer to the fine mesh. New captures start new budgets. Painting and environment resets clear the preview.</p>`;
     root.append(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
-    el('geomorph-capture').addEventListener('click',()=>change(()=>g.capture(thermal)));
+    el('geomorph-capture').addEventListener('click',()=>{if(application.ready())change(()=>g.capture(thermal));});
+    el('geomorph-apply').addEventListener('click',()=>{if(application.ready())change(application.apply);});
     const duration=el<HTMLInputElement>('geomorph-duration');
     const validDuration=()=>{const valid=duration.checkValidity()&&Number.isFinite(duration.valueAsNumber);if(valid)duration.removeAttribute('aria-invalid');else duration.setAttribute('aria-invalid','true');return valid;};
     duration.addEventListener('change',validDuration);
-    el('geomorph-step').addEventListener('click',()=>{if(validDuration())change(()=>g.advance(duration.valueAsNumber));});
+    el('geomorph-step').addEventListener('click',()=>{if(application.ready()&&validDuration())change(()=>g.advance(duration.valueAsNumber));});
     el('geomorph-undo').addEventListener('click',()=>change(()=>g.undo()));
     el('geomorph-reset').addEventListener('click',()=>change(()=>g.reset()));
     const preview=el<HTMLInputElement>('geomorph-preview');preview.addEventListener('change',()=>change(()=>g.setPreview(preview.checked)));
@@ -43,8 +46,10 @@ export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:
     }
     return {reveal(){panel.open=true;},refresh(){
         const m=g.model,d=m?.diagnostics();
-        el<HTMLButtonElement>('geomorph-capture').disabled=!thermal.water;
-        el<HTMLButtonElement>('geomorph-step').disabled=!m;el<HTMLButtonElement>('geomorph-undo').disabled=!g.canUndo;
+        const pending=!application.ready();
+        el<HTMLButtonElement>('geomorph-capture').disabled=!thermal.water||pending;
+        el<HTMLButtonElement>('geomorph-step').disabled=!m||pending;el<HTMLButtonElement>('geomorph-undo').disabled=!g.canUndo;
+        el<HTMLButtonElement>('geomorph-apply').disabled=pending||!m||m.years<=0||!g.view?.preview;
         preview.checked=g.previewEnabled;
         const age=el<HTMLOutputElement>('geomorph-age');age.dataset.years=String(m?.years??0);age.value=m?`${m.years.toLocaleString(undefined,{maximumFractionDigits:2})} yr`:'No snapshot';
         el<HTMLOutputElement>('geomorph-range').value=d?`${d.minChangeM.toFixed(2)} to ${d.maxChangeM.toFixed(2)} m`:'—';

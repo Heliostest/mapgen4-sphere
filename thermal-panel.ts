@@ -37,6 +37,7 @@ export function installThermalPanel(root:HTMLElement,thermal:ThermalRuntime,chan
     }
     el('thermal-reset').addEventListener('click',()=>change(()=>thermal.invalidate()));
     return {
+        restoreInputs(){for(const [id,key,scale] of specs){const input=el<HTMLInputElement>(id);input.value=String(thermal.config[key]/scale);input.removeAttribute('aria-invalid');}},
         refresh(clockTimeS:number,limited:boolean) {
             enabled.checked=thermal.enabled;
             const m=thermal.model,d=m?.diagnostics();

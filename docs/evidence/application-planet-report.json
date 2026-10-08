@@ -1,0 +1,75 @@
+{
+  "checks": [
+    "Original pixels, 33 existing controls (including sphere radius) and Earth diagnostics",
+    "Physical radius changes SI gravity/mass, scene radius stays independent, neither regenerates terrain",
+    "Invalid input rejected; day/night and insolation are optional and reversible",
+    "Playing advances SI time without generation; visibility loss pauses without catch-up",
+    "Inspection does not paint; painting pauses spin and survives physical radius, density, scene radius and relief changes",
+    "Terrain reset plus Earth/time reset restore the original canvas",
+    "Pause button freezes the presented frame; resume advances from that time",
+    "Touch inspection and portrait controls fit viewport"
+  ],
+  "errors": [],
+  "paintedRadiusRoundTrip": {
+    "channels": 0,
+    "max": 0
+  },
+  "controls": {
+    "status": "PASS",
+    "checks": 20,
+    "failures": []
+  },
+  "gpu": {
+    "radial": {
+      "status": "PASS",
+      "checks": 648,
+      "radii": [
+        100,
+        300,
+        1000
+      ],
+      "cameras": 4,
+      "models": 3,
+      "maxError": 0.0002679679309949279
+    },
+    "outlines": {
+      "status": "PASS",
+      "samples": 771,
+      "report": [
+        {
+          "axis": [
+            1,
+            0
+          ],
+          "maxJump": 0.00048828125,
+          "maxError": 0.0000976562500000222
+        },
+        {
+          "axis": [
+            0,
+            1
+          ],
+          "maxJump": 0.00048828125,
+          "maxError": 0.0000976562500000222
+        },
+        {
+          "axis": [
+            1,
+            1
+          ],
+          "maxJump": 0.0009765625,
+          "maxError": 0.0001464843749999778
+        }
+      ]
+    },
+    "silhouette": {
+      "status": "PASS",
+      "checks": 30,
+      "failed": []
+    },
+    "insolation": {
+      "status": "PASS",
+      "checks": 32
+    }
+  }
+}
