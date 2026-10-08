@@ -56,6 +56,8 @@ The reference command reconstructs and builds the original source only inside `b
 
 `pnpm test` also builds the GPU regression fixture. With the server running, open [the mountain projection check](http://localhost:8000/tests/gpu-radial.html): WebGL2 transform feedback checks the actual depth/drape displacement shader against fixed world positions and CPU picking geometry across four camera orientations and three heights. Its browser result must say `PASS`; the Node test command does not execute this browser check.
 
+The [outline sampling check](http://localhost:8000/tests/gpu-outlines.html) must also say `PASS`. It samples the renderer's actual outline texture at 771 fractional positions to detect pixel snapping that would cause stationary diamond-shaped bands during rotation.
+
 For automated screenshots and browser interactions, install Playwright in a separate tooling environment (or locally) and have Chrome installed:
 
 ```sh

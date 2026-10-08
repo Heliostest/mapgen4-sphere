@@ -3,6 +3,14 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Fixed diamond bands during rotation
+
+After the radial perspective correction, the outline texture still used nearest-neighbor sampling inherited from the planar renderer. Radial taps move continuously in screen space; rounding those taps to whole texels introduces jumps along fixed diagonal boundaries (`radial.x ± radial.y = constant`). This caused terrain moving through those boundaries to abruptly acquire ridge outlines.
+
+Changed the R16F outline texture to linear filtering, preserving the elevation comparisons and outline controls. A new browser fixture constructs the real Renderer and samples its actual outline texture across a smooth ramp. Before the fix it failed: maximum adjacent-sample jumps were 0.09998 horizontally/vertically and 0.20007 diagonally. After the fix all 771 samples passed, with maximum jumps 0.000489/0.000977 and maximum interpolation error 0.000147. See [GPU results](evidence/outline-sampling-report.json). This fixture is built by `npm test` but executed separately in WebGL2 at `/tests/gpu-outlines.html`.
+
+Node tests (11/11), typecheck and build passed. Same-camera screenshots at seed 187, wind 78.584, x 212.958, y 472.108, zoom 0.173 and exaggerated outline strength 30 document [before](evidence/outline-before.png) and [after](evidence/outline-after.png). Forward/reverse drags at zoom 0.286 retain mountain outlines without the nearest-texel jumps; no captured runtime warnings/errors.
+
 ## Mountain perspective correction
 
 The first sphere version added a camera-dependent screen-up offset to radial height. A peak at `[0,0,1]` with elevation 0.8 and height 50 incorrectly became `[0,40,340]` in the default camera. Both the CPU regression and actual WebGL2 shader fixture reproduced this failure before the fix.
