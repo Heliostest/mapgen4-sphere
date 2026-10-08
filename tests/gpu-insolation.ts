@@ -23,6 +23,17 @@ try {
     gl.linkProgram(program);
     if(!gl.getProgramParameter(program,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program)!);
     gl.useProgram(program);gl.bindVertexArray(gl.createVertexArray());
+    const temperature=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,temperature);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    // North row cold, south row hot; opposite longitude cells distinguish
+    // body coordinates from screen coordinates, including the wrapped seam.
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2,2,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([
+        0,0,0,255,255,0,0,255,255,0,0,255,0,0,0,255,
+    ]));
+    gl.uniform1i(gl.getUniformLocation(program,'u_temperature'),0);
     gl.uniform3fv(gl.getUniformLocation(program,'u_sun_direction'),[0,0,1]);
     let checks=0;
     const check=(mode:number,normal:number[],flux:boolean,expected:number[])=>{
@@ -45,6 +56,12 @@ try {
     check(0,[Math.sqrt(.75),0,.5],true,[.5,.5,.5]);
     check(2,[0,0,1],false,[.95,.35,.12]);
     check(2,[0,0,-1],false,[.08,.12,.22]);
+    check(3,[-.5,.8,.5],false,[.12,.20,.65]);
+    check(3,[.5,.8,.5],false,[.80,.15,.06]);
+    check(3,[-.5,-.8,.5],false,[.80,.15,.06]);
+    check(3,[.5,-.8,.5],false,[.12,.20,.65]);
+    check(3,[-1e-7,.8,-1],false,[.12,.20,.65]);
+    check(3,[1e-7,.8,-1],false,[.12,.20,.65]);
     if(gl.getError()!==gl.NO_ERROR) throw new Error('WebGL error');
     output.textContent=JSON.stringify({status:'PASS',checks},null,2);
 } catch(error) { output.textContent=`FAIL\n${error.stack || error}`; }

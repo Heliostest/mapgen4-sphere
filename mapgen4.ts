@@ -154,6 +154,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         canInspect:()=>!Painting.navigating(),
         presentedTimeS:()=>render.presentedPlanetTimeS,
         renderParams:()=>param.render,
+        terrain:()=>render.physicalElevation.length?{directions:mesh.xyz_r,elevation:render.physicalElevation}:null,
     });
     // Legacy artist controls only update physical scale readouts, never SI state.
     for(const name of ['sphere_radius','mountain_height']) {

@@ -3,6 +3,24 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Seasonal temperature stage B — 2026-10-08
+
+Base `7750d1e`, feature branch `codex/seasonal-temperature`. Adds an optional daily-mean surface energy-balance approximation on 48×24 equal-area cells, separate from the generator and its rainfall/river fields. Default appearance and initial paused state are unchanged.
+
+Fresh Node checks: 38/38, including 13 thermal tests. Verified total solid angle 4π, seam adjacency and positive conductance, analytical daily forcing and global S/4, pairwise transport conservation, sea/land inertia, fixed-step partition invariance, step-halving convergence, radiation/heat budget closure, checkpoint restoration, invalid model inputs, small-radius stability, unsupported slow spin and bounded clock advancement. Typecheck/build passed.
+
+Browser coverage: all five thermal groups passed, including more than 90 simulated days; all eight planet groups and nine legacy groups passed. The legacy run included all four brushes, both poles/date line, camera controls, reset/seed determinism, and 83 generations (Worker time 14.0–50.6ms, median 19.2ms on this run). Actual DOM controls passed nine assertions including multiple thermal fields queued beyond the presented frame, pause rollback and resume. Actual GPU fixtures passed 648 radial, 771 outline, 30 silhouette and 16 solar/temperature checks. No captured runtime errors. Original canvas and the painted-radius round trip were pixel-exact in the final planet run.
+
+The mobile planet runner initially tapped before the first terrain was ready. It now waits for the first worker response and two animation frames before probing; this tests inspection on a rendered globe rather than relying on panel construction timing. Mobile checks remain touch emulation, not physical-device testing.
+
+An isolated Node benchmark of 100 measured 32-substep batches on 1,152 cells gave median 0.61ms and p95 0.73ms on this machine, following 10 warmup batches. This supports keeping this bounded solver synchronous for this increment, without making a whole-app FPS or mobile performance claim. The sampled benchmark's cumulative energy residual was 1.84e-5 J/m² after about 45 days; this is floating-point bookkeeping error against explicit integrated net radiation, not a claim of zero physical net forcing.
+
+The thermal texture is only 48×24 RGBA8 (4,608 bytes); stored temperatures, capacities and energy accounting are Float64. Colors encode a fixed −80…+60°C range at about 0.55°C per byte and interpolate visually; inspection uses the original cell temperature. State is reinitialized on terrain/model/manual-time changes rather than claimed to conserve energy across those external edits. Fast rates are bounded by stable work per frame; the sampled temperature time and lag are shown.
+
+Independent read-only review identified an Important pause-history defect: two queued advances could overwrite the checkpoint for the still-visible field. The new regression first failed with a restarted epoch; runtime now retains the last acknowledged presented state until rendering advances. The actual-DOM fixture covers an animation update followed by a speed-change update, then pause/resume with matching field and clock. The review also identified a speed-limit explanation based on assumed 60fps; a 20fps regression first failed, then passed after the clock exposed actual clamping. Both findings were fixed; all 38 Node tests, typecheck/build and both affected browser runners passed afterward. No outstanding review findings.
+
+Evidence: [thermal interactions](evidence/thermal-report.json), [solver benchmark](evidence/thermal-benchmark.json), [planet/GPU regression](evidence/thermal-planet-report.json), [seasonal screenshot](evidence/thermal-seasonal.png), [mobile panel](evidence/thermal-mobile.png). Scientific assumptions and limits are documented in the README.
+
 ## Planet physics stage A — 2026-10-08
 
 Implemented on `codex/planet-physics`, from `2fcdcb1`, in the dedicated spherical clone. The renderer and procedural generation remain Mapgen4's. Default physics state is paused, Original map, Follow surface; physical radius and real elevation scale are independent of scene radius and artistic mountain height. Day/night, top-of-atmosphere insolation, analytical spin/season phases and body-coordinate inspection are optional.

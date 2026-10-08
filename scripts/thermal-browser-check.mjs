@@ -1,0 +1,74 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const base=process.env.BASE_URL||'http://localhost:8002',folder='build/validation/thermal';
+await mkdir(folder,{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
+const page=await browser.newPage({viewport:{width:1300,height:1000}}),errors=[],checks=[];
+page.on('pageerror',e=>errors.push(e.message));
+page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
+await page.addInitScript(()=>{window.generations=0;const W=window.Worker;window.Worker=class extends W{constructor(...a){super(...a);this.addEventListener('message',()=>window.generations++);}};});
+const frames=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+const input=async(id,value)=>{await page.locator(id.startsWith('slider-')?`#${id} input`:`#${id}`).evaluate((e,v)=>{e.value=String(v);e.dispatchEvent(new Event(e.type==='range'?'input':'change',{bubbles:true}));},value);await frames();};
+const capture=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
+try {
+    await page.goto(base+'/embed.html');await page.waitForFunction(()=>window.generations>0);
+    assert.equal(await page.locator('#planet-layer option[value="temperature"]').count(),1,'Temperature layer missing');
+    const baseline=await capture('original'),initialGenerations=await page.evaluate(()=>window.generations);
+    assert.equal(await page.locator('#thermal-enabled').isChecked(),false);
+    await page.locator('#planet-layer').selectOption('temperature');await frames();
+    assert.equal(await page.locator('#thermal-enabled').isChecked(),true);
+    assert.match(await page.locator('#thermal-mean').textContent(),/°C/);
+    const initial=await capture('initial-temperature');assert.ok(!initial.equals(baseline));
+    await page.locator('#planet-speed').selectOption('864000');await page.locator('#planet-play').click();
+    await page.waitForFunction(()=>Number(document.querySelector('#thermal-age').dataset.days)>90,{},{timeout:60000});
+    await page.locator('#planet-play').click();await frames();
+    const evolved=await capture('seasonal-temperature');assert.ok(!initial.equals(evolved));
+    const age=await page.locator('#thermal-age').textContent();await page.waitForTimeout(150);
+    assert.equal(await page.locator('#thermal-age').textContent(),age);
+    assert.equal(await page.evaluate(()=>window.generations),initialGenerations);
+    checks.push('Optional model advances with Play, pauses, changes temperature without terrain generation');
+
+    await input('slider-sphere_radius',1000);await input('slider-sphere_radius',300);
+    assert.equal(await page.locator('#thermal-age').textContent(),age);
+    await input('slider-mountain_height',75);await input('slider-mountain_height',50);
+    assert.equal(await page.locator('#thermal-age').textContent(),age);
+    await page.locator('#planet-inspect').click();
+    const box=await page.locator('#mapgen4').boundingBox();await page.mouse.click(box.x+box.width/2,box.y+box.height/2);
+    assert.match(await page.locator('#planet-probe').textContent(),/°C.*cell/);
+    assert.equal(await page.evaluate(()=>window.generations),initialGenerations);
+    await page.locator('#planet-inspect').click();
+    checks.push('Artist geometry changes preserve thermal history; inspection reports body-cell temperature without painting');
+
+    await page.locator('#planet-camera').selectOption('space');
+    await page.mouse.click(box.x+box.width/2,box.y+box.height/2);
+    await page.waitForFunction(n=>window.generations>n,initialGenerations);await frames();
+    assert.equal(Number(await page.locator('#thermal-age').getAttribute('data-days')),0);
+    assert.ok(await page.locator('#button-reset').isEnabled());
+    const painted=await capture('painted');
+    await page.locator('#thermal-reset').click();assert.ok(painted.equals(await capture('thermal-reset')));
+    await input('planet-radius',8000);assert.ok(await page.locator('#button-reset').isEnabled());
+    await input('planet-period',8766);assert.match(await page.locator('#thermal-status').textContent(),/slow|synchronous/);
+    await input('planet-period',23.934469594);assert.match(await page.locator('#thermal-status').textContent(),/Daily-mean/);
+    await input('thermal-emissivity',0);assert.equal(await page.locator('#thermal-emissivity').getAttribute('aria-invalid'),'true');
+    await input('thermal-emissivity',.61);
+    checks.push('Painting/config edits restart thermal transient without erasing edits; slow spin and invalid inputs are explicit');
+
+    await page.locator('#thermal-enabled').uncheck();assert.equal(await page.locator('#planet-layer').inputValue(),'original');
+    await page.locator('#button-reset').click();await page.waitForFunction(()=>document.querySelector('#button-reset').disabled);await page.waitForTimeout(150);
+    await page.locator('#planet-earth').click();await page.locator('#planet-camera').selectOption('surface');
+    assert.ok(baseline.equals(await capture('restored-original')));
+    checks.push('Disabling and resetting restore exact original pixels');
+
+    const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+    mobile.on('pageerror',e=>errors.push(e.message));
+    await mobile.addInitScript(()=>{window.terrainReady=false;const W=window.Worker;window.Worker=class extends W{constructor(...a){super(...a);this.addEventListener('message',()=>window.terrainReady=true);}};});
+    await mobile.goto(base+'/embed.html');await mobile.waitForFunction(()=>window.terrainReady);
+    await mobile.locator('#planet-layer').selectOption('temperature');
+    await mobile.locator('#thermal-reset').tap();
+    const mb=await mobile.locator('#mapgen4').boundingBox();assert.ok(mb.y>=-1 && mb.y+mb.height<=844);
+    await mobile.screenshot({path:`${folder}/mobile.png`});await mobile.close();
+    checks.push('Thermal controls stay usable within mobile panel');
+    assert.deepEqual(errors,[]);
+    const report={checks,errors};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+} finally {await browser.close();}

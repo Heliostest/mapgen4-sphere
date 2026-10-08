@@ -145,7 +145,12 @@ try {
     }
     const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
     mobile.on('pageerror',e=>errors.push(e.message));
-    await mobile.goto(base+'/embed.html');await mobile.waitForSelector('#planet-controls');
+    await mobile.addInitScript(()=>{
+        window.terrainReady=false;const W=window.Worker;
+        window.Worker=class extends W {constructor(...args){super(...args);this.addEventListener('message',()=>window.terrainReady=true);}};
+    });
+    await mobile.goto(base+'/embed.html');await mobile.waitForFunction(()=>window.terrainReady);
+    await mobile.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
     await mobile.locator('#planet-layer').selectOption('day-night');
     await mobile.locator('#planet-inspect').tap();
     const bounds=await mobile.locator('#mapgen4').boundingBox();

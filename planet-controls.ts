@@ -3,6 +3,9 @@ import {AU_M,DEFAULT_ORBIT,deriveOrbit,sunState,incidentFlux,localSolarHour,wrap
 import {makePlanetView,type PlanetView,type PlanetLayer,type PlanetCamera} from './planet-render.ts';
 import {SimulationClock} from './simulation-clock.ts';
 import {uvToDirection} from './sphere.ts';
+import {ThermalRuntime} from './thermal-runtime.ts';
+import {landFractions} from './thermal.ts';
+import {installThermalPanel} from './thermal-panel.ts';
 
 type Sample={uv:[number,number];elevation:number};
 type Options={
@@ -12,6 +15,7 @@ type Options={
     canInspect:()=>boolean;
     presentedTimeS:()=>number|null;
     renderParams:()=>{sphere_radius?:number;mountain_height?:number};
+    terrain?:()=>{directions:ArrayLike<number>;elevation:ArrayLike<number>}|null;
 };
 
 /** Physical settings deliberately live outside generator parameters: changing
@@ -21,6 +25,7 @@ export function installPlanetControls(options:Options) {
     let layer:PlanetLayer='original',camera:PlanetCamera='surface',inspecting=false;
     let probe:Sample|null=null;
     const clock=new SimulationClock();
+    const thermal=new ThermalRuntime();
     const root=document.createElement('div');root.id='planet-controls';
     const header=document.createElement('h3');header.textContent='Planet physics';root.append(header);
     // Keep the legacy paint/navigation buttons in their original positions.
@@ -56,14 +61,14 @@ export function installPlanetControls(options:Options) {
         el.addEventListener(range?'input':'change',()=>{
             const value=el.valueAsNumber;
             if(!el.checkValidity() || !Number.isFinite(value)) {el.setAttribute('aria-invalid','true');return;}
-            el.removeAttribute('aria-invalid');pause(false);set(value);emit();
+            el.removeAttribute('aria-invalid');pause(false);set(value);thermal.invalidate();emit();
         });
         label.append(el);inputs.set(id,{input:el,get});return el;
     }
 
-    select('planet-layer','Display layer',[
-        ['original','Original map'],['day-night','Day / night'],['insolation','Solar energy'],
-    ],layer,v=>layer=v as PlanetLayer);
+    const layerSelect=select('planet-layer','Display layer',[
+        ['original','Original map'],['day-night','Day / night'],['insolation','Solar energy'],['temperature','Temperature (daily mean)'],
+    ],layer,v=>{layer=v as PlanetLayer;if(layer==='temperature'){thermal.enabled=true;thermalPanel.reveal();}});
     select('planet-camera','View',[
         ['surface','Follow surface'],['space','From space'],
     ],camera,v=>camera=v as PlanetCamera);
@@ -76,7 +81,7 @@ export function installPlanetControls(options:Options) {
     });
     select('planet-speed','Time speed',[
         ['60','1 minute / second'],['3600','1 hour / second'],['86400','1 day / second'],['864000','10 days / second'],
-    ],String(clock.speed),v=>clock.setSpeed(Number(v),performance.now()));
+    ],String(clock.speed),v=>clock.setSpeed(Number(v),performance.now(),thermal.maxAdvanceS));
     const time=number('planet-time-days','Elapsed time (days)',0,1e6,'any',()=>clock.timeS/86400,v=>clock.seek(v*86400,performance.now()));
     const spin=number('planet-spin-phase','Spin phase (°)',0,360,'0.1',()=>sunState(planet,orbit,clock.timeS).spinAngleRad*180/Math.PI,v=>{
         orbit.spinPhaseRad=wrapAngle(v*Math.PI/180-(planet.retrograde?-1:1)*TAU*((clock.timeS%planet.siderealPeriodS)/planet.siderealPeriodS));
@@ -86,7 +91,7 @@ export function installPlanetControls(options:Options) {
         orbit.orbitPhaseRad=wrapAngle(v*Math.PI/180-TAU*((clock.timeS%year)/year));
     },root,true);
     const phases=note('');phases.id='planet-phases';
-    button('planet-reset-time','Reset time',()=>{pause(false);clock.seek(0,performance.now());orbit.spinPhaseRad=orbit.orbitPhaseRad=0;emit();});
+    button('planet-reset-time','Reset time',()=>{pause(false);clock.seek(0,performance.now());orbit.spinPhaseRad=orbit.orbitPhaseRad=0;thermal.invalidate();emit();});
     const inspect=button('planet-inspect','Inspect: off',()=>{inspecting=!inspecting;pause(false);updateInspectButton();emit();});
     inspect.setAttribute('aria-pressed','false');
     const probeOutput=note('Inspect a surface point to read its location and solar energy.');probeOutput.id='planet-probe';
@@ -114,13 +119,19 @@ export function installPlanetControls(options:Options) {
     const exaggeration=output('planet-exaggeration','Display exaggeration',scale);
     note('Calibrated elevations before artistic folds. Ocean depth is a seafloor estimate; rendered water stays at sea level.',scale);
 
+    const thermalPanel=installThermalPanel(root,thermal,mutate=>{
+        pause(false);mutate();
+        if(!thermal.enabled && layer==='temperature') {layer='original';layerSelect.value=layer;}
+        emit();
+    });
+
     const radiation=group('Radiation reference',true);
     const flux=output('planet-flux','Stellar irradiance',radiation),temperature=output('planet-temperature','Radiative Teq',radiation);
-    note('Global radiation equilibrium, not surface air temperature. No greenhouse, weather or heat transport model.',radiation);
+    note('Global blackbody reference, not surface air temperature. The optional thermal model has its own effective emissivity and heat transport.',radiation);
     const warning=note('');warning.id='planet-model-note';
     note('Painting pauses time. Hidden tabs pause until you press Play. Terrain Reset only resets your painting.');
     button('planet-earth','Earth preset',()=>{
-        pause(false);planet={...DEFAULT_PLANET};orbit={...DEFAULT_ORBIT};clock.seek(0,performance.now());
+        pause(false);planet={...DEFAULT_PLANET};orbit={...DEFAULT_ORBIT};clock.seek(0,performance.now());thermal.invalidate();
         retro.checked=false;
         for(const {input,get} of inputs.values()) {input.value=String(Number(get().toPrecision(12)));input.removeAttribute('aria-invalid');}
         emit();
@@ -150,6 +161,7 @@ export function installPlanetControls(options:Options) {
         if(document.activeElement!==season) season.value=(sun.orbitAngleRad*180/Math.PI).toFixed(1);
         phases.textContent=`Spin ${(sun.spinAngleRad*180/Math.PI).toFixed(1)}° · season ${(sun.orbitAngleRad*180/Math.PI).toFixed(1)}° · Sun latitude ${(sun.declinationRad*180/Math.PI).toFixed(1)}°`;
         legend.textContent=layer==='insolation'?`Solar energy: 0–${o.fluxWm2.toFixed(0)} W/m² · dark blue → teal → orange. Colors retain terrain shading.`:
+            layer==='temperature'?(thermal.model?'Temperature: −80 °C blue · 0 °C cream · +60 °C red. Values outside this range saturate. Daily mean; terrain shading retained.':thermal.status):
             layer==='day-night'?'Day / night · night brightness helps editing; night receives 0 W/m².':'Original map · physical settings preserve your terrain.';
         warning.textContent=p.rotationRatio>.05?'Rapid spin: the spherical gravity/sea-level approximation becomes inaccurate.':
             Math.max(planet.reliefM,planet.oceanDepthM)>.05*planet.radiusM?'Terrain is large relative to radius: spherical surface diagnostics are approximate.':'';
@@ -157,9 +169,17 @@ export function installPlanetControls(options:Options) {
             const direction=uvToDirection(...probe.uv),local=localSolarHour(direction,sun.direction);
             const height=physicalHeight(Math.max(-1,Math.min(1,probe.elevation)),planet);
             probeOutput.textContent=`${((.5-probe.uv[1])*180).toFixed(2)}° lat, ${((probe.uv[0]-.5)*360).toFixed(2)}° lon · ${height.toFixed(0)} m ${height<0?'seafloor':'elevation'} · ${incidentFlux(direction,sun.direction,o.fluxWm2).toFixed(1)} W/m² · ${local===null?'solar time undefined at pole':`${local.toFixed(2)} h local solar time`}`;
+            const cellK=thermal.sample(...probe.uv);
+            if(cellK!==null) probeOutput.textContent+=` · ${(cellK-273.15).toFixed(1)} °C daily-mean cell`;
         }
+        thermalPanel.refresh(clock.timeS,clock.limited);
     }
-    function emit() {options.onView(makePlanetView(planet,orbit,clock.timeS,layer,camera));refresh();}
+    function sendView() {
+        const view=makePlanetView(planet,orbit,clock.timeS,layer,camera);
+        view.thermal=thermal.sync(planet,orbit,clock.timeS,options.presentedTimeS());
+        options.onView(view);
+    }
+    function emit() {sendView();refresh();}
     options.canvas.addEventListener('pointerdown',event=>{
         if(!inspecting || event.button!==0 || event.altKey || !options.canInspect()) return;
         pause(false);
@@ -173,13 +193,18 @@ export function installPlanetControls(options:Options) {
     const frame=(now:number)=>{
         requestAnimationFrame(frame);
         if(!clock.playing) return;
-        clock.tick(now);
-        options.onView(makePlanetView(planet,orbit,clock.timeS,layer,camera));
+        clock.tick(now,thermal.maxAdvanceS);
+        sendView();
         if(now-lastReadout>100) {refresh();lastReadout=now;}
     };
     requestAnimationFrame(frame);emit();
     return {
         pause,refresh,isInspecting:()=>inspecting,
-        terrainChanged:()=>{probe=null;probeOutput.textContent='Inspect a surface point to read its location and solar energy.';},
+        terrainChanged:()=>{
+            probe=null;probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
+            const terrain=options.terrain?.();
+            if(terrain) thermal.setTerrain(landFractions(thermal.grid,terrain.directions,terrain.elevation));
+            emit();
+        },
     };
 }

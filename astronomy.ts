@@ -5,7 +5,7 @@ import type {Direction} from './sphere.ts';
 export const AU_M = 149597870700;
 const SOLAR_GM = 1.32712440041279419e20;
 const SOLAR_LUMINOSITY_W = 3.828e26;
-const STEFAN_BOLTZMANN = 5.670374419e-8;
+export const STEFAN_BOLTZMANN = 5.670374419e-8;
 
 export interface OrbitConfig {
     distanceM:number;

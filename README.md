@@ -34,9 +34,25 @@ The **Planet physics** panel adds SI diagnostics and an analytical solar clock. 
 - **Inspect:** select a point for body latitude/longitude, mapped elevation/seafloor depth, local solar time and irradiance. Inspection does not paint. Painting pauses at the presented frame; hiding the tab also pauses until Play is pressed again.
 - **Reset time** changes only the clock/phases. **Earth preset** restores physical parameters and time. The existing terrain **Reset** retains its original meaning.
 
-The **Radiative Teq** value is global blackbody radiation equilibrium with full heat redistribution, not surface air temperature. This stage has no greenhouse, heat transport, weather, water-budget, erosion or object dynamics solver. Rapid spin and very large relief are outside the accurate range of the spherical approximation. Fields are not saved across reloads.
+The **Radiative Teq** value is global blackbody radiation equilibrium with full heat redistribution, not surface air temperature. Rapid spin and very large relief are outside the accurate range of the spherical approximation. Fields are not saved across reloads.
 
 Physics uses `M=4πρR³/3`, `g=GM/R²`, `v_escape=sqrt(2GM/R)`, a circular two-body year, and `Q=S max(0,n·sun)` on the reference sphere. References: [JPL constants](https://ssd.jpl.nasa.gov/astro_par.html), [JPL physical parameters](https://ssd.jpl.nasa.gov/planets/phys_par.html), [NASA Kepler laws](https://science.nasa.gov/learn/basics-of-space-flight/chapter3-3/), [CLIMLAB insolation](https://climlab.readthedocs.io/en/stable/_modules/climlab/solar/insolation.html), and [NASA GISS on equilibrium versus surface temperature](https://www.giss.nasa.gov/pubs/abs/de06700y.html).
+
+## Seasonal temperature — stage B
+
+Choose **Temperature (daily mean)**, then **Play**. Use **10 days / second** to see a seasonal transient. The model is off by default; selecting its layer enables it. Switching to Original map hides the colors while an enabled model continues with the shared clock. Uncheck **Enable thermal model** to turn it off.
+
+The **Seasonal temperature** panel shows the global mean, range, actual sampled time, time since thermal reset, discretization lag and energy-accounting residual. Inspection adds the underlying cell's daily-mean temperature. The fixed color scale is −80°C blue, 0°C cream, +60°C red; values outside it saturate, and terrain shading remains visible. Interpolated colors are for display; probe values refer to a single cell.
+
+The model solves `C dT/dt = (1−albedo) Qdaily − emissivity σ T⁴ + heatTransport` on 1,152 equal-area cells. Daily insolation is integrated over latitude bands and normalized to the exact global interception `S/4`; neighboring cells exchange equal and opposite heat, with periodic longitude and no flux through the poles. The transport coefficient scales with inverse physical radius squared. Artist mountain height, scene radius and camera do not affect this state.
+
+Defaults are an effective infrared emissivity of 0.61, land heat capacity of 2 MJ/m²/K, a 10m ocean mixed layer with volumetric heat capacity 4.2 MJ/m³/K, and Earth-scale heat transport coefficient 0.55 W/m²/K. These are adjustable model parameters. They do not infer atmospheric composition or a greenhouse effect from planet density. Land fractions come from the generated region elevations, before artistic folds. Empty coarse cells use the nearest region; this is a classification approximation, not a conservative remapping of previous climate energy.
+
+**Reset temperature** restarts a uniform greybody-equilibrium transient at the current astronomical time; it does not erase painting. Terrain regeneration, physical/thermal parameter changes, or manual time/phase changes also restart it. Pausing freezes the presented state; resuming preserves its thermal history. Fixed stable substeps are at most 30 minutes and 1/720 year. Each animation update runs at most 32 substeps, limiting actual time advancement when necessary rather than silently leaving the model behind its clock. The sampled field can trail that clock by less than one substep, displayed in the panel.
+
+This is a seasonal surface energy-balance approximation, not hourly weather. Daily averaging is disabled for slow or synchronous rotation when the mean solar day exceeds 1/20 of the orbital year. There is no atmospheric circulation, lapse rate, cloud/ice feedback, latent heat, water budget, erosion, or change to generated rainfall, rivers or biomes. The initial state is not a spun-up climate and fields are not saved on reload.
+
+Method references: [CLIMLAB energy-balance models](https://climlab.readthedocs.io/en/stable/api/climlab.model.ebm.html) and [daily-mean solar geometry](https://climlab.readthedocs.io/en/stable/_modules/climlab/solar/insolation.html). This implementation uses its own two-dimensional finite-volume grid and greybody radiation closure, rather than CLIMLAB's calibrated linear outgoing-radiation model.
 
 ## Rendering preserved
 
@@ -81,7 +97,7 @@ The [outline sampling check](http://localhost:8000/tests/gpu-outlines.html) must
 
 The [silhouette check](http://localhost:8000/tests/gpu-silhouette.html) checks background/sea coverage and the actual final shader: all eight edge directions, identical foreground/background colors, unchanged interior pixels, opaque output, and disabling either outline control. Like the other GPU fixtures, run it in the browser after `pnpm test` builds it.
 
-The [planet light check](http://localhost:8000/tests/gpu-insolation.html) exercises the actual production lighting snippet: original colors, day/night floor, incidence angles, energy palette endpoints and opaque coverage (10 checks).
+The [planet light check](http://localhost:8000/tests/gpu-insolation.html) exercises the actual production lighting snippet: original colors, day/night floor, incidence angles, energy palette endpoints, temperature texture orientation/seam and opaque coverage (16 checks).
 
 For automated screenshots and browser interactions, install Playwright in a separate tooling environment (or locally) and have Chrome installed:
 
@@ -94,3 +110,5 @@ node scripts/browser-check.mjs
 `node scripts/planet-browser-check.mjs` additionally checks SI scaling without regeneration, reversible layers, clock/visibility handling, inspection, spin-view painting and mobile controls, and runs all four GPU fixtures. Its [controls fixture](http://localhost:8000/tests/planet-controls.html) deterministically checks that Pause freezes the last presented frame and Resume advances from it. Painted terrain is checked after physical size/density/relief changes and a scene-radius round trip. Set `BASE_URL` for either runner when using another port; the planet runner defaults to `http://localhost:8002`. Planet screenshots and reports go to `build/validation/planet/`.
 
 Original documentation and credits are in [README.org](README.org). Apache-2.0; original Mapgen4 and helper code copyright Red Blob Games.
+
+`node scripts/thermal-browser-check.mjs` checks a 90-day thermal transient, pause/probing, terrain and configuration resets, display-scale independence, unsupported spin, exact original restoration and mobile controls. `node scripts/thermal-benchmark.mjs` measures batches of the isolated solver on the current Node runtime; it is not a browser-frame or cross-device benchmark. Both save reports in `build/validation/thermal/`.
