@@ -18,6 +18,8 @@ import {makeMesh} from "./mesh.ts";
 import Painting from "./painting.ts";
 import Renderer from "./render.ts";
 import {installNavigation} from './navigation.ts';
+import {SPHERE_RADIUS} from './sphere.ts';
+import {MIN_ZOOM, MAX_ZOOM} from './sphere-view.ts';
 import type {Mesh} from "./types.d.ts";
 
 
@@ -46,7 +48,8 @@ const initialParams = {
         ['flow', 0.2, 0, 1],
     ],
     render: [
-        ['zoom', 100/350, 100/1000, 100/50],
+        ['sphere_radius', SPHERE_RADIUS, 100, 1000],
+        ['zoom', 100/350, MIN_ZOOM, MAX_ZOOM],
         ['x', 500, 0, 1000],
         ['y', 500, 0, 1000],
         ['light_angle_deg', 80, 0, 360],
@@ -81,7 +84,8 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         container.appendChild(header);
         document.getElementById('sliders').appendChild(container);
         for (let [name, initialValue, min, max] of initialParams[phase]) {
-            const step = name === 'seed'? 1 : 0.001;
+            const isRadius = name === 'sphere_radius';
+            const step = name === 'seed' || isRadius? 1 : 0.001;
             param[phase][name] = initialValue;
 
             let span = document.createElement('span');
@@ -92,8 +96,17 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
             slider.setAttribute('min', min);
             slider.setAttribute('max', max);
             slider.setAttribute('step', step.toString());
+            const radiusValue = isRadius? document.createElement('span') : null;
+            if (radiusValue) {
+                radiusValue.className = 'radius-value';
+                radiusValue.setAttribute('aria-hidden', 'true');
+                radiusValue.textContent = String(initialValue);
+                slider.setAttribute('aria-label', name);
+                slider.title = 'Base sphere radius, independent of zoom. Mountain height stays the same.';
+            }
             slider.addEventListener('input', _event => {
                 param[phase][name] = slider.valueAsNumber;
+                if (radiusValue) radiusValue.textContent = slider.value;
                 requestAnimationFrame(() => {
                     if (phase == 'render') { redraw(); }
                     else { generate(); }
@@ -119,6 +132,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
             let label = document.createElement('label');
             label.setAttribute('id', `slider-${name}`);
             label.appendChild(span);
+            if (radiusValue) label.appendChild(radiusValue);
             label.appendChild(slider);
 
             container.appendChild(label);

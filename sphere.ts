@@ -1,4 +1,6 @@
 // Shared spherical coordinates, atlas seams, and painting distances.
+// Default radius and fixed reference scale for terrain generation. Runtime
+// radius changes stretch this angular mesh without replacing painted terrain.
 export const SPHERE_RADIUS = 300;
 export type Direction = [number, number, number];
 

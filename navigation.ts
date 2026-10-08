@@ -1,4 +1,5 @@
 import Painting from './painting.ts';
+import {MIN_ZOOM, MAX_ZOOM} from './sphere-view.ts';
 
 export function installNavigation(param: any, redraw: () => void) {
     const canvas=document.getElementById('mapgen4') as HTMLCanvasElement;
@@ -40,7 +41,7 @@ export function installNavigation(param: any, redraw: () => void) {
     canvas.addEventListener('lostpointercapture',end);
     canvas.addEventListener('wheel',e=> {
         e.preventDefault();
-        sync('zoom',Math.max(.1,Math.min(2,param.zoom*Math.exp(-e.deltaY*.001))));
+        sync('zoom',Math.max(MIN_ZOOM,Math.min(MAX_ZOOM,param.zoom*Math.exp(-e.deltaY*.001))));
         redraw();
     },{passive:false});
 }

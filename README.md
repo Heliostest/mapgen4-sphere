@@ -17,7 +17,9 @@ Open [localhost:8000](http://localhost:8000/embed.html). `npm install`, `npm run
 - Left drag paints Ocean, Water, Valley, or Mountains. The four original brush sizes and keyboard shortcuts still work.
 - Right drag or Alt-drag rotates. The wheel zooms.
 - **Drag: Paint / Rotate** switches one-finger touch behavior.
+- `render → sphere_radius` changes the sphere's geometric radius from 100 to 1000 (default 300), with a live value readout. Mountain height stays absolute, so its proportion to the planet changes. Existing terrain and brush edits are preserved.
 - `x` and `y` select longitude and latitude; `rotate_deg` rolls the view, and `tilt_deg` adds latitude tilt. Other render controls keep their original purpose.
+- `zoom` remains independent of radius. Zoom out for larger spheres; both the slider and wheel now reach 0.05.
 - Reset restores the current seed's terrain. Painting disables seed/island controls until Reset, as in the original.
 
 ## Rendering preserved
@@ -42,6 +44,8 @@ No scene lights, physical materials, or vertex-color palette replacement are use
 
 `spherical-constraints.ts` measures brushes by angular distance, so strokes cross the date line and poles. `sphere-view.ts` picks the actual displaced terrain and recovers its original surface coordinates. Painting never hits empty space or an occluded far-side triangle.
 
+Generation uses a fixed reference radius of 300 for mesh density, edge lengths, and peak spacing. The live radius control stretches the existing angular map instead of regenerating it; mesh counts, mountain locations, river layout, and angular brush sizes stay stable. Rendered radius, slope distances, and picking update together.
+
 The new landscape is not the same seeded planar island wrapped into a globe. Geometry and noise change to cover a closed surface; the cartographic rendering stays Mapgen4's. Extreme polar closeups retain the sampling limits of a longitude/latitude atlas.
 
 ## Verification
@@ -55,7 +59,7 @@ node scripts/build-reference.mjs
 
 The reference command reconstructs and builds the original source only inside `build/reference/`. Compare it at [the original reference page](http://localhost:8000/build/reference/embed.html).
 
-`pnpm test` also builds the GPU regression fixture. With the server running, open [the mountain projection check](http://localhost:8000/tests/gpu-radial.html): WebGL2 transform feedback checks the actual depth/drape displacement shader against fixed world positions and CPU picking geometry across four camera orientations and three heights. Its browser result must say `PASS`; the Node test command does not execute this browser check.
+`pnpm test` also builds the GPU regression fixture. With the server running, open [the mountain projection check](http://localhost:8000/tests/gpu-radial.html): WebGL2 transform feedback checks the actual depth/drape displacement shader against fixed world positions and CPU picking geometry across four camera orientations, three heights, and radii 100/300/1000 (216 checks). Its browser result must say `PASS`; the Node test command does not execute this browser check.
 
 The [outline sampling check](http://localhost:8000/tests/gpu-outlines.html) must also say `PASS`. It samples the renderer's actual outline texture at 771 fractional positions to detect pixel snapping that would cause stationary diamond-shaped bands during rotation.
 

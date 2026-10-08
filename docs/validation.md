@@ -3,6 +3,16 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Runtime sphere radius control
+
+The `sphere_radius` control on `codex/sphere-radius` changes the actual geometry radius, from 100 to 1000 in unit steps, default 300. It updates both GPU passes, slope distance metrics, and CPU picking. Mountain height remains absolute and the camera is unchanged. Generation retains its reference scale and angular layout, so changing radius redraws without replacing the mesh, rivers, or painted constraints. The UI includes the current numerical value. Slider/wheel zoom limits share a minimum of 0.05 so a radius-1000 globe can fit on screen.
+
+Before implementation, the new CPU regression and GPU fixture failed because a requested radius of 100 still produced radius 300. Afterward: 12/12 Node tests, typecheck and build passed. The extended actual-shader fixture passed 216 checks across radii 100/300/1000, four cameras and three heights; maximum error 0.000268 world units ([report](evidence/radius-gpu-report.json)). The existing 771 outline-continuity probes and 30 silhouette checks passed separately in the browser.
+
+Browser verification painted mountains at radius 100, changed to 1000 and back to 100, and compared canvas screenshots: the returned image was byte-identical. Then an Ocean stroke at radius 1000 created the expected water inlet under the stroke. Numeric display, default 300, both radius endpoints, and wheel zoom down to 0.05 were checked. No captured warning/error logs. Independent review found no actionable issues. Screenshots: [radius 100](evidence/radius-100-painted.png), [same painting at 1000](evidence/radius-1000-painted.png), [Ocean brush at 1000](evidence/radius-1000-ocean-brush.png).
+
+The user's existing tab had painted edits, so it was preserved without reloading. A separate clean preview shows the new control at its default radius of 300: [radius control](evidence/radius-control-current.png).
+
 ## Exterior silhouette completion
 
 The terrain drape pass cannot shade empty background pixels, so ridge lines previously vanished when the adjacent terrain gave way to the background. Drape alpha now records coverage (background 0, all terrain including sea-level water 1). The existing final pass samples that mask in eight circular directions and darkens the silhouette on both sides, then outputs opaque alpha. Interior colors remain unchanged away from the silhouette. Width and strength follow the existing `outline_depth` and `outline_strength` controls; either at zero disables the new outline. No additional framebuffer or render pass is allocated.

@@ -308,6 +308,7 @@ const vert_land = `
 
 export const sphere_vertex = `
     uniform float u_mountain_height;
+    uniform float u_sphere_radius;
     vec3 sphere_direction(vec2 xy) {
         float lon = (xy.x / 1000.0 - 0.5) * 6.28318530718;
         float lat = (0.5 - xy.y / 1000.0) * 3.14159265359;
@@ -316,7 +317,7 @@ export const sphere_vertex = `
     vec3 sphere_position(vec2 xy, float e) {
         vec3 n=sphere_direction(xy);
         float height=u_mountain_height*max(0.0,e);
-        return n*(${SPHERE_RADIUS.toFixed(1)}+height);
+        return n*(u_sphere_radius+height);
     }
 `;
 
@@ -366,6 +367,7 @@ const frag_drape = `
     uniform sampler2D u_depth;
     uniform vec2 u_light_angle, u_inverse_texture_size, u_inverse_screen_size;
     uniform mat4 u_rotation;
+    uniform float u_sphere_radius;
     uniform float u_slope, u_flat,
                   u_ambient, u_overhead,
                   u_outline_strength, u_outline_coast, u_outline_water,
@@ -393,7 +395,7 @@ const frag_drape = `
         // measured in equal surface distances instead of stretched atlas pixels.
         float lat = (0.5-v_uv.y)*3.14159265359;
         float lon = (v_uv.x-0.5)*6.28318530718;
-        float metric_y = 3.14159265359 * ${SPHERE_RADIUS.toFixed(1)} / 1000.0;
+        float metric_y = 3.14159265359 * u_sphere_radius / 1000.0;
         float metric_x = 2.0 * metric_y * max(0.035, cos(lat));
         vec3 slope_vector = normalize(vec3((zS-zN)/(2.0*dy.y*metric_y),
                                           (zE-zW)/(2.0*dx.x*metric_x), max(0.001,u_overhead)));
@@ -660,11 +662,11 @@ export default class Renderer {
         this.pickElements=this.quad_elements.slice();
     }
 
-    updatePicking(height: number) {
+    updatePicking(height: number, sphereRadius=SPHERE_RADIUS) {
         const {numRegions,xyz_r,xyz_t}=this.mesh;
         for (let v=0;v<this.pickPositions.length/3;v++) {
             const a=v<numRegions ? xyz_r : xyz_t, index=v<numRegions ? v : v-numRegions;
-            const p=terrainPosition(a.subarray(3*index,3*index+3),this.pickElevation[2*v],height);
+            const p=terrainPosition(a.subarray(3*index,3*index+3),this.pickElevation[2*v],height,sphereRadius);
             this.pickPositions.set(p,3*v);
         }
     }
@@ -720,6 +722,7 @@ export default class Renderer {
         this.drawGeneric(this.program_depth, this.fbo_depth, (gl, program) => {
             gl.uniformMatrix4fv(program.u_projection, false, this.projection);
             gl.uniform1f(program.u_mountain_height, renderParam.mountain_height);
+            gl.uniform1f(program.u_sphere_radius, renderParam.sphere_radius ?? SPHERE_RADIUS);
 
             gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });
@@ -730,6 +733,7 @@ export default class Renderer {
         this.drawGeneric(this.program_drape, this.fbo_drape, (gl, program) => {
             gl.uniformMatrix4fv(program.u_projection, false, this.projection);
             gl.uniform1f(program.u_mountain_height, renderParam.mountain_height);
+            gl.uniform1f(program.u_sphere_radius, renderParam.sphere_radius ?? SPHERE_RADIUS);
             gl.uniform2fv(program.u_light_angle, [Math.cos(light_angle_rad), Math.sin(light_angle_rad)]);
             gl.uniform2fv(program.u_inverse_texture_size, [1.5 / this.fbo_land.texture.width, 1.5 / this.fbo_land.texture.height]);
             gl.uniform2fv(program.u_inverse_screen_size, [1.5/fbo_texture_size,1.5/fbo_texture_size]);
@@ -794,7 +798,7 @@ export default class Renderer {
             const view=sphereProjection(renderParam);
             this.projection=view.projection;
             this.rotation=view.rotation;
-            this.updatePicking(renderParam.mountain_height);
+            this.updatePicking(renderParam.mountain_height,renderParam.sphere_radius ?? SPHERE_RADIUS);
 
             /* Keep track of the inverse matrix for mapping mouse to world coordinates */
             mat4.invert(this.inverse_projection, this.projection);
