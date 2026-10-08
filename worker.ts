@@ -58,6 +58,11 @@ let handler = (event) => {
             numRiverTriangles = Geometry.setRiverGeometry(map, param.spacing, param.rivers, new Float32Array(a_river_xyww_buffer));
         }
         let elapsed = performance.now() - start_time;
+        // Snapshot the generated surface BEFORE decorative mountain folds.
+        // Keep it paired with this geometry, never transfer the map's own state.
+        const terrainElevation=new Float32Array(mesh.numRegions+mesh.numTriangles);
+        terrainElevation.set(map.elevation_r);
+        terrainElevation.set(map.elevation_t,mesh.numRegions);
 
         worker.postMessage(
             {elapsed,
@@ -65,11 +70,13 @@ let handler = (event) => {
              quad_elements_buffer,
              a_quad_em_buffer,
              a_river_xyww_buffer,
+             terrain_elevation_buffer:terrainElevation.buffer,
             },
             [
                 quad_elements_buffer,
                 a_quad_em_buffer,
                 a_river_xyww_buffer,
+                terrainElevation.buffer,
             ]
         );
     };

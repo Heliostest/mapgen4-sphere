@@ -11,11 +11,12 @@ export function terrainPosition(direction: ArrayLike<number>, elevation: number,
     return [direction[0]*radius,direction[1]*radius,direction[2]*radius];
 }
 
-export function sphereProjection(param: any): {projection: mat4; rotation: mat4} {
+export function sphereProjection(param: any, model:mat4|null=null): {projection: mat4; rotation: mat4} {
     const rotation=mat4.create(), radians=Math.PI/180;
     mat4.rotateZ(rotation,rotation,param.rotate_deg*radians);
     mat4.rotateX(rotation,rotation,(90-param.y*.18+param.tilt_deg)*radians);
     mat4.rotateY(rotation,rotation,-(param.x*.36-180)*radians);
+    if(model) mat4.multiply(rotation,rotation,model);
     const extent=100/param.zoom;
     const projection=mat4.ortho(mat4.create(),-extent,extent,-extent,extent,-2000,2000);
     mat4.multiply(projection,projection,rotation);
@@ -25,11 +26,20 @@ export function sphereProjection(param: any): {projection: mat4; rotation: mat4}
 /** Ray/triangle picking uses the same displaced vertices as the GPU, so high
  * mountains and the silhouette are editable without painting the far side. */
 export function pickTerrain(coords: number[], inverse: mat4, positions: Float32Array, indices: Int32Array, directions: Float32Array): [number,number] | null {
+    return pickTerrainHit(coords,inverse,positions,indices,directions)?.uv ?? null;
+}
+
+export type TerrainHit = {uv:[number,number];indices:[number,number,number];weights:[number,number,number]};
+
+/** Retain barycentrics so physical fields can be probed independently of the
+ * exaggerated/decorated positions used to determine the visible surface. */
+export function pickTerrainHit(coords: number[], inverse: mat4, positions: Float32Array, indices: Int32Array, directions: Float32Array): TerrainHit | null {
     const origin=vec3.transformMat4(vec3.create(),[coords[0]*2-1,1-coords[1]*2,-1],inverse);
     const end=vec3.transformMat4(vec3.create(),[coords[0]*2-1,1-coords[1]*2,1],inverse);
     const dx=end[0]-origin[0], dy=end[1]-origin[1], dz=end[2]-origin[2];
     let nearest=Infinity;
     let surface: [number,number,number] = [0,0,0];
+    let vertices:[number,number,number]=[0,0,0], weights:[number,number,number]=[0,0,0];
     for (let i=0;i<indices.length;i+=3) {
         const a=3*indices[i], b=3*indices[i+1], c=3*indices[i+2];
         const ax=positions[a], ay=positions[a+1], az=positions[a+2];
@@ -47,11 +57,12 @@ export function pickTerrain(coords: number[], inverse: mat4, positions: Float32A
         const distance=(e2x*qx+e2y*qy+e2z*qz)/det;
         if (distance>=0 && distance<nearest) {
             nearest=distance;
+            vertices=[a/3,b/3,c/3];weights=[1-u-v,u,v];
             // Recover the undisplaced surface location using barycentric
             // coordinates, so varying vertex heights do not shift brush UVs.
             for (let k=0;k<3;k++) surface[k]=directions[a+k]*(1-u-v)+directions[b+k]*u+directions[c+k]*v;
         }
     }
     if (!Number.isFinite(nearest)) return null;
-    return directionToUV(surface);
+    return {uv:directionToUV(surface),indices:vertices,weights};
 }

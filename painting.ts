@@ -21,6 +21,8 @@ let exported = {
     onUpdate: () => {},
     screenToWorldCoords: (coords: number[]): number[] | null => coords,
     navigating: () => false,
+    inspecting: () => false,
+    onBeforePaint: () => {},
     constraints: heightMap.elevation,
     setElevationParam: elevationParam => heightMap.setElevationParam(elevationParam),
     userHasPainted: () => heightMap.userHasPainted,
@@ -71,6 +73,7 @@ const controls: [string, string, () => void][] = [
 ];
 
 window.addEventListener('keydown', e => {
+    if((e.target as HTMLElement)?.closest('input, select, textarea, [contenteditable="true"]')) return;
     for (let control of controls) {
         if (e.key === control[0]) { control[2](); displayCurrentTool(); }
     }
@@ -88,7 +91,7 @@ function setUpPaintEventHandling() {
     let timestamp = 0;
     
     function start(event: PointerEvent) {
-        if (event.button !== 0 || event.altKey || exported.navigating()) return; // left button only
+        if (event.button !== 0 || event.altKey || exported.navigating() || exported.inspecting()) return; // left button only
         el.setPointerCapture(event.pointerId);
         
         dragging = true;
@@ -112,6 +115,7 @@ function setUpPaintEventHandling() {
         ];
         const coords = exported.screenToWorldCoords(screenCoords);
         if (!coords) { timestamp = nowMs; return; }
+        exported.onBeforePaint();
         let brushSize = SIZES[currentSize];
         if (event.pointerType === 'pen' && event.pressure !== 0.5) {
             // Pointer Event spec says 0.5 sent when pen does not

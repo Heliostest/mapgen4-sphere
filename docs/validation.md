@@ -3,6 +3,24 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Planet physics stage A — 2026-10-08
+
+Implemented on `codex/planet-physics`, from `2fcdcb1`, in the dedicated spherical clone. The renderer and procedural generation remain Mapgen4's. Default physics state is paused, Original map, Follow surface; physical radius and real elevation scale are independent of scene radius and artistic mountain height. Day/night, top-of-atmosphere insolation, analytical spin/season phases and body-coordinate inspection are optional.
+
+Fresh checks: 25/25 Node tests, typecheck, build. New analytical checks cover Earth-scale mass/gravity/escape speed, constant-density scaling, calibrated elevation versus visual exaggeration, solar-year/flux/Teq references, prograde/retrograde/synchronous geometry, polar incidence, global S/4 integration, frame-rate-independent clock progression, presented-frame pause and model-rotated picking. The physics panel browser runner first failed because the panel was absent, then passed all eight interaction groups with zero captured errors.
+
+Actual WebGL2 fixtures passed: 648 radial checks including three planet model transforms (maximum world-coordinate error 0.000268 scene units), 771 continuous outline probes, 30 silhouette checks, and 10 new solar-layer checks. The original canvas PNG at 1300×1000 viewport was byte-identical to a baseline captured before implementation. Physical radius changes, toggling layers off and a full terrain/preset reset also restored those pixels in the planet runner. [Planet report](evidence/planet-physics-report.json).
+
+Full legacy browser regression passed all nine groups and 83 terrain generations, including all four brushes, coast/pole/seam operations, styles, seed/reset determinism, mouse navigation and emulated touch. Measured Worker generation time was 13.6–55.4ms, median 14.9ms on this machine; this is not total frame time. Persistent land/river atlases and body picking geometry are now reused on time/camera-only changes. No multi-device animation benchmark was performed.
+
+The browser run found and resolved the inherited control-count assertion: adding the prior radius control brought legacy inputs to 33, not 32. Mobile inspection initially scrolled the globe offscreen; the portrait controls now scroll within a bounded panel. Painting explicitly freezes the last presented simulation time instead of a queued future rotation. Touch validation is emulation, not physical device coverage.
+
+Independent review found that the Pause button still froze a queued frame instead of the visible frame. A deterministic actual-DOM controls fixture reproduced presented time 3600s versus paused time 3660s, then passed all four checks after the button used the shared presented-frame pause path. The extended painted-state check also exposed a test selector targeting the legacy slider label instead of its input; it now proves the radius changes visually and the painted canvas returns without generation. One diagnostic run differed in one color channel by 1/255, within the legacy runner's eight-channel tolerance; the final run was pixel-exact. Physical radius, density and relief changes also preserved painting. Node tests, typecheck, build and the complete planet browser runner passed after the fixes.
+
+Screenshots: [day/night](evidence/planet-day-night.png), [mobile inspection](evidence/planet-mobile.png). The default page appearance remains original; existing browser pages were not reloaded. Dedicated preview uses port 8002.
+
+Scientific limits: spherical mass model, circular orbit around a fixed solar preset, no atmospheric refraction/terrain shadowing, no weather or temperature evolution. Teq is a global radiation-equilibrium diagnostic. Physical elevations are calibrated from generated fields before artistic folds; negative heights describe a seafloor estimate while water renders at sea level. No physics-engine dependency or climate solver was introduced.
+
 ## Runtime sphere radius control
 
 The `sphere_radius` control on `codex/sphere-radius` changes the actual geometry radius, from 100 to 1000 in unit steps, default 300. It updates both GPU passes, slope distance metrics, and CPU picking. Mountain height remains absolute and the camera is unchanged. Generation retains its reference scale and angular layout, so changing radius redraws without replacing the mesh, rivers, or painted constraints. The UI includes the current numerical value. Slider/wheel zoom limits share a minimum of 0.05 so a radius-1000 globe can fit on screen.

@@ -52,9 +52,14 @@ try {
         {x:1000,y:0,rotate_deg:180,tilt_deg:0},
     ];
     const radii=[100,300,1000];
+    const models=[null,mat4.create(),mat4.create()];
+    mat4.rotateZ(models[1]!,models[1]!,-23.43928*Math.PI/180);
+    mat4.rotateY(models[1]!,models[1]!,Math.PI/2);
+    mat4.rotateZ(models[2]!,models[2]!,-85*Math.PI/180);
+    mat4.rotateY(models[2]!,models[2]!,5.3);
     let checks=0, maxError=0;
-    for (const radius of radii) for (const camera of cameras) for (const height of [0,50,150]) {
-        const {projection,rotation}=sphereProjection({...camera,zoom:.4});
+    for (const model of models) for (const radius of radii) for (const camera of cameras) for (const height of [0,50,150]) {
+        const {projection,rotation}=sphereProjection({...camera,zoom:.4},model);
         gl.uniformMatrix4fv(gl.getUniformLocation(program,'u_projection'),false,projection);
         gl.uniformMatrix4fv(gl.getUniformLocation(program,'u_rotation'),false,rotation);
         gl.uniform1f(gl.getUniformLocation(program,'u_mountain_height'),height);
@@ -74,7 +79,7 @@ try {
         }
     }
     if(gl.getError()!==gl.NO_ERROR) throw new Error('WebGL error');
-    output.textContent=JSON.stringify({status:'PASS',checks,radii,cameras:cameras.length,maxError},null,2);
+    output.textContent=JSON.stringify({status:'PASS',checks,radii,cameras:cameras.length,models:models.length,maxError},null,2);
 } catch(error) {
     output.textContent=`FAIL\n${error.stack || error}`;
 }

@@ -22,6 +22,22 @@ Open [localhost:8000](http://localhost:8000/embed.html). `npm install`, `npm run
 - `zoom` remains independent of radius. Zoom out for larger spheres; both the slider and wheel now reach 0.05.
 - Reset restores the current seed's terrain. Painting disables seed/island controls until Reset, as in the original.
 
+## Planet physics — stage A
+
+The **Planet physics** panel adds SI diagnostics and an analytical solar clock. It starts paused in **Original map / Follow surface**, preserving the existing terrain appearance.
+
+- **Physical size:** radius in km and mean density in kg/m³ determine spherical mass, surface gravity and escape speed. This physical radius is independent of the existing `render → sphere_radius` scene geometry control and zoom. Neither regenerates terrain.
+- **Physical terrain scale:** calibrated land/seafloor heights are separate from artistic `mountain_height`. The panel reports the current vertical exaggeration; inspection samples generated elevations before decorative mountain folds. The displayed ocean remains at sea level.
+- **Display layer:** Original map, Day / night, or Solar energy. Solar energy is top-of-atmosphere W/m²; its diagnostic palette retains terrain shading. Night brightness in the day/night layer is an editing aid, not incoming heat.
+- **View:** Follow surface keeps the map fixed while the Sun moves. From space shows actual spin/axial tilt through a separate model transform; navigation still works in either mode.
+- **Time:** Play/Pause, elapsed days, spin phase, season phase and four speed settings. The epoch is northern spring equinox; season 90° is northern summer solstice. Rotation & solar orbit exposes sidereal period, retrograde spin, tilt, circular orbit distance and Bond albedo. The year is derived from the fixed solar mass and orbital distance.
+- **Inspect:** select a point for body latitude/longitude, mapped elevation/seafloor depth, local solar time and irradiance. Inspection does not paint. Painting pauses at the presented frame; hiding the tab also pauses until Play is pressed again.
+- **Reset time** changes only the clock/phases. **Earth preset** restores physical parameters and time. The existing terrain **Reset** retains its original meaning.
+
+The **Radiative Teq** value is global blackbody radiation equilibrium with full heat redistribution, not surface air temperature. This stage has no greenhouse, heat transport, weather, water-budget, erosion or object dynamics solver. Rapid spin and very large relief are outside the accurate range of the spherical approximation. Fields are not saved across reloads.
+
+Physics uses `M=4πρR³/3`, `g=GM/R²`, `v_escape=sqrt(2GM/R)`, a circular two-body year, and `Q=S max(0,n·sun)` on the reference sphere. References: [JPL constants](https://ssd.jpl.nasa.gov/astro_par.html), [JPL physical parameters](https://ssd.jpl.nasa.gov/planets/phys_par.html), [NASA Kepler laws](https://science.nasa.gov/learn/basics-of-space-flight/chapter3-3/), [CLIMLAB insolation](https://climlab.readthedocs.io/en/stable/_modules/climlab/solar/insolation.html), and [NASA GISS on equilibrium versus surface temperature](https://www.giss.nasa.gov/pubs/abs/de06700y.html).
+
 ## Rendering preserved
 
 | Original component | Spherical adaptation |
@@ -59,11 +75,13 @@ node scripts/build-reference.mjs
 
 The reference command reconstructs and builds the original source only inside `build/reference/`. Compare it at [the original reference page](http://localhost:8000/build/reference/embed.html).
 
-`pnpm test` also builds the GPU regression fixture. With the server running, open [the mountain projection check](http://localhost:8000/tests/gpu-radial.html): WebGL2 transform feedback checks the actual depth/drape displacement shader against fixed world positions and CPU picking geometry across four camera orientations, three heights, and radii 100/300/1000 (216 checks). Its browser result must say `PASS`; the Node test command does not execute this browser check.
+`pnpm test` also builds the GPU regression fixture. With the server running, open [the mountain projection check](http://localhost:8000/tests/gpu-radial.html): WebGL2 transform feedback checks the actual depth/drape displacement shader against fixed body positions and CPU picking geometry across four camera orientations, three heights, radii 100/300/1000 and three planet model transforms (648 checks). Its browser result must say `PASS`; the Node test command does not execute this browser check.
 
 The [outline sampling check](http://localhost:8000/tests/gpu-outlines.html) must also say `PASS`. It samples the renderer's actual outline texture at 771 fractional positions to detect pixel snapping that would cause stationary diamond-shaped bands during rotation.
 
 The [silhouette check](http://localhost:8000/tests/gpu-silhouette.html) checks background/sea coverage and the actual final shader: all eight edge directions, identical foreground/background colors, unchanged interior pixels, opaque output, and disabling either outline control. Like the other GPU fixtures, run it in the browser after `pnpm test` builds it.
+
+The [planet light check](http://localhost:8000/tests/gpu-insolation.html) exercises the actual production lighting snippet: original colors, day/night floor, incidence angles, energy palette endpoints and opaque coverage (10 checks).
 
 For automated screenshots and browser interactions, install Playwright in a separate tooling environment (or locally) and have Chrome installed:
 
@@ -72,5 +90,7 @@ node scripts/browser-check.mjs
 ```
 
 `PLAYWRIGHT_MODULE` can point to that environment's `playwright/index.mjs` as a `file:` URL. Results and screenshots go to `build/validation/`. The runner checks painting/reset, camera controls, seams/poles, shading controls, seed reproducibility, touch emulation, and browser errors. See [validation notes](docs/validation.md).
+
+`node scripts/planet-browser-check.mjs` additionally checks SI scaling without regeneration, reversible layers, clock/visibility handling, inspection, spin-view painting and mobile controls, and runs all four GPU fixtures. Its [controls fixture](http://localhost:8000/tests/planet-controls.html) deterministically checks that Pause freezes the last presented frame and Resume advances from it. Painted terrain is checked after physical size/density/relief changes and a scene-radius round trip. Set `BASE_URL` for either runner when using another port; the planet runner defaults to `http://localhost:8002`. Planet screenshots and reports go to `build/validation/planet/`.
 
 Original documentation and credits are in [README.org](README.org). Apache-2.0; original Mapgen4 and helper code copyright Red Blob Games.

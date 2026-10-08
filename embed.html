@@ -71,6 +71,23 @@
     }
     #sliders #slider-sphere_radius span { width: auto; }
     #slider-sphere_radius .radius-value { float: right; }
+    #planet-controls { font-family: var(--sans-serif, Arial); font-size: 11px; line-height: 1.35; }
+    #planet-controls h3 { font-size: 11px; }
+    #planet-controls label { font-size: inherit; margin: 6px 0; }
+    #planet-controls label span { width: auto; display: block; font-family: inherit; }
+    #planet-controls input:not([type="checkbox"]), #planet-controls select { box-sizing: border-box; width: 100%; min-width: 0; font-size: 11px; }
+    #planet-controls button { width: 100%; min-height: 26px; margin: 3px 0; font-size: 11px; }
+    #planet-controls button[aria-pressed="true"] { background: hsl(60,100%,80%); }
+    #planet-controls output { display: block; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+    #planet-controls details { margin-top: 8px; break-inside: avoid; }
+    #planet-controls summary { cursor: pointer; background: hsl(60,20%,90%); padding: 5px 2px; }
+    #planet-controls .planet-note { margin: 6px 0; color: #555; font-size: 10px; overflow-wrap: anywhere; }
+    #planet-controls input[aria-invalid="true"] { outline: 2px solid #a22; }
+    #planet-controls :focus-visible { outline: 2px solid #466aa0; outline-offset: 1px; }
+    #planet-model-note:empty { display: none; }
+    @media (orientation: portrait) {
+        #sliders { align-self: start; max-height: max(200px, calc(100dvh - 100vw - 20px)); column-width: auto; }
+    }
     #button-reset {
         display: inline-block;
         margin-left: auto;

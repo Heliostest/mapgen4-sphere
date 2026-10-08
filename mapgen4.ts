@@ -20,6 +20,7 @@ import Renderer from "./render.ts";
 import {installNavigation} from './navigation.ts';
 import {SPHERE_RADIUS} from './sphere.ts';
 import {MIN_ZOOM, MAX_ZOOM} from './sphere-view.ts';
+import {installPlanetControls} from './planet-controls.ts';
 import type {Mesh} from "./types.d.ts";
 
 
@@ -75,6 +76,7 @@ const initialParams = {
  */
 function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     let render = new Renderer(mesh);
+    let planetControls:ReturnType<typeof installPlanetControls>|undefined;
 
     /* set initial parameters */
     for (let phase of ['elevation', 'biomes', 'rivers', 'render']) {
@@ -144,6 +146,21 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         render.updateView(param.render);
     }
     installNavigation(param.render, redraw);
+    planetControls=installPlanetControls({
+        container:document.getElementById('sliders'),
+        canvas:document.getElementById('mapgen4') as HTMLCanvasElement,
+        onView:view=>{render.updatePlanet(view);redraw();},
+        sampleTerrain:coords=>render.sampleTerrain(coords),
+        canInspect:()=>!Painting.navigating(),
+        presentedTimeS:()=>render.presentedPlanetTimeS,
+        renderParams:()=>param.render,
+    });
+    // Legacy artist controls only update physical scale readouts, never SI state.
+    for(const name of ['sphere_radius','mountain_height']) {
+        document.querySelector(`#slider-${name} input`).addEventListener('input',()=>planetControls.refresh());
+    }
+    Painting.inspecting=()=>planetControls.isInspecting();
+    Painting.onBeforePaint=()=>planetControls.pause();
 
     /* Ask render module to copy WebGL into Canvas */
     function download() {
@@ -179,7 +196,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     
     worker.addEventListener('message', event => {
         working = false;
-        let {elapsed, numRiverTriangles, quad_elements_buffer, a_quad_em_buffer, a_river_xyww_buffer} = event.data;
+        let {elapsed, numRiverTriangles, quad_elements_buffer, a_quad_em_buffer, a_river_xyww_buffer, terrain_elevation_buffer} = event.data;
         elapsedTimeHistory.push(elapsed | 0);
         if (elapsedTimeHistory.length > 10) { elapsedTimeHistory.splice(0, 1); }
         const timingDiv = document.getElementById('timing');
@@ -188,7 +205,9 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         render.a_quad_em = new Float32Array(a_quad_em_buffer);
         render.a_river_xyww = new Float32Array(a_river_xyww_buffer);
         render.numRiverTriangles = numRiverTriangles;
+        render.physicalElevation = new Float32Array(terrain_elevation_buffer);
         render.updateMap();
+        planetControls.terrainChanged();
         redraw();
         if (workRequested) {
             requestAnimationFrame(() => {

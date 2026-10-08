@@ -10,7 +10,8 @@ import {mat4} from 'gl-matrix';
 import colormap from "./colormap.ts";
 import Geometry from "./geometry.ts";
 import {atlasTriangles, SPHERE_RADIUS} from './sphere.ts';
-import {sphereProjection, pickTerrain, terrainPosition} from './sphere-view.ts';
+import {sphereProjection, pickTerrain, pickTerrainHit, terrainPosition} from './sphere-view.ts';
+import {planet_fragment, type PlanetView} from './planet-render.ts';
 import type {Mesh} from "./types.d.ts";
 
 //////////////////////////////////////////////////////////////////////
@@ -361,6 +362,7 @@ const vert_drape = `
 
 const frag_drape = `
     precision highp float;
+    ${planet_fragment}
     uniform sampler2D u_colormap;
     uniform sampler2D u_elevation;
     uniform sampler2D u_water;
@@ -463,7 +465,9 @@ const frag_drape = `
         );
         if (z <= 0.5 && max(depth1, depth2) > 1.0/256.0 && neighboring_river <= 0.2) { outline += u_outline_coast * 256.0 * (max(depth1, depth2) - 2.0*(z - 0.5)); }
 
-        out_fragcolor = vec4(mix(biome_color, water_color.rgb, water_color.a) * light / outline, 1);
+        vec3 base_color=mix(biome_color, water_color.rgb, water_color.a);
+        vec3 body_normal=vec3(cos(lat)*sin(lon),sin(lat),cos(lat)*cos(lon));
+        out_fragcolor = vec4(planet_color(base_color,body_normal) * light / outline, 1);
     }`;
 
 const vert_final = `
@@ -523,6 +527,14 @@ export default class Renderer {
     pickDirections: Float32Array;
     pickElements = new Int32Array(0);
     pickElevation = new Float32Array(0);
+    physicalElevation = new Float32Array(0);
+    planetView:PlanetView|null=null;
+    presentedPlanetTimeS:number|null=null;
+    private mapDirty=true;
+    private pickingDirty=true;
+    private pickedHeight=NaN;
+    private pickedRadius=NaN;
+    private landOutlineWater=NaN;
     topdown: mat4;
     projection: mat4;
     inverse_projection: mat4;
@@ -642,6 +654,15 @@ export default class Renderer {
         return pickTerrain(coords,this.inverse_projection,this.pickPositions,this.pickElements,this.pickDirections);
     }
 
+    sampleTerrain(coords:number[]):{uv:[number,number];elevation:number}|null {
+        const hit=pickTerrainHit(coords,this.inverse_projection,this.pickPositions,this.pickElements,this.pickDirections);
+        if(!hit || this.physicalElevation.length===0) return null;
+        const elevation=hit.weights.reduce((sum,w,i)=>sum+w*this.physicalElevation[hit.indices[i]],0);
+        return {uv:hit.uv,elevation};
+    }
+
+    updatePlanet(view:PlanetView) { this.planetView=view; }
+
     updateMap() {
         let p=0;
         for (let i=0;i<this.quad_elements.length;i+=3) {
@@ -660,15 +681,18 @@ export default class Renderer {
         // available for picking while the next generation is in flight.
         this.pickElevation=this.a_quad_em.slice();
         this.pickElements=this.quad_elements.slice();
+        this.mapDirty=true;this.pickingDirty=true;
     }
 
     updatePicking(height: number, sphereRadius=SPHERE_RADIUS) {
+        if(!this.pickingDirty && this.pickedHeight===height && this.pickedRadius===sphereRadius) return;
         const {numRegions,xyz_r,xyz_t}=this.mesh;
         for (let v=0;v<this.pickPositions.length/3;v++) {
             const a=v<numRegions ? xyz_r : xyz_t, index=v<numRegions ? v : v-numRegions;
             const p=terrainPosition(a.subarray(3*index,3*index+3),this.pickElevation[2*v],height,sphereRadius);
             this.pickPositions.set(p,3*v);
         }
+        this.pickingDirty=false;this.pickedHeight=height;this.pickedRadius=sphereRadius;
     }
 
     /* Allow drawing at a different resolution than the internal texture size */
@@ -748,6 +772,8 @@ export default class Renderer {
             gl.uniform1f(program.u_outline_strength, renderParam.outline_strength);
             gl.uniform1f(program.u_outline_threshold, renderParam.outline_threshold / 1000);
             gl.uniform1f(program.u_biome_colors, renderParam.biome_colors);
+            gl.uniform1i(program.u_planet_layer, this.planetView?.layer==='day-night' ? 1 : this.planetView?.layer==='insolation' ? 2 : 0);
+            gl.uniform3fv(program.u_sun_direction, this.planetView?.sunDirection ?? [0,0,1]);
 
             this.texture_colormap.activate(gl.TEXTURE0, program.u_colormap);
             this.fbo_land.texture.activate(gl.TEXTURE1, program.u_elevation);
@@ -789,13 +815,18 @@ export default class Renderer {
             if (!renderParam) { return; }
             this.renderParam = undefined;
 
-            if (this.numRiverTriangles > 0) {
-                this.drawRivers();
+            if(this.mapDirty) {
+                this.fbo_river.clear(0,0,0,0);
+                if (this.numRiverTriangles > 0) this.drawRivers();
             }
+            if(this.mapDirty || this.landOutlineWater!==renderParam.outline_water) {
+                this.fbo_land.clear(0,0,0,1);
+                this.drawLand(renderParam.outline_water);
+                this.landOutlineWater=renderParam.outline_water;
+            }
+            this.mapDirty=false;
 
-            this.drawLand(renderParam.outline_water);
-
-            const view=sphereProjection(renderParam);
+            const view=sphereProjection(renderParam,this.planetView?.model);
             this.projection=view.projection;
             this.rotation=view.rotation;
             this.updatePicking(renderParam.mountain_height,renderParam.sphere_radius ?? SPHERE_RADIUS);
@@ -803,6 +834,8 @@ export default class Renderer {
             /* Keep track of the inverse matrix for mapping mouse to world coordinates */
             mat4.invert(this.inverse_projection, this.projection);
 
+            this.fbo_depth.clear(0,0,0,1);
+            this.fbo_drape.clear(0.3,0.3,0.35,0);
             if (renderParam.outline_depth > 0) {
                 this.drawDepth(renderParam);
             }
@@ -811,6 +844,7 @@ export default class Renderer {
 
             /* Draw the final texture to the canvas; this slightly blurs the outlines */
             this.drawFinal([0.5 / fbo_texture_size, 0.5 / fbo_texture_size], renderParam);
+            this.presentedPlanetTimeS=this.planetView?.timeS??null;
 
             if (this.screenshotCallback) {
                 const ctx = this.screenshotCanvas.getContext('2d');
@@ -830,7 +864,6 @@ export default class Renderer {
                 this.screenshotCallback = null;
             }
 
-            clearBuffers();
         };
 
         renderLoop();

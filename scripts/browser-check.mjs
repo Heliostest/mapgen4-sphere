@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const base=process.env.BASE_URL || 'http://localhost:8000';
 const browser=await chromium.launch({channel:'chrome',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
 const errors=[], results=[];
 const snapshots=new Map();
@@ -88,9 +89,9 @@ async function paint(u=.5,v=.5,steps=8) {
     await frames();
 }
 try {
-    await page.goto('http://localhost:8000/embed.html');
+    await page.goto(base+'/embed.html');
     await waitGeneration(0);
-    assert.equal(await page.locator('input').count(),32);
+    assert.equal(await page.locator('[id^="slider-"] input').count(),33);
     const initial=await snapshot('sphere-default');
     assert.ok(await page.locator('#button-reset').isDisabled());
     const version=await page.evaluate(()=>fetch('build/version.json').then(r=>r.json()));
@@ -169,13 +170,13 @@ try {
     results.push('Drag-mode toggle rotates without editing');
     const timings=await page.evaluate(()=>window.generationTimes);
 
-    await page.goto('http://localhost:8000/build/reference/embed.html');
+    await page.goto(base+'/build/reference/embed.html');
     await waitGeneration(0); await snapshot('original-default');
     await page.locator('#large').click();await paint();await snapshot('original-mountain-brush');
     const mobileContext=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:1});
     const mobile=await mobileContext.newPage();
     mobile.on('pageerror',error=>errors.push(error.message));
-    await mobile.goto('http://localhost:8000/embed.html');
+    await mobile.goto(base+'/embed.html');
     await mobile.waitForSelector('#slider-zoom input');
     await mobile.waitForTimeout(700);
     await mobile.locator('#button-navigate').tap();
