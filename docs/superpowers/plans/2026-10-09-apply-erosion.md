@@ -38,4 +38,4 @@ Files: `map.ts`, `worker.ts`, `mapgen4.ts`, `painting.ts`, `spherical-constraint
 
 ### Task 3: Verification and independent review
 - [x] Node/typecheck/build and relevant legacy/planet/water/geomorph browser/DOM/GPU regressions, save concrete evidence and document limitations.
-- [ ] One independent review; reproduce/fix actionable issues in one pass, final checks and local handoff.
+- [x] One independent review; no actionable findings, final checks and local handoff.
