@@ -32,6 +32,34 @@ test('rain, melt and evaporation reconcile the partition without a second water 
     assert.ok(Math.abs(route.volumeM3.reduce((s,v)=>s+v,0)-water.surfaceKgM2.reduce((s,v)=>s+v,0)*.1)<1e-10);
     water.surfaceKgM2.fill(0);route.route(water,1,1);assert.equal(route.volumeM3.reduce((s,v)=>s+v,0),0);
 });
+test('nearly drained terrain reservoirs keep the authoritative coarse water nonnegative',()=>{
+    const {mesh}=makeSphereMesh(120,35,12345),grid=makeThermalGrid(24,12),radiusM=6371008.4;
+    const elevation=Float32Array.from({length:mesh.numRegions+mesh.numTriangles},(_,i)=>{
+        const xyz=i<mesh.numRegions?mesh.xyz_r:mesh.xyz_t,j=i<mesh.numRegions?i:i-mesh.numRegions;
+        return .01+.015*xyz[3*j+1]+.009*xyz[3*j];
+    });
+    const quads=new Int32Array(mesh.numSides*3);
+    for(let s=0;s<mesh.numSides;s++)quads.set([mesh.r_begin_s(s),mesh.numRegions+mesh.t_outer_s(s),mesh.numRegions+mesh.t_inner_s(s)],3*s);
+    const sample=sampleTerrainGrid(grid,mesh.xyz_r,elevation),zero=new Float64Array(grid.count),temperature=new Float64Array(grid.count).fill(300);
+    const config={...DEFAULT_WATER,initialOceanDepthM:0,evaporationFraction:0,windMps:0,moistureDiffusivityM2s:0,routingSpeedMps:10};
+    const reference={temperatureK:temperature,radiationScale:new Float64Array(grid.count).fill(1),absorbedWm2:zero,
+        windEastMps:zero,windNorthMps:zero,rainMmDay:zero,evaporationMmDay:zero,soilFraction:zero,humidityFraction:zero,surfaceMm:Float64Array.from({length:grid.count},(_,k)=>k%7)};
+    const water=new WaterModel(grid,radiusM,sample.landFraction,sample.landElevation.map(h=>h*10000),temperature,config,reference);
+    const network=terrainRoutingNetwork(mesh,elevation,grid,radiusM,10000,quads);water.attachRouting(network);
+    const route=water.routing!;
+    for(let step=0;step<2500;step++) {
+        water.step(1800,temperature,zero);
+        assert.ok(water.surfaceKgM2.every(v=>v>=0),`Negative coarse water after drainage step ${step}`);
+        assert.ok(route.volumeM3.every(v=>v>=0));
+    }
+    assert.ok(Math.abs(water.diagnostics().residualMm)<1e-10);
+    assert.ok(Math.abs(route.diagnostics(water).partitionResidualM3)*1000/(grid.count*water.cellAreaM2)<1e-10);
+    const restored=new WaterModel(grid,radiusM,sample.landFraction,sample.landElevation.map(h=>h*10000),temperature,config,undefined,water.initialTotalMm);
+    restored.restore(water.checkpoint());restored.attachRouting(network);
+    assert.deepEqual(restored.checkpoint(),water.checkpoint());
+    for(let j=0;j<20;j++){water.step(1800,temperature,zero);restored.step(1800,temperature,zero);}
+    assert.deepEqual(restored.checkpoint(),water.checkpoint());
+});
 test('terrain water checkpoint resumes exact volumes and fluxes independently',()=>{
     const a=fixture();a.water.surfaceKgM2[0]=10000;a.route.route(a.water,1,1);
     const b=fixture();Object.assign(b.water,structuredClone(a.water));b.route.restore(a.route.checkpoint(),b.water);

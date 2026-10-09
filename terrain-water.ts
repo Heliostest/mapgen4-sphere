@@ -31,9 +31,16 @@ export class TerrainWater {
         for(let k=0;k<water.grid.count;k++) {
             const target=water.surfaceKgM2[k],change=(target-this.previousSurface[k])*scale,cells=this.byCell[k];
             if(target===0){for(const i of cells)this.volumeM3[i]=0;continue;}
-            if(change>=0) {for(const i of cells)this.volumeM3[i]+=change*this.network.areaM2[i]/this.cellArea[k];}
+            const total=cells.reduce((sum,i)=>sum+this.volumeM3[i],0);
+            // Pair transfers round independently in the coarse and fine ledgers.
+            // Re-anchor even with no source change: otherwise a drying coarse
+            // cell can reach zero while its fine donors still retain roundoff.
+            if(change>0) {
+                const fraction=total>0?this.previousSurface[k]*scale/total:0;
+                for(const i of cells)this.volumeM3[i]=this.volumeM3[i]*fraction+change*this.network.areaM2[i]/this.cellArea[k];
+            }
             else {
-                const total=cells.reduce((sum,i)=>sum+this.volumeM3[i],0),fraction=total>0?Math.max(0,1+change/total):0;
+                const fraction=total>0?target*scale/total:0;
                 for(const i of cells)this.volumeM3[i]*=fraction;
             }
         }

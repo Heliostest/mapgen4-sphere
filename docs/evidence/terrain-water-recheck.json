@@ -1,0 +1,249 @@
+{
+  "date": "2026-10-09",
+  "baseCommit": "8940107957a6280b31408c11c29a21da70cbf1e8",
+  "scope": "Stage 2 terrain-water acceptance and dry-storage reconciliation repair",
+  "numericalTests": {
+    "passed": 140,
+    "failed": 0
+  },
+  "typecheck": "PASS",
+  "build": "PASS",
+  "terrainWater": {
+    "checks": [
+      "Fine terrain stores, actual flux and natural-surface pixels evolve together while water stays nonnegative",
+      "Original artwork restores exactly and the same authored terrain remains pickable",
+      "Fine routing volumes, receivers and flux restore with exact surface pixels",
+      "Inconsistent fine/coarse storage is rejected before replacing the active world",
+      "Actual renderer shows rising lake shorelines, saturated ground and a fully dry basin; mobile stays within viewport"
+    ],
+    "errors": [],
+    "probe": "20.29° lat, 29.53° lon · 576 m elevation · 832.8 W/m² · 15.45 h local solar time · 15.5 °C daily-mean cell · estimated wind E -6.6 / N -2.3 m/s · potential cover: Grassland / steppe · vegetation 30% · snow 0% · local surface estimate 17.4 °C · annual mean 21.1 °C / 251 mm per Earth year · rain 0.00 mm/day · soil 1.8 mm / standing 0.0 mm per land area · coarse-cell land snow 0.0 mm / melt 0.00 mm/day / ocean ice 0.00 m · cell outflow 0.00e+0 m³/s · nearest terrain reservoir: mean depth 0.000 m / outflow 0.00 m³/s",
+    "waterBudget": -9.89530235528946e-9,
+    "routing": "Terrain routing · 53,834 reservoirs · max standing depth 2.372 m · max flow 46444.6 m³/s · unresolved coast storage 0.0000 km³. Rivers are widened for readability; shoreline reconstruction is approximate. Original map retains artistic rivers.",
+    "steps": 1097,
+    "basin": {
+      "status": "PASS",
+      "counts": [
+        {
+          "label": "Dry basin",
+          "blue": 0,
+          "green": 0,
+          "volumeM3": 0
+        },
+        {
+          "label": "Saturated ground",
+          "blue": 0,
+          "green": 2348517,
+          "volumeM3": 0
+        },
+        {
+          "label": "Low lake",
+          "blue": 339753,
+          "green": 2009655,
+          "volumeM3": 1299199101980698
+        },
+        {
+          "label": "High lake",
+          "blue": 1384148,
+          "green": 965687,
+          "volumeM3": 13905855827842282
+        },
+        {
+          "label": "Drained again",
+          "blue": 0,
+          "green": 0,
+          "volumeM3": 0
+        }
+      ]
+    },
+    "rejectionFrame": {
+      "changedChannels": 0,
+      "maxDifference": 0
+    }
+  },
+  "simulation": {
+    "checks": [
+      "Real download/upload restores all state, options, clock, comparison and exact globe pixels",
+      "Real browser uninterrupted and restored branches resume to identical model fields and globe pixels",
+      "Comparison baseline, history and conservation diagnostics remain available after resume",
+      "Malformed versions, dimensions, nonfinite data and mismatched actual terrain preserve the current world",
+      "Editing during asynchronous candidate generation cancels replacement",
+      "Legacy terrain-only files retain climate-off semantics; complete off-state files roundtrip",
+      "Complete simulation preserves both applied erosion and subsequent painting, with exact restored state and pixels"
+    ],
+    "errors": [],
+    "bytes": 3061939,
+    "steps": 3832,
+    "resumedSteps": 7665
+  },
+  "surface": {
+    "checks": [
+      "Generated natural surface is visible immediately at zero age, with color key and estimated cover probe",
+      "Season, physical elevation and radiation parameters update ice/snow/vegetation colors while paused",
+      "Play changes cover while preserving water budgets; diagnostic layer round trips preserve climate history and surface pixels",
+      "Original artwork restores exactly, model disable clears the layer, and the color key fits mobile",
+      "Paired polar views at the same camera scale cover both equinox phases and zero tilt; default south-pole ocean probe confirms sea ice without Play",
+      "Both polar views render without clock advancement; actual renderer converges at each pole through camera rotation and texture replacement"
+    ],
+    "errors": [],
+    "gpu": {
+      "status": "PASS",
+      "checks": 87
+    },
+    "poles": {
+      "status": "PASS",
+      "checks": 116
+    },
+    "southProbe": "-90.00° lat, -107.16° lon · -361 m seafloor · 0.0 W/m² · solar time undefined at pole · -1.8 °C daily-mean cell · estimated wind E -9.3 / N 3.3 m/s · potential cover: ocean · sea ice 100% · local ice / water estimate -1.8 °C · rain 0.42 mm/day · soil 0.0 mm / standing 0.0 mm per land area · coarse-cell land snow 73.7 mm / melt 0.00 mm/day / ocean ice 1.50 m · cell outflow 0.00e+0 m³/s"
+  },
+  "coupledWeather": {
+    "checks": [
+      "Moisture clouds are visible at generation; pause is exact and toggling off restores pixels without changing any physical state",
+      "Actual precipitation, wind and moisture evolve; full save/load reconstructs exact weather pixels and 98-day resumed fields with conserved budgets",
+      "Invalid display options preserve the world; Original remains exact, mobile fits and old saves can display clouds without precipitation phase",
+      "Terrain routing, glaciers, evolving circulation and weather run together with closed budgets and an exact full-world/pixel restore",
+      "Production GPU fixture verifies dry restoration and moisture-derived clouds without rain, snow or time-driven glyphs"
+    ],
+    "errors": [],
+    "budgets": {
+      "water": -5.820766091346741e-9,
+      "energy": 0.0000012665987014770508
+    },
+    "coupledBudgets": {
+      "water": 9.778887033462524e-9,
+      "energy": 0.000026401132345199585,
+      "solid": 1.2129087964388556e-29
+    },
+    "diagnostics": "Cloud cover 25%",
+    "steps": [
+      3832,
+      7665
+    ],
+    "gpu": {
+      "status": "PASS",
+      "cases": [
+        "Dry",
+        "Humid cloud",
+        "Same cloud / heavy rain",
+        "Same cloud / changed wind",
+        "Same cloud / snowfall",
+        "Dry again",
+        "Later",
+        "Paused",
+        "Restored time",
+        "Cloud later",
+        "Dry later",
+        "Light rain"
+      ]
+    }
+  },
+  "views": {
+    "status": "PASS",
+    "systems": {
+      "environment-terrain-water": true,
+      "environment-glaciers": true,
+      "environment-circulation": true,
+      "environment-weather": true
+    },
+    "errors": [],
+    "restoredRuntimeUnchanged": true,
+    "captures": [
+      "north-pole",
+      "north-rotated",
+      "south-pole",
+      "south-rotated",
+      "meridian",
+      "meridian-wrapped",
+      "live-default"
+    ]
+  },
+  "livePlayback": {
+    "status": "PASS",
+    "startup": {
+      "status": "PASS",
+      "checks": [
+        "Startup waits for accepted terrain",
+        "Thermal, water and cloud cover start enabled",
+        "All coupled environment systems start enabled",
+        "Startup shows natural terrain from space",
+        "Startup plays automatically after terrain is ready",
+        "Startup produces surface, cloud and terrain-water render data",
+        "Playback rotates the visible planet",
+        "Playback advances real coupled state",
+        "Pause freezes coupled history",
+        "Later terrain changes cannot restart a paused world",
+        "Restored terrain settings remain paused with their own modes",
+        "Live planet button enables and resumes all systems",
+        "Hiding an already running planet pauses without surprise restart"
+      ],
+      "failures": []
+    },
+    "errors": [],
+    "observationS": 15.015358800000001,
+    "callbacks": 1798,
+    "over50ms": 0,
+    "maxMs": 33.10000002384186,
+    "p95Ms": 1.9000000357627869,
+    "days": 0.6405559604882428,
+    "limitations": "Same-machine CPU animation callback duration, not GPU presentation time or a cross-device frame-rate guarantee."
+  },
+  "shorelineBenchmark": {
+    "triangles": 23996,
+    "medianMs": 12.427999999999997,
+    "maxMs": 13.989599999999996,
+    "budgetMs": 50,
+    "status": "PASS"
+  },
+  "dryStorage": {
+    "before": [
+      {
+        "initialExportBytes": 1767441,
+        "maxStepS": 21600
+      },
+      {
+        "steps": 2060,
+        "timeDays": 42.916666666666664,
+        "k": 41,
+        "surfaceKgM2": -1.0070718463813605e-17,
+        "fineVolumeM3": 0.000006716395444115032,
+        "waterResidualMm": -2.9103830456733704e-10,
+        "exportError": "Invalid surfaceKgM2"
+      }
+    ],
+    "after": [
+      {
+        "initialExportBytes": 1767435,
+        "maxStepS": 21600
+      },
+      {
+        "found": false,
+        "steps": 20000,
+        "minSurface": 0,
+        "finalExportBytes": 1775121,
+        "waterResidualMm": -1.1350493878126144e-9
+      }
+    ]
+  },
+  "independentReview": {
+    "status": "PASS",
+    "finding": "Drainage roundoff could make coarse surface water negative and block complete-file export; repaired and re-reviewed.",
+    "remainingActionableFindings": 0
+  },
+  "visualInspection": {
+    "status": "PASS",
+    "reviewer": "Primary implementation agent",
+    "captures": [
+      "evolved connected rivers",
+      "controlled dry/saturated/low/high/drained basin",
+      "mobile",
+      "north pole",
+      "north rotated",
+      "south pole",
+      "south rotated",
+      "atlas meridian and wrapped meridian",
+      "all systems restored",
+      "live default"
+    ],
+    "limitations": "Chrome/WebGL2 on this machine and emulated mobile viewport; shoreline is a draped reservoir approximation and river widths are exaggerated."
+  }
+}
