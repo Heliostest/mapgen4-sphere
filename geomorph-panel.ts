@@ -6,7 +6,7 @@ export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:
     application:{ready:()=>boolean;apply:()=>void}={ready:()=>true,apply:()=>{}}) {
     const panel=document.createElement('details');panel.id='geomorph-panel';
     panel.innerHTML=`<summary>Erosion &amp; deposition preview</summary>
-      <p class="planet-note" data-info-for="geomorph-panel">Capture the current water discharge, then evolve in separate geological years. Astronomy Play does not advance erosion. Dry cells can still undergo slope smoothing.</p>
+      <p class="planet-note" data-info-for="geomorph-panel">Capture the current water discharge, then evolve the river/slope preview in separate geological years. Grounded ice accumulates glacial abrasion on the Astronomy Play clock; Capture glacial erosion imports that history. Dry cells can still undergo slope smoothing.</p>
       <button id="geomorph-capture" type="button">Capture current water</button>
       <button id="geomorph-capture-glacier" type="button">Capture glacial erosion</button>
       <label><span>Years per click (requested)</span><input id="geomorph-duration" type="number" min="0.01" max="100000000" step="any" value="100000"></label>

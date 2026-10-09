@@ -95,6 +95,14 @@ export class ThermalRuntime {
         m.stepS=step;m.restore(s.thermal);rt.refreshEnvironment();
         rt.environment?.atmosphere?.validateWinds(m.timeS-(m.steps>0?m.stepS/2:0));
         if(m.albedo.some((v,i)=>v!==s.thermal.albedo[i]))throw new Error('Saved albedo does not match frozen water and vegetation');
+        if(rt.water&&rt.environment) {
+            // Saturated ice cover can hide a changed ice inventory from the
+            // albedo check. Validate both independent ledgers on the candidate.
+            const budget=rt.water.diagnostics(),waterScale=Math.max(budget.totalMm,rt.water.initialTotalMm);
+            if(Math.abs(budget.residualMm)>Math.max(1e-6,64*Number.EPSILON*waterScale))throw new Error('Saved water budget mismatch');
+            const energyScale=Math.max(Math.abs(m.energy()),Math.abs(rt.environment.enthalpy()),Math.abs(rt.environment.initialEnthalpy),Math.abs(m.radiationJm2));
+            if(Math.abs(rt.environment.diagnostics().energyResidualJm2)>Math.max(1e-4,128*Number.EPSILON*energyScale))throw new Error('Saved enthalpy budget mismatch');
+        }
         rt.key=rt.modelKey(planet,orbit);rt.lastTarget=s.lastTarget;rt.presented=rt.checkpoint();
         rt.sync(planet,orbit,s.lastTarget,null);
         return rt;

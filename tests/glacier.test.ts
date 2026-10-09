@@ -63,3 +63,40 @@ test('disabling water clears grounded ice display seeds and roundtrips a thermal
     const saved=rt.snapshot();assert.equal(saved.state!.initialLandIce,null);assert.equal(saved.state!.localLandIceSeed,null);assert.equal(rt.surfaceState()!.landIceKgM2,null);
     assert.deepEqual(ThermalRuntime.fromSnapshot(saved,DEFAULT_PLANET,orbit).snapshot(),saved);
 });
+
+test('restoring a saturated ice sheet rejects invented frozen water and fusion energy',()=>{
+    const orbit={...DEFAULT_ORBIT,bondAlbedo:.55},rt=new ThermalRuntime(grid);rt.enabled=rt.waterEnabled=true;rt.environmentConfig.glaciers=true;
+    rt.setTerrain(new Float64Array(n).fill(.5),new Float64Array(n).fill(.2));rt.sync(DEFAULT_PLANET,orbit,0,0);
+    const saved=rt.snapshot(),k=saved.state!.water!.landIceKgM2.findIndex((v,i)=>v>5*ICE_DENSITY*saved.state!.land[i]);
+    assert.ok(k>=0,'Fixture needs saturated ice albedo so albedo validation alone cannot catch mass corruption');
+    const bad=structuredClone(saved);bad.state!.water!.landIceKgM2[k]+=1000;
+    assert.throws(()=>ThermalRuntime.fromSnapshot(bad,DEFAULT_PLANET,orbit),/water budget/i);
+    bad.state!.water!.initialTotalMm+=1000/n;
+    assert.throws(()=>ThermalRuntime.fromSnapshot(bad,DEFAULT_PLANET,orbit),/enthalpy budget/i);
+    assert.deepEqual(ThermalRuntime.fromSnapshot(saved,DEFAULT_PLANET,orbit).snapshot(),saved);
+    assert.deepEqual(rt.snapshot(),saved,'Rejected candidates must not change the active runtime');
+});
+
+test('symmetric generated land and sea ice exchange hemispheres with the seasonal phase',()=>{
+    const a=new ThermalRuntime(),b=new ThermalRuntime(),orbit={...DEFAULT_ORBIT,bondAlbedo:.45};
+    for(const [rt,phase] of [[a,0],[b,Math.PI]] as const) {
+        rt.enabled=rt.waterEnabled=true;rt.environmentConfig.glaciers=true;
+        rt.setTerrain(new Float64Array(rt.grid.count).fill(.5),new Float64Array(rt.grid.count).fill(.2));rt.sync(DEFAULT_PLANET,{...orbit,orbitPhaseRad:phase},0,0);
+    }
+    for(const v of [0,.05,.1,.15])for(const key of ['landIceM','seaIceFraction','snowFraction'] as const) {
+        const north=a.sampleSurface(.37,v)![key],south=b.sampleSurface(.37,1-v)![key];
+        assert.ok(Math.abs(north-south)<1e-8,`${key} hemisphere swap: ${north} != ${south}`);
+    }
+    assert.ok(a.sampleSurface(.37,0)!.landIceM>0&&a.sampleSurface(.37,1)!.landIceM>0);
+});
+
+test('melting the last grounded ice deposits its transported sediment without losing solid volume',()=>{
+    const {w}=fixture();const m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,landHeatCapacity:1e8},w.land,0,grid);
+    w.surfaceKgM2[10]=ICE_DENSITY*.5;w.seedLandIce(Float64Array.from({length:n},(_,i)=>i===10?ICE_DENSITY*.5:0));
+    const e=new EnvironmentModel(m,w,{...DEFAULT_ENVIRONMENT,glaciers:true}),g=w.glacier!;
+    // A valid prescribed solid history transported by this finite ice patch.
+    g.erodedM[9]=.01;g.sedimentM[10]=.01;g.restore(g.checkpoint());
+    m.temperatureK.fill(277);const mass=w.diagnostics().totalMm,heat=e.enthalpy();e.phase(1800);g.step(1800,m.temperatureK);
+    assert.equal(w.landIceKgM2[10],0);assert.equal(g.sedimentM[10],0);assert.equal(g.depositedM[10],.01);
+    assert.ok(Math.abs(w.diagnostics().totalMm-mass)<1e-7);assert.ok(Math.abs(e.enthalpy()-heat)<1e-4);assert.ok(Math.abs(g.diagnostics().solidResidualM)<1e-10);
+});

@@ -60,6 +60,23 @@ test('preview preserves authored ocean and detail, is periodic, finite at poles 
     p.heightM=field(1000);near(previewElevation(.8,.333,.17,p),.8,1e-15);
     p.land.fill(0);near(previewElevation(.8,0,0,p),.8);near(previewElevation(.8,0,0,null),.8);
 });
+
+test('nonuniform glacial terrain candidates have one land-weighted height at each pole',()=>{
+    const p={grid,land:field(1),baseHeightM:field(1000),heightM:field(1000)};
+    for(const row of [0,grid.height-1])for(let x=0;x<grid.width;x++) {
+        const k=row*grid.width+x;p.land[k]=x%3===0?0:.25+.75*x/grid.width;
+        p.baseHeightM[k]=500+100*x;p.heightM[k]=p.baseHeightM[k]-(row===0?10:20)*x;
+    }
+    for(const [row,v] of [[0,0],[grid.height-1,1]]) {
+        let before=0,after=0;
+        for(let x=0;x<grid.width;x++){const k=row*grid.width+x;before+=p.land[k]*p.baseHeightM[k];after+=p.land[k]*p.heightM[k];}
+        const expected=.8*after/before;
+        for(const u of [0,.07,.25,.53,.88,1]) {
+            near(previewElevation(.8,u,v,p),expected,1e-14);
+            near(previewElevation(.8,u,v===0?1e-7:1-1e-7,p),expected,1e-12);
+        }
+    }
+});
 test('runtime freezes copied runoff, undoes entire steps and invalidates replaced climate sources',()=>{
     const rt=new ThermalRuntime(grid);rt.enabled=rt.waterEnabled=true;rt.setTerrain(field(1),Float64Array.from({length:n},(_,i)=>i%4/4));
     rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);rt.water!.dischargeM3S.fill(1000);
