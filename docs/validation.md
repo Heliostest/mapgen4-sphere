@@ -302,3 +302,5 @@ The [terrain-water acceptance](terrain-water.md) records 120 passing Node tests,
 ## Grounded ice — 2026-10-09
 
 The [glacier acceptance](glaciers.md) records 126 passing Node tests and four real browser groups covering finite ice, motion, melt, abrasion, exact persistence and terrain application. Original energy thresholds were retained through compensated ice updates. Independent review's stale disable-state finding was fixed and re-reviewed. All prior browser suites passed.
+
+The later [stage-3专项复验](glacier-stage3-recheck.md) records 144 passing tests and 49 browser groups plus controlled production-GPU flow, polar geometry and melt routing. It reproduces and fixes corrupted saturated-ice save budgets and nonunique polar candidate heights, preserves the stage-2 handoff, and records matched visual evidence without attributing microscopic 42-day abrasion to visible terrain changes.

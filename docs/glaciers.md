@@ -10,6 +10,8 @@ Complete saves and visible-frame rollback preserve ice mass, its numerical compe
 
 ## Acceptance — 2026-10-09
 
+The later [stage-3专项复验](glacier-stage3-recheck.md) validates code commit `457ebd5` with 144 Node tests, 49 existing browser groups and new controlled production-renderer evidence. It fixes saturated-ice save budget validation and longitude-dependent polar erosion candidate heights. Matched actual polar views, 2,000 physical years of controlled ice transport and finite melt-to-basin routing are archived separately; ordinary 42-day abrasion remains micrometre-scale and visually unresolved.
+
 - **126/126 Node tests**, typecheck, build and diff checks passed. Tests cover finite initialization, compaction, downhill transport, tiny-radius limits, melt/latent heat, separate solid conservation, exact JSON continuation, visible rollback, legacy field defaults and disable/reload cleanup.
 - [Browser acceptance](evidence/glacier-report.json): four groups, no runtime/shader errors. A cold scenario (Bond albedo 0.45) evolved for over 40 physical days with terrain water enabled. Ice moved, melted and eroded; saved runtime and globe pixels restored exactly. Corrupt sediment state preserved the active world. Comparison, Original restoration, glacial erosion application and mobile layout passed.
 - Final browser residuals: water **1.525040715932846×10⁻⁸ mm**, enthalpy **−1.2099742889404297×10⁻⁵ J/m²**, solid **1.3536094183884296×10⁻²³ m** global equivalent.

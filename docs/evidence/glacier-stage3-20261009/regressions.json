@@ -1,0 +1,255 @@
+{
+  "date": "2026-10-09",
+  "sourceCommit": "457ebd5ab7686b83266b3cc0e091009eaab1dba7",
+  "tests": {
+    "total": 144,
+    "pass": 144,
+    "fail": 0
+  },
+  "typecheck": "PASS",
+  "build": "PASS",
+  "browserGroups": 49,
+  "suites": {
+    "glacier": {
+      "checks": [
+        "Actual cold-climate ice evolves and erodes during 40 physical days with finite water, latent energy and solid closure",
+        "Glacier mass, compensation, motion and solid history restore exactly; corrupt solid inventory preserves the current world",
+        "Comparison exposes ice thickness, Original restores exactly, and glacial erosion applies through the existing terrain rebuild",
+        "Disabling water clears glacier display seeds and preserves an exact thermal-only save; controls fit mobile"
+      ],
+      "errors": [],
+      "budgets": {
+        "water": 1.548323780298233e-8,
+        "energy": -0.000004649162292480469,
+        "solid": 1.427011136312839e-23
+      },
+      "steps": 3272,
+      "ice": "Grounded ice flow off"
+    },
+    "simulation": {
+      "checks": [
+        "Real download/upload restores all state, options, clock, comparison and exact globe pixels",
+        "Real browser uninterrupted and restored branches resume to identical model fields and globe pixels",
+        "Comparison baseline, history and conservation diagnostics remain available after resume",
+        "Malformed versions, dimensions, nonfinite data and mismatched actual terrain preserve the current world",
+        "Editing during asynchronous candidate generation cancels replacement",
+        "Legacy terrain-only files retain climate-off semantics; complete off-state files roundtrip",
+        "Complete simulation preserves both applied erosion and subsequent painting, with exact restored state and pixels"
+      ],
+      "errors": [],
+      "bytes": 3061939,
+      "steps": 3832,
+      "resumedSteps": 7665
+    },
+    "terrain-water": {
+      "checks": [
+        "Fine terrain stores, actual flux and natural-surface pixels evolve together while water stays nonnegative",
+        "Original artwork restores exactly and the same authored terrain remains pickable",
+        "Fine routing volumes, receivers and flux restore with exact surface pixels",
+        "Inconsistent fine/coarse storage is rejected before replacing the active world",
+        "Actual renderer shows rising lake shorelines, saturated ground and a fully dry basin; mobile stays within viewport"
+      ],
+      "errors": [],
+      "probe": "20.29° lat, 29.53° lon · 576 m elevation · 0.0 W/m² · 0.95 h local solar time · 15.7 °C daily-mean cell · estimated wind E -6.6 / N -2.3 m/s · potential cover: Grassland / steppe · vegetation 30% · snow 0% · local surface estimate 17.5 °C · annual mean 21.1 °C / 251 mm per Earth year · rain 0.00 mm/day · soil 1.1 mm / standing 0.0 mm per land area · coarse-cell land snow 0.0 mm / melt 0.00 mm/day / ocean ice 0.00 m · cell outflow 0.00e+0 m³/s · nearest terrain reservoir: mean depth 0.000 m / outflow 0.00 m³/s",
+      "waterBudget": -9.255018085241318e-9,
+      "routing": "Terrain routing · 53,834 reservoirs · max standing depth 2.424 m · max flow 46077.0 m³/s · unresolved coast storage 0.0000 km³. Rivers are widened for readability; shoreline reconstruction is approximate. Original map retains artistic rivers.",
+      "steps": 1128,
+      "basin": {
+        "status": "PASS",
+        "counts": [
+          {
+            "label": "Dry basin",
+            "blue": 0,
+            "green": 0,
+            "volumeM3": 0
+          },
+          {
+            "label": "Saturated ground",
+            "blue": 0,
+            "green": 2348517,
+            "volumeM3": 0
+          },
+          {
+            "label": "Low lake",
+            "blue": 339753,
+            "green": 2009655,
+            "volumeM3": 1299199101980698
+          },
+          {
+            "label": "High lake",
+            "blue": 1384148,
+            "green": 965687,
+            "volumeM3": 13905855827842282
+          },
+          {
+            "label": "Drained again",
+            "blue": 0,
+            "green": 0,
+            "volumeM3": 0
+          }
+        ]
+      },
+      "rejectionFrame": {
+        "changedChannels": 0,
+        "maxDifference": 0
+      }
+    },
+    "application": {
+      "checks": [
+        "Applying rebuilds actual terrain/rivers, resets environment and clears preview; undo restores exact original buffers and pixels",
+        "Repeated application has independent offsets; undo after painting preserves the newer brush constraints",
+        "Portable document restores exact geometry, river buffers and rendered pixels plus authored constraints, planet/time/camera; Reset clears the layer",
+        "Malformed, incompatible and oversized files are nonmutating; a delayed file read is canceled after a newer terrain edit",
+        "Delayed real worker replies coalesce edits, never publish obsolete revisions, recycle detached buffers and handle immediate Apply→Reset and edit→Load",
+        "Document controls fit mobile width while the globe stays visible"
+      ],
+      "errors": [],
+      "originalHash": {
+        "physical": 2174355134,
+        "base": 4212292503,
+        "geometry": 1089792770,
+        "rivers": 243898284,
+        "indices": 4071736500,
+        "count": 1136
+      },
+      "firstHash": {
+        "physical": 3734232213,
+        "base": 4212292503,
+        "geometry": 1500392020,
+        "rivers": 3178181707,
+        "indices": 3234837575,
+        "count": 1254
+      },
+      "savedHash": {
+        "physical": 1752842004,
+        "base": 1379010992,
+        "geometry": 2941023581,
+        "rivers": 985686985,
+        "indices": 2795214701,
+        "count": 1254
+      }
+    },
+    "environment": {
+      "checks": [
+        "Generated snow/ice inventories and both polar oceans appear at zero age; initial budgets close",
+        "Temperature, snow, sea ice, vegetation and current maps render distinct fields",
+        "In-dialog Play/Pause evolves >10 days while baseline stays fixed and mass/enthalpy close",
+        "CSV download contains baseline, current, delta, age, parameters and all budget metrics",
+        "Parameter change regenerates current only; explicit capture replaces the baseline",
+        "Mobile comparison has no horizontal overflow and Escape closes the dialog",
+        "Matched north/south polar globe captures use the coupled model at zero age"
+      ],
+      "errors": []
+    },
+    "geomorph": {
+      "checks": [
+        "Bounded geological steps deform actual terrain, conserve solids, keep astronomy fixed and undo/compare restore exact pixels",
+        "Change layer and preview probing work; artist radius and climate Play preserve geological history",
+        "Invalid duration is harmless; source edits/painting invalidate preview; reset/disable retain authored painting",
+        "Mobile capture/evolve controls fit a scrolling panel while the globe remains visible",
+        "Real renderer uploads matching preview/picking/probe data, retains source buffers and restores while worker buffers are detached"
+      ],
+      "errors": [],
+      "renderer": {
+        "status": "PASS",
+        "checks": 19
+      }
+    },
+    "surface": {
+      "checks": [
+        "Generated natural surface is visible immediately at zero age, with color key and estimated cover probe",
+        "Season, physical elevation and radiation parameters update ice/snow/vegetation colors while paused",
+        "Play changes cover while preserving water budgets; diagnostic layer round trips preserve climate history and surface pixels",
+        "Original artwork restores exactly, model disable clears the layer, and the color key fits mobile",
+        "Paired polar views at the same camera scale cover both equinox phases and zero tilt; default south-pole ocean probe confirms sea ice without Play",
+        "Both polar views render without clock advancement; actual renderer converges at each pole through camera rotation and texture replacement"
+      ],
+      "errors": [],
+      "gpu": {
+        "status": "PASS",
+        "checks": 87
+      },
+      "poles": {
+        "status": "PASS",
+        "checks": 116
+      },
+      "southProbe": "-90.00° lat, -107.16° lon · -361 m seafloor · 0.0 W/m² · solar time undefined at pole · -1.8 °C daily-mean cell · estimated wind E -9.3 / N 3.3 m/s · potential cover: ocean · sea ice 100% · local ice / water estimate -1.8 °C · rain 0.42 mm/day · soil 0.0 mm / standing 0.0 mm per land area · coarse-cell land snow 73.7 mm / melt 0.00 mm/day / ocean ice 1.50 m · cell outflow 0.00e+0 m³/s"
+    },
+    "weather": {
+      "checks": [
+        "Moisture clouds are visible at generation; pause is exact and toggling off restores pixels without changing any physical state",
+        "Actual precipitation, wind and moisture evolve; full save/load reconstructs exact weather pixels and 98-day resumed fields with conserved budgets",
+        "Invalid display options preserve the world; Original remains exact, mobile fits and old saves can display clouds without precipitation phase",
+        "Terrain routing, glaciers, evolving circulation and weather run together with closed budgets and an exact full-world/pixel restore",
+        "Production GPU fixture verifies dry restoration and moisture-derived clouds without rain, snow or time-driven glyphs"
+      ],
+      "errors": [],
+      "budgets": {
+        "water": -5.820766091346741e-9,
+        "energy": 0.0000012665987014770508
+      },
+      "coupledBudgets": {
+        "water": 9.778887033462524e-9,
+        "energy": 0.000026401132345199585,
+        "solid": 1.2129087964388556e-29
+      },
+      "diagnostics": "Cloud cover 25%",
+      "steps": [
+        3832,
+        7665
+      ],
+      "gpu": {
+        "status": "PASS",
+        "cases": [
+          "Dry",
+          "Humid cloud",
+          "Same cloud / heavy rain",
+          "Same cloud / changed wind",
+          "Same cloud / snowfall",
+          "Dry again",
+          "Later",
+          "Paused",
+          "Restored time",
+          "Cloud later",
+          "Dry later",
+          "Light rain"
+        ]
+      }
+    },
+    "circulation": {
+      "checks": [
+        "Actual wind perturbations and closed ocean-loop memory evolve for 49 days with finite conserved water and enthalpy",
+        "Downloaded and uploaded wind/ocean memory resumes to identical fields and globe pixels after 98 days",
+        "Invalid enabled circulation is rejected atomically; current comparison, wind map and Original remain available",
+        "Mobile controls fit; disabling water removes active circulation while thermal-only save still restores"
+      ],
+      "errors": [],
+      "budgets": {
+        "water": -5.820766091346741e-9,
+        "energy": 0.0000012665987014770508
+      },
+      "diagnostics": "Evolving circulation · max wind 13.03 m/s · thermal perturbation 5.00 m/s · current 0.0604 m/s",
+      "steps": [
+        3832,
+        7665
+      ]
+    }
+  },
+  "independentReview": {
+    "confirmedFindings": [
+      "P2: altered saturated land ice bypassed load budget validation",
+      "P2: terrain candidate height depended on longitude at a pole"
+    ],
+    "resolution": "Both reproduced RED and fixed GREEN; independent re-review found no new code defect.",
+    "randomFlowCases": 100,
+    "stepsPerCase": 100,
+    "maxWaterResidualMm": 2.24e-8,
+    "maxSolidResidualM": 7.62e-12
+  },
+  "circulationRetry": {
+    "initialAttempt": "Strict resumed PNG comparison failed once while runtime equality passed during parallel browser runs.",
+    "isolatedRerun": "Original strict PNG comparison passed; decoded repeated-run images have zero changed channels.",
+    "originalFailedPixels": "Not preserved before the rerun replaced them; the exact pixel cause is unconfirmed.",
+    "thresholdChanged": false
+  }
+}
