@@ -11,6 +11,8 @@ import {aggregateSurface,downscaleStore} from './surface-reservoirs.ts';
 import {FUSION_J_KG} from './water.ts';
 import {generateSeaIce,advanceSeaIce,seaIceCooling,seaIceFraction} from './sea-ice.ts';
 import {decodeRuntimeState,type RuntimeState} from './runtime-state.ts';
+import {terrainRoutingNetwork} from './terrain-water.ts';
+import {uvToDirection} from './sphere.ts';
 
 export interface ThermalTexture {width:number;height:number;pixels:Uint8Array;timeS:number;}
 /** Synchronous ownership avoids stale worker replies. Retain the acknowledged
@@ -46,6 +48,7 @@ export class ThermalRuntime {
     private readonly surfaceGrid=makeSurfaceGrid();
     private surfaceSampler:SurfaceTerrainSampler|null=null;
     private surfaceTerrain:{land:Float64Array;height:Float64Array}|null=null;
+    terrainSource:SurfaceTerrain|null=null;
     private surfaceInitial:{temperatureK:Float64Array;soilFraction:Float64Array}|null=null;
     private initialTemperature:Float64Array|null=null;
     private surfaceTemperature:Float64Array|null=null;
@@ -100,9 +103,17 @@ export class ThermalRuntime {
             if(saved!.length!==generated!.length||saved!.some((v,i)=>Math.abs(v-generated![i])>1e-12))throw new Error('Simulation terrain does not match authored terrain');
         }
         this.surfaceSampler=sampler;
+        this.terrainSource=source;
+        if(this.environmentConfig.terrainWater&&this.water)this.attachRouting(this.model.planet);
+    }
+    private attachRouting(planet:PlanetConfig) {
+        const source=this.terrainSource;
+        if(!source?.mesh)throw new Error('Terrain water requires the authored mesh');
+        this.water!.attachRouting(terrainRoutingNetwork(source.mesh,source.elevation,this.grid,planet.radiusM,planet.reliefM,source.quadElements));
     }
     invalidate() {this.environment=null;this.vegetation=null;this.initialSnow=this.initialIce=this.localSnowSeed=this.localIceSeed=this.localSnow=this.localIce=null;this.key='';this.model=null;this.water=null;this.presented=null;this.texture=null;this.waterTexture=null;this.wind=null;this.surfaceTexture=null;this.surfaceReference=null;this.initialSoil=null;this.initialTemperature=null;this.surfaceInitial=null;this.surfaceTemperature=null;this.surfaceSoil=null;this.iceEnergy=null;}
     setTerrain(land:Float64Array,height:Float64Array=new Float64Array(this.grid.count),source?:SurfaceTerrain) {
+        this.terrainSource=source??null;
         this.land=land.slice();this.landElevation=height.slice();
         if(source) {
             if(this.surfaceSampler?.directions!==source.directions)this.surfaceSampler=new SurfaceTerrainSampler(source.directions,this.surfaceGrid);
@@ -130,6 +141,17 @@ export class ThermalRuntime {
         const w=this.water,k=thermalCell(this.grid,u,v),f=w.land[k];
         return {rainMmDay:86400*w.precipitationKgM2S[k],soilMm:f>0?w.soilKgM2[k]/f:null,
             surfaceMm:f>0?w.surfaceKgM2[k]/f:null,dischargeM3S:w.dischargeM3S[k],atmosphereMm:w.atmosphereKgM2[k],snowMm:f>0?w.snowKgM2[k]/f:0,iceM:f<1?w.seaIceKgM2[k]/((1-f)*917):0,meltMmDay:f>0?86400*w.meltKgM2S[k]/f:0};
+    }
+    sampleTerrainWater(u:number,v:number) {
+        const route=this.water?.routing,mesh=this.terrainSource?.mesh;
+        if(!route||!mesh)return null;
+        const direction=uvToDirection(u,v);let nearest=-1,best=-Infinity;
+        for(let t=0;t<mesh.numTriangles;t++) {
+            const dot=direction.reduce((sum,x,c)=>sum+x*mesh.xyz_t[3*t+c],0);
+            if(dot>best){best=dot;nearest=t;}
+        }
+        if(nearest<0||route.network.cell[nearest]<0)return null;
+        return {triangle:nearest,depthM:route.volumeM3[nearest]/route.network.areaM2[nearest],flowM3S:route.fluxM3S[nearest]};
     }
     private checkpoint() {return {thermal:this.model!.checkpoint(),water:this.water?.checkpoint()??null,ice:this.iceEnergy!.slice(),vegetation:this.vegetation?.checkpoint()??null};}
     private localTemperature(temperature:Float64Array) {
@@ -179,6 +201,7 @@ export class ThermalRuntime {
                 this.localSnowSeed=this.localSnowSeed.map((v,i)=>v*snowScale[i]);this.localIceSeed=this.localIceSeed.map((v,i)=>v*iceScale[i]);
                 this.initialSnow=w.snowKgM2.slice();this.initialIce=w.seaIceKgM2.slice();
                 this.environment=new EnvironmentModel(this.model,w,this.environmentConfig);
+                if(this.environmentConfig.terrainWater)this.attachRouting(planet);
                 this.initialTemperature=this.model.temperatureK.slice();
                 this.vegetation=new VegetationModel(this.surfaceReference);
                 this.model.stepS=Math.min(this.model.stepS,w.maxStepS);

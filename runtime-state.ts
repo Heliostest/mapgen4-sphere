@@ -4,6 +4,7 @@ import type {EnvironmentConfig} from './environment.ts';
 import type {VegetationCheckpoint} from './vegetation.ts';
 import {BIOMES,type SurfaceReference} from './surface.ts';
 import {SURFACE_WIDTH,SURFACE_HEIGHT} from './surface-grid.ts';
+import type {TerrainWaterCheckpoint} from './terrain-water.ts';
 
 export interface RuntimeState {
     version:1;grid:{width:number;height:number};enabled:boolean;waterEnabled:boolean;
@@ -26,7 +27,7 @@ export function scalar(v:unknown,name:string,min=-1e30,max=1e30,integer=false):n
 }
 export function boolean(v:unknown):boolean {if(typeof v!=='boolean')throw new Error('Invalid snapshot switch');return v;}
 export function field(v:unknown,name:string,n:number,min=-1e30,max=1e30):Float64Array {
-    if((!Array.isArray(v)&&!(v instanceof Float64Array)&&!(v instanceof Uint8Array))||v.length!==n)throw new Error(`Invalid ${name} dimensions`);
+    if((!Array.isArray(v)&&!(v instanceof Float64Array)&&!(v instanceof Uint8Array)&&!(v instanceof Int32Array))||v.length!==n)throw new Error(`Invalid ${name} dimensions`);
     return Float64Array.from(v as ArrayLike<number>,x=>scalar(x,name,min,max));
 }
 export function thermalConfig(v:unknown):ThermalConfig {
@@ -36,7 +37,7 @@ export function waterConfig(v:unknown):WaterConfig {
     const c=record(v);return {evaporationFraction:scalar(c.evaporationFraction,'evaporation fraction',0,1),soilCapacityKgM2:scalar(c.soilCapacityKgM2,'soil capacity',1,1000),initialOceanDepthM:scalar(c.initialOceanDepthM,'water inventory',0,10000),windMps:scalar(c.windMps,'wind',-100,100),moistureDiffusivityM2s:scalar(c.moistureDiffusivityM2s,'moisture mixing',0,1e7),routingSpeedMps:scalar(c.routingSpeedMps,'routing speed',.01,10)};
 }
 export function environmentConfig(v:unknown):EnvironmentConfig {
-    const c=record(v);return {oceanStrengthMps:scalar(c.oceanStrengthMps,'ocean current',0,2),vegetation:boolean(c.vegetation),iceAlbedo:boolean(c.iceAlbedo)};
+    const c=record(v);return {oceanStrengthMps:scalar(c.oceanStrengthMps,'ocean current',0,2),vegetation:boolean(c.vegetation),iceAlbedo:boolean(c.iceAlbedo),terrainWater:c.terrainWater===undefined?false:boolean(c.terrainWater)};
 }
 export function decodeRuntimeState(value:unknown):RuntimeState {
     const d=record(value),g=record(d.grid);if(d.version!==1)throw new Error('Unsupported simulation state version');
@@ -52,7 +53,14 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
     let water:RuntimeState['state']['water']=null,vegetation:VegetationCheckpoint|null=null;
     if(result.waterEnabled) {
         const w=record(s.water),v=record(s.vegetation),wind=Math.abs(result.waterConfig.windMps)+1e-9;
-        water={atmosphereKgM2:f(w,'atmosphereKgM2'),soilKgM2:f(w,'soilKgM2'),surfaceKgM2:f(w,'surfaceKgM2'),snowKgM2:f(w,'snowKgM2'),seaIceKgM2:f(w,'seaIceKgM2'),meltKgM2S:f(w,'meltKgM2S'),precipitationKgM2S:f(w,'precipitationKgM2S'),evaporationKgM2S:f(w,'evaporationKgM2S'),dischargeM3S:f(w,'dischargeM3S'),windEastMps:f(w,'windEastMps',n,-wind,wind),windNorthMps:f(w,'windNorthMps',n,-wind,wind),oceanGlobalKgM2:scalar(w.oceanGlobalKgM2,'ocean store',0),elapsedS:scalar(w.elapsedS,'water age',0,Number.MAX_SAFE_INTEGER),initialTotalMm:scalar(w.initialTotalMm,'initial water',0)};
+        let routing:TerrainWaterCheckpoint|null=null;
+        if(result.environmentConfig.terrainWater) {
+            const r=record(w.routing),length=scalar((r.volumeM3 as number[])?.length,'terrain routing count',4,200000,true);
+            const receivers=f(r,'receiverSide',length,-1,3*length-1);
+            if(receivers.some(v=>!Number.isInteger(v)))throw new Error('Invalid terrain routing side');
+            routing={volumeM3:f(r,'volumeM3',length),fluxM3S:f(r,'fluxM3S',length),receiverSide:new Int32Array(receivers)};
+        }else if(w.routing!==undefined&&w.routing!==null)throw new Error('Unexpected terrain routing state');
+        water={atmosphereKgM2:f(w,'atmosphereKgM2'),soilKgM2:f(w,'soilKgM2'),surfaceKgM2:f(w,'surfaceKgM2'),snowKgM2:f(w,'snowKgM2'),seaIceKgM2:f(w,'seaIceKgM2'),meltKgM2S:f(w,'meltKgM2S'),precipitationKgM2S:f(w,'precipitationKgM2S'),evaporationKgM2S:f(w,'evaporationKgM2S'),dischargeM3S:f(w,'dischargeM3S'),windEastMps:f(w,'windEastMps',n,-wind,wind),windNorthMps:f(w,'windNorthMps',n,-wind,wind),oceanGlobalKgM2:scalar(w.oceanGlobalKgM2,'ocean store',0),elapsedS:scalar(w.elapsedS,'water age',0,Number.MAX_SAFE_INTEGER),initialTotalMm:scalar(w.initialTotalMm,'initial water',0),routing};
         vegetation={meanK:f(v,'meanK',sn,0,1e5),rainMm:f(v,'rainMm',sn),cover:f(v,'cover',sn,0,1),weights:f(v,'weights',sn*Object.keys(BIOMES).length,0,1)};
         const types=Object.keys(BIOMES).length;
         for(let i=0;i<sn;i++){let sum=0;for(let b=0;b<types;b++)sum+=vegetation.weights[i*types+b];if(Math.abs(sum-1)>1e-8)throw new Error('Invalid vegetation mixture');}

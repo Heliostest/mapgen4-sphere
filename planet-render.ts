@@ -4,6 +4,7 @@ import type {PlanetConfig} from './planet.ts';
 import type {Direction} from './sphere.ts';
 import type {ThermalTexture} from './thermal-runtime.ts';
 import type {GeomorphView} from './geomorph-runtime.ts';
+import type {TerrainWaterView} from './terrain-water-view.ts';
 
 export type PlanetLayer='original'|'day-night'|'insolation'|'temperature'|'precipitation'|'soil-moisture'|'runoff'|'erosion'|'wind'|'surface';
 export type PlanetCamera='surface'|'space';
@@ -17,6 +18,7 @@ export interface PlanetView {
     water?:ThermalTexture|null;
     surface?:ThermalTexture|null;
     geomorph?:GeomorphView|null;
+    terrainWater?:TerrainWaterView|null;
 }
 
 export function makePlanetView(planet:PlanetConfig,orbit:OrbitConfig,timeS:number,layer:PlanetLayer,camera:PlanetCamera):PlanetView {
@@ -38,6 +40,8 @@ export const planet_fragment=`
     uniform sampler2D u_hydrology;
     uniform sampler2D u_geomorph;
     uniform sampler2D u_surface;
+    uniform sampler2D u_lakes;
+    uniform bool u_terrain_water;
     vec3 surface_color(vec3 base,vec3 n,float elevation) {
         if(u_planet_layer!=9) return base;
         vec3 body=normalize(n);
@@ -47,7 +51,13 @@ export const planet_fragment=`
         vec2 uv=vec2(0.5+atan(body.x,body.z)/6.28318530718,(0.5+latitude*(rows-1.0))/rows);
         vec4 cover=texture(u_surface,uv);
         // Use fine terrain for the coastline, never the coarse climate land fraction.
-        return elevation>0.0 ? cover.rgb : mix(base,vec3(0.79,0.88,0.90),cover.a);
+        vec3 color=elevation>0.0 ? cover.rgb : mix(base,vec3(0.79,0.88,0.90),cover.a);
+        if(u_terrain_water && elevation>0.0) {
+            vec4 lake=texture(u_lakes,vec2(uv.x,latitude));
+            color=mix(color,vec3(0.24,0.40,0.28),0.38*lake.g);
+            color=mix(color,vec3(0.12,0.39,0.52),lake.r);
+        }
+        return color;
     }
     vec3 temperature_color(float t) {
         vec3 cold=vec3(0.12,0.20,0.65), mild=vec3(0.92,0.94,0.79), hot=vec3(0.80,0.15,0.06);

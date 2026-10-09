@@ -1,0 +1,49 @@
+{
+  "checks": [
+    "Fine terrain stores, actual flux and natural-surface pixels evolve together while water stays nonnegative",
+    "Original artwork restores exactly and the same authored terrain remains pickable",
+    "Fine routing volumes, receivers and flux restore with exact surface pixels",
+    "Inconsistent fine/coarse storage is rejected before replacing the active world",
+    "Actual renderer shows rising lake shorelines, saturated ground and a fully dry basin; mobile stays within viewport"
+  ],
+  "errors": [],
+  "probe": "20.29° lat, 29.53° lon · 576 m elevation · 934.6 W/m² · 15.04 h local solar time · 15.5 °C daily-mean cell · estimated wind E -6.6 / N -2.3 m/s · potential cover: Grassland / steppe · vegetation 30% · snow 0% · local surface estimate 17.3 °C · annual mean 21.1 °C / 251 mm per Earth year · rain 0.00 mm/day · soil 1.8 mm / standing 0.0 mm per land area · coarse-cell land snow 0.0 mm / melt 0.00 mm/day / ocean ice 0.00 m · cell outflow 0.00e+0 m³/s · nearest terrain reservoir: mean depth 0.000 m / outflow 0.00 m³/s",
+  "waterBudget": -9.66247171163559e-9,
+  "routing": "Terrain routing · 53,834 reservoirs · max standing depth 2.370 m · max flow 46454.6 m³/s · unresolved coast storage 0.0000 km³. Rivers are widened for readability; shoreline reconstruction is approximate. Original map retains artistic rivers.",
+  "steps": 1096,
+  "basin": {
+    "status": "PASS",
+    "counts": [
+      {
+        "label": "Dry basin",
+        "blue": 0,
+        "green": 0,
+        "volumeM3": 0
+      },
+      {
+        "label": "Saturated ground",
+        "blue": 0,
+        "green": 2348517,
+        "volumeM3": 0
+      },
+      {
+        "label": "Low lake",
+        "blue": 339753,
+        "green": 2009655,
+        "volumeM3": 1299199101980698
+      },
+      {
+        "label": "High lake",
+        "blue": 1384148,
+        "green": 965687,
+        "volumeM3": 13905855827842282
+      },
+      {
+        "label": "Drained again",
+        "blue": 0,
+        "green": 0,
+        "volumeM3": 0
+      }
+    ]
+  }
+}

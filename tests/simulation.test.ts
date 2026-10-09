@@ -43,6 +43,10 @@ test('complete document preserves comparison baseline and all runtime state',()=
     assert.deepEqual(decoded,d);decoded.runtime.state!.thermal.temperatureK[0]+=1;
     assert.notEqual(decoded.runtime.state!.thermal.temperatureK[0],d.runtime.state!.thermal.temperatureK[0]);
 });
+test('older complete v1 worlds without optional terrain routing retain coarse mode',()=>{
+    const d=JSON.parse(encodeSimulationDocument(documentFixture()));delete d.runtime.environmentConfig.terrainWater;delete d.runtime.state.water.routing;
+    const restored=decodeSimulationDocument(JSON.stringify(d),identity,8);assert.equal(restored.runtime.environmentConfig.terrainWater,false);assert.equal(restored.runtime.state!.water!.routing,null);
+});
 test('invalid files cannot produce a replacement world',()=>{
     const original=encodeSimulationDocument(documentFixture());
     const mutations=[

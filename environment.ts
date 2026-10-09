@@ -2,8 +2,8 @@ import type {ThermalModel} from './thermal.ts';
 import {FUSION_J_KG as LF,VAPORIZATION_J_KG as LV,type WaterModel} from './water.ts';
 import {OceanTransport} from './ocean.ts';
 export const SEA_FREEZE_K=271.35,SNOW_MELT_K=273.15;
-export const DEFAULT_ENVIRONMENT:Readonly<EnvironmentConfig>=Object.freeze({oceanStrengthMps:.3,vegetation:true,iceAlbedo:true});
-export type EnvironmentConfig={oceanStrengthMps:number;vegetation:boolean;iceAlbedo:boolean};
+export const DEFAULT_ENVIRONMENT:Readonly<EnvironmentConfig>=Object.freeze({oceanStrengthMps:.3,vegetation:true,iceAlbedo:true,terrainWater:false});
+export type EnvironmentConfig={oceanStrengthMps:number;vegetation:boolean;iceAlbedo:boolean;terrainWater?:boolean};
 const clamp=(x:number)=>Math.max(0,Math.min(1,x));
 
 /** One mixed thermal column per cell. Total enthalpy is C*T + Lv*vapor - Lf*ice.

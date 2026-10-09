@@ -15,6 +15,7 @@ import {sphereProjection, pickTerrain, pickTerrainHit, terrainPosition} from './
 import {planet_fragment, type PlanetView} from './planet-render.ts';
 import {previewElevation,type TerrainPreview} from './terrain-preview.ts';
 import type {Mesh} from "./types.d.ts";
+import type {TerrainWaterView} from './terrain-water-view.ts';
 
 //////////////////////////////////////////////////////////////////////
 // WebGL wrappers
@@ -84,6 +85,7 @@ class WebGLWrapper {
     createTexture(options: {width?: number, height?: number, mipmap?: boolean, image?: HTMLCanvasElement, data?: Uint8Array, internalFormat?: GLenum, format?: GLenum, filter: 'linear'|'nearest'}): Texture {
         const {gl} = this;
         const texture = gl.createTexture();
+        const textureUnits=gl.getParameter(gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS) as number;
         gl.bindTexture(gl.TEXTURE_2D, texture);
 
         if (options.image) {
@@ -115,7 +117,7 @@ class WebGLWrapper {
                 gl.bindTexture(gl.TEXTURE_2D, texture);
             },
             activate(register: GLint, uniform: WebGLUniformLocation) {
-                if (register < gl.TEXTURE0 || register >= gl.TEXTURE8) throw "invalid texture register";
+                if (register < gl.TEXTURE0 || register >= gl.TEXTURE0+textureUnits) throw "invalid texture register";
                 gl.uniform1i(uniform, register - gl.TEXTURE0);
                 gl.activeTexture(register);
                 this.bind();
@@ -238,6 +240,23 @@ class WebGLWrapper {
 
 //////////////////////////////////////////////////////////////////////
 // Shaders
+
+const vert_lakes = `
+    precision highp float;
+    in vec2 a_xy;
+    in vec3 a_water;
+    uniform mat4 u_projection;
+    out vec3 v_water;
+    void main(){v_water=a_water;gl_Position=u_projection*vec4(a_xy,0,1);}`;
+const frag_lakes = `
+    precision highp float;
+    in vec3 v_water;
+    out vec4 out_fragcolor;
+    void main(){
+        float depth=v_water.y-v_water.x;
+        float lake=smoothstep(0.0,max(0.02,fwidth(depth)),depth)*step(0.001,v_water.x);
+        out_fragcolor=vec4(lake,v_water.z,0,1);
+    }`;
 
 const vert_river = `
     precision highp float;
@@ -566,6 +585,11 @@ export default class Renderer {
     private geomorphPixels:Uint8Array|null=null;
     texture_surface: Texture;
     private surfacePixels:Uint8Array|null=null;
+    private activeTerrainWater:TerrainWaterView|null=null;
+    private originalRivers=new Float32Array(0);
+    private buffer_lakes:Buffer;
+    private fbo_lakes:Framebuffer;
+    private program_lakes:Program;
 
     fbo_river: Framebuffer;
     fbo_land: Framebuffer;
@@ -620,6 +644,7 @@ export default class Renderer {
 
         this.buffer_fullscreen = this.webgl.createBuffer({update: 'static', data: new Float32Array([-2, 0, 0, -2, 2, 2])});
         this.buffer_river_xyww = this.webgl.createBuffer({update: 'dynamic', data: this.a_river_xyww});
+        this.buffer_lakes=this.webgl.createBuffer({update:'dynamic',data:new Float32Array(mesh.numSolidTriangles*180)});
 
         this.texture_colormap = this.webgl.createTexture({data: colormap.data, width: colormap.width, height: colormap.height, filter: 'nearest'});
         this.texture_temperature = this.webgl.createTexture({width:48,height:24,filter:'linear'});
@@ -640,16 +665,21 @@ export default class Renderer {
         // snaps along fixed diagonal boundaries as terrain rotates beneath it.
         this.fbo_depth = this.webgl.createFramebuffer(fbo_texture_size, fbo_texture_size, {depth: true, internalFormat: this.webgl.gl.R16F, filter: 'linear'});
         this.fbo_river = this.webgl.createFramebuffer(2*fbo_texture_size, fbo_texture_size, {depth: false, filter: 'linear'}); // linear makes rivers look better
+        this.fbo_lakes=this.webgl.createFramebuffer(2*fbo_texture_size,fbo_texture_size,{depth:false,filter:'linear'});
         this.fbo_drape = this.webgl.createFramebuffer(fbo_texture_size, fbo_texture_size, {depth: true, filter: 'linear'}); // linear to smooth out edges
 
         // Both surface atlases wrap only longitude; latitude clamps at poles.
-        for (const fbo of [this.fbo_land,this.fbo_river]) {
+        for (const fbo of [this.fbo_land,this.fbo_river,this.fbo_lakes]) {
             fbo.texture.bind();
             this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
         }
         this.program_river = this.webgl.createProgram('river', vert_river, frag_river, (gl, program) => {
             this.buffer_river_xyww.vertexAttribPointer(program.a_xyww, 4, gl.FLOAT, false, 28, 0);
             this.buffer_river_xyww.vertexAttribPointer(program.a_barycentric, 3, gl.FLOAT, false, 28, 16);
+        });
+        this.program_lakes=this.webgl.createProgram('lakes',vert_lakes,frag_lakes,(gl,program)=>{
+            this.buffer_lakes.vertexAttribPointer(program.a_xy,2,gl.FLOAT,false,20,0);
+            this.buffer_lakes.vertexAttribPointer(program.a_water,3,gl.FLOAT,false,20,8);
         });
         this.program_land  = this.webgl.createProgram('land', vert_land,  frag_land, (gl, program) => {
             this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 16, 0);
@@ -691,6 +721,13 @@ export default class Renderer {
 
     updatePlanet(view:PlanetView) {
         this.planetView=view;
+        const terrainWater=view.terrainWater??null;
+        if(terrainWater!==this.activeTerrainWater) {
+            this.activeTerrainWater=terrainWater;
+            this.buffer_river_xyww.subdata(0,terrainWater?.rivers??this.originalRivers);
+            if(terrainWater)this.buffer_lakes.subdata(0,terrainWater.lakes);
+            this.mapDirty=true;
+        }
         if(view.surface && view.surface.pixels!==this.surfacePixels) {
             const {gl}=this.webgl,t=view.surface;
             if(t.width!==this.texture_surface.width||t.height!==this.texture_surface.height) {
@@ -725,7 +762,8 @@ export default class Renderer {
         // worker generates a new map. Preview must never write into them.
         this.sourceElevation=this.a_quad_em.slice();this.pickElements=this.quad_elements.slice();
         this.rebuildSurface();
-        this.buffer_river_xyww.subdata(0,this.a_river_xyww.subarray(0,7*3*this.numRiverTriangles));
+        this.originalRivers=this.a_river_xyww.slice(0,7*3*this.numRiverTriangles);this.activeTerrainWater=null;
+        this.buffer_river_xyww.subdata(0,this.originalRivers);
     }
 
     private rebuildSurface() {
@@ -792,7 +830,7 @@ export default class Renderer {
             gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
             gl.blendEquation(gl.FUNC_ADD);
 
-            gl.drawArrays(gl.TRIANGLES, 0, 3 * this.numRiverTriangles);
+            gl.drawArrays(gl.TRIANGLES, 0, 3 * (this.activeTerrainWater?.riverTriangles??this.numRiverTriangles));
             gl.disable(gl.BLEND);
         });
     }
@@ -841,6 +879,7 @@ export default class Renderer {
             gl.uniform1i(program.u_planet_layer, view?.layer==='surface'&&view.surface?9:view?.layer==='wind'&&view.thermal?8:view?.layer==='erosion'&&view.geomorph?7:view?.layer==='day-night'?1:view?.layer==='insolation'?2:view?.layer==='temperature'&&view.thermal?3:
                 view?.water?view.layer==='precipitation'?4:view.layer==='soil-moisture'?5:view.layer==='runoff'?6:0:0);
             gl.uniform3fv(program.u_sun_direction, this.planetView?.sunDirection ?? [0,0,1]);
+            gl.uniform1i(program.u_terrain_water,this.activeTerrainWater?1:0);
 
             this.texture_colormap.activate(gl.TEXTURE0, program.u_colormap);
             this.fbo_land.texture.activate(gl.TEXTURE1, program.u_elevation);
@@ -850,6 +889,7 @@ export default class Renderer {
             this.texture_hydrology.activate(gl.TEXTURE5, program.u_hydrology);
             this.texture_geomorph.activate(gl.TEXTURE6, program.u_geomorph);
             this.texture_surface.activate(gl.TEXTURE7, program.u_surface);
+            this.fbo_lakes.texture.activate(gl.TEXTURE8,program.u_lakes);
 
             gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });
@@ -871,6 +911,7 @@ export default class Renderer {
 
         const clearBuffers = () => {
             this.fbo_river.clear(0, 0, 0, 0);
+            this.fbo_lakes.clear(0,0,0,0);
             this.fbo_land.clear(0,0,0,1);
             this.fbo_depth.clear(0, 0, 0, 1);
             this.fbo_drape.clear(0.3, 0.3, 0.35, 0);
@@ -888,7 +929,12 @@ export default class Renderer {
 
             if(this.mapDirty) {
                 this.fbo_river.clear(0,0,0,0);
-                if (this.numRiverTriangles > 0) this.drawRivers();
+                if ((this.activeTerrainWater?.riverTriangles??this.numRiverTriangles) > 0) this.drawRivers();
+                this.fbo_lakes.clear(0,0,0,0);
+                if(this.activeTerrainWater)this.drawGeneric(this.program_lakes,this.fbo_lakes,(gl,program)=>{
+                    gl.uniformMatrix4fv(program.u_projection,false,this.topdown);
+                    gl.drawArrays(gl.TRIANGLES,0,this.activeTerrainWater!.lakes.length/5);
+                });
             }
             if(this.mapDirty || this.landOutlineWater!==renderParam.outline_water) {
                 this.fbo_land.clear(0,0,0,1);

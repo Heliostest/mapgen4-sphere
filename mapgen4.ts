@@ -119,7 +119,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         canInspect:()=>!Painting.navigating(),
         presentedTimeS:()=>render.presentedPlanetTimeS,
         renderParams:()=>param.render,
-        terrain:()=>render.physicalElevation.length?{directions:mesh.xyz_r,elevation:render.physicalElevation}:null,
+        terrain:()=>render.physicalElevation.length?{directions:mesh.xyz_r,elevation:render.physicalElevation,mesh,quadElements:render.pickElements}:null,
         terrainReady:()=>!gate.pending&&render.baseTriangleElevation.length===mesh.numTriangles,
         applyErosion:g=>{
             if(gate.pending||!g.model||g.model.years<=0||!g.view?.preview)return;
@@ -164,7 +164,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
                 const prepared=await prepareTerrain(mesh,t_peaks,param,d.terrain);
                 if(!stillCurrent())return 'Load canceled because newer edits or time changes were made.';
                 const elevation=new Float32Array(prepared.terrain_elevation_buffer);
-                const candidate=planetControls.prepareSimulation(d,{directions:mesh.xyz_r,elevation});
+                const candidate=planetControls.prepareSimulation(d,{directions:mesh.xyz_r,elevation,mesh,quadElements:new Int32Array(prepared.quad_elements_buffer).slice()});
                 // All fallible parsing, generation and model construction has completed.
                 gate.acceptPrepared();documentRevision++;restoreAuthored(d.terrain);
                 render.quad_elements=new Int32Array(prepared.quad_elements_buffer);render.a_quad_em=new Float32Array(prepared.a_quad_em_buffer);render.a_river_xyww=new Float32Array(prepared.a_river_xyww_buffer);

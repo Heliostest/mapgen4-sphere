@@ -294,3 +294,7 @@ The independent code review found no remaining correctness issue after the fold 
 ## Complete simulation persistence — 2026-10-09
 
 The [save/resume acceptance](simulation-save.md) records 110 passing Node tests and real browser save/reload/continuation with exact runtime fields and globe pixels, conservation budgets, corrupted-file preservation, asynchronous cancellation, legacy files, applied erosion and brush painting. Restored globe, comparison and mobile screenshots were inspected in the implementation session; independent review checked the persistence code.
+
+## Terrain water — 2026-10-09
+
+The [terrain-water acceptance](terrain-water.md) records 120 passing Node tests, five new browser groups, shared authored river-valley topology, finite conservative stores, exact fine-state persistence, and real GPU dry/wet/rising-lake evidence. Existing complete-save, terrain application, environment, surface, planet and water browser regressions passed. Independent review's false-valley-dam finding was reproduced, fixed and re-reviewed.

@@ -1,8 +1,9 @@
 import type {ClimateGrid} from './climate.ts';
 import type {ThermalGrid} from './thermal.ts';
+import type {Mesh} from './types.d.ts';
 
 export const SURFACE_WIDTH=96,SURFACE_HEIGHT=49;
-export interface SurfaceTerrain {directions:ArrayLike<number>;elevation:ArrayLike<number>;}
+export interface SurfaceTerrain {directions:ArrayLike<number>;elevation:ArrayLike<number>;mesh?:Mesh;quadElements?:Int32Array;}
 
 /** Reference samples in latitude, including both poles. This is not a solver
  * grid: the conservative thermal/water models keep their equal-area cells. */

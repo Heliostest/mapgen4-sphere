@@ -1,6 +1,7 @@
 import type {ThermalRuntime} from './thermal-runtime.ts';
 import {captureEnvironment,environmentMetrics,comparisonCSV,METRICS,type EnvironmentSnapshot,type EnvironmentMetrics,type ComparisonState} from './environment-comparison.ts';
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
+const routingNote='Optional mesh routing uses the same surface-water inventory. Changing mode restarts climate. Natural surface shows actual-flow river widths (exaggerated for readability), shorelines and wet ground. Original map retains artistic rivers. Reservoir routing, not a flood-depth forecast.';
 
 export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,change:(action:()=>void)=>void,clock:{togglePlay:()=>void;isPlaying:()=>boolean}) {
     const panel=document.createElement('details');panel.id='environment-panel';panel.innerHTML=`<summary>Ice, ocean &amp; vegetation</summary>
@@ -8,6 +9,8 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
       <label><span>Ocean circulation strength (m/s)</span><input id="environment-current" type="number" min="0" max="2" step="0.05" value="0.3"></label>
       <label><input id="environment-vegetation" type="checkbox" checked> Evolve vegetation &amp; feedback</label>
       <label><input id="environment-albedo" type="checkbox" checked> Ice / snow albedo feedback</label>
+      <label><input id="environment-terrain-water" type="checkbox"> Terrain rivers, lakes &amp; wetlands</label>
+      <p class="planet-note" id="environment-routing">Optional mesh routing uses the same surface-water inventory. Changing mode restarts climate. Natural surface shows actual-flow river widths (exaggerated for readability), shorelines and wet ground. Original map retains artistic rivers. Reservoir routing, not a flood-depth forecast.</p>
       <label><span>Snow / sea-ice inventory</span><output id="environment-frozen"></output></label>
       <label><span>Snowmelt</span><output id="environment-melt"></output></label>
       <label><span>Combined energy residual</span><output id="environment-energy"></output></label>
@@ -19,7 +22,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         const input=event.target as HTMLInputElement;if(!input.checkValidity()||!Number.isFinite(input.valueAsNumber)){input.setAttribute('aria-invalid','true');return;}
         input.removeAttribute('aria-invalid');change(()=>{rt.environmentConfig.oceanStrengthMps=input.valueAsNumber;rt.invalidate();});
     });
-    for(const [id,key] of [['environment-vegetation','vegetation'],['environment-albedo','iceAlbedo']] as const)el<HTMLInputElement>(id).addEventListener('change',()=>change(()=>{rt.environmentConfig[key]=el<HTMLInputElement>(id).checked;rt.invalidate();}));
+    for(const [id,key] of [['environment-vegetation','vegetation'],['environment-albedo','iceAlbedo'],['environment-terrain-water','terrainWater']] as const)el<HTMLInputElement>(id).addEventListener('change',()=>change(()=>{rt.environmentConfig[key]=el<HTMLInputElement>(id).checked;if(key==='terrainWater'&&rt.environmentConfig[key])rt.enabled=rt.waterEnabled=true;rt.invalidate();}));
     const dialog=document.createElement('dialog');dialog.id='environment-comparison';dialog.setAttribute('aria-labelledby','environment-title');
     dialog.innerHTML=`<style>
       #environment-comparison{box-sizing:border-box;width:min(1180px,95vw);max-height:94vh;padding:24px;border:1px solid #46606d;border-radius:14px;background:#101e27;color:#e3edf0;font:14px/1.5 system-ui,sans-serif;overflow:auto}
@@ -109,11 +112,16 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
     },refresh(){
         get('environment-play').textContent=clock.isPlaying()?'Pause':'Play';
         const d=environmentMetrics(rt);el<HTMLButtonElement>('environment-compare').disabled=!d;
+        const routing=rt.water?.routing,rd=routing?.diagnostics(rt.water!);
+        el('environment-routing').dataset.active=String(!!routing);
+        el('environment-routing').textContent=routingNote;
+        el<HTMLInputElement>('environment-terrain-water').disabled=!rt.terrainSource?.mesh;
+        if(rd)el('environment-routing').textContent=`Terrain routing · ${routing!.volumeM3.length.toLocaleString()} reservoirs · max standing depth ${rd.maxDepthM.toFixed(3)} m · max flow ${rd.maxFlowM3S.toFixed(1)} m³/s · unresolved coast storage ${(rd.unresolvedM3/1e9).toFixed(4)} km³. Rivers are widened for readability; shoreline reconstruction is approximate. Original map retains artistic rivers.`;
         el<HTMLOutputElement>('environment-frozen').value=d?`${d.snowMm.toFixed(2)} / ${d.iceMm.toFixed(2)} mm`:'Enable water';
         el<HTMLOutputElement>('environment-melt').value=d?`${d.meltMmDay.toFixed(4)} mm/day`:'—';
         el<HTMLOutputElement>('environment-energy').value=d?`${d.energyResidualJm2.toExponential(2)} J/m²`:'—';el('environment-energy').dataset.value=String(d?.energyResidualJm2??0);
         if(model!==rt.model){model=rt.model;history=[];lastTime=-1;}
         if(d&&rt.model&&rt.model.timeS!==lastTime){lastTime=rt.model.timeS;const age=(lastTime-rt.model.epochS)/86400;history=history.filter(h=>h.time<age);history.push({time:age,metrics:d});if(history.length>240)history=history.filter((_,i)=>i%2===0);if(!baseline)baseline=captureEnvironment(rt);if(dialog.open){current=captureEnvironment(rt);render();}}
         if(dialog.open&&!d)render();
-    },restoreInputs(){el<HTMLInputElement>('environment-current').value=String(rt.environmentConfig.oceanStrengthMps);el<HTMLInputElement>('environment-vegetation').checked=rt.environmentConfig.vegetation;el<HTMLInputElement>('environment-albedo').checked=rt.environmentConfig.iceAlbedo;}};
+    },restoreInputs(){el<HTMLInputElement>('environment-current').value=String(rt.environmentConfig.oceanStrengthMps);el<HTMLInputElement>('environment-vegetation').checked=rt.environmentConfig.vegetation;el<HTMLInputElement>('environment-albedo').checked=rt.environmentConfig.iceAlbedo;el<HTMLInputElement>('environment-terrain-water').checked=!!rt.environmentConfig.terrainWater;}};
 }

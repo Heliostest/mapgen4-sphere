@@ -94,7 +94,7 @@ export function clamp(x: number, lo: number, hi: number): number {
 /**
  * Fill a buffer with river geometry
  */
-function setRiverGeometry(map: Map, spacing: number, riversParam: any, P: Float32Array): number {
+function setRiverGeometry(map: Pick<Map,'mesh'|'s_downslope_t'|'flow_s'>, spacing: number, riversParam: any, P: Float32Array): number {
     const MIN_FLOW = Math.exp(riversParam.lg_min_flow);
     const RIVER_WIDTH = Math.exp(riversParam.lg_river_width);
     let {mesh, s_downslope_t, flow_s} = map;
@@ -103,7 +103,7 @@ function setRiverGeometry(map: Map, spacing: number, riversParam: any, P: Float3
     function riverSize(s: number, flow: number): number {
         if (s < 0) { return 1; }
         let width = Math.sqrt(flow - MIN_FLOW) * spacing * RIVER_WIDTH;
-        return width / length_s[s];
+        return Math.min(riversParam.max_width??Infinity,width / length_s[s]);
     }
 
     let p = 0;
@@ -135,6 +135,7 @@ function setRiverGeometry(map: Map, spacing: number, riversParam: any, P: Float3
         if (flow_in2 >= MIN_FLOW) {
             add(s_in2, s_out, s_in1, riverSize(s_in2, flow_in2), riverSize(s_out, outflow));
         }
+        if(riversParam.headwaters&&flow_in1<MIN_FLOW&&flow_in2<MIN_FLOW)add(s_out,s_in1,s_in2,riverSize(s_out,outflow),0);
     }
 
     if (p > P.length) throw new Error('River atlas buffer overflow');

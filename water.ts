@@ -1,6 +1,7 @@
 import {finiteInRange} from './planet.ts';
 import type {ThermalGrid} from './thermal.ts';
 import type {GeneratedClimate} from './climate.ts';
+import {TerrainWater,type TerrainWaterCheckpoint,type RoutingNetwork} from './terrain-water.ts';
 
 export interface WaterConfig {
     evaporationFraction:number;soilCapacityKgM2:number;initialOceanDepthM:number;
@@ -21,11 +22,19 @@ export interface WaterCheckpoint {
     snowKgM2:Float64Array;seaIceKgM2:Float64Array;meltKgM2S:Float64Array;
     oceanGlobalKgM2:number;elapsedS:number;
     windEastMps:Float64Array;windNorthMps:Float64Array;
+    routing:TerrainWaterCheckpoint|null;
 }
 
 /** Conservative water reservoirs. All columns are per WHOLE cell area. Ocean storage is
  * per global area, so each local transfer contributes 1/N to that reservoir. */
 export class WaterModel {
+    routing:TerrainWater|null=null;
+    private pendingRouting:TerrainWaterCheckpoint|null=null;
+    attachRouting(network:RoutingNetwork) {
+        this.routing=new TerrainWater(network,this);
+        if(this.pendingRouting){this.routing.restore(this.pendingRouting,this);this.pendingRouting=null;}
+        else this.routing.route(this,this.maxStepS,this.config.routingSpeedMps,true);
+    }
     readonly atmosphereKgM2:Float64Array;
     readonly soilKgM2:Float64Array;
     readonly surfaceKgM2:Float64Array;
@@ -116,6 +125,7 @@ export class WaterModel {
         this.initialTotalMm=initialTotalMm??this.total();
     }
     diagnoseRouting() {
+        if(this.routing){this.routing.route(this,this.maxStepS,this.config.routingSpeedMps,true);return;}
         const surface=this.surfaceKgM2.slice(),ocean=this.oceanGlobalKgM2;
         this.routeSurface(this.maxStepS);this.surfaceKgM2.set(surface);this.oceanGlobalKgM2=ocean;
     }
@@ -151,6 +161,7 @@ export class WaterModel {
         this.diagnoseRouting();
     }
     step(dt:number,temperatureK:ArrayLike<number>,absorbedWm2:ArrayLike<number>,coupling?:WaterCoupling) {
+        if(this.pendingRouting)throw new Error('Attach restored terrain before advancing water');
         finiteInRange(dt,'water time step',Number.MIN_VALUE,this.maxStepS*(1+1e-10));
         if(temperatureK.length!==this.grid.count||absorbedWm2.length!==this.grid.count)throw new RangeError('Water forcing grid mismatch');
         const n=this.grid.count,{config,land}=this;
@@ -201,6 +212,8 @@ export class WaterModel {
     /** Reservoir routing, not a shallow-water solver. A basin has no forced
      * outlet; its stored head must exceed a neighboring saddle before spilling. */
     routeSurface(dt:number) {
+        if(this.pendingRouting)throw new Error('Attach restored terrain before routing water');
+        if(this.routing){this.routing.route(this,dt,this.config.routingSpeedMps);return;}
         const n=this.grid.count;this.delta.fill(0);this.dischargeM3S.fill(0);
         const head=(i:number)=>this.land[i]>0?this.heightM[i]+this.surfaceKgM2[i]/(WATER_DENSITY*this.land[i]):0;
         for(let i=0;i<n;i++) {
@@ -231,12 +244,14 @@ export class WaterModel {
         return {atmosphereKgM2:this.atmosphereKgM2.slice(),soilKgM2:this.soilKgM2.slice(),surfaceKgM2:this.surfaceKgM2.slice(),
             precipitationKgM2S:this.precipitationKgM2S.slice(),evaporationKgM2S:this.evaporationKgM2S.slice(),dischargeM3S:this.dischargeM3S.slice(),
             snowKgM2:this.snowKgM2.slice(),seaIceKgM2:this.seaIceKgM2.slice(),meltKgM2S:this.meltKgM2S.slice(),
-            oceanGlobalKgM2:this.oceanGlobalKgM2,elapsedS:this.elapsedS,windEastMps:this.windEastMps.slice(),windNorthMps:this.windNorthMps.slice()};
+            oceanGlobalKgM2:this.oceanGlobalKgM2,elapsedS:this.elapsedS,windEastMps:this.windEastMps.slice(),windNorthMps:this.windNorthMps.slice(),routing:this.routing?.checkpoint()??structuredClone(this.pendingRouting)};
     }
     restore(state:WaterCheckpoint) {
         for(const key of ['atmosphereKgM2','soilKgM2','surfaceKgM2','precipitationKgM2S','evaporationKgM2S','dischargeM3S','snowKgM2','seaIceKgM2','meltKgM2S'] as const)this[key].set(state[key]);
         this.oceanGlobalKgM2=state.oceanGlobalKgM2;this.elapsedS=state.elapsedS;
         this.setWinds(state.windEastMps,state.windNorthMps);
+        if(state.routing) {if(this.routing)this.routing.restore(state.routing,this);else this.pendingRouting=structuredClone(state.routing);}
+        else {this.routing=null;this.pendingRouting=null;}
     }
     diagnostics() {
         const mean=(a:Float64Array)=>a.reduce((sum,v)=>sum+v,0)/this.grid.count,totalMm=this.total();

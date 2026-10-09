@@ -16,6 +16,8 @@ import {DEFAULT_THERMAL} from './thermal.ts';
 import {DEFAULT_WATER} from './water.ts';
 import {BIOMES} from './surface.ts';
 import type {SimulationDocument} from './simulation-document.ts';
+import type {SurfaceTerrain} from './surface-grid.ts';
+import {terrainWaterView} from './terrain-water-view.ts';
 
 type Sample={uv:[number,number];elevation:number};
 type Options={
@@ -25,7 +27,7 @@ type Options={
     canInspect:()=>boolean;
     presentedTimeS:()=>number|null;
     renderParams:()=>{sphere_radius?:number;mountain_height?:number};
-    terrain?:()=>{directions:ArrayLike<number>;elevation:ArrayLike<number>}|null;
+    terrain?:()=>SurfaceTerrain|null;
     terrainReady?:()=>boolean;
     applyErosion?:(g:GeomorphRuntime)=>void;
 };
@@ -240,6 +242,8 @@ export function installPlanetControls(options:Options) {
             const water=thermal.sampleWater(...probe.uv);
             if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · coarse-cell land snow ${water.snowMm.toFixed(1)} mm / melt ${water.meltMmDay.toFixed(2)} mm/day / ocean ice ${water.iceM.toFixed(2)} m · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
             const erosion=geomorph.sample(...probe.uv);
+            const fineWater=thermal.sampleTerrainWater(...probe.uv);
+            if(fineWater&&probe.elevation>0)probeOutput.textContent+=` · nearest terrain reservoir: mean depth ${fineWater.depthM.toFixed(3)} m / outflow ${fineWater.flowM3S.toFixed(2)} m³/s`;
             if(erosion)probeOutput.textContent+=` · bed change ${erosion.deltaM.toFixed(2)} m · mobile sediment ${erosion.mobileMm.toFixed(2)} mm whole-cell equivalent${geomorph.previewEnabled?' · terrain preview':''}`;
         }
         thermalPanel.refresh(clock.timeS,clock.limited);
@@ -251,6 +255,7 @@ export function installPlanetControls(options:Options) {
         view.thermal=thermal.sync(planet,orbit,clock.timeS,options.presentedTimeS());
         view.water=thermal.waterTexture;
         view.surface=thermal.surfaceTexture;
+        view.terrainWater=layer==='surface'?terrainWaterView(thermal):null;
         const previousGeomorph=geomorph.model;
         geomorph.reconcile(thermal);view.geomorph=geomorph.view;
         if(previousGeomorph&&!geomorph.model){probe=null;probeOutput.textContent='Inspect a surface point to read its location and solar energy.';}
@@ -278,7 +283,7 @@ export function installPlanetControls(options:Options) {
     return {
         pause,refresh,isInspecting:()=>inspecting,
         simulation:()=>({runtime:thermal.snapshot(),view:{speed:clock.speed,layer:layer==='erosion'?'original' as const:layer},comparison:environmentPanel.snapshot()}),
-        prepareSimulation:(d:SimulationDocument,terrain:{directions:ArrayLike<number>;elevation:ArrayLike<number>})=>{
+        prepareSimulation:(d:SimulationDocument,terrain:SurfaceTerrain)=>{
             const candidate=ThermalRuntime.fromSnapshot(d.runtime,d.terrain.settings.planet,d.terrain.settings.orbit);
             if(candidate.grid.width!==thermal.grid.width||candidate.grid.height!==thermal.grid.height)throw new Error('Unsupported application climate resolution');
             const sampled=sampleTerrainGrid(candidate.grid,terrain.directions,terrain.elevation);
