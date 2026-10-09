@@ -45,7 +45,6 @@ export const initialParams: Record<string, [string, number, number, number][]> =
     ],
 };
 
-    
 
 export function defaultTerrainParameters() {
     return Object.fromEntries(Object.entries(initialParams).map(([phase,fields])=>[phase,Object.fromEntries(fields.map(([key,value])=>[key,value]))]));
