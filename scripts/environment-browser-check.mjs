@@ -1,0 +1,46 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const folder='build/validation/environment';await mkdir(folder,{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
+const page=await browser.newPage({viewport:{width:1440,height:1300}}),checks=[],errors=[];
+page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
+const frames=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+const input=async(id,value)=>{await page.locator(id.startsWith('slider-')?`#${id} input`:`#${id}`).evaluate((e,v)=>{e.value=String(v);e.dispatchEvent(new Event(e.type==='range'?'input':'change',{bubbles:true}));},value);await frames();};
+const capture=async name=>page.screenshot({path:`${folder}/${name}.png`});
+const metric=async label=>page.locator('#environment-metrics tr').filter({hasText:label}).locator('td').nth(2).textContent();
+try {
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?preview=coupled-environment');
+    await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
+    await page.locator('#planet-generate-climate').click();assert.equal(Number(await page.locator('#thermal-age').getAttribute('data-days')),0);
+    await page.locator('#planet-compare-environment').click();assert.ok(await page.locator('#environment-comparison').isVisible());
+    assert.ok(await page.locator('#environment-metrics td').first().evaluate(e=>Number(getComputedStyle(e).color.match(/\d+/)[0])>150),'Budget table must remain legible over its dark background');
+    assert.ok(Number(await metric('North polar'))>90);assert.ok(Number(await metric('South polar'))>90);
+    assert.equal(Number(await metric('Total enthalpy')),0);assert.equal(Number(await metric('Water budget')),0);
+    await capture('initial-comparison');checks.push('Generated snow/ice inventories and both polar oceans appear at zero age; initial budgets close');
+    const modes=['temperatureC','snowMm','iceM','vegetation','currents'],images=[];
+    for(const mode of modes){await page.locator('#environment-map').selectOption(mode);images.push(await page.locator('#environment-current-map').screenshot());}
+    assert.equal(new Set(images.map(b=>b.toString('base64'))).size,modes.length);await capture('ocean-currents');
+    checks.push('Temperature, snow, sea ice, vegetation and current maps render distinct fields');
+    await page.locator('#environment-close').click();await page.locator('#planet-speed').selectOption('864000');await page.locator('#planet-compare-environment').click();
+    await page.locator('#environment-map').selectOption('surface');await page.locator('#environment-play').click();
+    await page.waitForFunction(()=>Number(document.querySelector('#thermal-age').dataset.days)>10,{timeout:30000});await page.locator('#environment-play').click();await frames();
+    assert.equal(await page.locator('#environment-play').textContent(),'Play');assert.match(await page.locator('#environment-baseline-label').textContent(),/age 0.00 d/);
+    assert.ok(Number(await page.locator('#thermal-age').getAttribute('data-days'))>10);
+    assert.ok(Math.abs(Number(await metric('Water budget')))<1e-6);assert.ok(Math.abs(Number(await metric('Total enthalpy')))<1e-3);
+    await capture('evolved-comparison');checks.push('In-dialog Play/Pause evolves >10 days while baseline stays fixed and mass/enthalpy close');
+    const download=page.waitForEvent('download');await page.locator('#environment-export').click();const file=await download;
+    const csv=await readFile(await file.path(),'utf8');assert.ok(csv.includes('Sea-ice inventory'));assert.ok(csv.includes('parameters'));await writeFile(`${folder}/comparison.csv`,csv);
+    checks.push('CSV download contains baseline, current, delta, age, parameters and all budget metrics');
+    await page.locator('#environment-close').click();await page.locator('#environment-panel summary').click();await input('environment-current',0);
+    await page.locator('#planet-compare-environment').click();assert.equal(Number(await metric('Maximum current')),0);assert.match(await page.locator('#environment-baseline-label').textContent(),/current 0.3 m\/s/);
+    await page.locator('#environment-capture').click();assert.match(await page.locator('#environment-baseline-label').textContent(),/current 0 m\/s/);
+    checks.push('Parameter change regenerates current only; explicit capture replaces the baseline');
+    await page.setViewportSize({width:390,height:844});await capture('mobile-comparison');assert.ok(await page.locator('#environment-close').isVisible());
+    assert.ok(await page.evaluate(()=>document.querySelector('#environment-comparison').scrollWidth<=document.querySelector('#environment-comparison').clientWidth));
+    await page.keyboard.press('Escape');assert.equal(await page.locator('#environment-comparison').isVisible(),false);checks.push('Mobile comparison has no horizontal overflow and Escape closes the dialog');
+    await page.setViewportSize({width:1388,height:1244});await input('environment-current',.3);await page.locator('#planet-reset-time').click();
+    await input('slider-x',202.349);await input('slider-y',1000);await input('slider-zoom',.212);await capture('south-pole');
+    await input('slider-y',0);await capture('north-pole');checks.push('Matched north/south polar globe captures use the coupled model at zero age');
+    assert.deepEqual(errors,[]);const report={checks,errors};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+} finally {await browser.close();}

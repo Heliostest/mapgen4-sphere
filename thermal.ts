@@ -72,7 +72,7 @@ export function heatTransport(grid:ThermalGrid,temperature:ArrayLike<number>,dif
     }
     return out;
 }
-export type ThermalCheckpoint={temperatureK:Float64Array;steps:number;radiationJm2:number};
+export type ThermalCheckpoint={temperatureK:Float64Array;steps:number;radiationJm2:number;exchangeJm2:number;radiationCorrection:number;exchangeCorrection:number;albedo:Float64Array};
 export interface ThermalInitial {temperatureK:ArrayLike<number>;radiationScale:ArrayLike<number>;absorbedWm2:ArrayLike<number>}
 
 export class ThermalModel {
@@ -91,6 +91,10 @@ export class ThermalModel {
     stepS:number;
     steps=0;
     radiationJm2=0;
+    exchangeJm2=0;
+    private exchangeCorrection=0;
+    private radiationCorrection=0;
+    readonly albedo:Float64Array;
     constructor(planet:PlanetConfig,orbit:OrbitConfig,config:ThermalConfig,land:ArrayLike<number>,readonly epochS=0,readonly grid=makeThermalGrid(),reference?:ThermalInitial) {
         const derived=deriveOrbit(planet,orbit);
         finiteInRange(epochS,'thermal epoch',0);
@@ -120,9 +124,10 @@ export class ThermalModel {
             return f*config.landHeatCapacity+(1-f)*config.oceanDepthM*4.2e6;
         });
         this.tendency=new Float64Array(grid.count);
+        this.albedo=new Float64Array(grid.count).fill(orbit.bondAlbedo);
         const loss=new Float64Array(grid.count);
         for(const e of grid.edges) {const k=this.transport*e.geometry/grid.solidAngle;loss[e.a]+=k;loss[e.b]+=k;}
-        const maxT=Math.max(initial,Math.pow((1-orbit.bondAlbedo)*this.fluxWm2/(config.emissivity*SIGMA),.25));
+        const maxT=Math.max(initial,Math.pow(this.fluxWm2/(config.emissivity*SIGMA),.25));
         // T/scale is the effective emitting temperature; differentiation adds
         // 1/scale^4. The upper bound is conservative even under heat exchange.
         let stable=Infinity;
@@ -131,9 +136,18 @@ export class ThermalModel {
         this.initialEnergyJm2=this.energy();
     }
     get timeS() {return this.epochS+this.steps*this.stepS;}
-    private energy() {return this.temperatureK.reduce((sum,t,i)=>sum+this.capacity[i]*t,0)/this.grid.count;}
-    checkpoint():ThermalCheckpoint {return {temperatureK:this.temperatureK.slice(),steps:this.steps,radiationJm2:this.radiationJm2};}
-    restore(state:ThermalCheckpoint) {this.temperatureK.set(state.temperatureK);this.steps=state.steps;this.radiationJm2=state.radiationJm2;}
+    energy() {return this.temperatureK.reduce((sum,t,i)=>sum+this.capacity[i]*t,0)/this.grid.count;}
+    checkpoint():ThermalCheckpoint {return {temperatureK:this.temperatureK.slice(),steps:this.steps,radiationJm2:this.radiationJm2,exchangeJm2:this.exchangeJm2,radiationCorrection:this.radiationCorrection,exchangeCorrection:this.exchangeCorrection,albedo:this.albedo.slice()};}
+    restore(state:ThermalCheckpoint) {this.temperatureK.set(state.temperatureK);this.steps=state.steps;this.radiationJm2=state.radiationJm2;this.exchangeJm2=state.exchangeJm2;this.exchangeCorrection=state.exchangeCorrection;this.radiationCorrection=state.radiationCorrection;this.albedo.set(state.albedo);}
+    /** Internal coupled transfers, positive into sensible heat. */
+    applyHeat(energyJm2:ArrayLike<number>) {
+        if(energyJm2.length!==this.grid.count)throw new RangeError("Heat grid mismatch");
+        let sum=0;for(let i=0;i<this.grid.count;i++){this.temperatureK[i]+=energyJm2[i]/this.capacity[i];sum+=energyJm2[i];}
+        // Compensated accumulation matters when a large time-zero phase
+        // adjustment is followed by thousands of tiny internal transfers.
+        const increment=sum/this.grid.count-this.exchangeCorrection,total=this.exchangeJm2+increment;
+        this.exchangeCorrection=(total-this.exchangeJm2)-increment;this.exchangeJm2=total;
+    }
     advanceTo(targetS:number,maxSteps=32,afterStep?:(dt:number,temperatureK:Float64Array,absorbedWm2:Float64Array)=>void) {
         finiteInRange(targetS,'thermal time',this.epochS);
         const targetSteps=Math.floor((targetS-this.epochS)/this.stepS+1e-8);
@@ -153,17 +167,18 @@ export class ThermalModel {
         heatTransport(grid,t,this.transport,this.tendency);
         let radiation=0;
         for(let i=0;i<grid.count;i++) {
-            this.absorbedWm2[i]=(1-this.orbit.bondAlbedo)*q[Math.floor(i/grid.width)]*normalizer;
+            this.absorbedWm2[i]=(1-this.albedo[i])*q[Math.floor(i/grid.width)]*normalizer;
             const net=this.absorbedWm2[i]-config.emissivity*SIGMA*(t[i]/this.radiationScale[i])**4;
             radiation+=net;
             t[i]+=this.stepS*(net+this.tendency[i])/this.capacity[i];
         }
-        this.radiationJm2+=radiation/grid.count*this.stepS;
+        const increment=radiation/grid.count*this.stepS-this.radiationCorrection,total=this.radiationJm2+increment;
+        this.radiationCorrection=(total-this.radiationJm2)-increment;this.radiationJm2=total;
     }
     diagnostics() {
         let mean=0,min=Infinity,max=-Infinity;
         for(const t of this.temperatureK) {mean+=t;min=Math.min(min,t);max=Math.max(max,t);}
         return {meanK:mean/this.grid.count,minK:min,maxK:max,timeS:this.timeS,
-            budgetResidualJm2:this.energy()-this.initialEnergyJm2-this.radiationJm2};
+            budgetResidualJm2:this.energy()-this.initialEnergyJm2-this.radiationJm2-this.exchangeJm2};
     }
 }

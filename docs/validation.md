@@ -3,6 +3,58 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Coupled environment — 2026-10-09
+
+Base `8f88870`, branch `codex/coupled-environment`. Adds finite snow/sea-ice reservoirs,
+fusion and vaporization energy, albedo feedback, melt routing, coast-bounded
+prescribed ocean heat transport, gradual vegetation cover/composition and a
+baseline/current comparison dialog. Direct geographic generation remains zero-age.
+[Methods and limits](coupled-environment.md).
+
+103 Node tests pass, including 14 new environment tests; typecheck/build pass.
+Coverage includes finite stores, mass/enthalpy closure, phase limits, snowmelt
+outflow, snowfall latent heat, albedo, conservative ocean advection, uniform-field
+preservation and dry coasts, slow vegetation response, exact frame partitions and
+rollback, independent snapshots, CSV provenance and symmetric generated polar caps.
+
+[Environment browser report](evidence/environment-report.json): seven groups,
+no errors. Six maps, in-dialog playback beyond 10 days, fixed baseline, changed
+parameters, CSV export, mobile overflow and matched polar globe views were checked.
+[Comparison screenshot](evidence/environment-evolved-comparison.png),
+[current arrows](evidence/environment-ocean-currents.png),
+[north](evidence/environment-north-pole.png), [south](evidence/environment-south-pole.png),
+[mobile](evidence/environment-mobile-comparison.png),
+[CSV](evidence/environment-comparison.csv).
+
+Production in-app playback was also inspected at day 55.54. Water residual was
+−2.00e−8 mm and combined enthalpy residual 1.09e−5 J/m². The generated poles both
+show pale sea ice; later differing seasonal coverage is allowed. Visual inspection
+caught legacy black table text on a dark dialog; a browser regression now checks
+its legibility. The corrected screenshots were re-inspected.
+
+Existing surface browser checks: six groups, GPU87 and polar-renderer116, empty
+errors. Planet checks: eight groups / DOM20 / GPU648+771+30+87, empty errors.
+Water checks: five groups including a >90-day coupled transient, empty errors.
+These cover source terrain preservation, original artwork restoration, clocks,
+model disable and mobile controls as well as the new coupling.
+
+One fresh read-only whole-change review found three important issues: stale initial
+routing after frozen seeding, supercooled ice/liquid initialization causing a large
+first-step freeze, and incomplete comparison parameters. All were reproduced with
+failing tests and corrected; the environment suite then passed. History's absolute
+clock beneath a generation-age title was also corrected to generation age. The
+full suite exposed compensated-summation loss in the extreme albedo=1 initial
+adjustment; compensated heat/radiation accumulators now preserve the original
+1e−4 J/m² test bound, including rollback. No threshold was relaxed. Reviewer also
+ran 15 extreme configurations for 3,200 steps each without positivity or material
+conservation failures. No findings remain deferred.
+
+Accepted model boundaries: no salinity/momentum/deep ocean, glacier motion or
+empirical prediction; fine geographic cover is a disclosed downscaled estimate.
+Review excluded those claims, and production appearance was assessed separately
+through browser screenshots. Runtime comparisons and new switches remain session
+state rather than expanding the terrain-document schema.
+
 ## Polar sea ice retains freezing and melting history — 2026-10-09
 
 Base `e20ff5c`, continuing `codex/polar-surface-fix`. The user identified that the southern ocean remained blue while the northern ocean was white. Comparing actual terrain and a symmetric all-ocean control at the default season gave the same ±86.25° ice-free thermal estimates: north −34.934°C, south +6.927°C. The north already rendered sea ice. The instantaneous cover rule erased all southern sea ice without accounting for ice accumulated in winter; the earlier terrain-sampling fix did not address this separate problem.

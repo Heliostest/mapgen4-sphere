@@ -6,6 +6,8 @@ import {uvToDirection} from './sphere.ts';
 import {ThermalRuntime} from './thermal-runtime.ts';
 import {sampleTerrainGrid} from './thermal.ts';
 import {installThermalPanel} from './thermal-panel.ts';
+import {installEnvironmentPanel} from './environment-panel.ts';
+import {DEFAULT_ENVIRONMENT} from './environment.ts';
 import {installWaterPanel} from './water-panel.ts';
 import {GeomorphRuntime} from './geomorph-runtime.ts';
 import {installGeomorphPanel} from './geomorph-panel.ts';
@@ -162,6 +164,9 @@ export function installPlanetControls(options:Options) {
         if(!thermal.waterEnabled&&(layer==='surface'||waterLayer())){layer='original';layerSelect.value=layer;}
         emit();
     });
+    const environmentPanel=installEnvironmentPanel(root,thermal,action=>{pause(false);sendView();action();emit();}, {togglePlay:()=>play.click(),isPlaying:()=>clock.playing});
+    const compareShortcut=button('planet-compare-environment','Compare environment…',()=>root.querySelector<HTMLButtonElement>('#environment-compare')!.click());
+    root.insertBefore(compareShortcut,play);
     const geomorphPanel=installGeomorphPanel(root,geomorph,thermal,action=>{
         // Pause may roll time back over queued fields. Synchronize that state
         // before capturing, never capture an unpresented future water field.
@@ -211,7 +216,7 @@ export function installPlanetControls(options:Options) {
         const initialWater=thermal.water?.elapsedS===0;
         biomeKey.hidden=layer!=='surface'||!thermal.surfaceTexture;
         legend.textContent=layer==='insolation'?`Solar energy: 0–${o.fluxWm2.toFixed(0)} W/m² · dark blue → teal → orange. Colors retain terrain shading.`:
-            layer==='surface'?(thermal.surfaceTexture?'Potential natural cover from annual temperature and rain; seasonal snow and soil wetness update with climate. Sea ice retains freezing history and melts gradually. Estimated cover, not measured ice thickness or vegetation growth.':thermal.status):
+            layer==='surface'?(thermal.surfaceTexture?'Initial cover comes from annual temperature and rain. Seasonal snow and sea ice now store water, exchange latent heat and change albedo. Play evolves currents and vegetation. Geographic cover is a downscaled estimate; open Compare environment for budgets.':thermal.status):
             layer==='wind'?(thermal.model?'Estimated surface wind: arrows point toward flow; dark blue → green = 0–30 m/s. Geographic circulation template, not a pressure solver.':thermal.status):
             layer==='erosion'?(geomorph.model?'Net bed change: −100 m blue · 0 m cream · +100 m red; outside values saturate. Coarse preview; source climate and artistic rivers are retained.':'Capture current water in Erosion & deposition preview to begin.'):
             waterLayer()?(!thermal.water?thermal.status:layer==='precipitation'?`Precipitation: 0–20 mm/day · dark blue → cyan → cream. ${initialWater?'Generated initial estimate':'Latest simulated-step rate'}; higher values saturate.`:layer==='soil-moisture'?'Soil moisture: 0–100% of soil capacity · brown → green; ocean blue. Fraction per land area.':`Cell surface outflow: 0–10⁷ m³/s · dark blue → cyan, log scale. ${initialWater?'Generated initial estimate':'Latest simulated-step transfer'}; higher values saturate. Artistic rivers are independent.`):
@@ -229,15 +234,15 @@ export function installPlanetControls(options:Options) {
             if(wind)probeOutput.textContent+=` · estimated wind E ${wind.eastMps.toFixed(1)} / N ${wind.northMps.toFixed(1)} m/s`;
             const cover=thermal.sampleSurface(...probe.uv);
             if(cover&&layer==='surface')probeOutput.textContent+=probe.elevation>0
-                ?` · potential cover: ${BIOMES[cover.biome].label} · snow ${(100*cover.snowFraction).toFixed(0)}% · local surface estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C · annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
-                :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}% · ice-free thermal estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C`;
+                ?` · potential cover: ${BIOMES[cover.biome].label} · vegetation ${(100*cover.vegetationFraction).toFixed(0)}% · snow ${(100*cover.snowFraction).toFixed(0)}% · local surface estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C · annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
+                :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}% · local ice / water estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C`;
             const water=thermal.sampleWater(...probe.uv);
-            if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
+            if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · coarse-cell land snow ${water.snowMm.toFixed(1)} mm / melt ${water.meltMmDay.toFixed(2)} mm/day / ocean ice ${water.iceM.toFixed(2)} m · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
             const erosion=geomorph.sample(...probe.uv);
             if(erosion)probeOutput.textContent+=` · bed change ${erosion.deltaM.toFixed(2)} m · mobile sediment ${erosion.mobileMm.toFixed(2)} mm whole-cell equivalent${geomorph.previewEnabled?' · terrain preview':''}`;
         }
         thermalPanel.refresh(clock.timeS,clock.limited);
-        waterPanel.refresh();
+        waterPanel.refresh();environmentPanel.refresh();compareShortcut.disabled=!thermal.environment;
         geomorphPanel.refresh();
     }
     function sendView() {
@@ -277,8 +282,8 @@ export function installPlanetControls(options:Options) {
             clock.seek(settings.timeS,performance.now());layer='original';layerSelect.value=layer;cameraSelect.value=camera;
             inspecting=false;updateInspectButton();retro.checked=planet.retrograde;probe=null;
             probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
-            thermal.enabled=thermal.waterEnabled=false;thermal.config={...DEFAULT_THERMAL};thermal.waterConfig={...DEFAULT_WATER};thermal.invalidate();
-            geomorph.reset();thermalPanel.restoreInputs();waterPanel.restoreInputs();
+            thermal.enabled=thermal.waterEnabled=false;thermal.config={...DEFAULT_THERMAL};thermal.waterConfig={...DEFAULT_WATER};thermal.environmentConfig={...DEFAULT_ENVIRONMENT};thermal.invalidate();
+            geomorph.reset();thermalPanel.restoreInputs();waterPanel.restoreInputs();environmentPanel.restoreInputs();
             for(const {input,get} of inputs.values()){input.value=String(Number(get().toPrecision(12)));input.removeAttribute('aria-invalid');}
             emit();
         },

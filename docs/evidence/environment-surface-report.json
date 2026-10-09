@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "Generated natural surface is visible immediately at zero age, with color key and estimated cover probe",
+    "Season, physical elevation and radiation parameters update ice/snow/vegetation colors while paused",
+    "Play changes cover while preserving water budgets; diagnostic layer round trips preserve climate history and surface pixels",
+    "Original artwork restores exactly, model disable clears the layer, and the color key fits mobile",
+    "Paired polar views at the same camera scale cover both equinox phases and zero tilt; default south-pole ocean probe confirms sea ice without Play",
+    "Both polar views render without clock advancement; actual renderer converges at each pole through camera rotation and texture replacement"
+  ],
+  "errors": [],
+  "gpu": {
+    "status": "PASS",
+    "checks": 87
+  },
+  "poles": {
+    "status": "PASS",
+    "checks": 116
+  },
+  "southProbe": "-90.00° lat, -107.16° lon · -361 m seafloor · 0.0 W/m² · solar time undefined at pole · -1.8 °C daily-mean cell · estimated wind E -9.3 / N 3.3 m/s · potential cover: ocean · sea ice 100% · local ice / water estimate -1.8 °C · rain 0.42 mm/day · soil 0.0 mm / standing 0.0 mm per land area · snow 73.7 mm / melt 0.00 mm/day / sea ice 1.50 m · cell outflow 0.00e+0 m³/s"
+}

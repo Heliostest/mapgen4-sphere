@@ -4,7 +4,7 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
     const panel=document.createElement('details');panel.id='water-panel';
     panel.innerHTML=`<summary>Water cycle</summary>
       <label><input id="water-enabled" type="checkbox"> Enable water cycle</label>
-      <p class="planet-note">Rain, humidity and soil initialize from geographic rules without Play. Initial fluxes are estimates; Play continues with conservative evaporation, vapor transport, condensation and routing. Latent heat does not cool the thermal model. No snow, groundwater or weather prediction.</p>
+      <p class="planet-note">Rain, humidity and soil initialize from geographic rules without Play. Initial fluxes are estimates; Play continues with conservative evaporation, vapor transport, condensation and routing. Evaporation cools and condensation warms the thermal column. Snowfall accumulates; energy-limited melt feeds surface outflow. No groundwater or weather prediction.</p>
       <label><span>Mean precipitation</span><output id="water-rain"></output></label>
       <label><span>Mean evaporation</span><output id="water-evaporation"></output></label>
       <label><span>Atmosphere / soil / surface</span><output id="water-stores"></output></label>

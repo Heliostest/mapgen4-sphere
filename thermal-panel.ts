@@ -5,7 +5,7 @@ export function installThermalPanel(root:HTMLElement,thermal:ThermalRuntime,chan
     const panel=document.createElement('details');panel.id='thermal-panel';
     panel.innerHTML=`<summary>Seasonal temperature</summary>
         <label><input id="thermal-enabled" type="checkbox"> Enable thermal model</label>
-        <p class="planet-note">Ready without Play: latitude, season, sea influence and altitude generate a daily-mean reference climate. Play evolves that state; oceans respond more slowly. No hourly temperature, pressure solver or ice feedback.</p>
+        <p class="planet-note">Ready without Play: latitude, season, sea influence and altitude generate a daily-mean reference climate. Play evolves that state; oceans respond more slowly. With water enabled, ice/snow albedo, phase-change energy and prescribed ocean heat transport feed back on temperature. No hourly temperature or pressure solver.</p>
         <label><span>Global mean</span><output id="thermal-mean">Off</output></label>
         <label><span>Temperature range</span><output id="thermal-range">—</output></label>
         <label><span>Time since thermal reset</span><output id="thermal-age" data-days="0">—</output></label>
