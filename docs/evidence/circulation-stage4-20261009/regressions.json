@@ -1,0 +1,283 @@
+﻿[
+    {
+        "suite":  "climate",
+        "errors":  0,
+        "checks":  6,
+        "report":  {
+                       "checks":  [
+                                      "Generate climate produces structured temperature and nonzero rain at day0/age0 while paused, without warmup",
+                                      "Manual season, tilt and physical height regenerate climate immediately without advancing time; zero tilt removes seasonal contrast",
+                                      "Estimated vector wind arrows/probes respond to retrograde; rain/soil and erosion capture are available before Play with honest initial-estimate labels",
+                                      "Rain and surface-outflow legends distinguish generated initial estimates from latest simulated-step fluxes",
+                                      "Play evolves generated fields with a closed water budget; view changes preserve history, regeneration resets age at the selected date",
+                                      "Original artwork is preserved and generated climate/wind controls fit mobile"
+                                  ],
+                       "errors":  [
+
+                                  ],
+                       "initialRangeK":  66.58631812548722,
+                       "displayDiff":  {
+                                           "max":  0,
+                                           "channels":  0
+                                       }
+                   }
+    },
+    {
+        "suite":  "simulation",
+        "errors":  0,
+        "checks":  7,
+        "report":  {
+                       "checks":  [
+                                      "Real download/upload restores all state, options, clock, comparison and exact globe pixels",
+                                      "Real browser uninterrupted and restored branches resume to identical model fields and globe pixels",
+                                      "Comparison baseline, history and conservation diagnostics remain available after resume",
+                                      "Malformed versions, dimensions, nonfinite data and mismatched actual terrain preserve the current world",
+                                      "Editing during asynchronous candidate generation cancels replacement",
+                                      "Legacy terrain-only files retain climate-off semantics; complete off-state files roundtrip",
+                                      "Complete simulation preserves both applied erosion and subsequent painting, with exact restored state and pixels"
+                                  ],
+                       "errors":  [
+
+                                  ],
+                       "bytes":  3061939,
+                       "steps":  3832,
+                       "resumedSteps":  7665
+                   }
+    },
+    {
+        "suite":  "glacier",
+        "errors":  0,
+        "checks":  4,
+        "report":  {
+                       "checks":  [
+                                      "Actual cold-climate ice evolves and erodes during 40 physical days with finite water, latent energy and solid closure",
+                                      "Glacier mass, compensation, motion and solid history restore exactly; corrupt solid inventory preserves the current world",
+                                      "Comparison exposes ice thickness, Original restores exactly, and glacial erosion applies through the existing terrain rebuild",
+                                      "Disabling water clears glacier display seeds and preserves an exact thermal-only save; controls fit mobile"
+                                  ],
+                       "errors":  [
+
+                                  ],
+                       "budgets":  {
+                                       "water":  1.5250407159328461E-08,
+                                       "energy":  2.9802322387695313E-07,
+                                       "solid":  1.3311745513007787E-23
+                                   },
+                       "steps":  3305,
+                       "ice":  "Grounded ice flow off"
+                   }
+    },
+    {
+        "suite":  "terrain-water",
+        "errors":  0,
+        "checks":  5,
+        "report":  {
+                       "checks":  [
+                                      "Fine terrain stores, actual flux and natural-surface pixels evolve together while water stays nonnegative",
+                                      "Original artwork restores exactly and the same authored terrain remains pickable",
+                                      "Fine routing volumes, receivers and flux restore with exact surface pixels",
+                                      "Inconsistent fine/coarse storage is rejected before replacing the active world",
+                                      "Actual renderer shows rising lake shorelines, saturated ground and a fully dry basin; mobile stays within viewport"
+                                  ],
+                       "errors":  [
+
+                                  ],
+                       "probe":  "20.29° lat, 29.53° lon · 576 m elevation · 0.0 W/m² · 1.12 h local solar time · 15.7 °C daily-mean cell · estimated wind E -6.6 / N -2.3 m/s · potential cover: Grassland / steppe · vegetation 30% · snow 0% · local surface estimate 17.5 °C · annual mean 21.1 °C / 251 mm per Earth year · rain 0.00 mm/day · soil 1.1 mm / standing 0.0 mm per land area · coarse-cell land snow 0.0 mm / melt 0.00 mm/day / ocean ice 0.00 m · cell outflow 0.00e+0 m³/s · nearest terrain reservoir: mean depth 0.000 m / outflow 0.00 m³/s",
+                       "waterBudget":  -9.2550180852413177E-09,
+                       "routing":  "Terrain routing · 53,834 reservoirs · max standing depth 2.424 m · max flow 46077.0 m³/s · unresolved coast storage 0.0000 km³. Rivers are widened for readability; shoreline reconstruction is approximate. Original map retains artistic rivers.",
+                       "steps":  1128,
+                       "basin":  {
+                                     "status":  "PASS",
+                                     "counts":  [
+                                                    {
+                                                        "label":  "Dry basin",
+                                                        "blue":  0,
+                                                        "green":  0,
+                                                        "volumeM3":  0
+                                                    },
+                                                    {
+                                                        "label":  "Saturated ground",
+                                                        "blue":  0,
+                                                        "green":  2348517,
+                                                        "volumeM3":  0
+                                                    },
+                                                    {
+                                                        "label":  "Low lake",
+                                                        "blue":  339753,
+                                                        "green":  2009655,
+                                                        "volumeM3":  1299199101980698
+                                                    },
+                                                    {
+                                                        "label":  "High lake",
+                                                        "blue":  1384148,
+                                                        "green":  965687,
+                                                        "volumeM3":  13905855827842282
+                                                    },
+                                                    {
+                                                        "label":  "Drained again",
+                                                        "blue":  0,
+                                                        "green":  0,
+                                                        "volumeM3":  0
+                                                    }
+                                                ]
+                                 },
+                       "rejectionFrame":  {
+                                              "changedChannels":  0,
+                                              "maxDifference":  0
+                                          }
+                   }
+    },
+    {
+        "suite":  "weather",
+        "errors":  0,
+        "checks":  5,
+        "report":  {
+                       "checks":  [
+                                      "Moisture clouds are visible at generation; pause is exact and toggling off restores pixels without changing any physical state",
+                                      "Actual precipitation, wind and moisture evolve; full save/load reconstructs exact weather pixels and 98-day resumed fields with conserved budgets",
+                                      "Invalid display options preserve the world; Original remains exact, mobile fits and old saves can display clouds without precipitation phase",
+                                      "Terrain routing, glaciers, evolving circulation and weather run together with closed budgets and an exact full-world/pixel restore",
+                                      "Production GPU fixture verifies dry restoration and moisture-derived clouds without rain, snow or time-driven glyphs"
+                                  ],
+                       "errors":  [
+
+                                  ],
+                       "budgets":  {
+                                       "water":  -5.8207660913467407E-09,
+                                       "energy":  0.0000012665987014770508
+                                   },
+                       "coupledBudgets":  {
+                                              "water":  9.7788870334625244E-09,
+                                              "energy":  0.000026401132345199585,
+                                              "solid":  1.2129087964388556E-29
+                                          },
+                       "diagnostics":  "Cloud cover 25%",
+                       "steps":  [
+                                     3832,
+                                     7665
+                                 ],
+                       "gpu":  {
+                                   "status":  "PASS",
+                                   "cases":  [
+                                                 "Dry",
+                                                 "Humid cloud",
+                                                 "Same cloud / heavy rain",
+                                                 "Same cloud / changed wind",
+                                                 "Same cloud / snowfall",
+                                                 "Dry again",
+                                                 "Later",
+                                                 "Paused",
+                                                 "Restored time",
+                                                 "Cloud later",
+                                                 "Dry later",
+                                                 "Light rain"
+                                             ]
+                               }
+                   }
+    },
+    {
+        "suite":  "environment",
+        "errors":  0,
+        "checks":  7,
+        "report":  {
+                       "checks":  [
+                                      "Generated snow/ice inventories and both polar oceans appear at zero age; initial budgets close",
+                                      "Temperature, snow, sea ice, vegetation and current maps render distinct fields",
+                                      "In-dialog Play/Pause evolves \u003e10 days while baseline stays fixed and mass/enthalpy close",
+                                      "CSV download contains baseline, current, delta, age, parameters and all budget metrics",
+                                      "Parameter change regenerates current only; explicit capture replaces the baseline",
+                                      "Mobile comparison has no horizontal overflow and Escape closes the dialog",
+                                      "Matched north/south polar globe captures use the coupled model at zero age"
+                                  ],
+                       "errors":  [
+
+                                  ]
+                   }
+    },
+    {
+        "suite":  "planet",
+        "errors":  0,
+        "checks":  8,
+        "report":  {
+                       "checks":  [
+                                      "Original pixels, 33 existing controls (including sphere radius) and Earth diagnostics",
+                                      "Physical radius changes SI gravity/mass, scene radius stays independent, neither regenerates terrain",
+                                      "Invalid input rejected; day/night and insolation are optional and reversible",
+                                      "Playing advances SI time without generation; visibility loss pauses without catch-up",
+                                      "Inspection does not paint; painting pauses spin and survives physical radius, density, scene radius and relief changes",
+                                      "Terrain reset plus Earth/time reset restore the original canvas",
+                                      "Pause button freezes the presented frame; resume advances from that time",
+                                      "Touch inspection and portrait controls fit viewport"
+                                  ],
+                       "errors":  [
+
+                                  ],
+                       "paintedRadiusRoundTrip":  {
+                                                      "channels":  0,
+                                                      "max":  0
+                                                  },
+                       "controls":  {
+                                        "status":  "PASS",
+                                        "checks":  20,
+                                        "failures":  [
+
+                                                     ]
+                                    },
+                       "gpu":  {
+                                   "radial":  {
+                                                  "status":  "PASS",
+                                                  "checks":  648,
+                                                  "radii":  [
+                                                                100,
+                                                                300,
+                                                                1000
+                                                            ],
+                                                  "cameras":  4,
+                                                  "models":  3,
+                                                  "maxError":  0.0002679679309949279
+                                              },
+                                   "outlines":  {
+                                                    "status":  "PASS",
+                                                    "samples":  771,
+                                                    "report":  [
+                                                                   {
+                                                                       "axis":  [
+                                                                                    1,
+                                                                                    0
+                                                                                ],
+                                                                       "maxJump":  0.00048828125,
+                                                                       "maxError":  0.0000976562500000222
+                                                                   },
+                                                                   {
+                                                                       "axis":  [
+                                                                                    0,
+                                                                                    1
+                                                                                ],
+                                                                       "maxJump":  0.00048828125,
+                                                                       "maxError":  0.0000976562500000222
+                                                                   },
+                                                                   {
+                                                                       "axis":  [
+                                                                                    1,
+                                                                                    1
+                                                                                ],
+                                                                       "maxJump":  0.0009765625,
+                                                                       "maxError":  0.0001464843749999778
+                                                                   }
+                                                               ]
+                                                },
+                                   "silhouette":  {
+                                                      "status":  "PASS",
+                                                      "checks":  30,
+                                                      "failed":  [
+
+                                                                 ]
+                                                  },
+                                   "insolation":  {
+                                                      "status":  "PASS",
+                                                      "checks":  87
+                                                  }
+                               }
+                   }
+    }
+]

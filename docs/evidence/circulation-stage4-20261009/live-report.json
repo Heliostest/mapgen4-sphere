@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "sourceCommit": "7461fcb4c2d95729bcf1bfff1ad896d2be8d3287",
+  "fixture": {
+    "status": "PASS",
+    "checks": [
+      "Startup waits for accepted terrain",
+      "Thermal, water and cloud cover start enabled",
+      "All coupled environment systems start enabled",
+      "Startup shows natural terrain from space",
+      "Startup plays automatically after terrain is ready",
+      "Startup produces surface, cloud and terrain-water render data",
+      "Playback rotates the visible planet",
+      "Playback advances real coupled state",
+      "Pause freezes coupled history",
+      "Later terrain changes cannot restart a paused world",
+      "Restored terrain settings remain paused with their own modes",
+      "Live planet button enables and resumes all systems",
+      "Hiding an already running planet pauses without surprise restart"
+    ],
+    "failures": []
+  },
+  "actual": {
+    "play": "Pause",
+    "layer": "surface",
+    "ageDays": 0.012811119209764858,
+    "active": [
+      {
+        "id": "water-enabled",
+        "on": true
+      },
+      {
+        "id": "environment-vegetation",
+        "on": true
+      },
+      {
+        "id": "environment-albedo",
+        "on": true
+      },
+      {
+        "id": "environment-terrain-water",
+        "on": true
+      },
+      {
+        "id": "environment-glaciers",
+        "on": true
+      },
+      {
+        "id": "environment-circulation",
+        "on": true
+      }
+    ],
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5090 (0x00002B85) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "errors": []
+}

@@ -1,0 +1,889 @@
+{
+  "scope": "All named investigation runs retained, including failures. Early sourceCommit identifies HEAD with dirty work, not a complete source fingerprint. Final accepted run uses committed 7461fcb.",
+  "runs": [
+    {
+      "run": "circulation-stage4-first",
+      "status": "FAIL",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 1,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": false,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "d43ff3eb42855095ab152a43f95990858358a2b2908499e0da91a3f1717318e0"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 27,
+            "max": 1
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-stage4-gpu-probe",
+      "status": "PASS",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19408,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-stage4-drape-probe",
+      "status": "PASS",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19408,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-stage4-copy-probe",
+      "status": "FAIL",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 1,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          },
+          "drapeSha256": [
+            "bcd9176785f924492ec78d2a5c5aa16e1802c854c19d1d452f4b9a6453fb22c4",
+            "bcd9176785f924492ec78d2a5c5aa16e1802c854c19d1d452f4b9a6453fb22c4"
+          ]
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": false,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "d43ff3eb42855095ab152a43f95990858358a2b2908499e0da91a3f1717318e0"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 27,
+            "max": 1
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          },
+          "drapeSha256": [
+            "27f62ba2b8beec414a12972c6c058e584e7259029353e5cae9d00a6182756583",
+            "26ec265eda95d787ade7d638ebf61da43b4ae3027461e9809d6ab72783536635"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-stage4-no-dither",
+      "status": "PASS",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          },
+          "drapeSha256": [
+            "bcd9176785f924492ec78d2a5c5aa16e1802c854c19d1d452f4b9a6453fb22c4",
+            "bcd9176785f924492ec78d2a5c5aa16e1802c854c19d1d452f4b9a6453fb22c4"
+          ]
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          },
+          "drapeSha256": [
+            "27f62ba2b8beec414a12972c6c058e584e7259029353e5cae9d00a6182756583",
+            "27f62ba2b8beec414a12972c6c058e584e7259029353e5cae9d00a6182756583"
+          ]
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19408,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          },
+          "drapeSha256": [
+            "39d5deac9ed7fd7d6a5ee987e1476453fc7ad952a0f51bc07983b85eee37cda5",
+            "39d5deac9ed7fd7d6a5ee987e1476453fc7ad952a0f51bc07983b85eee37cda5"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-review-boundary-1",
+      "status": "PASS",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19408,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-review-boundary-2",
+      "status": "PASS",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19408,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-review-boundary-3",
+      "status": "PASS",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19408,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-review-control-copy",
+      "status": "PASS",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          },
+          "drapeSha256": [
+            "bcd9176785f924492ec78d2a5c5aa16e1802c854c19d1d452f4b9a6453fb22c4",
+            "bcd9176785f924492ec78d2a5c5aa16e1802c854c19d1d452f4b9a6453fb22c4"
+          ]
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          },
+          "drapeSha256": [
+            "27f62ba2b8beec414a12972c6c058e584e7259029353e5cae9d00a6182756583",
+            "27f62ba2b8beec414a12972c6c058e584e7259029353e5cae9d00a6182756583"
+          ]
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19408,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          },
+          "drapeSha256": [
+            "39d5deac9ed7fd7d6a5ee987e1476453fc7ad952a0f51bc07983b85eee37cda5",
+            "39d5deac9ed7fd7d6a5ee987e1476453fc7ad952a0f51bc07983b85eee37cda5"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-stage4-present",
+      "status": "PASS",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19408,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-stage4-native-redraw",
+      "status": "FAIL",
+      "sourceCommitAtRun": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+      "groupsCompleted": 1,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": false,
+          "sha256": [
+            "b95b71e25614d8359179d0407069494b2401a8c88fa9920e088c7aad8f035083",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 21,
+            "max": 1
+          },
+          "ui": {
+            "now": 12672,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-stage4-final",
+      "status": "PASS",
+      "sourceCommitAtRun": "6a70096425d85a3e0659f42f23d064615f4656db",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12864,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18992,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19408,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "run": "circulation-stage4-accepted",
+      "status": "PASS",
+      "sourceCommitAtRun": "7461fcb4c2d95729bcf1bfff1ad896d2be8d3287",
+      "groupsCompleted": 4,
+      "pixelChecks": [
+        {
+          "label": "49-day restore",
+          "pngEqual": true,
+          "sha256": [
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+            "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 12672,
+            "age": "49.09220881181893",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "98-day continuation",
+          "pngEqual": true,
+          "sha256": [
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+            "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 18800,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "surface",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        },
+        {
+          "label": "Original",
+          "pngEqual": true,
+          "sha256": [
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+            "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+          ],
+          "decoded": {
+            "width": 1170,
+            "height": 1160,
+            "channels": 0,
+            "max": 0
+          },
+          "ui": {
+            "now": 19216,
+            "age": "98.19722874284763",
+            "play": "Play",
+            "layer": "original",
+            "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+          }
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

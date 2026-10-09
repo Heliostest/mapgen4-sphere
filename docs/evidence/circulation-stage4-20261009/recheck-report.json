@@ -1,0 +1,301 @@
+{
+  "status": "PASS",
+  "seed": 187,
+  "grid": {
+    "width": 48,
+    "height": 24
+  },
+  "days": [
+    0,
+    49.09220881181893,
+    98.19722874284763
+  ],
+  "steps": [
+    0,
+    3832,
+    7665
+  ],
+  "initialClimateReady": true,
+  "windMaxMps": [
+    10.594235247863311,
+    13.034679923610092,
+    13.063868559192963
+  ],
+  "perturbationMaxMps": 5.000000000000001,
+  "currentMaxMps": [
+    0,
+    0.06035282393599864,
+    0.09583584737008106
+  ],
+  "budgets": [
+    {
+      "waterResidualMm": 0,
+      "enthalpyResidualJm2": 0
+    },
+    {
+      "waterResidualMm": -5.820766091346741e-9,
+      "enthalpyResidualJm2": 0.0000012665987014770508
+    },
+    {
+      "waterResidualMm": -2.1012965589761734e-7,
+      "enthalpyResidualJm2": 0.000006720423698425293
+    }
+  ],
+  "comparisonUsesActualVectors": true,
+  "memory": {
+    "targetMps": 0.057119561696682364,
+    "responseDays": 5,
+    "series": [
+      {
+        "day": 0,
+        "current": 0
+      },
+      {
+        "day": 1,
+        "current": 0.010354019933273366
+      },
+      {
+        "day": 2,
+        "current": 0.018831174470626703
+      },
+      {
+        "day": 3,
+        "current": 0.025771681588952433
+      },
+      {
+        "day": 4,
+        "current": 0.031454088208682354
+      },
+      {
+        "day": 5,
+        "current": 0.03610644925974914
+      },
+      {
+        "day": 6,
+        "current": 0.039915480326679714
+      },
+      {
+        "day": 7,
+        "current": 0.04303405120060522
+      },
+      {
+        "day": 8,
+        "current": 0.0455873210807413
+      },
+      {
+        "day": 9,
+        "current": 0.04767776165251645
+      },
+      {
+        "day": 10,
+        "current": 0.049389269636110684
+      },
+      {
+        "day": 11,
+        "current": 0.0404365139231444
+      },
+      {
+        "day": 12,
+        "current": 0.03310661749614431
+      },
+      {
+        "day": 13,
+        "current": 0.027105405874482923
+      },
+      {
+        "day": 14,
+        "current": 0.022192029364099756
+      },
+      {
+        "day": 15,
+        "current": 0.01816929691359808
+      },
+      {
+        "day": 16,
+        "current": 0.004521742211694241
+      },
+      {
+        "day": 17,
+        "current": -0.006651930527068441
+      },
+      {
+        "day": 18,
+        "current": -0.015800160023122525
+      },
+      {
+        "day": 19,
+        "current": -0.023290096847757093
+      },
+      {
+        "day": 20,
+        "current": -0.029422338464696662
+      },
+      {
+        "day": 21,
+        "current": -0.034442993261789734
+      },
+      {
+        "day": 22,
+        "current": -0.03855355774475833
+      },
+      {
+        "day": 23,
+        "current": -0.04191900329947481
+      },
+      {
+        "day": 24,
+        "current": -0.044674397072930784
+      },
+      {
+        "day": 25,
+        "current": -0.04693032269209878
+      }
+    ]
+  },
+  "heat": [
+    {
+      "barrier": "wet",
+      "changedCells": 4,
+      "energyResidualJm2": 0,
+      "donorK": 294.99999999999886,
+      "maxCurrentMps": 0.000971333434499097
+    },
+    {
+      "barrier": "land",
+      "changedCells": 0,
+      "energyResidualJm2": 0,
+      "donorK": 310,
+      "maxCurrentMps": 0
+    },
+    {
+      "barrier": "ice",
+      "changedCells": 0,
+      "energyResidualJm2": 0,
+      "donorK": 310,
+      "maxCurrentMps": 0
+    },
+    {
+      "barrier": "empty",
+      "changedCells": 0,
+      "energyResidualJm2": 0,
+      "donorK": 310,
+      "maxCurrentMps": 0
+    }
+  ],
+  "spin": {
+    "elapsedS": 10000,
+    "temperatureContrastK": 40,
+    "retrogradeReversesCoriolis": true,
+    "maxPerturbationMps": 2.450423507438165
+  },
+  "fixtureScope": "Controlled temperature, wind-shear and closed-loop heat inputs isolate kernels; coupled panels hydrate actual browser-downloaded state without advancing it.",
+  "sourceCommit": "7461fcb4c2d95729bcf1bfff1ad896d2be8d3287",
+  "browserReport": {
+    "status": "PASS",
+    "sourceCommit": "7461fcb4c2d95729bcf1bfff1ad896d2be8d3287",
+    "captureSynchronization": "two native presentation frames after controlled simulation callbacks; new wind evidence is captured separately with native rAF",
+    "checks": [
+      "Actual wind perturbations and closed ocean-loop memory evolve for 49 days with finite conserved water and enthalpy",
+      "Downloaded and uploaded wind/ocean memory resumes to identical fields and globe pixels after 98 days",
+      "Invalid enabled circulation is rejected atomically; current comparison, wind map and Original remain available",
+      "Mobile controls fit; disabling water removes active circulation while thermal-only save still restores"
+    ],
+    "errors": [],
+    "budgets": {
+      "water": -5.820766091346741e-9,
+      "energy": 0.0000012665987014770508
+    },
+    "diagnostics": "Evolving circulation · max wind 13.03 m/s · thermal perturbation 5.00 m/s · current 0.0604 m/s",
+    "steps": [
+      3832,
+      7665
+    ],
+    "pixelChecks": [
+      {
+        "label": "49-day restore",
+        "pngEqual": true,
+        "sha256": [
+          "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+          "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+        ],
+        "decoded": {
+          "width": 1170,
+          "height": 1160,
+          "channels": 0,
+          "max": 0
+        },
+        "ui": {
+          "now": 12672,
+          "age": "49.09220881181893",
+          "play": "Play",
+          "layer": "surface",
+          "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+        }
+      },
+      {
+        "label": "98-day continuation",
+        "pngEqual": true,
+        "sha256": [
+          "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+          "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+        ],
+        "decoded": {
+          "width": 1170,
+          "height": 1160,
+          "channels": 0,
+          "max": 0
+        },
+        "ui": {
+          "now": 18800,
+          "age": "98.19722874284763",
+          "play": "Play",
+          "layer": "surface",
+          "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+        }
+      },
+      {
+        "label": "Original",
+        "pngEqual": true,
+        "sha256": [
+          "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+          "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+        ],
+        "decoded": {
+          "width": 1170,
+          "height": 1160,
+          "channels": 0,
+          "max": 0
+        },
+        "ui": {
+          "now": 19216,
+          "age": "98.19722874284763",
+          "play": "Play",
+          "layer": "original",
+          "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+        }
+      }
+    ]
+  },
+  "windCaptures": [
+    {
+      "state": "initial",
+      "name": "initial-wind",
+      "nativeFrames": true,
+      "runtimeUnchanged": true,
+      "terrainAndCameraUnchanged": true
+    },
+    {
+      "state": "saved",
+      "name": "evolved-wind",
+      "nativeFrames": true,
+      "runtimeUnchanged": true,
+      "terrainAndCameraUnchanged": true
+    }
+  ],
+  "errors": [],
+  "captures": [
+    "wind-evolution.png",
+    "ocean-evolution.png",
+    "controlled-transport.png"
+  ]
+}

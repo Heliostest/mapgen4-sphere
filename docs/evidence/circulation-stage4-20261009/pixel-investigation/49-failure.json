@@ -1,0 +1,32 @@
+{
+  "status": "FAIL",
+  "sourceCommit": "ab8daf702a2887616d656bd2d01087d1cf8f2f15",
+  "error": "AssertionError [ERR_ASSERTION]: 49-day restore: {\"label\":\"49-day restore\",\"pngEqual\":false,\"sha256\":[\"b95b71e25614d8359179d0407069494b2401a8c88fa9920e088c7aad8f035083\",\"473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097\"],\"decoded\":{\"width\":1170,\"height\":1160,\"channels\":21,\"max\":1},\"ui\":{\"now\":12672,\"age\":\"49.09220881181893\",\"play\":\"Play\",\"layer\":\"surface\",\"status\":\"Complete simulation downloaded. Unapplied erosion preview and undo history are excluded.\"}}\n    at exactPixels (file:///D:/ws/app/mapgen4/mapgen4-sphere/scripts/circulation-browser-check.mjs:45:12)\n    at async file:///D:/ws/app/mapgen4/mapgen4-sphere/scripts/circulation-browser-check.mjs:63:70",
+  "checks": [
+    "Actual wind perturbations and closed ocean-loop memory evolve for 49 days with finite conserved water and enthalpy"
+  ],
+  "errors": [],
+  "pixelChecks": [
+    {
+      "label": "49-day restore",
+      "pngEqual": false,
+      "sha256": [
+        "b95b71e25614d8359179d0407069494b2401a8c88fa9920e088c7aad8f035083",
+        "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+      ],
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "channels": 21,
+        "max": 1
+      },
+      "ui": {
+        "now": 12672,
+        "age": "49.09220881181893",
+        "play": "Play",
+        "layer": "surface",
+        "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+      }
+    }
+  ]
+}
