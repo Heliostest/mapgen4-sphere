@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const folder='build/validation/glacier';await mkdir(folder,{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
+const page=await browser.newPage({viewport:{width:1440,height:1300}}),errors=[],checks=[];
+page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
+const frames=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+const click=async id=>{await page.locator('#'+id).evaluate(e=>e.click());await frames();};
+const input=async(id,value)=>{await page.locator('#'+id).evaluate((e,v)=>{e.value=String(v);e.dispatchEvent(new Event(e.type==='range'?'input':'change',{bubbles:true}));},value);await frames();};
+const save=async name=>{const wait=page.waitForEvent('download');wait.catch(()=>{});await click('simulation-save');assert.doesNotMatch(await page.locator('#terrain-file-status').textContent(),/Save failed/);await (await wait).saveAs(`${folder}/${name}.json`);return JSON.parse(await readFile(`${folder}/${name}.json`,'utf8'));};
+const capture=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
+const load=async data=>{await page.locator('#terrain-load').setInputFiles({name:'ice-world.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(data))});await page.waitForFunction(()=>/restored|failed/.test(document.querySelector('#terrain-file-status').textContent));await frames();return page.locator('#terrain-file-status').textContent();};
+try {
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?preview=glaciers');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
+    const original=await capture('original');await click('planet-generate-climate');await input('planet-albedo',.45);await click('environment-glaciers');await click('environment-terrain-water');
+    assert.equal(await page.locator('#environment-glacier').getAttribute('data-active'),'true');assert.ok(Number(await page.locator('#environment-glacier').getAttribute('data-mass'))>0);
+    const initial=await save('initial');await capture('initial');assert.ok(initial.runtime.state.water.landIceKgM2.some(v=>v>0));
+    await input('planet-speed',864000);await click('planet-play');await page.waitForFunction(()=>Number(document.querySelector('#thermal-age').dataset.days)>40,{},{timeout:90000});await click('planet-play');
+    const evolved=await save('evolved'),pixels=await capture('evolved'),w=evolved.runtime.state.water;
+    assert.ok(w.glacier.speedMps.some(v=>v>0));assert.ok(w.glacier.erodedM.some(v=>v>0));assert.ok(w.landIceKgM2.every(v=>Number.isFinite(v)&&v>=0));assert.notDeepEqual(w.landIceKgM2,initial.runtime.state.water.landIceKgM2);
+    const budgets={water:Number(await page.locator('#water-budget').getAttribute('data-value')),energy:Number(await page.locator('#environment-energy').getAttribute('data-value')),solid:Number(await page.locator('#environment-glacier').getAttribute('data-solid-residual'))};
+    assert.ok(Number.isFinite(budgets.water)&&Math.abs(budgets.water)<1e-6,JSON.stringify(budgets));assert.ok(Number.isFinite(budgets.energy)&&Math.abs(budgets.energy)<1e-4,JSON.stringify(budgets));assert.ok(Number.isFinite(budgets.solid)&&Math.abs(budgets.solid)<1e-10);
+    checks.push('Actual cold-climate ice evolves and erodes during 40 physical days with finite water, latent energy and solid closure');
+    await click('environment-glaciers');assert.match(await load(evolved),/Complete simulation restored/);assert.deepEqual((await save('restored')).runtime,evolved.runtime);assert.ok(pixels.equals(await capture('restored')));
+    const bad=structuredClone(evolved);bad.runtime.state.water.glacier.sedimentM[0]+=1;assert.match(await load(bad),/Load failed/);assert.deepEqual((await save('after-invalid')).runtime,evolved.runtime);
+    checks.push('Glacier mass, compensation, motion and solid history restore exactly; corrupt solid inventory preserves the current world');
+    await click('environment-compare');await input('environment-map','landIceM');await page.screenshot({path:`${folder}/comparison.png`});assert.match(await page.locator('#environment-map-legend').textContent(),/1,500 m/);await click('environment-close');
+    await input('planet-layer','original');assert.ok(original.equals(await capture('original-restored')));await input('planet-layer','surface');
+    await click('geomorph-capture-glacier');assert.match(await page.locator('#geomorph-status').textContent(),/glacial abrasion/);assert.ok(Math.abs(Number(await page.locator('#geomorph-budget').getAttribute('data-value')))<1e-6);
+    await input('planet-layer','erosion');await capture('erosion-preview');await click('geomorph-apply');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
+    const applied=await save('applied');assert.ok(applied.terrain.offsets.some(v=>v!==0));assert.equal(applied.runtime.state.water.elapsedS,0);await input('planet-layer','surface');await capture('applied');
+    checks.push('Comparison exposes ice thickness, Original restores exactly, and glacial erosion applies through the existing terrain rebuild');
+    await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:`${folder}/mobile.png`});
+    await click('water-enabled');const thermalOnly=await save('thermal-only');assert.equal(thermalOnly.runtime.state.initialLandIce,null);assert.equal(thermalOnly.runtime.state.localLandIceSeed,null);assert.match(await load(thermalOnly),/Complete simulation restored/);assert.deepEqual((await save('thermal-only-restored')).runtime,thermalOnly.runtime);
+    checks.push('Disabling water clears glacier display seeds and preserves an exact thermal-only save; controls fit mobile');
+    assert.deepEqual(errors,[]);const report={checks,errors,budgets,steps:evolved.runtime.state.thermal.steps,ice:await page.locator('#environment-glacier').textContent()};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+}finally{if(errors.length)console.log(JSON.stringify({errors}));await browser.close();}

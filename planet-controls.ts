@@ -98,7 +98,7 @@ export function installPlanetControls(options:Options) {
     ],camera,v=>camera=v as PlanetCamera);
     const legend=note('Original map · physical settings preserve your terrain.');legend.id='planet-legend';
     const biomeKey=document.createElement('div');biomeKey.id='planet-biome-key';biomeKey.hidden=true;root.append(biomeKey);
-    for(const item of [...Object.values(BIOMES),{label:'Sea ice',color:[201,224,230]}]) {
+    for(const item of [...Object.values(BIOMES),{label:'Grounded ice',color:[190,217,224]},{label:'Sea ice',color:[201,224,230]}]) {
         const chip=document.createElement('span'),swatch=document.createElement('i');
         swatch.style.backgroundColor=`rgb(${item.color.join(',')})`;swatch.setAttribute('aria-hidden','true');
         chip.append(swatch,document.createTextNode(item.label));biomeKey.append(chip);
@@ -243,6 +243,7 @@ export function installPlanetControls(options:Options) {
             if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · coarse-cell land snow ${water.snowMm.toFixed(1)} mm / melt ${water.meltMmDay.toFixed(2)} mm/day / ocean ice ${water.iceM.toFixed(2)} m · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
             const erosion=geomorph.sample(...probe.uv);
             const fineWater=thermal.sampleTerrainWater(...probe.uv);
+            if(water&&thermal.environmentConfig.glaciers&&probe.elevation>0)probeOutput.textContent+=` · grounded ice cell ${water.landIceM.toFixed(1)} m / flow ${water.iceSpeedMyr.toFixed(2)} m/yr`;
             if(fineWater&&probe.elevation>0)probeOutput.textContent+=` · nearest terrain reservoir: mean depth ${fineWater.depthM.toFixed(3)} m / outflow ${fineWater.flowM3S.toFixed(2)} m³/s`;
             if(erosion)probeOutput.textContent+=` · bed change ${erosion.deltaM.toFixed(2)} m · mobile sediment ${erosion.mobileMm.toFixed(2)} mm whole-cell equivalent${geomorph.previewEnabled?' · terrain preview':''}`;
         }

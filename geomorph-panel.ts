@@ -7,6 +7,7 @@ export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:
     panel.innerHTML=`<summary>Erosion &amp; deposition preview</summary>
       <p class="planet-note">Stage D preview. Capture the current water discharge, then evolve in separate geological years. Astronomy Play does not advance erosion. Dry cells can still undergo slope smoothing.</p>
       <button id="geomorph-capture" type="button">Capture current water</button>
+      <button id="geomorph-capture-glacier" type="button">Capture glacial erosion</button>
       <label><span>Years per click (requested)</span><input id="geomorph-duration" type="number" min="0.01" max="100000000" step="any" value="100000"></label>
       <button id="geomorph-step" type="button">Evolve terrain</button>
       <button id="geomorph-undo" type="button">Undo last evolve</button>
@@ -29,6 +30,7 @@ export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:
     root.append(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
     el('geomorph-capture').addEventListener('click',()=>{if(application.ready())change(()=>g.capture(thermal));});
+    el('geomorph-capture-glacier').addEventListener('click',()=>{if(application.ready())change(()=>g.captureGlacier(thermal));});
     el('geomorph-apply').addEventListener('click',()=>{if(application.ready())change(application.apply);});
     const duration=el<HTMLInputElement>('geomorph-duration');
     const validDuration=()=>{const valid=duration.checkValidity()&&Number.isFinite(duration.valueAsNumber);if(valid)duration.removeAttribute('aria-invalid');else duration.setAttribute('aria-invalid','true');return valid;};
@@ -48,6 +50,7 @@ export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:
         const m=g.model,d=m?.diagnostics();
         const pending=!application.ready();
         el<HTMLButtonElement>('geomorph-capture').disabled=!thermal.water||pending;
+        el<HTMLButtonElement>('geomorph-capture-glacier').disabled=!thermal.water?.glacier||pending;
         el<HTMLButtonElement>('geomorph-step').disabled=!m||pending;el<HTMLButtonElement>('geomorph-undo').disabled=!g.canUndo;
         el<HTMLButtonElement>('geomorph-apply').disabled=pending||!m||m.years<=0||!g.view?.preview;
         preview.checked=g.previewEnabled;

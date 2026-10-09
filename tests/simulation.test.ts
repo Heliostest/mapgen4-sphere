@@ -45,6 +45,10 @@ test('complete document preserves comparison baseline and all runtime state',()=
 });
 test('older complete v1 worlds without optional terrain routing retain coarse mode',()=>{
     const d=JSON.parse(encodeSimulationDocument(documentFixture()));delete d.runtime.environmentConfig.terrainWater;delete d.runtime.state.water.routing;
+    delete d.runtime.environmentConfig.glaciers;delete d.runtime.state.initialLandIce;delete d.runtime.state.localLandIceSeed;
+    for(const key of ['landIceKgM2','landIceCorrection','glacier'])delete d.runtime.state.water[key];
+    delete d.comparison.baseline.landIceM;
+    for(const metrics of [d.comparison.baseline.metrics,...d.comparison.history.map(h=>h.metrics)])for(const key of ['landIceMm','glacierSpeedMyr','glacialSolidResidualM'])delete metrics[key];
     const restored=decodeSimulationDocument(JSON.stringify(d),identity,8);assert.equal(restored.runtime.environmentConfig.terrainWater,false);assert.equal(restored.runtime.state!.water!.routing,null);
 });
 test('invalid files cannot produce a replacement world',()=>{

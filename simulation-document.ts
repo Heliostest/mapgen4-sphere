@@ -12,7 +12,7 @@ export interface SimulationDocument {
 }
 function text(v:unknown,name:string,max:number) {if(typeof v!=='string'||v.length>max)throw new Error(`Invalid ${name}`);return v;}
 function metrics(value:unknown):EnvironmentMetrics {
-    const d=record(value);return Object.fromEntries(METRICS.map(([k])=>[k,scalar(d[k],k)])) as unknown as EnvironmentMetrics;
+    const d=record(value);return Object.fromEntries(METRICS.map(([k])=>[k,scalar(d[k]===undefined&&['landIceMm','glacierSpeedMyr','glacialSolidResidualM'].includes(k)?0:d[k],k)])) as unknown as EnvironmentMetrics;
 }
 function baseline(value:unknown):EnvironmentSnapshot|null {
     if(value===null)return null;
@@ -21,7 +21,7 @@ function baseline(value:unknown):EnvironmentSnapshot|null {
     const parameters=text(d.parameters,'comparison parameters',16384);record(JSON.parse(parameters));
     const rgb=field(d.rgb,'comparison pixels',3*n,0,255);if(rgb.some(v=>!Number.isInteger(v)))throw new Error('Invalid comparison pixel');
     return {timeS:scalar(d.timeS,'baseline time',0,Number.MAX_SAFE_INTEGER),ageDays:scalar(d.ageDays,'baseline age',0),description:text(d.description,'comparison description',2048),parameters,width,height,rgb:new Uint8Array(rgb),metrics:metrics(d.metrics),
-        temperatureC:field(d.temperatureC,'baseline temperature',n,-273.15,1e5),snowMm:field(d.snowMm,'baseline snow',n,0),iceM:field(d.iceM,'baseline ice',n,0),vegetation:field(d.vegetation,'baseline vegetation',n,0,1),land:field(d.land,'baseline land',n,0,1),east:field(d.east,'baseline east',n),north:field(d.north,'baseline north',n)};
+        temperatureC:field(d.temperatureC,'baseline temperature',n,-273.15,1e5),snowMm:field(d.snowMm,'baseline snow',n,0),iceM:field(d.iceM,'baseline ice',n,0),landIceM:d.landIceM===undefined?new Float64Array(n):field(d.landIceM,'baseline land ice',n,0),vegetation:field(d.vegetation,'baseline vegetation',n,0,1),land:field(d.land,'baseline land',n,0,1),east:field(d.east,'baseline east',n),north:field(d.north,'baseline north',n)};
 }
 export function decodeSimulationDocument(source:string,expected:MeshIdentity,constraintSize:number):SimulationDocument {
     if(source.length>MAX_SIMULATION_FILE_BYTES||new TextEncoder().encode(source).length>MAX_SIMULATION_FILE_BYTES)throw new Error('Simulation file exceeds 32 MiB');

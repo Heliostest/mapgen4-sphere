@@ -2,6 +2,7 @@ import {finiteInRange} from './planet.ts';
 import type {ThermalGrid} from './thermal.ts';
 import type {GeneratedClimate} from './climate.ts';
 import {TerrainWater,type TerrainWaterCheckpoint,type RoutingNetwork} from './terrain-water.ts';
+import {GlacierModel,type GlacierCheckpoint} from './glacier.ts';
 
 export interface WaterConfig {
     evaporationFraction:number;soilCapacityKgM2:number;initialOceanDepthM:number;
@@ -23,11 +24,15 @@ export interface WaterCheckpoint {
     oceanGlobalKgM2:number;elapsedS:number;
     windEastMps:Float64Array;windNorthMps:Float64Array;
     routing:TerrainWaterCheckpoint|null;
+    landIceKgM2:Float64Array;landIceCorrection:Float64Array;glacier:GlacierCheckpoint|null;
 }
 
 /** Conservative water reservoirs. All columns are per WHOLE cell area. Ocean storage is
  * per global area, so each local transfer contributes 1/N to that reservoir. */
 export class WaterModel {
+    glacier:GlacierModel|null=null;
+    private pendingGlacier:GlacierCheckpoint|null=null;
+    attachGlacier(gravityMps2:number) {this.glacier=new GlacierModel(this,gravityMps2);if(this.pendingGlacier){this.glacier.restore(this.pendingGlacier);this.pendingGlacier=null;}}
     routing:TerrainWater|null=null;
     private pendingRouting:TerrainWaterCheckpoint|null=null;
     attachRouting(network:RoutingNetwork) {
@@ -42,6 +47,13 @@ export class WaterModel {
     readonly evaporationKgM2S:Float64Array;
     readonly dischargeM3S:Float64Array;
     readonly snowKgM2:Float64Array;
+    readonly landIceKgM2:Float64Array;
+    readonly landIceCorrection:Float64Array;
+    addLandIce(i:number,amount:number) {
+        if(amount===-this.landIceKgM2[i]){this.landIceKgM2[i]=0;this.landIceCorrection[i]=0;return;}
+        const increment=amount-this.landIceCorrection[i],total=this.landIceKgM2[i]+increment;
+        this.landIceCorrection[i]=(total-this.landIceKgM2[i])-increment;this.landIceKgM2[i]=total;
+    }
     readonly seaIceKgM2:Float64Array;
     readonly meltKgM2S:Float64Array;
     readonly cellAreaM2:number;
@@ -75,7 +87,8 @@ export class WaterModel {
         this.atmosphereKgM2=Float64Array.from(initialTemperatureK,t=>{finiteInRange(t,'water temperature',0);return .5*moistureCapacity(t);});
         this.soilKgM2=Float64Array.from(land,f=>f*config.soilCapacityKgM2*.5);
         this.surfaceKgM2=new Float64Array(grid.count);
-        this.snowKgM2=new Float64Array(grid.count);this.seaIceKgM2=new Float64Array(grid.count);this.meltKgM2S=new Float64Array(grid.count);
+        this.snowKgM2=new Float64Array(grid.count);this.landIceKgM2=new Float64Array(grid.count);this.seaIceKgM2=new Float64Array(grid.count);this.meltKgM2S=new Float64Array(grid.count);
+        this.landIceCorrection=new Float64Array(grid.count);
         this.precipitationKgM2S=new Float64Array(grid.count);this.evaporationKgM2S=new Float64Array(grid.count);this.dischargeM3S=new Float64Array(grid.count);
         this.oceanGlobalKgM2=config.initialOceanDepthM*WATER_DENSITY*(1-this.land.reduce((a,b)=>a+b,0)/grid.count);
         this.delta=new Float64Array(grid.count);this.oceanDemand=new Float64Array(grid.count);
@@ -140,7 +153,18 @@ export class WaterModel {
         });
     }
     private total() {
-        return this.oceanGlobalKgM2+this.atmosphereKgM2.reduce((sum,v,i)=>sum+v+this.soilKgM2[i]+this.surfaceKgM2[i]+this.snowKgM2[i]+this.seaIceKgM2[i],0)/this.grid.count;
+        return this.oceanGlobalKgM2+this.atmosphereKgM2.reduce((sum,v,i)=>sum+v+this.soilKgM2[i]+this.surfaceKgM2[i]+this.snowKgM2[i]+this.seaIceKgM2[i]+this.landIceKgM2[i],0)/this.grid.count;
+    }
+    seedLandIce(request:ArrayLike<number>) {
+        const n=this.grid.count,remaining=new Float64Array(n);let demand=0;
+        for(let i=0;i<n;i++) {
+            let left=this.land[i]>0?request[i]:0;finiteInRange(left,'initial land ice',0);
+            for(const store of [this.snowKgM2,this.surfaceKgM2,this.soilKgM2]){const amount=Math.min(left,store[i]);store[i]-=amount;this.addLandIce(i,amount);left-=amount;}
+            remaining[i]=left;demand+=left/n;
+        }
+        const fraction=demand>0?Math.min(1,this.oceanGlobalKgM2/demand):0;this.oceanGlobalKgM2-=demand*fraction;
+        for(let i=0;i<n;i++)this.addLandIce(i,remaining[i]*fraction);
+        this.diagnoseRouting();
     }
     /** Allocate generated ice from real stores, with no elapsed time or new water. */
     seedFrozen(snow:ArrayLike<number>,ice:ArrayLike<number>) {
@@ -162,6 +186,7 @@ export class WaterModel {
     }
     step(dt:number,temperatureK:ArrayLike<number>,absorbedWm2:ArrayLike<number>,coupling?:WaterCoupling) {
         if(this.pendingRouting)throw new Error('Attach restored terrain before advancing water');
+        if(this.pendingGlacier)throw new Error('Attach restored glacier before advancing water');
         finiteInRange(dt,'water time step',Number.MIN_VALUE,this.maxStepS*(1+1e-10));
         if(temperatureK.length!==this.grid.count||absorbedWm2.length!==this.grid.count)throw new RangeError('Water forcing grid mismatch');
         const n=this.grid.count,{config,land}=this;
@@ -244,18 +269,21 @@ export class WaterModel {
         return {atmosphereKgM2:this.atmosphereKgM2.slice(),soilKgM2:this.soilKgM2.slice(),surfaceKgM2:this.surfaceKgM2.slice(),
             precipitationKgM2S:this.precipitationKgM2S.slice(),evaporationKgM2S:this.evaporationKgM2S.slice(),dischargeM3S:this.dischargeM3S.slice(),
             snowKgM2:this.snowKgM2.slice(),seaIceKgM2:this.seaIceKgM2.slice(),meltKgM2S:this.meltKgM2S.slice(),
-            oceanGlobalKgM2:this.oceanGlobalKgM2,elapsedS:this.elapsedS,windEastMps:this.windEastMps.slice(),windNorthMps:this.windNorthMps.slice(),routing:this.routing?.checkpoint()??structuredClone(this.pendingRouting)};
+            oceanGlobalKgM2:this.oceanGlobalKgM2,elapsedS:this.elapsedS,windEastMps:this.windEastMps.slice(),windNorthMps:this.windNorthMps.slice(),routing:this.routing?.checkpoint()??structuredClone(this.pendingRouting),landIceKgM2:this.landIceKgM2.slice(),landIceCorrection:this.landIceCorrection.slice(),glacier:this.glacier?.checkpoint()??structuredClone(this.pendingGlacier)};
     }
     restore(state:WaterCheckpoint) {
         for(const key of ['atmosphereKgM2','soilKgM2','surfaceKgM2','precipitationKgM2S','evaporationKgM2S','dischargeM3S','snowKgM2','seaIceKgM2','meltKgM2S'] as const)this[key].set(state[key]);
         this.oceanGlobalKgM2=state.oceanGlobalKgM2;this.elapsedS=state.elapsedS;
         this.setWinds(state.windEastMps,state.windNorthMps);
+        this.landIceKgM2.set(state.landIceKgM2);
+        this.landIceCorrection.set(state.landIceCorrection);
+        if(state.glacier){if(this.glacier)this.glacier.restore(state.glacier);else this.pendingGlacier=structuredClone(state.glacier);}else {this.glacier=null;this.pendingGlacier=null;}
         if(state.routing) {if(this.routing)this.routing.restore(state.routing,this);else this.pendingRouting=structuredClone(state.routing);}
         else {this.routing=null;this.pendingRouting=null;}
     }
     diagnostics() {
         const mean=(a:Float64Array)=>a.reduce((sum,v)=>sum+v,0)/this.grid.count,totalMm=this.total();
-        return {snowMm:mean(this.snowKgM2),iceMm:mean(this.seaIceKgM2),meltMmDay:DAY*mean(this.meltKgM2S),totalMm,residualMm:totalMm-this.initialTotalMm,atmosphereMm:mean(this.atmosphereKgM2),soilMm:mean(this.soilKgM2),surfaceMm:mean(this.surfaceKgM2),oceanMm:this.oceanGlobalKgM2,
+        return {landIceMm:mean(this.landIceKgM2),snowMm:mean(this.snowKgM2),iceMm:mean(this.seaIceKgM2),meltMmDay:DAY*mean(this.meltKgM2S),totalMm,residualMm:totalMm-this.initialTotalMm,atmosphereMm:mean(this.atmosphereKgM2),soilMm:mean(this.soilKgM2),surfaceMm:mean(this.surfaceKgM2),oceanMm:this.oceanGlobalKgM2,
             rainMmDay:DAY*mean(this.precipitationKgM2S),evaporationMmDay:DAY*mean(this.evaporationKgM2S),maxDischargeM3S:Math.max(...this.dischargeM3S)};
     }
 }

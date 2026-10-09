@@ -5,6 +5,7 @@ import type {VegetationCheckpoint} from './vegetation.ts';
 import {BIOMES,type SurfaceReference} from './surface.ts';
 import {SURFACE_WIDTH,SURFACE_HEIGHT} from './surface-grid.ts';
 import type {TerrainWaterCheckpoint} from './terrain-water.ts';
+import type {GlacierCheckpoint} from './glacier.ts';
 
 export interface RuntimeState {
     version:1;grid:{width:number;height:number};enabled:boolean;waterEnabled:boolean;
@@ -16,6 +17,7 @@ export interface RuntimeState {
         water:(WaterCheckpoint&{initialTotalMm:number})|null;vegetation:VegetationCheckpoint|null;
         initialTemperature:Float64Array;initialSoil:Float64Array;
         initialSnow:Float64Array|null;initialIce:Float64Array|null;localSnowSeed:Float64Array|null;localIceSeed:Float64Array|null;
+        initialLandIce:Float64Array|null;localLandIceSeed:Float64Array|null;
         surfaceReference:SurfaceReference;surfaceInitial:{temperatureK:Float64Array;soilFraction:Float64Array};iceEnergy:Float64Array;
     };
 }
@@ -37,7 +39,7 @@ export function waterConfig(v:unknown):WaterConfig {
     const c=record(v);return {evaporationFraction:scalar(c.evaporationFraction,'evaporation fraction',0,1),soilCapacityKgM2:scalar(c.soilCapacityKgM2,'soil capacity',1,1000),initialOceanDepthM:scalar(c.initialOceanDepthM,'water inventory',0,10000),windMps:scalar(c.windMps,'wind',-100,100),moistureDiffusivityM2s:scalar(c.moistureDiffusivityM2s,'moisture mixing',0,1e7),routingSpeedMps:scalar(c.routingSpeedMps,'routing speed',.01,10)};
 }
 export function environmentConfig(v:unknown):EnvironmentConfig {
-    const c=record(v);return {oceanStrengthMps:scalar(c.oceanStrengthMps,'ocean current',0,2),vegetation:boolean(c.vegetation),iceAlbedo:boolean(c.iceAlbedo),terrainWater:c.terrainWater===undefined?false:boolean(c.terrainWater)};
+    const c=record(v);return {oceanStrengthMps:scalar(c.oceanStrengthMps,'ocean current',0,2),vegetation:boolean(c.vegetation),iceAlbedo:boolean(c.iceAlbedo),terrainWater:c.terrainWater===undefined?false:boolean(c.terrainWater),glaciers:c.glaciers===undefined?false:boolean(c.glaciers)};
 }
 export function decodeRuntimeState(value:unknown):RuntimeState {
     const d=record(value),g=record(d.grid);if(d.version!==1)throw new Error('Unsupported simulation state version');
@@ -54,24 +56,33 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
     if(result.waterEnabled) {
         const w=record(s.water),v=record(s.vegetation),wind=Math.abs(result.waterConfig.windMps)+1e-9;
         let routing:TerrainWaterCheckpoint|null=null;
+        let glacier:GlacierCheckpoint|null=null;
+        const landIceKgM2=w.landIceKgM2===undefined&&!result.environmentConfig.glaciers?new Float64Array(n):f(w,'landIceKgM2');
+        const landIceCorrection=w.landIceCorrection===undefined&&!result.environmentConfig.glaciers?new Float64Array(n):f(w,'landIceCorrection',n,-1e30);
+        if(landIceCorrection.some((v,i)=>Math.abs(v)>Math.max(1e-12,Number.EPSILON*landIceKgM2[i])))throw new Error('Invalid grounded ice compensation');
+        if(result.environmentConfig.glaciers) {
+            const g=record(w.glacier);glacier={erodedM:f(g,'erodedM'),sedimentM:f(g,'sedimentM'),depositedM:f(g,'depositedM'),speedMps:f(g,'speedMps'),outflowM3S:f(g,'outflowM3S'),limitedCells:scalar(g.limitedCells,'ice limiter count',0,4*n,true)};
+        }else if((w.glacier!==undefined&&w.glacier!==null)||landIceKgM2.some(v=>v!==0))throw new Error('Unexpected land ice state');
         if(result.environmentConfig.terrainWater) {
             const r=record(w.routing),length=scalar((r.volumeM3 as number[])?.length,'terrain routing count',4,200000,true);
             const receivers=f(r,'receiverSide',length,-1,3*length-1);
             if(receivers.some(v=>!Number.isInteger(v)))throw new Error('Invalid terrain routing side');
             routing={volumeM3:f(r,'volumeM3',length),fluxM3S:f(r,'fluxM3S',length),receiverSide:new Int32Array(receivers)};
         }else if(w.routing!==undefined&&w.routing!==null)throw new Error('Unexpected terrain routing state');
-        water={atmosphereKgM2:f(w,'atmosphereKgM2'),soilKgM2:f(w,'soilKgM2'),surfaceKgM2:f(w,'surfaceKgM2'),snowKgM2:f(w,'snowKgM2'),seaIceKgM2:f(w,'seaIceKgM2'),meltKgM2S:f(w,'meltKgM2S'),precipitationKgM2S:f(w,'precipitationKgM2S'),evaporationKgM2S:f(w,'evaporationKgM2S'),dischargeM3S:f(w,'dischargeM3S'),windEastMps:f(w,'windEastMps',n,-wind,wind),windNorthMps:f(w,'windNorthMps',n,-wind,wind),oceanGlobalKgM2:scalar(w.oceanGlobalKgM2,'ocean store',0),elapsedS:scalar(w.elapsedS,'water age',0,Number.MAX_SAFE_INTEGER),initialTotalMm:scalar(w.initialTotalMm,'initial water',0),routing};
+        water={atmosphereKgM2:f(w,'atmosphereKgM2'),soilKgM2:f(w,'soilKgM2'),surfaceKgM2:f(w,'surfaceKgM2'),snowKgM2:f(w,'snowKgM2'),seaIceKgM2:f(w,'seaIceKgM2'),meltKgM2S:f(w,'meltKgM2S'),precipitationKgM2S:f(w,'precipitationKgM2S'),evaporationKgM2S:f(w,'evaporationKgM2S'),dischargeM3S:f(w,'dischargeM3S'),windEastMps:f(w,'windEastMps',n,-wind,wind),windNorthMps:f(w,'windNorthMps',n,-wind,wind),oceanGlobalKgM2:scalar(w.oceanGlobalKgM2,'ocean store',0),elapsedS:scalar(w.elapsedS,'water age',0,Number.MAX_SAFE_INTEGER),initialTotalMm:scalar(w.initialTotalMm,'initial water',0),routing,landIceKgM2,landIceCorrection,glacier};
         vegetation={meanK:f(v,'meanK',sn,0,1e5),rainMm:f(v,'rainMm',sn),cover:f(v,'cover',sn,0,1),weights:f(v,'weights',sn*Object.keys(BIOMES).length,0,1)};
         const types=Object.keys(BIOMES).length;
         for(let i=0;i<sn;i++){let sum=0;for(let b=0;b<types;b++)sum+=vegetation.weights[i*types+b];if(Math.abs(sum-1)>1e-8)throw new Error('Invalid vegetation mixture');}
     }else if(s.water!==null||s.vegetation!==null||s.initialEnthalpy!==null)throw new Error('Unexpected water state');
     const nullable=(key:string,len:number)=>result.waterEnabled?f(s,key,len):s[key]===null?null:(()=>{throw new Error(`Unexpected ${key}`);})();
+    const optionalIce=(key:string,len:number)=>result.waterEnabled?(s[key]===undefined&&!result.environmentConfig.glaciers?new Float64Array(len):f(s,key,len)):null;
     result.state={land:f(s,'land',n,0,1),height:f(s,'height',n,0,1),localLand:f(s,'localLand',sn,0,1),localHeight:f(s,'localHeight',sn,0,1),
         epochS:scalar(s.epochS,'epoch',0,Number.MAX_SAFE_INTEGER),stepS:scalar(s.stepS,'step',Number.MIN_VALUE,1800),lastTarget:scalar(s.lastTarget,'target time',0,Number.MAX_SAFE_INTEGER),initialEnergyJm2:scalar(s.initialEnergyJm2,'initial heat',0),initialEnthalpy:result.waterEnabled?scalar(s.initialEnthalpy,'initial enthalpy'):null,
-        thermal,radiationScale:f(s,'radiationScale',n,.55,1),water,vegetation,initialTemperature:f(s,'initialTemperature',n,0,1e5),initialSoil:f(s,'initialSoil',n,0,1),initialSnow:nullable('initialSnow',n),initialIce:nullable('initialIce',n),localSnowSeed:nullable('localSnowSeed',sn),localIceSeed:nullable('localIceSeed',sn),
+        thermal,radiationScale:f(s,'radiationScale',n,.55,1),water,vegetation,initialTemperature:f(s,'initialTemperature',n,0,1e5),initialSoil:f(s,'initialSoil',n,0,1),initialSnow:nullable('initialSnow',n),initialIce:nullable('initialIce',n),initialLandIce:optionalIce('initialLandIce',n),localLandIceSeed:optionalIce('localLandIceSeed',sn),localSnowSeed:nullable('localSnowSeed',sn),localIceSeed:nullable('localIceSeed',sn),
         surfaceReference:{meanTemperatureK:f(ref,'meanTemperatureK',sn,0,1e5),warmestTemperatureK:f(ref,'warmestTemperatureK',sn,0,1e5),annualRainMm:f(ref,'annualRainMm',sn),monthlyIceCooling:f(ref,'monthlyIceCooling',12*sn,-1e30)},
         surfaceInitial:{temperatureK:f(initial,'temperatureK',sn,0,1e5),soilFraction:f(initial,'soilFraction',sn,0,1)},iceEnergy:f(s,'iceEnergy',sn)};
     const state=result.state,age=thermal.steps*state.stepS,time=state.epochS+age;
+    if(water?.landIceKgM2.some((v,i)=>state.land[i]===0&&v!==0))throw new Error('Grounded ice requires land');
     if(!Number.isFinite(time)||time>Number.MAX_SAFE_INTEGER||time>state.lastTarget+1e-6||state.lastTarget-time>=state.stepS+1e-6)throw new Error('Inconsistent simulation time');
     if(water&&Math.abs(water.elapsedS-age)>Math.max(1e-6,age*1e-10))throw new Error('Inconsistent water age');
     return result;

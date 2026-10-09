@@ -30,6 +30,13 @@ export class GeomorphRuntime {
             `Advanced ${result.advancedYears.toPrecision(5)} yr in ${result.steps} steps.${result.limited?' Work limit reached; click again to continue.':''}`;
         this.refreshView();
     }
+    captureGlacier(thermal:ThermalRuntime) {
+        const w=thermal.water,g=w?.glacier;if(!w||!g){this.reset('Enable grounded ice before capturing glacial erosion.');return;}
+        this.source=w;this.sourceTimeS=thermal.model!.timeS;this.sourceEstimated=false;this.previous=null;
+        const m=this.model=new GeomorphModel(w.grid,w.radiusM,w.land,w.heightM,w.dischargeM3S,this.config);
+        for(let i=0;i<w.grid.count;i++) {m.heightM[i]=w.land[i]>0?w.heightM[i]-g.erodedM[i]+g.depositedM[i]/w.land[i]:0;m.mobileM[i]=g.sedimentM[i];}
+        m.years=w.elapsedS/(365.25*86400);this.status='Captured accumulated glacial abrasion and deposited sediment. Apply stores this candidate terrain and restarts climate; Evolve adds the separate river/slope model.';this.refreshView();
+    }
     undo(){if(this.model&&this.previous){this.model.restore(this.previous);this.previous=null;this.status='Previous geological step restored.';this.refreshView();}}
     setPreview(on:boolean){this.previewEnabled=on;this.refreshView();}
     sample(u:number,v:number){if(!this.model)return null;const m=this.model,i=thermalCell(m.grid,u,v);return {deltaM:m.heightM[i]-m.baseHeightM[i],mobileMm:1000*m.mobileM[i]};}

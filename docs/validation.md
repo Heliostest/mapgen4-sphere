@@ -298,3 +298,7 @@ The [save/resume acceptance](simulation-save.md) records 110 passing Node tests 
 ## Terrain water — 2026-10-09
 
 The [terrain-water acceptance](terrain-water.md) records 120 passing Node tests, five new browser groups, shared authored river-valley topology, finite conservative stores, exact fine-state persistence, and real GPU dry/wet/rising-lake evidence. Existing complete-save, terrain application, environment, surface, planet and water browser regressions passed. Independent review's false-valley-dam finding was reproduced, fixed and re-reviewed.
+
+## Grounded ice — 2026-10-09
+
+The [glacier acceptance](glaciers.md) records 126 passing Node tests and four real browser groups covering finite ice, motion, melt, abrasion, exact persistence and terrain application. Original energy thresholds were retained through compensated ice updates. Independent review's stale disable-state finding was fixed and re-reviewed. All prior browser suites passed.

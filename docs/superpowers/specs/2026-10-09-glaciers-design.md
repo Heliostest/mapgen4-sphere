@@ -1,0 +1,15 @@
+# Finite grounded ice and glacial erosion
+
+Stage 3 follows terrain water commit 222092a. Add an optional grounded-ice reservoir to the existing equal-area climate grid. It uses the same authored land fractions/mean bed elevations and SI water ledger. This resolution supports ice sheets and broad glacier transport; it does not resolve individual narrow mountain glaciers. Natural-surface estimates remain geographically downscaled, including true poles.
+
+Snow above a small retained seasonal layer compacts into ice over an illustrative 30-year timescale. Cold-climate initial ice (at most 1,500 m, weighted by warmest-month temperature) comes from finite snow, surface, soil and ocean inventory before the initial enthalpy baseline. Enabling the mode regenerates climate, as existing physics switches do. No initial ice is created on a dry world without donor water.
+
+Transport uses a depth-averaged Glen-type slope/thickness relation between land cells, with paired conservative transfers, finite donor limits, a labelled velocity cap and head-equilibration limits. Land/ocean boundaries are closed for grounded ice; calving, floating shelves, basal hydrology and full stress balance are outside this model. Compaction does not change latent energy. Ice melt is limited by actual mass and available column sensible heat, consumes fusion energy and enters surface water before routing. Frozen mass contributes to albedo and evaporation suppression.
+
+An illustrative abrasion law accumulates eroded bed height and an equal solid volume in mobile sediment. Sediment moves with ice and deposits when ice disappears. These are candidate terrain changes: the live authored bed is unchanged until the user captures the glacial erosion preview and applies it through the existing reversible terrain-application workflow. Water and solid inventories have separate diagnostics. Climate, ice motion, melt and erosion all use the actual astronomy clock; no hidden geological acceleration.
+
+Complete saves and visible rollback include ice mass, erosion, mobile/deposited sediment and flux diagnostics. Old complete-v1 files default to glaciers off with zero mass. Show inventory, maximum thickness, speed and solid residual, report local estimates in Inspect, and retain Original mode.
+
+Acceptance: compaction/seed mass closure; downhill transport and finite bounds under extreme inputs; no flow across dry ocean cells; melt/enthalpy closure; erosion-solid closure; exact save/resume and rollback; initialization and evolved UI screenshots; glacial erosion preview/application; old file compatibility; independent review and local commit.
+
+Primary reference: PISM's [SIA documentation](https://www.pism.io/docs/manual/modeling-choices/dynamics/sia.html) grounds thickness/surface-slope dependence and explicit-step limitations; its [mass accounting](https://www.pism.io/docs/manual/practical-usage/mass-conservation.html) motivates separately auditable accumulation, ablation and flow. This browser model is not PISM or a validated SIA solver.
