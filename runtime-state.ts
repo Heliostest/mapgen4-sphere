@@ -1,6 +1,6 @@
 import type {ThermalConfig,ThermalCheckpoint} from './thermal.ts';
 import type {WaterConfig,WaterCheckpoint} from './water.ts';
-import type {EnvironmentConfig} from './environment.ts';
+import type {EnvironmentConfig,EnvironmentCheckpoint} from './environment.ts';
 import type {VegetationCheckpoint} from './vegetation.ts';
 import {BIOMES,type SurfaceReference} from './surface.ts';
 import {SURFACE_WIDTH,SURFACE_HEIGHT} from './surface-grid.ts';
@@ -14,6 +14,7 @@ export interface RuntimeState {
         land:Float64Array;height:Float64Array;localLand:Float64Array;localHeight:Float64Array;
         epochS:number;stepS:number;lastTarget:number;initialEnergyJm2:number;initialEnthalpy:number|null;
         thermal:ThermalCheckpoint;radiationScale:Float64Array;
+        circulation:EnvironmentCheckpoint|null;
         water:(WaterCheckpoint&{initialTotalMm:number})|null;vegetation:VegetationCheckpoint|null;
         initialTemperature:Float64Array;initialSoil:Float64Array;
         initialSnow:Float64Array|null;initialIce:Float64Array|null;localSnowSeed:Float64Array|null;localIceSeed:Float64Array|null;
@@ -39,7 +40,7 @@ export function waterConfig(v:unknown):WaterConfig {
     const c=record(v);return {evaporationFraction:scalar(c.evaporationFraction,'evaporation fraction',0,1),soilCapacityKgM2:scalar(c.soilCapacityKgM2,'soil capacity',1,1000),initialOceanDepthM:scalar(c.initialOceanDepthM,'water inventory',0,10000),windMps:scalar(c.windMps,'wind',-100,100),moistureDiffusivityM2s:scalar(c.moistureDiffusivityM2s,'moisture mixing',0,1e7),routingSpeedMps:scalar(c.routingSpeedMps,'routing speed',.01,10)};
 }
 export function environmentConfig(v:unknown):EnvironmentConfig {
-    const c=record(v);return {oceanStrengthMps:scalar(c.oceanStrengthMps,'ocean current',0,2),vegetation:boolean(c.vegetation),iceAlbedo:boolean(c.iceAlbedo),terrainWater:c.terrainWater===undefined?false:boolean(c.terrainWater),glaciers:c.glaciers===undefined?false:boolean(c.glaciers)};
+    const c=record(v);return {oceanStrengthMps:scalar(c.oceanStrengthMps,'ocean current',0,2),vegetation:boolean(c.vegetation),iceAlbedo:boolean(c.iceAlbedo),terrainWater:c.terrainWater===undefined?false:boolean(c.terrainWater),glaciers:c.glaciers===undefined?false:boolean(c.glaciers),dynamicCirculation:c.dynamicCirculation===undefined?false:boolean(c.dynamicCirculation)};
 }
 export function decodeRuntimeState(value:unknown):RuntimeState {
     const d=record(value),g=record(d.grid);if(d.version!==1)throw new Error('Unsupported simulation state version');
@@ -74,11 +75,16 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
         const types=Object.keys(BIOMES).length;
         for(let i=0;i<sn;i++){let sum=0;for(let b=0;b<types;b++)sum+=vegetation.weights[i*types+b];if(Math.abs(sum-1)>1e-8)throw new Error('Invalid vegetation mixture');}
     }else if(s.water!==null||s.vegetation!==null||s.initialEnthalpy!==null)throw new Error('Unexpected water state');
+    let circulation:EnvironmentCheckpoint|null=null;
+    if(result.waterEnabled&&result.environmentConfig.dynamicCirculation) {
+        const c=record(s.circulation),a=record(c.atmosphere),o=record(c.ocean),limit=Math.abs(result.waterConfig.windMps)/2,speed=result.environmentConfig.oceanStrengthMps/4;
+        circulation={atmosphere:{eastMps:field(a.eastMps,'circulation east',n,-limit,limit),northMps:field(a.northMps,'circulation north',n,-limit,limit)},ocean:{circulationMps:field(o.circulationMps,'ocean circulation',width*(height-1),-speed,speed)}};
+    }else if(s.circulation!==undefined&&s.circulation!==null)throw new Error('Unexpected circulation state');
     const nullable=(key:string,len:number)=>result.waterEnabled?f(s,key,len):s[key]===null?null:(()=>{throw new Error(`Unexpected ${key}`);})();
     const optionalIce=(key:string,len:number)=>result.waterEnabled?(s[key]===undefined&&!result.environmentConfig.glaciers?new Float64Array(len):f(s,key,len)):null;
     result.state={land:f(s,'land',n,0,1),height:f(s,'height',n,0,1),localLand:f(s,'localLand',sn,0,1),localHeight:f(s,'localHeight',sn,0,1),
         epochS:scalar(s.epochS,'epoch',0,Number.MAX_SAFE_INTEGER),stepS:scalar(s.stepS,'step',Number.MIN_VALUE,1800),lastTarget:scalar(s.lastTarget,'target time',0,Number.MAX_SAFE_INTEGER),initialEnergyJm2:scalar(s.initialEnergyJm2,'initial heat',0),initialEnthalpy:result.waterEnabled?scalar(s.initialEnthalpy,'initial enthalpy'):null,
-        thermal,radiationScale:f(s,'radiationScale',n,.55,1),water,vegetation,initialTemperature:f(s,'initialTemperature',n,0,1e5),initialSoil:f(s,'initialSoil',n,0,1),initialSnow:nullable('initialSnow',n),initialIce:nullable('initialIce',n),initialLandIce:optionalIce('initialLandIce',n),localLandIceSeed:optionalIce('localLandIceSeed',sn),localSnowSeed:nullable('localSnowSeed',sn),localIceSeed:nullable('localIceSeed',sn),
+        thermal,circulation,radiationScale:f(s,'radiationScale',n,.55,1),water,vegetation,initialTemperature:f(s,'initialTemperature',n,0,1e5),initialSoil:f(s,'initialSoil',n,0,1),initialSnow:nullable('initialSnow',n),initialIce:nullable('initialIce',n),initialLandIce:optionalIce('initialLandIce',n),localLandIceSeed:optionalIce('localLandIceSeed',sn),localSnowSeed:nullable('localSnowSeed',sn),localIceSeed:nullable('localIceSeed',sn),
         surfaceReference:{meanTemperatureK:f(ref,'meanTemperatureK',sn,0,1e5),warmestTemperatureK:f(ref,'warmestTemperatureK',sn,0,1e5),annualRainMm:f(ref,'annualRainMm',sn),monthlyIceCooling:f(ref,'monthlyIceCooling',12*sn,-1e30)},
         surfaceInitial:{temperatureK:f(initial,'temperatureK',sn,0,1e5),soilFraction:f(initial,'soilFraction',sn,0,1)},iceEnergy:f(s,'iceEnergy',sn)};
     const state=result.state,age=thermal.steps*state.stepS,time=state.epochS+age;

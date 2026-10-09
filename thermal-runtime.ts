@@ -5,7 +5,7 @@ import {DEFAULT_WATER,WaterModel,type WaterCheckpoint} from './water.ts';
 import {generateClimate,circulationWinds} from './climate.ts';
 import {generateSurfaceReference,surfaceCover,type SurfaceReference} from './surface.ts';
 import {makeSurfaceGrid,SurfaceTerrainSampler,resampleClimateField,surfaceCell,type SurfaceTerrain} from './surface-grid.ts';
-import {EnvironmentModel,DEFAULT_ENVIRONMENT} from './environment.ts';
+import {EnvironmentModel,DEFAULT_ENVIRONMENT,type EnvironmentCheckpoint} from './environment.ts';
 import {VegetationModel,type VegetationCheckpoint} from './vegetation.ts';
 import {aggregateSurface,downscaleStore} from './surface-reservoirs.ts';
 import {FUSION_J_KG} from './water.ts';
@@ -42,7 +42,7 @@ export class ThermalRuntime {
     private land:Float64Array|null=null;
     private landElevation:Float64Array|null=null;
     private key='';
-    private presented:{thermal:ThermalCheckpoint;water:WaterCheckpoint|null;ice:Float64Array;vegetation:VegetationCheckpoint|null}|null=null;
+    private presented:{thermal:ThermalCheckpoint;water:WaterCheckpoint|null;ice:Float64Array;vegetation:VegetationCheckpoint|null;circulation:EnvironmentCheckpoint|null}|null=null;
     private lastTarget=0;
     private texture:ThermalTexture|null=null;
     private wind:{eastMps:Float64Array;northMps:Float64Array}|null=null;
@@ -63,7 +63,7 @@ export class ThermalRuntime {
         return {version:1,grid:{width:this.grid.width,height:this.grid.height},enabled:this.enabled,waterEnabled:this.waterEnabled,
             config:{...this.config},waterConfig:{...this.waterConfig},environmentConfig:{...this.environmentConfig},
             state:m?{land:this.land!.slice(),height:this.landElevation!.slice(),localLand:this.surfaceTerrain!.land.slice(),localHeight:this.surfaceTerrain!.height.slice(),
-                epochS:m.epochS,stepS:m.stepS,lastTarget:this.lastTarget,initialEnergyJm2:m.initialEnergyJm2,initialEnthalpy:this.environment?.initialEnthalpy??null,
+                epochS:m.epochS,stepS:m.stepS,lastTarget:this.lastTarget,initialEnergyJm2:m.initialEnergyJm2,initialEnthalpy:this.environment?.initialEnthalpy??null,circulation:this.environment?.checkpoint()??null,
                 thermal:m.checkpoint(),radiationScale:m.radiationScale.slice(),water:this.water?{...this.water.checkpoint(),initialTotalMm:this.water.initialTotalMm}:null,vegetation:this.vegetation?.checkpoint()??null,
                 initialTemperature:this.initialTemperature!.slice(),initialSoil:this.initialSoil!.slice(),initialSnow:this.initialSnow?.slice()??null,initialIce:this.initialIce?.slice()??null,initialLandIce:this.initialLandIce?.slice()??null,localLandIceSeed:this.localLandIceSeed?.slice()??null,localSnowSeed:this.localSnowSeed?.slice()??null,localIceSeed:this.localIceSeed?.slice()??null,
                 surfaceReference:structuredClone(this.surfaceReference!),surfaceInitial:{temperatureK:this.surfaceInitial!.temperatureK.slice(),soilFraction:this.surfaceInitial!.soilFraction.slice()},iceEnergy:this.iceEnergy!.slice()}:null};
@@ -87,11 +87,13 @@ export class ThermalRuntime {
         if(s.water) {
             rt.water=new WaterModel(rt.grid,planet.radiusM,s.land,s.height.map(h=>h*planet.reliefM),m.temperatureK,rt.waterConfig,undefined,s.water.initialTotalMm);
             rt.water.restore(s.water);rt.environment=new EnvironmentModel(m,rt.water,rt.environmentConfig,s.initialEnthalpy!);
+            rt.environment.restore(s.circulation);
             rt.vegetation=new VegetationModel(s.surfaceReference);rt.vegetation.restore(s.vegetation!);
         }
         const step=Math.min(m.stepS,rt.water?.maxStepS??Infinity);
         if(s.stepS!==step)throw new Error('Snapshot step does not match model stability limit');
         m.stepS=step;m.restore(s.thermal);rt.refreshEnvironment();
+        rt.environment?.atmosphere?.validateWinds(m.timeS-(m.steps>0?m.stepS/2:0));
         if(m.albedo.some((v,i)=>v!==s.thermal.albedo[i]))throw new Error('Saved albedo does not match frozen water and vegetation');
         rt.key=rt.modelKey(planet,orbit);rt.lastTarget=s.lastTarget;rt.presented=rt.checkpoint();
         rt.sync(planet,orbit,s.lastTarget,null);
@@ -158,7 +160,7 @@ export class ThermalRuntime {
         if(nearest<0||route.network.cell[nearest]<0)return null;
         return {triangle:nearest,depthM:route.volumeM3[nearest]/route.network.areaM2[nearest],flowM3S:route.fluxM3S[nearest]};
     }
-    private checkpoint() {return {thermal:this.model!.checkpoint(),water:this.water?.checkpoint()??null,ice:this.iceEnergy!.slice(),vegetation:this.vegetation?.checkpoint()??null};}
+    private checkpoint() {return {thermal:this.model!.checkpoint(),water:this.water?.checkpoint()??null,ice:this.iceEnergy!.slice(),vegetation:this.vegetation?.checkpoint()??null,circulation:this.environment?.checkpoint()??null};}
     private localTemperature(temperature:Float64Array) {
         const delta=temperature.map((t,i)=>t-this.initialTemperature![i]);
         return resampleClimateField(this.grid,delta,this.surfaceGrid).map((d,i)=>Math.max(0,this.surfaceInitial!.temperatureK[i]+d));
@@ -228,6 +230,7 @@ export class ThermalRuntime {
             if(this.presented && m.epochS+this.presented.thermal.steps*m.stepS<=timeS) {
                 m.restore(this.presented.thermal);
                 if(this.water&&this.presented.water)this.water.restore(this.presented.water);
+                this.environment?.restore(this.presented.circulation);
                 this.iceEnergy=this.presented.ice.slice();
                 if(this.vegetation&&this.presented.vegetation)this.vegetation.restore(this.presented.vegetation);
                 this.refreshEnvironment();
@@ -243,8 +246,9 @@ export class ThermalRuntime {
                     for(let i=0;i<local.length;i++)this.iceEnergy![i]=advanceSeaIce(this.iceEnergy![i],seaIceCooling(local[i],this.config.emissivity),dt);
                 }
                 if(this.water) {
-                    const wind=circulationWinds(this.grid,planet,orbit,m.timeS+dt/2,this.land!,this.waterConfig.windMps);
-                    this.water.setWinds(wind.eastMps,wind.northMps);this.environment!.step(dt);
+                    if(this.environment!.atmosphere)this.environment!.atmosphere.step(dt,m.timeS+dt/2);
+                    else {const wind=circulationWinds(this.grid,planet,orbit,m.timeS+dt/2,this.land!,this.waterConfig.windMps);this.water.setWinds(wind.eastMps,wind.northMps);}
+                    this.environment!.step(dt);
                     if(this.environmentConfig.vegetation) {
                         const soil=resampleClimateField(this.grid,this.water.soilKgM2.map((v,i)=>this.water!.land[i]>0?v/(this.water!.land[i]*this.waterConfig.soilCapacityKgM2):0),this.surfaceGrid);
                         const rain=resampleClimateField(this.grid,this.water.precipitationKgM2S.map(v=>v*86400),this.surfaceGrid);

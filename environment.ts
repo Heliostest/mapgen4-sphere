@@ -1,23 +1,27 @@
 import type {ThermalModel} from './thermal.ts';
 import {FUSION_J_KG as LF,VAPORIZATION_J_KG as LV,type WaterModel} from './water.ts';
-import {OceanTransport} from './ocean.ts';
+import {OceanTransport,type OceanCheckpoint} from './ocean.ts';
+import {AtmosphericCirculation,type AtmosphereCheckpoint} from './circulation.ts';
 import {derivePlanet} from './planet.ts';
 export const SEA_FREEZE_K=271.35,SNOW_MELT_K=273.15;
-export const DEFAULT_ENVIRONMENT:Readonly<EnvironmentConfig>=Object.freeze({oceanStrengthMps:.3,vegetation:true,iceAlbedo:true,terrainWater:false,glaciers:false});
-export type EnvironmentConfig={oceanStrengthMps:number;vegetation:boolean;iceAlbedo:boolean;terrainWater?:boolean;glaciers?:boolean};
+export const DEFAULT_ENVIRONMENT:Readonly<EnvironmentConfig>=Object.freeze({oceanStrengthMps:.3,vegetation:true,iceAlbedo:true,terrainWater:false,glaciers:false,dynamicCirculation:false});
+export type EnvironmentConfig={oceanStrengthMps:number;vegetation:boolean;iceAlbedo:boolean;terrainWater?:boolean;glaciers?:boolean;dynamicCirculation?:boolean};
+export interface EnvironmentCheckpoint {atmosphere:AtmosphereCheckpoint;ocean:OceanCheckpoint;}
 const clamp=(x:number)=>Math.max(0,Math.min(1,x));
 
 /** One mixed thermal column per cell. Total enthalpy is C*T + Lv*vapor - Lf*ice.
  * Sensible heat of moving water and separate land/ocean temperatures are omitted. */
 export class EnvironmentModel {
     readonly ocean:OceanTransport;
+    readonly atmosphere:AtmosphericCirculation|null;
     readonly iceCover:Float64Array;readonly snowCover:Float64Array;readonly landEvaporation:Float64Array;
     readonly glacierCover:Float64Array;
     readonly heatJm2:Float64Array;
     readonly vegetation:Float64Array;
     readonly initialEnthalpy:number;
     constructor(readonly thermal:ThermalModel,readonly water:WaterModel,readonly config:EnvironmentConfig,initialEnthalpy?:number) {
-        const n=thermal.grid.count;this.ocean=new OceanTransport(thermal,water);
+        const n=thermal.grid.count;this.ocean=new OceanTransport(thermal,water,!!config.dynamicCirculation);
+        this.atmosphere=config.dynamicCirculation?new AtmosphericCirculation(thermal,water):null;
         if(config.glaciers)water.attachGlacier(derivePlanet(thermal.planet).gravityMps2);
         this.iceCover=new Float64Array(n);this.snowCover=new Float64Array(n);this.landEvaporation=new Float64Array(n).fill(1);this.heatJm2=new Float64Array(n);this.vegetation=new Float64Array(n).fill(.5);
         this.glacierCover=new Float64Array(n);
@@ -30,6 +34,12 @@ export class EnvironmentModel {
         }
         if(initialEnthalpy===undefined)thermal.applyHeat(this.heatJm2);
         this.initialEnthalpy=initialEnthalpy??this.enthalpy();this.refresh();this.ocean.step(0,config.oceanStrengthMps);
+    }
+    checkpoint():EnvironmentCheckpoint|null {return this.atmosphere?{atmosphere:this.atmosphere.checkpoint(),ocean:this.ocean.checkpoint()!}:null;}
+    restore(s:EnvironmentCheckpoint|null) {
+        if(!!s!==!!this.atmosphere)throw new Error('Mismatched circulation state');
+        if(s){this.atmosphere!.restore(s.atmosphere);this.ocean.restore(s.ocean,this.config.oceanStrengthMps);}
+        this.ocean.step(0,this.config.oceanStrengthMps);
     }
     enthalpy() {
         const w=this.water;let sum=0,correction=0;

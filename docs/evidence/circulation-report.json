@@ -1,0 +1,18 @@
+{
+  "checks": [
+    "Actual wind perturbations and closed ocean-loop memory evolve for 49 days with finite conserved water and enthalpy",
+    "Downloaded and uploaded wind/ocean memory resumes to identical fields and globe pixels after 98 days",
+    "Invalid enabled circulation is rejected atomically; current comparison, wind map and Original remain available",
+    "Mobile controls fit; disabling water removes active circulation while thermal-only save still restores"
+  ],
+  "errors": [],
+  "budgets": {
+    "water": -5.820766091346741e-9,
+    "energy": 0.0000012665987014770508
+  },
+  "diagnostics": "Evolving circulation · max wind 13.03 m/s · thermal perturbation 5.00 m/s · current 0.0604 m/s",
+  "steps": [
+    3832,
+    7665
+  ]
+}

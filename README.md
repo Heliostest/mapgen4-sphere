@@ -155,6 +155,8 @@ node scripts/browser-check.mjs
 
 Original documentation and credits are in [README.org](README.org). Apache-2.0; original Mapgen4 and helper code copyright Red Blob Games.
 
+Complete evolving-world files are documented in [simulation save/restore](docs/simulation-save.md). Optional physical extensions include [terrain rivers, lakes and wetlands](docs/terrain-water.md), [grounded ice and glacial erosion](docs/glaciers.md), and [evolving wind/ocean circulation](docs/circulation.md). Each has an independent browser acceptance script under `scripts/` and checked-in evidence under `docs/evidence/`.
+
 `node scripts/thermal-browser-check.mjs` checks a 90-day thermal transient, pause/probing, terrain and configuration resets, display-scale independence, unsupported spin, exact original restoration and mobile controls. `node scripts/thermal-benchmark.mjs` measures batches of the isolated solver on the current Node runtime; it is not a browser-frame or cross-device benchmark. Both save reports in `build/validation/thermal/`.
 
 `node scripts/water-browser-check.mjs` checks a 90-day paired thermal/water transient, closed water budget, three layers, probe units, terrain/config resets, disable rules, exact original restoration and mobile layout. `node scripts/water-benchmark.mjs` measures paired advancement, checkpoints and texture encoding on the current Node runtime, excluding browser rendering. Reports are saved in `build/validation/water/`. Node tests include dry/ocean/land limits, conservative vapor transport, basin filling/spilling, coastal head constraints, discharge units, convergence and complete checkpoint rollback. The actual-DOM fixture additionally tests water rollback after multiple unpresented updates and hidden-tab pause.
