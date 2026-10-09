@@ -6,6 +6,7 @@ export interface EnvironmentSnapshot {
     temperatureC:Float64Array;snowMm:Float64Array;iceM:Float64Array;vegetation:Float64Array;land:Float64Array;
     east:Float64Array;north:Float64Array;metrics:EnvironmentMetrics;
 }
+export interface ComparisonState {baseline:EnvironmentSnapshot|null;history:{time:number;metrics:EnvironmentMetrics}[];}
 export function environmentMetrics(rt:ThermalRuntime):EnvironmentMetrics|null {
     const m=rt.model,w=rt.water,e=rt.environment,s=rt.surfaceState();if(!m||!w||!e||!s)return null;
     const d=e.diagnostics(),water=w.diagnostics();let north=0,south=0,nw=0,sw=0,vegetation=0,land=0;

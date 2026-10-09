@@ -1,5 +1,5 @@
 import type {ThermalRuntime} from './thermal-runtime.ts';
-import {captureEnvironment,environmentMetrics,comparisonCSV,METRICS,type EnvironmentSnapshot,type EnvironmentMetrics} from './environment-comparison.ts';
+import {captureEnvironment,environmentMetrics,comparisonCSV,METRICS,type EnvironmentSnapshot,type EnvironmentMetrics,type ComparisonState} from './environment-comparison.ts';
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
 
 export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,change:(action:()=>void)=>void,clock:{togglePlay:()=>void;isPlaying:()=>boolean}) {
@@ -12,7 +12,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
       <label><span>Snowmelt</span><output id="environment-melt"></output></label>
       <label><span>Combined energy residual</span><output id="environment-energy"></output></label>
       <button id="environment-compare" type="button">Compare environment…</button>
-      <p class="planet-note">Stores use global mm water equivalent. Snowmelt enters surface outflow; capture that water snapshot in Erosion to use it. Ocean currents are prescribed closed gyres within wet cells, not a pressure or deep-ocean solver. Vegetation responds over years; no species or carbon cycle. Runtime histories and these switches are not saved in terrain files.</p>`;
+      <p class="planet-note">Stores use global mm water equivalent. Snowmelt enters surface outflow; capture that water snapshot in Erosion to use it. Ocean currents are prescribed closed gyres within wet cells, not a pressure or deep-ocean solver. Vegetation responds over years; no species or carbon cycle. Use Download complete simulation to keep these states, switches and comparison history.</p>`;
     root.append(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
     el<HTMLInputElement>('environment-current').addEventListener('change',event=>{
@@ -104,7 +104,9 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
     get('environment-capture').addEventListener('click',()=>change(()=>{baseline=captureEnvironment(rt);current=baseline;render();}));
     get('environment-export').addEventListener('click',()=>{if(!baseline||!current)return;const url=URL.createObjectURL(new Blob(['\ufeff'+comparisonCSV(baseline,current)],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='environment-comparison.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
     el('environment-compare').addEventListener('click',()=>change(()=>{current=captureEnvironment(rt);if(!baseline)baseline=current;dialog.showModal();render();}));
-    return {refresh(){
+    return {snapshot:():ComparisonState=>structuredClone({baseline,history}),restore(s:ComparisonState){
+        baseline=structuredClone(s.baseline);history=structuredClone(s.history);model=rt.model;lastTime=model?.timeS??-1;current=captureEnvironment(rt);if(dialog.open)render();
+    },refresh(){
         get('environment-play').textContent=clock.isPlaying()?'Pause':'Play';
         const d=environmentMetrics(rt);el<HTMLButtonElement>('environment-compare').disabled=!d;
         el<HTMLOutputElement>('environment-frozen').value=d?`${d.snowMm.toFixed(2)} / ${d.iceMm.toFixed(2)} mm`:'Enable water';

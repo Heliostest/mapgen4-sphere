@@ -51,7 +51,7 @@ export class WaterModel {
     private readonly windRates:Float64Array;
     private readonly windFactors:Float64Array;
     private readonly neighbors:{cell:number;distanceM:number}[][];
-    constructor(readonly grid:ThermalGrid,readonly radiusM:number,land:ArrayLike<number>,heightM:ArrayLike<number>,initialTemperatureK:ArrayLike<number>,config:WaterConfig,reference?:GeneratedClimate) {
+    constructor(readonly grid:ThermalGrid,readonly radiusM:number,land:ArrayLike<number>,heightM:ArrayLike<number>,initialTemperatureK:ArrayLike<number>,config:WaterConfig,reference?:GeneratedClimate,initialTotalMm?:number) {
         finiteInRange(radiusM,'water radius',1);
         finiteInRange(config.evaporationFraction,'evaporation fraction',0,1);
         finiteInRange(config.soilCapacityKgM2,'soil capacity',1,1000);
@@ -113,7 +113,7 @@ export class WaterModel {
             // or claiming elapsed simulation time. These are initial estimates.
             this.diagnoseRouting();
         }
-        this.initialTotalMm=this.total();
+        this.initialTotalMm=initialTotalMm??this.total();
     }
     diagnoseRouting() {
         const surface=this.surfaceKgM2.slice(),ocean=this.oceanGlobalKgM2;
@@ -137,8 +137,11 @@ export class WaterModel {
         const n=this.grid.count;let demand=0;
         const deficit=new Float64Array(n);
         for(let i=0;i<n;i++) {
-            const amount=Math.min(snow[i],this.soilKgM2[i]+this.surfaceKgM2[i]);
-            const top=Math.min(amount,this.surfaceKgM2[i]);this.surfaceKgM2[i]-=top;this.soilKgM2[i]-=amount-top;
+            // Limit each donor separately: (soil + surface) - surface can
+            // round above soil, leaving a negative store when it is exhausted.
+            const top=Math.min(snow[i],this.surfaceKgM2[i]);
+            const soil=Math.min(Math.max(0,snow[i]-top),this.soilKgM2[i]),amount=top+soil;
+            this.surfaceKgM2[i]-=top;this.soilKgM2[i]-=soil;
             this.snowKgM2[i]+=amount;deficit[i]=Math.max(0,snow[i]-amount);
             demand+=(deficit[i]+ice[i])/n;
         }

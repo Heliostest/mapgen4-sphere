@@ -5,6 +5,7 @@ export class GenerationGate {
     private running:number|null=null;
     get pending(){return this.desired!==this.accepted;}
     request(){return ++this.desired;}
+    acceptPrepared(){this.accepted=++this.desired;}
     start():number|null {
         if(this.running!==null||!this.pending)return null;
         return this.running=this.desired;

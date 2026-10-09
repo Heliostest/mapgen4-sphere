@@ -72,7 +72,7 @@ export function heatTransport(grid:ThermalGrid,temperature:ArrayLike<number>,dif
     }
     return out;
 }
-export type ThermalCheckpoint={temperatureK:Float64Array;steps:number;radiationJm2:number;exchangeJm2:number;radiationCorrection:number;exchangeCorrection:number;albedo:Float64Array};
+export type ThermalCheckpoint={temperatureK:Float64Array;absorbedWm2:Float64Array;steps:number;radiationJm2:number;exchangeJm2:number;radiationCorrection:number;exchangeCorrection:number;albedo:Float64Array};
 export interface ThermalInitial {temperatureK:ArrayLike<number>;radiationScale:ArrayLike<number>;absorbedWm2:ArrayLike<number>}
 
 export class ThermalModel {
@@ -95,7 +95,7 @@ export class ThermalModel {
     private exchangeCorrection=0;
     private radiationCorrection=0;
     readonly albedo:Float64Array;
-    constructor(planet:PlanetConfig,orbit:OrbitConfig,config:ThermalConfig,land:ArrayLike<number>,readonly epochS=0,readonly grid=makeThermalGrid(),reference?:ThermalInitial) {
+    constructor(planet:PlanetConfig,orbit:OrbitConfig,config:ThermalConfig,land:ArrayLike<number>,readonly epochS=0,readonly grid=makeThermalGrid(),reference?:ThermalInitial,initialEnergyJm2?:number) {
         const derived=deriveOrbit(planet,orbit);
         finiteInRange(epochS,'thermal epoch',0);
         finiteInRange(config.emissivity,'effective emissivity',.1,1);
@@ -133,12 +133,12 @@ export class ThermalModel {
         let stable=Infinity;
         for(let i=0;i<grid.count;i++) stable=Math.min(stable,.45*this.capacity[i]/(loss[i]+4*config.emissivity*SIGMA*maxT**3/this.radiationScale[i]**4));
         this.stepS=Math.min(1800,this.yearS/720,stable);
-        this.initialEnergyJm2=this.energy();
+        this.initialEnergyJm2=initialEnergyJm2??this.energy();
     }
     get timeS() {return this.epochS+this.steps*this.stepS;}
     energy() {return this.temperatureK.reduce((sum,t,i)=>sum+this.capacity[i]*t,0)/this.grid.count;}
-    checkpoint():ThermalCheckpoint {return {temperatureK:this.temperatureK.slice(),steps:this.steps,radiationJm2:this.radiationJm2,exchangeJm2:this.exchangeJm2,radiationCorrection:this.radiationCorrection,exchangeCorrection:this.exchangeCorrection,albedo:this.albedo.slice()};}
-    restore(state:ThermalCheckpoint) {this.temperatureK.set(state.temperatureK);this.steps=state.steps;this.radiationJm2=state.radiationJm2;this.exchangeJm2=state.exchangeJm2;this.exchangeCorrection=state.exchangeCorrection;this.radiationCorrection=state.radiationCorrection;this.albedo.set(state.albedo);}
+    checkpoint():ThermalCheckpoint {return {temperatureK:this.temperatureK.slice(),absorbedWm2:this.absorbedWm2.slice(),steps:this.steps,radiationJm2:this.radiationJm2,exchangeJm2:this.exchangeJm2,radiationCorrection:this.radiationCorrection,exchangeCorrection:this.exchangeCorrection,albedo:this.albedo.slice()};}
+    restore(state:ThermalCheckpoint) {this.temperatureK.set(state.temperatureK);this.absorbedWm2.set(state.absorbedWm2);this.steps=state.steps;this.radiationJm2=state.radiationJm2;this.exchangeJm2=state.exchangeJm2;this.exchangeCorrection=state.exchangeCorrection;this.radiationCorrection=state.radiationCorrection;this.albedo.set(state.albedo);}
     /** Internal coupled transfers, positive into sensible heat. */
     applyHeat(energyJm2:ArrayLike<number>) {
         if(energyJm2.length!==this.grid.count)throw new RangeError("Heat grid mismatch");

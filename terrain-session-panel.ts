@@ -1,23 +1,31 @@
-import {MAX_TERRAIN_FILE_BYTES} from './terrain-document.ts';
+import {MAX_SIMULATION_FILE_BYTES} from './simulation-document.ts';
 import type {ApplicationReport} from './terrain-application.ts';
 
 export function installTerrainSessionPanel(root:HTMLElement,options:{
-    save:()=>string;load:(text:string)=>void;undo:()=>void;revision:()=>string;
+    save:()=>string;saveSimulation:()=>string;load:(text:string,stillCurrent:()=>boolean)=>Promise<string>|string;undo:()=>void;revision:()=>string;
     state:()=>{pending:boolean;canUndo:boolean;report:ApplicationReport|null;revision:number;accepted:number};
 }) {
     const panel=document.createElement('details');panel.id='terrain-session';panel.open=true;
-    panel.innerHTML=`<summary>Terrain document</summary>
+    panel.innerHTML=`<summary>Save &amp; restore world</summary>
       <button type="button" id="terrain-undo-apply">Undo last application</button>
+      <button type="button" id="simulation-save">Download complete simulation</button>
       <button type="button" id="terrain-save">Download terrain JSON</button>
-      <label><span>Load terrain JSON</span><input id="terrain-load" type="file" accept=".json,application/json"></label>
+      <label><span>Load simulation / terrain JSON</span><input id="terrain-load" type="file" accept=".json,application/json"></label>
       <p class="planet-note" id="terrain-generation" role="status"></p>
       <p class="planet-note" id="terrain-application"></p>
       <p class="planet-note" id="terrain-file-status" role="status"></p>
-      <p class="planet-note">Saves current authored terrain, applied erosion, view and planet settings. Preview, climate history and undo history are not saved. Load replaces the terrain, pauses time and disables climate. Undo application preserves later painting. Reset clears painting and applied erosion.</p>`;
+      <p class="planet-note">Complete simulation saves terrain, climate, water, ice, vegetation, time, settings and comparison history (up to 32 MiB). Restores paused at the saved moment. Terrain-only files (8 MiB) start fresh with climate off. Unapplied erosion preview and undo history are excluded from both. Loading is canceled if you edit or time advances during preparation.</p>`;
     root.append(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
     const status=el('terrain-file-status');let loadToken=0;
     el('terrain-undo-apply').addEventListener('click',()=>options.undo());
+    el('simulation-save').addEventListener('click',()=>{
+        try {
+            const text=options.saveSimulation(),url=URL.createObjectURL(new Blob([text],{type:'application/json'}));
+            const a=document.createElement('a');a.href=url;a.download='mapgen4-sphere-simulation.json';a.click();
+            setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='Complete simulation downloaded. Unapplied erosion preview and undo history are excluded.';
+        }catch(error){status.textContent=`Save failed: ${error instanceof Error?error.message:error}`;}
+    });
     el('terrain-save').addEventListener('click',()=>{
         try {
             const text=options.save(),url=URL.createObjectURL(new Blob([text],{type:'application/json'}));
@@ -29,16 +37,19 @@ export function installTerrainSessionPanel(root:HTMLElement,options:{
     input.addEventListener('change',async()=>{
         const file=input.files?.[0];input.value='';if(!file)return;
         const token=++loadToken,revision=options.revision();
-        status.textContent='Reading terrain document…';
+        status.textContent='Reading saved world…';
         try {
-            if(file.size>MAX_TERRAIN_FILE_BYTES)throw new Error('Terrain file exceeds 8 MiB');
+            if(file.size>MAX_SIMULATION_FILE_BYTES)throw new Error('Simulation file exceeds 32 MiB');
             const text=await file.text();if(token!==loadToken)return;
             if(revision!==options.revision()){status.textContent='Load canceled because newer edits were made.';return;}
-            options.load(text);status.textContent='Terrain document loaded. Rebuilding terrain; climate history starts fresh.';
+            status.textContent='Preparing saved world…';
+            const message=await options.load(text,()=>token===loadToken&&revision===options.revision());
+            if(token===loadToken)status.textContent=message;
         }catch(error){if(token===loadToken)status.textContent=`Load failed: ${error instanceof Error?error.message:error}`;}
     });
     return {refresh(){
         const s=options.state();el<HTMLButtonElement>('terrain-save').disabled=s.pending;
+        el<HTMLButtonElement>('simulation-save').disabled=s.pending;
         el<HTMLButtonElement>('terrain-undo-apply').disabled=!s.canUndo;
         const generation=el('terrain-generation');generation.dataset.revision=String(s.revision);generation.dataset.accepted=String(s.accepted);generation.dataset.pending=String(s.pending);
         generation.textContent=s.pending?'Rebuilding terrain and rivers…':'Terrain ready';

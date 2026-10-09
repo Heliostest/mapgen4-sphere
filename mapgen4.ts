@@ -25,6 +25,9 @@ import {GenerationGate} from './generation-gate.ts';
 import {TerrainApplication,bakeTerrainOffsets} from './terrain-application.ts';
 import {meshIdentity,decodeTerrainDocument,encodeTerrainDocument} from './terrain-document.ts';
 import {installTerrainSessionPanel} from './terrain-session-panel.ts';
+import {encodeSimulationDocument,decodeSimulationDocument} from './simulation-document.ts';
+import {prepareTerrain} from './terrain-preparation.ts';
+import type {TerrainDocument} from './terrain-document.ts';
 import type {Mesh} from "./types.d.ts";
 
 
@@ -126,30 +129,53 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
             g.reset('Erosion applied. Rivers and environment are being rebuilt.');generate();
         },
     });
+    function terrainDocument():TerrainDocument {
+        return {format:'mapgen4-sphere-terrain',version:1,mesh:identity,
+            constraints:{size:Painting.size,painted:Painting.userHasPainted(),values:Array.from(Painting.constraints)},
+            offsets:application.offsets?Array.from(application.offsets):null,report:application.report,
+            parameters:Object.fromEntries(Object.entries(initialParams).map(([phase,fields])=>[phase,Object.fromEntries(fields.map(([key])=>[key,param[phase][key]]))])),settings:planetControls.settings()};
+    }
+    function restoreAuthored(d:TerrainDocument) {
+        for(const [phase,values] of Object.entries(d.parameters))for(const [key,value] of Object.entries(values)) {
+            param[phase][key]=value;(document.querySelector(`#slider-${key} input`) as HTMLInputElement).value=String(value);
+        }
+        document.querySelector('#slider-sphere_radius .radius-value').textContent=String(d.parameters.render.sphere_radius);
+        Painting.restore(d.parameters.elevation as {seed:number;island:number},new Float32Array(d.constraints.values),d.constraints.painted);
+        application.restore(d.offsets?new Float32Array(d.offsets):null,d.report);
+    }
     sessionPanel=installTerrainSessionPanel(document.getElementById('planet-controls'),{
-        revision:()=>`${gate.desired}:${documentRevision}`,
+        revision:()=>`${gate.desired}:${documentRevision}:${planetControls.settings().timeS}`,
         state:()=>({pending:gate.pending,canUndo:application.canUndo,report:application.report,revision:gate.desired,accepted:gate.accepted}),
         undo:()=>{if(!application.canUndo)return;planetControls.pause();application.undo();generate();},
         save:()=>{
             if(gate.pending)throw new Error('Wait for terrain generation');
             planetControls.pause();
-            return encodeTerrainDocument({format:'mapgen4-sphere-terrain',version:1,mesh:identity,
-                constraints:{size:Painting.size,painted:Painting.userHasPainted(),values:Array.from(Painting.constraints)},
-                offsets:application.offsets?Array.from(application.offsets):null,report:application.report,
-                parameters:Object.fromEntries(Object.entries(initialParams).map(([phase,fields])=>[phase,Object.fromEntries(fields.map(([key])=>[key,param[phase][key]]))])),
-                settings:planetControls.settings()});
+            return encodeTerrainDocument(terrainDocument());
         },
-        load:text=>{
+        saveSimulation:()=>{
+            if(gate.pending)throw new Error('Wait for terrain generation');
+            planetControls.pause();
+            return encodeSimulationDocument({format:'mapgen4-sphere-simulation',version:1,terrain:terrainDocument(),...planetControls.simulation()});
+        },
+        load:async(text,stillCurrent)=>{
             // Fully validate before touching any live settings, author arrays or history.
-            const d=decodeTerrainDocument(text,identity,Painting.size);
-            for(const [phase,values] of Object.entries(d.parameters))for(const [key,value] of Object.entries(values)) {
-                param[phase][key]=value;
-                (document.querySelector(`#slider-${key} input`) as HTMLInputElement).value=String(value);
+            if(JSON.parse(text)?.format==='mapgen4-sphere-simulation') {
+                const d=decodeSimulationDocument(text,identity,Painting.size);
+                const prepared=await prepareTerrain(mesh,t_peaks,param,d.terrain);
+                if(!stillCurrent())return 'Load canceled because newer edits or time changes were made.';
+                const elevation=new Float32Array(prepared.terrain_elevation_buffer);
+                const candidate=planetControls.prepareSimulation(d,{directions:mesh.xyz_r,elevation});
+                // All fallible parsing, generation and model construction has completed.
+                gate.acceptPrepared();documentRevision++;restoreAuthored(d.terrain);
+                render.quad_elements=new Int32Array(prepared.quad_elements_buffer);render.a_quad_em=new Float32Array(prepared.a_quad_em_buffer);render.a_river_xyww=new Float32Array(prepared.a_river_xyww_buffer);
+                render.numRiverTriangles=prepared.numRiverTriangles;render.physicalElevation=elevation;render.baseTriangleElevation=new Float32Array(prepared.base_triangle_elevation_buffer);
+                render.updateMap();planetControls.restoreSimulation(d,candidate);updateUI();redraw();
+                return 'Complete simulation restored, paused at the saved moment. Press Play to continue.';
             }
-            document.querySelector('#slider-sphere_radius .radius-value').textContent=String(d.parameters.render.sphere_radius);
-            Painting.restore(d.parameters.elevation as {seed:number;island:number},new Float32Array(d.constraints.values),d.constraints.painted);
-            application.restore(d.offsets?new Float32Array(d.offsets):null,d.report);
+            const d=decodeTerrainDocument(text,identity,Painting.size);
+            restoreAuthored(d);
             planetControls.restoreSettings(d.settings);generate();
+            return 'Terrain document loaded. Rebuilding terrain; climate history starts fresh.';
         },
     });
     // Legacy artist controls only update physical scale readouts, never SI state.
@@ -196,12 +222,15 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         if (elapsedTimeHistory.length > 10) { elapsedTimeHistory.splice(0, 1); }
         const timingDiv = document.getElementById('timing');
         if (timingDiv) { timingDiv.innerText = `${elapsedTimeHistory.join(' ')} milliseconds`; }
-        render.quad_elements = new Int32Array(quad_elements_buffer);
-        render.a_quad_em = new Float32Array(a_quad_em_buffer);
-        render.a_river_xyww = new Float32Array(a_river_xyww_buffer);
+        const accepted=gate.complete(revision);
+        if(accepted||render.quad_elements.byteLength===0) {
+            render.quad_elements = new Int32Array(quad_elements_buffer);
+            render.a_quad_em = new Float32Array(a_quad_em_buffer);
+            render.a_river_xyww = new Float32Array(a_river_xyww_buffer);
+        }
         // Recycle transferred buffers even for stale replies. Publish only a
         // complete accepted snapshot; retained renderer copies remain drawable.
-        if(gate.complete(revision)) {
+        if(accepted) {
             render.numRiverTriangles = numRiverTriangles;
             render.physicalElevation = new Float32Array(terrain_elevation_buffer);
             render.baseTriangleElevation = new Float32Array(base_triangle_elevation_buffer);

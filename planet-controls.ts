@@ -15,6 +15,7 @@ import type {PhysicalSettings} from './terrain-document.ts';
 import {DEFAULT_THERMAL} from './thermal.ts';
 import {DEFAULT_WATER} from './water.ts';
 import {BIOMES} from './surface.ts';
+import type {SimulationDocument} from './simulation-document.ts';
 
 type Sample={uv:[number,number];elevation:number};
 type Options={
@@ -276,6 +277,26 @@ export function installPlanetControls(options:Options) {
     requestAnimationFrame(frame);emit();
     return {
         pause,refresh,isInspecting:()=>inspecting,
+        simulation:()=>({runtime:thermal.snapshot(),view:{speed:clock.speed,layer:layer==='erosion'?'original' as const:layer},comparison:environmentPanel.snapshot()}),
+        prepareSimulation:(d:SimulationDocument,terrain:{directions:ArrayLike<number>;elevation:ArrayLike<number>})=>{
+            const candidate=ThermalRuntime.fromSnapshot(d.runtime,d.terrain.settings.planet,d.terrain.settings.orbit);
+            if(candidate.grid.width!==thermal.grid.width||candidate.grid.height!==thermal.grid.height)throw new Error('Unsupported application climate resolution');
+            const sampled=sampleTerrainGrid(candidate.grid,terrain.directions,terrain.elevation);
+            candidate.attachRestoredTerrain(sampled.landFraction,sampled.landElevation,terrain);return candidate;
+        },
+        restoreSimulation:(d:SimulationDocument,candidate:ThermalRuntime)=>{
+            clock.setPlaying(false,performance.now());
+            const s=d.terrain.settings;planet={...s.planet};orbit={...s.orbit};camera=s.camera;
+            clock.seek(s.timeS,performance.now());clock.setSpeed(d.view.speed,performance.now());
+            layer=d.view.layer;layerSelect.value=layer;cameraSelect.value=camera;
+            (root.querySelector('#planet-speed') as HTMLSelectElement).value=String(clock.speed);
+            inspecting=false;updateInspectButton();probe=null;retro.checked=planet.retrograde;
+            probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
+            thermal.replaceWith(candidate);geomorph.reset();
+            thermalPanel.restoreInputs();waterPanel.restoreInputs();environmentPanel.restoreInputs();environmentPanel.restore(d.comparison);
+            for(const {input,get} of inputs.values()){input.value=String(Number(get().toPrecision(12)));input.removeAttribute('aria-invalid');}
+            emit();
+        },
         settings:():PhysicalSettings=>({planet:{...planet},orbit:{...orbit},timeS:clock.timeS,camera}),
         restoreSettings:(settings:PhysicalSettings)=>{
             pause(false);planet={...settings.planet};orbit={...settings.orbit};camera=settings.camera;

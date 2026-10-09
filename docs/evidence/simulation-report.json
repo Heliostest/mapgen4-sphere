@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "Real download/upload restores all state, options, clock, comparison and exact globe pixels",
+    "Real browser uninterrupted and restored branches resume to identical model fields and globe pixels",
+    "Comparison baseline, history and conservation diagnostics remain available after resume",
+    "Malformed versions, dimensions, nonfinite data and mismatched actual terrain preserve the current world",
+    "Editing during asynchronous candidate generation cancels replacement",
+    "Legacy terrain-only files retain climate-off semantics; complete off-state files roundtrip",
+    "Complete simulation preserves both applied erosion and subsequent painting, with exact restored state and pixels"
+  ],
+  "errors": [],
+  "bytes": 3029901,
+  "steps": 3832,
+  "resumedSteps": 7665
+}

@@ -87,7 +87,7 @@ try {
     for(const malformed of [{...saved,version:99},{...saved,mesh:{...saved.mesh,fingerprint:'wrong'}},{...saved,offsets:[NaN]}]) {
         await load(malformed);assert.match(await page.locator('#terrain-file-status').textContent(),/Load failed/);assert.deepEqual(await hashes(),savedHash);
     }
-    await page.locator('#terrain-load').setInputFiles({name:'large.json',mimeType:'application/json',buffer:Buffer.alloc(8*1024*1024+1,32)});
+    await page.locator('#terrain-load').setInputFiles({name:'large.json',mimeType:'application/json',buffer:Buffer.alloc(32*1024*1024+1,32)});
     assert.match(await page.locator('#terrain-file-status').textContent(),/exceeds/);assert.deepEqual(await save('after-invalid'),saved);
     await page.evaluate(()=>window.delayFile=500);
     await page.locator('#terrain-load').setInputFiles({name:'old.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(originalDoc))});

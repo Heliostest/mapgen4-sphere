@@ -14,7 +14,7 @@ export class EnvironmentModel {
     readonly heatJm2:Float64Array;
     readonly vegetation:Float64Array;
     readonly initialEnthalpy:number;
-    constructor(readonly thermal:ThermalModel,readonly water:WaterModel,readonly config:EnvironmentConfig) {
+    constructor(readonly thermal:ThermalModel,readonly water:WaterModel,readonly config:EnvironmentConfig,initialEnthalpy?:number) {
         const n=thermal.grid.count;this.ocean=new OceanTransport(thermal,water);
         this.iceCover=new Float64Array(n);this.snowCover=new Float64Array(n);this.landEvaporation=new Float64Array(n).fill(1);this.heatJm2=new Float64Array(n);this.vegetation=new Float64Array(n).fill(.5);
         // Generated ice is an initial condition. Set a consistent column rather
@@ -24,7 +24,8 @@ export class EnvironmentModel {
             const delta=water.seaIceKgM2[i]>0&&water.oceanGlobalKgM2>0?limit-thermal.temperatureK[i]:Math.min(0,limit-thermal.temperatureK[i]);
             this.heatJm2[i]=delta*thermal.capacity[i];
         }
-        thermal.applyHeat(this.heatJm2);this.initialEnthalpy=this.enthalpy();this.refresh();this.ocean.step(0,config.oceanStrengthMps);
+        if(initialEnthalpy===undefined)thermal.applyHeat(this.heatJm2);
+        this.initialEnthalpy=initialEnthalpy??this.enthalpy();this.refresh();this.ocean.step(0,config.oceanStrengthMps);
     }
     enthalpy() {
         const w=this.water;

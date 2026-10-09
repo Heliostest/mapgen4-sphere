@@ -290,3 +290,7 @@ The hemisphere and mountain layout differ because the mesh and noise cover a clo
 Touch was emulated, not tested on physical touch hardware. Browser rendering was tested on this machine's Chrome/GPU, not across all GPU vendors. Very close polar views retain longitude/latitude atlas sampling limits. Rendering and navigation work without a new material/lighting engine; no generic physical material was substituted.
 
 The independent code review found no remaining correctness issue after the fold fix. It did not independently grade visual fidelity; the screenshot comparisons above were performed in the main implementation session.
+
+## Complete simulation persistence — 2026-10-09
+
+The [save/resume acceptance](simulation-save.md) records 110 passing Node tests and real browser save/reload/continuation with exact runtime fields and globe pixels, conservation budgets, corrupted-file preservation, asynchronous cancellation, legacy files, applied erosion and brush painting. Restored globe, comparison and mobile screenshots were inspected in the implementation session; independent review checked the persistence code.
