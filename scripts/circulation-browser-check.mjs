@@ -11,7 +11,7 @@ page.on('pageerror',e=>errors.push(e.message));
 await page.addInitScript(()=>{
     // Simulation callbacks use a controlled clock; compositor presentation does not.
     const present=requestAnimationFrame.bind(window);
-    window.presentBrowserFrame=draw=>new Promise(resolve=>present(()=>{draw?.();present(resolve);}));
+    window.presentBrowserFrame=()=>new Promise(resolve=>present(()=>present(resolve)));
     let now=0,id=0;const callbacks=new Map();Object.defineProperty(performance,'now',{value:()=>now});
     window.requestAnimationFrame=cb=>{callbacks.set(++id,cb);return id;};window.cancelAnimationFrame=id=>callbacks.delete(id);
     window.advanceFrames=(n,dt)=>{for(let i=0;i<n;i++){now+=dt;const batch=[...callbacks.values()];callbacks.clear();for(const cb of batch)cb(now);}};
@@ -23,14 +23,7 @@ const save=async name=>{const pending=page.waitForEvent('download');pending.catc
 const load=async d=>{await page.locator('#terrain-load').setInputFiles({name:'world.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(d))});await page.waitForFunction(()=>!/Reading|Preparing/.test(document.querySelector('#terrain-file-status').textContent),{},{polling:50});await frames();return page.locator('#terrain-file-status').textContent();};
 const present=()=>page.evaluate(()=>window.presentBrowserFrame());
 const globe=async name=>{
-    await frames();
-    // New wind evidence needs a real-frame layer redraw: the fake rAF harness
-    // showed the preceding layer at zero age; the native-rAF control did not.
-    if(name.endsWith('wind'))await page.evaluate(()=>window.presentBrowserFrame(()=>{
-        document.querySelector('#planet-layer').dispatchEvent(new Event('change',{bubbles:true}));
-        window.advanceFrames(2,0);
-    }));
-    else await present();
+    await frames();await present();
     return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});
 };
 // Retain both original PNGs, decoded statistics and scheduling state on failure.
@@ -51,7 +44,6 @@ try {
     await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor&preview=circulation');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false',{},{polling:50});await frames();
     const original=await globe('original');await click('planet-generate-climate');await click('environment-circulation');await input('planet-speed',864000);
     await click('environment-compare');await click('environment-capture');await click('environment-close');
-    await input('planet-layer','wind');await globe('initial-wind');await input('planet-layer','surface');
     const initial=await save('initial');assert.ok(initial.runtime.state.circulation.ocean.circulationMps.every(v=>v===0));
     await evolve();const saved=await save('saved'),pixels=await globe('saved'),state=saved.runtime.state.circulation;
     assert.ok(state.atmosphere.eastMps.some(v=>Math.abs(v)>.01));assert.ok(state.ocean.circulationMps.some(v=>Math.abs(v)>.00001));
@@ -59,7 +51,6 @@ try {
     const diagnostics=await page.locator('#environment-wind-state').textContent(),budgets={water:Number(await page.locator('#water-budget').getAttribute('data-value')),energy:Number(await page.locator('#environment-energy').getAttribute('data-value'))};
     assert.ok(Math.abs(budgets.water)<1e-6);assert.ok(Math.abs(budgets.energy)<1e-4,JSON.stringify(budgets));
     checks.push('Actual wind perturbations and closed ocean-loop memory evolve for 49 days with finite conserved water and enthalpy');
-    await input('planet-layer','wind');await globe('evolved-wind');await input('planet-layer','surface');
     await evolve();const uninterrupted=await save('uninterrupted'),future=await globe('uninterrupted');
     await click('environment-circulation');assert.match(await load(saved),/Complete simulation restored/);assert.equal(await page.locator('#environment-circulation').isChecked(),true);
     assert.deepEqual((await save('restored')).runtime,saved.runtime);await exactPixels('49-day restore',pixels,await globe('restored'));
@@ -74,6 +65,6 @@ try {
     await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await present();await page.screenshot({path:`${folder}/mobile.png`});
     await click('water-enabled');const dry=await save('thermal-only');assert.equal(dry.runtime.state.circulation,null);assert.match(await load(dry),/Complete simulation restored/);assert.deepEqual((await save('thermal-only-restored')).runtime,dry.runtime);
     checks.push('Mobile controls fit; disabling water removes active circulation while thermal-only save still restores');
-    assert.deepEqual(errors,[]);const report={status:'PASS',sourceCommit,captureSynchronization:'native presentation barrier; wind evidence redraws unchanged paused layer inside native frame with zero clock advancement',checks,errors,budgets,diagnostics,steps:[saved.runtime.state.thermal.steps,resumed.runtime.state.thermal.steps],pixelChecks};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+    assert.deepEqual(errors,[]);const report={status:'PASS',sourceCommit,captureSynchronization:'two native presentation frames after controlled simulation callbacks; new wind evidence is captured separately with native rAF',checks,errors,budgets,diagnostics,steps:[saved.runtime.state.thermal.steps,resumed.runtime.state.thermal.steps],pixelChecks};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
 }catch(e){await writeFile(`${folder}/failure.json`,JSON.stringify({status:'FAIL',sourceCommit,error:e.stack,checks,errors,pixelChecks},null,2));throw e;
 }finally{if(errors.length)console.log(JSON.stringify({errors}));await browser.close();}
