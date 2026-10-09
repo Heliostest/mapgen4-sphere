@@ -74,17 +74,24 @@ export function initBoundary() {
         }
         original.bindFramebuffer.call(gl,gl.FRAMEBUFFER,previous);return report;
     };
-    window.boundaryExport=names=>{
-        const gl=state.context,previous=state.framebuffer;
-        const encode=field=>{if(!field)return null;const b=new Uint8Array(field.buffer??field,field.byteOffset??0,field.byteLength);let s='';for(let i=0;i<b.length;i+=32768)s+=String.fromCharCode(...b.subarray(i,i+32768));return btoa(s);};
-        const result=names.map(name=>{
+    // Never return the entire world as one base64 JSON value: full upstream
+    // buffers can exceed the browser protocol / Node string size limit.
+    let exportFields=[];
+    window.boundaryExportIndex=names=>{
+        exportFields=[];const ids=new Map(),fieldId=field=>{if(!field)return null;if(!ids.has(field)){ids.set(field,exportFields.length);exportFields.push({field});}return ids.get(field);};
+        const snapshots=names.map(name=>{
             const s=captures.get(name),rawOutputs={};
-            for(const [key,t] of Object.entries(s.copies)){
-                const field=readCopy(gl,t,`${name} ${key} export`);
-                rawOutputs[key]={width:t.width,height:t.height,format:t.format,type:field.constructor.name,stats:stats(field),base64:encode(field)};
-            }
-            const passes=Object.fromEntries(Object.entries(s.passes).map(([key,p])=>[key,{args:p.args,uniforms:p.uniforms,attributes:p.attributes.map(({buffer,bytes,...a})=>({...a,base64:encode(bytes)}))}]));
-            return {name,uniforms:s.uniforms,attributes:s.attributes,rawAttributes:s.rawAttributes.map(encode),rawUploads:Object.fromEntries(Object.entries(s.rawUploads).map(([k,v])=>[k,encode(v)])),rawOutputs,passes};
-        });original.bindFramebuffer.call(gl,gl.FRAMEBUFFER,previous);return result;
+            for(const [key,t] of Object.entries(s.copies)){const id=exportFields.length;exportFields.push({copy:t,label:`${name} ${key}`});rawOutputs[key]={width:t.width,height:t.height,format:t.format,fieldId:id};}
+            const passes=Object.fromEntries(Object.entries(s.passes).map(([key,p])=>[key,{args:p.args,uniforms:p.uniforms,attributes:p.attributes.map(({buffer,bytes,...a})=>({...a,fieldId:fieldId(bytes)}))}]));
+            return {name,uniforms:s.uniforms,attributes:s.attributes,rawAttributes:s.rawAttributes.map(fieldId),rawUploads:Object.fromEntries(Object.entries(s.rawUploads).map(([k,v])=>[k,fieldId(v)])),rawOutputs,passes};
+        });return {snapshots,fieldCount:exportFields.length};
     };
+    window.boundaryExportChunk=(id,offset)=>{
+        const entry=exportFields[id];if(!entry)throw new Error('Unknown boundary export field');
+        if(!entry.field)entry.field=readCopy(state.context,entry.copy,`${entry.label} export`);
+        const field=entry.field,b=new Uint8Array(field.buffer,field.byteOffset,field.byteLength),end=Math.min(b.length,offset+1024*1024);let s='';
+        for(let i=offset;i<end;i+=32768)s+=String.fromCharCode(...b.subarray(i,Math.min(end,i+32768)));
+        return {base64:btoa(s),byteLength:b.length,type:field.constructor.name};
+    };
+    window.boundaryExportRelease=id=>{exportFields[id]=null;};
 }

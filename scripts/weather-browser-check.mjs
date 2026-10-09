@@ -2,7 +2,10 @@ import assert from 'node:assert/strict';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {gzipSync} from 'node:zlib';
+import {createGzip} from 'node:zlib';
+import {createWriteStream} from 'node:fs';
+import {pipeline} from 'node:stream/promises';
+import {once} from 'node:events';
 import {initBoundary} from './render-boundary-probe.mjs';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const folder=process.env.WEATHER_FOLDER||'build/validation/weather';await mkdir(folder,{recursive:true});
@@ -25,6 +28,17 @@ const input=async(id,value)=>{await page.locator('#'+id).evaluate((e,v)=>{e.valu
 const save=async name=>{const pending=page.waitForEvent('download');pending.catch(()=>{});await click('simulation-save');assert.doesNotMatch(await page.locator('#terrain-file-status').textContent(),/Save failed/);await (await pending).saveAs(`${folder}/${name}.json`);return JSON.parse(await readFile(`${folder}/${name}.json`,'utf8'));};
 const load=async d=>{await page.locator('#terrain-load').setInputFiles({name:'world.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(d))});await page.waitForFunction(()=>!/Reading|Preparing/.test(document.querySelector('#terrain-file-status').textContent),{},{polling:50});await frames();return page.locator('#terrain-file-status').textContent();};
 const globe=async name=>{await frames();await page.evaluate(()=>window.presentBrowserFrame());const png=await page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});if(process.env.WEATHER_BOUNDARY_PROBE==='1'){boundaryCaptures[name]=await page.evaluate(name=>window.boundaryCapture(name),name);await writeFile(`${folder}/boundary-captures.json`,JSON.stringify(boundaryCaptures,null,2));}return png;};
+async function exportBoundaries(label,names){
+    const target=`${folder}/boundary-${label}-raw`;await mkdir(target,{recursive:true});const index=await page.evaluate(names=>window.boundaryExportIndex(names),names);index.fields=[];
+    await writeFile(`${target}/index.json`,JSON.stringify(index,null,2));
+    for(let id=0;id<index.fieldCount;id++){
+        const file=`field-${id}.bin.gz`,out=createWriteStream(`${target}/${file}`),gzip=createGzip(),completion=pipeline(gzip,out);completion.catch(()=>{});
+        const hash=createHash('sha256');let offset=0,chunk;
+        try{do{chunk=await page.evaluate(([id,offset])=>window.boundaryExportChunk(id,offset),[id,offset]);if(gzip.errored||out.errored)throw gzip.errored||out.errored;if(gzip.destroyed||out.destroyed)throw new Error('Boundary export stream closed before completion');const bytes=Buffer.from(chunk.base64,'base64');hash.update(bytes);offset+=bytes.length;if(!gzip.write(bytes))await Promise.race([once(gzip,'drain'),completion]);}while(offset<chunk.byteLength);gzip.end();await completion;}
+        catch(error){gzip.destroy(error);out.destroy(error);throw error;}
+        index.fields.push({id,file,byteLength:offset,type:chunk.type,sha256:hash.digest('hex')});await writeFile(`${target}/index.json`,JSON.stringify(index,null,2));await page.evaluate(id=>window.boundaryExportRelease(id),id);
+    }
+}
 const exactPixels=async(label,a,b,names)=>{
     const decoded=await page.evaluate(async images=>{
         const fields=[];let width,height;for(const data of images){const img=await createImageBitmap(new Blob([Uint8Array.from(atob(data),c=>c.charCodeAt(0))],{type:'image/png'})),c=document.createElement('canvas');c.width=width=img.width;c.height=height=img.height;const ctx=c.getContext('2d');ctx.drawImage(img,0,0);fields.push(ctx.getImageData(0,0,width,height).data);img.close();}
@@ -34,7 +48,7 @@ const exactPixels=async(label,a,b,names)=>{
     if(names&&process.env.WEATHER_BOUNDARY_PROBE==='1'){
         const boundary=await page.evaluate(names=>window.boundaryPair(names),names);await writeFile(`${folder}/boundary-${label}.json`,JSON.stringify(boundary,null,2));
         for(const key of ['u_elevation','u_depth'])assert.ok(boundary.outputs[key].stats.every(s=>s.nonzero>0&&s.min!==s.max),`${key}: seed-187 terrain boundary must have valid, nonconstant samples`);
-        if(!a.equals(b))await writeFile(`${folder}/boundary-${label}-raw.json.gz`,gzipSync(JSON.stringify(await page.evaluate(names=>window.boundaryExport(names),names))));
+        if(!a.equals(b))await exportBoundaries(label,names);
     }
     assert.ok(a.equals(b),`${label}: ${JSON.stringify(pixelChecks.at(-1))}`);
 };
