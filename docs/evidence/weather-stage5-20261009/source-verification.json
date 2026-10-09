@@ -1,0 +1,21 @@
+{
+  "implementationCommit": "df63794d97114cc0fd55cc25dc271758e573bb26",
+  "finalEvidenceToolsCommit": "f1dc8d981c2c57acc817a91107b940543eb434d3",
+  "acceptanceRecordedHEAD": "99824435f2dcafc9edffb54ce3fd3deb08baa20f",
+  "verifiedAgainstImplementationCommit": {
+    "weather.ts": "ade0be846453ee80671d8c97db7359b96f9173ad9fa1956ae27d71881a395130",
+    "planet-controls.ts": "717a82cc26ce40856408c6c25825c039546522e1ad7911092bff11d6ab8bbbba",
+    "water-panel.ts": "34a10003e32f874b62c2fde617286edb9ef5f1f697240f6d97729ce6cebb4662",
+    "thermal-runtime.ts": "41d86f2761d6e727cd2667bf31fd0e2769b72b0606780b2d9f75723cdcefcbab",
+    "render.ts": "8b08c3ed4f4dc3c958805f041ae315ab05a2de4e914077201afd274297e6b1a4",
+    "planet-render.ts": "005e96223e8bdf478f21cd1f527aac72a705052f14b50e051fab7cc1b82c500d",
+    "scripts/weather-browser-check.mjs": "eedc2300e9fd7501f177038696c22e783eaf5edebaf1b0090a0d3c8ce672e28b",
+    "scripts/render-boundary-probe.mjs": "046fe4b4bcf68d6ff3eb8a6be9b95507072a218cac4b1c173b6b901918fcbd1b",
+    "scripts/weather-recheck.mjs": "52e07aa450e0d1d73f8b06085cf15db0dbd9cd59b1d555e73e0558e066061c8c",
+    "tests/weather-evidence.ts": "fb0c295a3399b5c63043e5943fa2a26439a0023c39aadefcfadf60c38ad35331",
+    "tests/weather-evidence.html": "5c94e3867944a6c62473d00f8497451f9ff84f7e270a57b04d81a558a4efc729",
+    "tests/weather-render.ts": "3d11fe698f7666910a278f4f355796cc288e9ae96d1be9747dd0ce6787da4bb9",
+    "tests/weather-render.html": "61ed1f76b1eebd7ae3e3b793fb5eadc2d8fb8fcae819f04f628a6dd556f104f8"
+  },
+  "note": "Final acceptance/native captures ran the committed implementation before its commit was created; original HEAD+patch and file hashes retained. Later changes only stream full probe exports and handle write errors. Production physics/render source is unchanged."
+}

@@ -1,0 +1,217 @@
+{
+  "status": "PASS",
+  "sourceCommit": "df63794d97114cc0fd55cc25dc271758e573bb26",
+  "checks": [
+    "Moisture clouds are visible at generation; pause is exact and toggling off restores pixels without changing any physical state",
+    "Actual precipitation, wind and moisture evolve; full save/load reconstructs exact weather pixels and 98-day resumed fields with conserved budgets",
+    "Invalid display options preserve the world; Original remains exact, mobile fits and old saves can display clouds without precipitation phase",
+    "Terrain routing, glaciers, evolving circulation and weather run together with closed budgets and an exact full-world/pixel restore",
+    "Production GPU fixture verifies dry restoration and moisture-derived clouds without rain, snow or time-driven glyphs"
+  ],
+  "errors": [],
+  "budgets": {
+    "water": -5.820766091346741e-9,
+    "energy": 0.0000012665987014770508
+  },
+  "coupledBudgets": {
+    "water": 9.778887033462524e-9,
+    "energy": 0.000026401132345199585,
+    "solid": 1.2129087964388556e-29
+  },
+  "coupledFutureBudgets": {
+    "water": 3.958120942115784e-9,
+    "energy": 0.00001670047640800476,
+    "solid": 2.9164533256417994e-29
+  },
+  "diagnostics": "Cloud cover 25%",
+  "snowfall": 0.04665501099407409,
+  "steps": [
+    3832,
+    7665
+  ],
+  "pixelChecks": [
+    {
+      "label": "pause",
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "4f07e6850545076b20e0340022ae753622fba326cad15807c5ebf0102b3417f9",
+        "4f07e6850545076b20e0340022ae753622fba326cad15807c5ebf0102b3417f9"
+      ]
+    },
+    {
+      "label": "off",
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "7feb24d1e27dfc69350a135243b852f9ceedf4b2a90a4a3db0afd9a027eb92fd",
+        "7feb24d1e27dfc69350a135243b852f9ceedf4b2a90a4a3db0afd9a027eb92fd"
+      ]
+    },
+    {
+      "label": "49-day-restore",
+      "names": [
+        "evolved",
+        "restored"
+      ],
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "8db454a34b6530321363eeb04f243cf2bebad287e4ba9e680083d87eddbfdbcf",
+        "8db454a34b6530321363eeb04f243cf2bebad287e4ba9e680083d87eddbfdbcf"
+      ]
+    },
+    {
+      "label": "98-day-continuation",
+      "names": [
+        "uninterrupted",
+        "resumed"
+      ],
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "83b4708cd1fa162b509bad8200d163838ae174abab513d5ef0107dc678ffbb94",
+        "83b4708cd1fa162b509bad8200d163838ae174abab513d5ef0107dc678ffbb94"
+      ]
+    },
+    {
+      "label": "temperature-unpolluted",
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "bad8f6f3ff9e525022c698b6e4cdcab1f9dfedfdefb995b9024a52f34562c160",
+        "bad8f6f3ff9e525022c698b6e4cdcab1f9dfedfdefb995b9024a52f34562c160"
+      ]
+    },
+    {
+      "label": "wind-unpolluted",
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "7301863d087db79a0dc1799885964ec9bb56c9ed723f844cfb384730dc3036d4",
+        "7301863d087db79a0dc1799885964ec9bb56c9ed723f844cfb384730dc3036d4"
+      ]
+    },
+    {
+      "label": "precipitation-unpolluted",
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "538796e3674c4a601f355d1dbc6e9fb3262b20ffe038fe9800766c56c1c91596",
+        "538796e3674c4a601f355d1dbc6e9fb3262b20ffe038fe9800766c56c1c91596"
+      ]
+    },
+    {
+      "label": "Original",
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+        "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+      ]
+    },
+    {
+      "label": "all-systems-restore",
+      "names": [
+        "all-systems",
+        "all-systems-restored"
+      ],
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "9312072d59f325a7b2c1bb0ff03b441277f308607355e6258af9983f8ccda05b",
+        "9312072d59f325a7b2c1bb0ff03b441277f308607355e6258af9983f8ccda05b"
+      ]
+    },
+    {
+      "label": "all-systems-continuation",
+      "names": [
+        "all-systems-future",
+        "all-systems-resumed"
+      ],
+      "pngEqual": true,
+      "decoded": {
+        "width": 1170,
+        "height": 1160,
+        "pixels": 0,
+        "channels": 0,
+        "max": 0
+      },
+      "sha256": [
+        "98bf07932e265a72ec6a5786aafa2d458946a70958f7e954311070c6b3a6e33d",
+        "98bf07932e265a72ec6a5786aafa2d458946a70958f7e954311070c6b3a6e33d"
+      ]
+    }
+  ],
+  "gpu": {
+    "status": "PASS",
+    "cases": [
+      "Dry",
+      "Humid cloud",
+      "Same cloud / heavy rain",
+      "Same cloud / changed wind",
+      "Same cloud / snowfall",
+      "Dry again",
+      "Later",
+      "Paused",
+      "Restored time",
+      "Cloud later",
+      "Dry later",
+      "Light rain"
+    ]
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "sourceCommit": "99824435f2dcafc9edffb54ce3fd3deb08baa20f",
+  "status": "PASS",
+  "results": [
+    {
+      "name": "climate",
+      "exitCode": 0,
+      "sourceSha256": "ce098066b3bc90a4c6f3ffecb722f5fad9b8aa11096965d2d6b5ba6f1af85aa8",
+      "effectiveScriptSha256": "2669d7df7bb0166055bb671378413aa17609a34dac8b7c99770d08f2954fef8c",
+      "report": {
+        "checks": [
+          "Generate climate produces structured temperature and nonzero rain at day0/age0 while paused, without warmup",
+          "Manual season, tilt and physical height regenerate climate immediately without advancing time; zero tilt removes seasonal contrast",
+          "Estimated vector wind arrows/probes respond to retrograde; rain/soil and erosion capture are available before Play with honest initial-estimate labels",
+          "Rain and surface-outflow legends distinguish generated initial estimates from latest simulated-step fluxes",
+          "Play evolves generated fields with a closed water budget; view changes preserve history, regeneration resets age at the selected date",
+          "Original artwork is preserved and generated climate/wind controls fit mobile"
+        ],
+        "errors": [],
+        "initialRangeK": 66.58631812548722,
+        "displayDiff": {
+          "max": 0,
+          "channels": 0
+        }
+      }
+    },
+    {
+      "name": "simulation",
+      "exitCode": 0,
+      "sourceSha256": "90eaab50de5b27e0c4eb6c6405d6496539746f4faba4d6be9e4d617f639db39c",
+      "effectiveScriptSha256": "51df377f237245990dde4dcb033a0881c2a79651bc9128dd3e521592796f798b",
+      "report": {
+        "checks": [
+          "Real download/upload restores all state, options, clock, comparison and exact globe pixels",
+          "Real browser uninterrupted and restored branches resume to identical model fields and globe pixels",
+          "Comparison baseline, history and conservation diagnostics remain available after resume",
+          "Malformed versions, dimensions, nonfinite data and mismatched actual terrain preserve the current world",
+          "Editing during asynchronous candidate generation cancels replacement",
+          "Legacy terrain-only files retain climate-off semantics; complete off-state files roundtrip",
+          "Complete simulation preserves both applied erosion and subsequent painting, with exact restored state and pixels"
+        ],
+        "errors": [],
+        "bytes": 3061939,
+        "steps": 3832,
+        "resumedSteps": 7665
+      }
+    },
+    {
+      "name": "glacier",
+      "exitCode": 0,
+      "sourceSha256": "78ce7ed69378905c61a6b36784271ed86cf0ce98c5cd0556816e50b90bcc35f6",
+      "effectiveScriptSha256": "a18bcf29c5693d73610c14f631e5bcd0f4f0088acdebf6dcae843c967b656f21",
+      "report": {
+        "checks": [
+          "Actual cold-climate ice evolves and erodes during 40 physical days with finite water, latent energy and solid closure",
+          "Glacier mass, compensation, motion and solid history restore exactly; corrupt solid inventory preserves the current world",
+          "Comparison exposes ice thickness, Original restores exactly, and glacial erosion applies through the existing terrain rebuild",
+          "Disabling water clears glacier display seeds and preserves an exact thermal-only save; controls fit mobile"
+        ],
+        "errors": [],
+        "budgets": {
+          "water": 1.525040715932846e-8,
+          "energy": -0.000012099742889404297,
+          "solid": 1.3536094183884296e-23
+        },
+        "steps": 3304,
+        "ice": "Grounded ice flow off"
+      }
+    },
+    {
+      "name": "terrain-water",
+      "exitCode": 0,
+      "sourceSha256": "0424281408b8e8204ea939cc6814bfb72ef6272ae79799f6e107ffeddd787fb4",
+      "effectiveScriptSha256": "0b2d06d9228b51f6938cd50b6896cb7420d2768dc71748356101be5379801e8e",
+      "report": {
+        "checks": [
+          "Fine terrain stores, actual flux and natural-surface pixels evolve together while water stays nonnegative",
+          "Original artwork restores exactly and the same authored terrain remains pickable",
+          "Fine routing volumes, receivers and flux restore with exact surface pixels",
+          "Inconsistent fine/coarse storage is rejected before replacing the active world",
+          "Actual renderer shows rising lake shorelines, saturated ground and a fully dry basin; mobile stays within viewport"
+        ],
+        "errors": [],
+        "probe": "20.29° lat, 29.53° lon · 576 m elevation · 1264.3 W/m² · 10.89 h local solar time · 15.8 °C daily-mean cell · estimated wind E -6.6 / N -2.3 m/s · potential cover: Grassland / steppe · vegetation 30% · snow 0% · local surface estimate 17.6 °C · annual mean 21.1 °C / 251 mm per Earth year · total precipitation 0.00 mm/day (latest simulated-step rate) · soil 0.4 mm / standing 0.0 mm per land area · coarse-cell land snow 0.0 mm / melt 0.00 mm/day / ocean ice 0.00 m · cell outflow 0.00e+0 m³/s · nearest terrain reservoir: mean depth 0.000 m / outflow 0.00 m³/s",
+        "waterBudget": -1.1525116860866547e-8,
+        "routing": "Terrain routing · 53,834 reservoirs · max standing depth 2.473 m · max flow 45589.2 m³/s · unresolved coast storage 0.0000 km³. Rivers are widened for readability; shoreline reconstruction is approximate. Original map retains artistic rivers.",
+        "steps": 1160,
+        "basin": {
+          "status": "PASS",
+          "counts": [
+            {
+              "label": "Dry basin",
+              "blue": 0,
+              "green": 0,
+              "volumeM3": 0
+            },
+            {
+              "label": "Saturated ground",
+              "blue": 0,
+              "green": 2348517,
+              "volumeM3": 0
+            },
+            {
+              "label": "Low lake",
+              "blue": 339753,
+              "green": 2009655,
+              "volumeM3": 1299199101980698
+            },
+            {
+              "label": "High lake",
+              "blue": 1384148,
+              "green": 965687,
+              "volumeM3": 13905855827842282
+            },
+            {
+              "label": "Drained again",
+              "blue": 0,
+              "green": 0,
+              "volumeM3": 0
+            }
+          ]
+        },
+        "rejectionFrame": {
+          "changedChannels": 0,
+          "maxDifference": 0
+        }
+      }
+    },
+    {
+      "name": "environment",
+      "exitCode": 0,
+      "sourceSha256": "0be6a04e00c1c13ebed48e4084304c2848ecf55a85ce808ece777d9f19000b5f",
+      "effectiveScriptSha256": "997ec201d2e17c99539a2b1f7e9cba3e5f4bed30d7f880e9287e169f1c629d34",
+      "report": {
+        "checks": [
+          "Generated snow/ice inventories and both polar oceans appear at zero age; initial budgets close",
+          "Temperature, snow, sea ice, vegetation and current maps render distinct fields",
+          "In-dialog Play/Pause evolves >10 days while baseline stays fixed and mass/enthalpy close",
+          "CSV download contains baseline, current, delta, age, parameters and all budget metrics",
+          "Parameter change regenerates current only; explicit capture replaces the baseline",
+          "Mobile comparison has no horizontal overflow and Escape closes the dialog",
+          "Matched north/south polar globe captures use the coupled model at zero age"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "planet",
+      "exitCode": 0,
+      "sourceSha256": "b028ed93b4a81ab99af66a17aea3164293a52f6a0ef709b5681b08a9b915586f",
+      "effectiveScriptSha256": "c468e57fc06b7b539e08b1318a94059fe38a5887bbf8b97a5be102548f02aa0f",
+      "report": {
+        "checks": [
+          "Original pixels, 33 existing controls (including sphere radius) and Earth diagnostics",
+          "Physical radius changes SI gravity/mass, scene radius stays independent, neither regenerates terrain",
+          "Invalid input rejected; day/night and insolation are optional and reversible",
+          "Playing advances SI time without generation; visibility loss pauses without catch-up",
+          "Inspection does not paint; painting pauses spin and survives physical radius, density, scene radius and relief changes",
+          "Terrain reset plus Earth/time reset restore the original canvas",
+          "Pause button freezes the presented frame; resume advances from that time",
+          "Touch inspection and portrait controls fit viewport"
+        ],
+        "errors": [],
+        "paintedRadiusRoundTrip": {
+          "channels": 0,
+          "max": 0
+        },
+        "controls": {
+          "status": "PASS",
+          "checks": 20,
+          "failures": []
+        },
+        "gpu": {
+          "radial": {
+            "status": "PASS",
+            "checks": 648,
+            "radii": [
+              100,
+              300,
+              1000
+            ],
+            "cameras": 4,
+            "models": 3,
+            "maxError": 0.0002679679309949279
+          },
+          "outlines": {
+            "status": "PASS",
+            "samples": 771,
+            "report": [
+              {
+                "axis": [
+                  1,
+                  0
+                ],
+                "maxJump": 0.00048828125,
+                "maxError": 0.0000976562500000222
+              },
+              {
+                "axis": [
+                  0,
+                  1
+                ],
+                "maxJump": 0.00048828125,
+                "maxError": 0.0000976562500000222
+              },
+              {
+                "axis": [
+                  1,
+                  1
+                ],
+                "maxJump": 0.0009765625,
+                "maxError": 0.0001464843749999778
+              }
+            ]
+          },
+          "silhouette": {
+            "status": "PASS",
+            "checks": 30,
+            "failed": []
+          },
+          "insolation": {
+            "status": "PASS",
+            "checks": 87
+          }
+        }
+      }
+    },
+    {
+      "name": "circulation",
+      "exitCode": 0,
+      "sourceSha256": "29f8d3988143e37edb757ba970262a9f98c57b57d8042a061b41fce13edd608b",
+      "effectiveScriptSha256": "024c428d2d81c506d52cc1f115b0a277083bd0f5f73d22be5fba7a115658ce83",
+      "report": {
+        "status": "PASS",
+        "sourceCommit": "99824435f2dcafc9edffb54ce3fd3deb08baa20f",
+        "captureSynchronization": "two native presentation frames after controlled simulation callbacks; new wind evidence is captured separately with native rAF",
+        "checks": [
+          "Actual wind perturbations and closed ocean-loop memory evolve for 49 days with finite conserved water and enthalpy",
+          "Downloaded and uploaded wind/ocean memory resumes to identical fields and globe pixels after 98 days",
+          "Invalid enabled circulation is rejected atomically; current comparison, wind map and Original remain available",
+          "Mobile controls fit; disabling water removes active circulation while thermal-only save still restores"
+        ],
+        "errors": [],
+        "budgets": {
+          "water": -5.820766091346741e-9,
+          "energy": 0.0000012665987014770508
+        },
+        "diagnostics": "Evolving circulation · max wind 13.03 m/s · thermal perturbation 5.00 m/s · current 0.0604 m/s",
+        "steps": [
+          3832,
+          7665
+        ],
+        "pixelChecks": [
+          {
+            "label": "49-day restore",
+            "pngEqual": true,
+            "sha256": [
+              "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097",
+              "473ca3481a6dd212b40876814b5280a1437b470850450b2bb62e97dc28b88097"
+            ],
+            "decoded": {
+              "width": 1170,
+              "height": 1160,
+              "channels": 0,
+              "max": 0
+            },
+            "ui": {
+              "now": 12672,
+              "age": "49.09220881181893",
+              "play": "Play",
+              "layer": "surface",
+              "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+            }
+          },
+          {
+            "label": "98-day continuation",
+            "pngEqual": true,
+            "sha256": [
+              "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b",
+              "21174eba6cff40fa02c6ce06202ab800e0c5e35a17b99532d0bd356c1f1ec88b"
+            ],
+            "decoded": {
+              "width": 1170,
+              "height": 1160,
+              "channels": 0,
+              "max": 0
+            },
+            "ui": {
+              "now": 18800,
+              "age": "98.19722874284763",
+              "play": "Play",
+              "layer": "surface",
+              "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+            }
+          },
+          {
+            "label": "Original",
+            "pngEqual": true,
+            "sha256": [
+              "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764",
+              "4e4318281a3a84fd60986ffa9095a4c00ae9de75317d9b5e3a7c24f2c1d77764"
+            ],
+            "decoded": {
+              "width": 1170,
+              "height": 1160,
+              "channels": 0,
+              "max": 0
+            },
+            "ui": {
+              "now": 19216,
+              "age": "98.19722874284763",
+              "play": "Play",
+              "layer": "original",
+              "status": "Complete simulation downloaded. Unapplied erosion preview and undo history are excluded."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

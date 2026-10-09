@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-09",
+  "timezone": "Asia/Shanghai",
+  "runs": [
+    {
+      "folder": "stage5-baseline-20261009",
+      "status": "FAIL",
+      "scope": "all-systems-restore",
+      "note": "25 pixels / 29 channels, max 1/255; identical complete documents; no complete GPU boundary captured"
+    },
+    {
+      "folder": "stage5-boundary-20261009",
+      "status": "FAIL",
+      "scope": "wind-unpolluted",
+      "note": "Controlled-rAF stale first Wind capture equals previous Temperature frame; separate native-rAF check added. R16F readback in this observer was invalid."
+    },
+    {
+      "folder": "stage5-boundary2-20261009",
+      "status": "PASS_WITH_INVALID_PROBE",
+      "scope": "five groups / ten exact pixel pairs",
+      "note": "R16F RED/FLOAT readback returned invalid zero arrays; do not use those textures to exclude upstream differences."
+    },
+    {
+      "folder": "stage5-boundary3-20261009",
+      "status": "PASS",
+      "scope": "five groups / ten exact pixel pairs",
+      "note": "Validated RGBA/FLOAT readback with errors and nonconstant elevation/depth checks. Preliminary native metadata time was later corrected."
+    },
+    {
+      "folder": "stage5-final-20261009",
+      "status": "PASS",
+      "scope": "five groups / ten exact pixel pairs and final native evidence",
+      "note": "No boundary observer; native metadata finite; original run and two native coupled loads PNG exact; 13 Live checks and 120 native frame intervals."
+    },
+    {
+      "folder": "stage5-regressions-20261009",
+      "status": "PASS",
+      "scope": "seven suites / forty-one groups",
+      "note": "All independent suites passed. With final weather five groups, total forty-six browser groups."
+    },
+    {
+      "folder": "stage5-validated-boundary-20261009",
+      "status": "FAIL_TOOL",
+      "scope": "deliberate complete raw-export check",
+      "note": "49-day pair matched; single IPC return exceeded Node maximum string size. No changed production pixels caused this failure."
+    },
+    {
+      "folder": "stage5-chunk-boundary-20261009",
+      "status": "PASS",
+      "scope": "five groups / ten exact pixel pairs and deliberate raw-export check",
+      "note": "40 fields / 419101232 bytes verified; successful 49-day snapshot, not the baseline failure. Later stream error propagation fix checked by root and independent reviewer with in-memory ENOSPC."
+    }
+  ],
+  "numerical": {
+    "pass": 154,
+    "fail": 0,
+    "typecheck": "PASS",
+    "build": "PASS"
+  },
+  "renderStability": "UNRESOLVED",
+  "historyArchive": "run-history.zip",
+  "regressionToolsAndLogs": "regression-tools-and-logs.zip"
+}

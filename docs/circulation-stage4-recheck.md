@@ -56,7 +56,7 @@
 | 49 天恢复（额外全层原生重绘实验） | saved/restored runtime 精确一致 | 21 个通道，最大差 1/255 | 失败保留；额外重绘没有证明能解决该微差 |
 | 最终提交 `7461fcb` 串行验收 | 49 天 runtime、98 天完整文件精确一致 | 49／98／Original 全部 0 个通道差，PNG 字节相等 | 当前运行通过，不能证明以后永不复现 |
 
-环境是 Windows Chrome，ANGLE／NVIDIA GeForce RTX 5090／Direct3D11。独立三个边界探针记录 CPU 上传缓冲、纹理、uniform 及精确格式的 land／river／depth／surface／drape：这些探针均通过、输入与纹理一致，**未在失败发生时取得完整上游边界数据**，因此未确定首个分叉的根因。同步 CPU 读回和禁用 DITHER 的对照曾通过，但普通 DITHER 开启控制也通过，不足以认定 DITHER。最终方案不更改 GPU 精度、DITHER 或 PNG 阈值。
+环境是 Windows Chrome，ANGLE／NVIDIA GeForce RTX 5090／Direct3D11。独立三个边界探针记录 CPU 上传缓冲、纹理及 uniform，运行当时报告通过，**未在失败发生时取得完整上游边界数据**。阶段五的独立复审随后发现旧探针的 R16F land／depth 使用未验证的 RED/FLOAT 读回，散列实际对应全零缓冲，故旧报告不能排除这两个 GPU 边界的差异；原始报告保留。阶段五改用 RGBA/FLOAT 抽取 R、检查 framebuffer／GL 错误并记录非零范围，见[本轮补充](weather-stage5-recheck.md)。这些后续有效读回来自通过运行，仍未确定历史失败首个分叉的根因。同步 CPU 读回和禁用 DITHER 的对照曾通过，但普通 DITHER 开启控制也通过，不足以认定 DITHER。生产 GPU 精度、DITHER 和 PNG 阈值均未更改。
 
 另一个独立问题是 fake-rAF 测试首次 Wind 截图会保留前一 Surface 图，尽管记录到 mode=8；原生 rAF 同操作首次即正确。GL finish 和把 fake 重绘搬入原生帧均不足以可靠修复采集，所以最终证据使用独立原生页面加载存档，并通过下载比对保证世界未变化。此采集修正不等于上表微差的根因解释。
 

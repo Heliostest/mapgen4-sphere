@@ -1,6 +1,6 @@
 # Coupled environment: five stages
 
-All work is isolated in `mapgen4-sphere` on `codex/coupled-environment`. Start the local preview with the existing server, select **Generate climate**, then open **Ice, ocean & vegetation**. The optional systems share the same physical clock. Changing a physical mode restarts climate; changing the weather display does not.
+The five systems live in the independent `mapgen4-sphere` repository. Start the local preview with the existing server, select **Generate climate**, then open **Ice, ocean & vegetation**. The optional systems share the same physical clock. Changing a physical mode restarts climate; changing the weather display does not.
 
 | Stage | Result | Details and evidence |
 |---|---|---|
@@ -18,6 +18,6 @@ These are bounded illustrative models. Climate and grounded ice use a 48×24 equ
 
 Acceptance combines numerical tests, real browser download/upload and exact resumed-state/pixel comparisons, controlled production-GPU fixtures, mobile checks and independent phase reviews. The final weather acceptance also enables terrain routing, glaciers, evolving circulation and weather together and verifies a complete-world restore. Evidence is recorded under `docs/evidence/`; repeatable scripts are under `scripts/`.
 
-Final acceptance on 2026-10-09: **137/137 numerical/document tests**, typecheck/build, and **46 browser acceptance groups across eight suites** pass. The [combined final regression report](evidence/environment-final-regression.json) includes all suite results and GPU checks. Each phase received independent review; all actionable findings were fixed and no review findings remain deferred.
+The initial release recorded **137/137 numerical/document tests** and **46 browser groups across eight suites** in the [historical combined report](evidence/environment-final-regression.json). Subsequent stage rechecks added numerical regressions and fixes. The [current stage-five and coupled recheck](weather-stage5-recheck.md) has the latest source fingerprints, actual visual evidence and results. It distinguishes a reproduced strict pixel failure from later passing runs: physical state continuation and budgets close, but occasional 1/255 GPU differences are still an open rendering stability issue. This limitation is not a solved cloud-model error.
 
 ![All optional environment systems enabled](evidence/environment-all-systems.png)

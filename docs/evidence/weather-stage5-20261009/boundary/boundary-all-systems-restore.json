@@ -1,0 +1,619 @@
+{
+  "names": [
+    "all-systems",
+    "all-systems-restored"
+  ],
+  "inputs": [
+    {
+      "counter": 1352,
+      "finalCounter": 1353,
+      "mode": 9,
+      "programId": 73,
+      "uniforms": {
+        "u_projection": [
+          0.0028571428265422583,
+          0,
+          0,
+          0,
+          0,
+          0.0028571428265422583,
+          0,
+          0,
+          0,
+          0,
+          -0.0005000000237487257,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "u_mountain_height": 50,
+        "u_sphere_radius": 300,
+        "u_light_angle": [
+          0.1736481785774231,
+          0.9848077297210693
+        ],
+        "u_inverse_texture_size": [
+          0.0003662109375,
+          0.000732421875
+        ],
+        "u_inverse_screen_size": [
+          0.000732421875,
+          0.000732421875
+        ],
+        "u_rotation": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "u_slope": 2,
+        "u_flat": 2.5,
+        "u_ambient": 0.25,
+        "u_overhead": 30,
+        "u_outline_depth": 1.4285714626312256,
+        "u_outline_coast": 0,
+        "u_outline_water": 13,
+        "u_outline_strength": 15,
+        "u_outline_threshold": 0,
+        "u_biome_colors": 1,
+        "u_planet_layer": 9,
+        "u_sun_direction": [
+          0.7253338694572449,
+          0.33735892176628113,
+          0.6000664830207825
+        ],
+        "u_terrain_water": 1,
+        "u_weather_visible": 1,
+        "u_colormap": 0,
+        "u_elevation": 1,
+        "u_water": 2,
+        "u_depth": 3,
+        "u_temperature": 4,
+        "u_hydrology": 5,
+        "u_geomorph": 6,
+        "u_surface": 7,
+        "u_lakes": 8,
+        "u_weather": 9
+      },
+      "attributes": [
+        {
+          "size": 2,
+          "type": 5126,
+          "normalized": false,
+          "stride": 16,
+          "offset": 0,
+          "bufferId": 1,
+          "hash": "cdc3aebb0ed87ad293fcf28a19b5c9686aeddfaa656336cb79144b814ba89216"
+        },
+        {
+          "size": 2,
+          "type": 5126,
+          "normalized": false,
+          "stride": 16,
+          "offset": 8,
+          "bufferId": 1,
+          "hash": "cdc3aebb0ed87ad293fcf28a19b5c9686aeddfaa656336cb79144b814ba89216"
+        }
+      ],
+      "textures": {
+        "u_colormap": {
+          "id": 5,
+          "width": 64,
+          "height": 64,
+          "format": 32856,
+          "uploadHash": "2d215481a2561f0e290900c36ce02cb4f07cd57801cbd729ad6105effd914565"
+        },
+        "u_elevation": {
+          "id": 11,
+          "width": 4096,
+          "height": 2048,
+          "format": 33325,
+          "uploadHash": "080acf35a507ac9849cfcba47dc2ad83e01b75663a516279c8b9d243b719643e"
+        },
+        "u_water": {
+          "id": 15,
+          "width": 4096,
+          "height": 2048,
+          "format": 32856,
+          "uploadHash": "83ee47245398adee79bd9c0a8bc57b821e92aba10f5f9ade8a5d1fae4d8c4302"
+        },
+        "u_depth": {
+          "id": 13,
+          "width": 2048,
+          "height": 2048,
+          "format": 33325,
+          "uploadHash": "2daeb1f36095b44b318410b3f4e8b5d989dcc7bb023d1426c492dab0a3053e74"
+        },
+        "u_temperature": {
+          "id": 6,
+          "width": 48,
+          "height": 24,
+          "format": 32856,
+          "uploadHash": "90907a7e0dc94bd98a2ff52cbe31b320dab6b8e555d7fb86280bb51f47c5be8d"
+        },
+        "u_hydrology": {
+          "id": 7,
+          "width": 48,
+          "height": 24,
+          "format": 32856,
+          "uploadHash": "0b29a16001f851bdae047c651d5b145f26f45d827fbdc14ffa9c4fa1a35e768e"
+        },
+        "u_geomorph": {
+          "id": 8,
+          "width": 48,
+          "height": 24,
+          "format": 32856,
+          "uploadHash": "606f558e014930f9c1669f03c71c28945c4631568e39cd308c6c7f4077c7bfb9"
+        },
+        "u_surface": {
+          "id": 9,
+          "width": 96,
+          "height": 49,
+          "format": 32856,
+          "uploadHash": "43e8944dbb1b6bea14ebe16b75b9e9b7cac049697aa7e5f8d5fe5f7d847fe41e"
+        },
+        "u_lakes": {
+          "id": 17,
+          "width": 4096,
+          "height": 2048,
+          "format": 32856,
+          "uploadHash": "83ee47245398adee79bd9c0a8bc57b821e92aba10f5f9ade8a5d1fae4d8c4302"
+        },
+        "u_weather": {
+          "id": 10,
+          "width": 96,
+          "height": 49,
+          "format": 32856,
+          "uploadHash": "f8df25b91fd0530d4802959cbd2825c0c596edf24fdc1b1141368b6ed9318faa"
+        }
+      }
+    },
+    {
+      "counter": 1529,
+      "finalCounter": 1530,
+      "mode": 9,
+      "programId": 73,
+      "uniforms": {
+        "u_projection": [
+          0.0028571428265422583,
+          0,
+          0,
+          0,
+          0,
+          0.0028571428265422583,
+          0,
+          0,
+          0,
+          0,
+          -0.0005000000237487257,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "u_mountain_height": 50,
+        "u_sphere_radius": 300,
+        "u_light_angle": [
+          0.1736481785774231,
+          0.9848077297210693
+        ],
+        "u_inverse_texture_size": [
+          0.0003662109375,
+          0.000732421875
+        ],
+        "u_inverse_screen_size": [
+          0.000732421875,
+          0.000732421875
+        ],
+        "u_rotation": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "u_slope": 2,
+        "u_flat": 2.5,
+        "u_ambient": 0.25,
+        "u_overhead": 30,
+        "u_outline_depth": 1.4285714626312256,
+        "u_outline_coast": 0,
+        "u_outline_water": 13,
+        "u_outline_strength": 15,
+        "u_outline_threshold": 0,
+        "u_biome_colors": 1,
+        "u_planet_layer": 9,
+        "u_sun_direction": [
+          0.7253338694572449,
+          0.33735892176628113,
+          0.6000664830207825
+        ],
+        "u_terrain_water": 1,
+        "u_weather_visible": 1,
+        "u_colormap": 0,
+        "u_elevation": 1,
+        "u_water": 2,
+        "u_depth": 3,
+        "u_temperature": 4,
+        "u_hydrology": 5,
+        "u_geomorph": 6,
+        "u_surface": 7,
+        "u_lakes": 8,
+        "u_weather": 9
+      },
+      "attributes": [
+        {
+          "size": 2,
+          "type": 5126,
+          "normalized": false,
+          "stride": 16,
+          "offset": 0,
+          "bufferId": 1,
+          "hash": "cdc3aebb0ed87ad293fcf28a19b5c9686aeddfaa656336cb79144b814ba89216"
+        },
+        {
+          "size": 2,
+          "type": 5126,
+          "normalized": false,
+          "stride": 16,
+          "offset": 8,
+          "bufferId": 1,
+          "hash": "cdc3aebb0ed87ad293fcf28a19b5c9686aeddfaa656336cb79144b814ba89216"
+        }
+      ],
+      "textures": {
+        "u_colormap": {
+          "id": 5,
+          "width": 64,
+          "height": 64,
+          "format": 32856,
+          "uploadHash": "2d215481a2561f0e290900c36ce02cb4f07cd57801cbd729ad6105effd914565"
+        },
+        "u_elevation": {
+          "id": 11,
+          "width": 4096,
+          "height": 2048,
+          "format": 33325,
+          "uploadHash": "080acf35a507ac9849cfcba47dc2ad83e01b75663a516279c8b9d243b719643e"
+        },
+        "u_water": {
+          "id": 15,
+          "width": 4096,
+          "height": 2048,
+          "format": 32856,
+          "uploadHash": "83ee47245398adee79bd9c0a8bc57b821e92aba10f5f9ade8a5d1fae4d8c4302"
+        },
+        "u_depth": {
+          "id": 13,
+          "width": 2048,
+          "height": 2048,
+          "format": 33325,
+          "uploadHash": "2daeb1f36095b44b318410b3f4e8b5d989dcc7bb023d1426c492dab0a3053e74"
+        },
+        "u_temperature": {
+          "id": 6,
+          "width": 48,
+          "height": 24,
+          "format": 32856,
+          "uploadHash": "90907a7e0dc94bd98a2ff52cbe31b320dab6b8e555d7fb86280bb51f47c5be8d"
+        },
+        "u_hydrology": {
+          "id": 7,
+          "width": 48,
+          "height": 24,
+          "format": 32856,
+          "uploadHash": "0b29a16001f851bdae047c651d5b145f26f45d827fbdc14ffa9c4fa1a35e768e"
+        },
+        "u_geomorph": {
+          "id": 8,
+          "width": 48,
+          "height": 24,
+          "format": 32856,
+          "uploadHash": "606f558e014930f9c1669f03c71c28945c4631568e39cd308c6c7f4077c7bfb9"
+        },
+        "u_surface": {
+          "id": 9,
+          "width": 96,
+          "height": 49,
+          "format": 32856,
+          "uploadHash": "43e8944dbb1b6bea14ebe16b75b9e9b7cac049697aa7e5f8d5fe5f7d847fe41e"
+        },
+        "u_lakes": {
+          "id": 17,
+          "width": 4096,
+          "height": 2048,
+          "format": 32856,
+          "uploadHash": "83ee47245398adee79bd9c0a8bc57b821e92aba10f5f9ade8a5d1fae4d8c4302"
+        },
+        "u_weather": {
+          "id": 10,
+          "width": 96,
+          "height": 49,
+          "format": 32856,
+          "uploadHash": "f8df25b91fd0530d4802959cbd2825c0c596edf24fdc1b1141368b6ed9318faa"
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "u_colormap": {
+      "hashes": [
+        "2d215481a2561f0e290900c36ce02cb4f07cd57801cbd729ad6105effd914565",
+        "2d215481a2561f0e290900c36ce02cb4f07cd57801cbd729ad6105effd914565"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 16192,
+          "length": 16384
+        },
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 16192,
+          "length": 16384
+        }
+      ]
+    },
+    "u_temperature": {
+      "hashes": [
+        "90907a7e0dc94bd98a2ff52cbe31b320dab6b8e555d7fb86280bb51f47c5be8d",
+        "90907a7e0dc94bd98a2ff52cbe31b320dab6b8e555d7fb86280bb51f47c5be8d"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 115,
+          "max": 255,
+          "nonzero": 4608,
+          "length": 4608
+        },
+        {
+          "min": 115,
+          "max": 255,
+          "nonzero": 4608,
+          "length": 4608
+        }
+      ]
+    },
+    "u_hydrology": {
+      "hashes": [
+        "0b29a16001f851bdae047c651d5b145f26f45d827fbdc14ffa9c4fa1a35e768e",
+        "0b29a16001f851bdae047c651d5b145f26f45d827fbdc14ffa9c4fa1a35e768e"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 2052,
+          "length": 4608
+        },
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 2052,
+          "length": 4608
+        }
+      ]
+    },
+    "u_geomorph": {
+      "hashes": [
+        "606f558e014930f9c1669f03c71c28945c4631568e39cd308c6c7f4077c7bfb9",
+        "606f558e014930f9c1669f03c71c28945c4631568e39cd308c6c7f4077c7bfb9"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 0,
+          "max": 0,
+          "nonzero": 0,
+          "length": 4608
+        },
+        {
+          "min": 0,
+          "max": 0,
+          "nonzero": 0,
+          "length": 4608
+        }
+      ]
+    },
+    "u_surface": {
+      "hashes": [
+        "43e8944dbb1b6bea14ebe16b75b9e9b7cac049697aa7e5f8d5fe5f7d847fe41e",
+        "43e8944dbb1b6bea14ebe16b75b9e9b7cac049697aa7e5f8d5fe5f7d847fe41e"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 16110,
+          "length": 18816
+        },
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 16110,
+          "length": 18816
+        }
+      ]
+    },
+    "u_elevation": {
+      "hashes": [
+        "049debd2b96be97dbe04bbd6672f78c863b0ad9b1f1a07c0d2c9ba1a80f253c2",
+        "049debd2b96be97dbe04bbd6672f78c863b0ad9b1f1a07c0d2c9ba1a80f253c2"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 0.1771240234375,
+          "max": 0.88330078125,
+          "nonzero": 8388608,
+          "length": 8388608
+        },
+        {
+          "min": 0.1771240234375,
+          "max": 0.88330078125,
+          "nonzero": 8388608,
+          "length": 8388608
+        }
+      ]
+    },
+    "u_water": {
+      "hashes": [
+        "cf7b585655ad15f208ba13334c7636287f01afefee8012cad0ab1294a50ae665",
+        "cf7b585655ad15f208ba13334c7636287f01afefee8012cad0ab1294a50ae665"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 1028954,
+          "length": 33554432
+        },
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 1028954,
+          "length": 33554432
+        }
+      ]
+    },
+    "u_depth": {
+      "hashes": [
+        "23d30df9fffb6f7584807a226b3dcd75fed8ae9ac7c92f9fd003c0e48b249f3e",
+        "23d30df9fffb6f7584807a226b3dcd75fed8ae9ac7c92f9fd003c0e48b249f3e"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": -0.6455078125,
+          "max": 0.572265625,
+          "nonzero": 2477838,
+          "length": 4194304
+        },
+        {
+          "min": -0.6455078125,
+          "max": 0.572265625,
+          "nonzero": 2477838,
+          "length": 4194304
+        }
+      ]
+    },
+    "u_lakes": {
+      "hashes": [
+        "d00972f56dd2159a5b2f8d8224b1467895b4d0eaf7fbe344898ab9f17fa45ddc",
+        "d00972f56dd2159a5b2f8d8224b1467895b4d0eaf7fbe344898ab9f17fa45ddc"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 1827527,
+          "length": 33554432
+        },
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 1827527,
+          "length": 33554432
+        }
+      ]
+    },
+    "u_weather": {
+      "hashes": [
+        "f8df25b91fd0530d4802959cbd2825c0c596edf24fdc1b1141368b6ed9318faa",
+        "f8df25b91fd0530d4802959cbd2825c0c596edf24fdc1b1141368b6ed9318faa"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 8977,
+          "length": 18816
+        },
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 8977,
+          "length": 18816
+        }
+      ]
+    },
+    "drape": {
+      "hashes": [
+        "8aa1d6b7dcb7825a86398376851722f96a9618dcb8ceba0ab8942e6dffbe06c3",
+        "8aa1d6b7dcb7825a86398376851722f96a9618dcb8ceba0ab8942e6dffbe06c3"
+      ],
+      "changed": 0,
+      "max": 0,
+      "points": [],
+      "stats": [
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 15060750,
+          "length": 16777216
+        },
+        {
+          "min": 0,
+          "max": 255,
+          "nonzero": 15060750,
+          "length": 16777216
+        }
+      ]
+    }
+  }
+}
