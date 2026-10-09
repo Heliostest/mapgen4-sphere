@@ -154,7 +154,7 @@ export class ThermalRuntime {
     sampleWater(u:number,v:number) {
         if(!this.water)return null;
         const w=this.water,k=thermalCell(this.grid,u,v),f=w.land[k];
-        return {rainMmDay:86400*w.precipitationKgM2S[k],soilMm:f>0?w.soilKgM2[k]/f:null,
+        return {precipitationMmDay:86400*w.precipitationKgM2S[k],soilMm:f>0?w.soilKgM2[k]/f:null,
             surfaceMm:f>0?w.surfaceKgM2[k]/f:null,dischargeM3S:w.dischargeM3S[k],atmosphereMm:w.atmosphereKgM2[k],snowMm:f>0?w.snowKgM2[k]/f:0,iceM:f<1?w.seaIceKgM2[k]/((1-f)*917):0,meltMmDay:f>0?86400*w.meltKgM2S[k]/f:0,landIceM:w.glacier?.thickness(k)??0,iceSpeedMyr:(w.glacier?.speedMps[k]??0)*365.25*86400};
     }
     sampleTerrainWater(u:number,v:number) {

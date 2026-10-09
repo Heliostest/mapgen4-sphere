@@ -22,12 +22,33 @@ test('cloud proxy and rain/snow display derive from stores and last-step precipi
     assert.equal(f.rainMmDay[0],5);assert.equal(f.snowMmDay[0],0);assert.equal(f.snowMmDay[1],3);assert.equal(f.rainMmDay[1],0);
     weatherTexture(m,w);assert.deepEqual(w.checkpoint(),before);assert.deepEqual(m.checkpoint(),thermal);
 });
-test('snow glyphs use the recorded frozen transfer even if latent heat subsequently warms the column',()=>{
+test('snow diagnostics use the recorded frozen transfer even if latent heat subsequently warms the column',()=>{
     const {m,w}=setup();w.land.fill(1);m.temperatureK.fill(270);w.atmosphereKgM2.fill(30);
     const coupling={heatJm2:new Float64Array(m.grid.count),landEvaporation:new Float64Array(m.grid.count),iceCover:new Float64Array(m.grid.count)};
     w.step(60,m.temperatureK,new Float64Array(m.grid.count),coupling);m.steps=1;m.temperatureK.fill(280);
     const f=weatherFields(m,w);assert.ok(f.snowMmDay.every(v=>v>0));assert.ok(f.rainMmDay.every(v=>v<1e-10));
     const state=w.checkpoint();w.snowfallKgM2S=null;assert.ok(weatherFields(m,w).rainMmDay.every(v=>v===0));w.restore(state);assert.deepEqual(weatherFields(m,w),f);
+});
+test('precipitation diagnostics distinguish initial estimates, recorded phase and unknown legacy phase',()=>{
+    const {m,w}=setup();w.precipitationKgM2S.fill(5/86400);
+    let f=weatherFields(m,w);assert.equal(f.precipitationSource,'initial estimate');assert.equal(f.phaseAvailable,false);assert.equal(f.precipitationMmDay[0],5);
+    m.steps=1;w.elapsedS=m.stepS;f=weatherFields(m,w);assert.equal(f.precipitationSource,'latest step');assert.equal(f.phaseAvailable,false);
+    w.snowfallKgM2S=new Float64Array(m.grid.count).fill(3/86400);f=weatherFields(m,w);
+    assert.equal(f.phaseAvailable,true);assert.equal(f.rainMmDay[0],2);assert.equal(f.snowMmDay[0],3);assert.equal(f.precipitationMmDay[0],f.rainMmDay[0]+f.snowMmDay[0]);
+});
+test('local temperature changes cloud proxy at fixed column water; dry and humid bounds remain exact',()=>{
+    const {m,w}=setup();w.atmosphereKgM2.fill(moistureCapacity(290)*.85);
+    const baseline=weatherFields(m,w).cloud[0];assert.ok(baseline>0&&baseline<1);
+    m.temperatureK[0]=300;m.temperatureK[1]=280;const f=weatherFields(m,w);assert.equal(f.cloud[0],0);assert.equal(f.cloud[1],1);assert.equal(f.cloud[2],baseline);
+    w.atmosphereKgM2.fill(0);assert.ok(weatherFields(m,w).cloud.every(v=>v===0));
+});
+test('cloud cache follows visible-frame rollback, terrain regeneration, replacement and water shutdown',()=>{
+    const rt=new ThermalRuntime(makeThermalGrid(8,4));rt.enabled=rt.waterEnabled=true;rt.setTerrain(new Float64Array(rt.grid.count));rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);
+    const visible=weatherView(rt)!,state=rt.snapshot();rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,rt.maxAdvanceS,0);const ahead=weatherView(rt)!;assert.notEqual(ahead,visible);
+    rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,null);assert.deepEqual(rt.snapshot(),state);assert.deepEqual(weatherView(rt),visible);
+    const restored=ThermalRuntime.fromSnapshot(state,DEFAULT_PLANET,DEFAULT_ORBIT);rt.replaceWith(restored);assert.deepEqual(weatherView(rt),visible);
+    rt.setTerrain(new Float64Array(rt.grid.count).fill(1));rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);assert.notEqual(weatherView(rt),visible);assert.notDeepEqual(weatherView(rt)!.pixels,visible.pixels);
+    rt.waterEnabled=false;rt.invalidate();rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);assert.equal(weatherView(rt),null);
 });
 test('weather texture has shared scalar polar limits and bounded deterministic bytes',()=>{
     const {m,w}=setup();w.atmosphereKgM2.set(w.atmosphereKgM2.map((_,i)=>i%3*moistureCapacity(290)));

@@ -7,6 +7,7 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
       <label><input id="water-enabled" type="checkbox"> Enable water cycle</label>
       <p class="planet-note" data-info-for="water-enabled">Rain, humidity and soil initialize from geographic rules without Play. Initial fluxes are estimates; Play continues with conservative evaporation, vapor transport, condensation and routing. Evaporation cools and condensation warms the thermal column. Snowfall accumulates; energy-limited melt feeds surface outflow. No groundwater or weather prediction.</p>
       <label><span>Mean precipitation</span><output id="water-rain"></output></label>
+      <label><span>Mean land snowfall</span><output id="water-snowfall"></output></label>
       <label><span>Mean evaporation</span><output id="water-evaporation"></output></label>
       <label><span>Atmosphere / soil / surface</span><output id="water-stores"></output></label>
       <label><span>Ocean inventory</span><output id="water-ocean"></output></label>
@@ -14,7 +15,7 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
       <label><span>Largest cell outflow</span><output id="water-flow"></output></label>
       <label><span>Time since water reset</span><output id="water-age" data-days="0"></output></label>
       <p class="planet-note" id="water-status"></p>
-      <p class="planet-note" data-info-for="water-panel">Stores above are mm water equivalent averaged over the whole globe, including ocean inventory. Outflow is transferred volume from a coarse cell, independent of the artistic river lines.</p>
+      <p class="planet-note" data-info-for="water-panel">Precipitation includes liquid rain and the recorded frozen transfer to land. Snowfall is mm water equivalent per whole globe area, from the latest simulated step; unavailable before Play or when an older save lacks phase. Stores include ocean inventory. Outflow is transferred volume from a coarse cell, independent of the artistic river lines.</p>
       <details><summary>Water parameters</summary>
         <label><span>Evaporation energy fraction (0–1)</span><input id="water-efficiency" type="number" min="0" max="1" step="any"></label>
         <label><span>Soil capacity (mm per land area)</span><input id="water-soil-capacity" type="number" min="1" max="1000" step="any"></label>
@@ -53,6 +54,8 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
             enabled.checked=runtime.waterEnabled;
             const w=runtime.water,d=w?.diagnostics(),m=runtime.model;
             value('water-rain',d?`${d.rainMmDay.toFixed(3)} mm/day`:'Unavailable',d?.rainMmDay);
+            const snowfall=m&&m.steps>0&&w?.snowfallKgM2S?w.snowfallKgM2S.reduce((sum,v)=>sum+v,0)*86400/w.grid.count:undefined;
+            value('water-snowfall',snowfall===undefined?'Phase unavailable':`${snowfall.toFixed(3)} mm/day`,snowfall);
             value('water-evaporation',d?`${d.evaporationMmDay.toFixed(3)} mm/day`:'Unavailable',d?.evaporationMmDay);
             value('water-stores',d?`${d.atmosphereMm.toFixed(2)} / ${d.soilMm.toFixed(2)} / ${d.surfaceMm.toFixed(2)} mm`:'—');
             value('water-ocean',d?`${d.oceanMm.toFixed(2)} mm`:'—');

@@ -9,10 +9,12 @@ export function weatherFields(m:ThermalModel,w:WaterModel) {
     const cloud=saturation.map(v=>{const f=clamp((v-.7)/.3);return f*f*(3-2*f);});
     // Older saves lack precipitation phase. Wait for a real step, never infer
     // old snowfall from a temperature changed by subsequent latent heating.
+    const precipitationSource=m.steps===0?'initial estimate' as const:'latest step' as const;
     const active=m.steps>0&&w.snowfallKgM2S!==null;
+    const precipitationMmDay=w.precipitationKgM2S.map(v=>v*86400);
     const snowMmDay=w.precipitationKgM2S.map((_,i)=>active?w.snowfallKgM2S![i]*86400:0);
     const rainMmDay=w.precipitationKgM2S.map((v,i)=>active?Math.max(0,v*86400-snowMmDay[i]):0);
-    return {saturation,cloud,rainMmDay,snowMmDay};
+    return {saturation,cloud,rainMmDay,snowMmDay,precipitationMmDay,precipitationSource,phaseAvailable:active};
 }
 export function weatherTexture(m:ThermalModel,w:WaterModel):ThermalTexture {
     const fields=weatherFields(m,w),cloud=resampleClimateField(m.grid,fields.cloud,displayGrid),rain=resampleClimateField(m.grid,fields.rainMmDay,displayGrid),snow=resampleClimateField(m.grid,fields.snowMmDay,displayGrid);

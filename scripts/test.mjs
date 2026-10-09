@@ -7,6 +7,7 @@ await build({entryPoints: ['tests/gpu-wind.ts'], bundle: true, format: 'esm', ou
 await build({entryPoints: ['tests/glacier-render.ts'], bundle: true, format: 'esm', outfile: 'build/tests/glacier-render.js'});
 await build({entryPoints: ['tests/live-planet.ts'], bundle: true, format: 'esm', outfile: 'build/tests/live-planet.js'});
 await build({entryPoints: ['tests/weather-render.ts'], bundle: true, format: 'esm', outfile: 'build/tests/weather-render.js'});
+await build({entryPoints: ['tests/weather-evidence.ts'], bundle: true, format: 'esm', outfile: 'build/tests/weather-evidence.js'});
 await build({entryPoints: ['tests/weather.test.ts'], bundle: true, platform: 'node', format: 'esm', outfile: 'build/tests/weather.test.mjs'});
 await build({entryPoints: ['tests/circulation.test.ts'], bundle: true, platform: 'node', format: 'esm', outfile: 'build/tests/circulation.test.mjs'});
 await build({entryPoints: ['tests/glacier.test.ts'], bundle: true, platform: 'node', format: 'esm', outfile: 'build/tests/glacier.test.mjs'});
