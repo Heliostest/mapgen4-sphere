@@ -38,9 +38,14 @@ try {
     await page.setViewportSize({width:1388,height:1244});await page.locator('#planet-reset-time').click();
     await input('slider-x',202.349);await input('slider-y',1000);await input('slider-zoom',.212);await capture('south-pole');
     await page.screenshot({path:`${folder}/south-pole-context.png`});
-    await input('slider-x',750);await capture('south-rotated');await input('slider-y',0);await capture('north-pole');await zero();
+    await page.locator('#planet-inspect').click();const polarBox=await page.locator('#mapgen4').boundingBox();await page.mouse.click(polarBox.x+polarBox.width/2,polarBox.y+polarBox.height/2);
+    const southProbe=await page.locator('#planet-probe').textContent();assert.match(southProbe,/ocean.*sea ice (?:[5-9]\d|100)%/);await page.locator('#planet-inspect').click();
+    await input('slider-x',750);await capture('south-rotated');await input('slider-x',202.349);await input('slider-y',0);await capture('north-pole');await zero();
+    await input('planet-orbit-phase',180);await capture('north-opposite-season');await input('slider-y',1000);await capture('south-opposite-season');await zero();
+    await input('planet-orbit-phase',0);await input('planet-tilt',0);await capture('south-zero-tilt');await input('slider-y',0);await capture('north-zero-tilt');await zero();
+    checks.push('Paired polar views at the same camera scale cover both equinox phases and zero tilt; default south-pole ocean probe confirms sea ice without Play');
     await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/tests/polar-render.html');await page.waitForFunction(()=>/PASS|FAIL/.test(document.querySelector('pre').textContent));const poles=JSON.parse(await page.locator('pre').textContent());assert.equal(poles.status,'PASS');
     checks.push('Both polar views render without clock advancement; actual renderer converges at each pole through camera rotation and texture replacement');
     await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/tests/gpu-insolation.html');await page.waitForFunction(()=>document.querySelector('pre').textContent.includes('PASS')||document.querySelector('pre').textContent.includes('FAIL'));const gpu=JSON.parse(await page.locator('pre').textContent());assert.equal(gpu.status,'PASS');
-    assert.deepEqual(errors,[]);const report={checks,errors,gpu,poles};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+    assert.deepEqual(errors,[]);const report={checks,errors,gpu,poles,southProbe};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
 }finally{await browser.close();}

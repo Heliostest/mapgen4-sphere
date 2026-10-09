@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>南北极海冰对比</title>
+<style>
+body{margin:0;padding:24px;font:16px/1.6 system-ui,sans-serif;color:#eaf0f4;background:#242a36}main{max-width:1320px;margin:auto}h1{font-size:26px;margin:0}p{color:#b8c4d5;margin:8px 0 18px}nav{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}button{font:inherit;border:1px solid #66758c;border-radius:8px;background:transparent;color:inherit;padding:7px 16px;cursor:pointer}button[aria-pressed=true]{background:#daeef2;color:#172e37;border-color:#daeef2}.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}figure{margin:0;background:#494c5c;border-radius:12px;overflow:hidden}figcaption{padding:10px 16px;font-weight:600}img{display:block;width:100%;height:auto}.note{font-size:14px;max-width:1000px}a{color:#aad9f3}@media(max-width:620px){body{padding:12px}.pair{grid-template-columns:1fr}}
+</style>
+<main>
+<h1>南北极海冰对比</h1>
+<p>同一颗生成行星 · 相同视角比例 · 均未点击 Play · 模拟时间 0 天</p>
+<nav aria-label="季节对比">
+<button aria-pressed="true" data-pair="">默认季节 0°</button>
+<button aria-pressed="false" data-pair="-opposite">相反季节 180°</button>
+<button aria-pressed="false" data-pair="-zero-tilt">零倾角，季节 0°</button>
+</nav>
+<div class="pair">
+<figure><figcaption>南极</figcaption><img id="south" src="sea-ice-south.png" alt="南极海冰截图"></figure>
+<figure><figcaption>北极</figcaption><img id="north" src="sea-ice-north.png" alt="北极海冰截图"></figure>
+</div>
+<p class="note">浅白色海面为估计海冰。海冰按全年冷暖周期生成，运行时保留冻结与融化历史；不会因温度短暂高于冰点而立即消失。两侧陆海与地形不同，默认季节下的海冰边缘和陆地积雪允许不同。零倾角消除季节差异，不会消除地形差异。</p>
+<p class="note">这是潜在覆盖估计，不是实测南北极，也不是包含海流、盐度与热量反馈的完整海冰模型。<a href="../natural-surface.md">计算方法与限制</a> · <a href="sea-ice-surface-report.json">验证记录</a></p>
+</main>
+<script>
+for(const button of document.querySelectorAll('button'))button.addEventListener('click',()=>{
+    for(const other of document.querySelectorAll('button'))other.setAttribute('aria-pressed',String(other===button));
+    for(const side of ['south','north'])document.getElementById(side).src=`sea-ice-${side}${button.dataset.pair}.png`;
+});
+</script></html>

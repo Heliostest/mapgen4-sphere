@@ -5,6 +5,7 @@ import {DEFAULT_WATER,WaterModel,type WaterCheckpoint} from './water.ts';
 import {generateClimate,circulationWinds} from './climate.ts';
 import {generateSurfaceReference,surfaceCover,type SurfaceReference} from './surface.ts';
 import {makeSurfaceGrid,SurfaceTerrainSampler,resampleClimateField,surfaceCell,type SurfaceTerrain} from './surface-grid.ts';
+import {generateSeaIce,advanceSeaIce,seaIceCooling,seaIceFraction} from './sea-ice.ts';
 
 export interface ThermalTexture {width:number;height:number;pixels:Uint8Array;timeS:number;}
 /** Synchronous ownership avoids stale worker replies. Retain the acknowledged
@@ -22,7 +23,7 @@ export class ThermalRuntime {
     private land:Float64Array|null=null;
     private landElevation:Float64Array|null=null;
     private key='';
-    private presented:{thermal:ThermalCheckpoint;water:WaterCheckpoint|null}|null=null;
+    private presented:{thermal:ThermalCheckpoint;water:WaterCheckpoint|null;ice:Float64Array}|null=null;
     private lastTarget=0;
     private texture:ThermalTexture|null=null;
     private wind:{eastMps:Float64Array;northMps:Float64Array}|null=null;
@@ -35,8 +36,9 @@ export class ThermalRuntime {
     private initialTemperature:Float64Array|null=null;
     private surfaceTemperature:Float64Array|null=null;
     private surfaceSoil:Float64Array|null=null;
+    private iceEnergy:Float64Array|null=null;
     constructor(readonly grid=makeThermalGrid()) {}
-    invalidate() {this.key='';this.model=null;this.water=null;this.presented=null;this.texture=null;this.waterTexture=null;this.wind=null;this.surfaceTexture=null;this.surfaceReference=null;this.initialSoil=null;this.initialTemperature=null;this.surfaceInitial=null;this.surfaceTemperature=null;this.surfaceSoil=null;}
+    invalidate() {this.key='';this.model=null;this.water=null;this.presented=null;this.texture=null;this.waterTexture=null;this.wind=null;this.surfaceTexture=null;this.surfaceReference=null;this.initialSoil=null;this.initialTemperature=null;this.surfaceInitial=null;this.surfaceTemperature=null;this.surfaceSoil=null;this.iceEnergy=null;}
     setTerrain(land:Float64Array,height=new Float64Array(this.grid.count),source?:SurfaceTerrain) {
         this.land=land.slice();this.landElevation=height.slice();
         if(source) {
@@ -52,7 +54,7 @@ export class ThermalRuntime {
     private surfaceAt(k:number) {
         const r=this.surfaceReference!;
         const climate={meanTemperatureK:r.meanTemperatureK[k],warmestTemperatureK:r.warmestTemperatureK[k],annualRainMm:r.annualRainMm[k]};
-        return {...climate,localTemperatureK:this.surfaceTemperature![k],...surfaceCover(climate,this.surfaceTemperature![k],this.surfaceSoil![k])};
+        return {...climate,localTemperatureK:this.surfaceTemperature![k],seaIceFraction:seaIceFraction(this.iceEnergy![k]),...surfaceCover(climate,this.surfaceTemperature![k],this.surfaceSoil![k])};
     }
     sampleWater(u:number,v:number) {
         if(!this.water)return null;
@@ -60,7 +62,11 @@ export class ThermalRuntime {
         return {rainMmDay:86400*w.precipitationKgM2S[k],soilMm:f>0?w.soilKgM2[k]/f:null,
             surfaceMm:f>0?w.surfaceKgM2[k]/f:null,dischargeM3S:w.dischargeM3S[k],atmosphereMm:w.atmosphereKgM2[k]};
     }
-    private checkpoint() {return {thermal:this.model!.checkpoint(),water:this.water?.checkpoint()??null};}
+    private checkpoint() {return {thermal:this.model!.checkpoint(),water:this.water?.checkpoint()??null,ice:this.iceEnergy!.slice()};}
+    private localTemperature(temperature:Float64Array) {
+        const delta=temperature.map((t,i)=>t-this.initialTemperature![i]);
+        return resampleClimateField(this.grid,delta,this.surfaceGrid).map((d,i)=>Math.max(0,this.surfaceInitial!.temperatureK[i]+d));
+    }
     sync(planet:PlanetConfig,orbit:OrbitConfig,timeS:number,presentedTimeS:number|null):ThermalTexture|null {
         if(!this.enabled || !this.land) {
             this.invalidate();this.status=this.enabled?'Waiting for terrain':'Thermal model off';return null;
@@ -76,6 +82,7 @@ export class ThermalRuntime {
             const local=this.surfaceTerrain!,localHeights=local.height.map(e=>e*planet.reliefM);
             this.surfaceReference=generateSurfaceReference(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,local.land,localHeights);
             this.surfaceInitial=generateClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,local.land,localHeights,timeS);
+            this.iceEnergy=generateSeaIce(this.surfaceReference.monthlyIceCooling,this.surfaceGrid.count,derived.yearS,orbit.orbitPhaseRad+2*Math.PI*(timeS%derived.yearS)/derived.yearS);
             this.initialSoil=reference.soilFraction;
             this.initialTemperature=reference.temperatureK.slice();
             this.model=new ThermalModel(planet,orbit,this.config,this.land,timeS,this.grid,reference);
@@ -93,6 +100,7 @@ export class ThermalRuntime {
             if(this.presented && m.epochS+this.presented.thermal.steps*m.stepS<=timeS) {
                 m.restore(this.presented.thermal);
                 if(this.water&&this.presented.water)this.water.restore(this.presented.water);
+                this.iceEnergy=this.presented.ice.slice();
             }
             else {this.invalidate();return this.sync(planet,orbit,timeS,presentedTimeS);}
             this.texture=null;this.waterTexture=null;
@@ -100,9 +108,12 @@ export class ThermalRuntime {
         const before=m.steps;
         if(timeS>=m.timeS+m.stepS) {
             m.advanceTo(timeS,32,(dt,t,q)=>{
-                if(!this.water)return;
-                const wind=circulationWinds(this.grid,planet,orbit,m.timeS+dt/2,this.land!,this.waterConfig.windMps);
-                this.water.setWinds(wind.eastMps,wind.northMps);this.water.step(dt,t,q);
+                const local=this.localTemperature(t);
+                for(let i=0;i<local.length;i++)this.iceEnergy![i]=advanceSeaIce(this.iceEnergy![i],seaIceCooling(local[i],this.config.emissivity),dt);
+                if(this.water) {
+                    const wind=circulationWinds(this.grid,planet,orbit,m.timeS+dt/2,this.land!,this.waterConfig.windMps);
+                    this.water.setWinds(wind.eastMps,wind.northMps);this.water.step(dt,t,q);
+                }
             });
         }
         this.lastTarget=timeS;
@@ -115,10 +126,9 @@ export class ThermalRuntime {
                 pixels[4*i+2]=128+Math.round(1.27*this.wind.northMps[i]);pixels[4*i+3]=255;
             }
             this.texture={width:this.grid.width,height:this.grid.height,pixels,timeS:m.timeS};
-            const temperatureDelta=m.temperatureK.map((t,i)=>t-this.initialTemperature![i]);
             const soilDelta=this.initialSoil!.map((initial,i)=>this.water&&this.water.land[i]>0?
                 this.water.soilKgM2[i]/(this.water.land[i]*this.water.config.soilCapacityKgM2)-initial:0);
-            this.surfaceTemperature=resampleClimateField(this.grid,temperatureDelta,this.surfaceGrid).map((d,i)=>Math.max(0,this.surfaceInitial!.temperatureK[i]+d));
+            this.surfaceTemperature=this.localTemperature(m.temperatureK);
             this.surfaceSoil=resampleClimateField(this.grid,soilDelta,this.surfaceGrid).map((d,i)=>Math.max(0,Math.min(1,this.surfaceInitial!.soilFraction[i]+d)));
             const surfacePixels=new Uint8Array(this.surfaceGrid.count*4);
             for(let i=0;i<this.surfaceGrid.count;i++) {

@@ -211,7 +211,7 @@ export function installPlanetControls(options:Options) {
         const initialWater=thermal.water?.elapsedS===0;
         biomeKey.hidden=layer!=='surface'||!thermal.surfaceTexture;
         legend.textContent=layer==='insolation'?`Solar energy: 0–${o.fluxWm2.toFixed(0)} W/m² · dark blue → teal → orange. Colors retain terrain shading.`:
-            layer==='surface'?(thermal.surfaceTexture?'Potential natural cover from annual temperature and rain; seasonal snow / sea ice and soil wetness update with climate. Estimated cover, not ice thickness or vegetation growth.':thermal.status):
+            layer==='surface'?(thermal.surfaceTexture?'Potential natural cover from annual temperature and rain; seasonal snow and soil wetness update with climate. Sea ice retains freezing history and melts gradually. Estimated cover, not measured ice thickness or vegetation growth.':thermal.status):
             layer==='wind'?(thermal.model?'Estimated surface wind: arrows point toward flow; dark blue → green = 0–30 m/s. Geographic circulation template, not a pressure solver.':thermal.status):
             layer==='erosion'?(geomorph.model?'Net bed change: −100 m blue · 0 m cream · +100 m red; outside values saturate. Coarse preview; source climate and artistic rivers are retained.':'Capture current water in Erosion & deposition preview to begin.'):
             waterLayer()?(!thermal.water?thermal.status:layer==='precipitation'?`Precipitation: 0–20 mm/day · dark blue → cyan → cream. ${initialWater?'Generated initial estimate':'Latest simulated-step rate'}; higher values saturate.`:layer==='soil-moisture'?'Soil moisture: 0–100% of soil capacity · brown → green; ocean blue. Fraction per land area.':`Cell surface outflow: 0–10⁷ m³/s · dark blue → cyan, log scale. ${initialWater?'Generated initial estimate':'Latest simulated-step transfer'}; higher values saturate. Artistic rivers are independent.`):
@@ -230,7 +230,7 @@ export function installPlanetControls(options:Options) {
             const cover=thermal.sampleSurface(...probe.uv);
             if(cover&&layer==='surface')probeOutput.textContent+=probe.elevation>0
                 ?` · potential cover: ${BIOMES[cover.biome].label} · snow ${(100*cover.snowFraction).toFixed(0)}% · local surface estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C · annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
-                :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}% · local surface estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C`;
+                :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}% · ice-free thermal estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C`;
             const water=thermal.sampleWater(...probe.uv);
             if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
             const erosion=geomorph.sample(...probe.uv);

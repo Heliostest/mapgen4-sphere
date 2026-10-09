@@ -44,6 +44,12 @@ try {
     const updated=new Uint8Array(4*5*4);for(let i=0;i<updated.length;i+=4)updated.set([20,40,60,255],i);
     r.updatePlanet({...view,surface:{width:4,height:5,timeS:0,pixels:updated}});checkPole(0,202.349,[20,40,60]);checkPole(1000,202.349,[20,40,60]);
     r.updatePlanet({...view,layer:'original',surface:null});r.updatePlanet(view);checkPole(0,202.349,[100,0,100]);checkPole(1000,202.349,[100,200,0]);
+    // Exercise actual ocean compositing, not only the synthetic shader or
+    // land fixture: fully covered water must be pale ice at either pole.
+    for(let v=0;v<mesh.numRegions+mesh.numTriangles;v++)r.a_quad_em[2*v]=-.2;
+    r.updateMap();r.fbo_land.clear(0,0,0,1);r.drawLand(0);
+    r.updatePlanet({...view,surface:{width:4,height:5,timeS:0,pixels:updated}});
+    for(const x of [202.349,750])for(const y of [0,1000])checkPole(y,x,[201,224,230]);
     if(gl.getError()!==gl.NO_ERROR)throw new Error('WebGL error');
     output.textContent=JSON.stringify({status:'PASS',checks},null,2);
 }catch(error){output.textContent=JSON.stringify({status:'FAIL',error:String(error)},null,2);}

@@ -3,6 +3,20 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Polar sea ice retains freezing and melting history — 2026-10-09
+
+Base `e20ff5c`, continuing `codex/polar-surface-fix`. The user identified that the southern ocean remained blue while the northern ocean was white. Comparing actual terrain and a symmetric all-ocean control at the default season gave the same ±86.25° ice-free thermal estimates: north −34.934°C, south +6.927°C. The north already rendered sea ice. The instantaneous cover rule erased all southern sea ice without accounting for ice accumulated in winter; the earlier terrain-sampling fix did not address this separate problem.
+
+The temperature/season generator is unchanged. A bounded diagnostic ice-energy reserve now uses the twelve monthly reference estimates to find a periodic freeze/melt history directly at the selected date. It advances during Play on the fixed thermal substeps and joins the existing presented-frame checkpoint. This is an explicitly one-way visual approximation: no heat/mass feedback, actual ice thickness, sea-current dynamics or physical ice-extent calibration. [Methods and chosen scales](natural-surface.md#sea-ice-with-freezing-and-melting-history).
+
+RED: the southern polar-ocean persistence regression failed on `seaIceFraction=0` while the matching northern ocean had full ice. GREEN: 89 Node tests, typecheck and build passed. Checks cover brief warmth versus sustained melting, warm planets with no forced caps, tropical open ocean, reference-year closure/date continuity, hemisphere exchange after half an orbit, zero-tilt symmetry, actual default-terrain polar oceans, fixed-step partition independence, and exact restoration after multiple unpresented futures. Water-disabled ice evolution is covered too.
+
+[Surface browser](evidence/sea-ice-surface-report.json): six groups, no captured errors, GPU87 and actual-renderer116 (including opaque ice over ocean at both poles). The default south-pole probe reports ocean with 100% estimated sea ice, while the ice-free thermal estimate remains +7.0°C. This does not claim liquid water beneath ice is at +7°C. Same camera x=202.349, zoom=.212, viewport1388×1244 captures both poles at phase0, phase180, and zero tilt: [interactive paired comparison](evidence/sea-ice-comparison.html). Visual inspection confirms pale sea-ice cover in both polar oceans with seasonal edge differences, alongside the existing land snow. The hemispheres are not forced to have matching coastlines or land snow.
+
+Regressions: [planet8/DOM20/GPU648+771+30+87](evidence/sea-ice-planet-report.json) and [water5](evidence/sea-ice-water-report.json). Error lists are empty, and original surface plus painted-radius round trips are pixel-exact.
+
+One independent read-only review found no actionable Critical, Important or Minor issue. It independently passed all 89 Node tests, inspected all six paired screenshots, checked disable/re-enable/slow-spin recovery, and verified exact annual closure and half-orbit correspondence for 2,000 randomized forcing cycles. Its excluded judgments—calibration of the 2 m cap, 0.5 m cover scale, linearized cooling closure and pre-existing temperature generator—are accepted as the explicitly documented limits of this potential-cover estimate. They are not claims of validated sea-ice thermodynamics. No findings remain deferred and no second general review was dispatched. The interactive comparison page was also checked manually at all three settings in the in-app browser.
+
 ## Local terrain and latitude for polar cover — 2026-10-09
 
 Base `a12c2e9`, continuing `codex/polar-surface-fix`. The user correctly rejected the preceding fix: averaging colors only rounded the tip of the white sector. Its center-only checks passed while the visible footprint remained wrong. Inspection of the default south terminal band found temperatures from roughly −26°C to +11°C, with land/ocean and elevation differences all being projected from the same −73.4° sample latitude toward −90°.

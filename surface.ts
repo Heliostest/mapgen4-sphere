@@ -3,6 +3,7 @@ import {deriveOrbit,type OrbitConfig} from './astronomy.ts';
 import type {PlanetConfig} from './planet.ts';
 import type {ThermalConfig} from './thermal.ts';
 import type {WaterConfig} from './water.ts';
+import {seaIceCooling} from './sea-ice.ts';
 
 /** Potential cover, not a vegetation, snow-mass or ice-flow simulation. */
 export const BIOMES={
@@ -19,7 +20,7 @@ export const BIOMES={
 } as const;
 export type Biome=keyof typeof BIOMES;
 export interface SurfaceClimate {meanTemperatureK:number;warmestTemperatureK:number;annualRainMm:number;}
-export interface SurfaceReference {meanTemperatureK:Float64Array;warmestTemperatureK:Float64Array;annualRainMm:Float64Array;}
+export interface SurfaceReference {meanTemperatureK:Float64Array;warmestTemperatureK:Float64Array;annualRainMm:Float64Array;monthlyIceCooling:Float64Array;}
 const clamp=(x:number)=>Math.max(0,Math.min(1,x));
 
 /** Illustrative Earth-inspired thresholds; not a Köppen classification. */
@@ -40,6 +41,7 @@ export function classifyBiome(meanK:number,warmestK:number,rainMm:number):Biome 
  * Anchor phases independently of the selected date to keep vegetation stable. */
 export function generateSurfaceReference(grid:ClimateGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>):SurfaceReference {
     const meanTemperatureK=new Float64Array(grid.count),warmestTemperatureK=new Float64Array(grid.count),annualRainMm=new Float64Array(grid.count);
+    const monthlyIceCooling=new Float64Array(12*grid.count);
     const {yearS}=deriveOrbit(planet,orbit),annualOrbit={...orbit,orbitPhaseRad:0,spinPhaseRad:0};
     for(let month=0;month<12;month++) {
         const c=generateClimate(grid,planet,annualOrbit,thermal,water,land,heightM,(month+.5)*yearS/12);
@@ -49,18 +51,18 @@ export function generateSurfaceReference(grid:ClimateGrid,planet:PlanetConfig,or
             // Earth-year equivalent: thresholds describe available water per
             // fixed time, so a longer orbit alone cannot create a rainforest.
             annualRainMm[i]+=c.rainMmDay[i]*365.2425/12;
+            monthlyIceCooling[month*grid.count+i]=seaIceCooling(c.temperatureK[i],thermal.emissivity);
         }
     }
-    return {meanTemperatureK,warmestTemperatureK,annualRainMm};
+    return {meanTemperatureK,warmestTemperatureK,annualRainMm,monthlyIceCooling};
 }
 
 export function surfaceCover(climate:SurfaceClimate,temperatureK:number,soilFraction:number) {
     const biome=classifyBiome(climate.meanTemperatureK,climate.warmestTemperatureK,climate.annualRainMm);
     const snowFraction=clamp((273.15-temperatureK)/8)*clamp(climate.annualRainMm/120);
-    const seaIceFraction=clamp((271.35-temperatureK)/6);
     const base=BIOMES[biome==='ice'?'barren':biome].color;
     const dry=biome==='barren'||biome==='desert'||biome==='ice'?0:.35*(1-clamp(soilFraction/.6));
     const dormant=[166,145,97],snow=BIOMES.ice.color;
     const color=base.map((c,i)=>(c*(1-dry)+dormant[i]*dry)*(1-snowFraction)+snow[i]*snowFraction);
-    return {biome,snowFraction,seaIceFraction,color};
+    return {biome,snowFraction,color};
 }
