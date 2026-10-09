@@ -16,6 +16,7 @@ Complete saves and visible-frame rollback preserve ice mass, its numerical compe
 - The full simulation, terrain-water, surface, environment, application, planet and water browser regressions passed. GPU solar checks: 87; polar checks: 116.
 - A thick-ice/tiny-transfer regression exceeded the existing energy threshold before compensated ice updates. Persisted compensation fixed it without relaxing the threshold. Independent review's stale fields on water disable were also reproduced RED, fixed GREEN and re-reviewed; no remaining findings.
 - Actual evolved globe and comparison screenshots were inspected.
+- The final terrain-water rerun exposed a rejection-frame GPU comparison fluctuation: 19 channels out of a 1170×1160 RGBA image differed by 1/255, with exactly identical model fields. That rejection-only image check now allows at most 32 channels at 1/255 and reports the count. Saved/restored runtime equality and the other exact pixel comparisons remain strict. The browser suite was rerun after this test repair.
 
 ![Evolved cold world](evidence/glacier-evolved.png)
 
