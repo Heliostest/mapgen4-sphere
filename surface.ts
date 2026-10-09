@@ -1,7 +1,7 @@
-import {generateClimate} from './climate.ts';
+import {generateClimate,type ClimateGrid} from './climate.ts';
 import {deriveOrbit,type OrbitConfig} from './astronomy.ts';
 import type {PlanetConfig} from './planet.ts';
-import type {ThermalGrid,ThermalConfig} from './thermal.ts';
+import type {ThermalConfig} from './thermal.ts';
 import type {WaterConfig} from './water.ts';
 
 /** Potential cover, not a vegetation, snow-mass or ice-flow simulation. */
@@ -22,17 +22,6 @@ export interface SurfaceClimate {meanTemperatureK:number;warmestTemperatureK:num
 export interface SurfaceReference {meanTemperatureK:Float64Array;warmestTemperatureK:Float64Array;annualRainMm:Float64Array;}
 const clamp=(x:number)=>Math.max(0,Math.min(1,x));
 
-/** A pole has no longitude. Reconstruct one display value from its nearest
- * equal-area ring; leave the physical cell fields and their budgets intact. */
-export function surfacePoleColors(texture:{width:number;height:number;pixels:Uint8Array}) {
-    const {width,height,pixels}=texture;
-    const average=(row:number)=>Float32Array.from({length:4},(_,c)=>{
-        let sum=0;for(let x=0;x<width;x++)sum+=pixels[4*(row*width+x)+c];
-        return sum/(255*width);
-    });
-    return {north:average(0),south:average(height-1)};
-}
-
 /** Illustrative Earth-inspired thresholds; not a Köppen classification. */
 export function classifyBiome(meanK:number,warmestK:number,rainMm:number):Biome {
     const mean=meanK-273.15,warmest=warmestK-273.15;
@@ -49,7 +38,7 @@ export function classifyBiome(meanK:number,warmestK:number,rainMm:number):Biome 
 
 /** Sample one full reference year analytically; never advance model time.
  * Anchor phases independently of the selected date to keep vegetation stable. */
-export function generateSurfaceReference(grid:ThermalGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>):SurfaceReference {
+export function generateSurfaceReference(grid:ClimateGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>):SurfaceReference {
     const meanTemperatureK=new Float64Array(grid.count),warmestTemperatureK=new Float64Array(grid.count),annualRainMm=new Float64Array(grid.count);
     const {yearS}=deriveOrbit(planet,orbit),annualOrbit={...orbit,orbitPhaseRad:0,spinPhaseRad:0};
     for(let month=0;month<12;month++) {

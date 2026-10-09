@@ -4,9 +4,10 @@ import {DEFAULT_PLANET,type PlanetConfig} from './planet.ts';
 import type {WaterConfig} from './water.ts';
 
 const clamp=(x:number,lo=0,hi=1)=>Math.max(lo,Math.min(hi,x));
+export type ClimateGrid=Pick<ThermalGrid,'width'|'height'|'count'|'sinLat'>&{edges:readonly {a:number;b:number}[]};
 /** Earth-inspired surface wind template, not a pressure/momentum solver.
  * Positive components point east/north. Season shifts the convergence belt. */
-export function circulationWinds(grid:ThermalGrid,planet:PlanetConfig,orbit:OrbitConfig,timeS:number,land:ArrayLike<number>,strength:number) {
+export function circulationWinds(grid:ClimateGrid,planet:PlanetConfig,orbit:OrbitConfig,timeS:number,land:ArrayLike<number>,strength:number) {
     const declination=sunState(planet,orbit,timeS).declinationRad;
     const eastMps=new Float64Array(grid.count),northMps=new Float64Array(grid.count);
     const rotation=Math.min(1,DEFAULT_PLANET.siderealPeriodS/planet.siderealPeriodS);
@@ -28,7 +29,7 @@ export interface GeneratedClimate {
 }
 /** Instant deterministic reference climate. No integration, clock advance or
  * equilibrium claim. Constants are illustrative geographic closures (README). */
-export function generateClimate(grid:ThermalGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>,timeS:number):GeneratedClimate {
+export function generateClimate(grid:ClimateGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>,timeS:number):GeneratedClimate {
     if(land.length!==grid.count||heightM.length!==grid.count)throw new RangeError('Climate terrain size mismatch');
     for(let i=0;i<grid.count;i++)if(!Number.isFinite(land[i])||land[i]<0||land[i]>1||!Number.isFinite(heightM[i])||heightM[i]<0)throw new RangeError('Invalid climate terrain');
     const {fluxWm2:flux,yearS}=deriveOrbit(planet,orbit),omega=2*Math.PI/yearS;
@@ -38,10 +39,17 @@ export function generateClimate(grid:ThermalGrid,planet:PlanetConfig,orbit:Orbit
     const annual=new Float64Array(grid.height);
     for(let j=0;j<grid.height;j++)for(let s=0;s<24;s++)annual[j]+=dailyMeanInsolation(grid.sinLat[j],Math.asin(Math.sin(planet.obliquityRad)*Math.sin(2*Math.PI*(s+.5)/24)),flux)/24;
     let marine=Float64Array.from(land,f=>1-f);
+    const closePoles=(field:Float64Array)=>{
+        for(const j of [0,grid.height-1])if(Math.abs(grid.sinLat[j])===1) {
+            let mean=0;for(let x=0;x<grid.width;x++)mean+=field[j*grid.width+x]/grid.width;
+            field.fill(mean,j*grid.width,(j+1)*grid.width);
+        }
+    };
     for(let pass=0;pass<3;pass++) {
         const sum=marine.slice(),weight=new Float64Array(n).fill(1);
         for(const e of grid.edges){sum[e.a]+=marine[e.b];sum[e.b]+=marine[e.a];weight[e.a]++;weight[e.b]++;}
         marine=sum.map((v,i)=>v/weight[i]);
+        closePoles(marine);
     }
     const winds=circulationWinds(grid,planet,orbit,timeS,land,water.windMps);
     const transport=thermal.diffusion*(DEFAULT_PLANET.radiusM/planet.radiusM)**2,redistribute=transport/(transport+2);
@@ -78,5 +86,7 @@ export function generateClimate(grid:ThermalGrid,planet:PlanetConfig,orbit:Orbit
         surfaceMm[i]=20*wetness*wetness;
         evaporationMmDay[i]=potential*clamp((temperatureK[i]-273.15)/5)*(1-humidityFraction[i])*(land[i]+(water.initialOceanDepthM>0?1-land[i]:0));
     }
-    return {temperatureK,radiationScale,absorbedWm2,windEastMps:winds.eastMps,windNorthMps:winds.northMps,rainMmDay,evaporationMmDay,soilFraction,humidityFraction,surfaceMm};
+    const result={temperatureK,radiationScale,absorbedWm2,windEastMps:winds.eastMps,windNorthMps:winds.northMps,rainMmDay,evaporationMmDay,soilFraction,humidityFraction,surfaceMm};
+    for(const field of Object.values(result))closePoles(field);
+    return result;
 }

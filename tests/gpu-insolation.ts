@@ -91,9 +91,13 @@ try {
     gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,gl.createTexture());
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
-    const surfacePixels=new Uint8Array(2*24*4);
-    for(let row=0;row<24;row++)surfacePixels.set(row<12?[40,120,60,255,220,185,120,0]:[80,140,70,0,150,160,110,255],row*8);
-    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2,24,0,gl.RGBA,gl.UNSIGNED_BYTE,surfacePixels);
+    const surfacePixels=new Uint8Array(2*49*4);
+    for(let row=0;row<49;row++)surfacePixels.set(row<24?[40,120,60,255,220,185,120,0]:[80,140,70,0,150,160,110,255],row*8);
+    surfacePixels.set([130,153,90,128,130,153,90,128],0);
+    surfacePixels.set([115,150,90,128,115,150,90,128],48*8);
+    surfacePixels.set([210,40,60,64,210,40,60,64],8);
+    surfacePixels.set([30,180,90,192,30,180,90,192],47*8);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2,49,0,gl.RGBA,gl.UNSIGNED_BYTE,surfacePixels);
     gl.uniform1i(gl.getUniformLocation(program,'u_surface'),3);
     gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),.001);
     check(9,[-.5,.8,.5],false,[40/255,120/255,60/255]);check(9,[.5,.8,.5],false,[220/255,185/255,120/255]);
@@ -101,10 +105,8 @@ try {
     gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),-.001);
     check(9,[-.5,.8,.5],false,[.79,.88,.90]);check(9,[.5,.8,.5],false,[.4,.6,.8]);
     check(0,[-.5,.8,.5],false,[.4,.6,.8]);
-    // Distinct longitude colors must converge to one value at each pole.
-    // Otherwise a polar view turns the last climate row into radial wedges.
-    gl.uniform4f(gl.getUniformLocation(program,'u_surface_north'),130/255,152.5/255,90/255,.5);
-    gl.uniform4f(gl.getUniformLocation(program,'u_surface_south'),115/255,150/255,90/255,.5);
+    // Pole rows represent the actual poles, with distinct resolved latitudes
+    // inside the former ±73.4° terminal band.
     gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),.001);
     for(const sign of [-1,1])for(let i=0;i<8;i++) {
         const angle=2*Math.PI*i/8,normal=[1e-4*Math.sin(angle),sign,1e-4*Math.cos(angle)];
@@ -114,6 +116,11 @@ try {
     for(const sign of [-1,1])for(let i=0;i<8;i++) {
         const angle=2*Math.PI*i/8;
         check(9,[1e-4*Math.sin(angle),sign,1e-4*Math.cos(angle)],false,[.595,.74,.85]);
+    }
+    gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),.001);
+    for(const sign of [-1,1])for(let i=0;i<8;i++) {
+        const a=i*Math.PI/4,r=Math.cos(86.25*Math.PI/180),y=sign*Math.sin(86.25*Math.PI/180);
+        check(9,[r*Math.sin(a),y,r*Math.cos(a)],false,sign>0?[210/255,40/255,60/255]:[30/255,180/255,90/255]);
     }
     if(gl.getError()!==gl.NO_ERROR) throw new Error('WebGL error');
     output.textContent=JSON.stringify({status:'PASS',checks},null,2);

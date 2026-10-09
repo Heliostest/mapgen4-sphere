@@ -229,8 +229,8 @@ export function installPlanetControls(options:Options) {
             if(wind)probeOutput.textContent+=` · estimated wind E ${wind.eastMps.toFixed(1)} / N ${wind.northMps.toFixed(1)} m/s`;
             const cover=thermal.sampleSurface(...probe.uv);
             if(cover&&layer==='surface')probeOutput.textContent+=probe.elevation>0
-                ?` · potential cover: ${BIOMES[cover.biome].label} · snow ${(100*cover.snowFraction).toFixed(0)}% · annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
-                :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}%`;
+                ?` · potential cover: ${BIOMES[cover.biome].label} · snow ${(100*cover.snowFraction).toFixed(0)}% · local surface estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C · annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
+                :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}% · local surface estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C`;
             const water=thermal.sampleWater(...probe.uv);
             if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
             const erosion=geomorph.sample(...probe.uv);
@@ -285,7 +285,7 @@ export function installPlanetControls(options:Options) {
         terrainChanged:()=>{
             probe=null;probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
             const terrain=options.terrain?.();
-            if(terrain){const sampled=sampleTerrainGrid(thermal.grid,terrain.directions,terrain.elevation);thermal.setTerrain(sampled.landFraction,sampled.landElevation);}
+            if(terrain){const sampled=sampleTerrainGrid(thermal.grid,terrain.directions,terrain.elevation);thermal.setTerrain(sampled.landFraction,sampled.landElevation,terrain);}
             emit();
         },
     };

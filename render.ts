@@ -7,8 +7,8 @@
  */
 
 import {mat4} from 'gl-matrix';
+import {SURFACE_WIDTH,SURFACE_HEIGHT} from './surface-grid.ts';
 import colormap from "./colormap.ts";
-import {surfacePoleColors} from './surface.ts';
 import Geometry from "./geometry.ts";
 import {atlasTriangles, SPHERE_RADIUS} from './sphere.ts';
 import {sphereProjection, pickTerrain, pickTerrainHit, terrainPosition} from './sphere-view.ts';
@@ -566,7 +566,6 @@ export default class Renderer {
     private geomorphPixels:Uint8Array|null=null;
     texture_surface: Texture;
     private surfacePixels:Uint8Array|null=null;
-    private surfacePoles={north:new Float32Array(4),south:new Float32Array(4)};
 
     fbo_river: Framebuffer;
     fbo_land: Framebuffer;
@@ -632,7 +631,7 @@ export default class Renderer {
         this.texture_geomorph = this.webgl.createTexture({width:48,height:24,filter:'linear'});
         this.texture_geomorph.bind();
         this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
-        this.texture_surface = this.webgl.createTexture({width:48,height:24,filter:'linear'});
+        this.texture_surface = this.webgl.createTexture({width:SURFACE_WIDTH,height:SURFACE_HEIGHT,filter:'linear'});
         this.texture_surface.bind();
         this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
 
@@ -693,9 +692,14 @@ export default class Renderer {
     updatePlanet(view:PlanetView) {
         this.planetView=view;
         if(view.surface && view.surface.pixels!==this.surfacePixels) {
-            const {gl}=this.webgl,t=view.surface;this.texture_surface.bind();
+            const {gl}=this.webgl,t=view.surface;
+            if(t.width!==this.texture_surface.width||t.height!==this.texture_surface.height) {
+                gl.deleteTexture(this.texture_surface.id);
+                this.texture_surface=this.webgl.createTexture({width:t.width,height:t.height,filter:'linear'});
+                this.texture_surface.bind();gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);
+            }
+            this.texture_surface.bind();
             gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,t.width,t.height,gl.RGBA,gl.UNSIGNED_BYTE,t.pixels);this.surfacePixels=t.pixels;
-            this.surfacePoles=surfacePoleColors(t);
         }
         const preview=view.geomorph?.preview??null;
         if(preview!==this.terrainPreview){this.terrainPreview=preview;this.rebuildSurface();}
@@ -846,8 +850,6 @@ export default class Renderer {
             this.texture_hydrology.activate(gl.TEXTURE5, program.u_hydrology);
             this.texture_geomorph.activate(gl.TEXTURE6, program.u_geomorph);
             this.texture_surface.activate(gl.TEXTURE7, program.u_surface);
-            gl.uniform4fv(program.u_surface_north,this.surfacePoles.north);
-            gl.uniform4fv(program.u_surface_south,this.surfacePoles.south);
 
             gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });

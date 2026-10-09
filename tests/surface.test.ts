@@ -1,18 +1,97 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {classifyBiome,generateSurfaceReference,surfaceCover,surfacePoleColors} from '../surface.ts';
+import {classifyBiome,generateSurfaceReference,surfaceCover} from '../surface.ts';
 import {makeThermalGrid,DEFAULT_THERMAL} from '../thermal.ts';
 import {DEFAULT_WATER} from '../water.ts';
 import {DEFAULT_PLANET} from '../planet.ts';
 import {DEFAULT_ORBIT} from '../astronomy.ts';
 import {ThermalRuntime} from '../thermal-runtime.ts';
+import {sampleTerrainGrid} from '../thermal.ts';
+import {uvToDirection} from '../sphere.ts';
+import {makeSurfaceGrid,SurfaceTerrainSampler,resampleClimateField} from '../surface-grid.ts';
+import {makeMesh} from '../mesh.ts';
+import Map from '../map.ts';
+import {SphericalConstraints} from '../spherical-constraints.ts';
+import {defaultTerrainParameters} from '../terrain-parameters.ts';
+import config from '../config.js';
+import {makeSphereMesh} from '../sphere-mesh.ts';
 
-test('surface polar limits average each end ring independently without changing climate pixels',()=>{
-    const pixels=new Uint8Array([0,64,128,0,200,128,64,255, 255,255,255,255,255,255,255,255, 40,80,120,255,80,120,160,255]);
-    const saved=pixels.slice(),poles=surfacePoleColors({width:2,height:3,pixels});
-    [100/255,96/255,96/255,.5].forEach((v,i)=>assert.ok(Math.abs(poles.north[i]-v)<1e-7));
-    [60/255,100/255,140/255,1].forEach((v,i)=>assert.ok(Math.abs(poles.south[i]-v)<1e-7));
-    assert.deepEqual(pixels,saved);
+test('cached geographic height lookup agrees with exhaustive angular neighbors on sparse polar meshes',()=>{
+    const grid=makeSurfaceGrid(),{mesh}=makeSphereMesh(600,35,12345),elevation=Float64Array.from({length:600},(_,r)=>.5+.1*mesh.xyz_r[3*r]+.2*mesh.xyz_r[3*r+2]);
+    const result=new SurfaceTerrainSampler(mesh.xyz_r,grid).sample(elevation);
+    for(const j of [1,2,3,22,45,46,47])for(let x=0;x<96;x+=7) {
+        const p=uvToDirection((x+.5)/96,j/48);
+        const nearest=Array.from({length:600},(_,r)=>({r,dot:p[0]*mesh.xyz_r[3*r]+p[1]*mesh.xyz_r[3*r+1]+p[2]*mesh.xyz_r[3*r+2]})).sort((a,b)=>b.dot-a.dot).slice(0,4);
+        let total=0,weight=0;for(const q of nearest){const w=1/Math.max(1e-12,1-q.dot);total+=w*elevation[q.r];weight+=w;}
+        assert.ok(Math.abs(result.height[j*96+x]-total/weight)<1e-9,`Incomplete neighborhood at row ${j}, column ${x}`);
+    }
+});
+
+test('the reported default south-pole highland no longer contains the false 700m notch and snow stripe',async()=>{
+    const {mesh,t_peaks}=await makeMesh(),p=defaultTerrainParameters(),paint=new SphericalConstraints();
+    paint.setElevationParam(p.elevation as any);
+    const map=new Map(mesh,t_peaks,config);map.assignElevation(p.elevation,{size:paint.size,constraints:paint.elevation},null);
+    map.assignRainfall(p.biomes);map.assignRivers(p.rivers);
+    const surface=makeSurfaceGrid(),local=new SurfaceTerrainSampler(mesh.xyz_r,surface).sample(map.elevation_r);
+    // Targets are 0.245° apart at -86.25°. The old populated-bin rule chose
+    // 2312 / 701 / 2169m from vertices at three different latitudes.
+    const heights=[15,16,17].map(x=>local.height[47*96+x]*DEFAULT_PLANET.reliefM);
+    assert.ok(heights.every(h=>h>1700&&h<1950));assert.ok(Math.max(...heights)-Math.min(...heights)<100);
+    const grid=makeThermalGrid(),terrain=sampleTerrainGrid(grid,mesh.xyz_r,map.elevation_r),rt=new ThermalRuntime(grid);
+    rt.enabled=true;rt.setTerrain(terrain.landFraction,terrain.landElevation,{directions:mesh.xyz_r,elevation:map.elevation_r});
+    rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);
+    const snow=[15,16,17].map(x=>rt.sampleSurface((x+.5)/96,47/48)!.snowFraction);
+    assert.ok(snow.every(f=>f>.9));assert.ok(Math.max(...snow)-Math.min(...snow)<.05);
+});
+
+test('local terrain sampling resolves polar elevation and updates after painting',()=>{
+    const grid=makeSurfaceGrid(),directions=[0,1,0,0,-1,0,0,0,1,0,0,-1],elevation=[.2,-.1,.8,.8];
+    const sampler=new SurfaceTerrainSampler(directions,grid),a=sampler.sample(elevation),south=(grid.height-1)*grid.width;
+    assert.ok(a.height.slice(0,grid.width).every(h=>Math.abs(h-.2)<1e-9));
+    assert.ok(a.land.slice(south).every(f=>f===0));
+    elevation[1]=.6;const b=sampler.sample(elevation);
+    assert.ok(b.height.slice(south).every(h=>Math.abs(h-.6)<1e-9));
+    assert.ok(b.land.slice(south).every(f=>f===1));assert.ok(a.land.slice(south).every(f=>f===0));
+});
+
+test('polar height reconstruction does not turn vertices at different latitudes into alternating meridian stripes',()=>{
+    const grid=makeSurfaceGrid(),directions:number[]=[0,1,0,0,-1,0],elevation=[.5,.5];
+    for(let x=0;x<96;x++) {
+        // A sparse row: neighbors in longitude come from opposite ends of
+        // the tall latitude bin. The actual field varies north/south only.
+        const latitude=x%2?-85:-87.5;
+        directions.push(...uvToDirection((x+.5)/96,(90-latitude)/180));elevation.push(x%2?.8:.2);
+    }
+    const field=new SurfaceTerrainSampler(directions,grid).sample(elevation),row=field.height.slice(47*96,48*96);
+    assert.ok(Math.max(...row)-Math.min(...row)<.05,'Geographic neighbors must remove the spurious alternating longitude heights');
+    assert.ok(row.every(h=>h>.3&&h<.7));
+});
+
+test('climate anomalies interpolate continuously and keep one value at both poles',()=>{
+    const grid=makeThermalGrid(),target=makeSurfaceGrid(),field=new Float64Array(grid.count).fill(3);
+    const flat=resampleClimateField(grid,field,target);assert.ok(flat.every(x=>Math.abs(x-3)<1e-12));
+    for(let i=0;i<field.length;i++)field[i]=i%grid.width<24?-5:5;
+    const saved=field.slice(),mapped=resampleClimateField(grid,field,target);
+    for(const j of [0,target.height-1])assert.ok(mapped.slice(j*target.width,(j+1)*target.width).every(x=>Math.abs(x)<1e-12));
+    assert.ok(Math.max(...mapped)<=5);assert.ok(Math.min(...mapped)>=-5);assert.deepEqual(field,saved);
+});
+
+test('polar cover uses local polar terrain instead of extruding the 73 degree climate ring',()=>{
+    const directions:number[]=[],elevation:number[]=[];
+    for(let j=0;j<49;j++)for(let x=0;x<96;x++) {
+        directions.push(...uvToDirection((x+.5)/96,j/48));
+        // Uniform high polar plateau; lower latitudes have an asymmetric coast.
+        elevation.push(j>=44?.2:(x<32?.1:-.1));
+    }
+    const grid=makeThermalGrid(),terrain=sampleTerrainGrid(grid,directions,elevation),rt=new ThermalRuntime(grid);
+    rt.enabled=true;rt.setTerrain(terrain.landFraction,terrain.landElevation,{directions,elevation});
+    rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);
+    const a=rt.sampleSurface(.15,.975)!,b=rt.sampleSurface(.65,.975)!;
+    assert.ok(Math.abs(a.meanTemperatureK-b.meanTemperatureK)<.01,'The uniform polar plateau must not inherit different coastal sectors from the outer thermal ring');
+    assert.ok(a.snowFraction>.2);assert.ok(Math.abs(a.snowFraction-b.snowFraction)<1e-9);
+    assert.ok(rt.surfaceTexture!.height>=49,'The natural cover must resolve latitude within the polar cap');
+    for(const u of [.05,.25,.5,.75,.95])assert.deepEqual(rt.sampleSurface(u,1),rt.sampleSurface(0,1));
+    assert.equal(rt.model!.steps,0);
 });
 
 test('potential vegetation distinguishes cold, dry, temperate and tropical climates',()=>{

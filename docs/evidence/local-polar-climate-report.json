@@ -1,0 +1,16 @@
+{
+  "checks": [
+    "Generate climate produces structured temperature and nonzero rain at day0/age0 while paused, without warmup",
+    "Manual season, tilt and physical height regenerate climate immediately without advancing time; zero tilt removes seasonal contrast",
+    "Estimated vector wind arrows/probes respond to retrograde; rain/soil and erosion capture are available before Play with honest initial-estimate labels",
+    "Rain and surface-outflow legends distinguish generated initial estimates from latest simulated-step fluxes",
+    "Play evolves generated fields with a closed water budget; view changes preserve history, regeneration resets age at the selected date",
+    "Original artwork is preserved and generated climate/wind controls fit mobile"
+  ],
+  "errors": [],
+  "initialRangeK": 88.64497883908786,
+  "displayDiff": {
+    "max": 0,
+    "channels": 0
+  }
+}
