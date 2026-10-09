@@ -1,11 +1,12 @@
 import type {ThermalRuntime} from './thermal-runtime.ts';
+import {installInfoNotes} from './panel-info.ts';
 
 /** UI for the deliberately small seasonal model; numerical state lives elsewhere. */
 export function installThermalPanel(root:HTMLElement,thermal:ThermalRuntime,change:(mutate:()=>void)=>void) {
     const panel=document.createElement('details');panel.id='thermal-panel';
     panel.innerHTML=`<summary>Seasonal temperature</summary>
         <label><input id="thermal-enabled" type="checkbox"> Enable thermal model</label>
-        <p class="planet-note">Ready without Play: latitude, season, sea influence and altitude generate a daily-mean reference climate. Play evolves that state; oceans respond more slowly. With water enabled, ice/snow albedo, phase-change energy and prescribed ocean heat transport feed back on temperature. No hourly temperature or pressure solver.</p>
+        <p class="planet-note" data-info-for="thermal-enabled">Ready without Play: latitude, season, sea influence and altitude generate a daily-mean reference climate. Play evolves that state; oceans respond more slowly. With water enabled, ice/snow albedo, phase-change energy and ocean heat transport feed back on temperature. No hourly temperature or pressure solver.</p>
         <label><span>Global mean</span><output id="thermal-mean">Off</output></label>
         <label><span>Temperature range</span><output id="thermal-range">—</output></label>
         <label><span>Time since thermal reset</span><output id="thermal-age" data-days="0">—</output></label>
@@ -15,11 +16,12 @@ export function installThermalPanel(root:HTMLElement,thermal:ThermalRuntime,chan
           <label><span>Land heat capacity (MJ/m²/K)</span><input id="thermal-capacity" type="number" min="0.1" max="100" step="any"></label>
           <label><span>Ocean mixed-layer depth (m)</span><input id="thermal-depth" type="number" min="0.1" max="100" step="any"></label>
           <label><span>Heat transport at Earth radius (W/m²/K)</span><input id="thermal-diffusion" type="number" min="0" max="5" step="any"></label>
-          <p class="planet-note">Emissivity is an effective radiation parameter, not measured atmospheric composition. Transport scales with inverse radius squared.</p>
+          <p class="planet-note" data-info-for="thermal-emissivity">Emissivity is an effective radiation parameter, not measured atmospheric composition. Transport scales with inverse radius squared.</p>
         </details>
         <button id="thermal-reset" type="button">Reset temperature &amp; water</button>
-        <p class="planet-note">Terrain, physical parameters and manual time edits regenerate the reference climate at the selected date. Camera and display scale preserve history. The reference is an illustrative estimate, not a spun-up equilibrium. Runtime fields are not saved.</p>`;
+        <p class="planet-note" data-info-for="thermal-reset">Terrain, physical parameters and manual time edits regenerate the reference climate at the selected date. Camera and display scale preserve history. The reference is an illustrative estimate, not a spun-up equilibrium. Use Download complete simulation to save runtime fields.</p>`;
     root.append(panel);
+    installInfoNotes(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
     const enabled=el<HTMLInputElement>('thermal-enabled');
     enabled.addEventListener('change',()=>change(()=>{thermal.enabled=enabled.checked;thermal.invalidate();}));

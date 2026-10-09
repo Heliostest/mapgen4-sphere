@@ -12,7 +12,7 @@ const frames=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requ
 const input=async(id,value)=>{await page.locator(id.startsWith('slider-')?`#${id} input`:`#${id}`).evaluate((e,v)=>{e.value=String(v);e.dispatchEvent(new Event(e.type==='range'?'input':'change',{bubbles:true}));},value);await frames();};
 const capture=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
 try {
-    await page.goto(base+'/embed.html');await page.waitForFunction(()=>window.generations>0);await frames();
+    await page.goto(base+'/embed.html?mode=editor');await page.waitForFunction(()=>window.generations>0);await frames();
     assert.equal(await page.locator('#planet-layer option[value="precipitation"]').count(),1,'Water layers missing');
     const baseline=await capture('original'),generations=await page.evaluate(()=>window.generations);
     assert.equal(await page.locator('#water-enabled').isChecked(),false);
@@ -62,7 +62,7 @@ try {
 
     const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});mobile.on('pageerror',e=>errors.push(e.message));
     await mobile.addInitScript(()=>{window.ready=false;const W=window.Worker;window.Worker=class extends W{constructor(...a){super(...a);this.addEventListener('message',()=>window.ready=true);}};});
-    await mobile.goto(base+'/embed.html');await mobile.waitForFunction(()=>window.ready);
+    await mobile.goto(base+'/embed.html?mode=editor');await mobile.waitForFunction(()=>window.ready);
     await mobile.locator('#planet-layer').selectOption('soil-moisture');await mobile.locator('#water-reset').tap();
     const mb=await mobile.locator('#mapgen4').boundingBox();assert.ok(mb.y>=-1&&mb.y+mb.height<=844);
     assert.equal(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true);

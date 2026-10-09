@@ -17,7 +17,7 @@ const zero=async()=>{
     assert.equal(Number(await page.locator('#thermal-age').getAttribute('data-days')),0);assert.equal(Number(await page.locator('#water-age').getAttribute('data-days')),0);
 };
 try {
-    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
     const original=await capture('original');await page.locator('#planet-generate-climate').click();await frames();await zero();
     await page.locator('#planet-layer').selectOption('temperature');
     const range=await page.locator('#thermal-range').evaluate(e=>Number(e.dataset.max)-Number(e.dataset.min));assert.ok(range>15);

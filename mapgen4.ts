@@ -112,6 +112,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     }
     installNavigation(param.render, ()=>{documentRevision++;redraw();});
     planetControls=installPlanetControls({
+        startMode:new URLSearchParams(location.search).get('mode')==='editor'?'editor':'live',
         container:document.getElementById('sliders'),
         canvas:document.getElementById('mapgen4') as HTMLCanvasElement,
         onView:view=>{render.updatePlanet(view);redraw();},
@@ -144,6 +145,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         application.restore(d.offsets?new Float32Array(d.offsets):null,d.report);
     }
     sessionPanel=installTerrainSessionPanel(document.getElementById('planet-controls'),{
+        beforeLoad:()=>planetControls.pause(),
         revision:()=>`${gate.desired}:${documentRevision}:${planetControls.settings().timeS}`,
         state:()=>({pending:gate.pending,canUndo:application.canUndo,report:application.report,revision:gate.desired,accepted:gate.accepted}),
         undo:()=>{if(!application.canUndo)return;planetControls.pause();application.undo();generate();},

@@ -21,6 +21,14 @@ Complete simulation saves include fine volumes, receiver sides and fluxes. Resto
 
 ![Controlled basin](evidence/terrain-water-basin.png)
 
-## Limits
+## Playback performance — 2026-10-09
+
+CPU profiling of the all-enabled default planet identified shoreline reconstruction as the main playback stall: every water step sorted bed heights, allocated temporary arrays and repeated atlas seam/pole clipping. Static bed coefficients, wetland slopes and atlas coordinates are now cached per routing network. Each update computes current water levels and fills an independent typed render buffer. The reservoir solver, timestep, shoreline equation and rendering resolution are unchanged; terrain regeneration creates a new network and cache.
+
+The opt-in `node scripts/terrain-water-benchmark.mjs` checks the real shoreline path on 23,996 triangles against a 50 ms median budget. On this machine the median fell from **170.26 ms to 13.46 ms**. Separate full-page traces recorded **105 animation callbacks above 50 ms in 32.37 s** before and **0 in 26.87 s** after; maximum callback duration fell from **111.46 ms to 20.03 ms**. These are CPU callback timings, not GPU presentation times or a device-independent frame-rate guarantee. [Measurement record](evidence/live-planet-performance.json).
+
+Validation: 139 numerical tests, typecheck and build passed. Added shoreline tests cover sloping/equal-height beds, independent queued buffers, wet/dry transitions and rollback. The controlled basin GPU fixture retained identical dry, saturated, low-lake and high-lake pixel counts.
+
+## Model limits
 
 This is a head-based reservoir model without momentum, calibrated flood depths, channel hydraulics or subgrid groundwater. Mean reservoir columns route water; volume-weighted piecewise bed reconstruction supplies a draped shoreline approximation. Lakes are not separate horizontal 3D water meshes. Fine sources inherit the coarse climate and unresolved coast cells are retained rather than assigned an invented outlet. River widths are exaggerated for readability; wetland colors indicate a diagnostic proxy, not a vegetation species simulation. Verification uses this machine's Chrome/WebGL2 and emulated mobile viewport.

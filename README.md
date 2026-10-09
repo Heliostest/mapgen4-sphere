@@ -14,6 +14,8 @@ pnpm start
 
 Open [localhost:8000](http://localhost:8000/embed.html). `npm install`, `npm run build`, and `npm start` also work. The server binds to loopback and disables caching. The sphere generates its mesh at startup; old planar point files are not used.
 
+The default view is a **live planet**: after terrain generation, Natural surface and From space start automatically at one simulated hour per second. Climate, water, vegetation, ice feedback, grounded glaciers, evolving winds/ocean currents, terrain rivers/lakes and cloud cover are enabled together. **Live planet** restores this combination at any time, preserving authored terrain. Clouds remain a soft overlay without rain or snow symbols. Geological erosion capture/application stays manual. Open `embed.html?mode=editor` for the original paused editing start.
+
 - Left drag paints Ocean, Water, Valley, or Mountains. The four original brush sizes and keyboard shortcuts still work.
 - Right drag or Alt-drag rotates. The wheel zooms.
 - **Drag: Paint / Rotate** switches one-finger touch behavior.
@@ -24,7 +26,7 @@ Open [localhost:8000](http://localhost:8000/embed.html). `npm install`, `npm run
 
 ## Planet physics — stage A
 
-The **Planet physics** panel adds SI diagnostics and an analytical solar clock. It starts paused in **Original map / Follow surface**, preserving the existing terrain appearance.
+The **Planet physics** panel adds SI diagnostics and an analytical solar clock. Normal startup selects **Natural surface / From space** and plays once terrain is ready. The explicit editor URL starts paused in **Original map / Follow surface**. Loading a saved world pauses playback and honors that world's own settings.
 
 - **Physical size:** radius in km and mean density in kg/m³ determine spherical mass, surface gravity and escape speed. This physical radius is independent of the existing `render → sphere_radius` scene geometry control and zoom. Neither regenerates terrain.
 - **Physical terrain scale:** calibrated land/seafloor heights are separate from artistic `mountain_height`. The panel reports the current vertical exaggeration; inspection samples generated elevations before decorative mountain folds. The displayed ocean remains at sea level.

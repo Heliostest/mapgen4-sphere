@@ -20,10 +20,12 @@ import type {SurfaceTerrain} from './surface-grid.ts';
 import {terrainWaterView} from './terrain-water-view.ts';
 import {weatherView,weatherFields} from './weather.ts';
 import {thermalCell} from './thermal.ts';
+import {installInfoNotes} from './panel-info.ts';
 
 type Sample={uv:[number,number];elevation:number};
 type Options={
     container:HTMLElement; canvas:HTMLCanvasElement;
+    startMode?:'live'|'editor';
     onView:(view:PlanetView)=>void;
     sampleTerrain:(coords:number[])=>Sample|null;
     canInspect:()=>boolean;
@@ -37,6 +39,7 @@ type Options={
 /** Physical settings deliberately live outside generator parameters: changing
  * these values cannot erase constraints or trigger a terrain generation. */
 export function installPlanetControls(options:Options) {
+    let pendingStartup=options.startMode!=='editor';
     let planet:PlanetConfig={...DEFAULT_PLANET},orbit:OrbitConfig={...DEFAULT_ORBIT};
     let layer:PlanetLayer='original',camera:PlanetCamera='surface',inspecting=false;
     let weatherVisible=false;
@@ -71,7 +74,7 @@ export function installPlanetControls(options:Options) {
     function select(id:string,title:string,items:[string,string][],value:string,change:(v:string)=>void,parent:HTMLElement=root) {
         const label=labelFor(id,title,parent),el=document.createElement('select');el.id=id;
         for(const [v,text] of items){const option=document.createElement('option');option.value=v;option.textContent=text;el.append(option);}
-        el.value=value;el.addEventListener('change',()=>{change(el.value);emit();});label.append(el);return el;
+        el.value=value;el.addEventListener('change',()=>{pendingStartup=false;change(el.value);emit();});label.append(el);return el;
     }
     const inputs=new Map<string,{input:HTMLInputElement;get:()=>number}>();
     function number(id:string,title:string,min:number,max:number,step:string,get:()=>number,set:(v:number)=>void,parent:HTMLElement=root,range=false) {
@@ -100,18 +103,21 @@ export function installPlanetControls(options:Options) {
         ['surface','Follow surface'],['space','From space'],
     ],camera,v=>camera=v as PlanetCamera);
     const legend=note('Original map · physical settings preserve your terrain.');legend.id='planet-legend';
+    legend.dataset.infoFor='planet-layer';legend.dataset.infoTitle='Display layer';
     const biomeKey=document.createElement('div');biomeKey.id='planet-biome-key';biomeKey.hidden=true;root.append(biomeKey);
     for(const item of [...Object.values(BIOMES),{label:'Grounded ice',color:[190,217,224]},{label:'Sea ice',color:[201,224,230]}]) {
         const chip=document.createElement('span'),swatch=document.createElement('i');
         swatch.style.backgroundColor=`rgb(${item.color.join(',')})`;swatch.setAttribute('aria-hidden','true');
         chip.append(swatch,document.createTextNode(item.label));biomeKey.append(chip);
     }
+    button('planet-live','Live planet',startLivePlanet);
     button('planet-generate-climate','Generate climate now',()=>{
         pause(false);thermal.enabled=thermal.waterEnabled=true;thermal.invalidate();
         layer='surface';layerSelect.value=layer;thermalPanel.reveal();waterPanel.reveal();emit();
     });
-    note('Generate ice, vegetation, temperature, rain and wind at the current date without Play. Change season, tilt or terrain to regenerate; Play evolves the result.');
+    note('Generate ice, vegetation, temperature, rain and wind at the current date without Play. Change season, tilt or terrain to regenerate; Play evolves the result.').dataset.infoFor='planet-generate-climate';
     const play=button('planet-play','Play',()=>{
+        pendingStartup=false;
         if(inspecting) {inspecting=false;updateInspectButton();}
         if(clock.playing) pause(false);
         else clock.setPlaying(true,performance.now());
@@ -201,8 +207,26 @@ export function installPlanetControls(options:Options) {
         options.canvas.style.cursor=inspecting?'help':'crosshair';
     }
     function pause(redraw=true) {
+        pendingStartup=false;
         clock.pauseAt(options.presentedTimeS(),performance.now());
         if(redraw) emit();
+    }
+    function startLivePlanet() {
+        if(!thermal.terrainSource || options.terrainReady?.()===false) {pendingStartup=true;return;}
+        pause(false);
+        const systems=['vegetation','iceAlbedo','terrainWater','glaciers','dynamicCirculation'] as const;
+        const reset=!thermal.enabled||!thermal.waterEnabled||systems.some(key=>!thermal.environmentConfig[key]);
+        thermal.enabled=thermal.waterEnabled=true;
+        for(const key of systems)thermal.environmentConfig[key]=true;
+        if(reset)thermal.invalidate();
+        layer='surface';camera='space';weatherVisible=true;
+        layerSelect.value=layer;cameraSelect.value=camera;
+        clock.setSpeed(3600,performance.now());
+        (root.querySelector('#planet-speed') as HTMLSelectElement).value=String(clock.speed);
+        inspecting=false;updateInspectButton();
+        thermalPanel.restoreInputs();waterPanel.restoreInputs();environmentPanel.restoreInputs();
+        emit();
+        clock.setPlaying(!document.hidden,performance.now());refresh();
     }
     function refresh() {
         const p=derivePlanet(planet),o=deriveOrbit(planet,orbit),sun=sunState(planet,orbit,clock.timeS);
@@ -276,7 +300,10 @@ export function installPlanetControls(options:Options) {
         if(!probe) probeOutput.textContent='No terrain here. Select a point on the globe.';
         emit();
     });
-    document.addEventListener('visibilitychange',()=>{if(document.hidden) pause();});
+    document.addEventListener('visibilitychange',()=>{
+        if(document.hidden) {if(clock.playing)pause();}
+        else if(pendingStartup)startLivePlanet();
+    });
     let lastReadout=0;
     const frame=(now:number)=>{
         requestAnimationFrame(frame);
@@ -285,6 +312,7 @@ export function installPlanetControls(options:Options) {
         sendView();
         if(now-lastReadout>100) {refresh();lastReadout=now;}
     };
+    installInfoNotes(root);
     requestAnimationFrame(frame);emit();
     return {
         pause,refresh,isInspecting:()=>inspecting,
@@ -296,6 +324,7 @@ export function installPlanetControls(options:Options) {
             candidate.attachRestoredTerrain(sampled.landFraction,sampled.landElevation,terrain);return candidate;
         },
         restoreSimulation:(d:SimulationDocument,candidate:ThermalRuntime)=>{
+            pendingStartup=false;
             clock.setPlaying(false,performance.now());
             const s=d.terrain.settings;planet={...s.planet};orbit={...s.orbit};camera=s.camera;
             clock.seek(s.timeS,performance.now());clock.setSpeed(d.view.speed,performance.now());
@@ -323,7 +352,8 @@ export function installPlanetControls(options:Options) {
             probe=null;probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
             const terrain=options.terrain?.();
             if(terrain){const sampled=sampleTerrainGrid(thermal.grid,terrain.directions,terrain.elevation);thermal.setTerrain(sampled.landFraction,sampled.landElevation,terrain);}
-            emit();
+            if(pendingStartup&&!document.hidden)startLivePlanet();
+            else emit();
         },
     };
 }

@@ -25,7 +25,7 @@ const rejectionPixels=async(a,b)=>{
     assert.ok(result.maxDifference<=1&&result.changedChannels<=32,JSON.stringify(result));return result;
 };
 try {
-    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?preview=terrain-water');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');await frames();
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor&preview=terrain-water');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');await frames();
     assert.deepEqual(errors,[]);const original=await capture('original');await click('planet-generate-climate');const artistSurface=await capture('artist-surface');assert.deepEqual(errors,[]);
     await click('environment-terrain-water');assert.equal(await page.locator('#environment-routing').getAttribute('data-active'),'true');
     const initial=await capture('initial');assert.ok(!initial.equals(artistSurface));

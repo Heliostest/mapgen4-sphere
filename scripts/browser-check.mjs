@@ -89,7 +89,7 @@ async function paint(u=.5,v=.5,steps=8) {
     await frames();
 }
 try {
-    await page.goto(base+'/embed.html');
+    await page.goto(base+'/embed.html?mode=editor');
     await waitGeneration(0);
     assert.equal(await page.locator('[id^="slider-"] input').count(),33);
     const initial=await snapshot('sphere-default');
@@ -176,7 +176,7 @@ try {
     const mobileContext=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:1});
     const mobile=await mobileContext.newPage();
     mobile.on('pageerror',error=>errors.push(error.message));
-    await mobile.goto(base+'/embed.html');
+    await mobile.goto(base+'/embed.html?mode=editor');
     await mobile.waitForSelector('#slider-zoom input');
     await mobile.waitForTimeout(700);
     await mobile.locator('#button-navigate').tap();

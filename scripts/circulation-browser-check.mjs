@@ -18,7 +18,7 @@ const load=async d=>{await page.locator('#terrain-load').setInputFiles({name:'wo
 const globe=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
 const evolve=async()=>{await click('planet-play');await frames(120,50);await click('planet-play');};
 try {
-    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?preview=circulation');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false',{},{polling:50});await frames();
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor&preview=circulation');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false',{},{polling:50});await frames();
     const original=await globe('original');await click('planet-generate-climate');await click('environment-circulation');await input('planet-speed',864000);
     const initial=await save('initial');assert.ok(initial.runtime.state.circulation.ocean.circulationMps.every(v=>v===0));
     await evolve();const saved=await save('saved'),pixels=await globe('saved'),state=saved.runtime.state.circulation;

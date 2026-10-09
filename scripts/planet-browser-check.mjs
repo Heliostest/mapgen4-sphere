@@ -39,7 +39,7 @@ async function comparePixels(a,b) {
     },[a.toString('base64'),b.toString('base64')]);
 }
 try {
-    await page.goto(base+'/embed.html');await page.waitForFunction(()=>window.generations>0);
+    await page.goto(base+'/embed.html?mode=editor');await page.waitForFunction(()=>window.generations>0);
     assert.equal(await page.locator('#planet-controls').count(),1,'Planet physics panel is missing');
     const baseline=await capture('original');
     // Optional pre-change baseline captured from this checkout before implementation.
@@ -149,7 +149,7 @@ try {
         window.terrainReady=false;const W=window.Worker;
         window.Worker=class extends W {constructor(...args){super(...args);this.addEventListener('message',()=>window.terrainReady=true);}};
     });
-    await mobile.goto(base+'/embed.html');await mobile.waitForFunction(()=>window.terrainReady);
+    await mobile.goto(base+'/embed.html?mode=editor');await mobile.waitForFunction(()=>window.terrainReady);
     await mobile.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
     await mobile.locator('#planet-layer').selectOption('day-night');
     await mobile.locator('#planet-inspect').tap();

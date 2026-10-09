@@ -1,11 +1,12 @@
 import type {GeomorphRuntime} from './geomorph-runtime.ts';
 import type {ThermalRuntime} from './thermal-runtime.ts';
+import {installInfoNotes} from './panel-info.ts';
 
 export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:ThermalRuntime,change:(action:()=>void)=>void,
     application:{ready:()=>boolean;apply:()=>void}={ready:()=>true,apply:()=>{}}) {
     const panel=document.createElement('details');panel.id='geomorph-panel';
     panel.innerHTML=`<summary>Erosion &amp; deposition preview</summary>
-      <p class="planet-note">Stage D preview. Capture the current water discharge, then evolve in separate geological years. Astronomy Play does not advance erosion. Dry cells can still undergo slope smoothing.</p>
+      <p class="planet-note" data-info-for="geomorph-panel">Capture the current water discharge, then evolve in separate geological years. Astronomy Play does not advance erosion. Dry cells can still undergo slope smoothing.</p>
       <button id="geomorph-capture" type="button">Capture current water</button>
       <button id="geomorph-capture-glacier" type="button">Capture glacial erosion</button>
       <label><span>Years per click (requested)</span><input id="geomorph-duration" type="number" min="0.01" max="100000000" step="any" value="100000"></label>
@@ -24,10 +25,11 @@ export function installGeomorphPanel(root:HTMLElement,g:GeomorphRuntime,thermal:
         <label><span>Incision coefficient (m/yr)</span><input id="geomorph-erodibility" type="number" min="0" max="100" step="any"></label>
         <label><span>Slope smoothing (m²/yr)</span><input id="geomorph-diffusion" type="number" min="0" max="10000000" step="any"></label>
         <label><span>Sediment settling time (yr)</span><input id="geomorph-settling" type="number" min="1" max="1000000" step="any"></label>
-        <p class="planet-note">Illustrative, uncalibrated coefficients. Incision uses sqrt(discharge / 1000m³/s) × slope. Equal bulk density, no uplift or compaction. Changing these parameters clears the preview.</p>
+        <p class="planet-note" data-info-for="geomorph-erodibility">Illustrative, uncalibrated coefficients. Incision uses sqrt(discharge / 1000m³/s) × slope. Equal bulk density, no uplift or compaction. Changing these parameters clears the preview.</p>
       </details>
-      <p class="planet-note">Preview retains source climate and artistic rivers. Apply stores bed-height changes, rebuilds rivers and restarts the environment; rebuilt geometry may differ from preview. Heights clamp to the terrain range. Mobile and ocean sediment are recorded in the application report only; applying is not a conservative transfer to the fine mesh. New captures start new budgets. Painting and environment resets clear the preview.</p>`;
+      <p class="planet-note" data-info-for="geomorph-apply">Preview retains source climate and artistic rivers. Apply stores bed-height changes, rebuilds rivers and restarts the environment; rebuilt geometry may differ from preview. Heights clamp to the terrain range. Mobile and ocean sediment are recorded in the application report only; applying is not a conservative transfer to the fine mesh. New captures start new budgets. Painting and environment resets clear the preview.</p>`;
     root.append(panel);
+    installInfoNotes(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
     el('geomorph-capture').addEventListener('click',()=>{if(application.ready())change(()=>g.capture(thermal));});
     el('geomorph-capture-glacier').addEventListener('click',()=>{if(application.ready())change(()=>g.captureGlacier(thermal));});

@@ -42,7 +42,7 @@ const load=async data=>{
 };
 const evolve=async()=>{await page.locator('#geomorph-capture').click();await page.locator('#geomorph-step').click();await frames();};
 try {
-    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html');await ready();
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor');await ready();
     assert.equal(await page.locator('#geomorph-apply').count(),1);await page.locator('#geomorph-panel').evaluate(e=>e.open=true);
     const originalHash=await hashes(),original=await capture('original'),originalDoc=await save('original');
     await page.locator('#planet-layer').selectOption('soil-moisture');await page.locator('#planet-layer').selectOption('original');

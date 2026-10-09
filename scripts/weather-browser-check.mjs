@@ -18,10 +18,10 @@ const load=async d=>{await page.locator('#terrain-load').setInputFiles({name:'wo
 const globe=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
 const evolve=async()=>{await click('planet-play');await frames(120,50);await click('planet-play');};
 try {
-    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?preview=weather');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false',{},{polling:50});await frames();
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor&preview=weather');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false',{},{polling:50});await frames();
     const original=await globe('original');await click('planet-generate-climate');await click('environment-circulation');await input('planet-speed',864000);
     const initial=await save('initial'),clear=await globe('clear');await click('environment-weather');const cloudy=await globe('generated');
-    assert.ok(!clear.equals(cloudy));assert.match(await page.locator('#environment-weather-state').textContent(),/no integrated rain yet/);assert.deepEqual((await save('generated')).runtime,initial.runtime);
+    assert.ok(!clear.equals(cloudy));assert.match(await page.locator('#environment-weather-state').textContent(),/Cloud cover \d+%/);assert.deepEqual((await save('generated')).runtime,initial.runtime);
     await frames(100,50);assert.ok(cloudy.equals(await globe('paused')));await click('environment-weather');assert.ok(clear.equals(await globe('off')));await click('environment-weather');
     checks.push('Moisture clouds are visible at generation; pause is exact and toggling off restores pixels without changing any physical state');
     await evolve();const saved=await save('saved'),pixels=await globe('evolved');assert.ok(saved.view.weather);assert.ok(saved.runtime.state.water.snowfallKgM2S);assert.ok(saved.runtime.state.water.precipitationKgM2S.some(v=>v>0));assert.ok(!cloudy.equals(pixels));
@@ -32,8 +32,8 @@ try {
     const bad=structuredClone(saved);bad.view.weather='yes';assert.match(await load(bad),/Load failed/);assert.deepEqual((await save('after-invalid')).runtime,resumed.runtime);
     await input('planet-layer','original');assert.ok(original.equals(await globe('original-restored')));await input('planet-layer','surface');
     await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:`${folder}/mobile.png`});
-    const legacy=structuredClone(saved);delete legacy.view.weather;delete legacy.runtime.state.water.snowfallKgM2S;assert.match(await load(legacy),/Complete simulation restored/);assert.equal(await page.locator('#environment-weather').isChecked(),false);await click('environment-weather');assert.match(await page.locator('#environment-weather-state').textContent(),/legacy precipitation phase unavailable/);
-    checks.push('Invalid display options preserve the world; Original remains exact, mobile fits and old saves safely suppress unknown precipitation phase');
+    const legacy=structuredClone(saved);delete legacy.view.weather;delete legacy.runtime.state.water.snowfallKgM2S;assert.match(await load(legacy),/Complete simulation restored/);assert.equal(await page.locator('#environment-weather').isChecked(),false);await click('environment-weather');assert.match(await page.locator('#environment-weather-state').textContent(),/Cloud cover \d+%/);
+    checks.push('Invalid display options preserve the world; Original remains exact, mobile fits and old saves can display clouds without precipitation phase');
     await page.setViewportSize({width:1440,height:1300});await click('environment-glaciers');await click('environment-terrain-water');await click('planet-play');await frames(24,50);await click('planet-play');
     const coupled=await save('all-systems'),coupledPixels=await globe('all-systems');assert.ok(coupled.runtime.state.water.routing&&coupled.runtime.state.water.glacier&&coupled.runtime.state.circulation&&coupled.view.weather);
     const coupledBudgets={water:Number(await page.locator('#water-budget').getAttribute('data-value')),energy:Number(await page.locator('#environment-energy').getAttribute('data-value')),solid:Number(await page.locator('#environment-glacier').getAttribute('data-solid-residual'))};
@@ -41,6 +41,6 @@ try {
     await click('environment-circulation');assert.match(await load(coupled),/Complete simulation restored/);assert.deepEqual((await save('all-systems-restored')).runtime,coupled.runtime);assert.ok(coupledPixels.equals(await globe('all-systems-restored')));
     checks.push('Terrain routing, glaciers, evolving circulation and weather run together with closed budgets and an exact full-world/pixel restore');
     const fixture=await browser.newPage({viewport:{width:1440,height:1160}});fixture.on('pageerror',e=>errors.push(e.message));await fixture.goto((process.env.BASE_URL||'http://localhost:8002')+'/tests/weather-render.html');await fixture.waitForFunction(()=>/PASS|FAIL/.test(document.querySelector('pre').textContent),{},{timeout:60000});const gpu=JSON.parse(await fixture.locator('pre').textContent());await fixture.screenshot({path:`${folder}/controlled-gpu.png`,fullPage:true});assert.equal(gpu.status,'PASS',JSON.stringify(gpu));await fixture.close();
-    checks.push('Production GPU fixture verifies dry restoration, humidity cloud mask, precipitation gating, changed wind orientation and distinct snowfall');
+    checks.push('Production GPU fixture verifies dry restoration and moisture-derived clouds without rain, snow or time-driven glyphs');
     assert.deepEqual(errors,[]);const report={checks,errors,budgets,coupledBudgets,diagnostics,steps:[saved.runtime.state.thermal.steps,resumed.runtime.state.thermal.steps],gpu};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
 }finally{if(errors.length)console.log(JSON.stringify({errors}));await browser.close();}

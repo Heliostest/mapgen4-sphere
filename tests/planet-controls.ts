@@ -16,6 +16,7 @@ function check(condition:boolean,message:string) {checks++;if(!condition) failur
 function advance(time:number) {now=time;frame!(time);}
 try {
     const controls=installPlanetControls({
+        startMode:'editor',
         container:document.querySelector('#controls')!,canvas:document.querySelector('#canvas')!,
         onView:view=>{queued=view.timeS;field=view.thermal??null;water=view.water??null;geology=view.geomorph??null;},sampleTerrain:()=>null,canInspect:()=>true,
         presentedTimeS:()=>presented,renderParams:()=>({}),

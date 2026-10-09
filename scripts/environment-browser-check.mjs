@@ -10,7 +10,7 @@ const input=async(id,value)=>{await page.locator(id.startsWith('slider-')?`#${id
 const capture=async name=>page.screenshot({path:`${folder}/${name}.png`});
 const metric=async label=>page.locator('#environment-metrics tr').filter({hasText:label}).locator('td').nth(2).textContent();
 try {
-    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?preview=coupled-environment');
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor&preview=coupled-environment');
     await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
     await page.locator('#planet-generate-climate').click();assert.equal(Number(await page.locator('#thermal-age').getAttribute('data-days')),0);
     await page.locator('#planet-compare-environment').click();assert.ok(await page.locator('#environment-comparison').isVisible());

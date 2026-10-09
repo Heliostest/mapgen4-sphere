@@ -1,7 +1,9 @@
 import {MAX_SIMULATION_FILE_BYTES} from './simulation-document.ts';
 import type {ApplicationReport} from './terrain-application.ts';
+import {installInfoNotes} from './panel-info.ts';
 
 export function installTerrainSessionPanel(root:HTMLElement,options:{
+    beforeLoad:()=>void;
     save:()=>string;saveSimulation:()=>string;load:(text:string,stillCurrent:()=>boolean)=>Promise<string>|string;undo:()=>void;revision:()=>string;
     state:()=>{pending:boolean;canUndo:boolean;report:ApplicationReport|null;revision:number;accepted:number};
 }) {
@@ -14,8 +16,9 @@ export function installTerrainSessionPanel(root:HTMLElement,options:{
       <p class="planet-note" id="terrain-generation" role="status"></p>
       <p class="planet-note" id="terrain-application"></p>
       <p class="planet-note" id="terrain-file-status" role="status"></p>
-      <p class="planet-note">Complete simulation saves terrain, climate, water, ice, vegetation, time, settings and comparison history (up to 32 MiB). Restores paused at the saved moment. Terrain-only files (8 MiB) start fresh with climate off. Unapplied erosion preview and undo history are excluded from both. Loading is canceled if you edit or time advances during preparation.</p>`;
+      <p class="planet-note" data-info-for="terrain-session">Complete simulation saves terrain, climate, water, ice, vegetation, time, settings and comparison history (up to 32 MiB). Restores paused at the saved moment. Terrain-only files (8 MiB) start fresh with climate off. Unapplied erosion preview and undo history are excluded from both. Loading is canceled if you edit or time advances during preparation.</p>`;
     root.append(panel);
+    installInfoNotes(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
     const status=el('terrain-file-status');let loadToken=0;
     el('terrain-undo-apply').addEventListener('click',()=>options.undo());
@@ -34,8 +37,12 @@ export function installTerrainSessionPanel(root:HTMLElement,options:{
         }catch(error){status.textContent=`Save failed: ${error instanceof Error?error.message:error}`;}
     });
     const input=el<HTMLInputElement>('terrain-load');
+    // Freeze autoplay before choosing/reading a file so candidate preparation
+    // is not canceled by the clock advancing underneath it.
+    input.addEventListener('click',()=>options.beforeLoad());
     input.addEventListener('change',async()=>{
         const file=input.files?.[0];input.value='';if(!file)return;
+        options.beforeLoad();
         const token=++loadToken,revision=options.revision();
         status.textContent='Reading saved world…';
         try {

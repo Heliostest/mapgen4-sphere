@@ -12,7 +12,7 @@ const frames=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requ
 const input=async(id,value)=>{await page.locator(id.startsWith('slider-')?`#${id} input`:`#${id}`).evaluate((e,v)=>{e.value=String(v);e.dispatchEvent(new Event(e.type==='range'?'input':'change',{bubbles:true}));},value);await frames();};
 const capture=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
 try {
-    await page.goto(base+'/embed.html');await page.waitForFunction(()=>window.generations>0);
+    await page.goto(base+'/embed.html?mode=editor');await page.waitForFunction(()=>window.generations>0);
     assert.equal(await page.locator('#planet-layer option[value="temperature"]').count(),1,'Temperature layer missing');
     const baseline=await capture('original'),initialGenerations=await page.evaluate(()=>window.generations);
     assert.equal(await page.locator('#thermal-enabled').isChecked(),false);
@@ -63,7 +63,7 @@ try {
     const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
     mobile.on('pageerror',e=>errors.push(e.message));
     await mobile.addInitScript(()=>{window.terrainReady=false;const W=window.Worker;window.Worker=class extends W{constructor(...a){super(...a);this.addEventListener('message',()=>window.terrainReady=true);}};});
-    await mobile.goto(base+'/embed.html');await mobile.waitForFunction(()=>window.terrainReady);
+    await mobile.goto(base+'/embed.html?mode=editor');await mobile.waitForFunction(()=>window.terrainReady);
     await mobile.locator('#planet-layer').selectOption('temperature');
     await mobile.locator('#thermal-reset').tap();
     const mb=await mobile.locator('#mapgen4').boundingBox();assert.ok(mb.y>=-1 && mb.y+mb.height<=844);

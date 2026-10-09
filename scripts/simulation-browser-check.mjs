@@ -31,7 +31,7 @@ const load=async d=>{await page.locator('#terrain-load').setInputFiles({name:'wo
 const globe=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
 const evolve=async()=>{await click('planet-play');await frames(120,50);await click('planet-play');await frames();};
 try {
-    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?preview=simulation-save');await ready();
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor&preview=simulation-save');await ready();
     await click('planet-generate-climate');await input('planet-speed',864000);
     await input('environment-current',.65);await click('environment-vegetation');await click('environment-vegetation');
     await evolve();const saved=await save('saved'),before=await globe('saved');

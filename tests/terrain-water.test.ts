@@ -6,7 +6,7 @@ import {ThermalRuntime} from '../thermal-runtime.ts';
 import {makeThermalGrid,sampleTerrainGrid} from '../thermal.ts';
 import {DEFAULT_PLANET} from '../planet.ts';
 import {DEFAULT_ORBIT} from '../astronomy.ts';
-import {triangleStorageDepth,lakeSurfaceLevel} from '../terrain-water-view.ts';
+import {triangleStorageDepth,lakeSurfaceLevel,terrainWaterView} from '../terrain-water-view.ts';
 import {WaterModel,DEFAULT_WATER} from '../water.ts';
 
 function fixture() {
@@ -61,6 +61,50 @@ test('lake shoreline levels follow available volume and sloping terrain',()=>{
     assert.ok(Math.abs(lakeSurfaceLevel(2,[10,10,10],10)-12)<1e-5);
     const low=lakeSurfaceLevel(.01,[0,2,4],2),high=lakeSurfaceLevel(1,[0,2,4],2);
     assert.ok(high>low&&low>0&&low<2);
+});
+test('successive shoreline frames retain water height, wetness, seams and independent render buffers',()=>{
+    const {mesh}=makeSphereMesh(120,35,12345),rt=new ThermalRuntime(makeThermalGrid(8,4));
+    const elevation=new Float32Array(mesh.numRegions+mesh.numTriangles).fill(.01);
+    const sample=sampleTerrainGrid(rt.grid,mesh.xyz_r,elevation);
+    rt.enabled=rt.waterEnabled=true;rt.environmentConfig.terrainWater=true;
+    rt.setTerrain(sample.landFraction,sample.landElevation,{mesh,directions:mesh.xyz_r,elevation});rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);
+    const w=rt.water!,route=w.routing!;
+    const frame=(depth:number,soil:number)=>{
+        for(let t=0;t<mesh.numTriangles;t++)route.volumeM3[t]=depth*route.network.areaM2[t];
+        w.soilKgM2.fill(soil*w.config.soilCapacityKgM2);rt.model!.steps++;
+        return terrainWaterView(rt)!;
+    };
+    assert.equal(frame(0,0).lakes.length,0);
+    const wet=frame(0,1);assert.ok(wet.lakes.length>mesh.numTriangles*3*3*5,'Atlas retains seam and pole copies');
+    for(let i=0;i<wet.lakes.length;i+=5){assert.equal(wet.lakes[i+3],-1);assert.equal(wet.lakes[i+4],1);}
+    const low=frame(2,1),saved=low.lakes.slice();
+    for(let i=3;i<low.lakes.length;i+=5)assert.ok(Math.abs(low.lakes[i]-102)<1e-4);
+    const high=frame(7,1);
+    for(let i=0;i<high.lakes.length;i+=5) {
+        assert.ok(Math.abs(high.lakes[i+3]-107)<1e-4);
+        assert.deepEqual(high.lakes.subarray(i,i+3),low.lakes.subarray(i,i+3));
+    }
+    assert.deepEqual(low.lakes,saved,'A queued frame must not be overwritten by the next update');
+    assert.equal(frame(0,0).lakes.length,0);
+    assert.deepEqual(frame(2,1).lakes,low.lakes,'Rollback regenerates the same shoreline');
+});
+test('rendered shorelines preserve the triangular storage integral on sloping and tied beds',()=>{
+    const {mesh}=makeSphereMesh(35,35,12345),elevation=new Float32Array(mesh.numRegions+mesh.numTriangles).fill(.01);
+    const grid=makeThermalGrid(8,4),sample=sampleTerrainGrid(grid,mesh.xyz_r,elevation);
+    for(const [heights,depth,head] of [
+        [[6,0,3],.5,3],[[3,6,0],1/54,1],[[0,3,6],5,8],
+        [[0,0,6],1.25,3],[[6,0,6],.25,3],[[2,2,2],3,5],
+    ] as const) {
+        const rt=new ThermalRuntime(grid);rt.enabled=rt.waterEnabled=true;rt.environmentConfig.terrainWater=true;
+        rt.setTerrain(sample.landFraction,sample.landElevation,{mesh,directions:mesh.xyz_r,elevation});rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);
+        const route=rt.water!.routing!;
+        for(let t=0;t<mesh.numTriangles;t++) {
+            for(const patch of route.network.bedPatches![t])patch.vertices.forEach((v,i)=>v[2]=heights[i]);
+            route.volumeM3[t]=depth*route.network.areaM2[t];
+        }
+        const view=terrainWaterView(rt)!;assert.ok(view.lakes.length>0);
+        for(let i=3;i<view.lakes.length;i+=5)assert.ok(Math.abs(view.lakes[i]-head)<1e-5,`Expected head ${head}, got ${view.lakes[i]}`);
+    }
 });
 test('an authored center-to-center valley cannot become an invented ridge dam',()=>{
     const {mesh}=makeSphereMesh(120,35,12345),grid=makeThermalGrid(8,4),elevation=new Float32Array(mesh.numRegions+mesh.numTriangles).fill(.01),s=60,t=mesh.t_inner_s(s),to=mesh.t_outer_s(s),indices=new Int32Array(3*mesh.numSides);

@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-09",
+  "scenario": "Default live planet, all environment systems on, 3600 simulation seconds per second. Separate same-machine recordings; evolving state is not identical.",
+  "before": {
+    "observationS": 32.368223,
+    "callbacks": 2998,
+    "over50ms": 105,
+    "maxMs": 111.455,
+    "p95Ms": 1.715
+  },
+  "after": {
+    "observationS": 26.868328,
+    "callbacks": 3226,
+    "over50ms": 0,
+    "maxMs": 20.034,
+    "p95Ms": 1.645
+  },
+  "shorelineBenchmark": {
+    "triangles": 23996,
+    "beforeMedianMs": 170.26199999999972,
+    "afterMedianMs": 13.456099999999992,
+    "budgetMs": 50
+  },
+  "validation": {
+    "unitTests": 139,
+    "terrainWaterGpu": "PASS; dry/wet/low/high/drained pixel counts unchanged",
+    "typecheck": "PASS",
+    "build": "PASS"
+  },
+  "limitations": "Animation callback CPU durations, not GPU frame presentation times or a cross-device guarantee."
+}

@@ -82,6 +82,16 @@
     #planet-controls details { margin-top: 8px; break-inside: avoid; }
     #planet-controls summary { cursor: pointer; background: hsl(60,20%,90%); padding: 5px 2px; }
     #planet-controls .planet-note { margin: 6px 0; color: #555; font-size: 10px; overflow-wrap: anywhere; }
+    #planet-controls .planet-info-row { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
+    #planet-controls .planet-info-row > label, #planet-controls .planet-info-row > button:not(.planet-info) { flex: 1; min-width: 0; margin: 0; }
+    #planet-controls button.planet-info { flex: none; width: 20px; height: 20px; min-height: 20px; margin: 0; border: 1px solid #829092; border-radius: 50%; background: transparent; color: #526467; font: italic bold 13px Georgia,serif; }
+    #planet-controls button.planet-info:hover, #planet-controls button.planet-info:focus-visible { color: #172f38; border-color: #172f38; background: #e8eef0; }
+    #planet-controls summary:has(> .planet-info) { position: relative; padding-right: 25px; }
+    #planet-controls summary > .planet-info { position: absolute; right: 3px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; min-height: 18px; margin: 0; }
+    #planet-controls .planet-tooltip { position: fixed; inset: auto; box-sizing: border-box; width: min(320px,calc(100vw - 24px)); max-height: min(420px,70vh); margin: 0; padding: 13px 15px; overflow: auto; border: 1px solid #4d626e; border-radius: 9px; background: #182b35; color: #eff5f7; box-shadow: 0 6px 24px #0004; font: 12px/1.55 var(--sans-serif,Arial); }
+    #planet-controls .planet-tooltip strong { display: block; margin-bottom: 7px; font-size: 12px; }
+    #planet-controls .planet-tooltip .planet-note { display: block; margin: 8px 0 0; color: #d7e3e8; font-size: 12px; }
+    #planet-controls .planet-tooltip::backdrop { background: transparent; pointer-events: none; }
     #planet-biome-key:not([hidden]) { display: flex; flex-wrap: wrap; gap: 4px 8px; margin: 8px 0; font-size: 10px; }
     #planet-biome-key span { display: inline-flex; align-items: center; gap: 4px; }
     #planet-biome-key i { width: 10px; height: 10px; border: 1px solid #0003; border-radius: 2px; flex: none; }

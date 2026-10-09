@@ -8,7 +8,9 @@ All work is isolated in `mapgen4-sphere` on `codex/coupled-environment`. Start t
 | Terrain water | Conserved surface water routes over the authored triangle topology, fills depressions, spills over sills and drives visible river widths, lake masks and wet ground | [Terrain water](terrain-water.md) |
 | Grounded ice | Finite snow compaction, ice flow and melt, conservative abrasion/sediment candidate, explicit reversible terrain application | [Glaciers](glaciers.md) |
 | Evolving circulation | Temperature-driven wind perturbations, signed Coriolis and drag, wind-driven ocean-loop memory with conservative heat transport | [Circulation](circulation.md) |
-| Weather display | Moisture-derived cloud shading and actual liquid/frozen precipitation glyphs, wind orientation, exact pause and restored pixels | [Clouds and precipitation](weather.md) |
+| Weather display | Moisture-derived cloud cover, exact pause and restored pixels | [Cloud cover](weather.md) |
+
+Normal startup enables all of these coupled environment systems, selects Natural surface / From space, and plays at one simulated hour per second after the terrain is ready. The **Live planet** button restores this display while preserving authored terrain; it regenerates climate if enabling a previously disabled system. Terrain erosion capture and application remain manual. Complete saves still restore paused with their own flags. Use `embed.html?mode=editor` for the historical paused editor; the individual subsystem browser suites use that explicit starting state, while `tests/live-planet.html` checks the default live startup.
 
 The Original layer preserves the artistic map. Complete simulation files retain all active optional systems and the weather view preference. Older complete files migrate optional fields safely; older terrain files still start with climate off. Invalid files are validated against independent candidate models and generated terrain before replacing the current world.
 

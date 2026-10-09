@@ -1,10 +1,11 @@
 import type {ThermalRuntime} from './thermal-runtime.ts';
+import {installInfoNotes} from './panel-info.ts';
 
 export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change:(mutate:()=>void)=>void) {
     const panel=document.createElement('details');panel.id='water-panel';
     panel.innerHTML=`<summary>Water cycle</summary>
       <label><input id="water-enabled" type="checkbox"> Enable water cycle</label>
-      <p class="planet-note">Rain, humidity and soil initialize from geographic rules without Play. Initial fluxes are estimates; Play continues with conservative evaporation, vapor transport, condensation and routing. Evaporation cools and condensation warms the thermal column. Snowfall accumulates; energy-limited melt feeds surface outflow. No groundwater or weather prediction.</p>
+      <p class="planet-note" data-info-for="water-enabled">Rain, humidity and soil initialize from geographic rules without Play. Initial fluxes are estimates; Play continues with conservative evaporation, vapor transport, condensation and routing. Evaporation cools and condensation warms the thermal column. Snowfall accumulates; energy-limited melt feeds surface outflow. No groundwater or weather prediction.</p>
       <label><span>Mean precipitation</span><output id="water-rain"></output></label>
       <label><span>Mean evaporation</span><output id="water-evaporation"></output></label>
       <label><span>Atmosphere / soil / surface</span><output id="water-stores"></output></label>
@@ -13,7 +14,7 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
       <label><span>Largest cell outflow</span><output id="water-flow"></output></label>
       <label><span>Time since water reset</span><output id="water-age" data-days="0"></output></label>
       <p class="planet-note" id="water-status"></p>
-      <p class="planet-note">Stores above are mm water equivalent averaged over the whole globe, including ocean inventory. Outflow is transferred volume from a coarse cell, independent of the artistic river lines.</p>
+      <p class="planet-note" data-info-for="water-panel">Stores above are mm water equivalent averaged over the whole globe, including ocean inventory. Outflow is transferred volume from a coarse cell, independent of the artistic river lines.</p>
       <details><summary>Water parameters</summary>
         <label><span>Evaporation energy fraction (0–1)</span><input id="water-efficiency" type="number" min="0" max="1" step="any"></label>
         <label><span>Soil capacity (mm per land area)</span><input id="water-soil-capacity" type="number" min="1" max="1000" step="any"></label>
@@ -21,11 +22,12 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
         <label><span>Wind belt strength (m/s; negative reverses)</span><input id="water-wind" type="number" min="-100" max="100" step="any"></label>
         <label><span>Vapor mixing (m²/s)</span><input id="water-mixing" type="number" min="0" max="10000000" step="any"></label>
         <label><span>Surface travel speed (m/s)</span><input id="water-routing" type="number" min="0.01" max="10" step="any"></label>
-        <p class="planet-note">Illustrative seasonal trade/westerly/polar wind template, not pressure-driven circulation. Upwind sea and terrain shape initial rain; subsequent rain follows the water solver. Closed depressions store water before spilling. Ocean water depth sets a finite inventory.</p>
+        <p class="planet-note" data-info-for="water-wind">Upwind sea and terrain shape initial rain; subsequent rain follows the water solver. The seasonal wind template can be extended by Evolving wind &amp; ocean circulation. Closed depressions store water before spilling. Ocean water depth sets a finite inventory.</p>
       </details>
       <button id="water-reset" type="button">Reset temperature &amp; water</button>
-      <p class="planet-note">Enabling water or changing its parameters restarts both environmental histories at the current time. Terrain painting, physical edits and manual time edits also restart them. Your terrain is preserved.</p>`;
+      <p class="planet-note" data-info-for="water-reset">Enabling water or changing its parameters restarts both environmental histories at the current time. Terrain painting, physical edits and manual time edits also restart them. Your terrain is preserved.</p>`;
     root.append(panel);
+    installInfoNotes(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
     const enabled=el<HTMLInputElement>('water-enabled');
     enabled.addEventListener('change',()=>change(()=>{

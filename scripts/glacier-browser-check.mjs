@@ -12,7 +12,7 @@ const save=async name=>{const wait=page.waitForEvent('download');wait.catch(()=>
 const capture=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
 const load=async data=>{await page.locator('#terrain-load').setInputFiles({name:'ice-world.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(data))});await page.waitForFunction(()=>/restored|failed/.test(document.querySelector('#terrain-file-status').textContent));await frames();return page.locator('#terrain-file-status').textContent();};
 try {
-    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?preview=glaciers');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor&preview=glaciers');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
     const original=await capture('original');await click('planet-generate-climate');await input('planet-albedo',.45);await click('environment-glaciers');await click('environment-terrain-water');
     assert.equal(await page.locator('#environment-glacier').getAttribute('data-active'),'true');assert.ok(Number(await page.locator('#environment-glacier').getAttribute('data-mass'))>0);
     const initial=await save('initial');await capture('initial');assert.ok(initial.runtime.state.water.landIceKgM2.some(v=>v>0));

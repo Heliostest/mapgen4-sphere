@@ -10,7 +10,7 @@ const input=async(id,value)=>{await page.locator(id.startsWith('slider-')?`#${id
 const capture=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
 const zero=async()=>{assert.equal(await page.locator('#planet-play').textContent(),'Play');assert.equal(Number(await page.locator('#thermal-age').getAttribute('data-days')),0);assert.equal(Number(await page.locator('#water-age').getAttribute('data-days')),0);};
 try {
-    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/embed.html?mode=editor');await page.waitForFunction(()=>document.querySelector('#terrain-generation')?.dataset.pending==='false');
     const original=await capture('original');
     assert.equal(await page.locator('#planet-layer option[value="surface"]').count(),1,'Natural surface layer is missing');
     await page.locator('#planet-generate-climate').click();await zero();assert.equal(await page.locator('#planet-layer').inputValue(),'surface');
