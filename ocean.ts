@@ -33,7 +33,9 @@ export class OceanTransport {
         const waterCapacity=4.2e6*m.config.oceanDepthM,flow=new Float64Array(this.faces.length),outgoing=new Float64Array(n);
         for(let l=0;l<this.loops.length;l++) {
             const loop=this.loops[l];
-            const wet=Math.min(...loop.cells.map(i=>(1-w.land[i])*Math.max(0,1-w.seaIceKgM2[i]/(917*.5*Math.max(1e-12,1-w.land[i])))));
+            // The global liquid reservoir supplies every wet surface column.
+            // Retain wind memory while empty, but no liquid can carry heat.
+            const wet=w.oceanGlobalKgM2>0?Math.min(...loop.cells.map(i=>(1-w.land[i])*Math.max(0,1-w.seaIceKgM2[i]/(917*.5*Math.max(1e-12,1-w.land[i]))))):0;
             const wind=loop.cells.reduce((sum,i)=>sum+w.windEastMps[i],0)/4;
             let circulation=strengthMps*Math.tanh(wind/5)*Math.sin(2*loop.latitude)*Math.sin(loop.longitude)*wet/4;
             if(this.dynamic) {
@@ -48,7 +50,10 @@ export class OceanTransport {
         }
         this.faces.forEach((e,k)=>{outgoing[flow[k]>=0?e.a:e.b]+=Math.abs(flow[k]);});
         let scale=1;
-        if(dt>0)for(let i=0;i<n;i++)if(outgoing[i]>0)scale=Math.min(scale,.45*m.capacity[i]/(dt*outgoing[i]));
+        // A paused/restored diagnostic still represents the next fixed-step
+        // transport, including its shared donor bound, without advancing memory.
+        const transportStepS=dt||Math.min(m.stepS,w.maxStepS);
+        for(let i=0;i<n;i++)if(outgoing[i]>0)scale=Math.min(scale,.45*m.capacity[i]/(transportStepS*outgoing[i]));
         this.eastMps.fill(0);this.northMps.fill(0);this.heatWm2.fill(0);
         this.faces.forEach((e,k)=>{
             const q=flow[k]*scale,donor=q>=0?e.a:e.b,heat=q*(m.temperatureK[donor]-273.15);

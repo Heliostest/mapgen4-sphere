@@ -11,10 +11,10 @@ import {generateClimate} from '../climate.ts';
 
 const grid=makeThermalGrid(8,4),n=grid.count;
 const near=(a:number,b:number,t=1e-5)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
-function setup() {
-    const land=new Float64Array(n),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,DEFAULT_THERMAL,land,0,grid);
+function setup(planet=DEFAULT_PLANET) {
+    const land=new Float64Array(n),m=new ThermalModel(planet,DEFAULT_ORBIT,DEFAULT_THERMAL,land,0,grid);
     m.temperatureK.fill(290);
-    const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,land,new Float64Array(n),m.temperatureK,{...DEFAULT_WATER,windMps:10});
+    const w=new WaterModel(grid,planet.radiusM,land,new Float64Array(n),m.temperatureK,{...DEFAULT_WATER,windMps:10});
     return {m,w};
 }
 test('Coriolis turns eastward perturbations south in the north, reverses with spin, and drag dissipates speed',()=>{
@@ -73,4 +73,89 @@ test('tiny-radius, fast retrograde winds stay bounded; fully frozen ocean carrie
     assert.ok([...sw.windEastMps,...sw.windNorthMps].every(v=>Number.isFinite(v)&&Math.abs(v)<=100));
     w.setWinds(Float64Array.from({length:n},(_,i)=>i<8?10:0),new Float64Array(n));w.seaIceKgM2.fill(917);m.temperatureK[0]=310;
     const before=m.temperatureK.slice(),o=new OceanTransport(m,w,true);o.step(86400,2);assert.deepEqual(m.temperatureK,before);assert.ok(o.eastMps.every(v=>v===0));
+});
+
+test('temperature forcing reverses Coriolis by hemisphere and spin and wraps the meridian',()=>{
+    const run=(retrograde=false,shift=0)=>{
+        const {m,w}=setup({...DEFAULT_PLANET,retrograde});
+        for(let i=0;i<n;i++)m.temperatureK[i]=290+20*Math.sin(2*Math.PI*((i%8+shift)%8)/8);
+        const a=new AtmosphericCirculation(m,w);a.step(1000,1000);return a;
+    };
+    const pro=run(),retro=run(true),shifted=run(false,1);
+    assert.ok(pro.eastMps[0]>0&&pro.northMps[0]<0,'Hot eastern neighbour drives eastward flow turned south in the north');
+    assert.ok(pro.eastMps[24]>0&&pro.northMps[24]>0,'Same forcing turns north in the south');
+    near(pro.eastMps[0],pro.eastMps[24],1e-12);near(pro.northMps[0],-pro.northMps[24],1e-12);
+    for(let i=0;i<n;i++){near(pro.eastMps[i],retro.eastMps[i],1e-12);near(pro.northMps[i],-retro.northMps[i],1e-12);const next=Math.floor(i/8)*8+(i%8+1)%8;near(shifted.eastMps[i],pro.eastMps[next],1e-12);near(shifted.northMps[i],pro.northMps[next],1e-12);}
+});
+
+test('unforced atmospheric memory decays faster over land without advancing at pause',()=>{
+    const {m,w}=setup();w.land.fill(1,n/2);const a=new AtmosphericCirculation(m,w);
+    a.restore({eastMps:new Float64Array(n).fill(2),northMps:new Float64Array(n)});
+    const saved=a.checkpoint();a.step(0,0);assert.deepEqual(a.checkpoint(),saved);
+    a.step(86400,86400);
+    near(Math.hypot(a.eastMps[0],a.northMps[0]),2*Math.exp(-.5),1e-12);
+    near(Math.hypot(a.eastMps[24],a.northMps[24]),2*Math.exp(-1.5),1e-12);
+});
+
+test('ocean memory has a five-day response and reverses gradually after wind reversal',()=>{
+    const {m,w}=setup(),o=new OceanTransport(m,w,true);
+    const u=Float64Array.from({length:n},(_,i)=>i<8?8:0),zero=new Float64Array(n);
+    w.setWinds(u,zero);o.step(5*86400,1);
+    const first=o.checkpoint()!.circulationMps[0],target=Math.tanh(1)/4;
+    near(first,target*(1-Math.exp(-1)),1e-12);
+    w.setWinds(zero,zero);o.step(86400,1);near(o.checkpoint()!.circulationMps[0],first*Math.exp(-.2),1e-12);
+    w.setWinds(u.map(v=>-v),zero);const before=o.checkpoint()!.circulationMps[0];o.step(86400,1);
+    near(o.checkpoint()!.circulationMps[0],-target+(before+target)*Math.exp(-.2),1e-12);
+    assert.ok(o.checkpoint()!.circulationMps[0]>0,'One day of reversed wind retains positive current memory');
+    o.step(5*86400,1);assert.ok(o.checkpoint()!.circulationMps[0]<0);
+});
+
+test('one dry or frozen cell blocks its incident heat transfers while wet closed loops keep heat',()=>{
+    for(const barrier of ['land','ice']){
+        const {m,w}=setup(),o=new OceanTransport(m,w,true),cell=9;
+        if(barrier==='land')w.land[cell]=1;else w.seaIceKgM2[cell]=917*.5;
+        m.temperatureK[cell]=340;m.temperatureK[20]=310;
+        w.setWinds(Float64Array.from({length:n},(_,i)=>i<8?10:0),new Float64Array(n));
+        const heat=m.energy();for(let s=0;s<20;s++)o.step(86400,1);
+        assert.equal(m.temperatureK[cell],340);assert.equal(o.heatWm2[cell],0);assert.equal(o.eastMps[cell],0);assert.equal(o.northMps[cell],0);
+        assert.ok(o.eastMps.some(v=>v!==0));near(m.energy(),heat,1e-5);
+    }
+});
+
+test('an empty liquid ocean applies no current or heat transport but retains dynamic memory',()=>{
+    for(const dynamic of [false,true]){
+        const {m,w}=setup(),o=new OceanTransport(m,w,dynamic);
+        m.temperatureK[0]=310;w.setWinds(Float64Array.from({length:n},(_,i)=>i<8?10:0),new Float64Array(n));
+        o.step(86400,1);w.oceanGlobalKgM2=0;
+        const before=m.temperatureK.slice(),heat=m.energy();o.step(86400,1);
+        assert.deepEqual(m.temperatureK,before,'No liquid water can carry sensible heat');
+        assert.ok(o.eastMps.every(v=>v===0)&&o.northMps.every(v=>v===0));near(m.energy(),heat);
+        if(dynamic)assert.ok(o.checkpoint()!.circulationMps.some(v=>v!==0),'Wind-driven memory may persist behind a dry barrier');
+        w.oceanGlobalKgM2=100;o.step(0,1);assert.ok(o.eastMps.some(v=>v!==0),'Liquid availability reopens the existing circulation');
+    }
+});
+
+test('paused and restored ocean diagnostics use the same stable transport bound as a physical step',()=>{
+    const small={...DEFAULT_PLANET,radiusM:1000},land=new Float64Array(n);
+    const m=new ThermalModel(small,DEFAULT_ORBIT,{...DEFAULT_THERMAL,diffusion:0},land,0,grid);
+    m.temperatureK.fill(290);
+    const w=new WaterModel(grid,small.radiusM,land,new Float64Array(n),m.temperatureK,{...DEFAULT_WATER,windMps:0,moistureDiffusivityM2s:0,routingSpeedMps:.01});
+    const o=new OceanTransport(m,w,true),memory=new Float64Array(8*3);memory[8]=.5;
+    o.restore({circulationMps:memory},2);
+    const dt=Math.min(m.stepS,w.maxStepS);o.step(dt,2);
+    const applied=o.eastMps.slice(),north=o.northMps.slice();assert.ok(Math.max(...applied)>0);
+    o.step(0,2);assert.deepEqual(o.eastMps,applied);assert.deepEqual(o.northMps,north);
+    const restored=new OceanTransport(m,w,true);restored.restore(o.checkpoint()!,2);restored.step(0,2);
+    assert.deepEqual(restored.eastMps,applied);assert.deepEqual(restored.northMps,north);
+});
+
+test('a generated zero-inventory ocean develops wind memory without applied ocean currents',()=>{
+    const rt=new ThermalRuntime(grid);rt.enabled=rt.waterEnabled=true;rt.environmentConfig.dynamicCirculation=true;
+    rt.waterConfig.initialOceanDepthM=0;rt.waterConfig.evaporationFraction=0;
+    rt.setTerrain(new Float64Array(n));rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);
+    const dt=rt.model!.stepS;for(let steps=32;steps<=320;steps+=32)rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,steps*dt,(steps-32)*dt);
+    assert.equal(rt.water!.oceanGlobalKgM2,0);assert.equal(rt.environment!.diagnostics().maxCurrentMps,0);
+    assert.ok(rt.environment!.ocean.checkpoint()!.circulationMps.some(v=>Math.abs(v)>1e-6));
+    const saved=rt.snapshot(),restored=ThermalRuntime.fromSnapshot(saved,DEFAULT_PLANET,DEFAULT_ORBIT);
+    assert.deepEqual(restored.snapshot(),saved);assert.equal(restored.environment!.diagnostics().maxCurrentMps,0);
 });

@@ -85,9 +85,13 @@ export const planet_fragment=`
             vec2 uv=vec2(0.5+atan(body.x,body.z)/6.28318530718,(1.0-body.y)*0.5);
             if(u_planet_layer==3) return temperature_color(texture(u_temperature,uv).r);
             if(u_planet_layer==8) {
-                vec2 cells=vec2(48.0,24.0),center=(floor(uv*cells)+0.5)/cells;
+                vec2 cells=vec2(textureSize(u_temperature,0)),center=(min(floor(uv*cells),cells-1.0)+0.5)/cells;
                 vec2 wind=(texture(u_temperature,center).gb*255.0-128.0)/1.27;
-                float speed=length(wind);vec2 d=vec2(wind.x,-wind.y)/max(speed,0.001),p=fract(uv*cells)-0.5;
+                float speed=length(wind),sinlat=1.0-2.0*center.y,coslat=sqrt(max(0.000001,1.0-sinlat*sinlat));
+                // East/north are physical tangent velocities. Convert to the
+                // equal-area cell metric before orienting the surface glyph.
+                vec2 tangent=vec2(wind.x*cells.x/(6.28318530718*coslat),-wind.y*cells.y*coslat/2.0);
+                vec2 d=tangent/max(length(tangent),0.001),p=fract(uv*cells)-0.5;
                 p=vec2(dot(p,d),dot(p,vec2(-d.y,d.x)));
                 float line=min(wind_segment(p,vec2(-0.28,0.0),vec2(0.28,0.0)),min(wind_segment(p,vec2(0.28,0.0),vec2(0.08,0.15)),wind_segment(p,vec2(0.28,0.0),vec2(0.08,-0.15))));
                 vec3 background=mix(vec3(0.08,0.16,0.30),vec3(0.12,0.65,0.55),clamp(speed/30.0,0.0,1.0));

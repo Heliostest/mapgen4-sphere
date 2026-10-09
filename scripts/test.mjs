@@ -2,6 +2,8 @@ import {build} from 'esbuild';
 import {spawnSync} from 'node:child_process';
 import {mkdir} from 'node:fs/promises';
 await mkdir('build/tests', {recursive: true});
+await build({entryPoints: ['tests/circulation-evidence.ts'], bundle: true, format: 'esm', outfile: 'build/tests/circulation-evidence.js'});
+await build({entryPoints: ['tests/gpu-wind.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-wind.js'});
 await build({entryPoints: ['tests/glacier-render.ts'], bundle: true, format: 'esm', outfile: 'build/tests/glacier-render.js'});
 await build({entryPoints: ['tests/live-planet.ts'], bundle: true, format: 'esm', outfile: 'build/tests/live-planet.js'});
 await build({entryPoints: ['tests/weather-render.ts'], bundle: true, format: 'esm', outfile: 'build/tests/weather-render.js'});

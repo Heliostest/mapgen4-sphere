@@ -88,7 +88,10 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
             const max=Math.max(.0001,...s.east.map((v,i)=>Math.hypot(v,s.north[i])));ctx.strokeStyle='#74f1ef';ctx.lineWidth=2;
             for(let j=3;j<s.height-2;j+=4)for(let x=2;x<s.width;x+=4) {
                 const i=j*s.width+x,east=s.east[i],north=s.north[i],speed=Math.hypot(east,north);if(s.land[i]>.5||speed<max*.01)continue;
-                const px=(x+.5)/s.width*canvas.width,py=j/(s.height-1)*canvas.height,len=8+14*Math.sqrt(speed/max),dx=east/speed*len,dy=-north/speed*len;
+                const px=(x+.5)/s.width*canvas.width,py=j/(s.height-1)*canvas.height,len=8+14*Math.sqrt(speed/max);
+                // The comparison is equirectangular: an eastward surface arc
+                // spans more longitude near the poles than a northward arc.
+                const coslat=Math.sin(Math.PI*j/(s.height-1)),vx=east*canvas.width/(2*Math.PI*coslat),vy=-north*canvas.height/Math.PI,norm=Math.hypot(vx,vy),dx=vx/norm*len,dy=vy/norm*len;
                 ctx.beginPath();ctx.moveTo(px-dx/2,py-dy/2);ctx.lineTo(px+dx/2,py+dy/2);ctx.lineTo(px+dx/2-dx*.3+dy*.2,py+dy/2-dy*.3-dx*.2);ctx.moveTo(px+dx/2,py+dy/2);ctx.lineTo(px+dx/2-dx*.3-dy*.2,py+dy/2-dy*.3+dx*.2);ctx.stroke();
             }
         }
