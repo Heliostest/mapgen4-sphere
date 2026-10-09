@@ -36,12 +36,19 @@ function documentFixture() {
     const rt=runtime();advance(rt,2);const baseline=captureEnvironment(rt)!;
     return {format:'mapgen4-sphere-simulation' as const,version:1 as const,
         terrain:{format:'mapgen4-sphere-terrain' as const,version:1 as const,mesh:identity,constraints:{size:8,painted:false,values:Array(64).fill(0)},offsets:null,report:null,parameters:defaultTerrainParameters(),settings:{planet,orbit,timeS:rt.model!.timeS,camera:'surface' as const}},
-        runtime:rt.snapshot(),view:{speed:86400,layer:'surface' as const},comparison:{baseline,history:[{time:baseline.ageDays,metrics:baseline.metrics}]}};
+        runtime:rt.snapshot(),view:{speed:86400,layer:'surface' as const,weather:false},comparison:{baseline,history:[{time:baseline.ageDays,metrics:baseline.metrics}]}};
 }
 test('complete document preserves comparison baseline and all runtime state',()=>{
     const d=documentFixture(),decoded=decodeSimulationDocument(encodeSimulationDocument(d),identity,8);
     assert.deepEqual(decoded,d);decoded.runtime.state!.thermal.temperatureK[0]+=1;
     assert.notEqual(decoded.runtime.state!.thermal.temperatureK[0],d.runtime.state!.thermal.temperatureK[0]);
+});
+test('weather view preference roundtrips, defaults off for old saves, and rejects invalid switches and snowfall',()=>{
+    const d=documentFixture();d.view.weather=true;const restored=decodeSimulationDocument(encodeSimulationDocument(d),identity,8);assert.equal(restored.view.weather,true);
+    const old=JSON.parse(encodeSimulationDocument(d));delete old.view.weather;delete old.runtime.state.water.snowfallKgM2S;
+    const legacy=decodeSimulationDocument(JSON.stringify(old),identity,8);assert.equal(legacy.view.weather,false);assert.equal(legacy.runtime.state!.water!.snowfallKgM2S,null);
+    old.view.weather='yes';assert.throws(()=>decodeSimulationDocument(JSON.stringify(old),identity,8));
+    const bad=documentFixture();bad.runtime.state!.water!.snowfallKgM2S=new Float64Array(32).fill(99);assert.throws(()=>encodeSimulationDocument(bad),/Snowfall/);
 });
 test('older complete v1 worlds without optional terrain routing retain coarse mode',()=>{
     const d=JSON.parse(encodeSimulationDocument(documentFixture()));delete d.runtime.environmentConfig.terrainWater;delete d.runtime.state.water.routing;

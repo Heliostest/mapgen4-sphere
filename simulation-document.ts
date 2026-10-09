@@ -1,5 +1,5 @@
 import {decodeTerrainDocument,type TerrainDocument,type MeshIdentity} from './terrain-document.ts';
-import {decodeRuntimeState,record,scalar,field,type RuntimeState} from './runtime-state.ts';
+import {decodeRuntimeState,record,scalar,field,boolean,type RuntimeState} from './runtime-state.ts';
 import {ThermalRuntime} from './thermal-runtime.ts';
 import {METRICS,type EnvironmentSnapshot,type EnvironmentMetrics,type ComparisonState} from './environment-comparison.ts';
 import {SURFACE_WIDTH,SURFACE_HEIGHT} from './surface-grid.ts';
@@ -8,7 +8,7 @@ import type {PlanetLayer} from './planet-render.ts';
 export const MAX_SIMULATION_FILE_BYTES=32*1024*1024;
 export interface SimulationDocument {
     format:'mapgen4-sphere-simulation';version:1;terrain:TerrainDocument;runtime:RuntimeState;
-    view:{speed:number;layer:PlanetLayer};comparison:ComparisonState;
+    view:{speed:number;layer:PlanetLayer;weather:boolean};comparison:ComparisonState;
 }
 function text(v:unknown,name:string,max:number) {if(typeof v!=='string'||v.length>max)throw new Error(`Invalid ${name}`);return v;}
 function metrics(value:unknown):EnvironmentMetrics {
@@ -39,7 +39,7 @@ export function decodeSimulationDocument(source:string,expected:MeshIdentity,con
     // Constructors check physical compatibility and the stability-limited step
     // on an independent runtime; no live object is involved in decoding.
     ThermalRuntime.fromSnapshot(runtime,terrain.settings.planet,terrain.settings.orbit);
-    return {format:'mapgen4-sphere-simulation',version:1,terrain,runtime,view:{speed,layer:v.layer as PlanetLayer},comparison:{baseline:baseline(c.baseline),history}};
+    return {format:'mapgen4-sphere-simulation',version:1,terrain,runtime,view:{speed,layer:v.layer as PlanetLayer,weather:v.weather===undefined?false:boolean(v.weather)},comparison:{baseline:baseline(c.baseline),history}};
 }
 export function encodeSimulationDocument(document:SimulationDocument):string {
     const source=JSON.stringify(document,(_,v)=>ArrayBuffer.isView(v)?Array.from(v as Float64Array):v);

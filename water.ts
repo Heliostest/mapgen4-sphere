@@ -18,6 +18,7 @@ const DAY=86400,WATER_DENSITY=1000;
 export const VAPORIZATION_J_KG=2.45e6,FUSION_J_KG=334000;
 export interface WaterCoupling {heatJm2:Float64Array;landEvaporation:Float64Array;iceCover:Float64Array;}
 export interface WaterCheckpoint {
+    snowfallKgM2S:Float64Array|null;
     atmosphereKgM2:Float64Array;soilKgM2:Float64Array;surfaceKgM2:Float64Array;
     precipitationKgM2S:Float64Array;evaporationKgM2S:Float64Array;dischargeM3S:Float64Array;
     snowKgM2:Float64Array;seaIceKgM2:Float64Array;meltKgM2S:Float64Array;
@@ -30,6 +31,7 @@ export interface WaterCheckpoint {
 /** Conservative water reservoirs. All columns are per WHOLE cell area. Ocean storage is
  * per global area, so each local transfer contributes 1/N to that reservoir. */
 export class WaterModel {
+    snowfallKgM2S:Float64Array|null=null;
     glacier:GlacierModel|null=null;
     private pendingGlacier:GlacierCheckpoint|null=null;
     attachGlacier(gravityMps2:number) {this.glacier=new GlacierModel(this,gravityMps2);if(this.pendingGlacier){this.glacier.restore(this.pendingGlacier);this.pendingGlacier=null;}}
@@ -190,6 +192,7 @@ export class WaterModel {
         finiteInRange(dt,'water time step',Number.MIN_VALUE,this.maxStepS*(1+1e-10));
         if(temperatureK.length!==this.grid.count||absorbedWm2.length!==this.grid.count)throw new RangeError('Water forcing grid mismatch');
         const n=this.grid.count,{config,land}=this;
+        this.snowfallKgM2S??=new Float64Array(n);
         let oceanRequest=0;
         for(let i=0;i<n;i++) {
             const t=temperatureK[i],q=absorbedWm2[i];
@@ -224,6 +227,7 @@ export class WaterModel {
             this.atmosphereKgM2[i]-=rain;this.precipitationKgM2S[i]=rain/dt;
             this.oceanGlobalKgM2+=rain*(1-land[i])/n;
             const snow=coupling&&temperatureK[i]<273.15?rain*land[i]:0;
+            this.snowfallKgM2S[i]=snow/dt;
             this.snowKgM2[i]+=snow;
             if(coupling)coupling.heatJm2[i]=VAPORIZATION_J_KG*(rain-this.evaporationKgM2S[i]*dt)+FUSION_J_KG*snow;
             const liquidRain=rain*land[i]-snow;
@@ -266,12 +270,13 @@ export class WaterModel {
         for(let i=0;i<n;i++)this.surfaceKgM2[i]+=this.delta[i];
     }
     checkpoint():WaterCheckpoint {
-        return {atmosphereKgM2:this.atmosphereKgM2.slice(),soilKgM2:this.soilKgM2.slice(),surfaceKgM2:this.surfaceKgM2.slice(),
+        return {snowfallKgM2S:this.snowfallKgM2S?.slice()??null,atmosphereKgM2:this.atmosphereKgM2.slice(),soilKgM2:this.soilKgM2.slice(),surfaceKgM2:this.surfaceKgM2.slice(),
             precipitationKgM2S:this.precipitationKgM2S.slice(),evaporationKgM2S:this.evaporationKgM2S.slice(),dischargeM3S:this.dischargeM3S.slice(),
             snowKgM2:this.snowKgM2.slice(),seaIceKgM2:this.seaIceKgM2.slice(),meltKgM2S:this.meltKgM2S.slice(),
             oceanGlobalKgM2:this.oceanGlobalKgM2,elapsedS:this.elapsedS,windEastMps:this.windEastMps.slice(),windNorthMps:this.windNorthMps.slice(),routing:this.routing?.checkpoint()??structuredClone(this.pendingRouting),landIceKgM2:this.landIceKgM2.slice(),landIceCorrection:this.landIceCorrection.slice(),glacier:this.glacier?.checkpoint()??structuredClone(this.pendingGlacier)};
     }
     restore(state:WaterCheckpoint) {
+        this.snowfallKgM2S=state.snowfallKgM2S?.slice()??null;
         for(const key of ['atmosphereKgM2','soilKgM2','surfaceKgM2','precipitationKgM2S','evaporationKgM2S','dischargeM3S','snowKgM2','seaIceKgM2','meltKgM2S'] as const)this[key].set(state[key]);
         this.oceanGlobalKgM2=state.oceanGlobalKgM2;this.elapsedS=state.elapsedS;
         this.setWinds(state.windEastMps,state.windNorthMps);

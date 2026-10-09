@@ -1,15 +1,19 @@
 import type {ThermalRuntime} from './thermal-runtime.ts';
 import {captureEnvironment,environmentMetrics,comparisonCSV,METRICS,type EnvironmentSnapshot,type EnvironmentMetrics,type ComparisonState} from './environment-comparison.ts';
+import {weatherFields} from './weather.ts';
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
 const routingNote='Optional mesh routing uses the same surface-water inventory. Changing mode restarts climate. Natural surface shows actual-flow river widths (exaggerated for readability), shorelines and wet ground. Original map retains artistic rivers. Reservoir routing, not a flood-depth forecast.';
 
-export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,change:(action:()=>void)=>void,clock:{togglePlay:()=>void;isPlaying:()=>boolean}) {
+export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,change:(action:()=>void)=>void,clock:{togglePlay:()=>void;isPlaying:()=>boolean},weather:{get:()=>boolean;set:(value:boolean)=>void}) {
     const panel=document.createElement('details');panel.id='environment-panel';panel.innerHTML=`<summary>Ice, ocean &amp; vegetation</summary>
       <p class="planet-note">Generate climate initializes all systems immediately. Play evolves frozen water, latent heat, currents and vegetation. Comparison keeps a captured baseline across parameter edits.</p>
       <label><span>Ocean circulation strength (m/s)</span><input id="environment-current" type="number" min="0" max="2" step="0.05" value="0.3"></label>
       <label><input id="environment-circulation" type="checkbox"> Evolving wind &amp; ocean circulation</label>
       <output class="planet-note" id="environment-wind-state"></output>
       <p class="planet-note">Temperature contrasts drive bounded wind perturbations with rotation and surface drag. Closed ocean currents respond to the actual winds over five days. Changing mode restarts climate. Wind and ocean-current maps show these vectors; pressure and deep ocean are not simulated.</p>
+      <label><input id="environment-weather" type="checkbox"> Clouds &amp; precipitation on Natural surface</label>
+      <output class="planet-note" id="environment-weather-state"></output>
+      <p class="planet-note">White cloud shading follows column saturation (70–100%); blue strokes show liquid rain along the wind, white crosses show land snowfall. Precipitation intensity uses a logarithmic 0–50 mm/day scale. These are surface overlays derived from current water fields, not 3D clouds. They evolve with Play and freeze on Pause. Display only: no climate reset or cloud radiation feedback.</p>
       <label><input id="environment-vegetation" type="checkbox" checked> Evolve vegetation &amp; feedback</label>
       <label><input id="environment-albedo" type="checkbox" checked> Ice / snow albedo feedback</label>
       <label><input id="environment-glaciers" type="checkbox"> Grounded ice flow &amp; glacial erosion</label>
@@ -24,6 +28,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
       <p class="planet-note">Stores use global mm water equivalent. Snowmelt enters surface outflow; capture that water snapshot in Erosion to use it. Ocean heat transport stays inside closed wet-cell loops. Evolving mode responds to wind; classic mode uses prescribed gyres. Vegetation responds over years; no species or carbon cycle. Use Download complete simulation to keep these states, switches and comparison history.</p>`;
     root.append(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
+    el<HTMLInputElement>('environment-weather').addEventListener('change',()=>change(()=>weather.set(el<HTMLInputElement>('environment-weather').checked)));
     el<HTMLInputElement>('environment-current').addEventListener('change',event=>{
         const input=event.target as HTMLInputElement;if(!input.checkValidity()||!Number.isFinite(input.valueAsNumber)){input.setAttribute('aria-invalid','true');return;}
         input.removeAttribute('aria-invalid');change(()=>{rt.environmentConfig.oceanStrengthMps=input.valueAsNumber;rt.invalidate();});
@@ -120,6 +125,10 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         get('environment-play').textContent=clock.isPlaying()?'Pause':'Play';
         const d=environmentMetrics(rt);el<HTMLButtonElement>('environment-compare').disabled=!d;
         const glacier=rt.water?.glacier,gd=glacier?.diagnostics(),glacierOutput=el('environment-glacier');
+        const weatherOutput=el('environment-weather-state');el<HTMLInputElement>('environment-weather').disabled=!rt.water;
+        weatherOutput.dataset.active=String(weather.get()&&!!rt.water);
+        if(weather.get()&&rt.model&&rt.water){const f=weatherFields(rt.model,rt.water),mean=(a:Float64Array)=>a.reduce((sum,v)=>sum+v,0)/a.length;weatherOutput.textContent=`Cloud display ${Math.round(100*mean(f.cloud))}% · liquid rain ${mean(f.rainMmDay).toFixed(3)} / land snowfall ${mean(f.snowMmDay).toFixed(3)} global mm/day${rt.model.steps===0?' · generated moisture; no integrated rain yet':rt.water.snowfallKgM2S===null?' · legacy precipitation phase unavailable until next step':''}`;}
+        else weatherOutput.textContent='Weather overlay off · enable water, then select Natural surface';
         const atmosphere=rt.environment?.atmosphere,windOutput=el('environment-wind-state');
         let maxWind=0,perturbation=0;
         if(rt.water)for(let i=0;i<rt.grid.count;i++){maxWind=Math.max(maxWind,Math.hypot(rt.water.windEastMps[i],rt.water.windNorthMps[i]));if(atmosphere)perturbation=Math.max(perturbation,Math.hypot(atmosphere.eastMps[i],atmosphere.northMps[i]));}
@@ -138,5 +147,5 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         if(model!==rt.model){model=rt.model;history=[];lastTime=-1;}
         if(d&&rt.model&&rt.model.timeS!==lastTime){lastTime=rt.model.timeS;const age=(lastTime-rt.model.epochS)/86400;history=history.filter(h=>h.time<age);history.push({time:age,metrics:d});if(history.length>240)history=history.filter((_,i)=>i%2===0);if(!baseline)baseline=captureEnvironment(rt);if(dialog.open){current=captureEnvironment(rt);render();}}
         if(dialog.open&&!d)render();
-    },restoreInputs(){el<HTMLInputElement>('environment-circulation').checked=!!rt.environmentConfig.dynamicCirculation;el<HTMLInputElement>('environment-current').value=String(rt.environmentConfig.oceanStrengthMps);el<HTMLInputElement>('environment-vegetation').checked=rt.environmentConfig.vegetation;el<HTMLInputElement>('environment-albedo').checked=rt.environmentConfig.iceAlbedo;el<HTMLInputElement>('environment-terrain-water').checked=!!rt.environmentConfig.terrainWater;el<HTMLInputElement>('environment-glaciers').checked=!!rt.environmentConfig.glaciers;}};
+    },restoreInputs(){el<HTMLInputElement>('environment-weather').checked=weather.get();el<HTMLInputElement>('environment-circulation').checked=!!rt.environmentConfig.dynamicCirculation;el<HTMLInputElement>('environment-current').value=String(rt.environmentConfig.oceanStrengthMps);el<HTMLInputElement>('environment-vegetation').checked=rt.environmentConfig.vegetation;el<HTMLInputElement>('environment-albedo').checked=rt.environmentConfig.iceAlbedo;el<HTMLInputElement>('environment-terrain-water').checked=!!rt.environmentConfig.terrainWater;el<HTMLInputElement>('environment-glaciers').checked=!!rt.environmentConfig.glaciers;}};
 }

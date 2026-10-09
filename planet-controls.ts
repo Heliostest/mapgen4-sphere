@@ -18,6 +18,8 @@ import {BIOMES} from './surface.ts';
 import type {SimulationDocument} from './simulation-document.ts';
 import type {SurfaceTerrain} from './surface-grid.ts';
 import {terrainWaterView} from './terrain-water-view.ts';
+import {weatherView,weatherFields} from './weather.ts';
+import {thermalCell} from './thermal.ts';
 
 type Sample={uv:[number,number];elevation:number};
 type Options={
@@ -37,6 +39,7 @@ type Options={
 export function installPlanetControls(options:Options) {
     let planet:PlanetConfig={...DEFAULT_PLANET},orbit:OrbitConfig={...DEFAULT_ORBIT};
     let layer:PlanetLayer='original',camera:PlanetCamera='surface',inspecting=false;
+    let weatherVisible=false;
     let probe:Sample|null=null;
     const clock=new SimulationClock();
     const thermal=new ThermalRuntime();
@@ -167,7 +170,7 @@ export function installPlanetControls(options:Options) {
         if(!thermal.waterEnabled&&(layer==='surface'||waterLayer())){layer='original';layerSelect.value=layer;}
         emit();
     });
-    const environmentPanel=installEnvironmentPanel(root,thermal,action=>{pause(false);sendView();action();emit();}, {togglePlay:()=>play.click(),isPlaying:()=>clock.playing});
+    const environmentPanel=installEnvironmentPanel(root,thermal,action=>{pause(false);sendView();action();emit();}, {togglePlay:()=>play.click(),isPlaying:()=>clock.playing}, {get:()=>weatherVisible,set:value=>{weatherVisible=value;}});
     const compareShortcut=button('planet-compare-environment','Compare environment…',()=>root.querySelector<HTMLButtonElement>('#environment-compare')!.click());
     root.insertBefore(compareShortcut,play);
     const geomorphPanel=installGeomorphPanel(root,geomorph,thermal,action=>{
@@ -240,6 +243,7 @@ export function installPlanetControls(options:Options) {
                 ?` · potential cover: ${BIOMES[cover.biome].label} · vegetation ${(100*cover.vegetationFraction).toFixed(0)}% · snow ${(100*cover.snowFraction).toFixed(0)}% · local surface estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C · annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
                 :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}% · local ice / water estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C`;
             const water=thermal.sampleWater(...probe.uv);
+            if(weatherVisible&&thermal.model&&thermal.water){const f=weatherFields(thermal.model,thermal.water),k=thermalCell(thermal.grid,...probe.uv);probeOutput.textContent+=` · column saturation proxy ${(100*f.saturation[k]).toFixed(0)}% · cloud display ${(100*f.cloud[k]).toFixed(0)}% · liquid rain ${f.rainMmDay[k].toFixed(2)} / land snowfall ${f.snowMmDay[k].toFixed(2)} mm/day`;}
             if(water)probeOutput.textContent+=` · rain ${water.rainMmDay.toFixed(2)} mm/day · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · coarse-cell land snow ${water.snowMm.toFixed(1)} mm / melt ${water.meltMmDay.toFixed(2)} mm/day / ocean ice ${water.iceM.toFixed(2)} m · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
             const erosion=geomorph.sample(...probe.uv);
             const fineWater=thermal.sampleTerrainWater(...probe.uv);
@@ -257,6 +261,7 @@ export function installPlanetControls(options:Options) {
         view.water=thermal.waterTexture;
         view.surface=thermal.surfaceTexture;
         view.terrainWater=layer==='surface'?terrainWaterView(thermal):null;
+        view.weather=weatherVisible&&layer==='surface'?weatherView(thermal):null;
         const previousGeomorph=geomorph.model;
         geomorph.reconcile(thermal);view.geomorph=geomorph.view;
         if(previousGeomorph&&!geomorph.model){probe=null;probeOutput.textContent='Inspect a surface point to read its location and solar energy.';}
@@ -283,7 +288,7 @@ export function installPlanetControls(options:Options) {
     requestAnimationFrame(frame);emit();
     return {
         pause,refresh,isInspecting:()=>inspecting,
-        simulation:()=>({runtime:thermal.snapshot(),view:{speed:clock.speed,layer:layer==='erosion'?'original' as const:layer},comparison:environmentPanel.snapshot()}),
+        simulation:()=>({runtime:thermal.snapshot(),view:{speed:clock.speed,layer:layer==='erosion'?'original' as const:layer,weather:weatherVisible},comparison:environmentPanel.snapshot()}),
         prepareSimulation:(d:SimulationDocument,terrain:SurfaceTerrain)=>{
             const candidate=ThermalRuntime.fromSnapshot(d.runtime,d.terrain.settings.planet,d.terrain.settings.orbit);
             if(candidate.grid.width!==thermal.grid.width||candidate.grid.height!==thermal.grid.height)throw new Error('Unsupported application climate resolution');
@@ -294,7 +299,7 @@ export function installPlanetControls(options:Options) {
             clock.setPlaying(false,performance.now());
             const s=d.terrain.settings;planet={...s.planet};orbit={...s.orbit};camera=s.camera;
             clock.seek(s.timeS,performance.now());clock.setSpeed(d.view.speed,performance.now());
-            layer=d.view.layer;layerSelect.value=layer;cameraSelect.value=camera;
+            layer=d.view.layer;weatherVisible=d.view.weather;layerSelect.value=layer;cameraSelect.value=camera;
             (root.querySelector('#planet-speed') as HTMLSelectElement).value=String(clock.speed);
             inspecting=false;updateInspectButton();probe=null;retro.checked=planet.retrograde;
             probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
@@ -306,7 +311,7 @@ export function installPlanetControls(options:Options) {
         settings:():PhysicalSettings=>({planet:{...planet},orbit:{...orbit},timeS:clock.timeS,camera}),
         restoreSettings:(settings:PhysicalSettings)=>{
             pause(false);planet={...settings.planet};orbit={...settings.orbit};camera=settings.camera;
-            clock.seek(settings.timeS,performance.now());layer='original';layerSelect.value=layer;cameraSelect.value=camera;
+            clock.seek(settings.timeS,performance.now());layer='original';weatherVisible=false;layerSelect.value=layer;cameraSelect.value=camera;
             inspecting=false;updateInspectButton();retro.checked=planet.retrograde;probe=null;
             probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
             thermal.enabled=thermal.waterEnabled=false;thermal.config={...DEFAULT_THERMAL};thermal.waterConfig={...DEFAULT_WATER};thermal.environmentConfig={...DEFAULT_ENVIRONMENT};thermal.invalidate();

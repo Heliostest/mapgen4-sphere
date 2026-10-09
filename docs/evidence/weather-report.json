@@ -1,0 +1,59 @@
+{
+  "checks": [
+    "Moisture clouds are visible at generation; pause is exact and toggling off restores pixels without changing any physical state",
+    "Actual precipitation, wind and moisture evolve; full save/load reconstructs exact weather pixels and 98-day resumed fields with conserved budgets",
+    "Invalid display options preserve the world; Original remains exact, mobile fits and old saves safely suppress unknown precipitation phase",
+    "Terrain routing, glaciers, evolving circulation and weather run together with closed budgets and an exact full-world/pixel restore",
+    "Production GPU fixture verifies dry restoration, humidity cloud mask, precipitation gating, changed wind orientation and distinct snowfall"
+  ],
+  "errors": [],
+  "budgets": {
+    "water": -5.820766091346741e-9,
+    "energy": 0.0000012665987014770508
+  },
+  "coupledBudgets": {
+    "water": 9.778887033462524e-9,
+    "energy": 0.000026401132345199585,
+    "solid": 1.2129087964388556e-29
+  },
+  "diagnostics": "Cloud display 25% · liquid rain 0.870 / land snowfall 0.047 global mm/day",
+  "steps": [
+    3832,
+    7665
+  ],
+  "gpu": {
+    "status": "PASS",
+    "counts": [
+      {
+        "label": "Dry",
+        "blue": 0,
+        "white": 0
+      },
+      {
+        "label": "Humid cloud",
+        "blue": 0,
+        "white": 0
+      },
+      {
+        "label": "Rain / east wind",
+        "blue": 93956,
+        "white": 0
+      },
+      {
+        "label": "Rain / north wind",
+        "blue": 94077,
+        "white": 0
+      },
+      {
+        "label": "Land snowfall",
+        "blue": 0,
+        "white": 124660
+      },
+      {
+        "label": "Dry again",
+        "blue": 0,
+        "white": 0
+      }
+    ]
+  }
+}

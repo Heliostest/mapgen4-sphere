@@ -489,7 +489,7 @@ const frag_drape = `
         vec3 body_normal=vec3(cos(lat)*sin(lon),sin(lat),cos(lat)*cos(lon));
         biome_color=surface_color(biome_color,body_normal,v_em.x);
         vec3 base_color=mix(biome_color, water_color.rgb, water_color.a);
-        out_fragcolor = vec4(planet_color(base_color,body_normal) * light / outline, 1);
+        out_fragcolor = vec4(weather_color(planet_color(base_color,body_normal) * light / outline,body_normal), 1);
     }`;
 
 const vert_final = `
@@ -585,6 +585,8 @@ export default class Renderer {
     private geomorphPixels:Uint8Array|null=null;
     texture_surface: Texture;
     private surfacePixels:Uint8Array|null=null;
+    texture_weather:Texture;
+    private weatherPixels:Uint8Array|null=null;
     private activeTerrainWater:TerrainWaterView|null=null;
     private originalRivers=new Float32Array(0);
     private buffer_lakes:Buffer;
@@ -659,6 +661,8 @@ export default class Renderer {
         this.texture_surface = this.webgl.createTexture({width:SURFACE_WIDTH,height:SURFACE_HEIGHT,filter:'linear'});
         this.texture_surface.bind();
         this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
+        this.texture_weather=this.webgl.createTexture({width:SURFACE_WIDTH,height:SURFACE_HEIGHT,filter:'linear'});
+        this.texture_weather.bind();this.webgl.gl.texParameteri(this.webgl.gl.TEXTURE_2D,this.webgl.gl.TEXTURE_WRAP_S,this.webgl.gl.REPEAT);
 
         this.fbo_land  = this.webgl.createFramebuffer(2*fbo_texture_size, fbo_texture_size, {depth: false, internalFormat: this.webgl.gl.R16F, filter: 'linear'});
         // Radial outline taps move by fractional texels. Nearest sampling
@@ -721,6 +725,14 @@ export default class Renderer {
 
     updatePlanet(view:PlanetView) {
         this.planetView=view;
+        if(view.weather&&view.weather.pixels!==this.weatherPixels) {
+            const {gl}=this.webgl,t=view.weather;
+            if(t.width!==this.texture_weather.width||t.height!==this.texture_weather.height) {
+                gl.deleteTexture(this.texture_weather.id);this.texture_weather=this.webgl.createTexture({width:t.width,height:t.height,filter:'linear'});
+                this.texture_weather.bind();gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);
+            }
+            this.texture_weather.bind();gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,t.width,t.height,gl.RGBA,gl.UNSIGNED_BYTE,t.pixels);this.weatherPixels=t.pixels;
+        }
         const terrainWater=view.terrainWater??null;
         if(terrainWater!==this.activeTerrainWater) {
             this.activeTerrainWater=terrainWater;
@@ -880,6 +892,7 @@ export default class Renderer {
                 view?.water?view.layer==='precipitation'?4:view.layer==='soil-moisture'?5:view.layer==='runoff'?6:0:0);
             gl.uniform3fv(program.u_sun_direction, this.planetView?.sunDirection ?? [0,0,1]);
             gl.uniform1i(program.u_terrain_water,this.activeTerrainWater?1:0);
+            gl.uniform1i(program.u_weather_visible,view?.weather?1:0);
 
             this.texture_colormap.activate(gl.TEXTURE0, program.u_colormap);
             this.fbo_land.texture.activate(gl.TEXTURE1, program.u_elevation);
@@ -890,6 +903,7 @@ export default class Renderer {
             this.texture_geomorph.activate(gl.TEXTURE6, program.u_geomorph);
             this.texture_surface.activate(gl.TEXTURE7, program.u_surface);
             this.fbo_lakes.texture.activate(gl.TEXTURE8,program.u_lakes);
+            this.texture_weather.activate(gl.TEXTURE9,program.u_weather);
 
             gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });

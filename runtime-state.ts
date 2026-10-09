@@ -70,7 +70,7 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
             if(receivers.some(v=>!Number.isInteger(v)))throw new Error('Invalid terrain routing side');
             routing={volumeM3:f(r,'volumeM3',length),fluxM3S:f(r,'fluxM3S',length),receiverSide:new Int32Array(receivers)};
         }else if(w.routing!==undefined&&w.routing!==null)throw new Error('Unexpected terrain routing state');
-        water={atmosphereKgM2:f(w,'atmosphereKgM2'),soilKgM2:f(w,'soilKgM2'),surfaceKgM2:f(w,'surfaceKgM2'),snowKgM2:f(w,'snowKgM2'),seaIceKgM2:f(w,'seaIceKgM2'),meltKgM2S:f(w,'meltKgM2S'),precipitationKgM2S:f(w,'precipitationKgM2S'),evaporationKgM2S:f(w,'evaporationKgM2S'),dischargeM3S:f(w,'dischargeM3S'),windEastMps:f(w,'windEastMps',n,-wind,wind),windNorthMps:f(w,'windNorthMps',n,-wind,wind),oceanGlobalKgM2:scalar(w.oceanGlobalKgM2,'ocean store',0),elapsedS:scalar(w.elapsedS,'water age',0,Number.MAX_SAFE_INTEGER),initialTotalMm:scalar(w.initialTotalMm,'initial water',0),routing,landIceKgM2,landIceCorrection,glacier};
+        water={snowfallKgM2S:w.snowfallKgM2S===undefined||w.snowfallKgM2S===null?null:f(w,'snowfallKgM2S'),atmosphereKgM2:f(w,'atmosphereKgM2'),soilKgM2:f(w,'soilKgM2'),surfaceKgM2:f(w,'surfaceKgM2'),snowKgM2:f(w,'snowKgM2'),seaIceKgM2:f(w,'seaIceKgM2'),meltKgM2S:f(w,'meltKgM2S'),precipitationKgM2S:f(w,'precipitationKgM2S'),evaporationKgM2S:f(w,'evaporationKgM2S'),dischargeM3S:f(w,'dischargeM3S'),windEastMps:f(w,'windEastMps',n,-wind,wind),windNorthMps:f(w,'windNorthMps',n,-wind,wind),oceanGlobalKgM2:scalar(w.oceanGlobalKgM2,'ocean store',0),elapsedS:scalar(w.elapsedS,'water age',0,Number.MAX_SAFE_INTEGER),initialTotalMm:scalar(w.initialTotalMm,'initial water',0),routing,landIceKgM2,landIceCorrection,glacier};
         vegetation={meanK:f(v,'meanK',sn,0,1e5),rainMm:f(v,'rainMm',sn),cover:f(v,'cover',sn,0,1),weights:f(v,'weights',sn*Object.keys(BIOMES).length,0,1)};
         const types=Object.keys(BIOMES).length;
         for(let i=0;i<sn;i++){let sum=0;for(let b=0;b<types;b++)sum+=vegetation.weights[i*types+b];if(Math.abs(sum-1)>1e-8)throw new Error('Invalid vegetation mixture');}
@@ -89,6 +89,7 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
         surfaceInitial:{temperatureK:f(initial,'temperatureK',sn,0,1e5),soilFraction:f(initial,'soilFraction',sn,0,1)},iceEnergy:f(s,'iceEnergy',sn)};
     const state=result.state,age=thermal.steps*state.stepS,time=state.epochS+age;
     if(water?.landIceKgM2.some((v,i)=>state.land[i]===0&&v!==0))throw new Error('Grounded ice requires land');
+    if(water?.snowfallKgM2S?.some((v,i)=>v>water!.precipitationKgM2S[i]*state.land[i]+1e-12))throw new Error('Snowfall exceeds precipitation on land');
     if(!Number.isFinite(time)||time>Number.MAX_SAFE_INTEGER||time>state.lastTarget+1e-6||state.lastTarget-time>=state.stepS+1e-6)throw new Error('Inconsistent simulation time');
     if(water&&Math.abs(water.elapsedS-age)>Math.max(1e-6,age*1e-10))throw new Error('Inconsistent water age');
     return result;

@@ -19,6 +19,7 @@ export interface PlanetView {
     surface?:ThermalTexture|null;
     geomorph?:GeomorphView|null;
     terrainWater?:TerrainWaterView|null;
+    weather?:ThermalTexture|null;
 }
 
 export function makePlanetView(planet:PlanetConfig,orbit:OrbitConfig,timeS:number,layer:PlanetLayer,camera:PlanetCamera):PlanetView {
@@ -42,6 +43,8 @@ export const planet_fragment=`
     uniform sampler2D u_surface;
     uniform sampler2D u_lakes;
     uniform bool u_terrain_water;
+    uniform sampler2D u_weather;
+    uniform bool u_weather_visible;
     vec3 surface_color(vec3 base,vec3 n,float elevation) {
         if(u_planet_layer!=9) return base;
         vec3 body=normalize(n);
@@ -66,6 +69,25 @@ export const planet_fragment=`
     float planet_cosine(vec3 n) { return max(0.0,dot(normalize(n),u_sun_direction)); }
     float wind_segment(vec2 p,vec2 a,vec2 b) {
         vec2 d=b-a;return length(p-a-d*clamp(dot(p-a,d)/dot(d,d),0.0,1.0));
+    }
+    vec3 weather_color(vec3 base,vec3 normal) {
+        if(!u_weather_visible || u_planet_layer!=9) return base;
+        vec3 n=normalize(normal);
+        float longitude=0.5+atan(n.x,n.z)/6.28318530718,latitude=acos(clamp(n.y,-1.0,1.0))/3.14159265359;
+        float rows=float(textureSize(u_weather,0).y);
+        vec3 weather=texture(u_weather,vec2(longitude,(0.5+latitude*(rows-1.0))/rows)).rgb;
+        vec3 cloud=vec3(0.93,0.95,0.97)-0.16*weather.g;
+        vec3 color=mix(base,cloud,0.66*weather.r);
+        float coslat=sqrt(max(0.0,1.0-n.y*n.y)),polar=smoothstep(0.04,0.18,coslat);
+        vec2 wind=(texture(u_temperature,vec2(longitude,(1.0-n.y)*0.5)).gb*255.0-128.0)/1.27;
+        vec2 d=vec2(wind.x/max(0.1,coslat),-wind.y);
+        d=length(d)>0.1?normalize(d):vec2(0.0,1.0);
+        vec2 p=fract(vec2(longitude*96.0,latitude*48.0))-0.5;
+        vec2 q=vec2(dot(p,d),dot(p,vec2(-d.y,d.x)));
+        float rain=1.0-smoothstep(0.022,0.055,wind_segment(q,vec2(-0.22,0.0),vec2(0.22,0.0)));
+        float snow=(1.0-smoothstep(0.03,0.065,min(abs(p.x),abs(p.y))))*(1.0-smoothstep(0.13,0.20,max(abs(p.x),abs(p.y))));
+        color=mix(color,vec3(0.12,0.55,0.91),rain*weather.g*polar);
+        return mix(color,vec3(0.96,0.99,1.0),snow*weather.b*polar);
     }
     vec3 planet_color(vec3 base,vec3 n) {
         if(u_planet_layer==0 || u_planet_layer==9) return base;
