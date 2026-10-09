@@ -91,7 +91,9 @@ try {
     gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,gl.createTexture());
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
-    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2,2,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([40,120,60,255,220,185,120,0,80,140,70,0,150,160,110,255]));
+    const surfacePixels=new Uint8Array(2*24*4);
+    for(let row=0;row<24;row++)surfacePixels.set(row<12?[40,120,60,255,220,185,120,0]:[80,140,70,0,150,160,110,255],row*8);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2,24,0,gl.RGBA,gl.UNSIGNED_BYTE,surfacePixels);
     gl.uniform1i(gl.getUniformLocation(program,'u_surface'),3);
     gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),.001);
     check(9,[-.5,.8,.5],false,[40/255,120/255,60/255]);check(9,[.5,.8,.5],false,[220/255,185/255,120/255]);
@@ -99,6 +101,20 @@ try {
     gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),-.001);
     check(9,[-.5,.8,.5],false,[.79,.88,.90]);check(9,[.5,.8,.5],false,[.4,.6,.8]);
     check(0,[-.5,.8,.5],false,[.4,.6,.8]);
+    // Distinct longitude colors must converge to one value at each pole.
+    // Otherwise a polar view turns the last climate row into radial wedges.
+    gl.uniform4f(gl.getUniformLocation(program,'u_surface_north'),130/255,152.5/255,90/255,.5);
+    gl.uniform4f(gl.getUniformLocation(program,'u_surface_south'),115/255,150/255,90/255,.5);
+    gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),.001);
+    for(const sign of [-1,1])for(let i=0;i<8;i++) {
+        const angle=2*Math.PI*i/8,normal=[1e-4*Math.sin(angle),sign,1e-4*Math.cos(angle)];
+        check(9,normal,false,sign>0?[130/255,152.5/255,90/255]:[115/255,150/255,90/255]);
+    }
+    gl.uniform1f(gl.getUniformLocation(program,'u_test_elevation'),-.001);
+    for(const sign of [-1,1])for(let i=0;i<8;i++) {
+        const angle=2*Math.PI*i/8;
+        check(9,[1e-4*Math.sin(angle),sign,1e-4*Math.cos(angle)],false,[.595,.74,.85]);
+    }
     if(gl.getError()!==gl.NO_ERROR) throw new Error('WebGL error');
     output.textContent=JSON.stringify({status:'PASS',checks},null,2);
 } catch(error) { output.textContent=`FAIL\n${error.stack || error}`; }

@@ -22,6 +22,17 @@ export interface SurfaceClimate {meanTemperatureK:number;warmestTemperatureK:num
 export interface SurfaceReference {meanTemperatureK:Float64Array;warmestTemperatureK:Float64Array;annualRainMm:Float64Array;}
 const clamp=(x:number)=>Math.max(0,Math.min(1,x));
 
+/** A pole has no longitude. Reconstruct one display value from its nearest
+ * equal-area ring; leave the physical cell fields and their budgets intact. */
+export function surfacePoleColors(texture:{width:number;height:number;pixels:Uint8Array}) {
+    const {width,height,pixels}=texture;
+    const average=(row:number)=>Float32Array.from({length:4},(_,c)=>{
+        let sum=0;for(let x=0;x<width;x++)sum+=pixels[4*(row*width+x)+c];
+        return sum/(255*width);
+    });
+    return {north:average(0),south:average(height-1)};
+}
+
 /** Illustrative Earth-inspired thresholds; not a Köppen classification. */
 export function classifyBiome(meanK:number,warmestK:number,rainMm:number):Biome {
     const mean=meanK-273.15,warmest=warmestK-273.15;

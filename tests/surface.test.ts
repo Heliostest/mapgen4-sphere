@@ -1,11 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {classifyBiome,generateSurfaceReference,surfaceCover} from '../surface.ts';
+import {classifyBiome,generateSurfaceReference,surfaceCover,surfacePoleColors} from '../surface.ts';
 import {makeThermalGrid,DEFAULT_THERMAL} from '../thermal.ts';
 import {DEFAULT_WATER} from '../water.ts';
 import {DEFAULT_PLANET} from '../planet.ts';
 import {DEFAULT_ORBIT} from '../astronomy.ts';
 import {ThermalRuntime} from '../thermal-runtime.ts';
+
+test('surface polar limits average each end ring independently without changing climate pixels',()=>{
+    const pixels=new Uint8Array([0,64,128,0,200,128,64,255, 255,255,255,255,255,255,255,255, 40,80,120,255,80,120,160,255]);
+    const saved=pixels.slice(),poles=surfacePoleColors({width:2,height:3,pixels});
+    [100/255,96/255,96/255,.5].forEach((v,i)=>assert.ok(Math.abs(poles.north[i]-v)<1e-7));
+    [60/255,100/255,140/255,1].forEach((v,i)=>assert.ok(Math.abs(poles.south[i]-v)<1e-7));
+    assert.deepEqual(pixels,saved);
+});
 
 test('potential vegetation distinguishes cold, dry, temperate and tropical climates',()=>{
     const cases:[number,number,number,string][]=[[-20,-4,200,'ice'],[-8,7,300,'tundra'],[2,17,800,'boreal'],[12,24,1100,'temperate'],

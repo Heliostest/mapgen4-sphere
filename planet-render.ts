@@ -38,11 +38,17 @@ export const planet_fragment=`
     uniform sampler2D u_hydrology;
     uniform sampler2D u_geomorph;
     uniform sampler2D u_surface;
+    uniform vec4 u_surface_north, u_surface_south;
     vec3 surface_color(vec3 base,vec3 n,float elevation) {
         if(u_planet_layer!=9) return base;
         vec3 body=normalize(n);
         vec2 uv=vec2(0.5+atan(body.x,body.z)/6.28318530718,(1.0-body.y)*0.5);
         vec4 cover=texture(u_surface,uv);
+        // The last row is centered away from the pole. Clamping that row all
+        // the way to ±90° creates one differently colored wedge per longitude.
+        float edge=1.0-1.0/float(textureSize(u_surface,0).y);
+        float polar=smoothstep(edge,1.0,abs(body.y));
+        cover=mix(cover,body.y>0.0?u_surface_north:u_surface_south,polar);
         // Use fine terrain for the coastline, never the coarse climate land fraction.
         return elevation>0.0 ? cover.rgb : mix(base,vec3(0.79,0.88,0.90),cover.a);
     }

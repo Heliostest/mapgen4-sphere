@@ -1,0 +1,18 @@
+{
+  "checks": [
+    "Generated natural surface is visible immediately at zero age, with color key and estimated cover probe",
+    "Season, physical elevation and radiation parameters update ice/snow/vegetation colors while paused",
+    "Play changes cover while preserving water budgets; diagnostic layer round trips preserve climate history and surface pixels",
+    "Original artwork restores exactly, model disable clears the layer, and the color key fits mobile",
+    "Both polar views render without clock advancement; actual renderer converges at each pole through camera rotation and texture replacement"
+  ],
+  "errors": [],
+  "gpu": {
+    "status": "PASS",
+    "checks": 71
+  },
+  "poles": {
+    "status": "PASS",
+    "checks": 12
+  }
+}

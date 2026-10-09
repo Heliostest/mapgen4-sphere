@@ -6,7 +6,7 @@ const browser=await chromium.launch({channel:'chrome',headless:true,args:['--ena
 const page=await browser.newPage({viewport:{width:1300,height:1000}}),checks=[],errors=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
 const frames=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
-const input=async(id,value)=>{await page.locator(`#${id}`).evaluate((e,v)=>{e.value=String(v);e.dispatchEvent(new Event(e.type==='range'?'input':'change',{bubbles:true}));},value);await frames();};
+const input=async(id,value)=>{await page.locator(id.startsWith('slider-')?`#${id} input`:`#${id}`).evaluate((e,v)=>{e.value=String(v);e.dispatchEvent(new Event(e.type==='range'?'input':'change',{bubbles:true}));},value);await frames();};
 const capture=async name=>{await frames();return page.locator('#mapgen4').screenshot({path:`${folder}/${name}.png`});};
 const zero=async()=>{assert.equal(await page.locator('#planet-play').textContent(),'Play');assert.equal(Number(await page.locator('#thermal-age').getAttribute('data-days')),0);assert.equal(Number(await page.locator('#water-age').getAttribute('data-days')),0);};
 try {
@@ -35,6 +35,12 @@ try {
     await page.locator('#planet-layer').selectOption('surface');await page.locator('#thermal-enabled').uncheck();assert.equal(await page.locator('#planet-layer').inputValue(),'original');
     await page.setViewportSize({width:390,height:844});await page.locator('#planet-generate-climate').click();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:`${folder}/mobile.png`});
     checks.push('Original artwork restores exactly, model disable clears the layer, and the color key fits mobile');
+    await page.setViewportSize({width:1388,height:1244});await page.locator('#planet-reset-time').click();
+    await input('slider-x',202.349);await input('slider-y',1000);await input('slider-zoom',.212);await capture('south-pole');
+    await page.screenshot({path:`${folder}/south-pole-context.png`});
+    await input('slider-x',750);await capture('south-rotated');await input('slider-y',0);await capture('north-pole');await zero();
+    await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/tests/polar-render.html');await page.waitForFunction(()=>/PASS|FAIL/.test(document.querySelector('pre').textContent));const poles=JSON.parse(await page.locator('pre').textContent());assert.equal(poles.status,'PASS');
+    checks.push('Both polar views render without clock advancement; actual renderer converges at each pole through camera rotation and texture replacement');
     await page.goto((process.env.BASE_URL||'http://localhost:8002')+'/tests/gpu-insolation.html');await page.waitForFunction(()=>document.querySelector('pre').textContent.includes('PASS')||document.querySelector('pre').textContent.includes('FAIL'));const gpu=JSON.parse(await page.locator('pre').textContent());assert.equal(gpu.status,'PASS');
-    assert.deepEqual(errors,[]);const report={checks,errors,gpu};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+    assert.deepEqual(errors,[]);const report={checks,errors,gpu,poles};await writeFile(`${folder}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
 }finally{await browser.close();}

@@ -3,6 +3,14 @@
 Implementation base: upstream `c1d8cb018a11a8b9e17d59233c36c176429d37eb`.
 Branch: `codex/sphere-original-renderer` in the independent clone.
 
+## Polar natural-surface reconstruction — 2026-10-09
+
+Base `122f476`, branch `codex/polar-surface-fix`. The reported south-pole screenshot reproduced at camera x=202.349, y=1000, zoom=0.212, with generated climate paused at day zero. Clamping the outer cell-centered latitude row extended each longitude's color to the pole, producing radial wedges. Both terminal caps now blend to their respective ring-average RGBA at the pole. Land color and sea ice converge independently of approach longitude; the fine coastline and physical climate fields remain unchanged. This repairs interpolation, not climate calibration or ice dynamics.
+
+RED: the production GPU regression approached the south pole from eight longitudes and returned [150,160,110] instead of the common expected [115,150,90]; the CPU pole-value test also failed before the helper existed. GREEN: all 79 Node tests, typecheck, build and diff-check passed. The [surface browser report](evidence/polar-surface-report.json) passed five interaction groups with no captured errors, 71 actual-shader checks (including both poles over land and sea), and 12 actual-renderer checks covering both poles through camera rotation, texture replacement and disable/restore. Paused generation still advances no model time, and the Original map round trip remains pixel-exact.
+
+Visually inspected [south pole](evidence/polar-south.png), [rotated south pole](evidence/polar-south-rotated.png), [north pole](evidence/polar-north.png) and [full south-pole view](evidence/polar-south-context.png). The converging spikes are absent and relief remains intact. The [planet regression](evidence/polar-planet-report.json) passed eight interaction groups, 20 DOM checks and GPU648/771/30/71 with no captured errors; its painted radius round trip was pixel-exact. Nearest-cell probes intentionally retain coarse physical values rather than sampling the reconstructed display colors.
+
 ## Natural surface: ice and vegetation — 2026-10-09
 
 Base `fd53216`, branch `codex/climate-biomes`. The natural surface connects generated climate to terrestrial colors, snow and sea ice while preserving the original layer. Generate climate now opens this layer. Twelve analytical season samples supply an annual reference; current temperature/soil moisture change coverage/tint without reclassifying forests each winter. Thresholds and one-way visual limits are documented in [methods](natural-surface.md).
