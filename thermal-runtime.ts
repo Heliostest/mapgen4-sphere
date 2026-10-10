@@ -13,11 +13,19 @@ import {generateSeaIce,advanceSeaIce,seaIceCooling,seaIceFraction} from './sea-i
 import {decodeRuntimeState,type RuntimeState} from './runtime-state.ts';
 import {terrainRoutingNetwork} from './terrain-water.ts';
 import {uvToDirection} from './sphere.ts';
+import {decodeIceInventory,type IceInventorySeed} from './ice-inventory.ts';
 
 export interface ThermalTexture {width:number;height:number;pixels:Uint8Array;timeS:number;}
 /** Synchronous ownership avoids stale worker replies. Retain the acknowledged
  * visible state across any number of updates queued before the next draw. */
 export class ThermalRuntime {
+    iceInventory:IceInventorySeed|null=null;
+    private surfaceReservoirInitial:NonNullable<RuntimeState['state']>['surfaceReservoirInitial']=null;
+    private shelves:NonNullable<RuntimeState['state']>['shelves']=null;
+    private localShelfLand:Float64Array|null=null;
+    private localShelfSea:Float64Array|null=null;
+    private surfaceLandTemperature:Float64Array|null=null;
+    private surfaceOceanTemperature:Float64Array|null=null;
     environmentConfig={...DEFAULT_ENVIRONMENT};
     environment:EnvironmentModel|null=null;
     vegetation:VegetationModel|null=null;
@@ -61,17 +69,17 @@ export class ThermalRuntime {
     snapshot():RuntimeState {
         const m=this.model;
         return {version:1,grid:{width:this.grid.width,height:this.grid.height},enabled:this.enabled,waterEnabled:this.waterEnabled,
-            config:{...this.config},waterConfig:{...this.waterConfig},environmentConfig:{...this.environmentConfig},
+            config:{...this.config},waterConfig:{...this.waterConfig},environmentConfig:{...this.environmentConfig},iceInventory:structuredClone(this.iceInventory),
             state:m?{land:this.land!.slice(),height:this.landElevation!.slice(),localLand:this.surfaceTerrain!.land.slice(),localHeight:this.surfaceTerrain!.height.slice(),
                 epochS:m.epochS,stepS:m.stepS,lastTarget:this.lastTarget,initialEnergyJm2:m.initialEnergyJm2,initialEnthalpy:this.environment?.initialEnthalpy??null,circulation:this.environment?.checkpoint()??null,
                 thermal:m.checkpoint(),radiationScale:m.radiationScale.slice(),water:this.water?{...this.water.checkpoint(),initialTotalMm:this.water.initialTotalMm}:null,vegetation:this.vegetation?.checkpoint()??null,
                 initialTemperature:this.initialTemperature!.slice(),initialSoil:this.initialSoil!.slice(),initialSnow:this.initialSnow?.slice()??null,initialIce:this.initialIce?.slice()??null,initialLandIce:this.initialLandIce?.slice()??null,localLandIceSeed:this.localLandIceSeed?.slice()??null,localSnowSeed:this.localSnowSeed?.slice()??null,localIceSeed:this.localIceSeed?.slice()??null,
-                surfaceReference:structuredClone(this.surfaceReference!),surfaceInitial:{temperatureK:this.surfaceInitial!.temperatureK.slice(),soilFraction:this.surfaceInitial!.soilFraction.slice()},iceEnergy:this.iceEnergy!.slice()}:null};
+                surfaceReservoirInitial:structuredClone(this.surfaceReservoirInitial),shelves:structuredClone(this.shelves),surfaceReference:structuredClone(this.surfaceReference!),surfaceInitial:{temperatureK:this.surfaceInitial!.temperatureK.slice(),soilFraction:this.surfaceInitial!.soilFraction.slice()},iceEnergy:this.iceEnergy!.slice()}:null};
     }
     /** Build an independent candidate. Never generate climate or advance a step. */
     static fromSnapshot(value:unknown,planet:PlanetConfig,orbit:OrbitConfig):ThermalRuntime {
         const d=decodeRuntimeState(value),rt=new ThermalRuntime(makeThermalGrid(d.grid.width,d.grid.height)),s=d.state;
-        rt.enabled=d.enabled;rt.waterEnabled=d.waterEnabled;rt.config=d.config;rt.waterConfig=d.waterConfig;rt.environmentConfig=d.environmentConfig;
+        rt.enabled=d.enabled;rt.waterEnabled=d.waterEnabled;rt.config=d.config;rt.waterConfig=d.waterConfig;rt.environmentConfig=d.environmentConfig;rt.iceInventory=d.iceInventory??null;
         const orbitState=deriveOrbit(planet,orbit),unsupported=orbitState.solarDayS>orbitState.yearS/20;
         if(!s) {
             if(rt.waterEnabled&&!rt.enabled)throw new Error('Water requires an enabled thermal model');
@@ -83,10 +91,13 @@ export class ThermalRuntime {
         rt.surfaceReference=s.surfaceReference;rt.surfaceInitial=s.surfaceInitial;rt.initialTemperature=s.initialTemperature;rt.initialSoil=s.initialSoil;
         rt.initialSnow=s.initialSnow;rt.initialIce=s.initialIce;rt.localSnowSeed=s.localSnowSeed;rt.localIceSeed=s.localIceSeed;rt.iceEnergy=s.iceEnergy;
         rt.initialLandIce=s.initialLandIce;rt.localLandIceSeed=s.localLandIceSeed;
-        const m=rt.model=new ThermalModel(planet,orbit,rt.config,s.land,s.epochS,rt.grid,{temperatureK:s.thermal.temperatureK,radiationScale:s.radiationScale,absorbedWm2:s.thermal.absorbedWm2},s.initialEnergyJm2);
+        rt.surfaceReservoirInitial=s.surfaceReservoirInitial??null;rt.shelves=s.shelves??null;
+        const m=rt.model=new ThermalModel(planet,orbit,rt.config,s.land,s.epochS,rt.grid,{temperatureK:s.thermal.temperatureK,radiationScale:s.radiationScale,absorbedWm2:s.thermal.absorbedWm2,landTemperatureK:s.thermal.landTemperatureK,oceanTemperatureK:s.thermal.oceanTemperatureK},s.initialEnergyJm2);
         if(s.water) {
             rt.water=new WaterModel(rt.grid,planet.radiusM,s.land,s.height.map(h=>h*planet.reliefM),m.temperatureK,rt.waterConfig,undefined,s.water.initialTotalMm);
-            rt.water.restore(s.water);rt.environment=new EnvironmentModel(m,rt.water,rt.environmentConfig,s.initialEnthalpy!);
+            rt.water.restore(s.water);
+            if(rt.iceInventory)rt.water.glacierBedM=rt.compatibleBed(planet);
+            rt.environment=new EnvironmentModel(m,rt.water,rt.environmentConfig,s.initialEnthalpy!);
             rt.environment.restore(s.circulation);
             rt.vegetation=new VegetationModel(s.surfaceReference);rt.vegetation.restore(s.vegetation!);
         }
@@ -94,7 +105,9 @@ export class ThermalRuntime {
         if(s.stepS!==step)throw new Error('Snapshot step does not match model stability limit');
         m.stepS=step;m.restore(s.thermal);rt.refreshEnvironment();
         rt.environment?.atmosphere?.validateWinds(m.timeS-(m.steps>0?m.stepS/2:0));
-        if(m.albedo.some((v,i)=>v!==s.thermal.albedo[i]))throw new Error('Saved albedo does not match frozen water and vegetation');
+        // Cross-engine reduction order can differ by one Float64 ulp. Only
+        // roundoff is tolerated; water and enthalpy ledgers remain independent.
+        if(m.albedo.some((v,i)=>Math.abs(v-s.thermal.albedo[i])>8*Number.EPSILON))throw new Error('Saved albedo does not match frozen water and vegetation');
         if(rt.water&&rt.environment) {
             // Saturated ice cover can hide a changed ice inventory from the
             // albedo check. Validate both independent ledgers on the candidate.
@@ -107,7 +120,13 @@ export class ThermalRuntime {
         rt.sync(planet,orbit,s.lastTarget,null);
         return rt;
     }
-    private modelKey(planet:PlanetConfig,orbit:OrbitConfig) {return JSON.stringify([planet,orbit,this.config,this.waterEnabled,this.waterConfig,this.environmentConfig]);}
+    private modelKey(planet:PlanetConfig,orbit:OrbitConfig) {return JSON.stringify([planet,orbit,this.config,this.waterEnabled,this.waterConfig,this.environmentConfig,this.iceInventory]);}
+    private compatibleBed(planet:PlanetConfig) {return this.landElevation!.map((h,i)=>h*planet.reliefM-(this.land![i]>0?this.initialLandIce![i]/(917*this.land![i]):0));}
+    private allocationScale(requested:Float64Array,current:Float64Array) {
+        const mask=requested.map(v=>v>0?1:0),weight=resampleClimateField(this.grid,mask,this.surfaceGrid);
+        const ratio=resampleClimateField(this.grid,requested.map((v,i)=>v>0?current[i]/v:0),this.surfaceGrid);
+        return ratio.map((v,i)=>weight[i]>0?v/weight[i]:0);
+    }
     /** Retain panel references, replacing only with a fully prepared instance. */
     replaceWith(prepared:ThermalRuntime) {Object.assign(this,prepared);}
     attachRestoredTerrain(land:Float64Array,height:Float64Array,source:SurfaceTerrain) {
@@ -125,7 +144,7 @@ export class ThermalRuntime {
         if(!source?.mesh)throw new Error('Terrain water requires the authored mesh');
         this.water!.attachRouting(terrainRoutingNetwork(source.mesh,source.elevation,this.grid,planet.radiusM,planet.reliefM,source.quadElements));
     }
-    invalidate() {this.environment=null;this.vegetation=null;this.initialSnow=this.initialIce=this.localSnowSeed=this.localIceSeed=this.localSnow=this.localIce=this.initialLandIce=this.localLandIceSeed=this.localLandIce=null;this.key='';this.model=null;this.water=null;this.presented=null;this.texture=null;this.waterTexture=null;this.wind=null;this.surfaceTexture=null;this.surfaceReference=null;this.initialSoil=null;this.initialTemperature=null;this.surfaceInitial=null;this.surfaceTemperature=null;this.surfaceSoil=null;this.iceEnergy=null;}
+    invalidate() {this.surfaceReservoirInitial=null;this.shelves=null;this.localShelfLand=this.localShelfSea=this.surfaceLandTemperature=this.surfaceOceanTemperature=null;this.environment=null;this.vegetation=null;this.initialSnow=this.initialIce=this.localSnowSeed=this.localIceSeed=this.localSnow=this.localIce=this.initialLandIce=this.localLandIceSeed=this.localLandIce=null;this.key='';this.model=null;this.water=null;this.presented=null;this.texture=null;this.waterTexture=null;this.wind=null;this.surfaceTexture=null;this.surfaceReference=null;this.initialSoil=null;this.initialTemperature=null;this.surfaceInitial=null;this.surfaceTemperature=null;this.surfaceSoil=null;this.iceEnergy=null;}
     setTerrain(land:Float64Array,height:Float64Array=new Float64Array(this.grid.count),source?:SurfaceTerrain) {
         this.terrainSource=source??null;
         this.land=land.slice();this.landElevation=height.slice();
@@ -143,19 +162,27 @@ export class ThermalRuntime {
         const r=this.surfaceReference!;
         const climate={meanTemperatureK:r.meanTemperatureK[k],warmestTemperatureK:r.warmestTemperatureK[k],annualRainMm:r.annualRainMm[k]};
         const base=surfaceCover(climate,this.surfaceTemperature![k],this.surfaceSoil![k]);
-        if(!this.environment)return {...climate,localTemperatureK:this.surfaceTemperature![k],seaIceFraction:seaIceFraction(this.iceEnergy![k]),vegetationFraction:0,landIceM:0,...base};
+        if(!this.environment) {
+            const surfaceTemperatureK=(this.surfaceTerrain!.land[k]>=.5?this.surfaceLandTemperature?.[k]:this.surfaceOceanTemperature?.[k])??this.surfaceTemperature![k];
+            return {...climate,localTemperatureK:this.surfaceTemperature![k],surfaceTemperatureK,seaIceFraction:seaIceFraction(this.iceEnergy![k]),vegetationFraction:0,landIceM:0,shelfIceM:0,shelfIceFraction:0,...base};
+        }
         const snow=Math.min(1,this.localSnow![k]/30),ice=Math.min(1,this.localIce![k]/(917*.5));
         const vegetation=this.vegetation!.sample(k);
-        const landIceM=(this.localLandIce?.[k]??0)/917,glacier=Math.min(1,landIceM/5);
+        const landIceM=(this.localLandIce?.[k]??0)/917,shelfIceM=(this.surfaceTerrain!.land[k]*(this.localShelfLand?.[k]??0)+(1-this.surfaceTerrain!.land[k])*(this.localShelfSea?.[k]??0))/917;
+        const shelfLand=Math.min(1,(this.localShelfLand?.[k]??0)/(917*5)),shelfSea=Math.min(1,(this.localShelfSea?.[k]??0)/(917*5)),glacier=Math.max(Math.min(1,landIceM/5),shelfLand);
         const color=vegetation.color.map((v,c)=>(v*(1-glacier)+[190,217,224][c]*glacier)*(1-snow)+[234,242,240][c]*snow);
-        const localTemperatureK=Math.min(this.surfaceTemperature![k],this.surfaceTerrain!.land[k]<.5&&ice>0?271.35:snow>0||glacier>0?273.15:Infinity);
-        return {...climate,...vegetation,localTemperatureK,seaIceFraction:ice,snowFraction:snow,landIceM,color};
+        // Air and the phase-limited surface are separate diagnostics. Legacy
+        // saves retain their old mixed-column presentation.
+        const localTemperatureK=this.config.separateReservoirs?this.surfaceTemperature![k]:Math.min(this.surfaceTemperature![k],this.surfaceTerrain!.land[k]<.5&&ice>0?271.35:snow>0||glacier>0?273.15:Infinity);
+        const onLand=this.surfaceTerrain!.land[k]>=.5;
+        const surfaceTemperatureK=Math.min(onLand?(this.surfaceLandTemperature?.[k]??localTemperatureK):(this.surfaceOceanTemperature?.[k]??localTemperatureK),onLand?(snow>0||glacier>0?273.15:Infinity):(ice>0?271.35:shelfSea>0?273.15:Infinity));
+        return {...climate,...vegetation,localTemperatureK,surfaceTemperatureK,seaIceFraction:ice,shelfIceM,shelfIceFraction:Math.max(shelfLand,shelfSea),snowFraction:snow,landIceM,color};
     }
     sampleWater(u:number,v:number) {
         if(!this.water)return null;
         const w=this.water,k=thermalCell(this.grid,u,v),f=w.land[k];
         return {precipitationMmDay:86400*w.precipitationKgM2S[k],soilMm:f>0?w.soilKgM2[k]/f:null,
-            surfaceMm:f>0?w.surfaceKgM2[k]/f:null,dischargeM3S:w.dischargeM3S[k],atmosphereMm:w.atmosphereKgM2[k],snowMm:f>0?w.snowKgM2[k]/f:0,iceM:f<1?w.seaIceKgM2[k]/((1-f)*917):0,meltMmDay:f>0?86400*w.meltKgM2S[k]/f:0,landIceM:w.glacier?.thickness(k)??0,iceSpeedMyr:(w.glacier?.speedMps[k]??0)*365.25*86400};
+            surfaceMm:f>0?w.surfaceKgM2[k]/f:null,dischargeM3S:w.dischargeM3S[k],atmosphereMm:w.atmosphereKgM2[k],snowMm:f>0?w.snowKgM2[k]/f:0,iceM:f<1?w.seaIceKgM2[k]/((1-f)*917):0,meltMmDay:f>0?86400*w.meltKgM2S[k]/f:0,landIceM:f>0?w.landIceKgM2[k]/(917*f):0,iceSpeedMyr:(w.glacier?.speedMps[k]??0)*365.25*86400};
     }
     sampleTerrainWater(u:number,v:number) {
         const route=this.water?.routing,mesh=this.terrainSource?.mesh;
@@ -173,6 +200,12 @@ export class ThermalRuntime {
         const delta=temperature.map((t,i)=>t-this.initialTemperature![i]);
         return resampleClimateField(this.grid,delta,this.surfaceGrid).map((d,i)=>Math.max(0,this.surfaceInitial!.temperatureK[i]+d));
     }
+    private localReservoirTemperature(kind:'land'|'ocean') {
+        const r=this.surfaceReservoirInitial,m=this.model!;
+        if(!r)return this.localTemperature(m.temperatureK);
+        const initial=kind==='land'?r.initialLandTemperatureK:r.initialOceanTemperatureK,current=kind==='land'?m.landTemperatureK:m.oceanTemperatureK,local=kind==='land'?r.landTemperatureK:r.oceanTemperatureK;
+        return resampleClimateField(this.grid,current.map((t,i)=>t-initial[i]),this.surfaceGrid).map((d,i)=>Math.max(0,local[i]+d));
+    }
     private refreshEnvironment() {
         if(!this.environment||!this.vegetation)return;
         this.environment.refresh(aggregateSurface(this.grid,this.surfaceGrid,this.vegetation.cover,this.surfaceTerrain!.land));
@@ -180,7 +213,7 @@ export class ThermalRuntime {
     }
     surfaceState() {
         if(!this.surfaceTexture||!this.surfaceTerrain||!this.surfaceTemperature)return null;
-        return {texture:this.surfaceTexture,land:this.surfaceTerrain.land,temperatureK:this.surfaceTemperature,snowMm:this.localSnow,iceKgM2:this.localIce,landIceKgM2:this.localLandIce,vegetation:this.vegetation?.cover??null};
+        return {texture:this.surfaceTexture,land:this.surfaceTerrain.land,temperatureK:this.surfaceTemperature,landTemperatureK:this.surfaceLandTemperature,oceanTemperatureK:this.surfaceOceanTemperature,snowMm:this.localSnow,iceKgM2:this.localIce,landIceKgM2:this.localLandIce,shelfLandIceKgM2:this.localShelfLand,shelfSeaIceKgM2:this.localShelfSea,vegetation:this.vegetation?.cover??null};
     }
     sync(planet:PlanetConfig,orbit:OrbitConfig,timeS:number,presentedTimeS:number|null):ThermalTexture|null {
         if(!this.enabled || !this.land) {
@@ -192,6 +225,7 @@ export class ThermalRuntime {
         }
         const key=this.modelKey(planet,orbit);
         if(key!==this.key) {
+            this.iceInventory=decodeIceInventory(this.iceInventory);
             const heights=this.landElevation!.map(e=>e*planet.reliefM);
             const reference=generateClimate(this.grid,planet,orbit,this.config,this.waterConfig,this.land,heights,timeS);
             const local=this.surfaceTerrain!,localHeights=local.height.map(e=>e*planet.reliefM);
@@ -200,7 +234,20 @@ export class ThermalRuntime {
             this.iceEnergy=generateSeaIce(this.surfaceReference.monthlyIceCooling,this.surfaceGrid.count,derived.yearS,orbit.orbitPhaseRad+2*Math.PI*(timeS%derived.yearS)/derived.yearS);
             this.initialSoil=reference.soilFraction;
             this.initialTemperature=reference.temperatureK.slice();
-            this.model=new ThermalModel(planet,orbit,this.config,this.land,timeS,this.grid,reference);
+            let reservoirSeeds: {landTemperatureK:Float64Array;oceanTemperatureK:Float64Array}|undefined;
+            if(this.config.separateReservoirs) {
+                const localLand=generateClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,new Float64Array(this.surfaceGrid.count).fill(1),localHeights,timeS);
+                const localOcean=generateClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,new Float64Array(this.surfaceGrid.count),new Float64Array(this.surfaceGrid.count),timeS);
+                const landTemperatureK=aggregateSurface(this.grid,this.surfaceGrid,localLand.temperatureK,local.land).map((t,i)=>this.land![i]>0&&t>0?t:reference.temperatureK[i]);
+                const oceanTemperatureK=aggregateSurface(this.grid,this.surfaceGrid,localOcean.temperatureK,local.land.map(f=>1-f)).map((t,i)=>this.land![i]<1&&t>0?t:reference.temperatureK[i]);
+                reservoirSeeds={landTemperatureK,oceanTemperatureK};
+                this.surfaceReservoirInitial={landTemperatureK:localLand.temperatureK,oceanTemperatureK:localOcean.temperatureK,initialLandTemperatureK:landTemperatureK.slice(),initialOceanTemperatureK:oceanTemperatureK.slice()};
+                // Seasonal sea ice starts from the ocean-only reference. Land
+                // thermal inertia must not determine ice in a coastal wet part.
+                const seaReference=generateSurfaceReference(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,new Float64Array(this.surfaceGrid.count),new Float64Array(this.surfaceGrid.count));
+                this.iceEnergy=generateSeaIce(seaReference.monthlyIceCooling,this.surfaceGrid.count,derived.yearS,orbit.orbitPhaseRad+2*Math.PI*(timeS%derived.yearS)/derived.yearS);
+            }
+            this.model=new ThermalModel(planet,orbit,this.config,this.land,timeS,this.grid,{...reference,...reservoirSeeds});
             this.water=this.waterEnabled?new WaterModel(this.grid,planet.radiusM,this.land,
                 heights,this.model.temperatureK,this.waterConfig,reference):null;
             if(this.water) {
@@ -210,24 +257,39 @@ export class ThermalRuntime {
                 const snow=aggregateSurface(this.grid,this.surfaceGrid,this.localSnowSeed,local.land).map((v,i)=>v*land[i]);
                 const ice=aggregateSurface(this.grid,this.surfaceGrid,this.localIceSeed,localSea).map((v,i)=>v*sea[i]);
                 w.seedFrozen(snow,ice);
-                this.localLandIceSeed=this.surfaceReference.warmestTemperatureK.map(t=>this.environmentConfig.glaciers?917*1500*Math.max(0,Math.min(1,(273.15-t)/15)):0);
+                this.localLandIceSeed=this.iceInventory?this.iceInventory.groundedThicknessM.map(t=>917*t):this.surfaceReference.warmestTemperatureK.map(t=>this.environmentConfig.glaciers?917*1500*Math.max(0,Math.min(1,(273.15-t)/15)):0);
                 const landIce=aggregateSurface(this.grid,this.surfaceGrid,this.localLandIceSeed,local.land).map((v,i)=>v*land[i]);
-                if(this.environmentConfig.glaciers)w.seedLandIce(landIce);
-                const glacierScale=resampleClimateField(this.grid,landIce.map((v,i)=>v>0?w.landIceKgM2[i]/v:0),this.surfaceGrid);
+                if(this.environmentConfig.glaciers||this.iceInventory)w.seedLandIce(landIce);
+                const glacierScale=this.iceInventory?this.allocationScale(landIce,w.landIceKgM2):resampleClimateField(this.grid,landIce.map((v,i)=>v>0?w.landIceKgM2[i]/v:0),this.surfaceGrid);
                 this.localLandIceSeed=this.localLandIceSeed.map((v,i)=>v*glacierScale[i]);this.initialLandIce=w.landIceKgM2.slice();
+                if(this.iceInventory)w.glacierBedM=this.compatibleBed(planet);
+                const shelfSeed=this.iceInventory?.shelfThicknessM.map(h=>h*917)??new Float64Array(this.surfaceGrid.count);
+                const shelfLand=aggregateSurface(this.grid,this.surfaceGrid,shelfSeed,local.land).map((v,i)=>v*land[i]),shelfSea=aggregateSurface(this.grid,this.surfaceGrid,shelfSeed,localSea).map((v,i)=>v*sea[i]);
+                w.seedShelves(shelfLand,shelfSea);
+                const shelfScale=(requested:Float64Array,current:Float64Array)=>this.allocationScale(requested,current);
+                const shelfLandScale=shelfScale(shelfLand,w.shelfLandIceKgM2),shelfSeaScale=shelfScale(shelfSea,w.shelfSeaIceKgM2);
+                this.shelves={initialLand:w.shelfLandIceKgM2.slice(),initialSea:w.shelfSeaIceKgM2.slice(),localLandSeed:shelfSeed.map((v,i)=>v*shelfLandScale[i]),localSeaSeed:shelfSeed.map((v,i)=>v*shelfSeaScale[i])};
                 // Display reflects inventory limits at generation, including dry planets.
                 const snowScale=resampleClimateField(this.grid,snow.map((v,i)=>v>0?w.snowKgM2[i]/v:0),this.surfaceGrid);
                 const iceScale=resampleClimateField(this.grid,ice.map((v,i)=>v>0?w.seaIceKgM2[i]/v:0),this.surfaceGrid);
                 this.localSnowSeed=this.localSnowSeed.map((v,i)=>v*snowScale[i]);this.localIceSeed=this.localIceSeed.map((v,i)=>v*iceScale[i]);
                 this.initialSnow=w.snowKgM2.slice();this.initialIce=w.seaIceKgM2.slice();
                 this.environment=new EnvironmentModel(this.model,w,this.environmentConfig);
+                if(this.surfaceReservoirInitial) {
+                    // The generated phase adjustment belongs to each surface,
+                    // not to the air anomaly used by the temperature layer.
+                    this.surfaceReservoirInitial.landTemperatureK=this.localReservoirTemperature('land');
+                    this.surfaceReservoirInitial.oceanTemperatureK=this.localReservoirTemperature('ocean');
+                    this.surfaceReservoirInitial.initialLandTemperatureK=this.model.landTemperatureK.slice();
+                    this.surfaceReservoirInitial.initialOceanTemperatureK=this.model.oceanTemperatureK.slice();
+                }
                 if(this.environmentConfig.terrainWater)this.attachRouting(planet);
                 this.initialTemperature=this.model.temperatureK.slice();
                 this.vegetation=new VegetationModel(this.surfaceReference);
                 this.model.stepS=Math.min(this.model.stepS,w.maxStepS);
                 this.refreshEnvironment();
             }
-            this.key=key;this.presented=this.checkpoint();this.texture=null;this.waterTexture=null;this.lastTarget=timeS;
+            this.key=this.modelKey(planet,orbit);this.presented=this.checkpoint();this.texture=null;this.waterTexture=null;this.lastTarget=timeS;
         }
         const m=this.model!;
         // The renderer can only present the latest submitted view. Several
@@ -279,17 +341,23 @@ export class ThermalRuntime {
             const soilDelta=this.initialSoil!.map((initial,i)=>this.water&&this.water.land[i]>0?
                 this.water.soilKgM2[i]/(this.water.land[i]*this.water.config.soilCapacityKgM2)-initial:0);
             this.surfaceTemperature=this.localTemperature(m.temperatureK);
+            this.surfaceLandTemperature=this.localReservoirTemperature('land');this.surfaceOceanTemperature=this.localReservoirTemperature('ocean');
             this.surfaceSoil=resampleClimateField(this.grid,soilDelta,this.surfaceGrid).map((d,i)=>Math.max(0,Math.min(1,this.surfaceInitial!.soilFraction[i]+d)));
             if(this.water) {
-                this.localSnow=downscaleStore(this.grid,this.surfaceGrid,this.water.snowKgM2,this.initialSnow!,this.water.land,this.localSnowSeed!);
-                this.localIce=downscaleStore(this.grid,this.surfaceGrid,this.water.seaIceKgM2,this.initialIce!,this.water.land.map(f=>1-f),this.localIceSeed!);
-                this.localLandIce=downscaleStore(this.grid,this.surfaceGrid,this.water.landIceKgM2,this.initialLandIce!,this.water.land,this.localLandIceSeed!);
+                const localLand=this.surfaceTerrain!.land;
+                this.localSnow=downscaleStore(this.grid,this.surfaceGrid,this.water.snowKgM2,this.initialSnow!,this.water.land,this.localSnowSeed!).map((v,i)=>localLand[i]>0?v:0);
+                this.localIce=downscaleStore(this.grid,this.surfaceGrid,this.water.seaIceKgM2,this.initialIce!,this.water.land.map(f=>1-f),this.localIceSeed!).map((v,i)=>localLand[i]<1?v:0);
+                this.localLandIce=downscaleStore(this.grid,this.surfaceGrid,this.water.landIceKgM2,this.initialLandIce!,this.water.land,this.localLandIceSeed!).map((v,i)=>localLand[i]>0?v:0);
+                if(this.shelves) {
+                    this.localShelfLand=downscaleStore(this.grid,this.surfaceGrid,this.water.shelfLandIceKgM2,this.shelves.initialLand,this.water.land,this.shelves.localLandSeed).map((v,i)=>localLand[i]>0?v:0);
+                    this.localShelfSea=downscaleStore(this.grid,this.surfaceGrid,this.water.shelfSeaIceKgM2,this.shelves.initialSea,this.water.land.map(f=>1-f),this.shelves.localSeaSeed).map((v,i)=>localLand[i]<1?v:0);
+                }
             }
             const surfacePixels=new Uint8Array(this.surfaceGrid.count*4);
             for(let i=0;i<this.surfaceGrid.count;i++) {
                 const cover=this.surfaceAt(i);
                 for(let c=0;c<3;c++)surfacePixels[4*i+c]=Math.round(cover.color[c]);
-                surfacePixels[4*i+3]=byte(cover.seaIceFraction);
+                surfacePixels[4*i+3]=byte(Math.max(cover.seaIceFraction,cover.shelfIceFraction));
             }
             this.surfaceTexture={width:this.surfaceGrid.width,height:this.surfaceGrid.height,pixels:surfacePixels,timeS:m.timeS};
             if(this.water) {

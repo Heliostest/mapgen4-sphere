@@ -24,7 +24,8 @@ export function captureEnvironment(rt:ThermalRuntime):EnvironmentSnapshot|null {
     for(let i=0;i<n;i++) {
         const u=(i%width+.5)/width,v=Math.floor(i/width)/(height-1),k=thermalCell(rt.grid,u,v),cover=rt.sampleSurface(u,v)!;
         temperatureC[i]=cover.localTemperatureK-273.15;east[i]=e.ocean.eastMps[k];north[i]=e.ocean.northMps[k];
-        for(let c=0;c<3;c++)rgb[3*i+c]=s.land[i]>.5?pixels[4*i+c]:[25,63,95][c]*(1-cover.seaIceFraction)+[201,224,230][c]*cover.seaIceFraction;
+        const frozenSea=Math.max(cover.seaIceFraction,cover.shelfIceFraction);
+        for(let c=0;c<3;c++)rgb[3*i+c]=s.land[i]>.5?pixels[4*i+c]:[25,63,95][c]*(1-frozenSea)+[201,224,230][c]*frozenSea;
     }
     return {timeS:m.timeS,ageDays:(m.timeS-m.epochS)/86400,parameters:JSON.stringify({planet:m.planet,orbit:m.orbit,thermal:m.config,water:w.config,environment:rt.environmentConfig}),description:`tilt ${(m.planet.obliquityRad*180/Math.PI).toFixed(1)}° · season ${((m.orbit.orbitPhaseRad*180/Math.PI+360*m.timeS/m.yearS)%360).toFixed(1)}° · current ${rt.environmentConfig.oceanStrengthMps} m/s · vegetation ${rt.environmentConfig.vegetation?'on':'off'} · ice albedo ${rt.environmentConfig.iceAlbedo?'on':'off'}`,
         width,height,rgb,temperatureC,snowMm:s.snowMm!.map((v,i)=>s.land[i]>.5?v:0),iceM:s.iceKgM2!.map((v,i)=>s.land[i]<.5?v/917:0),landIceM:s.landIceKgM2!.map((v,i)=>s.land[i]>.5?v/917:0),vegetation:rt.vegetation!.cover.map((v,i)=>s.land[i]>.5?v:0),land:s.land.slice(),east,north,metrics};

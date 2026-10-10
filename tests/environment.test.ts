@@ -123,3 +123,53 @@ test('comparison parameter snapshots distinguish albedo feedback experiments',()
     assert.notEqual(a.parameters,b.parameters);assert.match(a.parameters,/"iceAlbedo":true/);assert.match(b.parameters,/"iceAlbedo":false/);
     assert.ok(comparisonCSV(a,b).includes('iceAlbedo'));
 });
+
+function separateSetup(air=290,landT=280,oceanT=270) {
+    const land=new Float64Array(n).fill(.5),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,separateReservoirs:true},land,0,g,{
+        temperatureK:new Float64Array(n).fill(air),landTemperatureK:new Float64Array(n).fill(landT),oceanTemperatureK:new Float64Array(n).fill(oceanT),radiationScale:new Float64Array(n).fill(1),absorbedWm2:new Float64Array(n),
+    });
+    const w=new WaterModel(g,DEFAULT_PLANET.radiusM,land,new Float64Array(n).fill(100),m.temperatureK,{...DEFAULT_WATER,windMps:0,moistureDiffusivityM2s:0,evaporationFraction:0});
+    return {m,w};
+}
+test('mixed-cell sea freezing consumes only ocean cold content and preserves warm air and land',()=>{
+    const {m,w}=separateSetup(),e=new EnvironmentModel(m,w,DEFAULT_ENVIRONMENT),energy=e.enthalpy();
+    e.phase(1800);
+    near(m.temperatureK[0],290);near(m.landTemperatureK[0],280);near(m.oceanTemperatureK[0],271.35);
+    near(w.seaIceKgM2[0],1.35*21e6/334000);near(e.enthalpy(),energy,1e-5);near(w.diagnostics().residualMm,0);
+});
+test('initial snow and sea ice impose their own surface boundaries without constraining the atmosphere',()=>{
+    const {m,w}=separateSetup(290,280,260);w.seedFrozen(new Float64Array(n).fill(100),new Float64Array(n).fill(1000));
+    const e=new EnvironmentModel(m,w,DEFAULT_ENVIRONMENT),ice=w.seaIceKgM2.slice(),snow=w.snowKgM2.slice();
+    near(m.temperatureK[0],290);near(m.landTemperatureK[0],273.15);near(m.oceanTemperatureK[0],271.35);
+    e.phase(1800);assert.deepEqual(w.snowKgM2,snow);assert.deepEqual(w.seaIceKgM2,ice);near(e.diagnostics().energyResidualJm2,0);
+});
+test('mixed-cell snowmelt draws land heat while leaving cold seawater and warm air free to differ',()=>{
+    const {m,w}=separateSetup(290,270,271.35);w.seedFrozen(new Float64Array(n).fill(1000),new Float64Array(n).fill(1000));
+    const e=new EnvironmentModel(m,w,DEFAULT_ENVIRONMENT);m.landTemperatureK.fill(276);const energy=e.enthalpy(),sea=w.seaIceKgM2.slice();
+    e.phase(1800);
+    near(m.landTemperatureK[0],273.15);near(m.temperatureK[0],290);near(m.oceanTemperatureK[0],271.35);
+    near(w.snowKgM2[0],1000-2.85e6/334000);assert.deepEqual(w.seaIceKgM2,sea);near(e.enthalpy(),energy);near(w.diagnostics().residualMm,0);
+});
+test('evaporation follows land and ocean temperatures and takes latent heat from its source reservoirs',()=>{
+    const {m,w}=separateSetup(260,290,290),e=new EnvironmentModel(m,w,DEFAULT_ENVIRONMENT);
+    w.config.evaporationFraction=.5;m.absorbedWm2.fill(200);w.atmosphereKgM2.fill(0);const energy=e.enthalpy(),water=w.diagnostics().totalMm;
+    w.step(60,m.temperatureK,m.absorbedWm2,e);m.applyHeat(e.heatJm2);m.applyLandHeat(e.landHeatJm2);m.applyOceanHeat(e.oceanHeatJm2);
+    assert.ok(w.evaporationKgM2S.every(v=>v>0));assert.ok(m.landTemperatureK[0]<290);assert.ok(m.oceanTemperatureK[0]<290);
+    near(m.temperatureK[0],260);near(e.enthalpy(),energy);near(w.diagnostics().totalMm,water);
+});
+test('ocean currents transport ocean heat without advecting a different atmospheric temperature',()=>{
+    const {m,w}=separateSetup(290,280,280);w.config.windMps=10;w.setWinds(new Float64Array(n).fill(10),new Float64Array(n));
+    m.oceanTemperatureK[0]=300;const ocean=new OceanTransport(m,w),energy=m.energy(),air=m.temperatureK.slice(),land=m.landTemperatureK.slice();
+    ocean.step(1800,1);
+    assert.ok(m.oceanTemperatureK.some((t,i)=>i!==0&&t>280));assert.deepEqual(m.temperatureK,air);assert.deepEqual(m.landTemperatureK,land);near(m.energy(),energy);
+});
+test('floating shelves conserve water, melt to ocean rather than runoff, and remain separate from seasonal sea ice',()=>{
+    const {m,w}=separateSetup(290,270,270),total=w.diagnostics().totalMm;
+    w.seedShelves(new Float64Array(n).fill(1000),new Float64Array(n).fill(1000));
+    near(w.diagnostics().totalMm,total);const saved=w.checkpoint(),e=new EnvironmentModel(m,w,DEFAULT_ENVIRONMENT);
+    assert.equal(e.diagnostics().iceFraction,0);assert.ok(e.shelfLandCover[0]>0&&e.shelfSeaCover[0]>0);
+    m.landTemperatureK.fill(276);m.oceanTemperatureK.fill(276);const energy=e.enthalpy(),ocean=w.oceanGlobalKgM2;
+    e.phase(1800);assert.ok(w.shelfLandIceKgM2[0]<1000&&w.shelfSeaIceKgM2[0]<1000);
+    assert.ok(w.oceanGlobalKgM2>ocean);assert.equal(w.surfaceKgM2[0],0);assert.equal(w.seaIceKgM2[0],0);near(e.enthalpy(),energy);
+    w.restore(saved);assert.deepEqual(w.shelfLandIceKgM2,saved.shelfLandIceKgM2);assert.deepEqual(w.shelfSeaIceKgM2,saved.shelfSeaIceKgM2);
+});

@@ -1,6 +1,61 @@
 {
   "savedSimulationValid": true,
   "initialDay": 0,
+  "separateReservoirs": true,
+  "observedIceSource": "GFZ GDEMM2024, 1 arcmin; Greenland BedMachine v5 and Antarctica BedMachine v3 ice thickness and masks",
+  "cryospherePoints": [
+    {
+      "name": "Antarctica",
+      "landIceM": 2526,
+      "shelfIceM": 0,
+      "airC": -59.63717239822347,
+      "surfaceC": -60.646347991001335
+    },
+    {
+      "name": "Greenland",
+      "landIceM": 3087.5,
+      "shelfIceM": 0,
+      "airC": -59.557340752606706,
+      "surfaceC": -50.664437097660766
+    },
+    {
+      "name": "Tibet",
+      "landIceM": 0,
+      "shelfIceM": 0,
+      "airC": -16.500853953852015,
+      "surfaceC": -16.409541308304313
+    },
+    {
+      "name": "Himalaya",
+      "landIceM": 0,
+      "shelfIceM": 0,
+      "airC": -14.57865631016665,
+      "surfaceC": -13.857375438364897
+    }
+  ],
+  "water": {
+    "shelfIceMm": 1040.6982230206804,
+    "landIceMm": 49438.576237719324,
+    "snowMm": 10.245717975257032,
+    "iceMm": 177.27481521128234,
+    "meltMmDay": 0,
+    "totalMm": 739407.3164896969,
+    "residualMm": 1.1641532182693481e-10,
+    "atmosphereMm": 13.864299796532547,
+    "soilMm": 7.22044216608472,
+    "surfaceMm": 0.5545182612496745,
+    "oceanMm": 688718.8822355465,
+    "rainMmDay": 1.952639860706422,
+    "evaporationMmDay": 1.5472667300371252,
+    "maxDischargeM3S": 24701.075423785955
+  },
+  "energy": {
+    "energyResidualJm2": 0,
+    "iceFraction": 0.18899884261941877,
+    "snowFraction": 0.3297912852452638,
+    "albedo": 0.38835954072368917,
+    "maxCurrentMps": 0
+  },
   "systems": {
     "oceanStrengthMps": 0.3,
     "vegetation": true,
@@ -207,5 +262,5 @@
   "northPoleOcean": true,
   "southPoleLand": true,
   "finiteTerrain": true,
-  "note": "ETOPO 2022 terrain sampled to the mesh; narrow summits and trenches unresolved. Climate and vegetation remain model estimates."
+  "note": "ETOPO 2022 ice-surface terrain preserved. Independent observed ice thickness initializes conserved reservoirs; terrain is not increased by ice thickness. Climate, seasonal sea ice and vegetation remain uncalibrated model estimates."
 }

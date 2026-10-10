@@ -1,0 +1,254 @@
+{
+  "note": "Independent frozen-snapshot water/enthalpy sums and surface phase diagnostic scan; continuous step provenance is reviewed in integrate.ts rather than rerun by this probe.",
+  "afterBundledCodeSha256": "f31c36c8f359eea23b0a93c3391ec43eba110d2754a8605d830e7e0c2e73c04f",
+  "inputSha256": "1fe24db85125e815ed576059b1c387c505a01773f148ef7a766ec9616b151ac3",
+  "terrainHashesMatchBaseline": true,
+  "snapshots": [
+    {
+      "day": 0,
+      "actualModelDay": 0,
+      "steps": 0,
+      "stepS": 1800,
+      "snapshotFile": "build/earth-ice-inventory/after-day0.json",
+      "sha256": "1fe24db85125e815ed576059b1c387c505a01773f148ef7a766ec9616b151ac3",
+      "totalMm": 739407.3164896969,
+      "waterResidualMm": 1.1641532182693481e-10,
+      "energyResidualJm2": -0.0001697540283203125,
+      "surfacePhaseViolations": 0,
+      "storesGlobalMm": {
+        "atmosphereKgM2": 13.864299796532542,
+        "soilKgM2": 7.220442166084713,
+        "surfaceKgM2": 0.5545182612496743,
+        "snowKgM2": 10.245717975257033,
+        "seaIceKgM2": 177.2748152112826,
+        "landIceKgM2": 49438.57623771932,
+        "shelfLandIceKgM2": 80.03423219784283,
+        "shelfSeaIceKgM2": 960.6639908228374
+      },
+      "points": [
+        {
+          "name": "Antarctica interior",
+          "localLandIceM": 2526,
+          "physicalSeaIceM": 1.4793768755853147,
+          "localSeaIceFraction": 0,
+          "surfaceC": -60.646347991001335,
+          "localAirC": -59.63717239822347
+        },
+        {
+          "name": "Greenland interior",
+          "localLandIceM": 3087.5,
+          "physicalSeaIceM": 2,
+          "localSeaIceFraction": 0,
+          "surfaceC": -50.664437097660766,
+          "localAirC": -59.557340752606706
+        },
+        {
+          "name": "Arctic ocean",
+          "localLandIceM": 0,
+          "physicalSeaIceM": 2,
+          "localSeaIceFraction": 1,
+          "surfaceC": -4.2661528430109,
+          "localAirC": -34.93369647857975
+        },
+        {
+          "name": "Southern ocean",
+          "localLandIceM": 0,
+          "physicalSeaIceM": 1.2375890852598386,
+          "localSeaIceFraction": 1,
+          "surfaceC": -2.154337449018044,
+          "localAirC": 9.731142887874341
+        }
+      ],
+      "regions": [
+        {
+          "name": "Antarctica",
+          "landIceVolumeKm3": 24590963.55630934,
+          "shelfIceVolumeKm3": 578870.8716433222,
+          "seaIceExtentAt15PercentKm2": 23121592.582425643
+        },
+        {
+          "name": "Greenland bounding box",
+          "landIceVolumeKm3": 2644501.185226832,
+          "shelfIceVolumeKm3": 0,
+          "seaIceExtentAt15PercentKm2": 4283948.154864573
+        },
+        {
+          "name": "Arctic",
+          "landIceVolumeKm3": 2797021.031540481,
+          "shelfIceVolumeKm3": 0,
+          "seaIceExtentAt15PercentKm2": 20590579.755399864
+        },
+        {
+          "name": "Southern ocean",
+          "landIceVolumeKm3": 24590963.55630934,
+          "shelfIceVolumeKm3": 578870.8716433222,
+          "seaIceExtentAt15PercentKm2": 48509836.79802638
+        }
+      ]
+    },
+    {
+      "day": 170,
+      "actualModelDay": 170,
+      "steps": 8160,
+      "stepS": 1800,
+      "snapshotFile": "build/earth-ice-inventory/after-day170.json",
+      "sha256": "5390e6f82d2d6060a447053ec74a68a72716e7018d4aa81e75e964cd35efea55",
+      "totalMm": 739407.3164896105,
+      "waterResidualMm": -8.62637534737587e-8,
+      "energyResidualJm2": -0.00020581483840942383,
+      "surfacePhaseViolations": 0,
+      "storesGlobalMm": {
+        "atmosphereKgM2": 16.308704711259022,
+        "soilKgM2": 6.978363255471355,
+        "surfaceKgM2": 31.091847375969866,
+        "snowKgM2": 0.018348287279356067,
+        "seaIceKgM2": 665.6869054954424,
+        "landIceKgM2": 49438.022683246156,
+        "shelfLandIceKgM2": 80.03423219784283,
+        "shelfSeaIceKgM2": 960.6639908228374
+      },
+      "points": [
+        {
+          "name": "Antarctica interior",
+          "localLandIceM": 2526.0000109666466,
+          "physicalSeaIceM": 11.19610924531275,
+          "localSeaIceFraction": 0,
+          "surfaceC": -36.94507622496616,
+          "localAirC": -68.0439904733206
+        },
+        {
+          "name": "Greenland interior",
+          "localLandIceM": 3087.351603255994,
+          "physicalSeaIceM": 4.1356776973102,
+          "localSeaIceFraction": 0,
+          "surfaceC": -10.32958212859944,
+          "localAirC": 0.9959982967956762
+        },
+        {
+          "name": "Arctic ocean",
+          "localLandIceM": 0,
+          "physicalSeaIceM": 3.7134649085321447,
+          "localSeaIceFraction": 1,
+          "surfaceC": -4.2661528430109,
+          "localAirC": 8.9260793664061
+        },
+        {
+          "name": "Southern ocean",
+          "localLandIceM": 0,
+          "physicalSeaIceM": 7.074274749140901,
+          "localSeaIceFraction": 1,
+          "surfaceC": -2.154337449018044,
+          "localAirC": -1.7194042441553847
+        }
+      ],
+      "regions": [
+        {
+          "name": "Antarctica",
+          "landIceVolumeKm3": 24590963.554244272,
+          "shelfIceVolumeKm3": 578870.8716433222,
+          "seaIceExtentAt15PercentKm2": 23121592.582425643
+        },
+        {
+          "name": "Greenland bounding box",
+          "landIceVolumeKm3": 2644276.255719947,
+          "shelfIceVolumeKm3": 0,
+          "seaIceExtentAt15PercentKm2": 4283948.154864573
+        },
+        {
+          "name": "Arctic",
+          "landIceVolumeKm3": 2796773.068576491,
+          "shelfIceVolumeKm3": 0,
+          "seaIceExtentAt15PercentKm2": 19856890.66564681
+        },
+        {
+          "name": "Southern ocean",
+          "landIceVolumeKm3": 24590963.5562557,
+          "shelfIceVolumeKm3": 578870.8716433222,
+          "seaIceExtentAt15PercentKm2": 48509836.79802638
+        }
+      ]
+    },
+    {
+      "day": 350,
+      "actualModelDay": 350,
+      "steps": 16800,
+      "stepS": 1800,
+      "snapshotFile": "build/earth-ice-inventory/after-day350.json",
+      "sha256": "71fbcf1711901b9cce7596423a594098f83692b77fef5a0eeb02595d06a9bcc4",
+      "totalMm": 739407.3164897169,
+      "waterResidualMm": 2.0139850676059723e-8,
+      "energyResidualJm2": -0.0002664923667907715,
+      "surfacePhaseViolations": 0,
+      "storesGlobalMm": {
+        "atmosphereKgM2": 14.613326890433662,
+        "soilKgM2": 12.911903921622107,
+        "surfaceKgM2": 54.61531373589845,
+        "snowKgM2": 3.0403840518576923,
+        "seaIceKgM2": 1071.4170638470573,
+        "landIceKgM2": 49437.73367137363,
+        "shelfLandIceKgM2": 80.03423219784283,
+        "shelfSeaIceKgM2": 960.6639908228374
+      },
+      "points": [
+        {
+          "name": "Antarctica interior",
+          "localLandIceM": 2525.944206271867,
+          "physicalSeaIceM": 13.80080250443404,
+          "localSeaIceFraction": 0,
+          "surfaceC": -27.051800499954652,
+          "localAirC": -60.64386274291061
+        },
+        {
+          "name": "Greenland interior",
+          "localLandIceM": 3087.331705683777,
+          "physicalSeaIceM": 13.550948262992332,
+          "localSeaIceFraction": 0,
+          "surfaceC": -22.79588403477237,
+          "localAirC": -10.753766821133638
+        },
+        {
+          "name": "Arctic ocean",
+          "localLandIceM": 0,
+          "physicalSeaIceM": 12.573429158067096,
+          "localSeaIceFraction": 1,
+          "surfaceC": -4.2661528430109,
+          "localAirC": -4.30533332109934
+        },
+        {
+          "name": "Southern ocean",
+          "localLandIceM": 0,
+          "physicalSeaIceM": 7.098996806372677,
+          "localSeaIceFraction": 1,
+          "surfaceC": -2.154337449018044,
+          "localAirC": 5.989142835112943
+        }
+      ],
+      "regions": [
+        {
+          "name": "Antarctica",
+          "landIceVolumeKm3": 24590801.87542965,
+          "shelfIceVolumeKm3": 578870.8716433222,
+          "seaIceExtentAt15PercentKm2": 23121592.582425643
+        },
+        {
+          "name": "Greenland bounding box",
+          "landIceVolumeKm3": 2644276.2549651363,
+          "shelfIceVolumeKm3": 0,
+          "seaIceExtentAt15PercentKm2": 4283948.154864573
+        },
+        {
+          "name": "Arctic",
+          "landIceVolumeKm3": 2796773.0677612005,
+          "shelfIceVolumeKm3": 0,
+          "seaIceExtentAt15PercentKm2": 20613359.151392188
+        },
+        {
+          "name": "Southern ocean",
+          "landIceVolumeKm3": 24590801.875973575,
+          "shelfIceVolumeKm3": 578870.8716433222,
+          "seaIceExtentAt15PercentKm2": 47901294.90516949
+        }
+      ]
+    }
+  ]
+}
