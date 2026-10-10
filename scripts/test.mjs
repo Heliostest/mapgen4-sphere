@@ -30,5 +30,6 @@ await build({entryPoints: ['tests/gpu-radial.ts'], bundle: true, format: 'esm', 
 await build({entryPoints: ['tests/gpu-outlines.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-outlines.js'});
 await build({entryPoints: ['tests/gpu-silhouette.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-silhouette.js'});
 await build({entryPoints: ['tests/gpu-insolation.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-insolation.js'});
+await build({entryPoints: ['tests/gpu-surface-lighting.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-surface-lighting.js'});
 const run = spawnSync(process.execPath, ['--test', 'build/tests/weather.test.mjs', 'build/tests/circulation.test.mjs', 'build/tests/glacier.test.mjs', 'build/tests/terrain-water.test.mjs', 'build/tests/simulation.test.mjs', 'build/tests/environment.test.mjs', 'build/tests/sphere.test.mjs', 'build/tests/planet.test.mjs', 'build/tests/thermal.test.mjs', 'build/tests/water.test.mjs', 'build/tests/geomorph.test.mjs', 'build/tests/terrain-application.test.mjs', 'build/tests/climate.test.mjs', 'build/tests/surface.test.mjs'], {stdio: 'inherit'});
 process.exitCode = run.status ?? 1;

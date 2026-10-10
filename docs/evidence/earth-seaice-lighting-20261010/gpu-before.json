@@ -1,0 +1,222 @@
+{
+  "status": "FAIL",
+  "checks": 20,
+  "failed": [
+    {
+      "name": "original, sea ice 0: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 170,
+        "changed": 1222413
+      }
+    },
+    {
+      "name": "surface, sea ice 0: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 170,
+        "changed": 1222413
+      }
+    },
+    {
+      "name": "surface, sea ice 0.45: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 178,
+        "changed": 1223387
+      }
+    },
+    {
+      "name": "surface, sea ice 1: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 199,
+        "changed": 1196280
+      }
+    },
+    {
+      "name": "sea-ice edge uses fine terrain coastline for its normal",
+      "pass": false,
+      "detail": {
+        "max": 83,
+        "changed": 8360
+      }
+    },
+    {
+      "name": "exactly zero elevation is a sea surface",
+      "pass": false,
+      "detail": {
+        "max": 199,
+        "changed": 1196280
+      }
+    },
+    {
+      "name": "surface, sea ice 1: ridge outlines use the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 26,
+        "changed": 284831
+      }
+    },
+    {
+      "name": "surface, sea ice 0.45: ridge outlines use the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 25,
+        "changed": 704506
+      }
+    },
+    {
+      "name": "original, sea ice 0: ridge outlines use the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 24,
+        "changed": 662421
+      }
+    }
+  ],
+  "results": [
+    {
+      "name": "original, sea ice 0: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 170,
+        "changed": 1222413
+      }
+    },
+    {
+      "name": "original, sea ice 0: surface remains visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "surface, sea ice 0: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 170,
+        "changed": 1222413
+      }
+    },
+    {
+      "name": "surface, sea ice 0: surface remains visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "surface, sea ice 0.45: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 178,
+        "changed": 1223387
+      }
+    },
+    {
+      "name": "surface, sea ice 0.45: surface remains visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "surface, sea ice 1: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 199,
+        "changed": 1196280
+      }
+    },
+    {
+      "name": "surface, sea ice 1: surface remains visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "sea-ice edge uses fine terrain coastline for its normal",
+      "pass": false,
+      "detail": {
+        "max": 83,
+        "changed": 8360
+      }
+    },
+    {
+      "name": "exactly zero elevation is a sea surface",
+      "pass": false,
+      "detail": {
+        "max": 199,
+        "changed": 1196280
+      }
+    },
+    {
+      "name": "original terrain retains bathymetric color",
+      "pass": true,
+      "detail": {
+        "max": 104,
+        "changed": 1228800
+      }
+    },
+    {
+      "name": "surface, sea ice 1: ridge outlines use the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 26,
+        "changed": 284831
+      }
+    },
+    {
+      "name": "surface, sea ice 0.45: ridge outlines use the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 25,
+        "changed": 704506
+      }
+    },
+    {
+      "name": "original, sea ice 0: ridge outlines use the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 24,
+        "changed": 662421
+      }
+    },
+    {
+      "name": "original, land color 80,120,160: land/snow retain slope lighting",
+      "pass": true,
+      "detail": {
+        "max": 194,
+        "changed": 1184802
+      }
+    },
+    {
+      "name": "surface, land color 80,120,160: land/snow retain slope lighting",
+      "pass": true,
+      "detail": {
+        "max": 147,
+        "changed": 1210051
+      }
+    },
+    {
+      "name": "surface, land color 190,200,205: land/snow retain slope lighting",
+      "pass": true,
+      "detail": {
+        "max": 188,
+        "changed": 1218447
+      }
+    },
+    {
+      "name": "coastal land retains its terrain slope lighting",
+      "pass": true,
+      "detail": {
+        "max": 66,
+        "changed": 8838
+      }
+    },
+    {
+      "name": "lighting does not mutate physical DEM",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "WebGL reports no error",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "status": "FAIL",
+  "checks": 16,
+  "failed": [
+    {
+      "name": "original, sea ice 0: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 170,
+        "changed": 48844
+      }
+    },
+    {
+      "name": "surface, sea ice 0: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 170,
+        "changed": 48844
+      }
+    },
+    {
+      "name": "surface, sea ice 0.45: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 178,
+        "changed": 48904
+      }
+    },
+    {
+      "name": "surface, sea ice 1: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 199,
+        "changed": 47718
+      }
+    },
+    {
+      "name": "sea-ice edge uses fine terrain coastline for its normal",
+      "pass": false,
+      "detail": {
+        "max": 82,
+        "changed": 1656
+      }
+    },
+    {
+      "name": "land coast slope uses sea-level neighbors, not seabed depth",
+      "pass": false,
+      "detail": {
+        "max": 43,
+        "changed": 1737
+      }
+    }
+  ],
+  "results": [
+    {
+      "name": "original, sea ice 0: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 170,
+        "changed": 48844
+      }
+    },
+    {
+      "name": "original, sea ice 0: surface remains visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "surface, sea ice 0: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 170,
+        "changed": 48844
+      }
+    },
+    {
+      "name": "surface, sea ice 0: surface remains visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "surface, sea ice 0.45: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 178,
+        "changed": 48904
+      }
+    },
+    {
+      "name": "surface, sea ice 0.45: surface remains visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "surface, sea ice 1: seabed does not shade the sea surface",
+      "pass": false,
+      "detail": {
+        "max": 199,
+        "changed": 47718
+      }
+    },
+    {
+      "name": "surface, sea ice 1: surface remains visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "sea-ice edge uses fine terrain coastline for its normal",
+      "pass": false,
+      "detail": {
+        "max": 82,
+        "changed": 1656
+      }
+    },
+    {
+      "name": "original terrain retains bathymetric color",
+      "pass": true,
+      "detail": {
+        "max": 104,
+        "changed": 49152
+      }
+    },
+    {
+      "name": "original, land color 80,120,160: land/snow retain slope lighting",
+      "pass": true,
+      "detail": {
+        "max": 185,
+        "changed": 47302
+      }
+    },
+    {
+      "name": "surface, land color 80,120,160: land/snow retain slope lighting",
+      "pass": true,
+      "detail": {
+        "max": 140,
+        "changed": 48394
+      }
+    },
+    {
+      "name": "surface, land color 190,200,205: land/snow retain slope lighting",
+      "pass": true,
+      "detail": {
+        "max": 179,
+        "changed": 48756
+      }
+    },
+    {
+      "name": "land coast slope uses sea-level neighbors, not seabed depth",
+      "pass": false,
+      "detail": {
+        "max": 43,
+        "changed": 1737
+      }
+    },
+    {
+      "name": "lighting does not mutate physical DEM",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "WebGL reports no error",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

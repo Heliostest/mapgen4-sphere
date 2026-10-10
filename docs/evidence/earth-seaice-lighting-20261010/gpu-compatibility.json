@@ -1,0 +1,26 @@
+[
+  {
+    "probe": "gpu-outlines",
+    "result": "{\n  \"status\": \"PASS\",\n  \"samples\": 771,\n  \"report\": [\n    {\n      \"axis\": [\n        1,\n        0\n      ],\n      \"maxJump\": 0.00048828125,\n      \"maxError\": 0.0000976562500000222\n    },\n    {\n      \"axis\": [\n        0,\n        1\n      ],\n      \"maxJump\": 0.00048828125,\n      \"maxError\": 0.0000976562500000222\n    },\n    {\n      \"axis\": [\n        1,\n        1\n      ],\n      \"maxJump\": 0.0009765625,\n      \"maxError\": 0.0001464843749999778\n    }\n  ]\n}"
+  },
+  {
+    "probe": "gpu-radial",
+    "result": "{\n  \"status\": \"PASS\",\n  \"checks\": 648,\n  \"radii\": [\n    100,\n    300,\n    1000\n  ],\n  \"cameras\": 4,\n  \"models\": 3,\n  \"maxError\": 0.0002679679309949279\n}"
+  },
+  {
+    "probe": "gpu-silhouette",
+    "result": "{\n  \"status\": \"PASS\",\n  \"checks\": 30,\n  \"failed\": []\n}"
+  },
+  {
+    "probe": "gpu-insolation",
+    "result": "{\n  \"status\": \"PASS\",\n  \"checks\": 87\n}"
+  },
+  {
+    "probe": "polar-render",
+    "result": "{\n  \"status\": \"PASS\",\n  \"checks\": 116\n}"
+  },
+  {
+    "probe": "terrain-water-render",
+    "result": "{\n  \"status\": \"PASS\",\n  \"counts\": [\n    {\n      \"label\": \"Dry basin\",\n      \"blue\": 0,\n      \"green\": 0,\n      \"volumeM3\": 0\n    },\n    {\n      \"label\": \"Saturated ground\",\n      \"blue\": 137721,\n      \"green\": 2236255,\n      \"volumeM3\": 0\n    },\n    {\n      \"label\": \"Low lake\",\n      \"blue\": 456284,\n      \"green\": 1914680,\n      \"volumeM3\": 1299199101980698\n    },\n    {\n      \"label\": \"High lake\",\n      \"blue\": 1418595,\n      \"green\": 937659,\n      \"volumeM3\": 13905855827842282\n    },\n    {\n      \"label\": \"Drained again\",\n      \"blue\": 0,\n      \"green\": 0,\n      \"volumeM3\": 0\n    }\n  ]\n}"
+  }
+]
