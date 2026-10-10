@@ -1,0 +1,715 @@
+{
+  "createdAtUtc": "2026-10-10T18:22:28.466Z",
+  "baseline": "dc87afb260106a4f4cd4373239d7a8098be9b42a",
+  "implementationBranch": "codex/earth-climate-refinement",
+  "formalDecision": "classic default; balanced/high explicitly experimental",
+  "nodeVersion": "v24.11.1",
+  "hashNotes": [
+    "sha256 describes evidence-capture worktree bytes before publication.",
+    "Git core.autocrlf=input may normalize source CRLF to LF on commit/checkout; repositoryLfSha256 binds the published text content.",
+    "Large checkpoints and generated runtime bundles remain ignored build artifacts; their summaries, hashes and reproducible harnesses are committed.",
+    "The full-year physics bundle preceded only query-unit/null handling and UI wording fixes. Current final runtime bundle includes those fixes."
+  ],
+  "reviewedFiles": [
+    {
+      "path": "refinement-topology.ts",
+      "bytes": 5353,
+      "sha256": "18eec0bba81a749d2098541accf135299106c8be7fee73750a0dec0a2d612a1a",
+      "repositoryLfSha256": "b4b5d3f2e3f4fd351ae055c8e70a963c8f90c62ad0cf979aba3639283b7a717d",
+      "reviewedSha256": "18eec0bba81a749d2098541accf135299106c8be7fee73750a0dec0a2d612a1a",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "refinement-surface.ts",
+      "bytes": 27642,
+      "sha256": "5aa9a80fa33ae04f5d333f7ca9289ad57a62bc3656772ed25d78872c54882304",
+      "repositoryLfSha256": "0823937f62d597a0dd92276eec13cc7c964073dcd02f63ad46e460e5962fa28e",
+      "reviewedSha256": "5aa9a80fa33ae04f5d333f7ca9289ad57a62bc3656772ed25d78872c54882304",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "thermal-runtime.ts",
+      "bytes": 49957,
+      "sha256": "5746b7f523ab1624bebc589c767988f0898ba2e08a2e533c6b1042ade0f52816",
+      "repositoryLfSha256": "bf7fd18c0de0921cc754e06289580ab0a7d24198ffbb026744dbd91f5215196c",
+      "reviewedSha256": "5746b7f523ab1624bebc589c767988f0898ba2e08a2e533c6b1042ade0f52816",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "thermal.ts",
+      "bytes": 17419,
+      "sha256": "cd8d823aafc2c5e43f13c4bdc137d9b203ff4616862b2c4388e4c2c2942ecc87",
+      "repositoryLfSha256": "cd8d823aafc2c5e43f13c4bdc137d9b203ff4616862b2c4388e4c2c2942ecc87",
+      "reviewedSha256": "cd8d823aafc2c5e43f13c4bdc137d9b203ff4616862b2c4388e4c2c2942ecc87",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "water.ts",
+      "bytes": 31512,
+      "sha256": "b7d7be37de913575723b108b8c803cd027478332b4941f1b148ddb4486904934",
+      "repositoryLfSha256": "b7d7be37de913575723b108b8c803cd027478332b4941f1b148ddb4486904934",
+      "reviewedSha256": "b7d7be37de913575723b108b8c803cd027478332b4941f1b148ddb4486904934",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "environment.ts",
+      "bytes": 11809,
+      "sha256": "af6295d092587fed5b4bb9019694a8987c679eb5f3034bd00715d1edc399dbf9",
+      "repositoryLfSha256": "af6295d092587fed5b4bb9019694a8987c679eb5f3034bd00715d1edc399dbf9",
+      "reviewedSha256": "af6295d092587fed5b4bb9019694a8987c679eb5f3034bd00715d1edc399dbf9",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "terrain-water.ts",
+      "bytes": 13805,
+      "sha256": "652a7ebac28b49a21d726af4942c4d6bfdc2c4ea25fd1e0c8c8d9412565f1445",
+      "repositoryLfSha256": "deea88f1006c89ed2e15016cf72aacc33266197f6df0c05e344e6173cd8441bf",
+      "reviewedSha256": "652a7ebac28b49a21d726af4942c4d6bfdc2c4ea25fd1e0c8c8d9412565f1445",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "runtime-state.ts",
+      "bytes": 15419,
+      "sha256": "147dc0674ebdac3cf049f2c94545bc197e4af7838736501d5b1f301c3c581d4d",
+      "repositoryLfSha256": "df71fea67c44e39a214e7d2bba5fc07016a25721375d1f7cc081fa9ce18bde43",
+      "reviewedSha256": "147dc0674ebdac3cf049f2c94545bc197e4af7838736501d5b1f301c3c581d4d",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "glacier.ts",
+      "bytes": 7822,
+      "sha256": "874f3ab199f5665281bf7d5b2940ed190e8843fbf227849d7361b6c475405c56",
+      "repositoryLfSha256": "99746618e1bbdc9d4c354b562a9c33a036c3b703f1ab84dac9d04ca8db383cb1",
+      "reviewedSha256": "874f3ab199f5665281bf7d5b2940ed190e8843fbf227849d7361b6c475405c56",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "surface-grid.ts",
+      "bytes": 6179,
+      "sha256": "5af822cc3ce30a09db820841d15a017dd2850f72ab0c51ade2a14162d6f7e02c",
+      "repositoryLfSha256": "5af822cc3ce30a09db820841d15a017dd2850f72ab0c51ade2a14162d6f7e02c",
+      "reviewedSha256": "5af822cc3ce30a09db820841d15a017dd2850f72ab0c51ade2a14162d6f7e02c",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "environment-panel.ts",
+      "bytes": 27171,
+      "sha256": "e8d10712ea47d5b961f3719e29be894b615f8f3afd50d723a5e56b8516ead51e",
+      "repositoryLfSha256": "c690b6e8603d760d9287eced06ec7793b945b33861a275eb04b25c0ea4ae285d",
+      "reviewedSha256": "e8d10712ea47d5b961f3719e29be894b615f8f3afd50d723a5e56b8516ead51e",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "environment-comparison.ts",
+      "bytes": 5383,
+      "sha256": "bb21957e453fee3cf2f9bf2455e7a1c0e7b34217d700bba9dabbd80c8b74d593",
+      "repositoryLfSha256": "45a97dbac0194fb4386134879cb3abf5c871e9ff6e623d70453b1e3e9b669d17",
+      "reviewedSha256": "bb21957e453fee3cf2f9bf2455e7a1c0e7b34217d700bba9dabbd80c8b74d593",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "simulation-document.ts",
+      "bytes": 5014,
+      "sha256": "03e0ff5d8382e6023550d277a847334fbb332e13ee034579a59f61d6d30b8197",
+      "repositoryLfSha256": "691afa3bb6fefd636127755b87c3d16b1d8c1d3e5f6ac5db9aa4e699127cba01",
+      "reviewedSha256": "03e0ff5d8382e6023550d277a847334fbb332e13ee034579a59f61d6d30b8197",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "planet-controls.ts",
+      "bytes": 30241,
+      "sha256": "f4cef69748e32f4a26f9f905609e9c63e6cf4482fd97e9b660ea7c8b10384989",
+      "repositoryLfSha256": "c01bbda1bbc5f6450bebd78caf5c2d69cb1e774c82be927bf45d8b3a7c77bf02",
+      "reviewedSha256": "f4cef69748e32f4a26f9f905609e9c63e6cf4482fd97e9b660ea7c8b10384989",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "scenes/earth-land-sea/sidebar-zh.js",
+      "bytes": 33196,
+      "sha256": "2155d8046e5fb163a8182e156736027b5e267744226f17d911fddadae7a35071",
+      "repositoryLfSha256": "2155d8046e5fb163a8182e156736027b5e267744226f17d911fddadae7a35071",
+      "reviewedSha256": "2155d8046e5fb163a8182e156736027b5e267744226f17d911fddadae7a35071",
+      "matchesReviewedBytes": true
+    },
+    {
+      "path": "tests/refinement.test.ts",
+      "bytes": 10935,
+      "sha256": "3bfaa30f55a85b2e587ea1727b11e79063e1896ae5ccf5eac28d50773a4c225b",
+      "repositoryLfSha256": "2fa74ec26f36009164f9f2b3d7f009aec699490ba3751018a6f29fe89501d339",
+      "reviewedSha256": "3bfaa30f55a85b2e587ea1727b11e79063e1896ae5ccf5eac28d50773a4c225b",
+      "matchesReviewedBytes": true
+    }
+  ],
+  "otherProductFiles": [
+    {
+      "path": "river-channels.ts",
+      "bytes": 6425,
+      "sha256": "4b45b4dd27e05e5dbd646764eb2a6503dbf3af8d3af8e9e59ce5f220374af575",
+      "repositoryLfSha256": "4b45b4dd27e05e5dbd646764eb2a6503dbf3af8d3af8e9e59ce5f220374af575"
+    },
+    {
+      "path": "scripts/test.mjs",
+      "bytes": 5654,
+      "sha256": "9fd153fe2f65b8fb5b0858c5a57b887bcb4382e1d019911a124538e6f23cbf9d",
+      "repositoryLfSha256": "96493fa3ac187b9ebe94acc83dfe7466ec924bd7e4c230b07c464c7a52db1434"
+    },
+    {
+      "path": "README.md",
+      "bytes": 31096,
+      "sha256": "7bfd7edfedbc82b6c1e651445f77197cb2d24c3cdea3c9186f4aeb9e8b3724f9",
+      "repositoryLfSha256": "7bfd7edfedbc82b6c1e651445f77197cb2d24c3cdea3c9186f4aeb9e8b3724f9"
+    }
+  ],
+  "primaryFiles": [
+    {
+      "path": "scenes/earth-land-sea/earth-simulation.json",
+      "bytes": 11364186,
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+      "repositoryLfSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+      "baselineSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+      "unchangedFromBaseline": true
+    },
+    {
+      "path": "scenes/earth-land-sea/earth-terrain.json",
+      "bytes": 6099330,
+      "sha256": "6cb1a9c2b7f2c288650826e150f074e1598c36e7ada9e62d14ae49824d1b9156",
+      "repositoryLfSha256": "6cb1a9c2b7f2c288650826e150f074e1598c36e7ada9e62d14ae49824d1b9156",
+      "baselineSha256": "6cb1a9c2b7f2c288650826e150f074e1598c36e7ada9e62d14ae49824d1b9156",
+      "unchangedFromBaseline": true
+    },
+    {
+      "path": "scenes/earth-land-sea/elevation-samples.json",
+      "bytes": 1767817,
+      "sha256": "a9ef005fc7ffbeca4386ba680ab477d2d2ee9365607362dde596d62eb64a7994",
+      "repositoryLfSha256": "a9ef005fc7ffbeca4386ba680ab477d2d2ee9365607362dde596d62eb64a7994",
+      "baselineSha256": "a9ef005fc7ffbeca4386ba680ab477d2d2ee9365607362dde596d62eb64a7994",
+      "unchangedFromBaseline": true
+    },
+    {
+      "path": "scenes/earth-land-sea/elevation-source.json",
+      "bytes": 2922,
+      "sha256": "a7788ca18b7a302ec52ebf7ad1d4becccbe89def19d96c54a45f7bdbfb1543d3",
+      "repositoryLfSha256": "a7788ca18b7a302ec52ebf7ad1d4becccbe89def19d96c54a45f7bdbfb1543d3",
+      "baselineSha256": "a7788ca18b7a302ec52ebf7ad1d4becccbe89def19d96c54a45f7bdbfb1543d3",
+      "unchangedFromBaseline": true
+    },
+    {
+      "path": "scenes/earth-land-sea/ice-samples.json",
+      "bytes": 193472,
+      "sha256": "aa188cb369ce95d0e63499f0d789ceb2689322ca3492c65892f95d2b83395bf9",
+      "repositoryLfSha256": "aa188cb369ce95d0e63499f0d789ceb2689322ca3492c65892f95d2b83395bf9",
+      "baselineSha256": "aa188cb369ce95d0e63499f0d789ceb2689322ca3492c65892f95d2b83395bf9",
+      "unchangedFromBaseline": true
+    },
+    {
+      "path": "scenes/earth-land-sea/ice-source.json",
+      "bytes": 109499,
+      "sha256": "8e808c270ee2ce2411e90c95f5244ca311bfa274fc4f6a83d81668a48eb1200d",
+      "repositoryLfSha256": "8e808c270ee2ce2411e90c95f5244ca311bfa274fc4f6a83d81668a48eb1200d",
+      "baselineSha256": "8e808c270ee2ce2411e90c95f5244ca311bfa274fc4f6a83d81668a48eb1200d",
+      "unchangedFromBaseline": true
+    },
+    {
+      "path": "scenes/earth-land-sea/drainage-samples.json",
+      "bytes": 1339943,
+      "sha256": "1c7274c9a78232942f14de319bb9ddb4ec15756a1f38a812134c537d6daa70d2",
+      "repositoryLfSha256": "1c7274c9a78232942f14de319bb9ddb4ec15756a1f38a812134c537d6daa70d2",
+      "baselineSha256": "1c7274c9a78232942f14de319bb9ddb4ec15756a1f38a812134c537d6daa70d2",
+      "unchangedFromBaseline": true
+    },
+    {
+      "path": "scenes/earth-land-sea/drainage-source.json",
+      "bytes": 10601,
+      "sha256": "a83d291c5fd522fc5d5753ff901cc54cddf0c690e599ba0aa92ea0541535ccea",
+      "repositoryLfSha256": "a83d291c5fd522fc5d5753ff901cc54cddf0c690e599ba0aa92ea0541535ccea",
+      "baselineSha256": "a83d291c5fd522fc5d5753ff901cc54cddf0c690e599ba0aa92ea0541535ccea",
+      "unchangedFromBaseline": true
+    },
+    {
+      "path": "scenes/earth-land-sea/scene-config.json",
+      "bytes": 436,
+      "sha256": "9b811ee7c064dbd11c20d7f21dfe47607815fc720dcdc9e9a17ef66c09a71253",
+      "repositoryLfSha256": "9b811ee7c064dbd11c20d7f21dfe47607815fc720dcdc9e9a17ef66c09a71253",
+      "baselineSha256": "9b811ee7c064dbd11c20d7f21dfe47607815fc720dcdc9e9a17ef66c09a71253",
+      "unchangedFromBaseline": true
+    },
+    {
+      "path": "scenes/earth-land-sea/validation.json",
+      "bytes": 6141,
+      "sha256": "c99a738e58783f8a63bf45d6808d617ef89a5e9cc7da2a7aa0d3b0c1dd398989",
+      "repositoryLfSha256": "c99a738e58783f8a63bf45d6808d617ef89a5e9cc7da2a7aa0d3b0c1dd398989",
+      "baselineSha256": "c99a738e58783f8a63bf45d6808d617ef89a5e9cc7da2a7aa0d3b0c1dd398989",
+      "unchangedFromBaseline": true
+    }
+  ],
+  "checkpoints": [
+    {
+      "path": "build/refinement/before-day0.json",
+      "bytes": 11364186,
+      "sha256": "b5bf8faa0c07aff32ba858eb601f95361c33af018f364b9f791493e3187e2e8f",
+      "repositoryLfSha256": "b5bf8faa0c07aff32ba858eb601f95361c33af018f364b9f791493e3187e2e8f",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/before-day24.json",
+      "bytes": 10682086,
+      "sha256": "d760cea7c0e173af7078df883d78ca2b7f1535301f02085a6f49da7b6f1fcc66",
+      "repositoryLfSha256": "d760cea7c0e173af7078df883d78ca2b7f1535301f02085a6f49da7b6f1fcc66",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/before-day90.json",
+      "bytes": 11328457,
+      "sha256": "2a0502ab63851643a96ef88f7ec8a42752d9dda7e995a7b74c0df632b2e2d537",
+      "repositoryLfSha256": "2a0502ab63851643a96ef88f7ec8a42752d9dda7e995a7b74c0df632b2e2d537",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/before-day180.json",
+      "bytes": 11215580,
+      "sha256": "bbdcac8e15bd4e54416f232a9f4c5e3a174b7a32531f14b803a6f94719238434",
+      "repositoryLfSha256": "bbdcac8e15bd4e54416f232a9f4c5e3a174b7a32531f14b803a6f94719238434",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/before-day270.json",
+      "bytes": 11531116,
+      "sha256": "e64be42cdf066c3be7370262e2d364efe94545dd900820f12f9dfdc5db118283",
+      "repositoryLfSha256": "e64be42cdf066c3be7370262e2d364efe94545dd900820f12f9dfdc5db118283",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/before-day365.json",
+      "bytes": 11661583,
+      "sha256": "3649c328f8890f2e565fdd343e190806e4de968044127186a2ed05570e1c15fd",
+      "repositoryLfSha256": "3649c328f8890f2e565fdd343e190806e4de968044127186a2ed05570e1c15fd",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/balanced-day0.json",
+      "bytes": 12880518,
+      "sha256": "2a00fd6e3087b97b7e737e6379e8223c7e8e4b264ad66d01b235488f6a4b4779",
+      "repositoryLfSha256": "2a00fd6e3087b97b7e737e6379e8223c7e8e4b264ad66d01b235488f6a4b4779",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/balanced-day24.json",
+      "bytes": 12405892,
+      "sha256": "6ebf832e461da08b5733b511c5a429c1a7ee842267ba68dce0cacbca5031ab15",
+      "repositoryLfSha256": "6ebf832e461da08b5733b511c5a429c1a7ee842267ba68dce0cacbca5031ab15",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/balanced-day90.json",
+      "bytes": 12662289,
+      "sha256": "f39b8303b7472181ba78eafee4d54f62b4fd2d5b00b708b617284b5301a8a411",
+      "repositoryLfSha256": "f39b8303b7472181ba78eafee4d54f62b4fd2d5b00b708b617284b5301a8a411",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/balanced-day180.json",
+      "bytes": 12533486,
+      "sha256": "5d0a25cc7324ffb3b1b77b7baff64e96f4c6590418c1380db6543e5256ba3440",
+      "repositoryLfSha256": "5d0a25cc7324ffb3b1b77b7baff64e96f4c6590418c1380db6543e5256ba3440",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/balanced-day270.json",
+      "bytes": 13067889,
+      "sha256": "1a523ee95083832a3641c330de93dbbadf0a375ba2e058767ddd8e5df37bb3de",
+      "repositoryLfSha256": "1a523ee95083832a3641c330de93dbbadf0a375ba2e058767ddd8e5df37bb3de",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/balanced-day365.json",
+      "bytes": 13238762,
+      "sha256": "27f61525477ab2f3c387b0237baf7db79f8e7db0fb1254c49bcd4d028da8e8b7",
+      "repositoryLfSha256": "27f61525477ab2f3c387b0237baf7db79f8e7db0fb1254c49bcd4d028da8e8b7",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/high-day0.json",
+      "bytes": 16245249,
+      "sha256": "d8ef1c108b042a882e0f0dc8ad33316ace0546618f211a4e24cb7184ef06f4c4",
+      "repositoryLfSha256": "d8ef1c108b042a882e0f0dc8ad33316ace0546618f211a4e24cb7184ef06f4c4",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    },
+    {
+      "path": "build/refinement/high-day24.json",
+      "bytes": 15211736,
+      "sha256": "0743bc8670c9a5767b40cd3658fda19e68c835c67df3b36c6411eb4695c8a463",
+      "repositoryLfSha256": "0743bc8670c9a5767b40cd3658fda19e68c835c67df3b36c6411eb4695c8a463",
+      "strictSourceRestore": true,
+      "exactNextStep": true
+    }
+  ],
+  "browserExport": {
+    "path": "build/refinement/browser-saved.json",
+    "bytes": 17263268,
+    "sha256": "0d522ac47e1548b3e74016fdc4965d9502d0e70dd34fd080c9491f93871ad473",
+    "repositoryLfSha256": "0d522ac47e1548b3e74016fdc4965d9502d0e70dd34fd080c9491f93871ad473"
+  },
+  "runtimeBundles": [
+    {
+      "path": "build/refinement/audit-release.mjs",
+      "bytes": 300982,
+      "sha256": "a5de2df6c17581f03aa39d32642b9337da08b9ebd6f3d7f875449b6a298fe2de",
+      "repositoryLfSha256": "a5de2df6c17581f03aa39d32642b9337da08b9ebd6f3d7f875449b6a298fe2de"
+    },
+    {
+      "path": "build/refinement/restore-audit.mjs",
+      "bytes": 289012,
+      "sha256": "cc7eb0ab24271952866bd1ff568658b07a9edfe0bf104555e9d6c7c7238607a3",
+      "repositoryLfSha256": "cc7eb0ab24271952866bd1ff568658b07a9edfe0bf104555e9d6c7c7238607a3"
+    },
+    {
+      "path": "build/refinement/verify-earth-final.mjs",
+      "bytes": 282749,
+      "sha256": "63fae1bcb83648dd3f2396dde3bfd3c079b2003a515439ea341db1340fb66064",
+      "repositoryLfSha256": "63fae1bcb83648dd3f2396dde3bfd3c079b2003a515439ea341db1340fb66064"
+    },
+    {
+      "path": "build/_bundle.js",
+      "bytes": 323447,
+      "sha256": "00478116880924559bd23e05047d2bcf195e23c353e72ac6fd202f276e09f0ba",
+      "repositoryLfSha256": "00478116880924559bd23e05047d2bcf195e23c353e72ac6fd202f276e09f0ba"
+    },
+    {
+      "path": "build/_worker.js",
+      "bytes": 15433,
+      "sha256": "58a7001dbd6ec28813702762e8473f1199fa5ba6669a23b1b2620cfd09843ad7",
+      "repositoryLfSha256": "58a7001dbd6ec28813702762e8473f1199fa5ba6669a23b1b2620cfd09843ad7"
+    }
+  ],
+  "finalChecks": {
+    "checkedAtUtc": "2026-10-10T18:21:34.855Z",
+    "tests": {
+      "exitCode": 0,
+      "passed": 213,
+      "failed": 0,
+      "log": "tests-final.log",
+      "note": "Full suite completed after final product and test changes; only documentation/screenshots edited afterward."
+    },
+    "typecheck": {
+      "exitCode": 0,
+      "command": "npm run typecheck"
+    },
+    "build": {
+      "exitCode": 0,
+      "command": "npm run build"
+    },
+    "earthVerify": {
+      "exitCode": 0,
+      "command": "node build/refinement/verify-earth-final.mjs",
+      "log": "earth-verify.log"
+    },
+    "diffCheck": {
+      "exitCode": 0,
+      "command": "git diff --check"
+    }
+  },
+  "evidenceFiles": [
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/CODE-REVIEW-FILES.json",
+      "bytes": 3440,
+      "sha256": "ac97ea4a0ab17476477237fd72f79f9eb7a8613c41a43563df790ff20ce2f9e4",
+      "repositoryLfSha256": "28598ea8fa64867baac845669680905e2ddf38e4329044b157302ce02adbc8fd"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/CODE-REVIEW.md",
+      "bytes": 12611,
+      "sha256": "f3931d5a33b9216da91297900886a1045ba46ec49f563d99986d1ae3c91574da",
+      "repositoryLfSha256": "f3931d5a33b9216da91297900886a1045ba46ec49f563d99986d1ae3c91574da"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/DESIGN-REVIEW.md",
+      "bytes": 8943,
+      "sha256": "9beba43dea348aeb0b1b9999913565cdae7f9e7dda098fe8ab014570d74b16cd",
+      "repositoryLfSha256": "9beba43dea348aeb0b1b9999913565cdae7f9e7dda098fe8ab014570d74b16cd"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/DESIGN.md",
+      "bytes": 2479,
+      "sha256": "8a52d076824b2c8ad1c6ad9441dd11a5f6dfa0347c59f49e952193aca0b614d7",
+      "repositoryLfSha256": "8a52d076824b2c8ad1c6ad9441dd11a5f6dfa0347c59f49e952193aca0b614d7"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/EVIDENCE-REVIEW.md",
+      "bytes": 15709,
+      "sha256": "e0150ffd81d3c1a649a751e15f79469868c6adac036781e9642a484b2cdaf3e1",
+      "repositoryLfSha256": "e0150ffd81d3c1a649a751e15f79469868c6adac036781e9642a484b2cdaf3e1"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/REPORT.md",
+      "bytes": 11686,
+      "sha256": "943418268bdb26233cafdf286419e610b705ee1231da72edbff6c476d78e4146",
+      "repositoryLfSha256": "943418268bdb26233cafdf286419e610b705ee1231da72edbff6c476d78e4146"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/audit.ts",
+      "bytes": 8002,
+      "sha256": "f9da36f8b42e73af758734167a78c718b36377257ca2ef1df785f27a0120c5a9",
+      "repositoryLfSha256": "53075f6e9bfcc6baf929942d26939fa378da7ee3b15a9ac4db9582b6d2b9fbcc"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-andes-day24.jpg",
+      "bytes": 100172,
+      "sha256": "521cdb27ec68179550a8ed79452608d90ff556d950a7dc9534fa2571a5cfa463"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-antarctica-day365.jpg",
+      "bytes": 105020,
+      "sha256": "8d545106f55d32b8cd73fecefb7c50347da5587d2938d246349ab82f2e9ed245"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-arctic-day365.jpg",
+      "bytes": 143935,
+      "sha256": "3aff07dfc9569e3943b7e4437c78f4951bdebeaa29de24de354f4197cf995bf9"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-australia-day365.jpg",
+      "bytes": 118029,
+      "sha256": "41799060dfb71de884c650c75fe5b5908eef68d72aa2cd53aca8738611fb8108"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-continuous.json",
+      "bytes": 113678,
+      "sha256": "a57b5fa7636aa259b0218b4e46eb8b55c0854de8241e88ee5bf5186204d430ca",
+      "repositoryLfSha256": "a57b5fa7636aa259b0218b4e46eb8b55c0854de8241e88ee5bf5186204d430ca"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-greenland-day365.jpg",
+      "bytes": 144309,
+      "sha256": "6dd5e2e5537901f5735698e4ceb7cd9ff3b94c77806ce2bdf7a5b557d6f49760"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-performance.json",
+      "bytes": 823,
+      "sha256": "6596eb79dd0073734aea8e13f1f757db5331e3581ff3089f330bd698d8e5d90c",
+      "repositoryLfSha256": "6596eb79dd0073734aea8e13f1f757db5331e3581ff3089f330bd698d8e5d90c"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-precipitation-day24.jpg",
+      "bytes": 84765,
+      "sha256": "91d05a802ad88a20a1cd7e9a63fcfacbf01da35c49f4395a43d536d3050d0963"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-quick-continuous.json",
+      "bytes": 20582,
+      "sha256": "94adb6ded9c22faa3b9b6d881b74a9bc3bc7e8b0657ca452985cb47e089ced00",
+      "repositoryLfSha256": "94adb6ded9c22faa3b9b6d881b74a9bc3bc7e8b0657ca452985cb47e089ced00"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-rotated-day24.jpg",
+      "bytes": 98250,
+      "sha256": "fd5691051e96dbcd9c83b0c0901d12e4db37be556a16a98aaddbcbe8097bf506"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-temperature-day24.jpg",
+      "bytes": 89423,
+      "sha256": "d939a6d9184455d127a756ae3b71048c40a038a9a64ed78e15c8236432b9b7bb"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-tibet-day0.jpg",
+      "bytes": 126188,
+      "sha256": "aabf2652245dbcc7b5a90b2f18e82e94d4db4bc7680240a856c3a81a0d7bfbce"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-tibet-day24.jpg",
+      "bytes": 121447,
+      "sha256": "dd7ba4afb0ca1fdd0c9d4237c4f770e8ecb3db1bf8b3f695cabc07e2db7126e6"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/balanced-tibet-day365.jpg",
+      "bytes": 134449,
+      "sha256": "edd25df91c065191c4fa22fd7087e231034c982ded3eac34ecb989988d1d35d4"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/before-andes-day0.jpg",
+      "bytes": 113648,
+      "sha256": "6068dec864a3d806641d381d2ce606213fea0edeb32cb13c2c1c489c6890ea27"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/before-continuous.json",
+      "bytes": 75235,
+      "sha256": "4f7537ecf0f0f9d35191c761dc10bcd2ca5ed304ae30c4daba4c41c5a7676959",
+      "repositoryLfSha256": "4f7537ecf0f0f9d35191c761dc10bcd2ca5ed304ae30c4daba4c41c5a7676959"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/before-performance.json",
+      "bytes": 793,
+      "sha256": "25e59df3ac58db040e8261c08983c3e7950116615b7df0878796dd70e2f688a6",
+      "repositoryLfSha256": "25e59df3ac58db040e8261c08983c3e7950116615b7df0878796dd70e2f688a6"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/before-quick-continuous.json",
+      "bytes": 13918,
+      "sha256": "61b283d04678d40207c42fe1cd0efc97219f2161135d3092f2000dd21451a4da",
+      "repositoryLfSha256": "61b283d04678d40207c42fe1cd0efc97219f2161135d3092f2000dd21451a4da"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/before-tibet-day0.jpg",
+      "bytes": 127532,
+      "sha256": "c4e1e1955a9bd6cb60e6ac4ed9009627ab95cbb10042d40b6614d9f6c68bc4ff"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/before-tibet-day24.jpg",
+      "bytes": 119917,
+      "sha256": "92485352696f9bdbd35fb77b25458b804c683fbc85689150138ad613038ff153"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/browser-audit.json",
+      "bytes": 6425,
+      "sha256": "9e0c2b95e2988ad5e230b06b2e76266ea83feae74527b9680840973fa568e662",
+      "repositoryLfSha256": "9e0c2b95e2988ad5e230b06b2e76266ea83feae74527b9680840973fa568e662"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/browser-restore-audit.json",
+      "bytes": 291,
+      "sha256": "bd80253a94036f9a467ed6f3c5b200c5c991ad24c70e00518fa19405017c4b61",
+      "repositoryLfSha256": "bd80253a94036f9a467ed6f3c5b200c5c991ad24c70e00518fa19405017c4b61"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/code-review-probes.json",
+      "bytes": 3397,
+      "sha256": "9f1531b4139332ccb4e2b1323fee1bdd8c83b4c7bdc4bfddaf83a95dfebe557c",
+      "repositoryLfSha256": "9f1531b4139332ccb4e2b1323fee1bdd8c83b4c7bdc4bfddaf83a95dfebe557c"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/code-review-probes.ts",
+      "bytes": 5837,
+      "sha256": "f3e084706a5e6c363b63f8367c2ce4400ba7a59a79cf76c291407cc73a9f6d1a",
+      "repositoryLfSha256": "f3e084706a5e6c363b63f8367c2ce4400ba7a59a79cf76c291407cc73a9f6d1a"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/code-review-query-probe.json",
+      "bytes": 215,
+      "sha256": "320e1e39df2c6049c1d9ab1a4104561ecf1243150894769deceaacde6453725a",
+      "repositoryLfSha256": "320e1e39df2c6049c1d9ab1a4104561ecf1243150894769deceaacde6453725a"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/code-review-query-probe.ts",
+      "bytes": 1931,
+      "sha256": "652fdc02d4572f815b55ec6facfa25406f6bfe69f835cd23d10b6408c0dcc6ea",
+      "repositoryLfSha256": "652fdc02d4572f815b55ec6facfa25406f6bfe69f835cd23d10b6408c0dcc6ea"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/code-review-recheck.json",
+      "bytes": 2856,
+      "sha256": "f7a3be52c39d9149f6075694dd494b2eab2fb8e2b2713af2e99b715f3e761175",
+      "repositoryLfSha256": "f7a3be52c39d9149f6075694dd494b2eab2fb8e2b2713af2e99b715f3e761175"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/code-review-recheck.ts",
+      "bytes": 14250,
+      "sha256": "49c192605860093c6f72a7fd463ea1f5d47a403f677a9d53972b64d2338bf934",
+      "repositoryLfSha256": "49c192605860093c6f72a7fd463ea1f5d47a403f677a9d53972b64d2338bf934"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/earth-verify.log",
+      "bytes": 6411,
+      "sha256": "54d64c2345de9d9a89f87b2c2e1d06e3b376fdd659c99274312c7b0b7294b340",
+      "repositoryLfSha256": "e1363e921b2c6aab131d4d465ce73d20c892d22b067e1d642658102dfa54b235"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/evidence-review.json",
+      "bytes": 633839,
+      "sha256": "8812caa8ee89a33abf8cf155c1397f511fcc4a7ab66b91626cca317032f2f0d6",
+      "repositoryLfSha256": "8812caa8ee89a33abf8cf155c1397f511fcc4a7ab66b91626cca317032f2f0d6"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/evidence-review.mjs",
+      "bytes": 11622,
+      "sha256": "741e129b5422b8c6b75f3e1bdfbd5647b9c0fd405f6c41c341a2c4173b1cf495",
+      "repositoryLfSha256": "741e129b5422b8c6b75f3e1bdfbd5647b9c0fd405f6c41c341a2c4173b1cf495"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/final-checks.json",
+      "bytes": 629,
+      "sha256": "fe22eebc3d6d42ea82a0cc7a72a882c2c4635ea0430aa54622a3befca8b42aea",
+      "repositoryLfSha256": "fe22eebc3d6d42ea82a0cc7a72a882c2c4635ea0430aa54622a3befca8b42aea"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/formal-default-day0.jpg",
+      "bytes": 119090,
+      "sha256": "acc77a1a7b72088779a1fdc410bd30c9f6fd13f96615362159c1eb4de9dd4751"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/high-continuous.json",
+      "bytes": 39249,
+      "sha256": "288698137fcf52f070dc60dd1f7c0b31aa5a73ef90494234dcb88e1ddab866df",
+      "repositoryLfSha256": "288698137fcf52f070dc60dd1f7c0b31aa5a73ef90494234dcb88e1ddab866df"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/high-performance.json",
+      "bytes": 834,
+      "sha256": "dc71e6391818310a815d9d5eb83ea03c8f136c6f970bad93a2700880950345e4",
+      "repositoryLfSha256": "dc71e6391818310a815d9d5eb83ea03c8f136c6f970bad93a2700880950345e4"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/high-quick-continuous.json",
+      "bytes": 20574,
+      "sha256": "915e4118f8290b879daec9524a1dc0694bb3e6cf1e0be8cb4f9eda485302ef05",
+      "repositoryLfSha256": "915e4118f8290b879daec9524a1dc0694bb3e6cf1e0be8cb4f9eda485302ef05"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/manifest.mjs",
+      "bytes": 4233,
+      "sha256": "7f7135be82153cadf5f8b3c61b0ac01a7a351f06078ff9b74cfd14734a6b8167",
+      "repositoryLfSha256": "7f7135be82153cadf5f8b3c61b0ac01a7a351f06078ff9b74cfd14734a6b8167"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/mixed-resolution-comparison.jpg",
+      "bytes": 159366,
+      "sha256": "409d7559c65911dda46b146d09c169fcf5f854ceb525f888924bf767a0829afd"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/plot-profiles.py",
+      "bytes": 3602,
+      "sha256": "013fa91f77faa84af076d32dc677c5ff5c18e21c306f5adf7821225185b7e0b7",
+      "repositoryLfSha256": "013fa91f77faa84af076d32dc677c5ff5c18e21c306f5adf7821225185b7e0b7"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/profile-plot-provenance.json",
+      "bytes": 553,
+      "sha256": "9db95b97adf7a7b466cb7f003333c0e4df15e0dec088ce0c68ac8e514b193588",
+      "repositoryLfSha256": "d637e374d0944232f5648a81c45317bca2aa2708245efba38cb322cdddb5c9ef"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/profile-temperature-swe.png",
+      "bytes": 456474,
+      "sha256": "c6331689396654af59bc6013bc1b8fd6412c1f83b5f0a4a651c8410952697fdd"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/restore-audit.json",
+      "bytes": 4000,
+      "sha256": "d0da963576ebd851224d46ab108c500875f8771001cae1409e5d0e19de9f246d",
+      "repositoryLfSha256": "d0da963576ebd851224d46ab108c500875f8771001cae1409e5d0e19de9f246d"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/restore-audit.ts",
+      "bytes": 3552,
+      "sha256": "698277b803025a301a56d81dc2daaf838e503fefe696c36d44bf4151f935e460",
+      "repositoryLfSha256": "698277b803025a301a56d81dc2daaf838e503fefe696c36d44bf4151f935e460"
+    },
+    {
+      "path": "docs/evidence/earth-climate-refinement-20261011/tests-final.log",
+      "bytes": 21083,
+      "sha256": "e9fe4c9cec007cd68e9d8ea2d2ba366bac13023b60d204f092b27cca141cfca3",
+      "repositoryLfSha256": "fb4eb86cd699285432a29124aebbcf7c0c9d8fa0b56fb73097b766e882ca49cd"
+    }
+  ]
+}

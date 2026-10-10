@@ -112,10 +112,10 @@ export function installPlanetControls(options:Options) {
     }
     button('planet-live','Live planet',startLivePlanet);
     button('planet-generate-climate','Generate climate now',()=>{
-        pause(false);thermal.enabled=thermal.waterEnabled=true;thermal.invalidate();
+        pause(false);thermal.enabled=thermal.waterEnabled=true;if(thermal.refinedSurface)thermal.rebuildRefinement();else thermal.invalidate();
         layer='surface';layerSelect.value=layer;thermalPanel.reveal();waterPanel.reveal();emit();
     });
-    note('Generate ice, vegetation, temperature, rain and wind at the current date without Play. Change season, tilt or terrain to regenerate; Play evolves the result.').dataset.infoFor='planet-generate-climate';
+    note('Generate initial climate at the current date. In refined mode, rebuild the surface mapping while preserving evolved heat, water and time. Reset time explicitly to initialize anew; Play evolves the result.').dataset.infoFor='planet-generate-climate';
     const play=button('planet-play','Play',()=>{
         pendingStartup=false;
         if(inspecting) {inspecting=false;updateInspectButton();}
@@ -271,10 +271,10 @@ export function installPlanetControls(options:Options) {
             if(cover&&layer==='surface'&&thermal.config.separateReservoirs)probeOutput.textContent+=` · local surface ${(cover.surfaceTemperatureK-273.15).toFixed(1)} °C · ice shelf ${cover.shelfIceM.toFixed(1)} m`;
             const water=thermal.sampleWater(...probe.uv);
             if(weatherVisible&&thermal.model&&thermal.water){const f=weatherFields(thermal.model,thermal.water),k=thermalCell(thermal.grid,...probe.uv);probeOutput.textContent+=` · column saturation proxy ${(100*f.saturation[k]).toFixed(0)}% · cloud display ${(100*f.cloud[k]).toFixed(0)}% · ${f.phaseAvailable?`liquid precipitation ${f.rainMmDay[k].toFixed(2)} / land snowfall ${f.snowMmDay[k].toFixed(2)} mm/day per whole cell`:'rain/snow phase unavailable'} (current column at day ${(thermal.model.timeS/86400).toFixed(3)}; precipitation ${f.precipitationSource})`;}
-            if(water)probeOutput.textContent+=` · total precipitation ${water.precipitationMmDay.toFixed(2)} mm/day (${initialWater?'generated initial estimate':'latest simulated-step rate'}) · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · coarse-cell land snow ${water.snowMm.toFixed(1)} mm / melt ${water.meltMmDay.toFixed(2)} mm/day / ocean ice ${water.iceM.toFixed(2)} m · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
+            if(water)probeOutput.textContent+=` · total precipitation ${water.precipitationMmDay.toFixed(2)} mm/day (${initialWater?'generated initial estimate':'latest simulated-step rate'}) · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · ${thermal.refinedSurface?'local land snow':'coarse-cell land snow'} ${water.snowMm.toFixed(1)} mm / melt ${water.meltMmDay.toFixed(2)} mm/day / ocean ice ${water.iceM.toFixed(2)} m · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
             const erosion=geomorph.sample(...probe.uv);
             const fineWater=thermal.sampleTerrainWater(...probe.uv);
-            if(water&&(thermal.environmentConfig.glaciers||thermal.iceInventory)&&probe.elevation>0)probeOutput.textContent+=` · grounded ice cell ${water.landIceM.toFixed(1)} m / flow ${water.iceSpeedMyr.toFixed(2)} m/yr`;
+            if(water&&(thermal.environmentConfig.glaciers||thermal.iceInventory)&&probe.elevation>0)probeOutput.textContent+=` · ${thermal.refinedSurface?'local grounded ice':'grounded ice cell'} ${water.landIceM.toFixed(1)} m / flow ${water.iceSpeedMyr.toFixed(2)} m/yr`;
             if(fineWater&&probe.elevation>0)probeOutput.textContent+=` · nearest terrain reservoir: mean depth ${fineWater.depthM.toFixed(3)} m / outflow ${fineWater.flowM3S.toFixed(2)} m³/s`;
             if(erosion)probeOutput.textContent+=` · bed change ${erosion.deltaM.toFixed(2)} m · mobile sediment ${erosion.mobileMm.toFixed(2)} mm whole-cell equivalent${geomorph.previewEnabled?' · terrain preview':''}`;
         }

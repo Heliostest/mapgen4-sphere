@@ -1,0 +1,27 @@
+{
+  "checkedAtUtc": "2026-10-10T18:21:34.855Z",
+  "tests": {
+    "exitCode": 0,
+    "passed": 213,
+    "failed": 0,
+    "log": "tests-final.log",
+    "note": "Full suite completed after final product and test changes; only documentation/screenshots edited afterward."
+  },
+  "typecheck": {
+    "exitCode": 0,
+    "command": "npm run typecheck"
+  },
+  "build": {
+    "exitCode": 0,
+    "command": "npm run build"
+  },
+  "earthVerify": {
+    "exitCode": 0,
+    "command": "node build/refinement/verify-earth-final.mjs",
+    "log": "earth-verify.log"
+  },
+  "diffCheck": {
+    "exitCode": 0,
+    "command": "git diff --check"
+  }
+}

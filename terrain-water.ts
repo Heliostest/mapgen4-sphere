@@ -17,6 +17,18 @@ export interface TerrainWaterCheckpoint {volumeM3:Float64Array;fluxM3S:Float64Ar
 /** A finite-volume reservoir partition of the coarse surface store. It has no
  * additional inventory, pressure/momentum equation or instantaneous filled DEM. */
 export class TerrainWater {
+    private partition:{triangle:Int32Array;mass:Float64Array;parent:Int32Array;byPatch:number[][];byParent:number[][];area:Float64Array;previous:Float64Array}|null=null;
+    clearPartition() {this.partition=null;}
+    setPartition(triangle:Int32Array,mass:Float64Array,parent:Int32Array) {
+        const byPatch=Array.from({length:mass.length},()=>[] as number[]),area=new Float64Array(mass.length);
+        for(let t=0;t<triangle.length;t++)if(triangle[t]>=0){byPatch[triangle[t]].push(t);area[triangle[t]]+=this.network.areaM2[t];}
+        const previous=new Float64Array(mass.length),byParent=Array.from({length:this.byCell.length},()=>[] as number[]);
+        for(let a=0;a<parent.length;a++)byParent[parent[a]].push(a);
+        // Existing routed water remains in place on attachment. The previous
+        // patch ledger is measured from triangles rather than invented anew.
+        this.partition={triangle,mass,parent,byPatch,byParent,area,previous};
+        for(let t=0;t<triangle.length;t++)if(triangle[t]>=0)previous[triangle[t]]+=this.volumeM3[t];
+    }
     readonly volumeM3:Float64Array;readonly fluxM3S:Float64Array;readonly receiverSide:Int32Array;
     readonly headM:Float64Array;
     private readonly byCell:number[][];
@@ -32,6 +44,22 @@ export class TerrainWater {
     }
     private reconcile(water:SurfaceWaterLedger) {
         const scale=water.cellAreaM2/1000;
+        if(this.partition) {
+            const p=this.partition;
+            for(let k=0;k<water.grid.count;k++) {
+                let unresolved=0,represented=0,representedArea=0;
+                for(const a of p.byParent[k]){if(p.byPatch[a].length){represented+=p.mass[a];representedArea+=p.area[a];}else unresolved+=p.mass[a];}
+                // Sparse tiles have no destination triangle. Redistribute their
+                // finite mass only within the same parent, never duplicate it.
+                for(const a of p.byParent[k])if(p.byPatch[a].length) {
+                    const target=(p.mass[a]+(represented>0?unresolved*p.mass[a]/represented:representedArea>0?unresolved*p.area[a]/representedArea:0))*scale,cells=p.byPatch[a],total=cells.reduce((s,t)=>s+this.volumeM3[t],0),change=target-p.previous[a];
+                    if(change>0){const ratio=total>0?p.previous[a]/total:0;for(const t of cells)this.volumeM3[t]=this.volumeM3[t]*ratio+change*this.network.areaM2[t]/p.area[a];}
+                    else {const ratio=total>0?target/total:0;for(const t of cells)this.volumeM3[t]*=ratio;}
+                    p.previous[a]=target;
+                }
+            }
+            this.previousSurface=water.surfaceKgM2.slice();return;
+        }
         for(let k=0;k<water.grid.count;k++) {
             const target=water.surfaceKgM2[k],change=(target-this.previousSurface[k])*scale,cells=this.byCell[k];
             if(target===0){for(const i of cells)this.volumeM3[i]=0;continue;}
@@ -50,6 +78,7 @@ export class TerrainWater {
         }
         this.previousSurface=water.surfaceKgM2.slice();
     }
+    synchronize(water:SurfaceWaterLedger) {this.reconcile(water);this.refreshHeads();if(this.partition){const p=this.partition;p.previous.fill(0);for(let t=0;t<p.triangle.length;t++)if(p.triangle[t]>=0)p.previous[p.triangle[t]]+=this.volumeM3[t];}}
     refreshHeads() {for(let i=0;i<this.volumeM3.length;i++)this.headM[i]=this.network.bedM[i]+this.volumeM3[i]/this.network.areaM2[i];}
     route(water:SurfaceWaterLedger,dt:number,speedMps:number,diagnose=false) {
         this.reconcile(water);this.refreshHeads();this.delta.fill(0);this.fluxM3S.fill(0);this.receiverSide.fill(-1);water.dischargeM3S.fill(0);
@@ -80,6 +109,7 @@ export class TerrainWater {
             water.oceanGlobalKgM2+=oceanM3*conversion/water.grid.count;
         }
         this.previousSurface=water.surfaceKgM2.slice();this.refreshHeads();
+        if(this.partition){const p=this.partition;p.previous.fill(0);for(let t=0;t<n;t++)if(p.triangle[t]>=0)p.previous[p.triangle[t]]+=this.volumeM3[t];}
     }
     checkpoint():TerrainWaterCheckpoint {return {volumeM3:this.volumeM3.slice(),fluxM3S:this.fluxM3S.slice(),receiverSide:this.receiverSide.slice()};}
     restore(s:TerrainWaterCheckpoint,water:SurfaceWaterLedger) {
@@ -94,6 +124,7 @@ export class TerrainWater {
             if(Math.abs(amount-water.surfaceKgM2[k])>Math.max(1e-8,water.surfaceKgM2[k]*1e-9))throw new Error('Fine and coarse water stores differ');
         }
         this.volumeM3.set(s.volumeM3);this.fluxM3S.set(s.fluxM3S);this.receiverSide.set(s.receiverSide);this.previousSurface=water.surfaceKgM2.slice();this.refreshHeads();
+        if(this.partition){const p=this.partition;p.previous.fill(0);for(let t=0;t<p.triangle.length;t++)if(p.triangle[t]>=0)p.previous[p.triangle[t]]+=this.volumeM3[t];}
     }
     diagnostics(water:SurfaceWaterLedger) {
         let representedM3=0,unresolvedM3=0,partitionResidualM3=0,maxDepthM=0,maxFlowM3S=0;

@@ -7,8 +7,8 @@ export interface SurfaceTerrain {directions:ArrayLike<number>;elevation:ArrayLik
 
 /** Reference samples in latitude, including both poles. This is not a solver
  * grid: the conservative thermal/water models keep their equal-area cells. */
-export function makeSurfaceGrid():ClimateGrid {
-    const width=SURFACE_WIDTH,height=SURFACE_HEIGHT,edges:{a:number;b:number}[]=[];
+export function makeSurfaceGrid(width=SURFACE_WIDTH,height=SURFACE_HEIGHT):ClimateGrid {
+    const edges:{a:number;b:number}[]=[];
     for(let j=0;j<height;j++)for(let x=0;x<width;x++) {
         const a=j*width+x;edges.push({a,b:j*width+(x+1)%width});
         if(j+1<height)edges.push({a,b:a+width});

@@ -76,6 +76,7 @@ export type ThermalCheckpoint={temperatureK:Float64Array;landTemperatureK?:Float
 export interface ThermalInitial {temperatureK:ArrayLike<number>;landTemperatureK?:ArrayLike<number>;oceanTemperatureK?:ArrayLike<number>;radiationScale:ArrayLike<number>;absorbedWm2:ArrayLike<number>}
 
 export class ThermalModel {
+    surfaceSolver:{stepSurface(k:number,dt:number,insolation:number):number}|null=null;
     readonly temperatureK:Float64Array;
     readonly absorbedWm2:Float64Array;
     readonly capacity:Float64Array;
@@ -180,6 +181,12 @@ export class ThermalModel {
     }
     applyLandHeat(energyJm2:ArrayLike<number>) {this.config.separateReservoirs?this.applyReservoirHeat(energyJm2,this.landTemperatureK,this.landCapacity):this.applyHeat(energyJm2);}
     applyOceanHeat(energyJm2:ArrayLike<number>) {this.config.separateReservoirs?this.applyReservoirHeat(energyJm2,this.oceanTemperatureK,this.oceanCapacity):this.applyHeat(energyJm2);}
+    applySurfaceCellHeat(i:number,land:number,ocean:number) {
+        if(land!==0){if(this.landCapacity[i]===0)throw new Error('Land heat requires surface');this.landTemperatureK[i]+=land/this.landCapacity[i];}
+        if(ocean!==0){if(this.oceanCapacity[i]===0)throw new Error('Ocean heat requires surface');this.oceanTemperatureK[i]+=ocean/this.oceanCapacity[i];}
+        const increment=(land+ocean)/this.grid.count-this.exchangeCorrection,total=this.exchangeJm2+increment;
+        this.exchangeCorrection=(total-this.exchangeJm2)-increment;this.exchangeJm2=total;
+    }
     private applyReservoirHeat(energyJm2:ArrayLike<number>,temperature:Float64Array,capacity:Float64Array) {
         if(energyJm2.length!==this.grid.count)throw new RangeError("Heat grid mismatch");
         let sum=0;for(let i=0;i<this.grid.count;i++) {
@@ -217,6 +224,7 @@ export class ThermalModel {
                 const airEmission=airFraction*config.emissivity*SIGMA*t[i]**4*(this.land[i]/this.radiationScale[i]**4+1-this.land[i]);
                 radiation-=airEmission;
                 t[i]+=this.stepS*(this.tendency[i]-airEmission)/this.capacity[i];
+                if(this.surfaceSolver){radiation+=this.surfaceSolver.stepSurface(i,this.stepS,q[Math.floor(i/grid.width)]*normalizer);continue;}
                 for(const ocean of [false,true]) {
                     const fraction=ocean?1-this.land[i]:this.land[i],surface=ocean?this.oceanTemperatureK:this.landTemperatureK,capacity=ocean?this.oceanCapacity:this.landCapacity;
                     if(fraction===0)continue;

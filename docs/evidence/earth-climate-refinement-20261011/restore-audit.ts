@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {makeMesh} from '../../../mesh.ts';
+import config,{HIGH_DETAIL_SPACING} from '../../../config.js';
+import Map from '../../../map.ts';
+import Geometry from '../../../geometry.ts';
+import {decodeSimulationDocument,encodeSimulationDocument} from '../../../simulation-document.ts';
+import {meshIdentity} from '../../../terrain-document.ts';
+import {ThermalRuntime} from '../../../thermal-runtime.ts';
+import {sampleTerrainGrid} from '../../../thermal.ts';
+import {captureEnvironment} from '../../../environment-comparison.ts';
+const folder='docs/evidence/earth-climate-refinement-20261011';
+config.spacing=HIGH_DETAIL_SPACING;const {mesh,t_peaks}=await makeMesh(),identity=meshIdentity(mesh,config);
+const reference=decodeSimulationDocument(await readFile('build/refinement/baseline.json','utf8'),identity,128),map=new Map(mesh,t_peaks,config);
+map.assignElevation(reference.terrain.parameters.elevation,{size:128,constraints:new Float32Array(reference.terrain.constraints.values)},new Float32Array(reference.terrain.offsets!));map.assignRainfall(reference.terrain.parameters.biomes);map.assignRivers(reference.terrain.parameters.rivers,true);
+const elevation=new Float32Array(mesh.numRegions+mesh.numTriangles);elevation.set(map.elevation_r);elevation.set(map.elevation_t,mesh.numRegions);
+const quads=new Int32Array(mesh.numSolidSides*3);Geometry.setMapGeometry(map,0,quads,new Float32Array(elevation.length*2));
+const source={mesh,directions:mesh.xyz_r,elevation,quadElements:quads,drainage:reference.terrain.drainage},planet=reference.terrain.settings.planet,orbit=reference.terrain.settings.orbit;
+const results=[];
+const cases=process.argv.includes('--browser')?[{mode:'browser',day:365,path:'build/refinement/browser-saved.json'}]:['before','balanced','high'].flatMap(mode=>(mode==='high'?[0,24]:[0,24,90,180,270,365]).map(day=>({mode,day,path:`build/refinement/${mode}-day${day}.json`})));
+for(const {mode,day,path} of cases){
+    const bytes=await readFile(path),d=decodeSimulationDocument(bytes.toString(),identity,128),rt=ThermalRuntime.fromSnapshot(d.runtime,planet,orbit),terrain=sampleTerrainGrid(rt.grid,mesh.xyz_r,elevation);
+    rt.attachRestoredTerrain(terrain.landFraction,terrain.landElevation,source);rt.refinedSurface?.validate();
+    const restored=ThermalRuntime.fromSnapshot(rt.snapshot(),planet,orbit);restored.attachRestoredTerrain(terrain.landFraction,terrain.landElevation,source);
+    assert.deepEqual(restored.snapshot(),rt.snapshot());const target=rt.model!.timeS+rt.model!.stepS;
+    rt.sync(planet,orbit,target,null);restored.sync(planet,orbit,target,null);assert.deepEqual(restored.snapshot(),rt.snapshot());
+    const baseline=captureEnvironment(rt)!;const encoded=encodeSimulationDocument({...d,runtime:rt.snapshot(),terrain:{...d.terrain,settings:{...d.terrain.settings,timeS:target}},comparison:{baseline,history:[]}}),comparison=decodeSimulationDocument(encoded,identity,128);
+    assert.deepEqual(comparison.comparison.baseline,baseline);
+    results.push({mode,day,sha256:createHash('sha256').update(bytes).digest('hex'),strictSourceRestore:true,exactNextStep:true,comparisonResolution:[baseline.width,baseline.height],saveWithComparisonBytes:Buffer.byteLength(encoded)});
+    console.log(JSON.stringify(results.at(-1)));
+}
+await writeFile(`${folder}/${process.argv.includes('--browser')?'browser-restore-audit':'restore-audit'}.json`,JSON.stringify(results,null,2)+'\n');

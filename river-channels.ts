@@ -74,7 +74,7 @@ export function riverChannelField(rt:ThermalRuntime) {
     const w=rt.water!,network=w.routing!.network,mesh=rt.terrainSource!.mesh!,model=rt.model!,n=mesh.numTriangles;
     let reference=references.get(network);
     if(!reference) {
-        const annualRunoffMmDay=new Float64Array(n),surfaceIndex=new Int32Array(n),grid=makeSurfaceGrid();
+        const size=rt.surfaceState()?.texture;const annualRunoffMmDay=new Float64Array(n),surfaceIndex=new Int32Array(n),grid=size?makeSurfaceGrid(size.width,size.height):makeSurfaceGrid();
         for(let t=0;t<n;t++)if(network.cell[t]>=0) {
             const uv=directionToUV(mesh.xyz_t.subarray(3*t,3*t+3));
             surfaceIndex[t]=surfaceCell(grid,...uv);

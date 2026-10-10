@@ -1,6 +1,9 @@
 // Presentation vocabulary for this Chinese scene. Simulation identifiers and
 // saved JSON remain unchanged; scientific symbols retain their standard units.
 const labels={
+  'Surface resolution':'地表细节','Classic':'经典','Refined: balanced':'细分：均衡（实验）','Refined: high':'细分：精细（实验）',
+  'Generate initial climate at the current date. In refined mode, rebuild the surface mapping while preserving evolved heat, water and time. Reset time explicitly to initialize anew; Play evolves the result.':'在当前日期生成初始气候。细分档下仅重建地表映射，保留已有热量、水量和时间；明确重置时间才重新初始化。点击播放继续演化。',
+  'Resolve independent mountain, coast and polar surface temperatures and frozen stores. Quality and terrain edits preserve water, heat and elapsed time. Atmosphere and glacier flow remain coarse; rainfall climate is still approximate. High detail costs more per step.':'山地、海岸和极区地表可独立演化温度与冰雪。切换细分档位或编辑地形会保留水、热和时间。区域降水与窄冰川仍有局限；精细档运行更慢。',
   'Planet physics':'行星物理','View':'观察方式','Follow surface':'跟随地表','From space':'太空视角',
   'Live planet':'实时演化','Generate climate now':'立即生成气候','Compare environment…':'环境对比',
   'Play':'播放','Pause':'暂停','Time speed':'时间速度','1 minute / second':'每秒推进 1 分钟',
@@ -126,7 +129,7 @@ const notes=[
   ['Preview retains source climate','预览保留原气候与参考河网。应用后保存高度变化、重建河流并重启环境，结果可能与预览略有差异；高度限定在地形范围内。搬运中及入海沉积物仅记入报告，不作为向细网格的守恒转移。新采集会开始新的守恒统计，绘制地形或重置环境会清空预览。'],
   ['Complete simulation saves terrain','完整模拟保存地形、气候、水、冰雪、植被、时间、参数及对比历史（最大 32 MiB），恢复后暂停在存档时刻。仅地形文件最大 8 MiB，载入后气候关闭。两者均不包含未应用的侵蚀预览及撤销历史；准备期间编辑或推进时间会取消载入。'],
   ['Captured accumulated glacial abrasion','已采集累计冰川磨蚀与沉积。应用后保存候选地形并重启气候；演化地形则继续加入独立的河流与坡面模型。'],
-  ['Maps are geographic estimates','地图是从守恒网格细化的地理估算。初始冰厚可来自观测导入；后续冰雪厚度由水量模型演化。陆冰流动使用粗气候网格，不模拟海冰漂移。极区百分比相对当地海洋面积计算，南北极不必相等。改变地形、日期或物理参数会重新生成状态；已采集基准保留至下次替换，历史最多记录本轮的 240 个样本。'],
+  ['Maps are geographic estimates','地图是地理估算。细分档独立演化各地表片的热量与水量，经典档由守恒网格推算细图。初始冰厚可来自观测导入；后续冰雪由水量模型演化。陆冰流动仍较粗，不模拟海冰漂移。极区百分比相对当地海洋面积计算。细分档编辑地形或切换精度会保留热量、水量和时间；改变日期或物理参数则重新初始化。基准保留至下次替换，历史最多记录本轮的 240 个样本。'],
   ['Grounded ice: 0 dark','陆冰厚度：0 米为深色，1,500 米为白色。地理细化估算无法分辨狭窄冰川。'],
   ['Natural cover colors','自然地表颜色：亮白为陆地积雪，蓝白为海冰。'],
   ['Temperature: −50 °C','气温：−50 °C 蓝色 → 0 °C 浅色 → +50 °C 红色；超出范围时颜色饱和。'],
@@ -190,6 +193,7 @@ const fragments={
   'mm/day per whole cell':'毫米/天（整个网格）','rain/snow phase unavailable':'暂无雨雪相态',
   'current column at day ':'当前气柱时间：第 ','precipitation ':'降水 ',
   'total precipitation ':'总降水 ','generated initial estimate':'初始生成估算','latest simulated-step rate':'最近一步的速率',
+  'local land snow ':'当地陆地积雪 ','local grounded ice ':'当地陆冰 ',
   'coarse-cell land snow ':'粗网格陆地积雪 ',' / melt ':' / 融雪 ',' / ocean ice ':' / 海冰 ',
   'cell outflow ':'网格流出量 ','grounded ice cell ':'网格陆冰 ',' / flow ':' / 流速 ',
   'nearest terrain reservoir: mean depth ':'最近地形蓄水单元：平均水深 ',' / outflow ':' / 流出量 ',

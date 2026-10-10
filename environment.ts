@@ -12,6 +12,7 @@ const clamp=(x:number)=>Math.max(0,Math.min(1,x));
 /** Total enthalpy is the sum of sensible reservoirs + Lv*vapor - Lf*ice.
  * Sensible heat of moving rain/runoff is omitted. */
 export class EnvironmentModel {
+    surfaceSolver:{phase(dt:number):void;refresh():void;reconcileIce():void;route(dt:number):void;resetRates():void;compact(dt:number):void}|null=null;
     readonly ocean:OceanTransport;
     readonly atmosphere:AtmosphericCirculation|null;
     readonly iceCover:Float64Array;readonly snowCover:Float64Array;readonly landEvaporation:Float64Array;
@@ -81,9 +82,11 @@ export class EnvironmentModel {
             m.albedo[i]=this.config.iceAlbedo?base+(Math.max(base,.65)-base)*frozen:base;
             this.landEvaporation[i]=this.config.vegetation?(.6+.4*v)*(1-landFrozen):1-landFrozen;
         }
+        this.surfaceSolver?.refresh();
     }
     /** Project available sensible heat into phase changes, conserving enthalpy. */
     phase(dt:number) {
+        if(this.surfaceSolver){this.surfaceSolver.phase(dt);return;}
         if(this.thermal.config.separateReservoirs){this.phaseSeparated(dt);return;}
         const m=this.thermal,w=this.water,n=w.grid.count;this.heatJm2.fill(0);
         let freezeRequest=0;const freeze=new Float64Array(n);
@@ -142,10 +145,12 @@ export class EnvironmentModel {
     }
     step(dt:number) {
         const m=this.thermal,w=this.water;
+        this.surfaceSolver?.resetRates();
         w.meltKgM2S.fill(0);this.ocean.step(dt,this.config.oceanStrengthMps);this.phase(dt);this.refresh();
         w.step(dt,m.temperatureK,m.absorbedWm2,this);m.applyHeat(this.heatJm2);
         if(m.config.separateReservoirs){m.applyLandHeat(this.landHeatJm2);m.applyOceanHeat(this.oceanHeatJm2);}
-        this.phase(dt);w.glacier?.step(dt,m.landTemperatureK);w.routeSurface(dt);
+        this.phase(dt);this.surfaceSolver?.compact(dt);w.glacier?.step(dt,m.landTemperatureK);
+        if(this.surfaceSolver){this.surfaceSolver.reconcileIce();this.surfaceSolver.route(dt);}else w.routeSurface(dt);
     }
     diagnostics() {
         const m=this.thermal,w=this.water,n=w.grid.count;let land=0,wet=0,ice=0,snow=0,albedo=0,current=0;

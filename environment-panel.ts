@@ -8,6 +8,9 @@ const routingNote='Mesh routing uses the same surface-water inventory. Planet su
 export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,change:(action:()=>void)=>void,clock:{togglePlay:()=>void;isPlaying:()=>boolean},weather:{get:()=>boolean;set:(value:boolean)=>void}) {
     const panel=document.createElement('details');panel.id='environment-panel';panel.innerHTML=`<summary>Ice, ocean &amp; vegetation</summary>
       <p class="planet-note" data-info-for="environment-panel">Generate climate initializes all systems immediately. Play evolves frozen water, latent heat, currents and vegetation. Comparison keeps a captured baseline across parameter edits.</p>
+      <label><span>Surface resolution</span><select id="environment-resolution"><option value="">Classic</option><option value="balanced">Refined: balanced</option><option value="high">Refined: high</option></select></label>
+      <output id="environment-resolution-status" class="planet-note"></output>
+      <p class="planet-note" data-info-for="environment-resolution">Resolve independent mountain, coast and polar surface temperatures and frozen stores. Quality and terrain edits preserve water, heat and elapsed time. Atmosphere and glacier flow remain coarse; rainfall climate is still approximate. High detail costs more per step.</p>
       <label><span>Ocean circulation strength (m/s)</span><input id="environment-current" type="number" min="0" max="2" step="0.05" value="0.3"></label>
       <label><input id="environment-circulation" type="checkbox"> Evolving wind &amp; ocean circulation</label>
       <output class="planet-note" id="environment-wind-state" data-info-for="environment-circulation"></output>
@@ -32,6 +35,15 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
     root.append(panel);
     installInfoNotes(panel);
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
+    el<HTMLSelectElement>('environment-resolution').addEventListener('change',()=>change(()=>{
+        const quality=el<HTMLSelectElement>('environment-resolution').value;
+        try {
+            if(!quality)rt.disableRefinement();
+            else if(rt.model&&rt.water&&rt.environment&&rt.config.separateReservoirs)rt.enableRefinement(quality as 'balanced'|'high');
+            else {rt.enabled=rt.waterEnabled=true;rt.config.separateReservoirs=true;rt.refinement=quality as 'balanced'|'high';rt.invalidate();}
+            el('environment-resolution-status').textContent='';
+        }catch(error){el('environment-resolution-status').textContent=(error as Error).message;el<HTMLSelectElement>('environment-resolution').value=rt.refinement??'';}
+    }));
     el<HTMLInputElement>('environment-weather').addEventListener('change',()=>change(()=>weather.set(el<HTMLInputElement>('environment-weather').checked)));
     el<HTMLInputElement>('environment-current').addEventListener('change',event=>{
         const input=event.target as HTMLInputElement;if(!input.checkValidity()||!Number.isFinite(input.valueAsNumber)){input.setAttribute('aria-invalid','true');return;}
@@ -63,7 +75,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
       <div><article><h3>Temperature by latitude</h3><canvas id="environment-latitudes" width="760" height="330" aria-label="Latitude temperature profiles"></canvas><p class="env-legend">Baseline dashed gold · Current cyan · longitude mean, °C</p></article>
       <article><h3>Evolution since generation</h3><canvas id="environment-history" width="760" height="260" aria-label="Time history of snow, ice and vegetation coverage"></canvas><p class="env-legend">Ocean ice cyan · Land snow white · Vegetation green · coverage 0–100%</p></article></div></div>
     <details><summary>Captured parameters</summary><div class="env-pair"><code id="environment-baseline-parameters"></code><code id="environment-current-parameters"></code></div></details>
-    <p class="env-legend">Maps are geographic estimates downscaled from conservative cells. Initial ice thickness may be imported from observations; subsequent ice and snow evolve as water-budget estimates. Grounded flow uses the coarse climate grid; sea-ice drift is absent. Polar percentages refer to available ocean area, so different land masks need not give equal poles. Changing terrain, date or physics regenerates state; the captured baseline stays until replaced. History shows this generation only, at most 240 samples.</p>`;
+    <p class="env-legend">Maps are geographic estimates. Refined surfaces evolve independent local heat and water stores; classic maps downscale conservative cells. Initial ice thickness may be imported from observations; subsequent ice and snow evolve as water-budget estimates. Grounded flow uses the coarse climate grid; sea-ice drift is absent. Polar percentages refer to available ocean area, so different land masks need not give equal poles. Refined terrain and quality edits conserve heat, water and elapsed time; date or physics changes initialize a new state. The captured baseline stays until replaced. History shows this generation only, at most 240 samples.</p>`;
     document.body.append(dialog);
     const get=<T extends HTMLElement>(id:string)=>dialog.querySelector<T>('#'+id)!;
     let baseline:EnvironmentSnapshot|null=null,current:EnvironmentSnapshot|null=null,model=rt.model;
@@ -117,9 +129,9 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         chart('environment-history',[{values:history.map(x=>x.metrics.icePercent),color:'#69dfe4'},{values:history.map(x=>x.metrics.snowPercent),color:'#e8f1ed'},{values:history.map(x=>x.metrics.vegetationPercent),color:'#98cc74'}],0,100,`${(history[0]?.time??0).toFixed(1)} d`,`${(history.at(-1)?.time??0).toFixed(1)} d`,history.map(x=>x.time));
     }
     for(const id of ['environment-baseline-map','environment-current-map'])get<HTMLCanvasElement>(id).addEventListener('pointermove',event=>{
-        if(!baseline||!current)return;const bounds=(event.target as HTMLElement).getBoundingClientRect(),u=clamp((event.clientX-bounds.left)/bounds.width),v=clamp((event.clientY-bounds.top)/bounds.height),k=Math.min(current.width-1,Math.floor(u*current.width))+Math.round(v*(current.height-1))*current.width;
-        get('environment-map-probe').textContent=`${(90-v*180).toFixed(1)}° lat, ${(u*360-180).toFixed(1)}° lon · baseline → current: ${baseline.temperatureC[k].toFixed(1)} → ${current.temperatureC[k].toFixed(1)} °C · snow ${baseline.snowMm[k].toFixed(1)} → ${current.snowMm[k].toFixed(1)} mm · ice ${baseline.iceM[k].toFixed(2)} → ${current.iceM[k].toFixed(2)} m · vegetation ${(100*baseline.vegetation[k]).toFixed(0)} → ${(100*current.vegetation[k]).toFixed(0)}%`;
-        if(selected()==='landIceM')get('environment-map-probe').textContent+=` · grounded ice ${baseline.landIceM[k].toFixed(1)} → ${current.landIceM[k].toFixed(1)} m`;
+        if(!baseline||!current)return;const bounds=(event.target as HTMLElement).getBoundingClientRect(),u=clamp((event.clientX-bounds.left)/bounds.width),v=clamp((event.clientY-bounds.top)/bounds.height),k=Math.min(current.width-1,Math.floor(u*current.width))+Math.round(v*(current.height-1))*current.width,kb=Math.min(baseline.width-1,Math.floor(u*baseline.width))+Math.round(v*(baseline.height-1))*baseline.width;
+        get('environment-map-probe').textContent=`${(90-v*180).toFixed(1)}° lat, ${(u*360-180).toFixed(1)}° lon · baseline → current: ${baseline.temperatureC[kb].toFixed(1)} → ${current.temperatureC[k].toFixed(1)} °C · snow ${baseline.snowMm[kb].toFixed(1)} → ${current.snowMm[k].toFixed(1)} mm · ice ${baseline.iceM[kb].toFixed(2)} → ${current.iceM[k].toFixed(2)} m · vegetation ${(100*baseline.vegetation[kb]).toFixed(0)} → ${(100*current.vegetation[k]).toFixed(0)}%`;
+        if(selected()==='landIceM')get('environment-map-probe').textContent+=` · grounded ice ${baseline.landIceM[kb].toFixed(1)} → ${current.landIceM[k].toFixed(1)} m`;
     });
     get('environment-play').addEventListener('click',()=>clock.togglePlay());
     get('environment-close').addEventListener('click',()=>dialog.close());get('environment-map').addEventListener('change',render);
@@ -154,5 +166,5 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         if(model!==rt.model){model=rt.model;history=[];lastTime=-1;}
         if(d&&rt.model&&rt.model.timeS!==lastTime){lastTime=rt.model.timeS;const age=(lastTime-rt.model.epochS)/86400;history=history.filter(h=>h.time<age);history.push({time:age,metrics:d});if(history.length>240)history=history.filter((_,i)=>i%2===0);if(!baseline)baseline=captureEnvironment(rt);if(dialog.open){current=captureEnvironment(rt);render();}}
         if(dialog.open&&!d)render();
-    },restoreInputs(){el<HTMLInputElement>('environment-weather').checked=weather.get();el<HTMLInputElement>('environment-circulation').checked=!!rt.environmentConfig.dynamicCirculation;el<HTMLInputElement>('environment-current').value=String(rt.environmentConfig.oceanStrengthMps);el<HTMLInputElement>('environment-vegetation').checked=rt.environmentConfig.vegetation;el<HTMLInputElement>('environment-albedo').checked=rt.environmentConfig.iceAlbedo;el<HTMLInputElement>('environment-terrain-water').checked=!!rt.environmentConfig.terrainWater;el<HTMLInputElement>('environment-glaciers').checked=!!rt.environmentConfig.glaciers;}};
+    },restoreInputs(){el<HTMLSelectElement>('environment-resolution').value=rt.refinement??'';el<HTMLInputElement>('environment-weather').checked=weather.get();el<HTMLInputElement>('environment-circulation').checked=!!rt.environmentConfig.dynamicCirculation;el<HTMLInputElement>('environment-current').value=String(rt.environmentConfig.oceanStrengthMps);el<HTMLInputElement>('environment-vegetation').checked=rt.environmentConfig.vegetation;el<HTMLInputElement>('environment-albedo').checked=rt.environmentConfig.iceAlbedo;el<HTMLInputElement>('environment-terrain-water').checked=!!rt.environmentConfig.terrainWater;el<HTMLInputElement>('environment-glaciers').checked=!!rt.environmentConfig.glaciers;}};
 }

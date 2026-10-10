@@ -1,0 +1,109 @@
+{
+  "unrepresentedFallback": {
+    "representedM3": 10,
+    "unresolvedM3": 0,
+    "partitionResidualM3": 0,
+    "maxDepthM": 0.01,
+    "maxFlowM3S": 0
+  },
+  "restoreNextRoute": {
+    "saved": [
+      2,
+      0
+    ],
+    "after": [
+      2,
+      0
+    ]
+  },
+  "localAirEquilibrium": {
+    "maxChange": 0,
+    "energyResidual": 0
+  },
+  "topologyTamper": "Error: Refined topology does not match authored terrain",
+  "poleAirSpread": 0,
+  "creationBudget": "Error: Refinement exceeds the saveable surface budget; use a smaller atmosphere grid",
+  "coarsenHeat": {
+    "maxAirChange": 0,
+    "maxParentLandChange": 8.526512829121202e-14,
+    "globalSensibleResidual": 0
+  },
+  "actualLakeFreeze": {
+    "globalOceanLoss": 0,
+    "seaIceOnLake": 0
+  },
+  "actualLakeRemap": {
+    "lakeBefore": 159395567788.90866,
+    "lakeAfter": 159395567788.90872,
+    "globalOceanGain": 0,
+    "totalWaterResidual": 0,
+    "sensibleResidual": 0
+  },
+  "lakeRestoreInitialDiff": [],
+  "lakeRestoreNextDiff": [],
+  "actualLakeRemapRestore": "identical",
+  "changedStability": {
+    "oldStep": 1800,
+    "newStep": 1800,
+    "newStable": 3615.316744258119,
+    "outcome": "Error: Terrain edit changes the stable integration step; reset climate explicitly",
+    "restore": "not attempted"
+  },
+  "loweredReliefStability": {
+    "oldStep": 336.84837513256497,
+    "newStep": 336.84837513256497,
+    "newStable": 3615.316744258119,
+    "outcome": "accepted",
+    "restore": "accepted"
+  },
+  "glacierHistoryRemap": {
+    "initial": {
+      "maxThicknessM": 0.029201654808633327,
+      "maxSpeedMyr": 0,
+      "solidResidualM": 0,
+      "mobileKm3": 31879.11355778173,
+      "depositedKm3": 0,
+      "limitedCells": 0
+    },
+    "after": {
+      "maxThicknessM": 0.029201654808633327,
+      "maxSpeedMyr": 5.528635963763561e-42,
+      "solidResidualM": 0,
+      "mobileKm3": 4.398030960989937e-48,
+      "depositedKm3": 31879.11355778173,
+      "limitedCells": 0
+    },
+    "erodedVolumeM": 2,
+    "sedimentM": 0,
+    "depositedM": 2,
+    "waterResidual": 2.842170943040401e-14,
+    "enthalpyResidual": -0.00000287545844912529,
+    "outcome": "accepted",
+    "nextDiff": []
+  },
+  "creationStateBounds": {
+    "reliefM": 100000,
+    "outcome": "accepted",
+    "minimum": 0.9593097277524149,
+    "maximum": 431.1345944721955,
+    "restore": "accepted"
+  },
+  "classicLakeMigration": {
+    "parent": 12,
+    "land": 0,
+    "surfaceBefore": 10,
+    "surfaceAfter": 10,
+    "routedVolumeBefore": 434674353216.7236,
+    "routedVolumeAfter": 434674353216.7236,
+    "totalWaterResidual": 0,
+    "outcome": "accepted",
+    "restore": "accepted"
+  },
+  "lateEnableAtomic": {
+    "oldStep": 1800,
+    "newStep": 1800,
+    "outcome": "Error: Refinement changes the stable step; initialize it before evolving climate",
+    "snapshotDiff": [],
+    "routingPartitionUnchanged": true
+  }
+}

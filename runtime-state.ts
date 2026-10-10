@@ -7,13 +7,17 @@ import {SURFACE_WIDTH,SURFACE_HEIGHT} from './surface-grid.ts';
 import type {TerrainWaterCheckpoint} from './terrain-water.ts';
 import type {GlacierCheckpoint} from './glacier.ts';
 import {decodeIceInventory,type IceInventorySeed} from './ice-inventory.ts';
+import {decodeRefinedCheckpoint,type RefinedCheckpoint} from './refinement-surface.ts';
+import type {RefinementQuality} from './refinement-topology.ts';
 
 export interface RuntimeState {
     version:1;grid:{width:number;height:number};enabled:boolean;waterEnabled:boolean;
     config:ThermalConfig;waterConfig:WaterConfig;environmentConfig:EnvironmentConfig;
     iceInventory?:IceInventorySeed|null;
+    refinement?:RefinementQuality;
     state:null|{
         land:Float64Array;height:Float64Array;localLand:Float64Array;localHeight:Float64Array;
+        refined?:RefinedCheckpoint|null;
         epochS:number;stepS:number;lastTarget:number;initialEnergyJm2:number;initialEnthalpy:number|null;
         thermal:ThermalCheckpoint;radiationScale:Float64Array;
         circulation:EnvironmentCheckpoint|null;
@@ -52,6 +56,7 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
     const width=scalar(g.width,'grid width',4,8192,true),height=scalar(g.height,'grid height',2,4096,true),n=width*height,sn=SURFACE_WIDTH*SURFACE_HEIGHT;
     if(n>16384)throw new Error('Simulation grid too large');
     const result:RuntimeState={version:1,grid:{width,height},enabled:boolean(d.enabled),waterEnabled:boolean(d.waterEnabled),config:thermalConfig(d.config),waterConfig:waterConfig(d.waterConfig),environmentConfig:environmentConfig(d.environmentConfig),iceInventory:decodeIceInventory(d.iceInventory),state:null};
+    if(d.refinement!==undefined){if(d.refinement!=='balanced'&&d.refinement!=='high')throw new Error('Invalid refinement quality');result.refinement=d.refinement;}
     if(d.state===null)return result;
     if(!result.enabled)throw new Error('Disabled simulation has active state');
     const s=record(d.state),t=record(s.thermal),ref=record(s.surfaceReference),initial=record(s.surfaceInitial);
@@ -70,7 +75,7 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
         const landIceCorrection=w.landIceCorrection===undefined&&!result.environmentConfig.glaciers?new Float64Array(n):f(w,'landIceCorrection',n,-1e30);
         if(landIceCorrection.some((v,i)=>Math.abs(v)>Math.max(1e-12,Number.EPSILON*landIceKgM2[i])))throw new Error('Invalid grounded ice compensation');
         if(result.environmentConfig.glaciers) {
-            const g=record(w.glacier);glacier={erodedM:f(g,'erodedM'),sedimentM:f(g,'sedimentM'),depositedM:f(g,'depositedM'),speedMps:f(g,'speedMps'),outflowM3S:f(g,'outflowM3S'),limitedCells:scalar(g.limitedCells,'ice limiter count',0,4*n,true),...(g.bedrockM===undefined?{}:{bedrockM:f(g,'bedrockM',n,-12000,1e6)})};
+            const g=record(w.glacier);glacier={erodedM:f(g,'erodedM'),sedimentM:f(g,'sedimentM'),depositedM:f(g,'depositedM'),speedMps:f(g,'speedMps'),outflowM3S:f(g,'outflowM3S'),limitedCells:scalar(g.limitedCells,'ice limiter count',0,4*n,true),...(g.erodedVolumeM===undefined?{}:{erodedVolumeM:f(g,'erodedVolumeM')}),...(g.bedrockM===undefined?{}:{bedrockM:f(g,'bedrockM',n,-12000,1e6)})};
         }else if((w.glacier!==undefined&&w.glacier!==null)||(!result.iceInventory&&landIceKgM2.some(v=>v!==0)))throw new Error('Unexpected land ice state');
         if(result.environmentConfig.terrainWater) {
             // The opt-in 4x Earth mesh has 215,348 triangles. Keep a bounded
@@ -107,7 +112,10 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
     if(result.iceInventory&&result.waterEnabled&&!state.shelves)throw new Error('Observed ice requires conserved ice reservoirs');
     if(water?.landIceKgM2.some((v,i)=>state.land[i]===0&&v!==0))throw new Error('Grounded ice requires land');
     if(water?.shelfLandIceKgM2.some((v,i)=>state.land[i]===0&&v!==0)||water?.shelfSeaIceKgM2.some((v,i)=>state.land[i]===1&&v!==0))throw new Error('Ice shelf requires its thermal surface');
-    if(water?.snowfallKgM2S?.some((v,i)=>v>water!.precipitationKgM2S[i]*state.land[i]+1e-12))throw new Error('Snowfall exceeds precipitation on land');
+    if(s.refined!==undefined)state.refined=decodeRefinedCheckpoint(s.refined,n);
+    if(state.refined){const p=state.refined.partition;for(let k=0;k<n;k++){const q=p.level[k];for(let t=p.offset[k];t<p.offset[k+1];t++){const a=t-p.offset[k],u=(k%width+(a%q+.5)/q)/width,v=Math.acos(1-2*(Math.floor(k/width)+(Math.floor(a/q)+.5)/q)/height)/Math.PI;if(Math.abs(p.u[t]-u)>1e-12||Math.abs(p.v[t]-v)>1e-12)throw new Error('Invalid refinement registration');}}}
+    if(!!state.refined!==!!(result.refinement&&result.config.separateReservoirs&&water))throw new Error('Missing or unexpected refined reservoirs');
+    if(water?.snowfallKgM2S?.some((v,i)=>v>water!.precipitationKgM2S[i]*(state.refined?1:state.land[i])+1e-12))throw new Error('Snowfall exceeds precipitation on land');
     if(!Number.isFinite(time)||time>Number.MAX_SAFE_INTEGER||time>state.lastTarget+1e-6||state.lastTarget-time>=state.stepS+1e-6)throw new Error('Inconsistent simulation time');
     if(water&&Math.abs(water.elapsedS-age)>Math.max(1e-6,age*1e-10))throw new Error('Inconsistent water age');
     return result;

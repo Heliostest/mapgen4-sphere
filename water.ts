@@ -34,6 +34,7 @@ export interface WaterCheckpoint {
 /** Conservative water reservoirs. All columns are per WHOLE cell area. Ocean storage is
  * per global area, so each local transfer contributes 1/N to that reservoir. */
 export class WaterModel {
+    surfaceSolver:{evaporate(k:number,dt:number,potential:number,deficit:number):{landEvap:number;lakeEvap:number;oceanDemand:number};oceanEvaporate(k:number,amount:number):void;precipitate(k:number,rain:number,dt:number):number}|null=null;
     snowfallKgM2S:Float64Array|null=null;
     glacier:GlacierModel|null=null;
     glacierBedM:Float64Array|null=null;
@@ -256,6 +257,11 @@ export class WaterModel {
             const landLiquid=Math.max(0,Math.min(1,(landT-273.15)/5)),oceanLiquid=Math.max(0,Math.min(1,(oceanT-273.15)/5));
             const deficit=Math.max(0,1-this.atmosphereKgM2[i]/moistureCapacity(t));
             const potential=dt*config.evaporationFraction*q/VAPORIZATION_J_KG;
+            if(this.surfaceSolver) {
+                const e=this.surfaceSolver.evaporate(i,dt,potential,deficit);
+                this.atmosphereKgM2[i]+=e.landEvap+e.lakeEvap;this.evaporationKgM2S[i]=(e.landEvap+e.lakeEvap)/dt;
+                this.oceanDemand[i]=e.oceanDemand;oceanRequest+=e.oceanDemand/n;continue;
+            }
             const landDeficit=config.moistureScheme==='transport'&&split?Math.max(0,1-this.atmosphereKgM2[i]/moistureCapacity(landT)):deficit;
             const oceanDeficit=config.moistureScheme==='transport'&&split?Math.max(0,1-this.atmosphereKgM2[i]/moistureCapacity(oceanT)):deficit;
             const landDemand=potential*landDeficit*landLiquid*land[i]*(coupling?.landEvaporation[i]??1);
@@ -271,6 +277,7 @@ export class WaterModel {
         this.oceanGlobalKgM2=Math.max(0,this.oceanGlobalKgM2-oceanRequest*fraction);
         for(let i=0;i<n;i++) {
             const amount=this.oceanDemand[i]*fraction;this.atmosphereKgM2[i]+=amount;this.evaporationKgM2S[i]+=amount/dt;
+            if(this.surfaceSolver){this.surfaceSolver.oceanEvaporate(i,amount);continue;}
             if(split&&coupling?.oceanHeatJm2)coupling.oceanHeatJm2[i]-=VAPORIZATION_J_KG*amount;
         }
 
@@ -344,6 +351,10 @@ export class WaterModel {
             const liftK=config.moistureScheme==='transport'?Math.max(0,Math.min(24,convection+front+(6+10*instability)*convergenceDay+.0065*DAY*this.upslope[i]-subsidence)):0;
             const rain=Math.max(0,this.atmosphereKgM2[i]-moistureCapacity((config.moistureScheme==='transport'?parcelT:temperatureK[i])-liftK))*rainFraction;
             this.atmosphereKgM2[i]-=rain;this.precipitationKgM2S[i]=rain/dt;
+            if(this.surfaceSolver) {
+                const snow=this.surfaceSolver.precipitate(i,rain,dt);this.snowfallKgM2S[i]=snow/dt;
+                if(coupling)coupling.heatJm2[i]=VAPORIZATION_J_KG*rain+FUSION_J_KG*snow;continue;
+            }
             this.oceanGlobalKgM2+=rain*(1-land[i]-this.inlandWaterFraction[i])/n;
             this.surfaceKgM2[i]+=rain*this.inlandWaterFraction[i];
             const phaseT=config.moistureScheme==='transport'&&split?coupling!.landTemperatureK![i]:temperatureK[i];

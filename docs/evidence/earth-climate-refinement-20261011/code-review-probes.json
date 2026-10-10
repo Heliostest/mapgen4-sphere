@@ -1,0 +1,180 @@
+{
+  "unrepresentedWithZeroDonor": {
+    "coarse": 10,
+    "triangleVolume": [
+      0
+    ],
+    "diagnostics": {
+      "representedM3": 10,
+      "unresolvedM3": 0,
+      "partitionResidualM3": -10,
+      "maxDepthM": 0,
+      "maxFlowM3S": 0
+    },
+    "restore": "Error: Fine and coarse water stores differ"
+  },
+  "restoreThenNoopRoute": {
+    "saved": [
+      2,
+      0
+    ],
+    "restored": [
+      2,
+      0
+    ],
+    "afterNoop": [
+      1.5,
+      0.5
+    ]
+  },
+  "localAirEquilibrium": {
+    "patchAirBefore": [
+      300.9625,
+      300.9625,
+      259.0375,
+      259.0375,
+      300.9625,
+      300.9625,
+      259.0375,
+      259.0375,
+      300.9625,
+      300.9625,
+      259.0375,
+      259.0375,
+      300.9625,
+      300.9625,
+      259.0375,
+      259.0375
+    ],
+    "patchSurfaceBefore": [
+      300.9625,
+      300.9625,
+      259.0375,
+      259.0375,
+      300.9625,
+      300.9625,
+      259.0375,
+      259.0375,
+      300.9625,
+      300.9625,
+      259.0375,
+      259.0375,
+      300.9625,
+      300.9625,
+      259.0375,
+      259.0375
+    ],
+    "patchSurfaceAfter": [
+      300.7746944884377,
+      300.7747155205845,
+      259.2253475735005,
+      259.22532653664325,
+      300.7746944790173,
+      300.77471551116514,
+      259.2253475640822,
+      259.225326527226,
+      300.77469446960106,
+      300.77471550175,
+      259.22534755466813,
+      259.22532651781296,
+      300.7746944601891,
+      300.77471549233906,
+      259.2253475452583,
+      259.2253265084041
+    ],
+    "maxTemperatureChange": 0.1878475735005054,
+    "energyResidual": 0
+  },
+  "alteredTopology": {
+    "outcome": "accepted",
+    "before": {
+      "heightM": 50,
+      "airK": 298.8024616679064
+    },
+    "after": {
+      "heightM": 1050,
+      "airK": 292.7087116679064
+    }
+  },
+  "exactPole": {
+    "airSpread": 7,
+    "landSpread": 1.7053025658242404e-13,
+    "samples": [
+      {
+        "u": 0,
+        "airK": 290.9625,
+        "landK": 271.5889337458698,
+        "snowMm": 0,
+        "heightM": 50
+      },
+      {
+        "u": 0.125,
+        "airK": 291.9625,
+        "landK": 271.5889337458698,
+        "snowMm": 0,
+        "heightM": 50
+      },
+      {
+        "u": 0.25,
+        "airK": 292.9625,
+        "landK": 271.5889337458698,
+        "snowMm": 0,
+        "heightM": 50
+      },
+      {
+        "u": 0.375,
+        "airK": 293.9625,
+        "landK": 271.5889337458698,
+        "snowMm": 0,
+        "heightM": 50
+      },
+      {
+        "u": 0.5,
+        "airK": 294.9625,
+        "landK": 271.58893374586995,
+        "snowMm": 0,
+        "heightM": 50
+      },
+      {
+        "u": 0.625,
+        "airK": 295.9625,
+        "landK": 271.5889337458698,
+        "snowMm": 0,
+        "heightM": 50
+      },
+      {
+        "u": 0.75,
+        "airK": 296.9625,
+        "landK": 271.58893374586984,
+        "snowMm": 0,
+        "heightM": 50
+      },
+      {
+        "u": 0.875,
+        "airK": 297.9625,
+        "landK": 271.5889337458698,
+        "snowMm": 0,
+        "heightM": 50
+      }
+    ]
+  },
+  "coldInlandLake": {
+    "parentLand": 0.5,
+    "inlandLakeArea": 0.25,
+    "knownLakePatches": [
+      194,
+      195,
+      198,
+      199
+    ],
+    "knownOceanPatches": [
+      202,
+      203,
+      206,
+      207
+    ],
+    "lakeSeaIceKgM2Parent": 21.220059880239877,
+    "openOceanSeaIceKgM2Parent": 0,
+    "globalOceanLossKgM2": 0.6631268712808378
+  }
+}

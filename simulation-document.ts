@@ -16,7 +16,8 @@ function metrics(value:unknown):EnvironmentMetrics {
 }
 function baseline(value:unknown):EnvironmentSnapshot|null {
     if(value===null)return null;
-    const d=record(value),width=SURFACE_WIDTH,height=SURFACE_HEIGHT,n=width*height;
+    const d=record(value),width=scalar(d.width,'comparison width',SURFACE_WIDTH,384,true),height=scalar(d.height,'comparison height',SURFACE_HEIGHT,193,true),n=width*height;
+    if(![SURFACE_WIDTH,192,384].includes(width)||height!==width/2+1)throw new Error('Invalid comparison resolution');
     if(d.width!==width||d.height!==height)throw new Error('Invalid comparison dimensions');
     const parameters=text(d.parameters,'comparison parameters',16384);record(JSON.parse(parameters));
     const rgb=field(d.rgb,'comparison pixels',3*n,0,255);if(rgb.some(v=>!Number.isInteger(v)))throw new Error('Invalid comparison pixel');

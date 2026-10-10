@@ -1,0 +1,173 @@
+{
+  "checkedAtUtc": "2026-10-10T18:21:12.129Z",
+  "url": "http://localhost:8002/scenes/earth-land-sea/index.html",
+  "browser": "Chrome extension browser 4, native viewport",
+  "finalDefaults": {
+    "day": "0.000000",
+    "playing": "false",
+    "quality": "",
+    "sharedMoisture": false,
+    "水面轮廓": "3",
+    "轮廓强度": "3",
+    "顶光强度": "60",
+    "relief": "12"
+  },
+  "consoleWarningsAndErrors": [],
+  "records": [
+    {
+      "mode": "before",
+      "day": 24,
+      "visibleTime": "24.000000"
+    },
+    {
+      "check": "balanced latest day24 imported through normal file change",
+      "day": "24.000000",
+      "quality": "balanced"
+    },
+    {
+      "check": "fine layers and actual globe inspection",
+      "inspection": "开启后点击地球，查看位置、海拔、气候和水流。",
+      "result": "initial query blocked by rotate mode; subsequent actual point query succeeded after drag mode change"
+    },
+    {
+      "check": "actual point query works with paint drag mode while inspection blocks painting",
+      "inspection": "-26.49° 纬度，-68.29° 经度 · 4622 m 海拔 · 382.0 W/m² · 7.56 时当地太阳时 · 21.5 °C 网格日均气温 · 估算风速：向东 -0.1 / 向北 0.9 m/s · 潜在地表：草原 · 植被 50% · 积雪 0% · 当地空气估算 1.9 °C · 年均 5.5 °C / 431 毫米/地球年 · 当地表面估算 -1.8 °C · 浮冰架 0.0 m · 总降水 0.00 毫米/天 (最近一步的速率) · 土壤 28.1 mm / 积水 0.0 mm 按陆地面积 · 粗网格陆地积雪 0.0 mm / 融雪 0.00 毫米/天 / 海冰 0.00 m · 网格流出量 0.00e+0 m³/s · 网格陆冰 0.0 m / 流速 0.00 米/年 · 最近地形蓄水单元：平均水深 0.000 m / 流出量 0.00 m³/s"
+    },
+    {
+      "check": "latest day365 normal import",
+      "day": "365.000000",
+      "quality": "balanced"
+    },
+    {
+      "check": "balanced to high at day365 completed",
+      "day": "365.000000",
+      "quality": "high",
+      "frozen": "5.74 / 1098.33 mm",
+      "energy": "-2.55e-4 J/m²"
+    },
+    {
+      "check": "fine Generate climate keeps elapsed time and frozen inventory",
+      "day": "365.000000",
+      "quality": "high",
+      "frozen": "5.74 / 1098.33 mm"
+    },
+    {
+      "check": "192 baseline versus 384 current pointer query",
+      "probe": "-1.5° 纬度，-27.9° 经度 · 基准 → 当前： 26.4 → 26.4 °C · 积雪 0.0 → 0.0 mm · 冰 0.00 → 0.00 m · 植被 0 → 0%"
+    },
+    {
+      "check": "normal complete simulation download after high remap/generate, with balanced baseline",
+      "bytes": 17263262,
+      "day": 365,
+      "quality": "high",
+      "baseline": [
+        192,
+        97
+      ]
+    },
+    {
+      "check": "normal browser download re-import accepted",
+      "day": "365.000000",
+      "quality": "high",
+      "status": "完整模拟已恢复，并暂停在存档时刻；点击播放继续。"
+    },
+    {
+      "check": "balanced paused rAF cadence",
+      "elapsedMs": 2504.399999976158,
+      "finalDay": "24.000000",
+      "frames": 149,
+      "initialDay": "24.000000",
+      "maxMs": 17.100000000093132,
+      "note": "2.5-second browser requestAnimationFrame cadence; not GPU FPS. Native viewport, 1h/s play speed.",
+      "over50ms": 0,
+      "p50Ms": 16.699999999953434,
+      "p95Ms": 16.900000000023283
+    },
+    {
+      "check": "balanced playing rAF cadence",
+      "elapsedMs": 2501.100000023842,
+      "finalDay": "24.108746",
+      "frames": 109,
+      "initialDay": "24.005271",
+      "maxMs": 166.69999999995343,
+      "note": "2.5-second browser requestAnimationFrame cadence; not GPU FPS. Native viewport, 1h/s play speed.",
+      "over50ms": 6,
+      "p50Ms": 16.699999999953434,
+      "p95Ms": 100
+    },
+    {
+      "check": "balanced pause retains presented time",
+      "elapsedMs": 2505.1999999284744,
+      "finalDay": "24.112913",
+      "frames": 149,
+      "initialDay": "24.112913",
+      "maxMs": 17,
+      "note": "2.5-second browser requestAnimationFrame cadence; not GPU FPS. Native viewport, 1h/s play speed.",
+      "over50ms": 0,
+      "p50Ms": 16.699999999953434,
+      "p95Ms": 16.800000000046566
+    },
+    {
+      "check": "classic playing comparison, same native scene",
+      "quality": ""
+    },
+    {
+      "check": "classic playing rAF cadence",
+      "elapsedMs": 2500.6999999284744,
+      "finalDay": "24.119188",
+      "frames": 130,
+      "initialDay": "24.015021",
+      "maxMs": 116.90000000002328,
+      "note": "2.5-second browser requestAnimationFrame cadence; not GPU FPS. Native viewport, 1h/s play speed.",
+      "over50ms": 5,
+      "p50Ms": 16.699999999953434,
+      "p95Ms": 16.900000000023283
+    },
+    {
+      "check": "high playing rAF cadence",
+      "elapsedMs": 2504.8000000715256,
+      "finalDay": "24.119138",
+      "frames": 50,
+      "initialDay": "24.014275",
+      "maxMs": 350,
+      "note": "2.5-second browser requestAnimationFrame cadence; not GPU FPS. Native viewport, 1h/s play speed.",
+      "over50ms": 6,
+      "p50Ms": 16.699999999953434,
+      "p95Ms": 283.20000000006985
+    },
+    {
+      "check": "high pause retains time",
+      "elapsedMs": 2512.399999976158,
+      "finalDay": "24.122608",
+      "frames": 150,
+      "initialDay": "24.122608",
+      "maxMs": 16.800000000046566,
+      "note": "2.5-second browser requestAnimationFrame cadence; not GPU FPS. Native viewport, 1h/s play speed.",
+      "over50ms": 0,
+      "p50Ms": 16.699999999953434,
+      "p95Ms": 16.79999999993015
+    },
+    {
+      "check": "actual globe drag rotation while paused",
+      "day": "24.000000",
+      "image": "balanced-rotated-day24.jpg"
+    },
+    {
+      "check": "final day24 Tibet pair recaptured with identical camera preset and zoom",
+      "view": "青藏高原与喜马拉雅",
+      "zoom": 0.26,
+      "day": 24,
+      "paused": true,
+      "images": [
+        "before-tibet-day24.jpg",
+        "balanced-tibet-day24.jpg"
+      ]
+    }
+  ],
+  "limitations": [
+    "2.5s single browser samples measure callback cadence, not GPU FPS",
+    "Native download bar changed available viewport during the session; final day24 Tibet pair recaptured with same viewport, preset and zoom 0.26",
+    "Earlier point query text predates final label-only local snow/ice wording fix; final source labels independently reviewed",
+    "Day0/365 images are reference images with differing camera presets, not pixel comparison"
+  ]
+}
