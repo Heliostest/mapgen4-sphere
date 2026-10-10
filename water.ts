@@ -40,8 +40,13 @@ export class WaterModel {
     private pendingGlacier:GlacierCheckpoint|null=null;
     attachGlacier(gravityMps2:number) {this.glacier=new GlacierModel(this,gravityMps2,this.glacierBedM);if(this.pendingGlacier){this.glacier.restore(this.pendingGlacier);this.pendingGlacier=null;}}
     routing:TerrainWater|null=null;
+    /** Derived from confirmed inland bathymetry, never an additional store. */
+    readonly inlandWaterFraction:Float64Array;
     private pendingRouting:TerrainWaterCheckpoint|null=null;
     attachRouting(network:RoutingNetwork) {
+        this.inlandWaterFraction.fill(0);
+        for(let t=0;t<network.cell.length;t++)if(network.cell[t]>=0&&(network.inlandLakeId?.[t]??0)>0)this.inlandWaterFraction[network.cell[t]]+=network.areaM2[t]/this.cellAreaM2;
+        for(let k=0;k<this.grid.count;k++)this.inlandWaterFraction[k]=Math.min(1-this.land[k],this.inlandWaterFraction[k]);
         this.routing=new TerrainWater(network,this);
         if(this.pendingRouting){this.routing.restore(this.pendingRouting,this);this.pendingRouting=null;}
         else this.routing.route(this,this.maxStepS,this.config.routingSpeedMps,true);
@@ -98,6 +103,7 @@ export class WaterModel {
         this.land=Float64Array.from(land,f=>{finiteInRange(f,'water land fraction',0,1);return f;});
         this.heightM=Float64Array.from(heightM,h=>{finiteInRange(h,'land altitude',0,1e6);return h;});
         this.config={...config};this.cellAreaM2=grid.solidAngle*radiusM**2;
+        this.inlandWaterFraction=new Float64Array(grid.count);
         this.atmosphereKgM2=Float64Array.from(initialTemperatureK,t=>{finiteInRange(t,'water temperature',0);return .5*moistureCapacity(t);});
         this.soilKgM2=Float64Array.from(land,f=>f*config.soilCapacityKgM2*.5);
         this.surfaceKgM2=new Float64Array(grid.count);
@@ -253,18 +259,19 @@ export class WaterModel {
             const landDeficit=config.moistureScheme==='transport'&&split?Math.max(0,1-this.atmosphereKgM2[i]/moistureCapacity(landT)):deficit;
             const oceanDeficit=config.moistureScheme==='transport'&&split?Math.max(0,1-this.atmosphereKgM2[i]/moistureCapacity(oceanT)):deficit;
             const landDemand=potential*landDeficit*landLiquid*land[i]*(coupling?.landEvaporation[i]??1);
-            const surface=Math.min(this.surfaceKgM2[i],landDemand);
-            const soil=Math.min(this.soilKgM2[i],landDemand-surface);
+            const lakeDemand=potential*oceanDeficit*oceanLiquid*this.inlandWaterFraction[i];
+            const surface=Math.min(this.surfaceKgM2[i],landDemand+lakeDemand),lakeEvap=Math.min(surface,lakeDemand);
+            const soil=Math.min(this.soilKgM2[i],Math.max(0,landDemand-(surface-lakeEvap)));
             this.surfaceKgM2[i]-=surface;this.soilKgM2[i]-=soil;
             this.atmosphereKgM2[i]+=surface+soil;this.evaporationKgM2S[i]=(surface+soil)/dt;
-            if(split&&coupling?.landHeatJm2)coupling.landHeatJm2[i]=-VAPORIZATION_J_KG*(surface+soil);
-            this.oceanDemand[i]=potential*oceanDeficit*oceanLiquid*(1-land[i])*(1-(coupling?.oceanFrozenCover?.[i]??coupling?.iceCover[i]??0));oceanRequest+=this.oceanDemand[i]/n;
+            if(split&&coupling?.landHeatJm2&&coupling.oceanHeatJm2){coupling.landHeatJm2[i]=-VAPORIZATION_J_KG*(surface-lakeEvap+soil);coupling.oceanHeatJm2[i]=-VAPORIZATION_J_KG*lakeEvap;}
+            this.oceanDemand[i]=potential*oceanDeficit*oceanLiquid*(1-land[i]-this.inlandWaterFraction[i])*(1-(coupling?.oceanFrozenCover?.[i]??coupling?.iceCover[i]??0));oceanRequest+=this.oceanDemand[i]/n;
         }
         const fraction=oceanRequest>0?Math.min(1,this.oceanGlobalKgM2/oceanRequest):0;
         this.oceanGlobalKgM2=Math.max(0,this.oceanGlobalKgM2-oceanRequest*fraction);
         for(let i=0;i<n;i++) {
             const amount=this.oceanDemand[i]*fraction;this.atmosphereKgM2[i]+=amount;this.evaporationKgM2S[i]+=amount/dt;
-            if(split&&coupling?.oceanHeatJm2)coupling.oceanHeatJm2[i]=-VAPORIZATION_J_KG*amount;
+            if(split&&coupling?.oceanHeatJm2)coupling.oceanHeatJm2[i]-=VAPORIZATION_J_KG*amount;
         }
 
         // Conservative pair exchanges in transport mode; the legacy simultaneous
@@ -337,7 +344,8 @@ export class WaterModel {
             const liftK=config.moistureScheme==='transport'?Math.max(0,Math.min(24,convection+front+(6+10*instability)*convergenceDay+.0065*DAY*this.upslope[i]-subsidence)):0;
             const rain=Math.max(0,this.atmosphereKgM2[i]-moistureCapacity((config.moistureScheme==='transport'?parcelT:temperatureK[i])-liftK))*rainFraction;
             this.atmosphereKgM2[i]-=rain;this.precipitationKgM2S[i]=rain/dt;
-            this.oceanGlobalKgM2+=rain*(1-land[i])/n;
+            this.oceanGlobalKgM2+=rain*(1-land[i]-this.inlandWaterFraction[i])/n;
+            this.surfaceKgM2[i]+=rain*this.inlandWaterFraction[i];
             const phaseT=config.moistureScheme==='transport'&&split?coupling!.landTemperatureK![i]:temperatureK[i];
             const snow=coupling&&phaseT<273.15?rain*land[i]:0;
             this.snowfallKgM2S[i]=snow/dt;

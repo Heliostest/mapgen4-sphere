@@ -13,6 +13,7 @@ config.spacing=HIGH_DETAIL_SPACING;
 const {mesh,t_peaks}=await makeMesh(),identity=meshIdentity(mesh,config);
 if(process.argv.includes('--coordinates')) {
     await writeFile(`${cache}/mesh.json`,JSON.stringify({mesh:identity,xyz:Array.from(mesh.xyz_t)}));
+    await writeFile(`${cache}/mesh-neighbors.json`,JSON.stringify({mesh:identity,neighbors:Array.from({length:mesh.numSides},(_,s)=>mesh.t_outer_s(s))}));
 } else {
     const samples=JSON.parse(await readFile(`${folder}/elevation-samples.json`,'utf8'));
     if(samples.mesh.fingerprint!==identity.fingerprint||samples.heightsM.length!==mesh.numTriangles)throw new Error('Elevation samples use a different mesh');
@@ -25,6 +26,10 @@ if(process.argv.includes('--coordinates')) {
     parameters.render.mountain_height=Number((sceneConfig.render.exaggeration*parameters.render.sphere_radius*DEFAULT_PLANET.reliefM/DEFAULT_PLANET.radiusM).toFixed(3));
     parameters.render.overhead=sceneConfig.render.overhead;
     parameters.render.outline_strength=sceneConfig.render.outline_strength;parameters.render.outline_water=sceneConfig.render.outline_water;
+    for(const key of ['fused_rivers','fused_river_min_flow','fused_river_width','fused_river_max_width'])parameters.render[key]=sceneConfig.render[key];
+    const drainageSamples=JSON.parse(await readFile(`${folder}/drainage-samples.json`,'utf8'));
+    if(JSON.stringify(drainageSamples.mesh)!==JSON.stringify(identity))throw new Error('Drainage samples use a different mesh');
+    const drainage={source:'HydroBASINS v1.c level 4 + Natural Earth closed inland water, integrated classification',basinId:drainageSamples.basinId,terminal:drainageSamples.terminal,inlandLakeId:drainageSamples.inlandLakeId};
     const planet={...DEFAULT_PLANET},map=new Map(mesh,t_peaks,config);
     map.assignElevation(parameters.elevation,{size:128,constraints:new Float32Array(values)});
     // The persistent terrain layer replaces the procedural result at every
@@ -41,7 +46,7 @@ if(process.argv.includes('--coordinates')) {
     }
     if(maxErrorM>.01)throw new Error(`Elevation changed by ${maxErrorM} metres`);
     const report={years:0,sourceTimeS:0,clipped:0,mobileKm3:0,oceanKm3:0,importedFrom:'NOAA ETOPO 2022 (ice surface), sampled to mesh'};
-    const doc={format:'mapgen4-sphere-terrain' as const,version:1 as const,mesh:identity,constraints:{size:128,painted:true,values},offsets:Array.from(offsets),report,parameters,settings:{planet,orbit:{...DEFAULT_ORBIT},timeS:0,camera:'surface' as const}};
+    const doc={format:'mapgen4-sphere-terrain' as const,version:1 as const,mesh:identity,constraints:{size:128,painted:true,values},offsets:Array.from(offsets),report,parameters,drainage,settings:{planet,orbit:{...DEFAULT_ORBIT},timeS:0,camera:'surface' as const}};
     await writeFile(`${folder}/earth-terrain.json`,encodeTerrainDocument(doc));
     console.log(JSON.stringify({triangles:mesh.numTriangles,minM:samples.heightsM.reduce((a,b)=>Math.min(a,b),Infinity),maxM:samples.heightsM.reduce((a,b)=>Math.max(a,b),-Infinity),maxErrorM,landFraction:target.filter(e=>e>=0).length/target.length}));
 }

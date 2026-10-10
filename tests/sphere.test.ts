@@ -132,6 +132,7 @@ test('mountain vertices follow their local radial line; oceans stay at sea level
         assert.deepEqual(terrainPosition(direction,.8,50),expected);
     }
     assert.deepEqual(terrainPosition([0,0,1],-.4,50),[0,0,300]);
+    assert.deepEqual(terrainPosition([0,0,1],-.4,50,300,.4),[0,0,292],'Confirmed inland picking uses signed bathymetry');
 });
 
 test('sphere radius changes geometry while mountain height and camera stay independent', () => {

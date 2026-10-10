@@ -42,6 +42,10 @@ export const initialParams: Record<string, [string, number, number, number][]> =
         ['outline_coast', 0, 0, 1],
         ['outline_water', 13.0, 0, 20], // things start going wrong when this is high
         ['biome_colors', 1, 0, 1],
+        ['fused_rivers', 1, 0, 1],
+        ['fused_river_min_flow', 1000, 0, 20000],
+        ['fused_river_width', .025, .001, .2],
+        ['fused_river_max_width', .35, .01, .85],
     ],
 };
 

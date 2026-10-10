@@ -7,7 +7,7 @@ for(const filename of ['earth-terrain.json','earth-simulation.json']){
  const doc=JSON.parse(await readFile(`${folder}/${filename}`,'utf8')),before=structuredClone(doc);
  const terrain=doc.terrain??doc,planet=terrain.settings.planet,p=terrain.parameters.render;
  p.mountain_height=Number((render.exaggeration*p.sphere_radius*planet.reliefM/planet.radiusM).toFixed(3));
- for(const key of ['overhead','outline_strength','outline_water'])p[key]=render[key];
+ for(const key of ['overhead','outline_strength','outline_water','fused_rivers','fused_river_min_flow','fused_river_width','fused_river_max_width'])p[key]=render[key];
  assert.deepEqual(terrain.offsets,(before.terrain??before).offsets);
  assert.deepEqual(terrain.constraints,(before.terrain??before).constraints);
  if(doc.runtime)assert.deepEqual(doc.runtime,before.runtime);

@@ -30,7 +30,7 @@ type Options={
     sampleTerrain:(coords:number[])=>Sample|null;
     canInspect:()=>boolean;
     presentedTimeS:()=>number|null;
-    renderParams:()=>{sphere_radius?:number;mountain_height?:number};
+    renderParams:()=>{sphere_radius?:number;mountain_height?:number;fused_rivers?:number;fused_river_min_flow?:number;fused_river_width?:number;fused_river_max_width?:number};
     terrain?:()=>SurfaceTerrain|null;
     terrainReady?:()=>boolean;
     applyErosion?:(g:GeomorphRuntime)=>void;
@@ -287,7 +287,8 @@ export function installPlanetControls(options:Options) {
         view.thermal=thermal.sync(planet,orbit,clock.timeS,options.presentedTimeS());
         view.water=thermal.waterTexture;
         view.surface=thermal.surfaceTexture;
-        view.terrainWater=layer==='surface'?terrainWaterView(thermal):null;
+        const display=options.renderParams();
+        view.terrainWater=layer==='surface'?terrainWaterView(thermal,{minFlowM3S:display.fused_river_min_flow,widthCoefficient:display.fused_river_width,maxWidthRatio:display.fused_river_max_width,enabled:(display.fused_rivers??1)>0}):null;
         view.weather=weatherVisible&&layer==='surface'?weatherView(thermal):null;
         const previousGeomorph=geomorph.model;
         geomorph.reconcile(thermal);view.geomorph=geomorph.view;
@@ -318,7 +319,7 @@ export function installPlanetControls(options:Options) {
     installInfoNotes(root);
     requestAnimationFrame(frame);emit();
     return {
-        pause,refresh,isInspecting:()=>inspecting,clearIceInventory:()=>{thermal.iceInventory=null;thermal.invalidate();},
+        pause,refresh,repaint:sendView,isInspecting:()=>inspecting,clearIceInventory:()=>{thermal.iceInventory=null;thermal.invalidate();},
         simulation:()=>({runtime:thermal.snapshot(),view:{speed:clock.speed,layer:layer==='erosion'?'original' as const:layer,weather:weatherVisible},comparison:environmentPanel.snapshot()}),
         prepareSimulation:(d:SimulationDocument,terrain:SurfaceTerrain)=>{
             const candidate=ThermalRuntime.fromSnapshot(d.runtime,d.terrain.settings.planet,d.terrain.settings.orbit);

@@ -19,6 +19,20 @@ const doc=()=>({format:'mapgen4-sphere-terrain' as const,version:1 as const,mesh
     constraints:{size:8,painted:true,values:Array(64).fill(.1)},offsets:Array(mesh.numTriangles).fill(-.01),
     report:{...report},parameters:defaultTerrainParameters(),settings:structuredClone(settings)});
 
+test('fused display parameters and observed drainage restore strictly with old-save defaults',()=>{
+    const d={...doc(),drainage:{source:'HydroBASINS v1.c level 4',basinId:Array(mesh.numTriangles).fill(7),terminal:Array(mesh.numTriangles).fill(0)}};
+    d.drainage.terminal[3]=1;
+    assert.deepEqual(decodeTerrainDocument(encodeTerrainDocument(d),identity,8),d);
+    const old=JSON.parse(encodeTerrainDocument(d));delete old.drainage;
+    for(const key of ['fused_river_min_flow','fused_river_width','fused_river_max_width','fused_rivers'])delete old.parameters.render[key];
+    const restored=decodeTerrainDocument(JSON.stringify(old),identity,8);
+    assert.equal(restored.parameters.render.fused_river_min_flow,300);assert.equal(restored.parameters.render.fused_river_width,.07);
+    assert.equal(restored.parameters.render.fused_river_max_width,.85);assert.equal(restored.parameters.render.fused_rivers,1);
+    for(const mutate of [(v:any)=>v.drainage.basinId.pop(),(v:any)=>v.drainage.basinId[0]=.5,(v:any)=>v.drainage.terminal[0]=2,(v:any)=>v.parameters.render.fused_river_width=-1]) {
+        const bad=structuredClone(d);mutate(bad);assert.throws(()=>decodeTerrainDocument(JSON.stringify(bad),identity,8));
+    }
+});
+
 test('generation gate coalesces requests and accepts only the desired revision',()=>{
     const g=new GenerationGate();assert.equal(g.pending,false);g.request();assert.equal(g.start(),1);
     g.request();g.request();assert.equal(g.start(),null);assert.equal(g.complete(1),false);

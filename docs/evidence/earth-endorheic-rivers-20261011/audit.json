@@ -1,0 +1,481 @@
+{
+  "baseline": "fdf4b6b",
+  "inputSha": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "preservedDEM": true,
+  "preservedInitialRuntime": true,
+  "experimentalMoisture": false,
+  "closedEdges": 10778,
+  "lakeTriangles": 166,
+  "cases": [
+    {
+      "name": "Volga",
+      "lat": 54,
+      "lon": 45,
+      "triangle": 205590,
+      "bedM": 160.9499752521515,
+      "basinId": 0,
+      "inlandLakeId": 0,
+      "root": 193872,
+      "rootLat": 38.608378549986845,
+      "rootLon": 50.69603726863485,
+      "rootBedM": -935.3400468826294,
+      "rootOcean": false,
+      "rootLake": 1,
+      "length": 101
+    },
+    {
+      "name": "Caspian",
+      "lat": 42,
+      "lon": 51,
+      "triangle": 195865,
+      "bedM": -567.6799267530441,
+      "basinId": 0,
+      "inlandLakeId": 1,
+      "root": 193872,
+      "rootLat": 38.608378549986845,
+      "rootLon": 50.69603726863485,
+      "rootBedM": -935.3400468826294,
+      "rootOcean": false,
+      "rootLake": 1,
+      "length": 11
+    },
+    {
+      "name": "Aral",
+      "lat": 45,
+      "lon": 59,
+      "triangle": 192466,
+      "bedM": 33.39998424053192,
+      "basinId": 107,
+      "inlandLakeId": 0,
+      "root": 191836,
+      "rootLat": 45.07844413452561,
+      "rootLon": 59.929805555606265,
+      "rootBedM": 27.799978852272034,
+      "rootOcean": false,
+      "rootLake": 0,
+      "length": 2
+    },
+    {
+      "name": "Tarim",
+      "lat": 40,
+      "lon": 85,
+      "triangle": 132995,
+      "bedM": 999.5699673891068,
+      "basinId": 106,
+      "inlandLakeId": 0,
+      "root": 112733,
+      "rootLat": 40.231729979032735,
+      "rootLon": 90.52569062367667,
+      "rootBedM": 785.8999818563461,
+      "rootOcean": false,
+      "rootLake": 0,
+      "length": 20
+    },
+    {
+      "name": "Chad",
+      "lat": 13,
+      "lon": 14,
+      "triangle": 190196,
+      "bedM": 281.06003999710083,
+      "basinId": 1,
+      "inlandLakeId": 0,
+      "root": 190269,
+      "rootLat": 13.020366149141068,
+      "rootLon": 14.890038329671313,
+      "rootBedM": 280.71001172065735,
+      "rootOcean": false,
+      "rootLake": 0,
+      "length": 3
+    },
+    {
+      "name": "Turkana",
+      "lat": 3.5,
+      "lon": 36,
+      "triangle": 177492,
+      "bedM": 477.4399846792221,
+      "basinId": 8,
+      "inlandLakeId": 0,
+      "root": 177717,
+      "rootLat": 3.8711873242098704,
+      "rootLon": 36.10257454024364,
+      "rootBedM": 362.0000183582306,
+      "rootOcean": false,
+      "rootLake": 0,
+      "length": 2
+    },
+    {
+      "name": "Eyre",
+      "lat": -28.5,
+      "lon": 137.5,
+      "triangle": 63925,
+      "bedM": 1.0000169277191162,
+      "basinId": 152,
+      "inlandLakeId": 0,
+      "root": 64076,
+      "rootLat": -28.704905067740455,
+      "rootLon": 137.32806598168628,
+      "rootBedM": 1.0000169277191162,
+      "rootOcean": false,
+      "rootLake": 0,
+      "length": 1
+    },
+    {
+      "name": "Amazon",
+      "lat": -3,
+      "lon": -60,
+      "triangle": 152931,
+      "bedM": 43.64000167697668,
+      "basinId": 0,
+      "inlandLakeId": 0,
+      "root": 163318,
+      "rootLat": -0.9391107787573105,
+      "rootLon": -51.051722956177855,
+      "rootBedM": 0,
+      "rootOcean": true,
+      "rootLake": 0,
+      "length": 35
+    },
+    {
+      "name": "Congo",
+      "lat": 0,
+      "lon": 23,
+      "triangle": 180096,
+      "bedM": 462.3600095510483,
+      "basinId": 0,
+      "inlandLakeId": 0,
+      "root": 182572,
+      "rootLat": 0.15610915746623277,
+      "rootLon": 9.304223259625559,
+      "rootBedM": 0,
+      "rootOcean": true,
+      "rootLake": 0,
+      "length": 49
+    }
+  ],
+  "display": [
+    {
+      "name": "legacy",
+      "minFlowM3S": 300,
+      "widthCoefficient": 0.07,
+      "maxWidthRatio": 0.85,
+      "riverTriangles": 9014,
+      "geometrySha": "fe042694e27b33270253ac94ea27428eed59f0c871afe44764ecc454fac14d7b",
+      "flowSha": "05f786c721ee719c3bb9c5f58a67198cea43f42a574be77a510a471cecdbf47f"
+    },
+    {
+      "name": "default",
+      "minFlowM3S": 1000,
+      "widthCoefficient": 0.025,
+      "maxWidthRatio": 0.35,
+      "riverTriangles": 2242,
+      "geometrySha": "cc444e6f186183f9f7f6e5f1c1c62872087423525908f3c8eb51089bd88eddaf",
+      "flowSha": "05f786c721ee719c3bb9c5f58a67198cea43f42a574be77a510a471cecdbf47f"
+    },
+    {
+      "name": "thin",
+      "minFlowM3S": 1000,
+      "widthCoefficient": 0.005,
+      "maxWidthRatio": 0.35,
+      "riverTriangles": 2242,
+      "geometrySha": "3a95b0d70f72b5c5f91d0cb607f7c4f8b50e0e5aba0fd9cf04abac84f7d5afd7",
+      "flowSha": "05f786c721ee719c3bb9c5f58a67198cea43f42a574be77a510a471cecdbf47f"
+    },
+    {
+      "name": "major",
+      "minFlowM3S": 10000,
+      "widthCoefficient": 0.025,
+      "maxWidthRatio": 0.35,
+      "riverTriangles": 232,
+      "geometrySha": "98b0834cac021ef64c5743ce31547a9c1de45af1abbd4652fc088b2951485034",
+      "flowSha": "05f786c721ee719c3bb9c5f58a67198cea43f42a574be77a510a471cecdbf47f"
+    },
+    {
+      "name": "off",
+      "enabled": false,
+      "riverTriangles": 0,
+      "geometrySha": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "flowSha": "05f786c721ee719c3bb9c5f58a67198cea43f42a574be77a510a471cecdbf47f"
+    }
+  ],
+  "continuous": [
+    {
+      "targetDay": 0,
+      "actualDay": 0,
+      "steps": 0,
+      "budget": {
+        "shelfIceMm": 1040.6982230206804,
+        "landIceMm": 49438.576237719324,
+        "snowMm": 10.245717975257032,
+        "iceMm": 177.27481521128234,
+        "meltMmDay": 0,
+        "totalMm": 739407.3164896969,
+        "residualMm": 1.1641532182693481e-10,
+        "atmosphereMm": 13.864299796532547,
+        "soilMm": 7.22044216608472,
+        "surfaceMm": 0.5545182612496745,
+        "oceanMm": 688718.8822355465,
+        "rainMmDay": 1.952639860706422,
+        "evaporationMmDay": 1.5472667300371252,
+        "maxDischargeM3S": 24701.075423785955
+      },
+      "energy": {
+        "energyResidualJm2": 0,
+        "iceFraction": 0.18899884261941877,
+        "snowFraction": 0.3297912852452638,
+        "albedo": 0.38835954072368917,
+        "maxCurrentMps": 0
+      },
+      "partition": {
+        "representedM3": 282840809923.87256,
+        "unresolvedM3": 0,
+        "partitionResidualM3": -0.000005613808752968907,
+        "maxDepthM": 0.02021881123598066,
+        "maxFlowM3S": 1635.9290751453
+      },
+      "inlandFraction": [
+        0.403639069177727,
+        0.015727085657434265,
+        0.35356658043893163,
+        0.12382273841926768
+      ],
+      "closedStores": [
+        {
+          "name": "Volga",
+          "root": 193872,
+          "volumeM3": 0,
+          "headM": -935.3400468826294,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Caspian",
+          "root": 193872,
+          "volumeM3": 0,
+          "headM": -935.3400468826294,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Aral",
+          "root": 191836,
+          "volumeM3": 0,
+          "headM": 27.799978852272034,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Tarim",
+          "root": 112733,
+          "volumeM3": 0,
+          "headM": 785.8999818563461,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Chad",
+          "root": 190269,
+          "volumeM3": 1864622.2137729975,
+          "headM": 280.7107628433755,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Turkana",
+          "root": 177717,
+          "volumeM3": 45024798.00746918,
+          "headM": 362.0199252640441,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Eyre",
+          "root": 64076,
+          "volumeM3": 69627.55668187745,
+          "headM": 1.0000460541001408,
+          "fluxM3S": 0
+        }
+      ],
+      "strictRoundTrip": true
+    },
+    {
+      "targetDay": 2,
+      "actualDay": 2,
+      "steps": 96,
+      "budget": {
+        "shelfIceMm": 1040.6982230206804,
+        "landIceMm": 49438.577348563784,
+        "snowMm": 10.20392805955627,
+        "iceMm": 187.46886772051045,
+        "meltMmDay": 0.003799006618474285,
+        "totalMm": 739407.3164896982,
+        "residualMm": 1.5133991837501526e-9,
+        "atmosphereMm": 15.496720165697546,
+        "soilMm": 6.898954004253064,
+        "surfaceMm": 0.5148520635840126,
+        "oceanMm": 688707.4575961002,
+        "rainMmDay": 0.9750190121858805,
+        "evaporationMmDay": 1.2140072948473029,
+        "maxDischargeM3S": 19391.0574981361
+      },
+      "energy": {
+        "energyResidualJm2": -0.0001523285172879696,
+        "iceFraction": 0.1802859871324888,
+        "snowFraction": 0.3251347917119749,
+        "albedo": 0.38569942170483684,
+        "maxCurrentMps": 0.01748816874367175
+      },
+      "partition": {
+        "representedM3": 262608438407.24805,
+        "unresolvedM3": 0,
+        "partitionResidualM3": 0.000019582103902848758,
+        "maxDepthM": 0.47232930297217124,
+        "maxFlowM3S": 5906.49995726929
+      },
+      "inlandFraction": [
+        0.403639069177727,
+        0.015727085657434265,
+        0.35356658043893163,
+        0.12382273841926768
+      ],
+      "closedStores": [
+        {
+          "name": "Volga",
+          "root": 193872,
+          "volumeM3": 0,
+          "headM": -935.3400468826294,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Caspian",
+          "root": 193872,
+          "volumeM3": 0,
+          "headM": -935.3400468826294,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Aral",
+          "root": 191836,
+          "volumeM3": 183342.84700966292,
+          "headM": 27.80004487703138,
+          "fluxM3S": 4.688246626732065
+        },
+        {
+          "name": "Tarim",
+          "root": 112733,
+          "volumeM3": 0,
+          "headM": 785.8999818563461,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Chad",
+          "root": 190269,
+          "volumeM3": 0,
+          "headM": 280.71001172065735,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Turkana",
+          "root": 177717,
+          "volumeM3": 485874692.5190082,
+          "headM": 362.214839127433,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Eyre",
+          "root": 64076,
+          "volumeM3": 0,
+          "headM": 1.0000169277191162,
+          "fluxM3S": 0
+        }
+      ],
+      "strictRoundTrip": true
+    },
+    {
+      "targetDay": 24,
+      "actualDay": 24,
+      "steps": 1152,
+      "budget": {
+        "shelfIceMm": 1040.6982230206804,
+        "landIceMm": 49438.58999403474,
+        "snowMm": 10.584044238601926,
+        "iceMm": 286.15111752883536,
+        "meltMmDay": 0.009384851077543742,
+        "totalMm": 739407.3164896807,
+        "residualMm": -1.6065314412117004e-8,
+        "atmosphereMm": 16.296300976709038,
+        "soilMm": 4.454940374954686,
+        "surfaceMm": 4.868377389009824,
+        "oceanMm": 688605.6734921172,
+        "rainMmDay": 1.1819920486901823,
+        "evaporationMmDay": 1.1588408796997167,
+        "maxDischargeM3S": 80185.42276319941
+      },
+      "energy": {
+        "energyResidualJm2": -0.0001746639609336853,
+        "iceFraction": 0.17779670592410696,
+        "snowFraction": 0.3145797065641942,
+        "albedo": 0.38418784290530644,
+        "maxCurrentMps": 0.07913635273069797
+      },
+      "partition": {
+        "representedM3": 2483192890022.096,
+        "unresolvedM3": 0,
+        "partitionResidualM3": 0.00010561680914911512,
+        "maxDepthM": 11.130276595754326,
+        "maxFlowM3S": 20911.602687505052
+      },
+      "inlandFraction": [
+        0.403639069177727,
+        0.015727085657434265,
+        0.35356658043893163,
+        0.12382273841926768
+      ],
+      "closedStores": [
+        {
+          "name": "Volga",
+          "root": 193872,
+          "volumeM3": 993054463.5772499,
+          "headM": -934.8452500564891,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Caspian",
+          "root": 193872,
+          "volumeM3": 993054463.5772499,
+          "headM": -934.8452500564891,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Aral",
+          "root": 191836,
+          "volumeM3": 0.0000065321761634879434,
+          "headM": 27.799978852272037,
+          "fluxM3S": 1.7236785027189073e-10
+        },
+        {
+          "name": "Tarim",
+          "root": 112733,
+          "volumeM3": 0,
+          "headM": 785.8999818563461,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Chad",
+          "root": 190269,
+          "volumeM3": 0,
+          "headM": 280.71001172065735,
+          "fluxM3S": 0
+        },
+        {
+          "name": "Turkana",
+          "root": 177717,
+          "volumeM3": 1634836166.9854157,
+          "headM": 362.7228318085277,
+          "fluxM3S": 8.948585204531602
+        },
+        {
+          "name": "Eyre",
+          "root": 64076,
+          "volumeM3": 0,
+          "headM": 1.0000169277191162,
+          "fluxM3S": 0
+        }
+      ],
+      "strictRoundTrip": true
+    }
+  ]
+}

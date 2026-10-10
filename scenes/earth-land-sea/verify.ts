@@ -18,6 +18,12 @@ assert.equal(d.terrain.settings.timeS,0);assert.equal(d.runtime.state!.lastTarge
 assert.equal(d.view.layer,'surface');
 assert.equal(d.runtime.enabled,true);assert.equal(d.runtime.waterEnabled,true);
 assert.equal(d.runtime.config.separateReservoirs,true);
+assert.notEqual(d.runtime.waterConfig.moistureScheme,'transport');
+assert(d.terrain.drainage?.inlandLakeId?.some(id=>id>0));
+assert.equal(d.terrain.drainage!.basinId.length,mesh.numTriangles);
+assert.equal(d.terrain.parameters.render.fused_river_min_flow,1000);
+assert.equal(d.terrain.parameters.render.fused_river_width,.025);
+assert.equal(d.terrain.parameters.render.fused_river_max_width,.35);
 const observed=decodeIceInventory(JSON.parse(await readFile(`${folder}/ice-samples.json`,'utf8')))!;
 assert.deepEqual(d.runtime.iceInventory,observed);
 const runtime=ThermalRuntime.fromSnapshot(d.runtime,d.terrain.settings.planet,d.terrain.settings.orbit);

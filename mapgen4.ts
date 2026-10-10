@@ -41,6 +41,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     let sessionPanel:ReturnType<typeof installTerrainSessionPanel>|undefined;
     const gate=new GenerationGate(),application=new TerrainApplication(),identity=meshIdentity(mesh,param);
     let documentRevision=0;
+    let drainage:TerrainDocument['drainage'];
     const sliders=document.getElementById('sliders');
     for(const event of ['input','change','click'])sliders.addEventListener(event,()=>documentRevision++,true);
 
@@ -53,7 +54,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         document.getElementById('sliders').appendChild(container);
         for (let [name, initialValue, min, max] of initialParams[phase]) {
             const isRadius = name === 'sphere_radius';
-            const step = name === 'seed' || isRadius? 1 : 0.001;
+            const step = name === 'seed' || isRadius || name==='fused_rivers'||name==='fused_river_min_flow'? 1 : 0.001;
             param[phase][name] = initialValue;
 
             let span = document.createElement('span');
@@ -64,19 +65,19 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
             slider.setAttribute('min', String(min));
             slider.setAttribute('max', String(max));
             slider.setAttribute('step', step.toString());
-            const radiusValue = isRadius? document.createElement('span') : null;
+            const radiusValue = isRadius||name.startsWith('fused_')? document.createElement('span') : null;
             if (radiusValue) {
                 radiusValue.className = 'radius-value';
                 radiusValue.setAttribute('aria-hidden', 'true');
                 radiusValue.textContent = String(initialValue);
                 slider.setAttribute('aria-label', name);
-                slider.title = 'Base sphere radius, independent of zoom. Mountain height stays the same.';
+                slider.title = isRadius?'Base sphere radius, independent of zoom. Mountain height stays the same.':'Fused channel display only; does not change runoff, reservoirs or physical paths.';
             }
             slider.addEventListener('input', _event => {
                 if(!Number.isFinite(slider.valueAsNumber)||!slider.checkValidity())return;
                 param[phase][name] = slider.valueAsNumber;
                 if (radiusValue) radiusValue.textContent = slider.value;
-                if(phase==='render')redraw();
+                if(phase==='render'){if(name.startsWith('fused_'))planetControls?.repaint();redraw();}
                 else {planetControls?.pause();generate();}
             });
 
@@ -120,7 +121,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         canInspect:()=>!Painting.navigating(),
         presentedTimeS:()=>render.presentedPlanetTimeS,
         renderParams:()=>param.render,
-        terrain:()=>render.physicalElevation.length?{directions:mesh.xyz_r,elevation:render.physicalElevation,mesh,quadElements:render.pickElements}:null,
+        terrain:()=>render.physicalElevation.length?{directions:mesh.xyz_r,elevation:render.physicalElevation,mesh,quadElements:render.pickElements,drainage}:null,
         terrainReady:()=>!gate.pending&&render.baseTriangleElevation.length===mesh.numTriangles,
         applyErosion:g=>{
             if(gate.pending||!g.model||g.model.years<=0||!g.view?.preview)return;
@@ -133,12 +134,14 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     function terrainDocument():TerrainDocument {
         return {format:'mapgen4-sphere-terrain',version:1,mesh:identity,
             constraints:{size:Painting.size,painted:Painting.userHasPainted(),values:Array.from(Painting.constraints)},
-            offsets:application.offsets?Array.from(application.offsets):null,report:application.report,
+            offsets:application.offsets?Array.from(application.offsets):null,report:application.report,...(drainage?{drainage}:{}),
             parameters:Object.fromEntries(Object.entries(initialParams).map(([phase,fields])=>[phase,Object.fromEntries(fields.map(([key])=>[key,param[phase][key]]))])),settings:planetControls.settings()};
     }
     function restoreAuthored(d:TerrainDocument) {
+        drainage=d.drainage;
         for(const [phase,values] of Object.entries(d.parameters))for(const [key,value] of Object.entries(values)) {
             param[phase][key]=value;(document.querySelector(`#slider-${key} input`) as HTMLInputElement).value=String(value);
+            const readout=document.querySelector(`#slider-${key} .radius-value`);if(readout)readout.textContent=String(value);
         }
         document.querySelector('#slider-sphere_radius .radius-value').textContent=String(d.parameters.render.sphere_radius);
         Painting.restore(d.parameters.elevation as {seed:number;island:number},new Float32Array(d.constraints.values),d.constraints.painted);
@@ -166,7 +169,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
                 const prepared=await prepareTerrain(mesh,t_peaks,param,d.terrain);
                 if(!stillCurrent())return 'Load canceled because newer edits or time changes were made.';
                 const elevation=new Float32Array(prepared.terrain_elevation_buffer);
-                const candidate=planetControls.prepareSimulation(d,{directions:mesh.xyz_r,elevation,mesh,quadElements:new Int32Array(prepared.quad_elements_buffer).slice()});
+                const candidate=planetControls.prepareSimulation(d,{directions:mesh.xyz_r,elevation,mesh,quadElements:new Int32Array(prepared.quad_elements_buffer).slice(),drainage:d.terrain.drainage});
                 // All fallible parsing, generation and model construction has completed.
                 gate.acceptPrepared();documentRevision++;restoreAuthored(d.terrain);
                 render.quad_elements=new Int32Array(prepared.quad_elements_buffer);render.a_quad_em=new Float32Array(prepared.a_quad_em_buffer);render.a_river_xyww=new Float32Array(prepared.a_river_xyww_buffer);
@@ -186,7 +189,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     }
     Painting.inspecting=()=>planetControls.isInspecting();
     Painting.onBeforePaint=()=>planetControls.pause();
-    Painting.onReset=()=>{planetControls.pause();planetControls.clearIceInventory();application.reset();};
+    Painting.onReset=()=>{planetControls.pause();planetControls.clearIceInventory();drainage=undefined;application.reset();};
 
     /* Ask render module to copy WebGL into Canvas */
     function download() {

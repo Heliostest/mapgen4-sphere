@@ -6,8 +6,9 @@ export const MAX_ZOOM = 2;
 
 /** Height follows the local sphere normal, independent of the camera.
  * Keep this displacement identical to sphere_position in render.ts. */
-export function terrainPosition(direction: ArrayLike<number>, elevation: number, height: number, sphereRadius=SPHERE_RADIUS): [number,number,number] {
-    const radius=sphereRadius+height*Math.max(0,elevation);
+export function terrainPosition(direction: ArrayLike<number>, elevation: number, height: number, sphereRadius=SPHERE_RADIUS,inlandDepthRatio=0): [number,number,number] {
+    const visible=elevation<0&&inlandDepthRatio>0?elevation*inlandDepthRatio:Math.max(0,elevation);
+    const radius=sphereRadius+height*visible;
     return [direction[0]*radius,direction[1]*radius,direction[2]*radius];
 }
 

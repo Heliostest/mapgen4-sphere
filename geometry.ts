@@ -110,7 +110,7 @@ function setRiverGeometry(map: Pick<Map,'mesh'|'s_downslope_t'|'flow_s'>, spacin
     for (let t = 0; t < numSolidTriangles; t++) {
         let s_out = s_downslope_t[t];
         let outflow = flow_s[s_out];
-        if (s_out < 0 || outflow < MIN_FLOW) continue;
+        if (s_out < 0 || outflow <= MIN_FLOW) continue;
         let s_in1 = mesh.s_next_s(s_out);
         let s_in2 = mesh.s_next_s(s_in1);
         let flow_in1 = flow_s[mesh.s_opposite_s(s_in1)];
@@ -129,13 +129,13 @@ function setRiverGeometry(map: Pick<Map,'mesh'|'s_downslope_t'|'flow_s'>, spacin
             }
         }
 
-        if (flow_in1 >= MIN_FLOW) {
+        if (flow_in1 > MIN_FLOW) {
             add(s_out, s_in1, s_in2, riverSize(s_out, outflow), riverSize(s_in1, flow_in1));
         }
-        if (flow_in2 >= MIN_FLOW) {
+        if (flow_in2 > MIN_FLOW) {
             add(s_in2, s_out, s_in1, riverSize(s_in2, flow_in2), riverSize(s_out, outflow));
         }
-        if(riversParam.headwaters&&flow_in1<MIN_FLOW&&flow_in2<MIN_FLOW)add(s_out,s_in1,s_in2,riverSize(s_out,outflow),0);
+        if(riversParam.headwaters&&flow_in1<=MIN_FLOW&&flow_in2<=MIN_FLOW)add(s_out,s_in1,s_in2,riverSize(s_out,outflow),0);
     }
 
     if (p > P.length) throw new Error('River atlas buffer overflow');

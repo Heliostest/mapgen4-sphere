@@ -6,6 +6,10 @@ export interface RoutingNetwork {
     cell:Int32Array;areaM2:Float64Array;bedM:Float64Array;
     neighbors:{to:number;sillM:number;distanceM:number;side:number}[][];
     bedPatches?:{vertices:number[][];weight:number}[][];
+    /** Optional observed catchments, 0 = unclassified/exorheic. These guide
+     * reference channels only; the physical edges remain permeable at sills. */
+    endorheic?:Int32Array;terminal?:Uint8Array;
+    inlandLakeId?:Int32Array;
 }
 export interface SurfaceWaterLedger {grid:{count:number};cellAreaM2:number;surfaceKgM2:Float64Array;dischargeM3S:Float64Array;oceanGlobalKgM2:number;}
 export interface TerrainWaterCheckpoint {volumeM3:Float64Array;fluxM3S:Float64Array;receiverSide:Int32Array;}
@@ -103,7 +107,7 @@ export class TerrainWater {
     }
 }
 
-export function terrainRoutingNetwork(mesh:Mesh,elevation:ArrayLike<number>,grid:ThermalGrid,radiusM:number,reliefM:number,quadElements?:Int32Array):RoutingNetwork {
+export function terrainRoutingNetwork(mesh:Mesh,elevation:ArrayLike<number>,grid:ThermalGrid,radiusM:number,reliefM:number,quadElements?:Int32Array,inlandLakeId?:ArrayLike<number>,oceanDepthM=reliefM):RoutingNetwork {
     const n=mesh.numTriangles,cell=new Int32Array(n).fill(-1),areaM2=new Float64Array(n),bedM=new Float64Array(n),neighbors:RoutingNetwork['neighbors']=Array.from({length:n},()=>[]);
     const bedPatches:NonNullable<RoutingNetwork['bedPatches']>=Array.from({length:n},()=>[]);
     const xyz=(r:number)=>[mesh.xyz_r[3*r],mesh.xyz_r[3*r+1],mesh.xyz_r[3*r+2]],dot=(a:number[],b:number[])=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
@@ -111,29 +115,31 @@ export function terrainRoutingNetwork(mesh:Mesh,elevation:ArrayLike<number>,grid
     const angle=(a:number[],b:number[])=>Math.acos(Math.max(-1,Math.min(1,dot(a,b))));
     const area=(a:number[],b:number[],c:number[])=>2*Math.atan2(Math.abs(dot(a,cross(b,c))),1+dot(a,b)+dot(b,c)+dot(c,a))*radiusM**2;
     const vertex=(p:number[],height:number)=>[...directionToUV(p).map(v=>1000*v),height];
+    const lake=Int32Array.from({length:n},(_,t)=>elevation[mesh.numRegions+t]<=0?(inlandLakeId?.[t]??0):0);
+    const height=(e:number)=>e*(e>=0?reliefM:oceanDepthM);
     for(let t=0;t<n;t++) {
         const [a,b,c]=[0,1,2].map(j=>xyz(mesh.r_begin_s(3*t+j))),det=a[0]*(b[1]*c[2]-b[2]*c[1])+a[1]*(b[2]*c[0]-b[0]*c[2])+a[2]*(b[0]*c[1]-b[1]*c[0]);
         areaM2[t]=2*Math.atan2(Math.abs(det),1+dot(a,b)+dot(b,c)+dot(c,a))*radiusM**2;
-        const e=elevation[mesh.numRegions+t];bedM[t]=Math.max(0,e*reliefM);
-        if(e>0){const uv=directionToUV(mesh.xyz_t.subarray(3*t,3*t+3));cell[t]=thermalCell(grid,...uv);}
+        const e=elevation[mesh.numRegions+t];bedM[t]=lake[t]>0?height(e):Math.max(0,e*reliefM);
+        if(e>0||lake[t]>0){const uv=directionToUV(mesh.xyz_t.subarray(3*t,3*t+3));cell[t]=thermalCell(grid,...uv);}
     }
     for(let t=0;t<n;t++)if(cell[t]>=0)for(let j=0;j<3;j++) {
         const s=3*t+j,to=mesh.t_outer_s(s),a=mesh.r_begin_s(s),b=mesh.r_begin_s(mesh.s_next_s(s));
         let cos=0;for(let c=0;c<3;c++)cos+=mesh.xyz_t[3*t+c]*mesh.xyz_t[3*to+c];
         const distanceM=radiusM*Math.acos(Math.max(-1,Math.min(1,cos)));
         const pa=xyz(a),pb=xyz(b),pt=Array.from(mesh.xyz_t.subarray(3*t,3*t+3)),pn=Array.from(mesh.xyz_t.subarray(3*to,3*to+3));
-        const va=vertex(pa,elevation[a]*reliefM),vb=vertex(pb,elevation[b]*reliefM),vt=vertex(pt,bedM[t]);
+        const va=vertex(pa,lake[t]>0?height(elevation[a]):elevation[a]*reliefM),vb=vertex(pb,lake[t]>0?height(elevation[b]):elevation[b]*reliefM),vt=vertex(pt,bedM[t]);
         let sillM=Math.min(va[2],vb[2]);
         if(quadElements&&quadElements[3*s+1]>=mesh.numRegions) {
             // The authored quad is folded into a valley between its centers.
             // Split its two faces at the shared edge, preserving that low bed.
             let pc=cross(cross(pa,pb),cross(pt,pn));const norm=Math.hypot(...pc),sign=dot(pc,pa)>=0?1:-1;pc=pc.map(v=>v*sign/norm);
-            const f=angle(pt,pc)/angle(pt,pn),height=(1-f)*elevation[mesh.numRegions+t]*reliefM+f*elevation[mesh.numRegions+to]*reliefM,vc=vertex(pc,height);
-            sillM=Math.min(sillM,height);
+            const f=angle(pt,pc)/angle(pt,pn),h=(1-f)*(lake[t]>0?bedM[t]:elevation[mesh.numRegions+t]*reliefM)+f*(lake[to]>0?bedM[to]:elevation[mesh.numRegions+to]*reliefM),vc=vertex(pc,h);
+            sillM=Math.min(sillM,h);
             bedPatches[t].push({vertices:[vt,va,vc],weight:area(pt,pa,pc)},{vertices:[vt,vc,vb],weight:area(pt,pc,pb)});
         } else bedPatches[t].push({vertices:[vt,va,vb],weight:area(pt,pa,pb)});
-        neighbors[t].push({to:cell[to]>=0?to:-1,sillM:Math.max(0,sillM),distanceM:Math.max(1e-6,distanceM),side:s});
+        neighbors[t].push({to:cell[to]>=0?to:-1,sillM:lake[t]>0&&lake[to]>0?sillM:Math.max(0,sillM),distanceM:Math.max(1e-6,distanceM),side:s});
     }
     for(const patches of bedPatches){const sum=patches.reduce((s,p)=>s+p.weight,0);for(const p of patches)p.weight/=sum;}
-    return {cell,areaM2,bedM,neighbors,bedPatches};
+    return {cell,areaM2,bedM,neighbors,bedPatches,inlandLakeId:lake};
 }

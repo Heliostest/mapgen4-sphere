@@ -12,6 +12,7 @@ export interface TerrainDocument {
     constraints:{size:number;painted:boolean;values:number[]};
     offsets:number[]|null;report:ApplicationReport|null;
     parameters:Record<string,Record<string,number>>;settings:PhysicalSettings;
+    drainage?:{source:string;basinId:number[];terminal:number[];inlandLakeId?:number[]};
 }
 export function meshIdentity(mesh:Mesh,param:{spacing:number;mountainSpacing:number;mesh:{seed:number}}):MeshIdentity {
     // Include actual vertex order and topology, not merely generator counts.
@@ -58,7 +59,21 @@ export function decodeTerrainDocument(text:string,expected:MeshIdentity,constrai
     const parameters:TerrainDocument['parameters']={},p=object(d.parameters);
     for(const [phase,fields] of Object.entries(initialParams)) {
         const source=object(p[phase]);parameters[phase]={};
-        for(const [key,,min,max] of fields)parameters[phase][key]=number(source[key],key,min,max,key==='seed');
+        const legacy:Record<string,number>={fused_rivers:1,fused_river_min_flow:300,fused_river_width:.07,fused_river_max_width:.85};
+        for(const [key,,min,max] of fields)parameters[phase][key]=number(source[key]===undefined?legacy[key]:source[key],key,min,max,key==='seed'||key==='fused_rivers');
+    }
+    let drainage:TerrainDocument['drainage'];
+    if(d.drainage!==undefined) {
+        const b=object(d.drainage);
+        if(typeof b.source!=='string'||!b.source.trim()||b.source.length>300)throw new Error('Invalid drainage source');
+        const basinId=array(b.basinId,'drainage basin',expected.triangles,0,2147483647),terminal=array(b.terminal,'drainage terminal',expected.triangles,0,1);
+        if(basinId.some((v,i)=>!Number.isInteger(v)||!Number.isInteger(terminal[i])||(terminal[i]>0&&v===0)))throw new Error('Invalid drainage labels');
+        drainage={source:b.source,basinId,terminal};
+        if(b.inlandLakeId!==undefined) {
+            const lake=array(b.inlandLakeId,'inland lake',expected.triangles,0,2147483647);
+            if(lake.some(v=>!Number.isInteger(v)))throw new Error('Invalid inland lake labels');
+            drainage.inlandLakeId=lake;
+        }
     }
     const s=object(d.settings),planet=object(s.planet),orbit=object(s.orbit);
     if(planet.schemaVersion!==1)throw new Error('Unsupported physical settings');
@@ -68,7 +83,7 @@ export function decodeTerrainDocument(text:string,expected:MeshIdentity,constrai
     const orbital:OrbitConfig={distanceM:number(orbit.distanceM,'orbit distance',.1*AU_M,20*AU_M),bondAlbedo:number(orbit.bondAlbedo,'albedo',0,1),
         spinPhaseRad:number(orbit.spinPhaseRad,'spin phase',0,TAU),orbitPhaseRad:number(orbit.orbitPhaseRad,'orbit phase',0,TAU)};
     if(s.camera!=='space'&&s.camera!=='surface')throw new Error('Invalid camera');
-    return {format:'mapgen4-sphere-terrain',version:1,mesh:{...expected},constraints,offsets,report,parameters,
+    return {format:'mapgen4-sphere-terrain',version:1,mesh:{...expected},constraints,offsets,report,parameters,...(drainage?{drainage}:{}),
         settings:{planet:physical,orbit:orbital,timeS:number(s.timeS,'time',0,Number.MAX_SAFE_INTEGER),camera:s.camera}};
 }
 export function encodeTerrainDocument(document:TerrainDocument):string {

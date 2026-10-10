@@ -6,23 +6,52 @@ import {directionToUV} from './sphere.ts';
 import {makeSurfaceGrid,surfaceCell} from './surface-grid.ts';
 
 export interface ChannelNetwork {receiverSide:Int32Array;order:Int32Array;fillDepthM:Float64Array;}
-/** Priority-flood drainage for a persistent *display* network. Only the derived
- * spill levels are filled; imported heights and the water ledger are untouched.
- * Reference: https://richdem.readthedocs.io/en/latest/depression_filling.html */
+/** Minimax drainage on the reservoir's actual edges and sills. Optional
+ * observed closed catchments seed internal terminals; no physical barrier,
+ * filled DEM or extra water inventory is created. */
 export function channelNetwork(mesh:Mesh,network:RoutingNetwork):ChannelNetwork {
-    const n=mesh.numTriangles,receiverSide=new Int32Array(n).fill(-2),order=new Int32Array(n),level=new Float64Array(n),queue=new FlatQueue<number>();
-    for(let t=0;t<n;t++)if(network.cell[t]<0){receiverSide[t]=-1;queue.push(t,0);}
-    if(!queue.length) {
-        let sink=0;for(let t=1;t<n;t++)if(network.bedM[t]<network.bedM[sink])sink=t;
-        receiverSide[sink]=-1;level[sink]=network.bedM[sink];queue.push(sink,level[sink]);
-    }
-    let i=0;
-    while(queue.length) {
-        const t=queue.pop()!;order[i++]=t;
-        for(let j=0;j<3;j++) {
-            const s=3*t+j,to=mesh.t_outer_s(s);if(receiverSide[to]!==-2)continue;
-            receiverSide[to]=mesh.s_opposite_s(s);level[to]=Math.max(level[t],network.bedM[to]);queue.push(to,level[to]);
+    const n=mesh.numTriangles,receiverSide=new Int32Array(n).fill(-2),order=new Int32Array(n),level=new Float64Array(n).fill(Infinity),queue=new FlatQueue<number>();
+    const group=(t:number)=>network.cell[t]<0?0:network.endorheic?.[t]??0;
+    const visited=new Uint8Array(n),settled=new Uint8Array(n);
+    const seed=(t:number)=>{receiverSide[t]=-1;level[t]=network.cell[t]<0?0:network.bedM[t];queue.push(t,level[t]);};
+    for(let t=0;t<n;t++)if(network.cell[t]<0)seed(t);
+    const lakeVisited=new Uint8Array(n);
+    for(let t=0;t<n;t++)if((network.inlandLakeId?.[t]??0)>0&&!lakeVisited[t]) {
+        const stack=[t];lakeVisited[t]=1;let sink=t;
+        for(let k=0;k<stack.length;k++) {
+            const a=stack[k];if(network.bedM[a]<network.bedM[sink])sink=a;
+            for(let j=0;j<3;j++){const b=mesh.t_outer_s(3*a+j);if(!lakeVisited[b]&&network.inlandLakeId![b]===network.inlandLakeId![t]){lakeVisited[b]=1;stack.push(b);}}
         }
+        seed(sink);
+    }
+    // Coast changes can split a mapped basin. Each remaining connected piece
+    // gets a terminal; never route across a gap or leave an unreachable cycle.
+    for(let t=0;t<n;t++)if(group(t)>0&&!visited[t]) {
+        const stack=[t];visited[t]=1;let sink=t;
+        for(let k=0;k<stack.length;k++) {
+            const a=stack[k],preferred=network.terminal?.[a]??0,old=network.terminal?.[sink]??0;
+            if(preferred>old||(preferred===old&&network.bedM[a]<network.bedM[sink]))sink=a;
+            for(let j=0;j<3;j++){const b=mesh.t_outer_s(3*a+j);if(!visited[b]&&group(b)===group(t)){visited[b]=1;stack.push(b);}}
+        }
+        seed(sink);
+    }
+    const flood=()=>{
+        while(queue.length) {
+            const t=queue.pop()!;if(settled[t])continue;settled[t]=1;order[i++]=t;
+            for(let j=0;j<3;j++) {
+                const s=3*t+j,to=mesh.t_outer_s(s),reverse=mesh.s_opposite_s(s);
+                if(settled[to]||group(t)!==group(to))continue;
+                const edge=network.neighbors[t].find(e=>e.side===s)??network.neighbors[to].find(e=>e.side===reverse);
+                const h=Math.max(level[t],network.bedM[to],edge?.sillM??0);
+                if(h<level[to]){receiverSide[to]=reverse;level[to]=h;queue.push(to,h);}
+            }
+        }
+    };
+    let i=0;
+    flood();
+    while(i<n) {
+        let sink=-1;for(let t=0;t<n;t++)if(!settled[t]&&(sink<0||network.bedM[t]<network.bedM[sink]))sink=t;
+        seed(sink);flood();
     }
     return {receiverSide,order,fillDepthM:level.map((h,t)=>Math.max(0,h-network.bedM[t]))};
 }
@@ -65,13 +94,14 @@ export function riverChannelField(rt:ThermalRuntime) {
         runoff[t]=.65*reference.annualRunoffMmDay[t]*soil*liquid+.35*rain+melt;
     }
     const flowM3S=channelDischarge(mesh,network,{...reference.channels,receiverSide},runoff);
-    const sides=new Float32Array(mesh.numSides),surface=rt.surfaceState?.();
-    for(let t=0;t<n;t++)if(receiverSide[t]>=0 && network.cell[t]>=0) {
+    const sides=new Float32Array(mesh.numSides),physicalSides=new Float32Array(mesh.numSides),surface=rt.surfaceState?.();
+    for(let t=0;t<n;t++)if(network.cell[t]>=0) {
         const k=reference.surfaceIndex[t];
         // Snow/grounded ice visually cover channels; flow estimates upstream
         // still contribute downstream. Never paint blue rivers over an ice cap.
         if(surface&&((surface.landIceKgM2?.[k]??0)>917||(surface.snowMm?.[k]??0)>30))continue;
-        sides[receiverSide[t]]=flowM3S[t]/100;
+        if(receiverSide[t]>=0)sides[receiverSide[t]]=flowM3S[t]/100;
+        const actual=w.routing!.receiverSide[t];if(actual>=0)physicalSides[actual]=w.routing!.fluxM3S[t]/100;
     }
-    return {receiverSide,flowM3S,sides};
+    return {receiverSide,flowM3S,sides,physicalSides};
 }
