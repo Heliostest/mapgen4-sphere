@@ -7,6 +7,7 @@ import {meshIdentity,encodeTerrainDocument} from '../../terrain-document.ts';
 import {DEFAULT_PLANET} from '../../planet.ts';
 import {DEFAULT_ORBIT} from '../../astronomy.ts';
 const folder='scenes/earth-land-sea',cache='build/earth-relief';
+const sceneConfig=JSON.parse(await readFile(`${folder}/scene-config.json`,'utf8'));
 await mkdir(cache,{recursive:true});
 config.spacing=HIGH_DETAIL_SPACING;
 const {mesh,t_peaks}=await makeMesh(),identity=meshIdentity(mesh,config);
@@ -21,8 +22,9 @@ if(process.argv.includes('--coordinates')) {
     parameters.render.x=820;parameters.render.y=420;parameters.render.zoom=.26;
     // About 12x vertical relief (the old scene was about 106x). Physics still
     // consumes the unscaled metre heights; these are presentation settings.
-    parameters.render.mountain_height=Number((12*parameters.render.sphere_radius*DEFAULT_PLANET.reliefM/DEFAULT_PLANET.radiusM).toFixed(3));
-    parameters.render.outline_strength=3;parameters.render.outline_water=3;
+    parameters.render.mountain_height=Number((sceneConfig.render.exaggeration*parameters.render.sphere_radius*DEFAULT_PLANET.reliefM/DEFAULT_PLANET.radiusM).toFixed(3));
+    parameters.render.overhead=sceneConfig.render.overhead;
+    parameters.render.outline_strength=sceneConfig.render.outline_strength;parameters.render.outline_water=sceneConfig.render.outline_water;
     const planet={...DEFAULT_PLANET},map=new Map(mesh,t_peaks,config);
     map.assignElevation(parameters.elevation,{size:128,constraints:new Float32Array(values)});
     // The persistent terrain layer replaces the procedural result at every
