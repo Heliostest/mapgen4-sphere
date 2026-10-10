@@ -352,7 +352,9 @@ const vert_depth = `
     out float v_z;
     void main() {
         vec4 pos = u_projection * vec4(sphere_position(a_xy, a_em.x), 1);
-        v_z = a_em.x;
+        // The outline height buffer describes visible geometry. The ocean is
+        // on the base sphere, so its bathymetry must not create ridge ink.
+        v_z = max(0.0, a_em.x);
         gl_Position = pos;
     }`;
 
@@ -414,14 +416,19 @@ const frag_drape = `
         float zN = texture(u_elevation, pos - dy).x;
         float zW = texture(u_elevation, pos - dx).x;
         float zS = texture(u_elevation, pos + dy).x;
-        // Same artist-controlled Mapgen4 slope lighting, with derivatives
-        // measured in equal surface distances instead of stretched atlas pixels.
+        // Geometry keeps sea water and sea ice on the base sphere. Lighting
+        // must use that surface too, not derivatives of the bathymetric DEM.
+        // Keep the DEM samples for land slopes and depth colors/diagnostics.
+        // Artist-controlled slope lighting, measured in equal surface distances.
         float lat = (0.5-v_uv.y)*3.14159265359;
         float lon = (v_uv.x-0.5)*6.28318530718;
         float metric_y = 3.14159265359 * u_sphere_radius / 1000.0;
         float metric_x = 2.0 * metric_y * max(0.035, cos(lat));
         vec3 slope_vector = normalize(vec3((zS-zN)/(2.0*dy.y*metric_y),
                                           (zE-zW)/(2.0*dx.x*metric_x), max(0.001,u_overhead)));
+        // Use the same fine-mesh coastline as surface_color, even when atlas
+        // filtering includes a neighboring land texel or partial ice cover.
+        if(v_em.x<=0.0)slope_vector=vec3(0,0,1);
         vec3 east = mat3(u_rotation)*vec3(cos(lon),0,-sin(lon));
         vec3 south = mat3(u_rotation)*vec3(sin(lat)*sin(lon),-cos(lat),sin(lat)*cos(lon));
         vec2 screen_light = vec2(u_light_angle.y,-u_light_angle.x);
