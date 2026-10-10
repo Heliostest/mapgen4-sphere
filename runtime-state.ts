@@ -6,10 +6,12 @@ import {BIOMES,type SurfaceReference} from './surface.ts';
 import {SURFACE_WIDTH,SURFACE_HEIGHT} from './surface-grid.ts';
 import type {TerrainWaterCheckpoint} from './terrain-water.ts';
 import type {GlacierCheckpoint} from './glacier.ts';
+import {decodeIceInventory,type IceInventorySeed} from './ice-inventory.ts';
 
 export interface RuntimeState {
     version:1;grid:{width:number;height:number};enabled:boolean;waterEnabled:boolean;
     config:ThermalConfig;waterConfig:WaterConfig;environmentConfig:EnvironmentConfig;
+    iceInventory?:IceInventorySeed|null;
     state:null|{
         land:Float64Array;height:Float64Array;localLand:Float64Array;localHeight:Float64Array;
         epochS:number;stepS:number;lastTarget:number;initialEnergyJm2:number;initialEnthalpy:number|null;
@@ -19,6 +21,8 @@ export interface RuntimeState {
         initialTemperature:Float64Array;initialSoil:Float64Array;
         initialSnow:Float64Array|null;initialIce:Float64Array|null;localSnowSeed:Float64Array|null;localIceSeed:Float64Array|null;
         initialLandIce:Float64Array|null;localLandIceSeed:Float64Array|null;
+        surfaceReservoirInitial?:{landTemperatureK:Float64Array;oceanTemperatureK:Float64Array;initialLandTemperatureK:Float64Array;initialOceanTemperatureK:Float64Array}|null;
+        shelves?:{initialLand:Float64Array;initialSea:Float64Array;localLandSeed:Float64Array;localSeaSeed:Float64Array}|null;
         surfaceReference:SurfaceReference;surfaceInitial:{temperatureK:Float64Array;soilFraction:Float64Array};iceEnergy:Float64Array;
     };
 }
@@ -34,7 +38,7 @@ export function field(v:unknown,name:string,n:number,min=-1e30,max=1e30):Float64
     return Float64Array.from(v as ArrayLike<number>,x=>scalar(x,name,min,max));
 }
 export function thermalConfig(v:unknown):ThermalConfig {
-    const c=record(v);return {emissivity:scalar(c.emissivity,'emissivity',.1,1),landHeatCapacity:scalar(c.landHeatCapacity,'heat capacity',1e5,1e8),oceanDepthM:scalar(c.oceanDepthM,'mixed layer',.1,100),diffusion:scalar(c.diffusion,'diffusion',0,5)};
+    const c=record(v);return {emissivity:scalar(c.emissivity,'emissivity',.1,1),landHeatCapacity:scalar(c.landHeatCapacity,'heat capacity',1e5,1e8),oceanDepthM:scalar(c.oceanDepthM,'mixed layer',.1,100),diffusion:scalar(c.diffusion,'diffusion',0,5),...(c.separateReservoirs===undefined?{}:{separateReservoirs:boolean(c.separateReservoirs)})};
 }
 export function waterConfig(v:unknown):WaterConfig {
     const c=record(v);return {evaporationFraction:scalar(c.evaporationFraction,'evaporation fraction',0,1),soilCapacityKgM2:scalar(c.soilCapacityKgM2,'soil capacity',1,1000),initialOceanDepthM:scalar(c.initialOceanDepthM,'water inventory',0,10000),windMps:scalar(c.windMps,'wind',-100,100),moistureDiffusivityM2s:scalar(c.moistureDiffusivityM2s,'moisture mixing',0,1e7),routingSpeedMps:scalar(c.routingSpeedMps,'routing speed',.01,10)};
@@ -46,13 +50,16 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
     const d=record(value),g=record(d.grid);if(d.version!==1)throw new Error('Unsupported simulation state version');
     const width=scalar(g.width,'grid width',4,8192,true),height=scalar(g.height,'grid height',2,4096,true),n=width*height,sn=SURFACE_WIDTH*SURFACE_HEIGHT;
     if(n>16384)throw new Error('Simulation grid too large');
-    const result:RuntimeState={version:1,grid:{width,height},enabled:boolean(d.enabled),waterEnabled:boolean(d.waterEnabled),config:thermalConfig(d.config),waterConfig:waterConfig(d.waterConfig),environmentConfig:environmentConfig(d.environmentConfig),state:null};
+    const result:RuntimeState={version:1,grid:{width,height},enabled:boolean(d.enabled),waterEnabled:boolean(d.waterEnabled),config:thermalConfig(d.config),waterConfig:waterConfig(d.waterConfig),environmentConfig:environmentConfig(d.environmentConfig),iceInventory:decodeIceInventory(d.iceInventory),state:null};
     if(d.state===null)return result;
     if(!result.enabled)throw new Error('Disabled simulation has active state');
     const s=record(d.state),t=record(s.thermal),ref=record(s.surfaceReference),initial=record(s.surfaceInitial);
     const f=(o:Record<string,unknown>,key:string,len=n,min=0,max=1e30)=>field(o[key],key,len,min,max);
     const thermal:ThermalCheckpoint={temperatureK:f(t,'temperatureK',n,0,1e5),absorbedWm2:f(t,'absorbedWm2'),albedo:f(t,'albedo',n,0,1),
         steps:scalar(t.steps,'steps',0,Number.MAX_SAFE_INTEGER,true),radiationJm2:scalar(t.radiationJm2,'radiation'),exchangeJm2:scalar(t.exchangeJm2,'exchange'),radiationCorrection:scalar(t.radiationCorrection,'radiation correction'),exchangeCorrection:scalar(t.exchangeCorrection,'exchange correction')};
+    if(result.config.separateReservoirs) {
+        thermal.landTemperatureK=f(t,'landTemperatureK',n,0,1e5);thermal.oceanTemperatureK=f(t,'oceanTemperatureK',n,0,1e5);
+    }else if(t.landTemperatureK!==undefined||t.oceanTemperatureK!==undefined)throw new Error('Unexpected separate thermal reservoirs');
     let water:RuntimeState['state']['water']=null,vegetation:VegetationCheckpoint|null=null;
     if(result.waterEnabled) {
         const w=record(s.water),v=record(s.vegetation),wind=Math.abs(result.waterConfig.windMps)+1e-9;
@@ -62,8 +69,8 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
         const landIceCorrection=w.landIceCorrection===undefined&&!result.environmentConfig.glaciers?new Float64Array(n):f(w,'landIceCorrection',n,-1e30);
         if(landIceCorrection.some((v,i)=>Math.abs(v)>Math.max(1e-12,Number.EPSILON*landIceKgM2[i])))throw new Error('Invalid grounded ice compensation');
         if(result.environmentConfig.glaciers) {
-            const g=record(w.glacier);glacier={erodedM:f(g,'erodedM'),sedimentM:f(g,'sedimentM'),depositedM:f(g,'depositedM'),speedMps:f(g,'speedMps'),outflowM3S:f(g,'outflowM3S'),limitedCells:scalar(g.limitedCells,'ice limiter count',0,4*n,true)};
-        }else if((w.glacier!==undefined&&w.glacier!==null)||landIceKgM2.some(v=>v!==0))throw new Error('Unexpected land ice state');
+            const g=record(w.glacier);glacier={erodedM:f(g,'erodedM'),sedimentM:f(g,'sedimentM'),depositedM:f(g,'depositedM'),speedMps:f(g,'speedMps'),outflowM3S:f(g,'outflowM3S'),limitedCells:scalar(g.limitedCells,'ice limiter count',0,4*n,true),...(g.bedrockM===undefined?{}:{bedrockM:f(g,'bedrockM',n,-12000,1e6)})};
+        }else if((w.glacier!==undefined&&w.glacier!==null)||(!result.iceInventory&&landIceKgM2.some(v=>v!==0)))throw new Error('Unexpected land ice state');
         if(result.environmentConfig.terrainWater) {
             // The opt-in 4x Earth mesh has 215,348 triangles. Keep a bounded
             // allocation limit while allowing its complete reservoir state.
@@ -72,7 +79,7 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
             if(receivers.some(v=>!Number.isInteger(v)))throw new Error('Invalid terrain routing side');
             routing={volumeM3:f(r,'volumeM3',length),fluxM3S:f(r,'fluxM3S',length),receiverSide:new Int32Array(receivers)};
         }else if(w.routing!==undefined&&w.routing!==null)throw new Error('Unexpected terrain routing state');
-        water={snowfallKgM2S:w.snowfallKgM2S===undefined||w.snowfallKgM2S===null?null:f(w,'snowfallKgM2S'),atmosphereKgM2:f(w,'atmosphereKgM2'),soilKgM2:f(w,'soilKgM2'),surfaceKgM2:f(w,'surfaceKgM2'),snowKgM2:f(w,'snowKgM2'),seaIceKgM2:f(w,'seaIceKgM2'),meltKgM2S:f(w,'meltKgM2S'),precipitationKgM2S:f(w,'precipitationKgM2S'),evaporationKgM2S:f(w,'evaporationKgM2S'),dischargeM3S:f(w,'dischargeM3S'),windEastMps:f(w,'windEastMps',n,-wind,wind),windNorthMps:f(w,'windNorthMps',n,-wind,wind),oceanGlobalKgM2:scalar(w.oceanGlobalKgM2,'ocean store',0),elapsedS:scalar(w.elapsedS,'water age',0,Number.MAX_SAFE_INTEGER),initialTotalMm:scalar(w.initialTotalMm,'initial water',0),routing,landIceKgM2,landIceCorrection,glacier};
+        water={snowfallKgM2S:w.snowfallKgM2S===undefined||w.snowfallKgM2S===null?null:f(w,'snowfallKgM2S'),atmosphereKgM2:f(w,'atmosphereKgM2'),soilKgM2:f(w,'soilKgM2'),surfaceKgM2:f(w,'surfaceKgM2'),snowKgM2:f(w,'snowKgM2'),seaIceKgM2:f(w,'seaIceKgM2'),meltKgM2S:f(w,'meltKgM2S'),precipitationKgM2S:f(w,'precipitationKgM2S'),evaporationKgM2S:f(w,'evaporationKgM2S'),dischargeM3S:f(w,'dischargeM3S'),windEastMps:f(w,'windEastMps',n,-wind,wind),windNorthMps:f(w,'windNorthMps',n,-wind,wind),oceanGlobalKgM2:scalar(w.oceanGlobalKgM2,'ocean store',0),elapsedS:scalar(w.elapsedS,'water age',0,Number.MAX_SAFE_INTEGER),initialTotalMm:scalar(w.initialTotalMm,'initial water',0),routing,landIceKgM2,landIceCorrection,glacier,shelfLandIceKgM2:w.shelfLandIceKgM2===undefined?new Float64Array(n):f(w,'shelfLandIceKgM2'),shelfSeaIceKgM2:w.shelfSeaIceKgM2===undefined?new Float64Array(n):f(w,'shelfSeaIceKgM2')};
         vegetation={meanK:f(v,'meanK',sn,0,1e5),rainMm:f(v,'rainMm',sn),cover:f(v,'cover',sn,0,1),weights:f(v,'weights',sn*Object.keys(BIOMES).length,0,1)};
         const types=Object.keys(BIOMES).length;
         for(let i=0;i<sn;i++){let sum=0;for(let b=0;b<types;b++)sum+=vegetation.weights[i*types+b];if(Math.abs(sum-1)>1e-8)throw new Error('Invalid vegetation mixture');}
@@ -90,7 +97,15 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
         surfaceReference:{meanTemperatureK:f(ref,'meanTemperatureK',sn,0,1e5),warmestTemperatureK:f(ref,'warmestTemperatureK',sn,0,1e5),annualRainMm:f(ref,'annualRainMm',sn),monthlyIceCooling:f(ref,'monthlyIceCooling',12*sn,-1e30)},
         surfaceInitial:{temperatureK:f(initial,'temperatureK',sn,0,1e5),soilFraction:f(initial,'soilFraction',sn,0,1)},iceEnergy:f(s,'iceEnergy',sn)};
     const state=result.state,age=thermal.steps*state.stepS,time=state.epochS+age;
+    state.surfaceReservoirInitial=s.surfaceReservoirInitial==null?null:(()=>{const p=record(s.surfaceReservoirInitial);return {landTemperatureK:f(p,'landTemperatureK',sn,0,1e5),oceanTemperatureK:f(p,'oceanTemperatureK',sn,0,1e5),initialLandTemperatureK:f(p,'initialLandTemperatureK',n,0,1e5),initialOceanTemperatureK:f(p,'initialOceanTemperatureK',n,0,1e5)};})();
+    state.shelves=s.shelves==null?null:(()=>{const p=record(s.shelves);return {initialLand:f(p,'initialLand'),initialSea:f(p,'initialSea'),localLandSeed:f(p,'localLandSeed',sn),localSeaSeed:f(p,'localSeaSeed',sn)};})();
+    if(result.config.separateReservoirs&&!state.surfaceReservoirInitial)throw new Error('Missing surface reservoir initial temperatures');
+    if(!result.config.separateReservoirs&&state.surfaceReservoirInitial)throw new Error('Unexpected surface reservoir initial temperatures');
+    if(!result.waterEnabled&&state.shelves)throw new Error('Unexpected floating shelf display seeds');
+    if(water&&!state.shelves&&(water.shelfLandIceKgM2.some(v=>v>0)||water.shelfSeaIceKgM2.some(v=>v>0)))throw new Error('Missing floating shelf display seeds');
+    if(result.iceInventory&&result.waterEnabled&&!state.shelves)throw new Error('Observed ice requires conserved ice reservoirs');
     if(water?.landIceKgM2.some((v,i)=>state.land[i]===0&&v!==0))throw new Error('Grounded ice requires land');
+    if(water?.shelfLandIceKgM2.some((v,i)=>state.land[i]===0&&v!==0)||water?.shelfSeaIceKgM2.some((v,i)=>state.land[i]===1&&v!==0))throw new Error('Ice shelf requires its thermal surface');
     if(water?.snowfallKgM2S?.some((v,i)=>v>water!.precipitationKgM2S[i]*state.land[i]+1e-12))throw new Error('Snowfall exceeds precipitation on land');
     if(!Number.isFinite(time)||time>Number.MAX_SAFE_INTEGER||time>state.lastTarget+1e-6||state.lastTarget-time>=state.stepS+1e-6)throw new Error('Inconsistent simulation time');
     if(water&&Math.abs(water.elapsedS-age)>Math.max(1e-6,age*1e-10))throw new Error('Inconsistent water age');

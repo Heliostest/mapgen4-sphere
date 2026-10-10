@@ -150,3 +150,17 @@ test('water shares stable thermal substeps and terrain/config resets its history
     rt.sync({...p,siderealPeriodS:deriveOrbit(p,o).yearS},o,100,100);
     assert.equal(rt.water,null);assert.equal(rt.waterTexture,null);
 });
+
+test('separate air and surface reservoirs retain all sensible heat and restore an exact continuation',()=>{
+    const fractions=new Float64Array(grid.count).fill(.5),m=model({separateReservoirs:true},fractions);
+    m.temperatureK.fill(290);m.landTemperatureK.fill(270);m.oceanTemperatureK.fill(280);
+    near(m.energy(),290*1e7+270*1e6+280*21e6,1e-5);
+    // Record the manually supplied state as the initial sensible budget.
+    const seeded=new ThermalModel(p,o,{...DEFAULT_THERMAL,separateReservoirs:true},fractions,0,grid,{
+        temperatureK:m.temperatureK,landTemperatureK:m.landTemperatureK,oceanTemperatureK:m.oceanTemperatureK,radiationScale:m.radiationScale,absorbedWm2:m.absorbedWm2,
+    });
+    advance(seeded,10*86400);const saved=seeded.checkpoint();advance(seeded,20*86400);const continued=seeded.checkpoint();
+    seeded.restore(saved);advance(seeded,20*86400);assert.deepEqual(seeded.checkpoint(),continued);
+    assert.ok(Math.abs(seeded.diagnostics().budgetResidualJm2)<1e-4);
+    assert.ok(seeded.landTemperatureK.every(t=>Number.isFinite(t)&&t>0));assert.ok(seeded.oceanTemperatureK.every(t=>Number.isFinite(t)&&t>0));
+});

@@ -7,6 +7,8 @@ import config, {HIGH_DETAIL_SPACING} from '../../config.js';
 import Map from '../../map.ts';
 import {uvToDirection,sampleSphere} from '../../sphere.ts';
 import {makeSurfaceGrid,surfaceCell,SurfaceTerrainSampler} from '../../surface-grid.ts';
+import {ThermalRuntime} from '../../thermal-runtime.ts';
+import {decodeIceInventory} from '../../ice-inventory.ts';
 const folder='scenes/earth-land-sea';
 config.spacing=HIGH_DETAIL_SPACING;
 const {mesh,t_peaks}=await makeMesh();
@@ -15,6 +17,19 @@ const d=decodeSimulationDocument(await readFile(`${folder}/earth-simulation.json
 assert.equal(d.terrain.settings.timeS,0);assert.equal(d.runtime.state!.lastTarget,0);
 assert.equal(d.view.layer,'surface');
 assert.equal(d.runtime.enabled,true);assert.equal(d.runtime.waterEnabled,true);
+assert.equal(d.runtime.config.separateReservoirs,true);
+const observed=decodeIceInventory(JSON.parse(await readFile(`${folder}/ice-samples.json`,'utf8')))!;
+assert.deepEqual(d.runtime.iceInventory,observed);
+const runtime=ThermalRuntime.fromSnapshot(d.runtime,d.terrain.settings.planet,d.terrain.settings.orbit);
+assert(runtime.water!.glacier!.checkpoint().bedrockM);
+const cryospherePoints=[['Antarctica',-85,0,2000],['Greenland',72,-40,2000],['Tibet',33,88,0],['Himalaya',28.25,86.85,0]].map(([name,lat,lon,minIce])=>{
+    const cover=runtime.sampleSurface((Number(lon)+180)/360,(90-Number(lat))/180)!;
+    if(minIce===0)assert.equal(cover.landIceM,0,String(name));else assert(cover.landIceM>Number(minIce),String(name));
+    if(cover.landIceM>0)assert(cover.surfaceTemperatureK<=273.15+1e-10);
+    return {name,landIceM:cover.landIceM,shelfIceM:cover.shelfIceM,airC:cover.localTemperatureK-273.15,surfaceC:cover.surfaceTemperatureK-273.15};
+});
+assert(Math.abs(runtime.water!.diagnostics().residualMm)<1e-6);
+assert(Math.abs(runtime.environment!.diagnostics().energyResidualJm2)<1e-3);
 for(const key of ['vegetation','iceAlbedo','terrainWater','glaciers','dynamicCirculation'])assert.equal(d.runtime.environmentConfig[key],true);
 const values=new Float32Array(d.terrain.constraints.values),map=new Map(mesh,t_peaks,config);
 assert(d.terrain.report?.importedFrom?.includes('ETOPO 2022'));
@@ -65,6 +80,6 @@ const locations=source.checks.map(p=>{
 for(const v of [0,.1,.25,.5,.75,.9,1])assert.equal(sampleSphere(values,128,0,v),sampleSphere(values,128,1,v));
 assert(values.slice(0,128).every(e=>e<0));assert(values.slice(-128).every(e=>e>0));
 assert(Array.from(map.elevation_t).every(Number.isFinite));
-const result={savedSimulationValid:true,initialDay:0,systems:d.runtime.environmentConfig,knownLocations:locations,maxHeightErrorM,maxClimateHeightDifference,importedHeightsPreservedByRivers:true,savedClimateMatchesImportedTerrain:true,heightChecks,longitudeWrap:true,northPoleOcean:true,southPoleLand:true,finiteTerrain:true,note:'ETOPO 2022 terrain sampled to the mesh; narrow summits and trenches unresolved. Climate and vegetation remain model estimates.'};
+const result={savedSimulationValid:true,initialDay:0,separateReservoirs:true,observedIceSource:observed.source,cryospherePoints,water:runtime.water!.diagnostics(),energy:runtime.environment!.diagnostics(),systems:d.runtime.environmentConfig,knownLocations:locations,maxHeightErrorM,maxClimateHeightDifference,importedHeightsPreservedByRivers:true,savedClimateMatchesImportedTerrain:true,heightChecks,longitudeWrap:true,northPoleOcean:true,southPoleLand:true,finiteTerrain:true,note:'ETOPO 2022 ice-surface terrain preserved. Independent observed ice thickness initializes conserved reservoirs; terrain is not increased by ice thickness. Climate, seasonal sea ice and vegetation remain uncalibrated model estimates.'};
 await writeFile(`${folder}/validation.json`,JSON.stringify(result,null,2));
 console.log(JSON.stringify(result,null,2));

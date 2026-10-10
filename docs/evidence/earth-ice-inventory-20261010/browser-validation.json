@@ -1,0 +1,54 @@
+{
+  "url": "http://localhost:8002/scenes/earth-land-sea/index.html",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "restoredDays": {
+    "before": [
+      0,
+      169.992838,
+      349.989528
+    ],
+    "after": [
+      0,
+      170,
+      350
+    ]
+  },
+  "screenshotViews": {
+    "antarctic": "500,1000",
+    "arctic": "500,0",
+    "tibet": "742,330",
+    "americas": "270,440",
+    "greenland": "389,100"
+  },
+  "display": {
+    "layer": "surface",
+    "exaggeration": 12,
+    "overhead": 60,
+    "otherRenderParameters": "preserved"
+  },
+  "actualPlayback": {
+    "startDay": 170,
+    "pausedDay": 342.5025,
+    "playingAfter": false,
+    "speedDaysPerSecond": 1,
+    "pauseMethod": "CUA CDP actual mouse click after high-load locator timeouts",
+    "limitation": "high speed causes substantial interaction latency"
+  },
+  "diagnosticLayers": [
+    "surface",
+    "temperature",
+    "runoff"
+  ],
+  "inspectFile": "greenland-day170-probe.txt",
+  "budgetReadoutFile": "playback-metrics.txt",
+  "browserWarningsAndErrors": [],
+  "finalEntry": {
+    "day": 0,
+    "playing": false,
+    "speedSecondsPerSecond": 3600,
+    "view": "Greenland"
+  }
+}

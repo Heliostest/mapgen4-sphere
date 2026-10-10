@@ -264,15 +264,17 @@ export function installPlanetControls(options:Options) {
             const wind=thermal.sampleWind(...probe.uv);
             if(wind)probeOutput.textContent+=` · estimated wind E ${wind.eastMps.toFixed(1)} / N ${wind.northMps.toFixed(1)} m/s`;
             const cover=thermal.sampleSurface(...probe.uv);
+            const localThermalLabel=thermal.config.separateReservoirs?'local air':'local surface estimate';
             if(cover&&layer==='surface')probeOutput.textContent+=probe.elevation>0
-                ?` · potential cover: ${BIOMES[cover.biome].label} · vegetation ${(100*cover.vegetationFraction).toFixed(0)}% · snow ${(100*cover.snowFraction).toFixed(0)}% · local surface estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C · annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
-                :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}% · local ice / water estimate ${(cover.localTemperatureK-273.15).toFixed(1)} °C`;
+                ?` · potential cover: ${BIOMES[cover.biome].label} · vegetation ${(100*cover.vegetationFraction).toFixed(0)}% · snow ${(100*cover.snowFraction).toFixed(0)}% · ${localThermalLabel} ${(cover.localTemperatureK-273.15).toFixed(1)} °C · annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
+                :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}% · ${thermal.config.separateReservoirs?'local air':'local ice / water estimate'} ${(cover.localTemperatureK-273.15).toFixed(1)} °C`;
+            if(cover&&layer==='surface'&&thermal.config.separateReservoirs)probeOutput.textContent+=` · local surface ${(cover.surfaceTemperatureK-273.15).toFixed(1)} °C · ice shelf ${cover.shelfIceM.toFixed(1)} m`;
             const water=thermal.sampleWater(...probe.uv);
             if(weatherVisible&&thermal.model&&thermal.water){const f=weatherFields(thermal.model,thermal.water),k=thermalCell(thermal.grid,...probe.uv);probeOutput.textContent+=` · column saturation proxy ${(100*f.saturation[k]).toFixed(0)}% · cloud display ${(100*f.cloud[k]).toFixed(0)}% · ${f.phaseAvailable?`liquid precipitation ${f.rainMmDay[k].toFixed(2)} / land snowfall ${f.snowMmDay[k].toFixed(2)} mm/day per whole cell`:'rain/snow phase unavailable'} (current column at day ${(thermal.model.timeS/86400).toFixed(3)}; precipitation ${f.precipitationSource})`;}
             if(water)probeOutput.textContent+=` · total precipitation ${water.precipitationMmDay.toFixed(2)} mm/day (${initialWater?'generated initial estimate':'latest simulated-step rate'}) · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · coarse-cell land snow ${water.snowMm.toFixed(1)} mm / melt ${water.meltMmDay.toFixed(2)} mm/day / ocean ice ${water.iceM.toFixed(2)} m · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
             const erosion=geomorph.sample(...probe.uv);
             const fineWater=thermal.sampleTerrainWater(...probe.uv);
-            if(water&&thermal.environmentConfig.glaciers&&probe.elevation>0)probeOutput.textContent+=` · grounded ice cell ${water.landIceM.toFixed(1)} m / flow ${water.iceSpeedMyr.toFixed(2)} m/yr`;
+            if(water&&(thermal.environmentConfig.glaciers||thermal.iceInventory)&&probe.elevation>0)probeOutput.textContent+=` · grounded ice cell ${water.landIceM.toFixed(1)} m / flow ${water.iceSpeedMyr.toFixed(2)} m/yr`;
             if(fineWater&&probe.elevation>0)probeOutput.textContent+=` · nearest terrain reservoir: mean depth ${fineWater.depthM.toFixed(3)} m / outflow ${fineWater.flowM3S.toFixed(2)} m³/s`;
             if(erosion)probeOutput.textContent+=` · bed change ${erosion.deltaM.toFixed(2)} m · mobile sediment ${erosion.mobileMm.toFixed(2)} mm whole-cell equivalent${geomorph.previewEnabled?' · terrain preview':''}`;
         }
@@ -316,7 +318,7 @@ export function installPlanetControls(options:Options) {
     installInfoNotes(root);
     requestAnimationFrame(frame);emit();
     return {
-        pause,refresh,isInspecting:()=>inspecting,
+        pause,refresh,isInspecting:()=>inspecting,clearIceInventory:()=>{thermal.iceInventory=null;thermal.invalidate();},
         simulation:()=>({runtime:thermal.snapshot(),view:{speed:clock.speed,layer:layer==='erosion'?'original' as const:layer,weather:weatherVisible},comparison:environmentPanel.snapshot()}),
         prepareSimulation:(d:SimulationDocument,terrain:SurfaceTerrain)=>{
             const candidate=ThermalRuntime.fromSnapshot(d.runtime,d.terrain.settings.planet,d.terrain.settings.orbit);
@@ -344,7 +346,7 @@ export function installPlanetControls(options:Options) {
             clock.seek(settings.timeS,performance.now());layer='original';weatherVisible=false;layerSelect.value=layer;cameraSelect.value=camera;
             inspecting=false;updateInspectButton();retro.checked=planet.retrograde;probe=null;
             probeOutput.textContent='Inspect a surface point to read its location and solar energy.';
-            thermal.enabled=thermal.waterEnabled=false;thermal.config={...DEFAULT_THERMAL};thermal.waterConfig={...DEFAULT_WATER};thermal.environmentConfig={...DEFAULT_ENVIRONMENT};thermal.invalidate();
+            thermal.enabled=thermal.waterEnabled=false;thermal.config={...DEFAULT_THERMAL};thermal.waterConfig={...DEFAULT_WATER};thermal.environmentConfig={...DEFAULT_ENVIRONMENT};thermal.iceInventory=null;thermal.invalidate();
             geomorph.reset();thermalPanel.restoreInputs();waterPanel.restoreInputs();environmentPanel.restoreInputs();
             for(const {input,get} of inputs.values()){input.value=String(Number(get().toPrecision(12)));input.removeAttribute('aria-invalid');}
             emit();

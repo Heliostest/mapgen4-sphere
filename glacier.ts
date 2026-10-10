@@ -1,15 +1,20 @@
 import type {WaterModel} from './water.ts';
 import {finiteInRange} from './planet.ts';
 export const ICE_DENSITY=917,GLACIER_YEAR=365.25*86400;
-export interface GlacierCheckpoint {erodedM:Float64Array;sedimentM:Float64Array;depositedM:Float64Array;speedMps:Float64Array;outflowM3S:Float64Array;limitedCells:number;}
+export interface GlacierCheckpoint {erodedM:Float64Array;sedimentM:Float64Array;depositedM:Float64Array;speedMps:Float64Array;outflowM3S:Float64Array;limitedCells:number;bedrockM?:Float64Array;}
 /** Coarse grounded ice, without shelves, calving or a full stress balance.
  * Ice is exclusively the WaterModel landIce ledger; solid fields are separate. */
 export class GlacierModel {
     readonly erodedM:Float64Array;readonly sedimentM:Float64Array;readonly depositedM:Float64Array;
     readonly speedMps:Float64Array;readonly outflowM3S:Float64Array;limitedCells=0;
     private readonly distances:Float64Array;
-    constructor(readonly water:WaterModel,readonly gravityMps2:number) {
+    readonly bedrockM:Float64Array;
+    private readonly observedBed:boolean;
+    constructor(readonly water:WaterModel,readonly gravityMps2:number,bedrockM?:Float64Array|null) {
         const {grid,radiusM}=water,n=grid.count;finiteInRange(gravityMps2,'ice gravity',Number.MIN_VALUE);
+        if(bedrockM&&(bedrockM.length!==n||bedrockM.some(v=>!Number.isFinite(v)||v< -12000||v>1e6)))throw new Error('Invalid glacier bedrock');
+        this.bedrockM=bedrockM?.slice()??water.heightM.slice();
+        this.observedBed=!!bedrockM;
         this.erodedM=new Float64Array(n);this.sedimentM=new Float64Array(n);this.depositedM=new Float64Array(n);this.speedMps=new Float64Array(n);this.outflowM3S=new Float64Array(n);
         const xyz=Array.from({length:n},(_,i)=>{const y=grid.sinLat[Math.floor(i/grid.width)],lon=2*Math.PI*((i%grid.width+.5)/grid.width-.5),r=Math.sqrt(1-y*y);return [r*Math.sin(lon),y,r*Math.cos(lon)];});
         this.distances=Float64Array.from(grid.edges,e=>radiusM*Math.acos(Math.max(-1,Math.min(1,xyz[e.a].reduce((s,v,i)=>s+v*xyz[e.b][i],0)))));
@@ -26,7 +31,7 @@ export class GlacierModel {
         this.speedMps.fill(0);this.outflowM3S.fill(0);this.limitedCells=0;
         w.grid.edges.forEach((e,k)=>{
             if(w.land[e.a]<=0||w.land[e.b]<=0)return;
-            const ha=w.heightM[e.a]+this.thickness(e.a),hb=w.heightM[e.b]+this.thickness(e.b),from=ha>hb?e.a:e.b,to=ha>hb?e.b:e.a,H=this.thickness(from);
+            const ha=this.bedrockM[e.a]+this.thickness(e.a),hb=this.bedrockM[e.b]+this.thickness(e.b),from=ha>hb?e.a:e.b,to=ha>hb?e.b:e.a,H=this.thickness(from);
             if(H<=0||ha===hb)return;
             const distance=this.distances[k],slope=Math.abs(ha-hb)/distance;
             const softness=2.4e-24*Math.exp(Math.max(-4,Math.min(0,(temperatureK[from]-273.15)*.08)));
@@ -48,17 +53,19 @@ export class GlacierModel {
         });
         for(let i=0;i<n;i++) {
             w.addLandIce(i,delta[i]);this.sedimentM[i]+=solidDelta[i];
-            const H=this.thickness(i),erode=Math.min(Math.max(0,w.heightM[i]-this.erodedM[i]),dt*this.speedMps[i]*1e-4*H/(H+50));
+            const H=this.thickness(i),erode=Math.min(Math.max(0,this.bedrockM[i]-this.erodedM[i]),dt*this.speedMps[i]*1e-4*H/(H+50));
             this.erodedM[i]+=erode;this.sedimentM[i]+=erode*w.land[i];
             if(w.landIceKgM2[i]===0){this.depositedM[i]+=this.sedimentM[i];this.sedimentM[i]=0;}
         }
     }
-    checkpoint():GlacierCheckpoint {return {erodedM:this.erodedM.slice(),sedimentM:this.sedimentM.slice(),depositedM:this.depositedM.slice(),speedMps:this.speedMps.slice(),outflowM3S:this.outflowM3S.slice(),limitedCells:this.limitedCells};}
+    checkpoint():GlacierCheckpoint {return {erodedM:this.erodedM.slice(),sedimentM:this.sedimentM.slice(),depositedM:this.depositedM.slice(),speedMps:this.speedMps.slice(),outflowM3S:this.outflowM3S.slice(),limitedCells:this.limitedCells,...(this.observedBed?{bedrockM:this.bedrockM.slice()}: {})};}
     restore(s:GlacierCheckpoint) {
+        if(this.observedBed&&!s.bedrockM)throw new Error('Missing saved glacier bedrock');
+        if(s.bedrockM&&(s.bedrockM.length!==this.bedrockM.length||s.bedrockM.some((v,i)=>!Number.isFinite(v)||Math.abs(v-this.bedrockM[i])>1e-9)))throw new Error('Saved glacier bedrock does not match initial ice surface and inventory');
         for(const key of ['erodedM','sedimentM','depositedM','speedMps','outflowM3S'] as const) {
             if(s[key].length!==this.water.grid.count||s[key].some(v=>!Number.isFinite(v)||v<0))throw new Error('Invalid glacial field');
         }
-        if(s.erodedM.some((v,i)=>v>this.water.heightM[i]+1e-8))throw new Error('Glacial erosion exceeds available bed');
+        if(s.erodedM.some((v,i)=>v>Math.max(0,this.bedrockM[i])+1e-8))throw new Error('Glacial erosion exceeds available bed');
         if(!Number.isInteger(s.limitedCells)||s.limitedCells<0||s.limitedCells>this.water.grid.edges.length)throw new Error('Invalid glacier limiter count');
         if(s.erodedM.some((v,i)=>this.water.land[i]===0&&(v!==0||s.sedimentM[i]!==0||s.depositedM[i]!==0||s.speedMps[i]!==0||s.outflowM3S[i]!==0)))throw new Error('Grounded glacier state requires land');
         const residual=s.erodedM.reduce((sum,v,i)=>sum-v*this.water.land[i]+s.sedimentM[i]+s.depositedM[i],0),solid=s.erodedM.reduce((sum,v,i)=>sum+v*this.water.land[i],0);

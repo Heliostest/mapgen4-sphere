@@ -186,7 +186,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     }
     Painting.inspecting=()=>planetControls.isInspecting();
     Painting.onBeforePaint=()=>planetControls.pause();
-    Painting.onReset=()=>{planetControls.pause();application.reset();};
+    Painting.onReset=()=>{planetControls.pause();planetControls.clearIceInventory();application.reset();};
 
     /* Ask render module to copy WebGL into Canvas */
     function download() {

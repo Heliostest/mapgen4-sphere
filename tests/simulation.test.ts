@@ -11,8 +11,9 @@ import {WaterModel,DEFAULT_WATER} from '../water.ts';
 import {decodeRuntimeState} from '../runtime-state.ts';
 
 const planet={...DEFAULT_PLANET},orbit={...DEFAULT_ORBIT};
-function runtime(water=true) {
+function runtime(water=true,separate=false) {
     const rt=new ThermalRuntime(makeThermalGrid(8,4));rt.enabled=true;rt.waterEnabled=water;
+    if(separate)rt.config.separateReservoirs=true;
     rt.setTerrain(Float64Array.from({length:32},(_,i)=>i%3/2),Float64Array.from({length:32},(_,i)=>i%5/10));
     rt.sync(planet,orbit,1234,1234);return rt;
 }
@@ -120,4 +121,25 @@ test('seeding snow from exhausted surface and soil stores cannot leave negative 
     w.seedFrozen(new Float64Array(32).fill(10),new Float64Array(32));
     assert.ok(w.soilKgM2.every(v=>v>=0));assert.ok(w.surfaceKgM2.every(v=>v>=0));
     assert.ok(Math.abs(w.diagnostics().totalMm-before)<1e-12);
+});
+test('snapshot reservoir switch requires complete surface temperatures and rejects inconsistent legacy columns',()=>{
+    const d=JSON.parse(JSON.stringify(runtime(true,true).snapshot(),(_,v)=>ArrayBuffer.isView(v)?Array.from(v as Float64Array):v));
+    delete d.state.thermal.landTemperatureK;
+    assert.throws(()=>decodeRuntimeState(d),/landTemperatureK/);
+    d.state.thermal.landTemperatureK=Array(32).fill(270);d.state.thermal.oceanTemperatureK=Array(32).fill(280);
+    const decoded=decodeRuntimeState(d);assert.equal(decoded.config.separateReservoirs,true);assert.equal(decoded.state!.thermal.oceanTemperatureK![0],280);
+    delete d.state.thermal.oceanTemperatureK;assert.throws(()=>decodeRuntimeState(d),/oceanTemperatureK/);
+    d.state.thermal.oceanTemperatureK=Array(32).fill(280);d.config.separateReservoirs=false;assert.throws(()=>decodeRuntimeState(d),/Unexpected.*reservoir/);
+    delete d.config.separateReservoirs;delete d.state.thermal.landTemperatureK;delete d.state.thermal.oceanTemperatureK;
+    d.state.surfaceReservoirInitial=null;
+    assert.equal(decodeRuntimeState(d).config.separateReservoirs,undefined);
+});
+test('separate thermal reservoirs survive visible rollback and a JSON continuation without changing ice or energy',()=>{
+    const a=runtime(true,true);advance(a,3);const visible=a.model!.timeS,saved=a.snapshot();
+    assert.ok(saved.state!.thermal.landTemperatureK);assert.ok(saved.state!.thermal.oceanTemperatureK);
+    a.sync(planet,orbit,visible+a.maxAdvanceS,visible);a.sync(planet,orbit,visible+2*a.maxAdvanceS,visible);a.sync(planet,orbit,visible,null);
+    assert.deepEqual(a.snapshot(),saved);
+    const b=ThermalRuntime.fromSnapshot(JSON.parse(JSON.stringify(saved,(_,v)=>ArrayBuffer.isView(v)?Array.from(v as Float64Array):v)),planet,orbit);
+    assert.deepEqual(b.snapshot(),saved);advance(a,5);advance(b,5);assert.deepEqual(a.snapshot(),b.snapshot());
+    assert.ok(Math.abs(a.water!.diagnostics().residualMm)<1e-7);assert.ok(Math.abs(a.environment!.diagnostics().energyResidualJm2)<1e-4);
 });

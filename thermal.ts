@@ -1,7 +1,7 @@
 import {DEFAULT_PLANET,finiteInRange,type PlanetConfig} from './planet.ts';
 import {deriveOrbit,STEFAN_BOLTZMANN as SIGMA,type OrbitConfig} from './astronomy.ts';
 
-export interface ThermalConfig {emissivity:number;landHeatCapacity:number;oceanDepthM:number;diffusion:number;}
+export interface ThermalConfig {emissivity:number;landHeatCapacity:number;oceanDepthM:number;diffusion:number;separateReservoirs?:boolean;}
 export const DEFAULT_THERMAL:Readonly<ThermalConfig>=Object.freeze({
     emissivity:.61,landHeatCapacity:2e6,oceanDepthM:10,diffusion:.55,
 });
@@ -72,13 +72,19 @@ export function heatTransport(grid:ThermalGrid,temperature:ArrayLike<number>,dif
     }
     return out;
 }
-export type ThermalCheckpoint={temperatureK:Float64Array;absorbedWm2:Float64Array;steps:number;radiationJm2:number;exchangeJm2:number;radiationCorrection:number;exchangeCorrection:number;albedo:Float64Array};
-export interface ThermalInitial {temperatureK:ArrayLike<number>;radiationScale:ArrayLike<number>;absorbedWm2:ArrayLike<number>}
+export type ThermalCheckpoint={temperatureK:Float64Array;landTemperatureK?:Float64Array;oceanTemperatureK?:Float64Array;absorbedWm2:Float64Array;steps:number;radiationJm2:number;exchangeJm2:number;radiationCorrection:number;exchangeCorrection:number;albedo:Float64Array};
+export interface ThermalInitial {temperatureK:ArrayLike<number>;landTemperatureK?:ArrayLike<number>;oceanTemperatureK?:ArrayLike<number>;radiationScale:ArrayLike<number>;absorbedWm2:ArrayLike<number>}
 
 export class ThermalModel {
     readonly temperatureK:Float64Array;
     readonly absorbedWm2:Float64Array;
     readonly capacity:Float64Array;
+    readonly landTemperatureK:Float64Array;
+    readonly oceanTemperatureK:Float64Array;
+    /** Sensible heat capacities per whole cell area; absent surfaces have zero capacity. */
+    readonly landCapacity:Float64Array;
+    readonly oceanCapacity:Float64Array;
+    private readonly land:Float64Array;
     readonly initialEnergyJm2:number;
     readonly yearS:number;
     readonly fluxWm2:number;
@@ -102,12 +108,15 @@ export class ThermalModel {
         finiteInRange(config.landHeatCapacity,'land heat capacity',1e5,1e8);
         finiteInRange(config.oceanDepthM,'ocean mixed-layer depth',.1,100);
         finiteInRange(config.diffusion,'heat transport coefficient',0,5);
+        if(config.separateReservoirs!==undefined&&typeof config.separateReservoirs!=='boolean')throw new RangeError('Invalid separate reservoir switch');
         if(land.length!==grid.count) throw new RangeError('Thermal land grid mismatch');
         this.planet={...planet};this.orbit={...orbit};this.config={...config};
         this.yearS=derived.yearS;this.fluxWm2=derived.fluxWm2;
         this.transport=config.diffusion*(DEFAULT_PLANET.radiusM/planet.radiusM)**2;
         const initial=derived.equilibriumK/Math.pow(config.emissivity,.25);
         this.temperatureK=new Float64Array(grid.count).fill(initial);
+        this.landTemperatureK=config.separateReservoirs?this.temperatureK.slice():this.temperatureK;
+        this.oceanTemperatureK=config.separateReservoirs?this.temperatureK.slice():this.temperatureK;
         this.absorbedWm2=new Float64Array(grid.count);
         this.radiationScale=new Float64Array(grid.count).fill(1);
         if(reference) {
@@ -118,11 +127,20 @@ export class ThermalModel {
                 finiteInRange(reference.absorbedWm2[i],'initial absorbed sunlight',0);
             }
             this.temperatureK.set(reference.temperatureK);this.radiationScale.set(reference.radiationScale);this.absorbedWm2.set(reference.absorbedWm2);
+            if(config.separateReservoirs)for(const key of ['landTemperatureK','oceanTemperatureK'] as const) {
+                const source=reference[key]??reference.temperatureK;
+                if(source.length!==grid.count)throw new RangeError('Thermal surface initial state size mismatch');
+                for(let i=0;i<grid.count;i++)finiteInRange(source[i],'initial surface temperature',0);
+                this[key].set(source);
+            }
         }
-        this.capacity=Float64Array.from(land,f=>{
+        this.land=Float64Array.from(land,f=>{
             finiteInRange(f,'land fraction',0,1);
-            return f*config.landHeatCapacity+(1-f)*config.oceanDepthM*4.2e6;
+            return f;
         });
+        this.landCapacity=Float64Array.from(this.land,f=>f*config.landHeatCapacity);
+        this.oceanCapacity=Float64Array.from(this.land,f=>(1-f)*config.oceanDepthM*4.2e6);
+        this.capacity=Float64Array.from(this.land,(_,i)=>config.separateReservoirs?1e7:this.landCapacity[i]+this.oceanCapacity[i]);
         this.tendency=new Float64Array(grid.count);
         this.albedo=new Float64Array(grid.count).fill(orbit.bondAlbedo);
         const loss=new Float64Array(grid.count);
@@ -131,18 +149,40 @@ export class ThermalModel {
         // T/scale is the effective emitting temperature; differentiation adds
         // 1/scale^4. The upper bound is conservative even under heat exchange.
         let stable=Infinity;
-        for(let i=0;i<grid.count;i++) stable=Math.min(stable,.45*this.capacity[i]/(loss[i]+4*config.emissivity*SIGMA*maxT**3/this.radiationScale[i]**4));
+        for(let i=0;i<grid.count;i++) {
+            const derivative=4*config.emissivity*SIGMA*maxT**3;
+            stable=Math.min(stable,.45*this.capacity[i]/(loss[i]+(config.separateReservoirs?0:derivative/this.radiationScale[i]**4)));
+            if(config.separateReservoirs) {
+                if(this.land[i]>0)stable=Math.min(stable,.45*config.landHeatCapacity/(derivative/this.radiationScale[i]**4));
+                if(this.land[i]<1)stable=Math.min(stable,.45*config.oceanDepthM*4.2e6/derivative);
+            }
+        }
         this.stepS=Math.min(1800,this.yearS/720,stable);
         this.initialEnergyJm2=initialEnergyJm2??this.energy();
     }
     get timeS() {return this.epochS+this.steps*this.stepS;}
-    energy() {return this.temperatureK.reduce((sum,t,i)=>sum+this.capacity[i]*t,0)/this.grid.count;}
-    checkpoint():ThermalCheckpoint {return {temperatureK:this.temperatureK.slice(),absorbedWm2:this.absorbedWm2.slice(),steps:this.steps,radiationJm2:this.radiationJm2,exchangeJm2:this.exchangeJm2,radiationCorrection:this.radiationCorrection,exchangeCorrection:this.exchangeCorrection,albedo:this.albedo.slice()};}
-    restore(state:ThermalCheckpoint) {this.temperatureK.set(state.temperatureK);this.absorbedWm2.set(state.absorbedWm2);this.steps=state.steps;this.radiationJm2=state.radiationJm2;this.exchangeJm2=state.exchangeJm2;this.exchangeCorrection=state.exchangeCorrection;this.radiationCorrection=state.radiationCorrection;this.albedo.set(state.albedo);}
+    energy() {return this.temperatureK.reduce((sum,t,i)=>sum+this.capacity[i]*t+(this.config.separateReservoirs?this.landCapacity[i]*this.landTemperatureK[i]+this.oceanCapacity[i]*this.oceanTemperatureK[i]:0),0)/this.grid.count;}
+    checkpoint():ThermalCheckpoint {return {temperatureK:this.temperatureK.slice(),...(this.config.separateReservoirs?{landTemperatureK:this.landTemperatureK.slice(),oceanTemperatureK:this.oceanTemperatureK.slice()}:{}),absorbedWm2:this.absorbedWm2.slice(),steps:this.steps,radiationJm2:this.radiationJm2,exchangeJm2:this.exchangeJm2,radiationCorrection:this.radiationCorrection,exchangeCorrection:this.exchangeCorrection,albedo:this.albedo.slice()};}
+    restore(state:ThermalCheckpoint) {
+        if(this.config.separateReservoirs) {
+            if(state.landTemperatureK?.length!==this.grid.count||state.oceanTemperatureK?.length!==this.grid.count)throw new RangeError('Missing separate thermal reservoirs');
+            this.landTemperatureK.set(state.landTemperatureK);this.oceanTemperatureK.set(state.oceanTemperatureK);
+        }else if(state.landTemperatureK!==undefined||state.oceanTemperatureK!==undefined)throw new RangeError('Unexpected separate thermal reservoirs');
+        this.temperatureK.set(state.temperatureK);this.absorbedWm2.set(state.absorbedWm2);this.steps=state.steps;this.radiationJm2=state.radiationJm2;this.exchangeJm2=state.exchangeJm2;this.exchangeCorrection=state.exchangeCorrection;this.radiationCorrection=state.radiationCorrection;this.albedo.set(state.albedo);
+    }
     /** Internal coupled transfers, positive into sensible heat. */
     applyHeat(energyJm2:ArrayLike<number>) {
+        this.applyReservoirHeat(energyJm2,this.temperatureK,this.capacity);
+    }
+    applyLandHeat(energyJm2:ArrayLike<number>) {this.config.separateReservoirs?this.applyReservoirHeat(energyJm2,this.landTemperatureK,this.landCapacity):this.applyHeat(energyJm2);}
+    applyOceanHeat(energyJm2:ArrayLike<number>) {this.config.separateReservoirs?this.applyReservoirHeat(energyJm2,this.oceanTemperatureK,this.oceanCapacity):this.applyHeat(energyJm2);}
+    private applyReservoirHeat(energyJm2:ArrayLike<number>,temperature:Float64Array,capacity:Float64Array) {
         if(energyJm2.length!==this.grid.count)throw new RangeError("Heat grid mismatch");
-        let sum=0;for(let i=0;i<this.grid.count;i++){this.temperatureK[i]+=energyJm2[i]/this.capacity[i];sum+=energyJm2[i];}
+        let sum=0;for(let i=0;i<this.grid.count;i++) {
+            if(capacity[i]>0)temperature[i]+=energyJm2[i]/capacity[i];
+            else if(energyJm2[i]!==0)throw new RangeError('Heat transfer requires an existing surface reservoir');
+            sum+=energyJm2[i];
+        }
         // Compensated accumulation matters when a large time-zero phase
         // adjustment is followed by thousands of tiny internal transfers.
         const increment=sum/this.grid.count-this.exchangeCorrection,total=this.exchangeJm2+increment;
@@ -168,9 +208,23 @@ export class ThermalModel {
         let radiation=0;
         for(let i=0;i<grid.count;i++) {
             this.absorbedWm2[i]=(1-this.albedo[i])*q[Math.floor(i/grid.width)]*normalizer;
-            const net=this.absorbedWm2[i]-config.emissivity*SIGMA*(t[i]/this.radiationScale[i])**4;
-            radiation+=net;
-            t[i]+=this.stepS*(net+this.tendency[i])/this.capacity[i];
+            if(config.separateReservoirs) {
+                t[i]+=this.stepS*this.tendency[i]/this.capacity[i];
+                for(const ocean of [false,true]) {
+                    const fraction=ocean?1-this.land[i]:this.land[i],surface=ocean?this.oceanTemperatureK:this.landTemperatureK,capacity=ocean?this.oceanCapacity:this.landCapacity;
+                    if(fraction===0)continue;
+                    const net=fraction*(this.absorbedWm2[i]-config.emissivity*SIGMA*(surface[i]/(ocean?1:this.radiationScale[i]))**4);
+                    radiation+=net;surface[i]+=this.stepS*net/capacity[i];
+                    // Exact two-reservoir relaxation: finite exchange never
+                    // crosses equilibrium, including tiny coastal fractions.
+                    const ca=this.capacity[i],cs=capacity[i],rate=10*fraction*(1/ca+1/cs);
+                    const heat=(surface[i]-t[i])*(-Math.expm1(-this.stepS*rate))/(1/ca+1/cs);
+                    surface[i]-=heat/cs;t[i]+=heat/ca;
+                }
+            }else {
+                const net=this.absorbedWm2[i]-config.emissivity*SIGMA*(t[i]/this.radiationScale[i])**4;
+                radiation+=net;t[i]+=this.stepS*(net+this.tendency[i])/this.capacity[i];
+            }
         }
         const increment=radiation/grid.count*this.stepS-this.radiationCorrection,total=this.radiationJm2+increment;
         this.radiationCorrection=(total-this.radiationJm2)-increment;this.radiationJm2=total;
