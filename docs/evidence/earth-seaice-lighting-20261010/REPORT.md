@@ -81,4 +81,12 @@ git diff --check
 
 ## 发布记录
 
-实施分支为 `codex/earth-seaice-lighting`。上一会话成果和本次修正分别提交，独立审阅及回归通过后，采用正常合并至 main 并推送 origin；具体提交与发布核对记录在交付时补齐。
+实施分支为 `codex/earth-seaice-lighting`，发布目标仅为 origin。上一会话成果和本次修正分别提交：
+
+- `60d5ddf`：完整保留拟真审查和已接受的显示配置。
+- `0670211`：海水/海冰表面光照、描边机制修正与测试/截图证据。
+- `9cab40c`：以 `--no-ff` 正常合并到 main。
+
+合并后的树与已审阅分支完全相同，再次运行完整测试 **161/161 通过**，见 [main-tests.log](main-tests.log)。完整基线到合并提交的 `git diff --check` 通过。已执行普通 `git push origin main`，没有强制推送，也没有推送 upstream；随后 fetch 核对本地 main 与 origin/main 均为 `9cab40c7821db971a6994e27c4a829bd9f793f56`，差异计数 0/0，工作树干净。见 [发布检查点](release.json)。
+
+本发布记录及合并后的测试日志随后作为文档归档提交，不改变已验证的代码或正式存档。
