@@ -3,6 +3,8 @@ import {previewElevation,type TerrainPreview} from './terrain-preview.ts';
 
 export interface ApplicationReport {
     years:number;sourceTimeS:number;clipped:number;mobileKm3:number;oceanKm3:number;
+    /** Elevation dataset underlying this layer; zero years means import only. */
+    importedFrom?:string;
 }
 export function bakeTerrainOffsets(base:Float32Array,physical:Float32Array,xyz:Float32Array,preview:TerrainPreview) {
     if(base.length!==physical.length||xyz.length!==base.length*3)throw new RangeError('Terrain snapshot size mismatch');

@@ -8,6 +8,33 @@ import {DEFAULT_PLANET} from '../planet.ts';
 import {DEFAULT_ORBIT} from '../astronomy.ts';
 import {triangleStorageDepth,lakeSurfaceLevel,terrainWaterView} from '../terrain-water-view.ts';
 import {WaterModel,DEFAULT_WATER} from '../water.ts';
+import {channelNetwork,channelDischarge,riverChannelField} from '../river-channels.ts';
+
+test('channel tributaries accumulate area-weighted runoff through a dry downstream cell',()=>{
+    const {mesh}=makeSphereMesh(4,35,12345),side=(from:number,to:number)=>{
+        const s=[0,1,2].map(j=>3*from+j).find(s=>mesh.t_outer_s(s)===to);assert.notEqual(s,undefined);return s!;
+    };
+    const network:RoutingNetwork={cell:new Int32Array([-1,0,1,2]),areaM2:new Float64Array(4).fill(1e6),bedM:new Float64Array([0,1,2,3]),neighbors:[[],[],[],[]]};
+    const channels={receiverSide:new Int32Array([-1,side(1,0),side(2,1),side(3,1)]),order:new Int32Array([0,1,2,3]),fillDepthM:new Float64Array(4)};
+    const runoff=new Float64Array([0,0,172.8,259.2]); // 2 + 3 m³/s, no local rain at the confluence.
+    assert.deepEqual(Array.from(channelDischarge(mesh,network,channels,runoff)),[5,5,2,3]);
+    assert.deepEqual(Array.from(runoff),[0,0,172.8,259.2]);
+});
+
+test('reference drainage is acyclic, reaches its outlets and never edits the measured DEM',()=>{
+    const {mesh}=makeSphereMesh(120,35,12345),n=mesh.numTriangles;
+    const network:RoutingNetwork={cell:new Int32Array(n).fill(0),areaM2:new Float64Array(n).fill(1e6),bedM:Float64Array.from({length:n},(_,t)=>100+80*Math.sin(t)),neighbors:Array.from({length:n},()=>[])};
+    network.cell[0]=-1;network.bedM[0]=0;const before=network.bedM.slice(),channels=channelNetwork(mesh,network);
+    assert.deepEqual(network.bedM,before);assert.equal(new Set(channels.order).size,n);
+    assert.ok(channels.fillDepthM.some(d=>d>0));
+    for(let t=1;t<n;t++) {
+        let next=t,steps=0;
+        while(channels.receiverSide[next]>=0&&steps<=n){next=mesh.t_outer_s(channels.receiverSide[next]);steps++;}
+        assert.equal(next,0);assert.ok(steps<n);
+    }
+    network.cell.fill(0);const closed=channelNetwork(mesh,network);
+    assert.equal(Array.from(closed.receiverSide).filter(s=>s<0).length,1,'An oceanless world still has a terminating sink');
+});
 
 function fixture() {
     const network:RoutingNetwork={cell:new Int32Array([0,1]),areaM2:new Float64Array([100,100]),bedM:new Float64Array([0,0]),neighbors:[[{to:1,sillM:2,distanceM:10,side:0}],[{to:0,sillM:2,distanceM:10,side:1},{to:-1,sillM:3,distanceM:10,side:2}]]};
@@ -15,6 +42,36 @@ function fixture() {
     return {network,water,route:new TerrainWater(network,water)};
 }
 const total=(w:ReturnType<typeof fixture>['water'])=>w.oceanGlobalKgM2+(w.surfaceKgM2[0]+w.surfaceKgM2[1])/2;
+
+test('unified surface has climate-fed channels before Play without inventing reservoir water',()=>{
+    const {mesh}=makeSphereMesh(1500,35,12345),rt=new ThermalRuntime(makeThermalGrid(24,12));
+    const elevation=Float32Array.from({length:mesh.numRegions+mesh.numTriangles},(_,i)=>{
+        const p=i<mesh.numRegions?mesh.xyz_r:mesh.xyz_t,j=i<mesh.numRegions?i:i-mesh.numRegions;
+        return .04+.09*p[3*j+2]+.02*p[3*j];
+    });
+    const source={mesh,directions:mesh.xyz_r,elevation},sample=sampleTerrainGrid(rt.grid,mesh.xyz_r,elevation);
+    rt.enabled=rt.waterEnabled=true;rt.environmentConfig.terrainWater=true;
+    rt.setTerrain(sample.landFraction,sample.landElevation,source);rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);
+    // No instantaneous edge transfer yet: a reference river should still exist.
+    const w=rt.water!;w.routing!.fluxM3S.fill(0);w.routing!.receiverSide.fill(-1);
+    const before=w.checkpoint(),view=terrainWaterView(rt)!;
+    assert.ok(view.riverTriangles>0,'Generated climate must provide continuous reference rivers at day zero');
+    assert.deepEqual(w.checkpoint(),before,'Rendering must not add or transfer reservoir water');
+    assert.equal(rt.model!.timeS,0);
+    const channels=riverChannelField(rt);
+    for(let t=0;t<mesh.numTriangles;t++)if(channels.receiverSide[t]>=0)assert.ok(channels.flowM3S[mesh.t_outer_s(channels.receiverSide[t])]+1e-9>=channels.flowM3S[t]);
+    const restored=ThermalRuntime.fromSnapshot(rt.snapshot(),DEFAULT_PLANET,DEFAULT_ORBIT);
+    restored.attachRestoredTerrain(sample.landFraction,sample.landElevation,source);
+    assert.deepEqual(terrainWaterView(restored)!.rivers,view.rivers,'Saved climate reconstructs the same channels');
+    const saved=view.rivers.slice();
+    w.precipitationKgM2S.fill(0);w.meltKgM2S.fill(0);w.soilKgM2.fill(0);w.surfaceKgM2.fill(0);rt.model!.steps++;
+    assert.equal(terrainWaterView(rt)!.riverTriangles,0,'A dry world cannot retain decorative blue rivers');
+    assert.deepEqual(view.rivers,saved,'Previously queued frames remain immutable');
+    w.meltKgM2S.fill(.005);rt.model!.temperatureK.fill(280);rt.model!.steps++;
+    assert.ok(terrainWaterView(rt)!.riverTriangles>0,'Melt must restore channel flow without rainfall');
+    rt.surfaceState()!.landIceKgM2!.fill(9170);rt.model!.steps++;
+    assert.equal(terrainWaterView(rt)!.riverTriangles,0,'Grounded ice covers the blue river overlay');
+});
 test('closed terrain depressions hold real water until their sill is reached',()=>{
     const {route,water}=fixture();route.route(water,10,1);
     assert.equal(water.surfaceKgM2[0],1000);assert.equal(water.surfaceKgM2[1],0);assert.equal(water.oceanGlobalKgM2,0);

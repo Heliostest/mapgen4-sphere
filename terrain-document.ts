@@ -49,6 +49,10 @@ export function decodeTerrainDocument(text:string,expected:MeshIdentity,constrai
         const r=object(d.report);
         report={years:number(r.years,'geological years',0,1e15),sourceTimeS:number(r.sourceTimeS,'source time',0,Number.MAX_SAFE_INTEGER),
             clipped:number(r.clipped,'clipped triangles',0,expected.triangles,true),mobileKm3:number(r.mobileKm3,'mobile sediment',0,1e30),oceanKm3:number(r.oceanKm3,'ocean sediment',0,1e30)};
+        if(r.importedFrom!==undefined) {
+            if(typeof r.importedFrom!=='string'||!r.importedFrom.trim()||r.importedFrom.length>200)throw new Error('Invalid elevation source');
+            report.importedFrom=r.importedFrom;
+        }
     }
     if((offsets===null)!==(report===null))throw new Error('Application layer and report must be paired');
     const parameters:TerrainDocument['parameters']={},p=object(d.parameters);

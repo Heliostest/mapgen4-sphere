@@ -8,6 +8,7 @@ import {encodeSimulationDocument,decodeSimulationDocument,MAX_SIMULATION_FILE_BY
 import {defaultTerrainParameters} from '../terrain-parameters.ts';
 import {captureEnvironment} from '../environment-comparison.ts';
 import {WaterModel,DEFAULT_WATER} from '../water.ts';
+import {decodeRuntimeState} from '../runtime-state.ts';
 
 const planet={...DEFAULT_PLANET},orbit={...DEFAULT_ORBIT};
 function runtime(water=true) {
@@ -38,6 +39,20 @@ function documentFixture() {
         terrain:{format:'mapgen4-sphere-terrain' as const,version:1 as const,mesh:identity,constraints:{size:8,painted:false,values:Array(64).fill(0)},offsets:null,report:null,parameters:defaultTerrainParameters(),settings:{planet,orbit,timeS:rt.model!.timeS,camera:'surface' as const}},
         runtime:rt.snapshot(),view:{speed:86400,layer:'surface' as const,weather:false},comparison:{baseline,history:[{time:baseline.ageDays,metrics:baseline.metrics}]}};
 }
+
+test('high-detail terrain water survives JSON decoding without truncating its last cell',()=>{
+    const d=JSON.parse(JSON.stringify(runtime().snapshot(),(_,v)=>ArrayBuffer.isView(v)?Array.from(v as Float64Array):v));
+    d.environmentConfig.terrainWater=true;
+    const n=215348,r={volumeM3:Array(n).fill(0),fluxM3S:Array(n).fill(0),receiverSide:Array(n).fill(-1)};
+    r.volumeM3[n-1]=12.5;r.fluxM3S[n-1]=2;r.receiverSide[n-1]=3*n-1;
+    d.state.water.routing=r;
+    const restored=decodeRuntimeState(d).state!.water!.routing!;
+    assert.equal(restored.volumeM3.length,n);
+    assert.equal(restored.volumeM3[n-1],12.5);
+    assert.equal(restored.receiverSide[n-1],646043);
+    r.fluxM3S.pop();assert.throws(()=>decodeRuntimeState(d),/fluxM3S dimensions/);
+    r.volumeM3=Array(250001).fill(0);assert.throws(()=>decodeRuntimeState(d),/terrain routing count/);
+});
 test('complete document preserves comparison baseline and all runtime state',()=>{
     const d=documentFixture(),decoded=decodeSimulationDocument(encodeSimulationDocument(d),identity,8);
     assert.deepEqual(decoded,d);decoded.runtime.state!.thermal.temperatureK[0]+=1;

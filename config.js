@@ -8,6 +8,9 @@
  * filled in by the map generator.
  */
 
+// Opt-in Earth detail preset. Keep the standard mesh stable for saved worlds.
+export const HIGH_DETAIL_SPACING = 2.75;
+
 export default {
     spacing: 5.5,
     mountainSpacing: 35,

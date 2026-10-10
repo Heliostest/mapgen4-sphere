@@ -65,7 +65,9 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
             const g=record(w.glacier);glacier={erodedM:f(g,'erodedM'),sedimentM:f(g,'sedimentM'),depositedM:f(g,'depositedM'),speedMps:f(g,'speedMps'),outflowM3S:f(g,'outflowM3S'),limitedCells:scalar(g.limitedCells,'ice limiter count',0,4*n,true)};
         }else if((w.glacier!==undefined&&w.glacier!==null)||landIceKgM2.some(v=>v!==0))throw new Error('Unexpected land ice state');
         if(result.environmentConfig.terrainWater) {
-            const r=record(w.routing),length=scalar((r.volumeM3 as number[])?.length,'terrain routing count',4,200000,true);
+            // The opt-in 4x Earth mesh has 215,348 triangles. Keep a bounded
+            // allocation limit while allowing its complete reservoir state.
+            const r=record(w.routing),length=scalar((r.volumeM3 as number[])?.length,'terrain routing count',4,250000,true);
             const receivers=f(r,'receiverSide',length,-1,3*length-1);
             if(receivers.some(v=>!Number.isInteger(v)))throw new Error('Invalid terrain routing side');
             routing={volumeM3:f(r,'volumeM3',length),fluxM3S:f(r,'fluxM3S',length),receiverSide:new Int32Array(receivers)};

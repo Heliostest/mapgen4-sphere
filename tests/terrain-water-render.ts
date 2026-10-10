@@ -24,6 +24,9 @@ try {
     rt.enabled=rt.waterEnabled=true;rt.environmentConfig.terrainWater=true;
     rt.setTerrain(sample.landFraction,sample.landElevation,{mesh,directions:mesh.xyz_r,elevation});rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);
     const w=rt.water!,route=w.routing!,params={...defaultTerrainParameters().render,ambient:1,flat:0,slope:0,outline_strength:0,outline_water:0};
+    // Isolate the controlled reservoir inputs from generated rain/melt, which
+    // now also feeds the continuous channel display before the first step.
+    w.precipitationKgM2S.fill(0);w.meltKgM2S.fill(0);
     const surface={width:4,height:3,timeS:0,pixels:Uint8Array.from(Array.from({length:12},()=>[180,164,118,0]).flat())};
     const counts:{label:string;blue:number;green:number;volumeM3:number}[]=[];
     for(const [label,level,soil] of [['Dry basin',0,0],['Saturated ground',0,1],['Low lake',180,1],['High lake',350,1],['Drained again',0,0]] as const) {

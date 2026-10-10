@@ -89,7 +89,7 @@ export function installPlanetControls(options:Options) {
     }
 
     const layerSelect=select('planet-layer','Display layer',[
-        ['original','Original map'],['surface','Natural surface (ice & vegetation)'],['day-night','Day / night'],['insolation','Solar energy'],['temperature','Temperature (daily mean)'],
+        ['original','Terrain editing'],['surface','Planet surface (terrain, ice, vegetation & rivers)'],['day-night','Day / night'],['insolation','Solar energy'],['temperature','Temperature (daily mean)'],
         ['precipitation','Precipitation'],['soil-moisture','Soil moisture'],['runoff','Surface outflow'],
         ['erosion','Terrain change (erosion)'],
         ['wind','Surface wind (estimated)'],
@@ -102,7 +102,7 @@ export function installPlanetControls(options:Options) {
     const cameraSelect=select('planet-camera','View',[
         ['surface','Follow surface'],['space','From space'],
     ],camera,v=>camera=v as PlanetCamera);
-    const legend=note('Original map · physical settings preserve your terrain.');legend.id='planet-legend';
+    const legend=note('Terrain editing · physical settings preserve your terrain.');legend.id='planet-legend';
     legend.dataset.infoFor='planet-layer';legend.dataset.infoTitle='Display layer';
     const biomeKey=document.createElement('div');biomeKey.id='planet-biome-key';biomeKey.hidden=true;root.append(biomeKey);
     for(const item of [...Object.values(BIOMES),{label:'Grounded ice',color:[190,217,224]},{label:'Sea ice',color:[201,224,230]}]) {
@@ -246,12 +246,12 @@ export function installPlanetControls(options:Options) {
         const initialWater=thermal.water?.elapsedS===0;
         biomeKey.hidden=layer!=='surface'||!thermal.surfaceTexture;
         legend.textContent=layer==='insolation'?`Solar energy: 0–${o.fluxWm2.toFixed(0)} W/m² · dark blue → teal → orange. Colors retain terrain shading.`:
-            layer==='surface'?(thermal.surfaceTexture?'Initial cover comes from annual temperature and rain. Seasonal snow and sea ice now store water, exchange latent heat and change albedo. Play evolves currents and vegetation. Geographic cover is a downscaled estimate; open Compare environment for budgets.':thermal.status):
+            layer==='surface'?(thermal.surfaceTexture?'Terrain, ice, vegetation and continuous river channels in one view. Cover and channels are estimated from climate; river widths respond to wetness, rain and melt. Play evolves the environment. Open Compare environment for water and energy budgets.':thermal.status):
             layer==='wind'?(thermal.model?'Estimated surface wind: arrows point toward flow; dark blue → green = 0–30 m/s. Geographic circulation template, not a pressure solver.':thermal.status):
             layer==='erosion'?(geomorph.model?'Net bed change: −100 m blue · 0 m cream · +100 m red; outside values saturate. Coarse preview; source climate and artistic rivers are retained.':'Capture current water in Erosion & deposition preview to begin.'):
-            waterLayer()?(!thermal.water?thermal.status:layer==='precipitation'?`Precipitation: 0–20 mm/day · dark blue → cyan → cream. ${initialWater?'Generated initial estimate':'Latest simulated-step rate'}; higher values saturate.`:layer==='soil-moisture'?'Soil moisture: 0–100% of soil capacity · brown → green; ocean blue. Fraction per land area.':`Cell surface outflow: 0–10⁷ m³/s · dark blue → cyan, log scale. ${initialWater?'Generated initial estimate':'Latest simulated-step transfer'}; higher values saturate. Artistic rivers are independent.`):
+            waterLayer()?(!thermal.water?thermal.status:layer==='precipitation'?`Precipitation: 0–20 mm/day · dark blue → cyan → cream. ${initialWater?'Generated initial estimate':'Latest simulated-step rate'}; higher values saturate.`:layer==='soil-moisture'?'Soil moisture: 0–100% of soil capacity · brown → green; ocean blue. Fraction per land area.':`Cell surface outflow: 0–10⁷ m³/s · dark blue → cyan, log scale. ${initialWater?'Generated initial estimate':'Latest simulated-step transfer'}; higher values saturate. Planet surface channel widths are climate-fed estimates.`):
             layer==='temperature'?(thermal.model?'Temperature: −80 °C blue · 0 °C cream · +60 °C red. Generated daily-mean reference is ready while paused; Play evolves it. Outside values saturate.':thermal.status):
-            layer==='day-night'?'Day / night · night brightness helps editing; night receives 0 W/m².':'Original map · physical settings preserve your terrain.';
+            layer==='day-night'?'Day / night · night brightness helps editing; night receives 0 W/m².':'Terrain editing · physical settings preserve your terrain.';
         if(layer==='surface'&&weatherVisible&&thermal.water)legend.textContent+=' Clouds: column water / temperature-dependent capacity proxy, 70–100% saturation → 0–100% cover; at most 66% opacity. Surface illustration, not measured humidity or 3D cloud water.';
         warning.textContent=p.rotationRatio>.05?'Rapid spin: the spherical gravity/sea-level approximation becomes inaccurate.':
             Math.max(planet.reliefM,planet.oceanDepthM)>.05*planet.radiusM?'Terrain is large relative to radius: spherical surface diagnostics are approximate.':'';

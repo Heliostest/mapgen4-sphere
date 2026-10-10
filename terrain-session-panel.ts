@@ -61,6 +61,7 @@ export function installTerrainSessionPanel(root:HTMLElement,options:{
         const generation=el('terrain-generation');generation.dataset.revision=String(s.revision);generation.dataset.accepted=String(s.accepted);generation.dataset.pending=String(s.pending);
         generation.textContent=s.pending?'Rebuilding terrain and rivers…':'Terrain ready';
         const r=s.report,out=el('terrain-application');out.dataset.applied=String(!!r);
-        out.textContent=r?`Applied ${r.years.toLocaleString()} geological yr from source day ${(r.sourceTimeS/86400).toFixed(3)}. ${r.clipped} triangles clipped. Report only: ${r.mobileKm3.toExponential(2)} km³ mobile / ${r.oceanKm3.toExponential(2)} km³ ocean sediment.`:'No applied erosion layer.';
+        const origin=r?.importedFrom?`Elevation imported from ${r.importedFrom}. `:'';
+        out.textContent=r?origin+(r.importedFrom&&r.years===0?'Imported heights retained; no erosion applied.':`Applied ${r.years.toLocaleString()} geological yr from source day ${(r.sourceTimeS/86400).toFixed(3)}. ${r.clipped} triangles clipped. Report only: ${r.mobileKm3.toExponential(2)} km³ mobile / ${r.oceanKm3.toExponential(2)} km³ ocean sediment.`):'No applied erosion layer.';
     }};
 }

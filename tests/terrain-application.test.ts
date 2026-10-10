@@ -71,3 +71,31 @@ test('real generator reapplies offsets before regions/rivers and undo retains la
     const restored=new SphericalConstraints(8);restored.restore(p.elevation as any,painted,true);restored.setElevationParam(p.elevation as any);
     assert.deepEqual(restored.elevation,painted);assert.equal(restored.userHasPainted,true);
 });
+
+test('imported height provenance survives terrain save, load and erosion undo',()=>{
+    const imported={...doc(),report:{...report,years:0,sourceTimeS:0,mobileKm3:0,oceanKm3:0,importedFrom:'NOAA ETOPO 2022'}};
+    const restored=decodeTerrainDocument(encodeTerrainDocument(imported),identity,8);
+    assert.deepEqual(restored.report,imported.report);
+    const layer=new TerrainApplication();layer.restore(new Float32Array(restored.offsets!),restored.report);
+    layer.apply(new Float32Array(mesh.numTriangles).fill(-.02),report);layer.undo();
+    assert.deepEqual(layer.report,imported.report);
+    for(const importedFrom of ['',42,'x'.repeat(201)]) {
+        const invalid=structuredClone(imported) as any;invalid.report.importedFrom=importedFrom;
+        assert.throws(()=>decodeTerrainDocument(JSON.stringify(invalid),identity,8));
+    }
+});
+
+test('river generation can route water without cutting an imported elevation surface',()=>{
+    const p=defaultTerrainParameters(),paint=new SphericalConstraints(8);paint.setElevationParam(p.elevation as any);
+    const map=new Map(mesh,t_peaks,{spacing:5.5});
+    map.assignElevation(p.elevation,{size:8,constraints:paint.elevation});
+    // A closed depression catches the legacy river algorithm lowering its outlet.
+    map.elevation_t.fill(.5);map.elevation_t[0]=-.5;map.elevation_t[mesh.numTriangles-1]=.01;
+    map.assignRegionElevation();map.assignRainfall(p.biomes);
+    const before=map.elevation_t.slice();
+    map.assignRivers(p.rivers,true);
+    assert.deepEqual(map.elevation_t,before);
+    assert(map.flow_s.some(v=>v>0));assert(map.flow_s.every(Number.isFinite));
+    map.assignRivers(p.rivers);
+    assert.notDeepEqual(map.elevation_t,before,'legacy generated terrain still receives its river carving');
+});

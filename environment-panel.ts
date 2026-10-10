@@ -3,7 +3,7 @@ import {captureEnvironment,environmentMetrics,comparisonCSV,METRICS,type Environ
 import {weatherFields} from './weather.ts';
 import {installInfoNotes} from './panel-info.ts';
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
-const routingNote='Optional mesh routing uses the same surface-water inventory. Changing mode restarts climate. Natural surface shows actual-flow river widths (exaggerated for readability), shorelines and wet ground. Original map retains artistic rivers. Reservoir routing, not a flood-depth forecast.';
+const routingNote='Mesh routing uses the same surface-water inventory. Planet surface combines climate-fed river channels with ice, vegetation, lake shores and wet ground. Estimated channel widths respond to wetness, rain and melt; inspect reports reservoir transfers separately. Widths are exaggerated for readability. Changing mode restarts climate.';
 
 export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,change:(action:()=>void)=>void,clock:{togglePlay:()=>void;isPlaying:()=>boolean},weather:{get:()=>boolean;set:(value:boolean)=>void}) {
     const panel=document.createElement('details');panel.id='environment-panel';panel.innerHTML=`<summary>Ice, ocean &amp; vegetation</summary>
@@ -12,7 +12,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
       <label><input id="environment-circulation" type="checkbox"> Evolving wind &amp; ocean circulation</label>
       <output class="planet-note" id="environment-wind-state" data-info-for="environment-circulation"></output>
       <p class="planet-note" data-info-for="environment-circulation">Temperature contrasts drive bounded wind perturbations with rotation and surface drag. Closed ocean currents respond to the actual winds over five days. Changing mode restarts climate. Wind and ocean-current maps show these vectors; pressure and deep ocean are not simulated.</p>
-      <label><input id="environment-weather" type="checkbox"> Cloud cover on Natural surface</label>
+      <label><input id="environment-weather" type="checkbox"> Cloud cover on Planet surface</label>
       <output class="planet-note" id="environment-weather-state"></output>
       <p class="planet-note" data-info-for="environment-weather">Soft white cloud cover follows atmospheric moisture and evolves with Play. Pause freezes it. Display only; climate and water budgets are preserved.</p>
       <label><input id="environment-vegetation" type="checkbox" checked> Evolve vegetation &amp; feedback</label>
@@ -23,7 +23,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
       <output class="planet-note" id="environment-glacier" data-info-for="environment-glaciers"></output>
       <p class="planet-note" data-info-for="environment-glaciers">Ice sheets use the climate grid; narrow valley glaciers are unresolved. Cold-climate initial ice takes water from existing stores. Snow compacts over 30 years; ice flows and melts on the same clock as Play. Capture glacial erosion in the Erosion panel to inspect or apply it. No calving or floating shelves.</p>
       <label><input id="environment-terrain-water" type="checkbox"> Terrain rivers, lakes &amp; wetlands</label>
-      <p class="planet-note" id="environment-routing" data-info-for="environment-terrain-water">Optional mesh routing uses the same surface-water inventory. Changing mode restarts climate. Natural surface shows actual-flow river widths (exaggerated for readability), shorelines and wet ground. Original map retains artistic rivers. Reservoir routing, not a flood-depth forecast.</p>
+      <p class="planet-note" id="environment-routing" data-info-for="environment-terrain-water">${routingNote}</p>
       <label><span>Snow / sea-ice inventory</span><output id="environment-frozen"></output></label>
       <label><span>Snow / land-ice melt</span><output id="environment-melt"></output></label>
       <label><span>Combined energy residual</span><output id="environment-energy"></output></label>
@@ -54,7 +54,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
     </style>
     <header><div><h2 id="environment-title">Environment comparison</h2><p>Generated baseline → evolving planet</p></div><button id="environment-close" type="button" aria-label="Close comparison">Close</button></header>
     <nav><button id="environment-play" type="button">Play</button><button id="environment-capture" type="button">Use current as baseline</button><button id="environment-export" type="button">Export comparison CSV</button>
-      <label>Map <select id="environment-map"><option value="surface">Natural surface</option><option value="temperatureC">Temperature</option><option value="snowMm">Snow water equivalent</option><option value="iceM">Sea-ice thickness</option><option value="landIceM">Grounded ice thickness</option><option value="vegetation">Vegetation cover</option><option value="currents">Ocean currents</option></select></label></nav>
+      <label>Map <select id="environment-map"><option value="surface">Planet surface</option><option value="temperatureC">Temperature</option><option value="snowMm">Snow water equivalent</option><option value="iceM">Sea-ice thickness</option><option value="landIceM">Grounded ice thickness</option><option value="vegetation">Vegetation cover</option><option value="currents">Ocean currents</option></select></label></nav>
     <p id="environment-comparison-status" role="status"></p>
     <div class="env-pair"><article><h3>Baseline</h3><p id="environment-baseline-label" class="env-sub"></p><canvas id="environment-baseline-map" width="768" height="384" aria-label="Baseline global map"></canvas></article>
       <article><h3>Current</h3><p id="environment-current-label" class="env-sub"></p><canvas id="environment-current-map" width="768" height="384" aria-label="Current global map"></canvas></article></div>
@@ -135,7 +135,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         const weatherOutput=el('environment-weather-state');el<HTMLInputElement>('environment-weather').disabled=!rt.water;
         weatherOutput.dataset.active=String(weather.get()&&!!rt.water);
         if(weather.get()&&rt.model&&rt.water){const f=weatherFields(rt.model,rt.water),mean=f.cloud.reduce((sum,v)=>sum+v,0)/f.cloud.length;weatherOutput.textContent=`Cloud cover ${Math.round(100*mean)}%`;}
-        else weatherOutput.textContent='Cloud cover off · enable water, then select Natural surface';
+        else weatherOutput.textContent='Cloud cover off · enable water, then select Planet surface';
         const atmosphere=rt.environment?.atmosphere,windOutput=el('environment-wind-state');
         let maxWind=0,perturbation=0;
         if(rt.water)for(let i=0;i<rt.grid.count;i++){maxWind=Math.max(maxWind,Math.hypot(rt.water.windEastMps[i],rt.water.windNorthMps[i]));if(atmosphere)perturbation=Math.max(perturbation,Math.hypot(atmosphere.eastMps[i],atmosphere.northMps[i]));}
@@ -147,7 +147,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         el('environment-routing').dataset.active=String(!!routing);
         el('environment-routing').textContent=routingNote;
         el<HTMLInputElement>('environment-terrain-water').disabled=!rt.terrainSource?.mesh;
-        if(rd)el('environment-routing').textContent=`Terrain routing · ${routing!.volumeM3.length.toLocaleString()} reservoirs · max standing depth ${rd.maxDepthM.toFixed(3)} m · max flow ${rd.maxFlowM3S.toFixed(1)} m³/s · unresolved coast storage ${(rd.unresolvedM3/1e9).toFixed(4)} km³. Rivers are widened for readability; shoreline reconstruction is approximate. Original map retains artistic rivers.`;
+        if(rd)el('environment-routing').textContent=`Terrain routing · ${routing!.volumeM3.length.toLocaleString()} reservoirs · max standing depth ${rd.maxDepthM.toFixed(3)} m · max transfer ${rd.maxFlowM3S.toFixed(1)} m³/s · unresolved coast storage ${(rd.unresolvedM3/1e9).toFixed(4)} km³. Planet surface shows continuous climate-fed channels with exaggerated widths; inspect reports actual reservoir transfers. Lake shores are approximate.`;
         el<HTMLOutputElement>('environment-frozen').value=d?`${d.snowMm.toFixed(2)} / ${d.iceMm.toFixed(2)} mm`:'Enable water';
         el<HTMLOutputElement>('environment-melt').value=d?`${d.meltMmDay.toFixed(4)} mm/day`:'—';
         el<HTMLOutputElement>('environment-energy').value=d?`${d.energyResidualJm2.toExponential(2)} J/m²`:'—';el('environment-energy').dataset.value=String(d?.energyResidualJm2??0);

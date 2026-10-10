@@ -1,0 +1,48 @@
+html body { color:#263d48; background:#f4f5f6; }
+html body #ui {
+  --scene-size:min(calc(100dvh - 24px),calc(100vw - 320px));
+  padding:12px;box-sizing:border-box;min-height:0;
+  grid-template-columns:1fr var(--scene-size) 280px 1fr;
+  grid-template-rows:var(--scene-size);gap:12px;
+}
+html body #map { grid-area:1 / 2; }
+html body #sliders { grid-area:1 / 3; width:280px;max-height:none;column-width:auto;overflow-y:auto;scrollbar-gutter:stable;line-height:1.5; }
+#sliders #planet-controls { font:13px/1.55 system-ui,'Microsoft YaHei',sans-serif; }
+#sliders #planet-controls > h3 { background:none;color:#314e5c;font-size:15px;margin:0 0 12px;padding:2px 0 8px;border-bottom:2px solid #a8bcc4; }
+#sliders #planet-controls details { margin-top:8px; }
+#sliders #planet-controls summary { padding:9px 10px;background:#e7edef;color:#2c4c5a;border-radius:5px;font-weight:600; }
+#sliders #planet-controls details[open] > summary { background:#dae6eb; }
+#sliders #planet-controls details details { margin:8px 0; }
+#sliders #planet-controls details details > summary { background:#f1f4f4;font-size:12px; }
+#sliders #planet-controls .scene-group { padding:0 8px 8px;border:1px solid #d3dfe2;border-radius:6px;background:#fafcfc; }
+#sliders #planet-controls .scene-group > summary { margin:0 -8px; }
+#sliders #planet-controls .scene-group:not([open]) { padding-bottom:0; }
+#sliders #planet-controls label { margin:9px 0;font-size:12px; }
+#sliders #planet-controls label span { width:auto;font-family:inherit; }
+#sliders #planet-controls input:not([type=checkbox]),#sliders #planet-controls select { font-size:12px;min-height:28px;border:1px solid #adbfc6;border-radius:4px;background:white;color:#243c47;padding:3px 6px; }
+#sliders #planet-controls input[type=range] { padding:0;border:0;accent-color:#3c7185; }
+#sliders #planet-controls button { font-size:12px;min-height:30px;padding:5px 8px;border:1px solid #b2c3ca;background:#f0f5f6;color:#264b5a; }
+#sliders #planet-controls button:hover { background:#e1edf0; }
+#sliders #planet-controls button:disabled { opacity:.4; }
+#sliders #planet-controls #planet-play { background:#315e71;color:white;border-color:#315e71; }
+#sliders #planet-controls button[aria-pressed=true] { background:#dceaf0; }
+#sliders #planet-controls button.planet-info { width:20px;height:20px;min-height:20px;padding:0;background:transparent; }
+#sliders #planet-controls .planet-note { font-size:11px;line-height:1.65;color:#60757f; }
+#sliders #planet-controls .planet-tooltip .planet-note { color:#d7e3e8; }
+#sliders #planet-controls output { color:#285366; }
+#sliders #planet-controls .planet-tooltip output { color:#d7e3e8; }
+#sliders #planet-biome-key:not([hidden]) { font-size:11px;gap:8px 10px; }
+#sliders .scene-brushes { display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0; }
+#sliders .scene-brushes button { grid-area:auto!important;height:40px; }
+#sliders .scene-brushes button:nth-child(n+5) { grid-column:span 2!important;height:52px; }
+#sliders label:has(> #terrain-load) { position:relative;display:block;padding:10px;border:1px dashed #8eaab7;border-radius:4px;background:#edf4f6;cursor:pointer; }
+#sliders label:has(> #terrain-load)::after { content:'选择本地文件…';display:block;color:#2a647b;margin-top:4px; }
+#sliders #terrain-load { position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer; }
+#sliders label:has(> #terrain-load:focus-visible) { outline:2px solid #357a94;outline-offset:2px; }
+#sliders #scene-parameters-render .radius-value { float:none; }
+#sliders :focus-visible { outline:2px solid #357a94!important;outline-offset:2px; }
+@media(max-width:760px) {
+  html body #ui { grid-template-columns:1fr;grid-template-rows:auto auto;padding:8px;gap:12px; }
+  html body #map { grid-area:1 / 1;width:100%;height:calc(100vw - 16px); }
+  html body #sliders { grid-area:2 / 1;width:100%;max-height:none;overflow:visible; }
+}

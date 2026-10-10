@@ -39,7 +39,7 @@ let handler = (event) => {
     
     // This handler is for all subsequent messages
     handler = (event) => {
-        let {param, constraints, offsets, revision, quad_elements_buffer, a_quad_em_buffer, a_river_xyww_buffer} = event.data;
+        let {param, constraints, offsets, preserveElevation, revision, quad_elements_buffer, a_quad_em_buffer, a_river_xyww_buffer} = event.data;
 
         let numRiverTriangles = 0;
         let start_time = performance.now();
@@ -49,7 +49,7 @@ let handler = (event) => {
             map.assignRainfall(param.biomes);
         }
         if (run.rivers) {
-            map.assignRivers(param.rivers);
+            map.assignRivers(param.rivers,preserveElevation);
         }
         if (run.biomes || run.rivers) {
             Geometry.setMapGeometry(map, param.elevation.mountain_folds, new Int32Array(quad_elements_buffer), new Float32Array(a_quad_em_buffer));

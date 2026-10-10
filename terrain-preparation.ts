@@ -16,6 +16,6 @@ export function prepareTerrain(mesh:Mesh,t_peaks:number[],base:object,d:TerrainD
         worker.addEventListener('message',event=>finish(undefined,event.data),{once:true});
         const indices=new Int32Array(3*mesh.numSolidSides),em=new Float32Array(2*(mesh.numRegions+mesh.numTriangles)),rivers=new Float32Array(63*mesh.numSolidTriangles);
         worker.postMessage({mesh,t_peaks,param});
-        worker.postMessage({param,revision:0,offsets:d.offsets?new Float32Array(d.offsets):null,constraints:{size:d.constraints.size,constraints:new Float32Array(d.constraints.values)},quad_elements_buffer:indices.buffer,a_quad_em_buffer:em.buffer,a_river_xyww_buffer:rivers.buffer},[indices.buffer,em.buffer,rivers.buffer]);
+        worker.postMessage({param,revision:0,offsets:d.offsets?new Float32Array(d.offsets):null,preserveElevation:!!d.report?.importedFrom,constraints:{size:d.constraints.size,constraints:new Float32Array(d.constraints.values)},quad_elements_buffer:indices.buffer,a_quad_em_buffer:em.buffer,a_river_xyww_buffer:rivers.buffer},[indices.buffer,em.buffer,rivers.buffer]);
     });
 }

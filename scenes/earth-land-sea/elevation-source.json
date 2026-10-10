@@ -1,0 +1,127 @@
+{
+  "dataset": "NOAA ETOPO 2022, ice surface",
+  "sourcePage": "https://www.ncei.noaa.gov/products/etopo-global-relief-model",
+  "datasetURL": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/ETOPO_2022_v1_15s.html",
+  "downloadURL": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/ETOPO_2022_v1_15s.dods?z%5B0:24:43199%5D%5B0:24:86399%5D",
+  "sha256": "57c548870890f8eae5f020f9f143038f2c451f239983de4c7b54d6aedb331a8a",
+  "accessed": "2026-10-10",
+  "license": "NOAA: data may be used and redistributed for free",
+  "verticalDatum": "EGM2008, metres",
+  "sourceResolutionArcSeconds": 15,
+  "downloadStride": 24,
+  "sampleSpacingDegrees": 0.1,
+  "gridShape": [
+    1800,
+    3600
+  ],
+  "latitudeStart": -89.99791666666667,
+  "longitudeStart": -179.99791666666667,
+  "sampling": "bilinear at actual mesh triangle positions; pole rows averaged across longitude",
+  "coastline": "Natural Earth 50m, scanline sampled at 0.1 degrees; 1 m sign floor for below-sea-level land and shoreline disagreements",
+  "clampedLandTriangles": 505,
+  "clampedSeaTriangles": 1241,
+  "minMeshM": -10265.526165573665,
+  "maxMeshM": 5989.069376411055,
+  "checks": [
+    {
+      "name": "Tibetan Plateau",
+      "latitude": 33,
+      "longitude": 87,
+      "sourceM": 5092.11,
+      "expectedRangeM": [
+        4000,
+        6000
+      ]
+    },
+    {
+      "name": "Himalaya",
+      "latitude": 28.25,
+      "longitude": 86.85,
+      "sourceM": 5225.1,
+      "expectedRangeM": [
+        4500,
+        8000
+      ]
+    },
+    {
+      "name": "Altiplano",
+      "latitude": -20,
+      "longitude": -68,
+      "sourceM": 3653.5,
+      "expectedRangeM": [
+        3000,
+        6000
+      ]
+    },
+    {
+      "name": "Amazon Plain",
+      "latitude": -3,
+      "longitude": -60,
+      "sourceM": 65.27,
+      "expectedRangeM": [
+        0,
+        400
+      ]
+    },
+    {
+      "name": "Ganges Plain",
+      "latitude": 25,
+      "longitude": 84,
+      "sourceM": 100.77,
+      "expectedRangeM": [
+        0,
+        400
+      ]
+    },
+    {
+      "name": "West Siberian Plain",
+      "latitude": 60,
+      "longitude": 70,
+      "sourceM": 59.06,
+      "expectedRangeM": [
+        0,
+        400
+      ]
+    },
+    {
+      "name": "Greenland Ice Sheet",
+      "latitude": 73,
+      "longitude": -40,
+      "sourceM": 3120.33,
+      "expectedRangeM": [
+        2000,
+        3600
+      ]
+    },
+    {
+      "name": "South Pole",
+      "latitude": -90,
+      "longitude": 0,
+      "sourceM": 2833.73,
+      "expectedRangeM": [
+        2500,
+        3200
+      ]
+    },
+    {
+      "name": "North Pacific Basin",
+      "latitude": 25,
+      "longitude": -150,
+      "sourceM": -5306.19,
+      "expectedRangeM": [
+        -6500,
+        -3000
+      ]
+    },
+    {
+      "name": "Mariana Trench",
+      "latitude": 11.35,
+      "longitude": 142.2,
+      "sourceM": -9599.77,
+      "expectedRangeM": [
+        -11000,
+        -6000
+      ]
+    }
+  ]
+}

@@ -7,6 +7,19 @@ import Map from '../map.ts';
 import Geometry from '../geometry.ts';
 import {sphereProjection, terrainPosition, pickTerrain} from '../sphere-view.ts';
 import {mat4,vec3} from 'gl-matrix';
+import {makeMesh} from '../mesh.ts';
+import config from '../config.js';
+
+test('denser globe honors mesh settings, closes at both poles and retains 32-bit topology', async () => {
+    const standard=(await makeMesh()).mesh;
+    const dense=(await makeMesh({...config,spacing:2.75})).mesh;
+    assert.ok(dense.numTriangles/standard.numTriangles>3.99 && dense.numTriangles/standard.numTriangles<4.01);
+    assert.ok(dense.numRegions>65535);
+    assert.equal(dense.numRegions-dense.numSides/2+dense.numTriangles,2);
+    for(let s=0;s<dense.numSides;s++)assert.equal(dense.s_opposite_s(dense.s_opposite_s(s)),s);
+    for(const r of [0,dense.numRegions-1])assert.ok(dense.t_around_r(r).length>=3);
+    assert.equal(config.spacing,5.5,'Scene-specific density must leave existing worlds compatible');
+});
 
 test('sphere has no boundary and every halfedge closes reciprocally', () => {
     const {mesh} = makeSphereMesh(600, 35, 12345);

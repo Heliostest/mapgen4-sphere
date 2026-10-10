@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import param from "./config.js";
+import param, {HIGH_DETAIL_SPACING} from "./config.js";
 import {makeMesh} from "./mesh.ts";
 import Painting from "./painting.ts";
 import Renderer from "./render.ts";
@@ -126,7 +126,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
             if(gate.pending||!g.model||g.model.years<=0||!g.view?.preview)return;
             const baked=bakeTerrainOffsets(render.baseTriangleElevation,render.physicalElevation.subarray(mesh.numRegions),mesh.xyz_t,g.view.preview);
             const d=g.model.diagnostics();
-            application.apply(baked.offsets,{years:g.model.years,sourceTimeS:g.sourceTimeS,clipped:baked.clipped,mobileKm3:d.mobileKm3,oceanKm3:d.oceanKm3});
+            application.apply(baked.offsets,{...(application.report?.importedFrom?{importedFrom:application.report.importedFrom}:{}),years:g.model.years,sourceTimeS:g.sourceTimeS,clipped:baked.clipped,mobileKm3:d.mobileKm3,oceanKm3:d.oceanKm3});
             g.reset('Erosion applied. Rivers and environment are being rebuilt.');generate();
         },
     });
@@ -257,7 +257,7 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         const revision=gate.start();
         if(revision!==null) {
             worker.postMessage({
-                param,revision,offsets:application.offsets,
+                param,revision,offsets:application.offsets,preserveElevation:!!application.report?.importedFrom,
                 constraints: {
                     size: Painting.size,
                     constraints: Painting.constraints,
@@ -281,7 +281,8 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     if (downloadButton) downloadButton.addEventListener('click', download);
 }
 
-makeMesh().then(main).catch(error => {
+if(new URLSearchParams(location.search).get('mesh')==='high')param.spacing=HIGH_DETAIL_SPACING;
+makeMesh(param).then(main).catch(error => {
     console.error(error);
     const message=document.createElement('p');
     message.textContent=`Unable to start Mapgen4: ${error.message ?? error}`;

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>地球真实地形 · Mapgen4</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f4f5f6; color: #243440; font: 14px/1.4 system-ui,sans-serif; }
+  header { padding: 10px 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid #d5dce0; }
+  strong { font-size: 16px; } small { color: #576975; }
+  select,a { font: inherit; } a { color: #285d79; }
+  #status { margin-left: auto; font-size: 12px; }
+  iframe { display: block; width: 100%; height: calc(100dvh - 76px); border: 0; }
+  @media(max-width:700px) { header { gap: 6px 12px; } #status { margin-left: 0; } iframe { height: calc(100dvh - 120px); } }
+</style>
+<header>
+  <div><strong>地球真实地形</strong><br><small>21.5 万地形单元 · 真实高程 · 气候与河流为模拟</small></div>
+  <label>视角 <select id="view" disabled>
+    <option value="585,410">非洲与欧洲</option>
+    <option value="270,440">南北美洲</option>
+    <option value="820,420" selected>亚洲与澳大利亚</option>
+    <option value="742,330">青藏高原与喜马拉雅</option>
+    <option value="305,600">安第斯山与亚马孙</option>
+    <option value="0,500">太平洋</option>
+    <option value="500,1000">南极</option>
+    <option value="500,0">北极</option>
+  </select></label>
+  <label>起伏 <select id="relief" disabled><option value="1">真实比例 1×</option><option value="12" selected>适度增强 12×</option><option value="40">强调地形 40×</option><option value="" disabled>自定义</option></select></label>
+  <a href="earth-simulation.json" download>下载场景</a>
+  <a href="https://www.ncei.noaa.gov/products/etopo-global-relief-model" target="_blank" rel="noopener">NOAA 高程来源</a>
+  <span id="status" role="status">正在恢复地球场景…</span>
+</header>
+<iframe id="world" title="可旋转和编辑的地球场景" src="../../embed.html?mode=editor&amp;mesh=high&amp;preview=earth-land-sea"></iframe>
+<script type="module">
+  import {installSidebar} from './sidebar.js';
+  const frame=document.querySelector('#world'),status=document.querySelector('#status'),view=document.querySelector('#view'),relief=document.querySelector('#relief');
+  function waitFor(doc,read) {
+    return new Promise((resolve,reject)=>{
+      const observer=new MutationObserver(check);
+      const timeout=setTimeout(()=>{observer.disconnect();reject(new Error('场景加载超时，请刷新重试'));},60000);
+      function check(){try{const value=read();if(value){observer.disconnect();clearTimeout(timeout);resolve(value);}}catch(error){observer.disconnect();clearTimeout(timeout);reject(error);}}
+      observer.observe(doc.documentElement,{subtree:true,childList:true,attributes:true,characterData:true});check();
+    });
+  }
+  view.addEventListener('change',()=>{
+    const doc=frame.contentDocument,win=frame.contentWindow;
+    view.value.split(',').forEach((value,i)=>{
+      const input=doc.querySelector(`#slider-${i?'y':'x'} input`);
+      input.value=value;input.dispatchEvent(new win.Event('input',{bubbles:true}));
+    });
+  });
+  relief.addEventListener('change',()=>{
+    const doc=frame.contentDocument;
+    const radius=Number(doc.querySelector('#slider-sphere_radius input').value);
+    const physicalRadius=Number(doc.querySelector('#planet-radius').value)*1000;
+    const physicalHeight=Number(doc.querySelector('#planet-relief').value)*1000;
+    const input=doc.querySelector('#slider-mountain_height input');
+    input.value=(Number(relief.value)*radius*physicalHeight/physicalRadius).toFixed(3);
+    input.dispatchEvent(new frame.contentWindow.Event('input',{bubbles:true}));
+  });
+  frame.addEventListener('load',async()=>{
+    try {
+      const doc=frame.contentDocument,win=frame.contentWindow;
+      const style=doc.createElement('style');style.textContent=`
+        @media (orientation:landscape) {
+          html body #ui { --scene-size:min(calc(100dvh - 24px),calc(100vw - 240px));
+            padding:12px;box-sizing:border-box;min-height:0;
+            grid-template-columns:1fr var(--scene-size) repeat(4,38px) 1fr;
+            grid-template-rows:repeat(3,40px) calc(var(--scene-size) - 150px); }
+        }`;
+      doc.head.append(style);
+      await waitFor(doc,()=>doc.querySelector('#terrain-generation')?.dataset.pending==='false'&&doc.querySelector('#terrain-load'));
+      const response=await fetch('./earth-simulation.json');if(!response.ok)throw new Error(`场景文件读取失败 (${response.status})`);
+      const transfer=new win.DataTransfer();transfer.items.add(new win.File([await response.blob()],'earth-simulation.json',{type:'application/json'}));
+      const input=doc.querySelector('#terrain-load');input.files=transfer.files;input.dispatchEvent(new win.Event('change',{bubbles:true}));
+      await waitFor(doc,()=>{
+        const message=doc.querySelector('#terrain-file-status')?.textContent??'';
+        if(message.startsWith('Load failed:')||message.startsWith('Load canceled'))throw new Error(message);
+        return message.startsWith('Complete simulation restored');
+      });
+      const navigate=doc.querySelector('#button-navigate');if(navigate.getAttribute('aria-pressed')!=='true')navigate.click();
+      const display=doc.querySelector('#planet-layer');
+      // The Earth preview has one finished surface. Legacy editing remains
+      // available in the standalone editor and old saves remain readable.
+      display.querySelector('option[value="original"]')?.remove();
+      // Keep one complete layer control, including diagnostics and its help.
+      const layerNames={surface:'地球地表', 'day-night':'昼夜', insolation:'太阳辐射',
+        temperature:'气温（日均）', precipitation:'降水', 'soil-moisture':'土壤湿度',
+        runoff:'水流诊断', erosion:'侵蚀与沉积', wind:'地表风场'};
+      for(const option of display.options)option.textContent=layerNames[option.value]??option.textContent;
+      const layerLabel=display.closest('label');layerLabel.querySelector('span').textContent='显示图层';
+      const layerRow=layerLabel.closest('.planet-info-row');
+      layerRow?.querySelector('button')?.setAttribute('aria-label','显示图层说明');
+      const layerHelp=layerRow?.querySelector('.planet-tooltip > strong');if(layerHelp)layerHelp.textContent='显示图层';
+      display.value='surface';display.dispatchEvent(new win.Event('change',{bubbles:true}));
+      const syncRelief=()=>{
+        const ratio=Number(doc.querySelector('#planet-exaggeration').value.replace('×',''));
+        relief.value=[1,12,40].find(v=>Math.abs(ratio-v)<.15)?.toString()??'';
+      };
+      syncRelief();
+      new MutationObserver(syncRelief).observe(doc.querySelector('#planet-exaggeration'),{subtree:true,childList:true,characterData:true});
+      installSidebar(doc);
+      doc.querySelector('#sliders').scrollTop=0;
+      view.disabled=relief.disabled=false;status.textContent='拖动旋转 · 滚轮缩放';
+    } catch(error) { status.textContent=error.message;status.style.color='#a22'; }
+  });
+</script>
+</html>

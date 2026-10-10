@@ -278,11 +278,15 @@ export default class Map {
         }
     }
 
-    assignRivers(riversParam) {
+    assignRivers(riversParam,preserveElevation=false) {
         let {mesh, moisture_t, rainfall_r, elevation_t, s_downslope_t, t_order, flow_t, flow_s} = this;
+        // The artist generator carves outlets. Imported DEMs retain their
+        // measured surface; actual terrain-water routing handles depressions.
+        const original=preserveElevation?elevation_t.slice():null;
         assignDownslope(mesh, elevation_t, s_downslope_t, t_order);
         assignMoisture(mesh, rainfall_r, moisture_t);
         assignFlow(mesh, riversParam, t_order, elevation_t, moisture_t, s_downslope_t, flow_t, flow_s);
+        if(original)elevation_t.set(original);
     }
 }
 

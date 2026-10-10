@@ -2,6 +2,7 @@ import type {ThermalRuntime} from './thermal-runtime.ts';
 import Geometry from './geometry.ts';
 import {atlasTriangles} from './sphere.ts';
 import type {RoutingNetwork} from './terrain-water.ts';
+import {riverChannelField} from './river-channels.ts';
 
 export interface TerrainWaterView {rivers:Float32Array;riverTriangles:number;lakes:Float32Array;timeS:number;}
 /** Mean positive depth over a linear triangular bed (exact piecewise integral). */
@@ -74,9 +75,8 @@ export function terrainWaterView(rt:ThermalRuntime):TerrainWaterView|null {
     const w=rt.water,route=w?.routing,source=rt.terrainSource,m=rt.model;
     if(!route||!source?.mesh||!m)return null;
     const cached=cache.get(route);if(cached?.time===m.timeS)return cached.view;
-    const mesh=source.mesh,n=mesh.numTriangles,flow=new Float32Array(mesh.numSides),buffer=new Float32Array(63*mesh.numSolidTriangles);
-    for(let t=0;t<n;t++)if(route.receiverSide[t]>=0)flow[route.receiverSide[t]]=route.fluxM3S[t]/100;
-    const riverTriangles=Geometry.setRiverGeometry({mesh,s_downslope_t:route.receiverSide,flow_s:flow},5.5,{lg_min_flow:Math.log(.05),lg_river_width:Math.log(.08),max_width:.9,headwaters:true},buffer);
+    const mesh=source.mesh,n=mesh.numTriangles,buffer=new Float32Array(63*mesh.numSolidTriangles),channels=riverChannelField(rt);
+    const riverTriangles=Geometry.setRiverGeometry({mesh,s_downslope_t:channels.receiverSide,flow_s:channels.sides},5.5,{lg_min_flow:Math.log(3),lg_river_width:Math.log(.07),max_width:.85,headwaters:true},buffer);
     const geometry=lakeGeometry(rt),lakes=new Float32Array(geometry.vertexCount*5);let offset=0;
     for(let t=0;t<n;t++) {
         const k=route.network.cell[t];if(k<0)continue;

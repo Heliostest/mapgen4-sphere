@@ -1,0 +1,77 @@
+import FlatQueue from 'flatqueue';
+import type {Mesh} from './types.d.ts';
+import type {RoutingNetwork} from './terrain-water.ts';
+import type {ThermalRuntime} from './thermal-runtime.ts';
+import {directionToUV} from './sphere.ts';
+import {makeSurfaceGrid,surfaceCell} from './surface-grid.ts';
+
+export interface ChannelNetwork {receiverSide:Int32Array;order:Int32Array;fillDepthM:Float64Array;}
+/** Priority-flood drainage for a persistent *display* network. Only the derived
+ * spill levels are filled; imported heights and the water ledger are untouched.
+ * Reference: https://richdem.readthedocs.io/en/latest/depression_filling.html */
+export function channelNetwork(mesh:Mesh,network:RoutingNetwork):ChannelNetwork {
+    const n=mesh.numTriangles,receiverSide=new Int32Array(n).fill(-2),order=new Int32Array(n),level=new Float64Array(n),queue=new FlatQueue<number>();
+    for(let t=0;t<n;t++)if(network.cell[t]<0){receiverSide[t]=-1;queue.push(t,0);}
+    if(!queue.length) {
+        let sink=0;for(let t=1;t<n;t++)if(network.bedM[t]<network.bedM[sink])sink=t;
+        receiverSide[sink]=-1;level[sink]=network.bedM[sink];queue.push(sink,level[sink]);
+    }
+    let i=0;
+    while(queue.length) {
+        const t=queue.pop()!;order[i++]=t;
+        for(let j=0;j<3;j++) {
+            const s=3*t+j,to=mesh.t_outer_s(s);if(receiverSide[to]!==-2)continue;
+            receiverSide[to]=mesh.s_opposite_s(s);level[to]=Math.max(level[t],network.bedM[to]);queue.push(to,level[to]);
+        }
+    }
+    return {receiverSide,order,fillDepthM:level.map((h,t)=>Math.max(0,h-network.bedM[t]))};
+}
+
+/** Area-weighted upstream accumulation. No mesh-density-dependent flow units. */
+export function channelDischarge(mesh:Mesh,network:RoutingNetwork,channels:ChannelNetwork,runoffMmDay:ArrayLike<number>):Float64Array {
+    const flow=Float64Array.from(network.areaM2,(a,t)=>network.cell[t]<0?0:Math.max(0,runoffMmDay[t])*a/(1000*86400));
+    for(let i=channels.order.length-1;i>=0;i--) {
+        const t=channels.order[i],s=channels.receiverSide[t];
+        if(s>=0)flow[mesh.t_outer_s(s)]+=flow[t];
+    }
+    return flow;
+}
+
+type Reference={channels:ChannelNetwork;annualRunoffMmDay:Float64Array;surfaceIndex:Int32Array;};
+const references=new WeakMap<RoutingNetwork,Reference>();
+/** Estimated channel widths combine a climatic reference with current wetness,
+ * liquid rainfall and melt. They are not the finite-volume transfer diagnostic. */
+export function riverChannelField(rt:ThermalRuntime) {
+    const w=rt.water!,network=w.routing!.network,mesh=rt.terrainSource!.mesh!,model=rt.model!,n=mesh.numTriangles;
+    let reference=references.get(network);
+    if(!reference) {
+        const annualRunoffMmDay=new Float64Array(n),surfaceIndex=new Int32Array(n),grid=makeSurfaceGrid();
+        for(let t=0;t<n;t++)if(network.cell[t]>=0) {
+            const uv=directionToUV(mesh.xyz_t.subarray(3*t,3*t+3));
+            surfaceIndex[t]=surfaceCell(grid,...uv);
+            const climate=rt.sampleSurface?.(...uv);
+            // Illustrative runoff coefficient, not a calibrated discharge model.
+            annualRunoffMmDay[t]=.35*(climate?climate.annualRainMm/365.2425:w.precipitationKgM2S[network.cell[t]]*86400);
+        }
+        reference={channels:channelNetwork(mesh,network),annualRunoffMmDay,surfaceIndex};references.set(network,reference);
+    }
+    const runoff=new Float64Array(n),receiverSide=reference.channels.receiverSide.slice();
+    for(let t=0;t<n;t++) {
+        const k=network.cell[t];if(k<0)continue;
+        const land=Math.max(1e-9,w.land[k]);
+        const soil=Math.max(0,Math.min(1,w.soilKgM2[k]/(land*w.config.soilCapacityKgM2)));
+        const liquid=Math.max(0,Math.min(1,(model.temperatureK[k]-271.15)/4));
+        const rain=w.precipitationKgM2S[k]*86400*.35*liquid,melt=w.meltKgM2S[k]*86400/land;
+        runoff[t]=.65*reference.annualRunoffMmDay[t]*soil*liquid+.35*rain+melt;
+    }
+    const flowM3S=channelDischarge(mesh,network,{...reference.channels,receiverSide},runoff);
+    const sides=new Float32Array(mesh.numSides),surface=rt.surfaceState?.();
+    for(let t=0;t<n;t++)if(receiverSide[t]>=0 && network.cell[t]>=0) {
+        const k=reference.surfaceIndex[t];
+        // Snow/grounded ice visually cover channels; flow estimates upstream
+        // still contribute downstream. Never paint blue rivers over an ice cap.
+        if(surface&&((surface.landIceKgM2?.[k]??0)>917||(surface.snowMm?.[k]??0)>30))continue;
+        sides[receiverSide[t]]=flowM3S[t]/100;
+    }
+    return {receiverSide,flowM3S,sides};
+}
