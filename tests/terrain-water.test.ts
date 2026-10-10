@@ -41,6 +41,78 @@ function fixture() {
     const water={grid:{count:2},cellAreaM2:100,surfaceKgM2:new Float64Array([1000,0]),dischargeM3S:new Float64Array(2),oceanGlobalKgM2:0};
     return {network,water,route:new TerrainWater(network,water)};
 }
+
+test('observed endorheic catchments terminate internally without blocking real overflow',()=>{
+    const {mesh}=makeSphereMesh(4,35,12345);
+    const neighbors=Array.from({length:4},(_,t)=>[0,1,2].map(j=>({to:mesh.t_outer_s(3*t+j),side:3*t+j,sillM:5,distanceM:10})));
+    const network:RoutingNetwork={cell:new Int32Array([-1,0,1,2]),areaM2:new Float64Array(4).fill(100),bedM:new Float64Array([0,1,2,3]),neighbors,
+        endorheic:new Int32Array([0,7,7,7]),terminal:new Uint8Array([0,1,0,0])};
+    const saved=network.bedM.slice(),channels=channelNetwork(mesh,network);
+    assert.equal(channels.receiverSide[1],-1,'The mapped closed terminal must not be virtually connected to the sea');
+    for(const start of [2,3]){let t=start;for(let i=0;i<4&&channels.receiverSide[t]>=0;i++)t=mesh.t_outer_s(channels.receiverSide[t]);assert.equal(t,1);}
+    const flow=channelDischarge(mesh,network,channels,new Float64Array(4).fill(864000));
+    assert.equal(flow[0],0);assert.equal(flow[1],3);assert.deepEqual(network.bedM,saved);
+    const water={grid:{count:3},cellAreaM2:100,surfaceKgM2:new Float64Array([4000,0,0]),dischargeM3S:new Float64Array(3),oceanGlobalKgM2:0};
+    // Physical edges express the ocean as -1; metadata never changes their sill.
+    network.neighbors=neighbors.map(edges=>edges.map(e=>({...e,to:network.cell[e.to]<0?-1:e.to})));
+    const route=new TerrainWater(network,water);route.route(water,1,1);assert.equal(water.oceanGlobalKgM2,0);
+    water.surfaceKgM2[0]=8000;route.route(water,1,1);assert.ok(water.oceanGlobalKgM2>0);
+});
+
+test('reference flood uses real edge sills instead of an imaginary low mesh connection',()=>{
+    const {mesh}=makeSphereMesh(4,35,12345),neighbors=Array.from({length:4},(_,t)=>[0,1,2].map(j=>({to:mesh.t_outer_s(3*t+j),side:3*t+j,sillM:20,distanceM:10})));
+    const network:RoutingNetwork={cell:new Int32Array([-1,0,1,2]),areaM2:new Float64Array(4).fill(100),bedM:new Float64Array([0,1,2,3]),neighbors};
+    const channels=channelNetwork(mesh,network);
+    assert.equal(channels.fillDepthM[1],19,'Flood levels must include the same saddle as the real reservoir');
+});
+
+test('nested mapped domains and flat saddle plateaus terminate without cycles after coast edits',()=>{
+    const {mesh}=makeSphereMesh(120,35,12345),n=mesh.numTriangles;
+    const network:RoutingNetwork={cell:new Int32Array(n).fill(0),areaM2:new Float64Array(n).fill(100),bedM:new Float64Array(n).fill(10),
+        neighbors:Array.from({length:n},(_,t)=>[0,1,2].map(j=>({to:mesh.t_outer_s(3*t+j),side:3*t+j,sillM:10,distanceM:10}))),
+        endorheic:Int32Array.from({length:n},(_,t)=>mesh.xyz_t[3*t]>.5?7:mesh.xyz_t[3*t]>.2?8:0),terminal:new Uint8Array(n)};
+    network.cell[0]=-1;network.bedM[0]=0;
+    const verify=()=>{
+        const channels=channelNetwork(mesh,network),rank=new Int32Array(n);
+        channels.order.forEach((t,i)=>rank[t]=i);
+        assert.equal(new Set(channels.order).size,n);
+        for(let t=0;t<n;t++) {
+            const s=channels.receiverSide[t];if(s<0)continue;
+            const to=mesh.t_outer_s(s);assert.ok(rank[to]<rank[t],'Tied flood levels must point to an earlier settled parent');
+            if(network.cell[t]>=0&&network.endorheic![t]>0)assert.equal(network.endorheic![to],network.endorheic![t]);
+        }
+    };
+    verify();
+    for(let t=0;t<n;t++)if(network.endorheic![t]===8&&mesh.xyz_t[3*t+1]>0)network.cell[t]=-1;
+    verify(); // A newly cut coastline can split the terminal domain.
+});
+
+test('confirmed below-sea-level inland lake is a signed finite reservoir, never a global ocean outlet',()=>{
+    const {mesh}=makeSphereMesh(4,35,12345),elevation=new Float32Array(mesh.numRegions+mesh.numTriangles).fill(.01);
+    elevation[mesh.numRegions+1]=-.1;
+    const lake=new Int32Array([0,1,0,0]),grid=makeThermalGrid(8,4);
+    const n=terrainRoutingNetwork(mesh,elevation,grid,6371008.4,10000,undefined,lake,4000);
+    assert.ok(n.cell[1]>=0);assert.ok(Math.abs(n.bedM[1]+400)<1e-4);
+    const channels=channelNetwork(mesh,n);assert.equal(channels.receiverSide[1],-1);
+    assert.equal(elevation[mesh.numRegions+1],Math.fround(-.1));
+    elevation[mesh.numRegions+1]=.1;
+    const edited=terrainRoutingNetwork(mesh,elevation,grid,6371008.4,10000,undefined,lake,4000);
+    assert.equal(edited.inlandLakeId![1],0,'An edited positive bed must leave the below-sea lake classification');
+});
+
+test('inland lake evaporation draws only its finite surface water and can dry without ocean subsidy',()=>{
+    const grid=makeThermalGrid(4,2),zeros=new Float64Array(grid.count),temperature=new Float64Array(grid.count).fill(310),land=new Float64Array(grid.count);
+    const reference={temperatureK:temperature,radiationScale:zeros.map(()=>1),absorbedWm2:zeros,windEastMps:zeros,windNorthMps:zeros,rainMmDay:zeros,evaporationMmDay:zeros,soilFraction:zeros,humidityFraction:zeros,surfaceMm:zeros};
+    const w=new WaterModel(grid,6371008.4,land,zeros,temperature,{...DEFAULT_WATER,windMps:0,moistureDiffusivityM2s:0},reference);
+    const area=w.cellAreaM2,network:RoutingNetwork={cell:Int32Array.from({length:grid.count},(_,i)=>i),areaM2:zeros.map(()=>area),bedM:zeros.map(()=>-100),neighbors:Array.from(zeros,()=>[]),inlandLakeId:new Int32Array(grid.count).fill(1)};
+    w.attachRouting(network);const ocean=w.oceanGlobalKgM2,total=w.diagnostics().totalMm;
+    w.step(1800,temperature,zeros.map(()=>500));assert.equal(w.oceanGlobalKgM2,ocean);assert.equal(w.evaporationKgM2S[0],0,'A dry mapped lake cannot tap the global ocean');
+    // Controlled initial inventory transfer, explicitly sourced from the ocean.
+    w.surfaceKgM2[0]=2;w.oceanGlobalKgM2-=2/grid.count;
+    for(let i=0;i<100;i++)w.step(1800,temperature,zeros.map(()=>500));
+    assert.equal(w.surfaceKgM2[0],0);assert.ok(w.atmosphereKgM2[0]>0);assert.equal(w.oceanGlobalKgM2,ocean-2/grid.count);
+    assert.ok(Math.abs(w.diagnostics().totalMm-total)<1e-9);assert.ok(w.routing!.volumeM3.every(v=>v===0));
+});
 const total=(w:ReturnType<typeof fixture>['water'])=>w.oceanGlobalKgM2+(w.surfaceKgM2[0]+w.surfaceKgM2[1])/2;
 
 test('unified surface has climate-fed channels before Play without inventing reservoir water',()=>{
@@ -58,6 +130,14 @@ test('unified surface has climate-fed channels before Play without inventing res
     assert.ok(view.riverTriangles>0,'Generated climate must provide continuous reference rivers at day zero');
     assert.deepEqual(w.checkpoint(),before,'Rendering must not add or transfer reservoir water');
     assert.equal(rt.model!.timeS,0);
+    const hidden=terrainWaterView(rt,{minFlowM3S:1e12,widthCoefficient:.025,maxWidthRatio:.35,enabled:true})!;
+    assert.equal(hidden.riverTriangles,0,'The fused threshold must take effect at the same paused instant');
+    const thin=terrainWaterView(rt,{minFlowM3S:300,widthCoefficient:.005,maxWidthRatio:.35,enabled:true})!;
+    assert.ok(thin.riverTriangles>0);assert.notDeepEqual(thin.rivers,view.rivers,'The fused width control must change actual geometry');
+    const capped=terrainWaterView(rt,{minFlowM3S:300,widthCoefficient:.07,maxWidthRatio:.01})!;
+    assert.notDeepEqual(capped.rivers,view.rivers,'The edge-length cap changes geometry independently of the width coefficient');
+    assert.equal(terrainWaterView(rt,{enabled:false})!.riverTriangles,0);
+    assert.deepEqual(w.checkpoint(),before,'Every display option leaves the real inventory and paths untouched');
     const channels=riverChannelField(rt);
     for(let t=0;t<mesh.numTriangles;t++)if(channels.receiverSide[t]>=0)assert.ok(channels.flowM3S[mesh.t_outer_s(channels.receiverSide[t])]+1e-9>=channels.flowM3S[t]);
     const restored=ThermalRuntime.fromSnapshot(rt.snapshot(),DEFAULT_PLANET,DEFAULT_ORBIT);
@@ -66,6 +146,7 @@ test('unified surface has climate-fed channels before Play without inventing res
     const saved=view.rivers.slice();
     w.precipitationKgM2S.fill(0);w.meltKgM2S.fill(0);w.soilKgM2.fill(0);w.surfaceKgM2.fill(0);rt.model!.steps++;
     assert.equal(terrainWaterView(rt)!.riverTriangles,0,'A dry world cannot retain decorative blue rivers');
+    assert.equal(terrainWaterView(rt,{minFlowM3S:0})!.riverTriangles,0,'Zero threshold still requires strictly positive water flow');
     assert.deepEqual(view.rivers,saved,'Previously queued frames remain immutable');
     w.meltKgM2S.fill(.005);rt.model!.temperatureK.fill(280);rt.model!.steps++;
     assert.ok(terrainWaterView(rt)!.riverTriangles>0,'Melt must restore channel flow without rainfall');

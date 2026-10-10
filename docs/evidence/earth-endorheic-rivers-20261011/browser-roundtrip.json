@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "sameRuntime": true,
+  "sameTerrainAndDrainage": true,
+  "sameView": true,
+  "clockDays": 9.844066666642824,
+  "modelDays": 9.833333333333334,
+  "steps": 472,
+  "sha256": [
+    "0cebb62e5ae33969978077c7bd6a14fee05fa7957723652c8f9ac7da28bd6d1c",
+    "933fb250259c987d91bb0c4bef8c9252737d5da2f2fd530855545bb4f83139e7"
+  ],
+  "rawDifferentFields": [],
+  "display": {
+    "sphere_radius": 300,
+    "zoom": 0.26,
+    "x": 305,
+    "y": 600,
+    "light_angle_deg": 80,
+    "slope": 2,
+    "flat": 2.5,
+    "ambient": 0.25,
+    "overhead": 60,
+    "tilt_deg": 0,
+    "rotate_deg": 0,
+    "mountain_height": 5.651,
+    "outline_depth": 1,
+    "outline_strength": 3,
+    "outline_threshold": 0,
+    "outline_coast": 0,
+    "outline_water": 3,
+    "biome_colors": 1,
+    "fused_rivers": 1,
+    "fused_river_min_flow": 1000,
+    "fused_river_width": 0.025,
+    "fused_river_max_width": 0.01
+  },
+  "water": {
+    "shelfIceMm": 1040.6982230206804,
+    "landIceMm": 49438.58173231942,
+    "snowMm": 10.301478178568988,
+    "iceMm": 229.6120213056002,
+    "meltMmDay": 0.01961059624020689,
+    "totalMm": 739407.3164896934,
+    "residualMm": -3.3760443329811096e-9,
+    "atmosphereMm": 16.37247431680618,
+    "soilMm": 5.95301029989391,
+    "surfaceMm": 1.6780381322039202,
+    "oceanMm": 688664.1195121203,
+    "rainMmDay": 1.1686013121423158,
+    "evaporationMmDay": 1.2437749592225393,
+    "maxDischargeM3S": 41280.941745997254
+  },
+  "energy": {
+    "energyResidualJm2": -0.0002054274082183838,
+    "iceFraction": 0.17852696985078112,
+    "snowFraction": 0.3230599645341984,
+    "albedo": 0.3850850792960292,
+    "maxCurrentMps": 0.05755860717397768
+  },
+  "note": "Real Chrome Play/Pause and simulation-save downloads; same-origin scene loader restored the first file, then simulation-save downloaded the second. No file-URL permission was enabled."
+}

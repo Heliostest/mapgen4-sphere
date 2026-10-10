@@ -1,0 +1,24 @@
+{
+    "originalAuditSha256":  "ce2ac1f5575a0da6d3b9b1e6c3161615a4f4c983ac35aae7127292473d8e27f5",
+    "reproducedAuditSha256":  "ce2ac1f5575a0da6d3b9b1e6c3161615a4f4c983ac35aae7127292473d8e27f5",
+    "exactByteReproduction":  true,
+    "independentOutput":  "build/endorheic/independent/audit.json",
+    "inputSha256":  "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+    "finalGpuResult":  "gpu-after.json",
+    "gpuResultSha256":  "89ce5e7b77af60b01dde62b2bef495c7a41dd43e4c3a2664b016ab60aaad6bcb",
+    "physicsLimitations":  [
+                               "Lake thermal state remains in the existing ocean thermal share.",
+                               "No independent lake-ice forecast.",
+                               "Reference channel discharge never supplies finite water inventory.",
+                               "Controlled overlay pressure flux is artificial test input."
+                           ],
+    "sourceSha256":  {
+                         "water.ts":  "eb0c804a200cddfd2ac786e964e714ed99b2fd044714142ffff1288423b0a779",
+                         "tests/endorheic-render.ts":  "1cf6d79a74c38a62ddb7d75695537556d3a58c62ae01b027be33161e76964f60",
+                         "river-channels.ts":  "5896d231fa55abd9cc6ce4893f0f37f0a0f8d632622fa4d72f9aaee5aea5b811",
+                         "terrain-water.ts":  "55343cf1b024386bb1b24cf96f516be262e2f3ab0defe18dc9ab98bbcd844d95",
+                         "sphere-view.ts":  "07542f7c18a900748e5a1158cb0f44e37b1dc7534630e32ba774dcadd8e3d187",
+                         "render.ts":  "d1be233462f2893ee8732dd3b1c95a4b5895bd0c313b3541994d1e41f4032ffe",
+                         "terrain-water-view.ts":  "ab6068f171aa8ffdcdec46604f0bdc3e12ff043fc2dbb98fda25906b6f9ff50f"
+                     }
+}

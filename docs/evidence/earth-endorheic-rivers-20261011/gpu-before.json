@@ -1,0 +1,20 @@
+{
+  "status": "FAIL",
+  "page": "http://localhost:8002/tests/endorheic-render.html",
+  "browser": "actual Chrome extension browser",
+  "fixtureTriangles": 476,
+  "figures": [
+    {"label":"零库存：负高程干床","blue":15725,"volumeM3":0,"riverTriangles":0},
+    {"label":"少量蓄水：湖岸在盆底","blue":726015,"volumeM3":4119165496440059,"riverTriangles":0},
+    {"label":"更多蓄水：湖岸扩大","blue":2044056,"volumeM3":52076270174493370,"riverTriangles":0},
+    {"label":"排干：恢复干床","blue":15725,"volumeM3":0,"riverTriangles":0}
+  ],
+  "gpuSignedBed": {"pass":false,"negativePixels":0,"minimumShaderElevation":0,"format":6403,"type":5131},
+  "gpuNegativeBedLighting": {"pass":false,"changedNegativePixels":0},
+  "zeroThresholdZeroFlow": {"pass":true,"riverTriangles":[0,0,0,0]},
+  "dualOverlay": {"pass":true,"riverTriangles":932,"uploadBytes":78288,"bufferBytes":239904},
+  "finiteNetwork": {"pass":true,"minimumBedM":-877.8260871767998},
+  "renderDoesNotMutateFineVolume": true,
+  "webglError": 0,
+  "notes": ["GPU negative geometry and slope lighting fail before shader repair.","Whole-frame blue count also sees unclassified negative corner strips at the source triangle-center mask boundary; later fixture must classify those strips or exclude them explicitly, not silently declare dry-blue failure repaired.","Artificial test volumes are not observed lake inventory or rainfall forecast."]
+}

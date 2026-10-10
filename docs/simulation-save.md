@@ -8,6 +8,10 @@ The loader constructs an independent model and generates candidate terrain in a 
 
 **Download terrain JSON** remains available for the smaller terrain-only version-1 format (8 MiB limit). It keeps its earlier behavior: loading reconstructs terrain, pauses and switches climate off. Unapplied geological previews and undo stacks are intentionally excluded from both file formats; the controls explain this. Apply erosion before saving to retain its terrain effects.
 
+Optional `terrain.drainage` holds a source string and mesh-triangle `basinId`, `terminal` and optional `inlandLakeId` arrays. IDs are nonnegative Int32-compatible integers; terminal values are 0/1 and require a positive basin ID. The decoder checks lengths and values against the saved mesh. Files without these fields remain valid. Derived reference channels and lake vertex masks rebuild from the restored terrain; prognostic water volumes are still in the existing runtime ledger.
+
+Render parameters `fused_rivers`, `fused_river_min_flow` (m³/s), `fused_river_width` and `fused_river_max_width` (edge-length ratio) roundtrip independently of physical routing. An older document that omits them restores enabled / 300 / 0.07 / 0.85. [Earth browser roundtrip](evidence/earth-endorheic-rivers-20261011/browser-roundtrip.json) checks actual evolved downloads against complete restored runtime, terrain/drainage and view fields.
+
 ## Acceptance, 2026-10-09
 
 - 110 Node tests, TypeScript check and production build passed.

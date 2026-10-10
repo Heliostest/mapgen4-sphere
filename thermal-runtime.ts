@@ -142,7 +142,9 @@ export class ThermalRuntime {
     private attachRouting(planet:PlanetConfig) {
         const source=this.terrainSource;
         if(!source?.mesh)throw new Error('Terrain water requires the authored mesh');
-        this.water!.attachRouting(terrainRoutingNetwork(source.mesh,source.elevation,this.grid,planet.radiusM,planet.reliefM,source.quadElements));
+        const network=terrainRoutingNetwork(source.mesh,source.elevation,this.grid,planet.radiusM,planet.reliefM,source.quadElements,source.drainage?.inlandLakeId,planet.oceanDepthM);
+        if(source.drainage){network.endorheic=Int32Array.from(source.drainage.basinId);network.terminal=Uint8Array.from(source.drainage.terminal);}
+        this.water!.attachRouting(network);
     }
     invalidate() {this.surfaceReservoirInitial=null;this.shelves=null;this.localShelfLand=this.localShelfSea=this.surfaceLandTemperature=this.surfaceOceanTemperature=null;this.environment=null;this.vegetation=null;this.initialSnow=this.initialIce=this.localSnowSeed=this.localIceSeed=this.localSnow=this.localIce=this.initialLandIce=this.localLandIceSeed=this.localLandIce=null;this.key='';this.model=null;this.water=null;this.presented=null;this.texture=null;this.waterTexture=null;this.wind=null;this.surfaceTexture=null;this.surfaceReference=null;this.initialSoil=null;this.initialTemperature=null;this.surfaceInitial=null;this.surfaceTemperature=null;this.surfaceSoil=null;this.iceEnergy=null;}
     setTerrain(land:Float64Array,height:Float64Array=new Float64Array(this.grid.count),source?:SurfaceTerrain) {

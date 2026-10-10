@@ -55,10 +55,13 @@ export const planet_fragment=`
         vec4 cover=texture(u_surface,uv);
         // Use fine terrain for the coastline, never the coarse climate land fraction.
         vec3 color=elevation>0.0 ? cover.rgb : mix(base,vec3(0.79,0.88,0.90),cover.a);
-        if(u_terrain_water && elevation>0.0) {
+        if(u_terrain_water) {
             vec4 lake=texture(u_lakes,vec2(uv.x,latitude));
-            color=mix(color,vec3(0.24,0.40,0.28),0.38*lake.g);
-            color=mix(color,vec3(0.12,0.39,0.52),lake.r);
+            if(lake.b>0.5)color=vec3(0.72,0.64,0.46); // finite inland bed, no invented sea surface
+            if(elevation>0.0||lake.b>0.5) {
+                color=mix(color,vec3(0.24,0.40,0.28),0.38*lake.g);
+                color=mix(color,vec3(0.12,0.39,0.52),lake.r);
+            }
         }
         return color;
     }

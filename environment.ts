@@ -103,7 +103,7 @@ export class EnvironmentModel {
             w.seaIceKgM2[i]-=ice;w.oceanGlobalKgM2+=ice/n;
             t-=ice*LF/c;this.heatJm2[i]-=ice*LF;
             // Mixed cells share one temperature; limit freezing by their wet area.
-            freeze[i]=Math.max(0,(SEA_FREEZE_K-t)*c/LF)*(1-w.land[i]);freezeRequest+=freeze[i]/n;
+            freeze[i]=Math.max(0,(SEA_FREEZE_K-t)*c/LF)*(1-w.land[i]-w.inlandWaterFraction[i]);freezeRequest+=freeze[i]/n;
         }
         const fraction=freezeRequest>0?Math.min(1,w.oceanGlobalKgM2/freezeRequest):0;
         w.oceanGlobalKgM2-=freezeRequest*fraction;
@@ -131,7 +131,8 @@ export class EnvironmentModel {
                 w.seaIceKgM2[i]-=ice;w.oceanGlobalKgM2+=ice/n;ot-=ice*LF/oc;this.oceanHeatJm2[i]-=ice*LF;
                 // oc already contains wet fraction: applying it again would
                 // leave a coastal ocean colder than its freezing boundary.
-                freeze[i]=Math.max(0,(SEA_FREEZE_K-ot)*oc/LF);freezeRequest+=freeze[i]/n;
+                const wet=1-w.land[i],open=wet>0?(wet-w.inlandWaterFraction[i])/wet:0;
+                freeze[i]=Math.max(0,(SEA_FREEZE_K-ot)*oc/LF)*open;freezeRequest+=freeze[i]/n;
             }
         }
         const fraction=freezeRequest>0?Math.min(1,w.oceanGlobalKgM2/freezeRequest):0;

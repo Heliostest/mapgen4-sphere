@@ -254,8 +254,10 @@ const frag_lakes = `
     out vec4 out_fragcolor;
     void main(){
         float depth=v_water.y-v_water.x;
-        float lake=smoothstep(0.0,max(0.02,fwidth(depth)),depth)*step(0.001,v_water.x);
-        out_fragcolor=vec4(lake,v_water.z,0,1);
+        float inland=step(v_water.z,-0.5);
+        float lake=smoothstep(0.0,max(0.02,fwidth(depth)),depth)*max(inland,step(0.001,v_water.x));
+        float wet=inland>0.5?-1.0-v_water.z:v_water.z;
+        out_fragcolor=vec4(lake,wet,inland,1);
     }`;
 
 const vert_river = `
@@ -331,14 +333,24 @@ const vert_land = `
 export const sphere_vertex = `
     uniform float u_mountain_height;
     uniform float u_sphere_radius;
+    uniform bool u_finite_inland;
+    uniform float u_ocean_depth_ratio;
+    in float a_inland;
     vec3 sphere_direction(vec2 xy) {
         float lon = (xy.x / 1000.0 - 0.5) * 6.28318530718;
         float lat = (0.5 - xy.y / 1000.0) * 3.14159265359;
         return vec3(cos(lat)*sin(lon), sin(lat), cos(lat)*cos(lon));
     }
+    float sphere_visible_elevation(vec2 xy, float e) {
+        // Confirmed inland beds remain visible when their finite store dries.
+        // Marine water and ice retain the original level base sphere.
+        if(e<0.0 && u_finite_inland && a_inland>0.5)
+            return e*u_ocean_depth_ratio;
+        return max(0.0,e);
+    }
     vec3 sphere_position(vec2 xy, float e) {
         vec3 n=sphere_direction(xy);
-        float height=u_mountain_height*max(0.0,e);
+        float height=u_mountain_height*sphere_visible_elevation(xy,e);
         return n*(u_sphere_radius+height);
     }
 `;
@@ -354,7 +366,7 @@ const vert_depth = `
         vec4 pos = u_projection * vec4(sphere_position(a_xy, a_em.x), 1);
         // The outline height buffer describes visible geometry. The ocean is
         // on the base sphere, so its bathymetry must not create ridge ink.
-        v_z = max(0.0, a_em.x);
+        v_z = sphere_visible_elevation(a_xy, a_em.x);
         gl_Position = pos;
     }`;
 
@@ -376,7 +388,7 @@ const vert_drape = `
     out float v_z;
     void main() {
         v_em = a_em;
-        v_z = max(0.0, a_em.x); // sea stays on the base sphere
+        v_z = sphere_visible_elevation(a_xy, a_em.x);
         vec4 pos = u_projection * vec4(sphere_position(a_xy, a_em.x), 1);
         v_uv = a_xy / 1000.0;
         v_xy = (1.0 + pos.xy) * 0.5;
@@ -393,6 +405,7 @@ const frag_drape = `
     uniform vec2 u_light_angle, u_inverse_texture_size, u_inverse_screen_size;
     uniform mat4 u_rotation;
     uniform float u_sphere_radius;
+    uniform float u_ocean_depth_ratio;
     uniform float u_slope, u_flat,
                   u_ambient, u_overhead,
                   u_outline_strength, u_outline_coast, u_outline_water,
@@ -408,6 +421,7 @@ const frag_drape = `
     void main() {
         vec2 sample_offset = 0.5 * u_inverse_texture_size;
         vec2 pos = v_uv + sample_offset;
+        bool inland = u_terrain_water && texture(u_lakes,pos).b>0.5;
         vec2 dx = vec2(u_inverse_texture_size.x, 0),
              dy = vec2(0, u_inverse_texture_size.y);
 
@@ -424,11 +438,12 @@ const frag_drape = `
         float lon = (v_uv.x-0.5)*6.28318530718;
         float metric_y = 3.14159265359 * u_sphere_radius / 1000.0;
         float metric_x = 2.0 * metric_y * max(0.035, cos(lat));
-        vec3 slope_vector = normalize(vec3((zS-zN)/(2.0*dy.y*metric_y),
-                                          (zE-zW)/(2.0*dx.x*metric_x), max(0.001,u_overhead)));
+        float bed_scale = inland && v_em.x<0.0 ? u_ocean_depth_ratio : 1.0;
+        vec3 slope_vector = normalize(vec3(bed_scale*(zS-zN)/(2.0*dy.y*metric_y),
+                                          bed_scale*(zE-zW)/(2.0*dx.x*metric_x), max(0.001,u_overhead)));
         // Use the same fine-mesh coastline as surface_color, even when atlas
         // filtering includes a neighboring land texel or partial ice cover.
-        if(v_em.x<=0.0)slope_vector=vec3(0,0,1);
+        if(v_em.x<=0.0&&!inland)slope_vector=vec3(0,0,1);
         vec3 east = mat3(u_rotation)*vec3(cos(lon),0,-sin(lon));
         vec3 south = mat3(u_rotation)*vec3(sin(lat)*sin(lon),-cos(lat),sin(lat)*cos(lon));
         vec2 screen_light = vec2(u_light_angle.y,-u_light_angle.x);
@@ -438,7 +453,7 @@ const frag_drape = `
         float light = u_ambient + max(0.0, dot(light_vector, slope_vector));
         vec3 neutral_biome_color = neutral_land_biome;
         vec4 water_color = texture(u_water, pos);
-        if (z >= 0.5 && v_z >= 0.0) {
+        if ((z >= 0.5 && v_z >= 0.0) || inland) {
             // on land, lower the elevation around rivers
             z -= u_outline_water / 256.0 * (1.0 - water_color.a);
         } else {
@@ -448,7 +463,7 @@ const frag_drape = `
         vec3 biome_color = texture(u_colormap, vec2(z, v_em.y)).rgb;
         water_color = mix(vec4(neutral_water_biome * (1.2 - water_color.a), water_color.a), water_color, u_biome_colors);
         biome_color = mix(neutral_biome_color, biome_color, u_biome_colors);
-        if (v_z < 0.0) {
+        if (v_z < 0.0 && !inland) {
             // at the exterior boundary, we'll draw soil or water underground
             float land_or_water = smoothstep(0.0, -0.001, v_em.x - v_z);
             vec3 soil_color = vec3(0.4, 0.3, 0.2);
@@ -644,7 +659,7 @@ export default class Renderer {
 
         Geometry.setMeshGeometry(mesh, this.a_quad_xy);
 
-        this.atlas = new Float32Array(this.quad_elements_length * 2 * 4);
+        this.atlas = new Float32Array(this.quad_elements_length * 2 * 5);
         this.pickPositions = new Float32Array(3*(mesh.numRegions+mesh.numTriangles));
         this.pickDirections = new Float32Array(this.pickPositions.length);
         this.pickDirections.set(mesh.xyz_r);
@@ -652,7 +667,8 @@ export default class Renderer {
         this.buffer_quad_xy = this.webgl.createBuffer({update: 'dynamic', data: this.atlas});
 
         this.buffer_fullscreen = this.webgl.createBuffer({update: 'static', data: new Float32Array([-2, 0, 0, -2, 2, 2])});
-        this.buffer_river_xyww = this.webgl.createBuffer({update: 'dynamic', data: this.a_river_xyww});
+        // Reference channels plus independently budgeted instantaneous flow.
+        this.buffer_river_xyww = this.webgl.createBuffer({update: 'dynamic', data: new Float32Array(2*this.a_river_xyww.length)});
         this.buffer_lakes=this.webgl.createBuffer({update:'dynamic',data:new Float32Array(mesh.numSolidTriangles*180)});
 
         this.texture_colormap = this.webgl.createTexture({data: colormap.data, width: colormap.width, height: colormap.height, filter: 'nearest'});
@@ -693,16 +709,18 @@ export default class Renderer {
             this.buffer_lakes.vertexAttribPointer(program.a_water,3,gl.FLOAT,false,20,8);
         });
         this.program_land  = this.webgl.createProgram('land', vert_land,  frag_land, (gl, program) => {
-            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 16, 0);
-            this.buffer_quad_xy.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 16, 8);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 20, 0);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 20, 8);
         });
         this.program_depth = this.webgl.createProgram('depth', vert_depth, frag_depth, (gl, program) => {
-            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 16, 0);
-            this.buffer_quad_xy.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 16, 8);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 20, 0);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 20, 8);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_inland, 1, gl.FLOAT, false, 20, 16);
         });
         this.program_drape = this.webgl.createProgram('drape', vert_drape, frag_drape, (gl, program) => {
-            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 16, 0);
-            this.buffer_quad_xy.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 16, 8);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_xy, 2, gl.FLOAT, false, 20, 0);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_em, 2, gl.FLOAT, false, 20, 8);
+            this.buffer_quad_xy.vertexAttribPointer(program.a_inland, 1, gl.FLOAT, false, 20, 16);
         });
         this.program_final = this.webgl.createProgram('final', vert_final, frag_final, (gl, program) => {
             this.buffer_fullscreen.vertexAttribPointer(program.a_uv, 2, gl.FLOAT, false, 0, 0);
@@ -742,7 +760,10 @@ export default class Renderer {
         }
         const terrainWater=view.terrainWater??null;
         if(terrainWater!==this.activeTerrainWater) {
+            const verticesChanged=terrainWater?.inlandVertices!==this.activeTerrainWater?.inlandVertices;
+            if(terrainWater?.oceanDepthRatio!==this.activeTerrainWater?.oceanDepthRatio)this.pickingDirty=true;
             this.activeTerrainWater=terrainWater;
+            if(verticesChanged)this.rebuildSurface();
             this.buffer_river_xyww.subdata(0,terrainWater?.rivers??this.originalRivers);
             if(terrainWater)this.buffer_lakes.subdata(0,terrainWater.lakes);
             this.mapDirty=true;
@@ -780,8 +801,8 @@ export default class Renderer {
         // Own immutable source copies: live buffers can be detached while the
         // worker generates a new map. Preview must never write into them.
         this.sourceElevation=this.a_quad_em.slice();this.pickElements=this.quad_elements.slice();
-        this.rebuildSurface();
-        this.originalRivers=this.a_river_xyww.slice(0,7*3*this.numRiverTriangles);this.activeTerrainWater=null;
+        this.activeTerrainWater=null;this.rebuildSurface();
+        this.originalRivers=this.a_river_xyww.slice(0,7*3*this.numRiverTriangles);
         this.buffer_river_xyww.subdata(0,this.originalRivers);
     }
 
@@ -796,12 +817,12 @@ export default class Renderer {
             const points=[];
             for (let j=0;j<3;j++) {
                 const v=this.pickElements[i+j];
-                points.push([this.a_quad_xy[2*v],this.a_quad_xy[2*v+1],this.pickElevation[2*v],this.pickElevation[2*v+1]]);
+                points.push([this.a_quad_xy[2*v],this.a_quad_xy[2*v+1],this.pickElevation[2*v],this.pickElevation[2*v+1],this.activeTerrainWater?.inlandVertices?.[v]??0]);
             }
             for (const tri of atlasTriangles(points)) for (const v of tri) for (const value of v) this.atlas[p++]=value;
         }
         if (p>this.atlas.length) throw new Error('Terrain atlas buffer overflow');
-        this.atlasVertexCount=p/4;
+        this.atlasVertexCount=p/5;
         this.buffer_quad_xy.subdata(0,this.atlas.subarray(0,p));
         this.mapDirty=true;this.pickingDirty=true;
     }
@@ -811,7 +832,8 @@ export default class Renderer {
         const {numRegions,xyz_r,xyz_t}=this.mesh;
         for (let v=0;v<this.pickPositions.length/3;v++) {
             const a=v<numRegions ? xyz_r : xyz_t, index=v<numRegions ? v : v-numRegions;
-            const p=terrainPosition(a.subarray(3*index,3*index+3),this.pickElevation[2*v],height,sphereRadius);
+            const ratio=this.activeTerrainWater?.inlandVertices?.[v]?(this.activeTerrainWater.oceanDepthRatio??1):0;
+            const p=terrainPosition(a.subarray(3*index,3*index+3),this.pickElevation[2*v],height,sphereRadius,ratio);
             this.pickPositions.set(p,3*v);
         }
         this.pickingDirty=false;this.pickedHeight=height;this.pickedRadius=sphereRadius;
@@ -869,6 +891,8 @@ export default class Renderer {
             gl.uniformMatrix4fv(program.u_projection, false, this.projection);
             gl.uniform1f(program.u_mountain_height, renderParam.mountain_height);
             gl.uniform1f(program.u_sphere_radius, renderParam.sphere_radius ?? SPHERE_RADIUS);
+            gl.uniform1i(program.u_finite_inland,this.activeTerrainWater?1:0);
+            gl.uniform1f(program.u_ocean_depth_ratio,this.activeTerrainWater?.oceanDepthRatio??1);
 
             gl.drawArrays(gl.TRIANGLES, 0, this.atlasVertexCount);
         });
@@ -880,6 +904,8 @@ export default class Renderer {
             gl.uniformMatrix4fv(program.u_projection, false, this.projection);
             gl.uniform1f(program.u_mountain_height, renderParam.mountain_height);
             gl.uniform1f(program.u_sphere_radius, renderParam.sphere_radius ?? SPHERE_RADIUS);
+            gl.uniform1i(program.u_finite_inland,this.activeTerrainWater?1:0);
+            gl.uniform1f(program.u_ocean_depth_ratio,this.activeTerrainWater?.oceanDepthRatio??1);
             gl.uniform2fv(program.u_light_angle, [Math.cos(light_angle_rad), Math.sin(light_angle_rad)]);
             gl.uniform2fv(program.u_inverse_texture_size, [1.5 / this.fbo_land.texture.width, 1.5 / this.fbo_land.texture.height]);
             gl.uniform2fv(program.u_inverse_screen_size, [1.5/fbo_texture_size,1.5/fbo_texture_size]);

@@ -29,6 +29,7 @@ await build({entryPoints: ['tests/planet-controls.ts'], bundle: true, format: 'e
 await build({entryPoints: ['tests/geomorph-render.ts'], bundle: true, format: 'esm', outfile: 'build/tests/geomorph-render.js'});
 await build({entryPoints: ['tests/polar-render.ts'], bundle: true, format: 'esm', outfile: 'build/tests/polar-render.js'});
 await build({entryPoints: ['tests/terrain-water-render.ts'], bundle: true, format: 'esm', outfile: 'build/tests/terrain-water-render.js'});
+await build({entryPoints: ['tests/endorheic-render.ts'], bundle: true, format: 'esm', outfile: 'build/tests/endorheic-render.js'});
 await build({entryPoints: ['tests/gpu-radial.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-radial.js'});
 await build({entryPoints: ['tests/gpu-outlines.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-outlines.js'});
 await build({entryPoints: ['tests/gpu-silhouette.ts'], bundle: true, format: 'esm', outfile: 'build/tests/gpu-silhouette.js'});

@@ -1,0 +1,162 @@
+{
+  "dataset": "HydroBASINS standard, level 4, version 1.c",
+  "sourcePage": "https://www.hydrosheds.org/products/hydrobasins",
+  "technicalDocumentation": "https://data.hydrosheds.org/file/technical-documentation/HydroBASINS_TechDoc_v1c.pdf",
+  "license": "HydroSHEDS version 1 license; free scientific, educational and commercial use; source archives are not redistributed",
+  "licenseURL": "https://data.hydrosheds.org/file/technical-documentation/HydroSHEDS_TechDoc_v1_4.pdf",
+  "attribution": "HydroBASINS: Lehner, B. and Grill, G. (2013), Hydrological Processes 27(15), 2171–2186; data available at www.hydrosheds.org; copyright World Wildlife Fund, Inc.",
+  "dataRights": "HydroSHEDS/HydroBASINS source rights remain under the linked license, including its incorporated-derivative distribution, attribution, end-user protection and no-standalone-GIS conditions; this application-specific mesh sample is not licensed as an unrestricted standalone HydroBASINS product.",
+  "copyrightNotice": "This product mapgen4-sphere incorporates HydroSHEDS version 1 data, copyright World Wildlife Fund, Inc. (2006–2022), used under license.",
+  "sourceDisclaimer": "WWF未评估本应用修改并纳入的数据，不对其准确性、完整性、时效性或特定用途适用性作保证。原HydroSHEDS v1部分数据权益属于USGS、NASA、ESRI、CIAT、UNEP-WCMC、WWF、澳大利亚联邦以及英国王室；详见原许可附录B。",
+  "accessed": "2026-10-11",
+  "sourceVersionDate": "2014-07",
+  "projection": "Geographic longitude/latitude, WGS84",
+  "underlyingResolutionArcSeconds": 15,
+  "sampling": "Exact triangle-centre point-in-polygon, even/odd rings including holes; includes enclosed lake triangles despite negative ETOPO/coastline sign; no DEM height, sill, water store or channel is changed by sampling",
+  "fields": {
+    "basinId": "0 outside closed catchments; positive Int32 label grouped by NEXT_SINK, mapped in groups",
+    "terminal": "1 inside an ENDO=2 sink sub-basin, not an observed lake shoreline or water-level seed",
+    "inlandLakeId": "0 outside confirmed enclosed negative-height lake components; positive Int32 labels mapped in inlandLakes"
+  },
+  "termination": "ENDO=1/2 classify closed catchments; ENDO=2 terminates reference routing even when NEXT_DOWN is a virtual connection; NEXT_SINK keeps independently closed sub-catchments separate",
+  "mesh": {
+    "regions": 107676,
+    "triangles": 215348,
+    "spacing": 2.75,
+    "mountainSpacing": 35,
+    "seed": 12345,
+    "fingerprint": "1965824774-1399571912"
+  },
+  "sampleSha256": "1c7274c9a78232942f14de319bb9ddb4ec15756a1f38a812134c537d6daa70d2",
+  "sampledClosedTriangles": 11050,
+  "sampledTerminalTriangles": 9083,
+  "negativeElevationClosedTriangles": 0,
+  "representedClosedGroups": 193,
+  "sourceClosedGroups": 193,
+  "sourceClosedPolygons": 241,
+  "archives": [
+    {
+      "region": "af",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_af_lev04_v1c.zip",
+      "bytes": 5945213,
+      "sha256": "60c84487460d4e5113408a66e5daed79a3089de4ebd9b5f9ef320417a2e8e6cd",
+      "polygonCount": 251,
+      "closedPolygonCount": 76,
+      "projectionWkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],METADATA[\"World\",-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
+    },
+    {
+      "region": "ar",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_ar_lev04_v1c.zip",
+      "bytes": 3262492,
+      "sha256": "b2e1c46b1391ed7acf9b1b3ad448c6334548df6d13ca0e860c34a39dead16878",
+      "polygonCount": 68,
+      "closedPolygonCount": 0,
+      "projectionWkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],METADATA[\"World\",-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
+    },
+    {
+      "region": "as",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_as_lev04_v1c.zip",
+      "bytes": 5269248,
+      "sha256": "1c14c471cbf0cd7620fded95ee134e88fd787504da3ac54b36ccc994b5466804",
+      "polygonCount": 199,
+      "closedPolygonCount": 70,
+      "projectionWkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],METADATA[\"World\",-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
+    },
+    {
+      "region": "au",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_au_lev04_v1c.zip",
+      "bytes": 4203652,
+      "sha256": "e5b3d47c5832ae2e31fdf72862738c6f98043519beba6559cf41355b0ac8b394",
+      "polygonCount": 143,
+      "closedPolygonCount": 33,
+      "projectionWkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],METADATA[\"World\",-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
+    },
+    {
+      "region": "eu",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_eu_lev04_v1c.zip",
+      "bytes": 6666107,
+      "sha256": "7262467d58647eb339bb8af4046433f4827e9b32ed4fa81bb3954b4c7dd2e938",
+      "polygonCount": 240,
+      "closedPolygonCount": 43,
+      "projectionWkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],METADATA[\"World\",-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
+    },
+    {
+      "region": "gr",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_gr_lev04_v1c.zip",
+      "bytes": 1189599,
+      "sha256": "e5d1ea6b1e499556b9d49f89cd6612074ceab236769662073d922708ef4afb9e",
+      "polygonCount": 37,
+      "closedPolygonCount": 0,
+      "projectionWkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],METADATA[\"World\",-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
+    },
+    {
+      "region": "na",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_na_lev04_v1c.zip",
+      "bytes": 5467855,
+      "sha256": "071aaed3095c3459bf95dbf77f299d3ea42c811cf222e3c72413dc293a8fbe57",
+      "polygonCount": 185,
+      "closedPolygonCount": 12,
+      "projectionWkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],METADATA[\"World\",-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
+    },
+    {
+      "region": "sa",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_sa_lev04_v1c.zip",
+      "bytes": 4135581,
+      "sha256": "669cc29224ea8a8b5b85508884de2a9e6d7436f71bcbc3a93794343b201675dc",
+      "polygonCount": 147,
+      "closedPolygonCount": 5,
+      "projectionWkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],METADATA[\"World\",-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
+    },
+    {
+      "region": "si",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_si_lev04_v1c.zip",
+      "bytes": 3201407,
+      "sha256": "a83518285c0662ac03055c23b3fa67c9e165c9fc8186e3ddaf81a9d4aadfda7d",
+      "polygonCount": 72,
+      "closedPolygonCount": 2,
+      "projectionWkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],METADATA[\"World\",-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
+    }
+  ],
+  "inlandLakeSource": {
+    "dataset": "Natural Earth 1:50m Lakes + Reservoirs v5.0.0 and existing Land interior rings",
+    "lakeSourcePage": "https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-lakes-reservoirs/",
+    "lakeSourceURL": "https://naturalearth.s3.amazonaws.com/50m_physical/ne_50m_lakes.zip",
+    "lakeSha256": "f28d42c286d96b57a17aac2cbeb432f8c65532c20063495711fbc64e24666df3",
+    "lakeSourceBytes": 252615,
+    "landSourceURL": "https://naturalearth.s3.amazonaws.com/50m_physical/ne_50m_land.zip",
+    "landSha256": "0b8e670cf80dce9cbebe2a193bc44ba5602758c22e1fa603980553646d7ff162",
+    "landVersion": "4.1.0",
+    "coastlineExplanation": "https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-coastline/",
+    "license": "Public domain",
+    "licenseURL": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "projection": "WGS84 geographic longitude/latitude",
+    "method": "Negative-height triangle connected components are accepted only when every member is inside a non-reservoir Lake/Alkaline Lake polygon or an interior land ring and the component is not connected to the main ocean. Interior rings use the existing coastline 0.1-degree latitude scanline so the classification matches the imported coastline. No place-name or coordinate exceptions.",
+    "negativeComponents": 169,
+    "confirmedLakeTriangles": 166,
+    "confirmedLakes": [
+      {
+        "id": 1,
+        "triangleCount": 166,
+        "componentSeed": 190588,
+        "sourceFeatures": [
+          {
+            "source": "ne_50m_land interior ring",
+            "sourceId": 1,
+            "name": "",
+            "featureClass": "enclosed water hole"
+          }
+        ]
+      }
+    ],
+    "rejectedComponents": []
+  },
+  "limitations": [
+    "HydroBASINS and ETOPO are different DEM lineages; polygons supply closed-catchment identity, not a replacement height or a physical outlet.",
+    "Level 4 can omit small nested closed catchments; source polygons smaller than the mesh may have no triangle-centre sample.",
+    "The ETOPO 15-second source is sampled at 0.1 degrees, then on 215348 sphere triangles; physical catchment/outlet compatibility must be validated on the actual mesh.",
+    "Earth import floors below-sea-level land to +1 m to preserve the coastline sign convention; Lake Eyre and low Caspian shore land remain unresolved, while existing negative Caspian bathymetry is retained.",
+    "ENDO=2 marks a sink sub-basin area, not an exact sink point, lake level, storage volume, evaporation rate or calibration.",
+    "No observational lake water level is imported, and no initial water is added by this file.",
+    "HydroSHEDS source quality north of 60N is lower; Antarctica is outside the source coverage."
+  ]
+}

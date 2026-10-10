@@ -41,6 +41,11 @@ export function installSidebar(doc) {
     heading.remove();section.append(...group.childNodes);group.remove();
     (phase==='render'?groups.rendering:groups.terrain).append(section);
   }
+  const channels=makeGroup('融合河网显示','scene-channels');
+  const explanation=doc.createElement('p');explanation.textContent='最小流量以 m³/s 计；参考年径流是示意估计，瞬时溢流来自真实水库。宽度随 √(流量/100 − 门槛/100) × 系数变化，上限为网格边长比例。这些控制只改显示。';
+  channels.append(explanation);
+  for(const key of ['fused_rivers','fused_river_min_flow','fused_river_width','fused_river_max_width'])channels.append(doc.querySelector('#slider-'+key));
+  groups.rendering.firstElementChild.after(channels);
   session.classList.add('scene-group');session.open=false;root.append(session);
   for(const [id,label] of Object.entries({tiny:'极细画笔',small:'细画笔',medium:'中等画笔',large:'粗画笔'})) {
     const button=doc.getElementById(id);button.setAttribute('aria-label',label);button.title=label;

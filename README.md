@@ -157,6 +157,10 @@ node scripts/browser-check.mjs
 
 Original documentation and credits are in [README.org](README.org). Apache-2.0; original Mapgen4 and helper code copyright Red Blob Games.
 
+The [Earth scene](scenes/earth-land-sea/index.html) now uses source-labelled endorheic reference drainage and finite inland-lake stores. Its fused river threshold (m³/s), width coefficient, edge-length cap and visibility affect rendering only. See the [Chinese acceptance report](docs/evidence/earth-endorheic-rivers-20261011/REPORT.md) for matched screenshots, conservation, save/restore, GPU checks and unresolved lake levels/ice.
+
+Earth drainage incorporates licensed HydroSHEDS v1 / HydroBASINS v1.c data, copyright World Wildlife Fund, Inc. (2006–2022), and public-domain Natural Earth data. The mesh classifications are distributed as part of this application; original data rights are not replaced by the software license. [Sources, attribution, conditions and disclaimer](docs/evidence/earth-endorheic-rivers-20261011/DATA-SOURCES.md).
+
 Complete evolving-world files are documented in [simulation save/restore](docs/simulation-save.md). Optional physical extensions include [terrain rivers, lakes and wetlands](docs/terrain-water.md), [grounded ice and glacial erosion](docs/glaciers.md), and [evolving wind/ocean circulation](docs/circulation.md), with [clouds and precipitation](docs/weather.md) derived from their moisture fields. See the [five-stage overview](docs/environment-stages.md). Each has an independent browser acceptance script under `scripts/` and checked-in evidence under `docs/evidence/`.
 
 `node scripts/thermal-browser-check.mjs` checks a 90-day thermal transient, pause/probing, terrain and configuration resets, display-scale independence, unsupported spin, exact original restoration and mobile controls. `node scripts/thermal-benchmark.mjs` measures batches of the isolated solver on the current Node runtime; it is not a browser-frame or cross-device benchmark. Both save reports in `build/validation/thermal/`.
