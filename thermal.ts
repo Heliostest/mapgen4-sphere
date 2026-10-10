@@ -1,7 +1,7 @@
 import {DEFAULT_PLANET,finiteInRange,type PlanetConfig} from './planet.ts';
 import {deriveOrbit,STEFAN_BOLTZMANN as SIGMA,type OrbitConfig} from './astronomy.ts';
 
-export interface ThermalConfig {emissivity:number;landHeatCapacity:number;oceanDepthM:number;diffusion:number;separateReservoirs?:boolean;}
+export interface ThermalConfig {emissivity:number;landHeatCapacity:number;oceanDepthM:number;diffusion:number;separateReservoirs?:boolean;airRadiationFraction?:number;}
 export const DEFAULT_THERMAL:Readonly<ThermalConfig>=Object.freeze({
     emissivity:.61,landHeatCapacity:2e6,oceanDepthM:10,diffusion:.55,
 });
@@ -95,6 +95,7 @@ export class ThermalModel {
     readonly config:ThermalConfig;
     private readonly tendency:Float64Array;
     stepS:number;
+    readonly maxStableStepS:number;
     steps=0;
     radiationJm2=0;
     exchangeJm2=0;
@@ -109,6 +110,7 @@ export class ThermalModel {
         finiteInRange(config.oceanDepthM,'ocean mixed-layer depth',.1,100);
         finiteInRange(config.diffusion,'heat transport coefficient',0,5);
         if(config.separateReservoirs!==undefined&&typeof config.separateReservoirs!=='boolean')throw new RangeError('Invalid separate reservoir switch');
+        if(config.airRadiationFraction!==undefined)finiteInRange(config.airRadiationFraction,'air radiative fraction',0,1);
         if(land.length!==grid.count) throw new RangeError('Thermal land grid mismatch');
         this.planet={...planet};this.orbit={...orbit};this.config={...config};
         this.yearS=derived.yearS;this.fluxWm2=derived.fluxWm2;
@@ -151,12 +153,14 @@ export class ThermalModel {
         let stable=Infinity;
         for(let i=0;i<grid.count;i++) {
             const derivative=4*config.emissivity*SIGMA*maxT**3;
-            stable=Math.min(stable,.45*this.capacity[i]/(loss[i]+(config.separateReservoirs?0:derivative/this.radiationScale[i]**4)));
+            const airFraction=config.airRadiationFraction??0;
+            stable=Math.min(stable,.45*this.capacity[i]/(loss[i]+(config.separateReservoirs?airFraction:1)*derivative/this.radiationScale[i]**4));
             if(config.separateReservoirs) {
-                if(this.land[i]>0)stable=Math.min(stable,.45*config.landHeatCapacity/(derivative/this.radiationScale[i]**4));
-                if(this.land[i]<1)stable=Math.min(stable,.45*config.oceanDepthM*4.2e6/derivative);
+                if(this.land[i]>0)stable=Math.min(stable,.45*config.landHeatCapacity/((1-airFraction)*derivative/this.radiationScale[i]**4));
+                if(this.land[i]<1)stable=Math.min(stable,.45*config.oceanDepthM*4.2e6/((1-airFraction)*derivative));
             }
         }
+        this.maxStableStepS=stable;
         this.stepS=Math.min(1800,this.yearS/720,stable);
         this.initialEnergyJm2=initialEnergyJm2??this.energy();
     }
@@ -209,11 +213,14 @@ export class ThermalModel {
         for(let i=0;i<grid.count;i++) {
             this.absorbedWm2[i]=(1-this.albedo[i])*q[Math.floor(i/grid.width)]*normalizer;
             if(config.separateReservoirs) {
-                t[i]+=this.stepS*this.tendency[i]/this.capacity[i];
+                const airFraction=config.airRadiationFraction??0;
+                const airEmission=airFraction*config.emissivity*SIGMA*t[i]**4*(this.land[i]/this.radiationScale[i]**4+1-this.land[i]);
+                radiation-=airEmission;
+                t[i]+=this.stepS*(this.tendency[i]-airEmission)/this.capacity[i];
                 for(const ocean of [false,true]) {
                     const fraction=ocean?1-this.land[i]:this.land[i],surface=ocean?this.oceanTemperatureK:this.landTemperatureK,capacity=ocean?this.oceanCapacity:this.landCapacity;
                     if(fraction===0)continue;
-                    const net=fraction*(this.absorbedWm2[i]-config.emissivity*SIGMA*(surface[i]/(ocean?1:this.radiationScale[i]))**4);
+                    const net=fraction*(this.absorbedWm2[i]-(1-airFraction)*config.emissivity*SIGMA*(surface[i]/(ocean?1:this.radiationScale[i]))**4);
                     radiation+=net;surface[i]+=this.stepS*net/capacity[i];
                     // Exact two-reservoir relaxation: finite exchange never
                     // crosses equilibrium, including tiny coastal fractions.

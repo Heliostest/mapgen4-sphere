@@ -1,0 +1,15 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {referenceMoisture} from '../../../reference-moisture.ts';
+import {makeThermalGrid,thermalCell} from '../../../thermal.ts';
+const inputFile='build/earth-moisture-climate/experimental-input.json';
+const raw=await readFile(inputFile,'utf8'),d=JSON.parse(raw),g=makeThermalGrid(),p=d.terrain.settings.planet,o=d.terrain.settings.orbit,s=d.runtime.state;
+const land=s.land,height=s.height.map((v:number)=>v*p.reliefM),config=d.runtime.config,water=d.runtime.waterConfig,environment=d.runtime.environmentConfig;
+const normal=referenceMoisture(g,p,o,config,water,land,height,environment);
+const half=referenceMoisture(g,p,o,config,water,land,height,environment,normal.forcingYearS/(normal.steps/2)/2);
+if(!normal.coupled||!half.coupled)throw new Error('Earth step convergence must compare actual coupled years');
+const regions=[['Amazon',-3,-60],['Congo',0,23],['Sahara',24,15],['Sahel',14,0],['Europe',50,10],['Siberia',62,100],['India',22,80],['Himalaya south',28,86],['Tibet',33,88],['Andes east',-12,-70],['Atacama',-24,-69],['Australia interior',-25,134],['Australia east',-30,152],['Australia north',-12,131],['Australia south west',-32,116],['Antarctica interior',-85,0],['Greenland interior',72,-40]] as const;
+const annual=(r:typeof normal,k:number)=>r.months.reduce((s,m)=>s+m.rainMmDay[k],0)/12*r.forcingYearS/86400;
+const metadata=(r:typeof normal)=>({coupled:r.coupled,steps:r.steps,stepS:r.forcingYearS/(r.steps/2),waterResidualMm:r.waterResidualMm,energyResidualJm2:r.energyResidualJm2,integratedYearS:r.integratedYearS,spinupYearS:r.spinupYearS,referenceRadiusM:r.referenceRadiusM});
+const result={inputSha256:createHash('sha256').update(raw).digest('hex'),bundledCodeSha256:createHash('sha256').update(await readFile(process.argv[1])).digest('hex'),normal:metadata(normal),half:metadata(half),note:'Two-year initialization sensitivity, not equilibrated climate. Bin 0 begins at vernal equinox; approximate DJF 9-11 and JJA 3-5.',points:regions.map(([name,lat,lon])=>{const k=thermalCell(g,(lon+180)/360,(90-lat)/180);return {name,cell:k,normalRainMmYear:annual(normal,k),halfRainMmYear:annual(half,k),differenceMmYear:annual(half,k)-annual(normal,k),months:normal.months.map(m=>({rainMm:m.rainMmDay[k]*normal.forcingYearS/86400/12,airC:m.temperatureK[k]-273.15,landC:land[k]>0?m.landTemperatureK[k]-273.15:null,oceanC:land[k]<1?m.oceanTemperatureK[k]-273.15:null,vaporKgM2:m.atmosphereKgM2[k],windEastMps:m.windEastMps[k],windNorthMps:m.windNorthMps[k]}))};})};
+await writeFile('docs/evidence/earth-moisture-climate-20261010/reference-validation.json',JSON.stringify({inputFile,...result},null,2)+'\n');console.log(JSON.stringify(result));

@@ -5,7 +5,9 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
     const panel=document.createElement('details');panel.id='water-panel';
     panel.innerHTML=`<summary>Water cycle</summary>
       <label><input id="water-enabled" type="checkbox"> Enable water cycle</label>
-      <p class="planet-note" data-info-for="water-enabled">Rain, humidity and soil initialize from geographic rules without Play. Initial fluxes are estimates; Play continues with conservative evaporation, vapor transport, condensation and routing. Evaporation cools and condensation warms the thermal column. Snowfall accumulates; energy-limited melt feeds surface outflow. No groundwater or weather prediction.</p>
+      <label><input id="water-unified" type="checkbox"> Experimental shared moisture solver</label>
+      <p class="planet-note" data-info-for="water-unified">Experimental: changes both initialization and Play. Regional rain patterns and monsoons are not calibrated and can change strongly with time step. Initialization can take a minute. Initialize rain and water stores from one spinup and one recorded orbit of the shared moisture solver. Short initialization is not equilibrium; very long or stiff orbits use an explicitly compressed, prescribed-temperature reference. Changing this option restarts the environment.</p>
+      <p class="planet-note" data-info-for="water-enabled">Rain, humidity and soil initialize before Play. Coupled initialization uses the shared moisture solver; older configurations use geographic estimates. Play continues with conservative evaporation, vapor transport, condensation and routing. Evaporation cools its donor surface and condensation warms the air. Snowfall accumulates; energy-limited melt feeds surface outflow. No groundwater or weather prediction.</p>
       <label><span>Mean precipitation</span><output id="water-rain"></output></label>
       <label><span>Mean land snowfall</span><output id="water-snowfall"></output></label>
       <label><span>Mean evaporation</span><output id="water-evaporation"></output></label>
@@ -34,7 +36,13 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
     enabled.addEventListener('change',()=>change(()=>{
         runtime.waterEnabled=enabled.checked;if(enabled.checked)runtime.enabled=true;runtime.invalidate();
     }));
-    const specs:[string,keyof typeof runtime.waterConfig][]=[
+    const unified=el<HTMLInputElement>('water-unified');
+    unified.addEventListener('change',()=>change(()=>{
+        if(unified.checked){runtime.waterConfig.moistureScheme='transport';runtime.config.separateReservoirs=true;runtime.config.airRadiationFraction??=.5;}
+        else {delete runtime.waterConfig.moistureScheme;delete runtime.config.airRadiationFraction;}
+        runtime.invalidate();
+    }));
+    const specs:[string,Exclude<keyof typeof runtime.waterConfig,'moistureScheme'>][]=[
         ['water-efficiency','evaporationFraction'],['water-soil-capacity','soilCapacityKgM2'],['water-depth','initialOceanDepthM'],
         ['water-wind','windMps'],['water-mixing','moistureDiffusivityM2s'],['water-routing','routingSpeedMps'],
     ];
@@ -52,6 +60,7 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
         reveal(){panel.open=true;},
         refresh() {
             enabled.checked=runtime.waterEnabled;
+            unified.checked=runtime.waterConfig.moistureScheme==='transport';
             const w=runtime.water,d=w?.diagnostics(),m=runtime.model;
             value('water-rain',d?`${d.rainMmDay.toFixed(3)} mm/day`:'Unavailable',d?.rainMmDay);
             const snowfall=m&&m.steps>0&&w?.snowfallKgM2S?w.snowfallKgM2S.reduce((sum,v)=>sum+v,0)*86400/w.grid.count:undefined;

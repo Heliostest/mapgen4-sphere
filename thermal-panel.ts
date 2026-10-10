@@ -25,7 +25,7 @@ export function installThermalPanel(root:HTMLElement,thermal:ThermalRuntime,chan
     const el=<T extends HTMLElement>(id:string)=>panel.querySelector<T>('#'+id)!;
     const enabled=el<HTMLInputElement>('thermal-enabled');
     enabled.addEventListener('change',()=>change(()=>{thermal.enabled=enabled.checked;thermal.invalidate();}));
-    const specs:[string,Exclude<keyof typeof thermal.config,'separateReservoirs'>,number][]=[
+    const specs:[string,Exclude<keyof typeof thermal.config,'separateReservoirs'|'airRadiationFraction'>,number][]=[
         ['thermal-emissivity','emissivity',1],['thermal-capacity','landHeatCapacity',1e6],
         ['thermal-depth','oceanDepthM',1],['thermal-diffusion','diffusion',1],
     ];

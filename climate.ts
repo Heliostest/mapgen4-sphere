@@ -2,6 +2,8 @@ import {dailyMeanInsolation,type ThermalGrid,type ThermalConfig} from './thermal
 import {deriveOrbit,sunState,STEFAN_BOLTZMANN,type OrbitConfig} from './astronomy.ts';
 import {DEFAULT_PLANET,type PlanetConfig} from './planet.ts';
 import type {WaterConfig} from './water.ts';
+import {referenceMoisture} from './reference-moisture.ts';
+import type {EnvironmentConfig} from './environment.ts';
 
 const clamp=(x:number,lo=0,hi=1)=>Math.max(lo,Math.min(hi,x));
 export type ClimateGrid=Pick<ThermalGrid,'width'|'height'|'count'|'sinLat'>&{edges:readonly {a:number;b:number}[]};
@@ -23,13 +25,28 @@ export function circulationWinds(grid:ClimateGrid,planet:PlanetConfig,orbit:Orbi
 }
 
 export interface GeneratedClimate {
+    atmosphereKgM2?:Float64Array;
+    landTemperatureK?:Float64Array;oceanTemperatureK?:Float64Array;
     temperatureK:Float64Array;radiationScale:Float64Array;absorbedWm2:Float64Array;
     windEastMps:Float64Array;windNorthMps:Float64Array;
     rainMmDay:Float64Array;evaporationMmDay:Float64Array;soilFraction:Float64Array;humidityFraction:Float64Array;surfaceMm:Float64Array;
 }
-/** Instant deterministic reference climate. No integration, clock advance or
- * equilibrium claim. Constants are illustrative geographic closures (README). */
-export function generateClimate(grid:ClimateGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>,timeS:number):GeneratedClimate {
+/** Reference initialization. Transport mode uses the same water/thermal closure
+ * over a spinup and recorded cycle; the displayed clock remains unchanged.
+ * Legacy saves retain their analytic geographic estimates. Neither is equilibrium. */
+export function generateClimate(grid:ClimateGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>,timeS:number,environment?:EnvironmentConfig):GeneratedClimate {
+    const climate=generateThermalClimate(grid,planet,orbit,thermal,water,land,heightM,timeS);
+    if(water.moistureScheme==='transport'&&thermal.separateReservoirs) {
+        const reference=referenceMoisture(grid,planet,orbit,thermal,water,land,heightM,environment);
+        const phase=orbit.orbitPhaseRad+2*Math.PI*timeS/deriveOrbit(planet,orbit).yearS;
+        const month=Math.floor(((phase/(2*Math.PI)%1)+1)%1*12);
+        for(const key of ['rainMmDay','evaporationMmDay','soilFraction','humidityFraction','surfaceMm','atmosphereKgM2'] as const)climate[key]=reference.months[month][key].slice();
+        if(thermal.airRadiationFraction!==undefined)for(const key of ['temperatureK','landTemperatureK','oceanTemperatureK'] as const)climate[key]=reference.months[month][key].slice();
+    }
+    return climate;
+}
+/** Analytic periodic thermal forcing; no moisture-template use in transport mode. */
+export function generateThermalClimate(grid:ClimateGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>,timeS:number):GeneratedClimate {
     if(land.length!==grid.count||heightM.length!==grid.count)throw new RangeError('Climate terrain size mismatch');
     for(let i=0;i<grid.count;i++)if(!Number.isFinite(land[i])||land[i]<0||land[i]>1||!Number.isFinite(heightM[i])||heightM[i]<0)throw new RangeError('Invalid climate terrain');
     const {fluxWm2:flux,yearS}=deriveOrbit(planet,orbit),omega=2*Math.PI/yearS;

@@ -1,9 +1,10 @@
-import {generateClimate,type ClimateGrid} from './climate.ts';
+import {generateClimate,generateThermalClimate,type ClimateGrid} from './climate.ts';
 import {deriveOrbit,type OrbitConfig} from './astronomy.ts';
 import type {PlanetConfig} from './planet.ts';
 import type {ThermalConfig} from './thermal.ts';
 import type {WaterConfig} from './water.ts';
 import {seaIceCooling} from './sea-ice.ts';
+import type {EnvironmentConfig} from './environment.ts';
 
 /** Potential cover, not a vegetation, snow-mass or ice-flow simulation. */
 export const BIOMES={
@@ -39,21 +40,24 @@ export function classifyBiome(meanK:number,warmestK:number,rainMm:number):Biome 
 
 /** Sample one full reference year analytically; never advance model time.
  * Anchor phases independently of the selected date to keep vegetation stable. */
-export function generateSurfaceReference(grid:ClimateGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>):SurfaceReference {
+export function generateSurfaceReference(grid:ClimateGrid,planet:PlanetConfig,orbit:OrbitConfig,thermal:ThermalConfig,water:WaterConfig,land:ArrayLike<number>,heightM:ArrayLike<number>,moistureAnnual?:Float64Array,environment?:EnvironmentConfig):SurfaceReference {
     const meanTemperatureK=new Float64Array(grid.count),warmestTemperatureK=new Float64Array(grid.count),annualRainMm=new Float64Array(grid.count);
     const monthlyIceCooling=new Float64Array(12*grid.count);
     const {yearS}=deriveOrbit(planet,orbit),annualOrbit={...orbit,orbitPhaseRad:0,spinPhaseRad:0};
     for(let month=0;month<12;month++) {
-        const c=generateClimate(grid,planet,annualOrbit,thermal,water,land,heightM,(month+.5)*yearS/12);
+        const time=(month+.5)*yearS/12;
+        const c=moistureAnnual?generateThermalClimate(grid,planet,annualOrbit,thermal,water,land,heightM,time):generateClimate(grid,planet,annualOrbit,thermal,water,land,heightM,time,environment);
         for(let i=0;i<grid.count;i++) {
-            meanTemperatureK[i]+=c.temperatureK[i]/12;
-            warmestTemperatureK[i]=Math.max(warmestTemperatureK[i],c.temperatureK[i]);
+            const sourceT=thermal.airRadiationFraction!==undefined?(c.landTemperatureK?.[i]??c.temperatureK[i]):c.temperatureK[i];
+            meanTemperatureK[i]+=sourceT/12;
+            warmestTemperatureK[i]=Math.max(warmestTemperatureK[i],sourceT);
             // Earth-year equivalent: thresholds describe available water per
             // fixed time, so a longer orbit alone cannot create a rainforest.
             annualRainMm[i]+=c.rainMmDay[i]*365.2425/12;
             monthlyIceCooling[month*grid.count+i]=seaIceCooling(c.temperatureK[i],thermal.emissivity);
         }
     }
+    if(moistureAnnual)annualRainMm.set(moistureAnnual);
     return {meanTemperatureK,warmestTemperatureK,annualRainMm,monthlyIceCooling};
 }
 

@@ -1,0 +1,97 @@
+{
+  "formalSceneUnchanged": true,
+  "formalSha256": "1fe24db85125e815ed576059b1c387c505a01773f148ef7a766ec9616b151ac3",
+  "experimentalInputSha256": "a7eb04c6c9b55cdd110f24800fd31b8b58355e82a9f0871c2425dce1755b8e66",
+  "experimentalInputFile": "build/earth-moisture-climate/experimental-input.json",
+  "continuousRunInputFile": "build/earth-moisture-climate/after-day0.json",
+  "referenceRunInputFile": "build/earth-moisture-climate/experimental-input.json",
+  "note": "The completed run read after-day0.json. Its identical bytes are retained in experimental-input.json; tools now use the immutable input filename. Published Earth is unchanged.",
+  "beforeBundleSha256": "bb9c387f0d14051dc1d8b8834d96b86b5fad31abc2f282ce0011781e90ebb1a5",
+  "afterBundleSha256": "c8593ed6df326211df5e2fd504de6865571372b59c310006afb6c5cbd416c281",
+  "referenceBundleSha256": "b338cfd172a3c8f8e71132567484776539d5bf047ed33b1596918e7ea9a57d21",
+  "continuousDays": 365,
+  "steps": 17520,
+  "terrainHashesUnchanged": {
+    "offsets": "37ef86010a6cb7a3740c32bdc0200ad854f4e52deead266a2f539c94e6792f04",
+    "constraints": "ae72f2485495c9c6f8e148fd628fda516eb5bd9497d0bdf3be48b39f03c72662",
+    "meshElevations": "f3950dc372c8501c8e7abfe006386717427563b2667b6567355851ebe3dbb997"
+  },
+  "beforeBudget": {
+    "sensibleLayers": "separate air, land and ocean reservoirs",
+    "storesGlobalMm": {
+      "atmosphereKgM2": 14.458583917091525,
+      "soilKgM2": 12.899248615023659,
+      "surfaceKgM2": 55.99103559091264,
+      "snowKgM2": 3.4358436603559124,
+      "seaIceKgM2": 1121.6112125831357,
+      "landIceKgM2": 49437.73510657117,
+      "shelfLandIceKgM2": 80.03423219784283,
+      "shelfSeaIceKgM2": 960.6639908228374
+    },
+    "oceanGlobalMm": 687720.4872357533,
+    "totalMm": 739407.3164897116,
+    "initialTotalMm": 739407.3164896967,
+    "waterResidualMm": 1.4901161193847656e-8,
+    "internalWaterResidualMm": 1.4901161193847656e-8,
+    "sensibleJm2": 11855187622.36587,
+    "latentJm2": -17200138918.272133,
+    "enthalpyJm2": -5344951295.906263,
+    "initialEnthalpyJm2": -4918070577.078918,
+    "radiationJm2": -426880718.8270764,
+    "energyResidualJm2": -0.00026851892471313477,
+    "internalEnergyResidualJm2": -0.00027424097061157227,
+    "energyToleranceJm2": 0.001
+  },
+  "afterBudget": {
+    "sensibleLayers": "separate air, land and ocean reservoirs",
+    "storesGlobalMm": {
+      "atmosphereKgM2": 6.87958273125828,
+      "soilKgM2": 12.09020093112475,
+      "surfaceKgM2": 54.676578199644986,
+      "snowKgM2": 4.348163665806616,
+      "seaIceKgM2": 848.6797951626231,
+      "landIceKgM2": 49433.152193878435,
+      "shelfLandIceKgM2": 80.03423219784283,
+      "shelfSeaIceKgM2": 960.6639908228374
+    },
+    "oceanGlobalMm": 687981.3358438512,
+    "totalMm": 739381.8605814407,
+    "initialTotalMm": 739381.8605815123,
+    "waterResidualMm": -7.159542292356491e-8,
+    "internalWaterResidualMm": -7.159542292356491e-8,
+    "sensibleJm2": 11868266927.164139,
+    "latentJm2": -17126322399.801418,
+    "enthalpyJm2": -5258055472.6372795,
+    "initialEnthalpyJm2": -5034974158.55817,
+    "radiationJm2": -223081314.0790707,
+    "energyResidualJm2": -0.000038504600524902344,
+    "internalEnergyResidualJm2": -0.000036597251892089844,
+    "energyToleranceJm2": 0.001
+  },
+  "referenceNormal": {
+    "coupled": true,
+    "steps": 35066,
+    "stepS": 1799.928627340307,
+    "waterResidualMm": -7.945345714688301e-7,
+    "energyResidualJm2": -0.00012135505676269531,
+    "integratedYearS": 31558148.6231576,
+    "spinupYearS": 31558148.6231576,
+    "referenceRadiusM": 6371008.4
+  },
+  "referenceHalf": {
+    "coupled": true,
+    "steps": 70132,
+    "stepS": 899.9643136701535,
+    "waterResidualMm": -0.0000019615981727838516,
+    "energyResidualJm2": -0.0001258254051208496,
+    "integratedYearS": 31558148.6231576,
+    "spinupYearS": 31558148.6231576,
+    "referenceRadiusM": 6371008.4
+  },
+  "gpuChecks": {
+    "wind": 528,
+    "surfaceLighting": 20
+  },
+  "climateAcceptance": "FAILED: regional monsoons, arid interior and initialization time-step convergence",
+  "releaseScope": "Experimental opt-in only; legacy default and formal Earth preserved"
+}

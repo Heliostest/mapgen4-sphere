@@ -38,10 +38,11 @@ export function field(v:unknown,name:string,n:number,min=-1e30,max=1e30):Float64
     return Float64Array.from(v as ArrayLike<number>,x=>scalar(x,name,min,max));
 }
 export function thermalConfig(v:unknown):ThermalConfig {
-    const c=record(v);return {emissivity:scalar(c.emissivity,'emissivity',.1,1),landHeatCapacity:scalar(c.landHeatCapacity,'heat capacity',1e5,1e8),oceanDepthM:scalar(c.oceanDepthM,'mixed layer',.1,100),diffusion:scalar(c.diffusion,'diffusion',0,5),...(c.separateReservoirs===undefined?{}:{separateReservoirs:boolean(c.separateReservoirs)})};
+    const c=record(v);return {emissivity:scalar(c.emissivity,'emissivity',.1,1),landHeatCapacity:scalar(c.landHeatCapacity,'heat capacity',1e5,1e8),oceanDepthM:scalar(c.oceanDepthM,'mixed layer',.1,100),diffusion:scalar(c.diffusion,'diffusion',0,5),...(c.separateReservoirs===undefined?{}:{separateReservoirs:boolean(c.separateReservoirs)}),...(c.airRadiationFraction===undefined?{}:{airRadiationFraction:scalar(c.airRadiationFraction,'air radiative fraction',0,1)})};
 }
 export function waterConfig(v:unknown):WaterConfig {
-    const c=record(v);return {evaporationFraction:scalar(c.evaporationFraction,'evaporation fraction',0,1),soilCapacityKgM2:scalar(c.soilCapacityKgM2,'soil capacity',1,1000),initialOceanDepthM:scalar(c.initialOceanDepthM,'water inventory',0,10000),windMps:scalar(c.windMps,'wind',-100,100),moistureDiffusivityM2s:scalar(c.moistureDiffusivityM2s,'moisture mixing',0,1e7),routingSpeedMps:scalar(c.routingSpeedMps,'routing speed',.01,10)};
+    const c=record(v);if(c.moistureScheme!==undefined&&c.moistureScheme!=='transport')throw new Error('Invalid moisture scheme');
+    return {...(c.moistureScheme==='transport'?{moistureScheme:'transport' as const}:{}),evaporationFraction:scalar(c.evaporationFraction,'evaporation fraction',0,1),soilCapacityKgM2:scalar(c.soilCapacityKgM2,'soil capacity',1,1000),initialOceanDepthM:scalar(c.initialOceanDepthM,'water inventory',0,10000),windMps:scalar(c.windMps,'wind',-100,100),moistureDiffusivityM2s:scalar(c.moistureDiffusivityM2s,'moisture mixing',0,1e7),routingSpeedMps:scalar(c.routingSpeedMps,'routing speed',.01,10)};
 }
 export function environmentConfig(v:unknown):EnvironmentConfig {
     const c=record(v);return {oceanStrengthMps:scalar(c.oceanStrengthMps,'ocean current',0,2),vegetation:boolean(c.vegetation),iceAlbedo:boolean(c.iceAlbedo),terrainWater:c.terrainWater===undefined?false:boolean(c.terrainWater),glaciers:c.glaciers===undefined?false:boolean(c.glaciers),dynamicCirculation:c.dynamicCirculation===undefined?false:boolean(c.dynamicCirculation)};
@@ -86,7 +87,7 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
     }else if(s.water!==null||s.vegetation!==null||s.initialEnthalpy!==null)throw new Error('Unexpected water state');
     let circulation:EnvironmentCheckpoint|null=null;
     if(result.waterEnabled&&result.environmentConfig.dynamicCirculation) {
-        const c=record(s.circulation),a=record(c.atmosphere),o=record(c.ocean),limit=Math.abs(result.waterConfig.windMps)/2,speed=result.environmentConfig.oceanStrengthMps/4;
+        const c=record(s.circulation),a=record(c.atmosphere),o=record(c.ocean),limit=Math.abs(result.waterConfig.windMps)*(result.waterConfig.moistureScheme==='transport'&&result.config.separateReservoirs?1.5:.5),speed=result.environmentConfig.oceanStrengthMps/4;
         circulation={atmosphere:{eastMps:field(a.eastMps,'circulation east',n,-limit,limit),northMps:field(a.northMps,'circulation north',n,-limit,limit)},ocean:{circulationMps:field(o.circulationMps,'ocean circulation',width*(height-1),-speed,speed)}};
     }else if(s.circulation!==undefined&&s.circulation!==null)throw new Error('Unexpected circulation state');
     const nullable=(key:string,len:number)=>result.waterEnabled?f(s,key,len):s[key]===null?null:(()=>{throw new Error(`Unexpected ${key}`);})();

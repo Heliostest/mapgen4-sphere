@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+const folder='docs/evidence/earth-moisture-climate-20261010';
+const read=async name=>JSON.parse(await readFile(`${folder}/${name}`,'utf8'));
+const sha=value=>createHash('sha256').update(value).digest('hex');
+const before=await read('before-continuous.json'),after=await read('after-continuous.json'),reference=await read('reference-validation.json');
+const b=before.samples.at(-1),a=after.samples.at(-1);
+for(const s of [a,b]){assert.equal(s.modelDay,365);assert.equal(s.steps,17520);assert.equal(s.stepS,1800);assert(Math.abs(s.budget.waterResidualMm)<1e-6);assert(Math.abs(s.budget.energyResidualJm2)<s.budget.energyToleranceJm2);}
+assert.deepEqual(after.terrainHashes,before.terrainHashes);
+const candidate=await readFile('build/earth-moisture-climate/experimental-input.json');
+assert.equal(sha(candidate),after.inputSha256);assert.equal(sha(candidate),reference.inputSha256);
+const formal=await readFile('scenes/earth-land-sea/earth-simulation.json');
+const original=execFileSync('git',['show','c84e7253ceb5de3fd2ba4301246427e385ddcb2d:scenes/earth-land-sea/earth-simulation.json'],{maxBuffer:128*1024*1024});
+assert.equal(sha(formal),sha(original));
+for(const label of ['before','after'])for(const day of [0,90,180,270,365])await readFile(`build/earth-moisture-climate/${label}-day${day}.json`);
+const gpuWind=await read('gpu-wind-report.json'),gpuSurface=await read('gpu-surface-lighting-report.json');
+assert.equal(gpuWind.status,'PASS');assert.equal(gpuSurface.status,'PASS');
+assert.equal(gpuWind.failedChecks,0);assert.equal(gpuSurface.failed.length,0);
+const result={formalSceneUnchanged:true,formalSha256:sha(formal),experimentalInputSha256:sha(candidate),experimentalInputFile:'build/earth-moisture-climate/experimental-input.json',continuousRunInputFile:after.inputFile,referenceRunInputFile:reference.inputFile,note:'The completed run read after-day0.json. Its identical bytes are retained in experimental-input.json; tools now use the immutable input filename. Published Earth is unchanged.',beforeBundleSha256:before.bundledCodeSha256,afterBundleSha256:after.bundledCodeSha256,referenceBundleSha256:reference.bundledCodeSha256,continuousDays:365,steps:17520,terrainHashesUnchanged:after.terrainHashes,beforeBudget:b.budget,afterBudget:a.budget,referenceNormal:reference.normal,referenceHalf:reference.half,gpuChecks:{wind:gpuWind.checks,surfaceLighting:gpuSurface.checks},climateAcceptance:'FAILED: regional monsoons, arid interior and initialization time-step convergence',releaseScope:'Experimental opt-in only; legacy default and formal Earth preserved'};
+await writeFile(`${folder}/audit.json`,JSON.stringify(result,null,2)+'\n');
+const n=value=>value===null?'—':value.toFixed(1),names=new Map([['Amazon','亚马孙'],['Congo','刚果'],['Sahara','撒哈拉'],['Sahel','萨赫勒'],['Europe','欧洲'],['Siberia','西伯利亚'],['India','印度'],['Himalaya south','喜马拉雅南坡'],['Tibet','青藏'],['Andes east','安第斯东坡'],['Atacama','阿塔卡马'],['Australia interior','澳洲内陆'],['Australia east','澳洲东岸'],['Australia north','澳洲北部'],['Australia south west','澳洲西南'],['Antarctica interior','南极内陆'],['Greenland interior','格陵兰内陆']]);
+const tables=['# 全年实际积分数值','', '以下是目标坐标所落的等面积物理格，降水、蒸发是实际17520步通量累计，不是显示参考年。近岸格含陆海；土壤量按该格陆地面积计。观测正常值和不同网格的点不能直接作精确误差评分。','', '| 目标点 | 纬度/经度 | 旧版实际P mm | 实验实际P mm | 实验E mm | 实验平均土壤 mm | 第365天生物群系 |','| --- | --- | ---: | ---: | ---: | ---: | --- |'];
+for(const p of a.points){const old=b.points.find(q=>q.name===p.name);tables.push(`| ${names.get(p.name)} | ${p.lat}/${p.lon} | ${n(old.cumulativeRainMm)} | ${n(p.cumulativeRainMm)} | ${n(p.cumulativeEvapMm)} | ${n(p.meanSoilMm)} | ${p.biome} |`);}
+tables.push('','## 初始化步长敏感性','', '两个比较均为真实半径与真实公转周期，先积分一轨道、再统计一轨道。不是气候平衡或时间收敛合格结论。','', '| 物理格目标 | 约1800秒 年P mm | 约900秒 年P mm |','| --- | ---: | ---: |');
+for(const p of reference.points)tables.push(`| ${names.get(p.name)} | ${n(p.normalRainMmYear)} | ${n(p.halfRainMmYear)} |`);
+tables.push('','## 季节累计','', '第0箱始于春分。这里的DJF≈箱9–11、JJA≈箱3–5，只是近似季节窗口，不是严格公历月份。','', '| 目标点 | 实验近似DJF mm | 实验近似JJA mm |','| --- | ---: | ---: |');
+for(const p of a.points)tables.push(`| ${names.get(p.name)} | ${n(p.monthlyRainMm.slice(9,12).reduce((s,v)=>s+v,0))} | ${n(p.monthlyRainMm.slice(3,6).reduce((s,v)=>s+v,0))} |`);
+await writeFile(`${folder}/comparison.md`,tables.join('\n')+'\n');
+console.log(JSON.stringify({formalSceneUnchanged:true,candidateSha256:sha(candidate),days:a.modelDay,waterResidualMm:a.budget.waterResidualMm,energyResidualJm2:a.budget.energyResidualJm2,gpu:result.gpuChecks}));

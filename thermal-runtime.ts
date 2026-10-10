@@ -1,8 +1,8 @@
-import type {PlanetConfig} from './planet.ts';
+﻿import type {PlanetConfig} from './planet.ts';
 import {deriveOrbit,type OrbitConfig} from './astronomy.ts';
 import {DEFAULT_THERMAL,ThermalModel,makeThermalGrid,thermalCell,type ThermalCheckpoint} from './thermal.ts';
 import {DEFAULT_WATER,WaterModel,type WaterCheckpoint} from './water.ts';
-import {generateClimate,circulationWinds} from './climate.ts';
+import {generateClimate,generateThermalClimate,circulationWinds} from './climate.ts';
 import {generateSurfaceReference,surfaceCover,type SurfaceReference} from './surface.ts';
 import {makeSurfaceGrid,SurfaceTerrainSampler,resampleClimateField,surfaceCell,type SurfaceTerrain} from './surface-grid.ts';
 import {EnvironmentModel,DEFAULT_ENVIRONMENT,type EnvironmentCheckpoint} from './environment.ts';
@@ -227,24 +227,48 @@ export class ThermalRuntime {
         if(key!==this.key) {
             this.iceInventory=decodeIceInventory(this.iceInventory);
             const heights=this.landElevation!.map(e=>e*planet.reliefM);
-            const reference=generateClimate(this.grid,planet,orbit,this.config,this.waterConfig,this.land,heights,timeS);
+            const reference=generateClimate(this.grid,planet,orbit,this.config,this.waterConfig,this.land,heights,timeS,this.environmentConfig);
             const local=this.surfaceTerrain!,localHeights=local.height.map(e=>e*planet.reliefM);
-            this.surfaceReference=generateSurfaceReference(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,local.land,localHeights);
-            this.surfaceInitial=generateClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,local.land,localHeights,timeS);
+            const modern=this.waterConfig.moistureScheme==='transport'&&this.config.separateReservoirs;
+            const coarse=modern?generateSurfaceReference(this.grid,planet,orbit,this.config,this.waterConfig,this.land,heights,undefined,this.environmentConfig):null;
+            const annual=coarse?resampleClimateField(this.grid,coarse.annualRainMm,this.surfaceGrid):undefined;
+            this.surfaceReference=generateSurfaceReference(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,local.land,localHeights,annual,this.environmentConfig);
+            this.surfaceInitial=modern?generateThermalClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,local.land,localHeights,timeS):generateClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,local.land,localHeights,timeS);
+            if(modern)this.surfaceInitial.soilFraction=resampleClimateField(this.grid,reference.soilFraction,this.surfaceGrid);
+            const coupled=this.config.airRadiationFraction!==undefined&&coarse;
+            if(coupled){
+                const analytic=generateSurfaceReference(this.grid,planet,orbit,this.config,this.waterConfig,this.land,heights,new Float64Array(this.grid.count));
+                const meanDelta=resampleClimateField(this.grid,coarse!.meanTemperatureK.map((v,i)=>v-analytic.meanTemperatureK[i]),this.surfaceGrid);
+                const warmDelta=resampleClimateField(this.grid,coarse!.warmestTemperatureK.map((v,i)=>v-analytic.warmestTemperatureK[i]),this.surfaceGrid);
+                for(let i=0;i<this.surfaceGrid.count;i++){
+                    this.surfaceReference.meanTemperatureK[i]=Math.max(0,this.surfaceReference.meanTemperatureK[i]+meanDelta[i]);
+                    this.surfaceReference.warmestTemperatureK[i]=Math.max(this.surfaceReference.meanTemperatureK[i],this.surfaceReference.warmestTemperatureK[i]+warmDelta[i]);
+                }
+                const current=generateThermalClimate(this.grid,planet,orbit,this.config,this.waterConfig,this.land,heights,timeS);
+                const delta=resampleClimateField(this.grid,reference.temperatureK.map((t,i)=>t-current.temperatureK[i]),this.surfaceGrid);
+                this.surfaceInitial.temperatureK=this.surfaceInitial.temperatureK.map((v,i)=>Math.max(0,v+delta[i]));
+            }
             this.iceEnergy=generateSeaIce(this.surfaceReference.monthlyIceCooling,this.surfaceGrid.count,derived.yearS,orbit.orbitPhaseRad+2*Math.PI*(timeS%derived.yearS)/derived.yearS);
             this.initialSoil=reference.soilFraction;
             this.initialTemperature=reference.temperatureK.slice();
             let reservoirSeeds: {landTemperatureK:Float64Array;oceanTemperatureK:Float64Array}|undefined;
             if(this.config.separateReservoirs) {
-                const localLand=generateClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,new Float64Array(this.surfaceGrid.count).fill(1),localHeights,timeS);
-                const localOcean=generateClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,new Float64Array(this.surfaceGrid.count),new Float64Array(this.surfaceGrid.count),timeS);
+                const localLand=generateThermalClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,new Float64Array(this.surfaceGrid.count).fill(1),localHeights,timeS);
+                const localOcean=generateThermalClimate(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,new Float64Array(this.surfaceGrid.count),new Float64Array(this.surfaceGrid.count),timeS);
                 const landTemperatureK=aggregateSurface(this.grid,this.surfaceGrid,localLand.temperatureK,local.land).map((t,i)=>this.land![i]>0&&t>0?t:reference.temperatureK[i]);
                 const oceanTemperatureK=aggregateSurface(this.grid,this.surfaceGrid,localOcean.temperatureK,local.land.map(f=>1-f)).map((t,i)=>this.land![i]<1&&t>0?t:reference.temperatureK[i]);
+                if(coupled&&reference.landTemperatureK&&reference.oceanTemperatureK){
+                    const ld=resampleClimateField(this.grid,reference.landTemperatureK.map((t,i)=>t-landTemperatureK[i]),this.surfaceGrid);
+                    const od=resampleClimateField(this.grid,reference.oceanTemperatureK.map((t,i)=>t-oceanTemperatureK[i]),this.surfaceGrid);
+                    localLand.temperatureK=localLand.temperatureK.map((t,i)=>Math.max(0,t+ld[i]));
+                    localOcean.temperatureK=localOcean.temperatureK.map((t,i)=>Math.max(0,t+od[i]));
+                    landTemperatureK.set(reference.landTemperatureK);oceanTemperatureK.set(reference.oceanTemperatureK);
+                }
                 reservoirSeeds={landTemperatureK,oceanTemperatureK};
                 this.surfaceReservoirInitial={landTemperatureK:localLand.temperatureK,oceanTemperatureK:localOcean.temperatureK,initialLandTemperatureK:landTemperatureK.slice(),initialOceanTemperatureK:oceanTemperatureK.slice()};
                 // Seasonal sea ice starts from the ocean-only reference. Land
                 // thermal inertia must not determine ice in a coastal wet part.
-                const seaReference=generateSurfaceReference(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,new Float64Array(this.surfaceGrid.count),new Float64Array(this.surfaceGrid.count));
+                const seaReference=generateSurfaceReference(this.surfaceGrid,planet,orbit,this.config,this.waterConfig,new Float64Array(this.surfaceGrid.count),new Float64Array(this.surfaceGrid.count),new Float64Array(this.surfaceGrid.count));
                 this.iceEnergy=generateSeaIce(seaReference.monthlyIceCooling,this.surfaceGrid.count,derived.yearS,orbit.orbitPhaseRad+2*Math.PI*(timeS%derived.yearS)/derived.yearS);
             }
             this.model=new ThermalModel(planet,orbit,this.config,this.land,timeS,this.grid,{...reference,...reservoirSeeds});
@@ -322,7 +346,7 @@ export class ThermalRuntime {
                     if(this.environmentConfig.vegetation) {
                         const soil=resampleClimateField(this.grid,this.water.soilKgM2.map((v,i)=>this.water!.land[i]>0?v/(this.water!.land[i]*this.waterConfig.soilCapacityKgM2):0),this.surfaceGrid);
                         const rain=resampleClimateField(this.grid,this.water.precipitationKgM2S.map(v=>v*86400),this.surfaceGrid);
-                        this.vegetation!.step(dt,this.localTemperature(t),rain,soil);
+                        this.vegetation!.step(dt,this.config.airRadiationFraction!==undefined?this.localReservoirTemperature('land'):this.localTemperature(t),rain,soil);
                     }
                     this.refreshEnvironment();
                 }
