@@ -1,0 +1,5411 @@
+{
+  "label": "shortwave-fair",
+  "dt": 900,
+  "inputSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+  "bundleSha256": "08f553fb0376d9645ca97ee44eb9135b65609175ef5bb49e79ada97dbfabf826",
+  "method": "Identical strict-restored day-zero stocks. Actual ThermalRuntime.sync, full terrain routing/glaciers/dynamic atmosphere. No seasonal seek or climate regeneration. Every water step instrumented; Gregorian-normalized calendar starts March20. GPCC and model use exactly the same valid land intersection. Land precipitation is the actual deposited land amount divided by land fraction; old baseline deposition was uniform column rain. Whole-area vapor ledger retains TOTAL column precipitation.",
+  "coastalMethod": "Signed net vapor face transfer weighted by the change in land fraction within 5–27N,60–100E. West/east of 80E separate Arabian/Bay branches. Amount in Gt. Includes recipient coastal mountain/front rain; excludes rain intercepted on donor land. Measures coastal transfer, not historical marine provenance. Gross in/out refer to positive/negative NET face transfers, not counter-exchange parcel totals.",
+  "observations": {
+    "product": "GPCC v2022 normals 1991–2020 2.5° mm/month",
+    "url": "https://opendata.dwd.de/climate_environment/GPCC/gpcc_normals_v2022/normals_1991_2020_v2022_25.nc.gz",
+    "sha256": "6e08db25ba4eebb0affe9e2519907aa66e24f8e0177d25c3084a7e2085ef0d0b"
+  },
+  "records": [
+    {
+      "day": 0,
+      "steps": 0,
+      "file": "build/earth-seaice-causal/shortwave-fair-900-day0.json",
+      "sha256": "120934949e19f672e653b047536f799523a1b30ffa93c0f07a06979bd1fb5a43",
+      "budget": {
+        "waterResidualMm": 1.1641532182693481e-10,
+        "enthalpyResidualJm2": -0.0001678466796875,
+        "maxCellVaporResidualMm": 0,
+        "globalNetVaporTransportMm": 0,
+        "totalMm": 739407.3164896969,
+        "oceanChangeGlobalMm": 0
+      },
+      "seconds": 5.651478099999999,
+      "calendarCoverageS": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "coastalGt": {
+        "total": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "months": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "regions": [
+        {
+          "name": "Amazon",
+          "bounds": {
+            "south": -7,
+            "north": 1,
+            "west": -68,
+            "east": -52
+          },
+          "validLandAreaKm2": 1564430.9621510943,
+          "observedMonthlyMm": {
+            "0": 252.2267552991391,
+            "1": 262.6119849219642,
+            "2": 307.6978543299425,
+            "3": 296.2698739180464,
+            "4": 257.4411646817737,
+            "5": 160.27113516341433,
+            "6": 122.15097113800532,
+            "7": 85.39578456391233,
+            "8": 84.5026092124391,
+            "9": 111.85553742308403,
+            "10": 151.96705231931128,
+            "11": 200.32061453825122
+          },
+          "observedAnnualMm": 2292.7113375092836,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 0,
+            "E": 0,
+            "netTransport": 0,
+            "storageDelta": 0,
+            "residual": 0
+          },
+          "airC": 28.08253569118682,
+          "landC": 28.452155664828467
+        },
+        {
+          "name": "Congo",
+          "bounds": {
+            "south": -4,
+            "north": 4,
+            "west": 15,
+            "east": 31
+          },
+          "validLandAreaKm2": 1581350.7896031223,
+          "observedMonthlyMm": {
+            "0": 68.1318877897498,
+            "1": 77.99006512449672,
+            "2": 133.805502725745,
+            "3": 142.9901417409269,
+            "4": 130.53956542685165,
+            "5": 81.08195124469613,
+            "6": 90.06368763225358,
+            "7": 109.91829960458058,
+            "8": 133.80426948601158,
+            "9": 167.28449341097792,
+            "10": 155.25908883515038,
+            "11": 87.35025470224262
+          },
+          "observedAnnualMm": 1378.2192077236828,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 0,
+            "E": 0,
+            "netTransport": 0,
+            "storageDelta": 0,
+            "residual": 0
+          },
+          "airC": 24.726724933767798,
+          "landC": 24.921100714253214
+        },
+        {
+          "name": "India",
+          "bounds": {
+            "south": 18,
+            "north": 25,
+            "west": 74,
+            "east": 86
+          },
+          "validLandAreaKm2": 788000.1995061378,
+          "observedMonthlyMm": {
+            "0": 12.158634423932531,
+            "1": 11.72660846332105,
+            "2": 15.25961239260873,
+            "3": 17.046216784117238,
+            "4": 31.92443550269676,
+            "5": 171.66808702639133,
+            "6": 310.51859522047073,
+            "7": 290.32228605116063,
+            "8": 192.90035294901347,
+            "9": 62.66664988624698,
+            "10": 14.721261787898758,
+            "11": 7.145718678289215
+          },
+          "observedAnnualMm": 1138.0584591661475,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 0,
+            "E": 0,
+            "netTransport": 0,
+            "storageDelta": 0,
+            "residual": 0
+          },
+          "airC": 14.124883550402046,
+          "landC": 20.079720846185296
+        },
+        {
+          "name": "Himalaya foreland",
+          "bounds": {
+            "south": 25,
+            "north": 29,
+            "west": 79,
+            "east": 91
+          },
+          "validLandAreaKm2": 528694.768030383,
+          "observedMonthlyMm": {
+            "0": 15.312899871502239,
+            "1": 19.197505710022032,
+            "2": 23.742873810435164,
+            "3": 44.64304980008825,
+            "4": 95.1799554249309,
+            "5": 210.13723191226595,
+            "6": 334.03821319000446,
+            "7": 298.50670402165105,
+            "8": 197.43464254370346,
+            "9": 56.02293101433188,
+            "10": 6.779904326368383,
+            "11": 6.7847622718058185
+          },
+          "observedAnnualMm": 1307.7806738971096,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 0,
+            "E": 0,
+            "netTransport": 0,
+            "storageDelta": 0,
+            "residual": 0
+          },
+          "airC": 6.1911749890243755,
+          "landC": 19.337472460210563
+        },
+        {
+          "name": "Tibet",
+          "bounds": {
+            "south": 31,
+            "north": 36,
+            "west": 80,
+            "east": 94
+          },
+          "validLandAreaKm2": 721502.60895447,
+          "observedMonthlyMm": {
+            "0": 2.979150797163194,
+            "1": 3.3799369149068803,
+            "2": 4.5363020858703695,
+            "3": 6.671596575203615,
+            "4": 18.142793539927734,
+            "5": 44.65832953667905,
+            "6": 65.88017182953182,
+            "7": 65.40973139418129,
+            "8": 34.70534534832386,
+            "9": 7.899508107012232,
+            "10": 1.6514982682984327,
+            "11": 1.4769096231892198
+          },
+          "observedAnnualMm": 257.3912740202877,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 0,
+            "E": 0,
+            "netTransport": 0,
+            "storageDelta": 0,
+            "residual": 0
+          },
+          "airC": -13.547816252558334,
+          "landC": -11.74737756533267
+        },
+        {
+          "name": "Australia interior",
+          "bounds": {
+            "south": -29,
+            "north": -21,
+            "west": 126,
+            "east": 142
+          },
+          "validLandAreaKm2": 1431886.3161111374,
+          "observedMonthlyMm": {
+            "0": 45.9798169580569,
+            "1": 50.654739973171864,
+            "2": 27.010506979060914,
+            "3": 14.394869909515808,
+            "4": 14.358767125350127,
+            "5": 12.086925119791823,
+            "6": 10.567527259700487,
+            "7": 5.8543296253106325,
+            "8": 8.882684478703919,
+            "9": 15.890651063987015,
+            "10": 27.984083664184592,
+            "11": 42.36182931201165
+          },
+          "observedAnnualMm": 276.02673146884575,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 0,
+            "E": 0,
+            "netTransport": 0,
+            "storageDelta": 0,
+            "residual": 0
+          },
+          "airC": 27.083121151106525,
+          "landC": 22.859199888129126
+        },
+        {
+          "name": "Australia north",
+          "bounds": {
+            "south": -18,
+            "north": -10,
+            "west": 123,
+            "east": 139
+          },
+          "validLandAreaKm2": 559442.7204421703,
+          "observedMonthlyMm": {
+            "0": 239.68878360583577,
+            "1": 237.53615881618217,
+            "2": 154.23886894967333,
+            "3": 46.00016204953091,
+            "4": 11.14620602631387,
+            "5": 4.512343608256191,
+            "6": 1.7769853385957246,
+            "7": 0.9100584662614293,
+            "8": 5.077404081040057,
+            "9": 29.14678267034523,
+            "10": 70.83941027599705,
+            "11": 181.0197098180623
+          },
+          "observedAnnualMm": 981.892873706094,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 0,
+            "E": 0,
+            "netTransport": 0,
+            "storageDelta": 0,
+            "residual": 0
+          },
+          "airC": 27.970575003356487,
+          "landC": 26.6559758629611
+        },
+        {
+          "name": "Australia east",
+          "bounds": {
+            "south": -34,
+            "north": -26,
+            "west": 148,
+            "east": 154
+          },
+          "validLandAreaKm2": 272718.647321491,
+          "observedMonthlyMm": {
+            "0": 89.6463387160811,
+            "1": 88.39049423406932,
+            "2": 61.455165339207255,
+            "3": 39.23081341520135,
+            "4": 46.11697638490303,
+            "5": 51.372238353512806,
+            "6": 37.329960686146755,
+            "7": 36.602031430238526,
+            "8": 39.44892757976429,
+            "9": 54.419568034695885,
+            "10": 77.14853274261345,
+            "11": 86.71366981736755
+          },
+          "observedAnnualMm": 707.8747167338013,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 0,
+            "E": 0,
+            "netTransport": 0,
+            "storageDelta": 0,
+            "residual": 0
+          },
+          "airC": 26.259939400415988,
+          "landC": 20.550138372682113
+        },
+        {
+          "name": "Australia southwest",
+          "bounds": {
+            "south": -35,
+            "north": -29,
+            "west": 113,
+            "east": 120
+          },
+          "validLandAreaKm2": 202793.50641698565,
+          "observedMonthlyMm": {
+            "0": 19.0570535688757,
+            "1": 17.022827835193276,
+            "2": 25.906213506167067,
+            "3": 28.988093294932625,
+            "4": 60.61308689534099,
+            "5": 75.58874411700707,
+            "6": 84.03068472434926,
+            "7": 67.05033627822591,
+            "8": 47.795114802590426,
+            "9": 25.45882544517792,
+            "10": 22.31035233232498,
+            "11": 15.22246252426517
+          },
+          "observedAnnualMm": 489.0437953244504,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 0,
+            "E": 0,
+            "netTransport": 0,
+            "storageDelta": 0,
+            "residual": 0
+          },
+          "airC": 25.656331291064078,
+          "landC": 19.88867306259624
+        }
+      ],
+      "seaIce": {
+        "north": {
+          "extentMillionKm2": 44.56299973047479,
+          "areaMillionKm2": 35.389556226757875,
+          "iceGlobalMm": 98.57886666945681
+        },
+        "south": {
+          "extentMillionKm2": 51.28891465451845,
+          "areaMillionKm2": 34.572360174747054,
+          "iceGlobalMm": 78.69594854182574
+        }
+      }
+    },
+    {
+      "day": 24,
+      "steps": 2304,
+      "file": "build/earth-seaice-causal/shortwave-fair-900-day24.json",
+      "sha256": "8148b93633758ca2f9c12dbaee64f0610095bfc31cd782329edc4d55237ad322",
+      "budget": {
+        "waterResidualMm": 3.4924596548080444e-8,
+        "enthalpyResidualJm2": -0.00016489997506141663,
+        "maxCellVaporResidualMm": 7.531752999057062e-13,
+        "globalNetVaporTransportMm": 1.3430614645118212e-15,
+        "totalMm": 739407.3164897317,
+        "oceanChangeGlobalMm": -3.7220762349897996
+      },
+      "seconds": 39.3407759,
+      "calendarCoverageS": [
+        0,
+        0,
+        1037528.1739120303,
+        1036071.8260879697,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "coastalGt": {
+        "total": [
+          -241.12115737898833,
+          -56.89775174397258,
+          289.734179917271,
+          587.7530890402309
+        ],
+        "months": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -125.98926053482418,
+            -22.7084316539182,
+            150.54854226106474,
+            299.2462344498076
+          ],
+          [
+            -115.13189684416403,
+            -34.18932009005436,
+            139.18563765620587,
+            288.50685459042484
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "regions": [
+        {
+          "name": "Amazon",
+          "bounds": {
+            "south": -7,
+            "north": 1,
+            "west": -68,
+            "east": -52
+          },
+          "validLandAreaKm2": 1564430.9621510943,
+          "observedMonthlyMm": {
+            "0": 252.2267552991391,
+            "1": 262.6119849219642,
+            "2": 307.6978543299425,
+            "3": 296.2698739180464,
+            "4": 257.4411646817737,
+            "5": 160.27113516341433,
+            "6": 122.15097113800532,
+            "7": 85.39578456391233,
+            "8": 84.5026092124391,
+            "9": 111.85553742308403,
+            "10": 151.96705231931128,
+            "11": 200.32061453825122
+          },
+          "observedAnnualMm": 2292.7113375092836,
+          "modelMonthlyMm": [
+            0,
+            0,
+            76.3417310618399,
+            68.7770137418603,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 145.11874480370022,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -3.45832155414191,
+              -4.329245362062376,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -0.6859406437861718,
+              -0.5676840736981255,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 105.10042818348869,
+            "front": 0.005530436500816405,
+            "convergence": 40.00880611608243,
+            "orographic": 0.003980067628235235
+          },
+          "wholeArea": {
+            "P": 143.78517793643928,
+            "E": 69.234507533255,
+            "netTransport": 69.93333061439218,
+            "storageDelta": -4.617339788792021,
+            "residual": 6.726651914469768e-14
+          },
+          "airC": 25.02000882971123,
+          "landC": 31.99951588633769
+        },
+        {
+          "name": "Congo",
+          "bounds": {
+            "south": -4,
+            "north": 4,
+            "west": 15,
+            "east": 31
+          },
+          "validLandAreaKm2": 1581350.7896031223,
+          "observedMonthlyMm": {
+            "0": 68.1318877897498,
+            "1": 77.99006512449672,
+            "2": 133.805502725745,
+            "3": 142.9901417409269,
+            "4": 130.53956542685165,
+            "5": 81.08195124469613,
+            "6": 90.06368763225358,
+            "7": 109.91829960458058,
+            "8": 133.80426948601158,
+            "9": 167.28449341097792,
+            "10": 155.25908883515038,
+            "11": 87.35025470224262
+          },
+          "observedAnnualMm": 1378.2192077236828,
+          "modelMonthlyMm": [
+            0,
+            0,
+            52.858864595756536,
+            51.80936205326179,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 104.6682266490183,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -1.9479481911959742,
+              -2.2613065620693686,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -0.6483672098980776,
+              -0.596859054432994,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 88.64358402805436,
+            "front": 3.4683727126057767e-7,
+            "convergence": 15.986293519411175,
+            "orographic": 0.038348754715429305
+          },
+          "wholeArea": {
+            "P": 104.66822664901834,
+            "E": 65.05087747185338,
+            "netTransport": 39.14870450098563,
+            "storageDelta": -0.46864467617934347,
+            "residual": -1.4155343563970747e-14
+          },
+          "airC": 21.861150896082165,
+          "landC": 29.266187142030503
+        },
+        {
+          "name": "India",
+          "bounds": {
+            "south": 18,
+            "north": 25,
+            "west": 74,
+            "east": 86
+          },
+          "validLandAreaKm2": 788000.1995061378,
+          "observedMonthlyMm": {
+            "0": 12.158634423932531,
+            "1": 11.72660846332105,
+            "2": 15.25961239260873,
+            "3": 17.046216784117238,
+            "4": 31.92443550269676,
+            "5": 171.66808702639133,
+            "6": 310.51859522047073,
+            "7": 290.32228605116063,
+            "8": 192.90035294901347,
+            "9": 62.66664988624698,
+            "10": 14.721261787898758,
+            "11": 7.145718678289215
+          },
+          "observedAnnualMm": 1138.0584591661475,
+          "modelMonthlyMm": [
+            0,
+            0,
+            15.976064169783902,
+            14.717635625948263,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 30.69369979573214,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -6.757532106781503,
+              -7.8725672515473235,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -1.6006329519235925,
+              -1.76806251115501,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0.18171390886648325,
+            "front": 19.425060115933157,
+            "convergence": 0.039368255217893645,
+            "orographic": 11.047557515714619
+          },
+          "wholeArea": {
+            "P": 29.74253942094574,
+            "E": 55.20602826835773,
+            "netTransport": -23.741726833664558,
+            "storageDelta": 1.7217620137474459,
+            "residual": 1.5783127350731495e-14
+          },
+          "airC": 9.16100720475913,
+          "landC": 20.58168211154765
+        },
+        {
+          "name": "Himalaya foreland",
+          "bounds": {
+            "south": 25,
+            "north": 29,
+            "west": 79,
+            "east": 91
+          },
+          "validLandAreaKm2": 528694.768030383,
+          "observedMonthlyMm": {
+            "0": 15.312899871502239,
+            "1": 19.197505710022032,
+            "2": 23.742873810435164,
+            "3": 44.64304980008825,
+            "4": 95.1799554249309,
+            "5": 210.13723191226595,
+            "6": 334.03821319000446,
+            "7": 298.50670402165105,
+            "8": 197.43464254370346,
+            "9": 56.02293101433188,
+            "10": 6.779904326368383,
+            "11": 6.7847622718058185
+          },
+          "observedAnnualMm": 1307.7806738971096,
+          "modelMonthlyMm": [
+            0,
+            0,
+            32.91975311978996,
+            28.604191788943563,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 61.52394490873351,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -4.868412320257776,
+              -6.4539584980962035,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -3.7728761168739173,
+              -3.918880741209288,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 9.016983267777428,
+            "convergence": 0,
+            "orographic": 52.50696164095611
+          },
+          "wholeArea": {
+            "P": 61.52394490873351,
+            "E": 53.33515437162265,
+            "netTransport": 9.064015524727356,
+            "storageDelta": 0.8752249876164051,
+            "residual": -9.079773969726074e-14
+          },
+          "airC": 4.0938848637694605,
+          "landC": 12.812199677678848
+        },
+        {
+          "name": "Tibet",
+          "bounds": {
+            "south": 31,
+            "north": 36,
+            "west": 80,
+            "east": 94
+          },
+          "validLandAreaKm2": 721502.60895447,
+          "observedMonthlyMm": {
+            "0": 2.979150797163194,
+            "1": 3.3799369149068803,
+            "2": 4.5363020858703695,
+            "3": 6.671596575203615,
+            "4": 18.142793539927734,
+            "5": 44.65832953667905,
+            "6": 65.88017182953182,
+            "7": 65.40973139418129,
+            "8": 34.70534534832386,
+            "9": 7.899508107012232,
+            "10": 1.6514982682984327,
+            "11": 1.4769096231892198
+          },
+          "observedAnnualMm": 257.3912740202877,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0.01669548859498292,
+            0.0001029116471674411,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 0.016798400242150367,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -0.5644743448396987,
+              -1.9576831269392703,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -3.4992602964238038,
+              -3.1263227250147585,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0.008206002308070637,
+            "convergence": 0,
+            "orographic": 0.008592397934079732
+          },
+          "wholeArea": {
+            "P": 0.016798400242150364,
+            "E": 0,
+            "netTransport": 1.0031512826947684,
+            "storageDelta": 0.9863528824526181,
+            "residual": -8.032155062255647e-17
+          },
+          "airC": -2.036192310085255,
+          "landC": -1.8256540367630123
+        },
+        {
+          "name": "Australia interior",
+          "bounds": {
+            "south": -29,
+            "north": -21,
+            "west": 126,
+            "east": 142
+          },
+          "validLandAreaKm2": 1431886.3161111374,
+          "observedMonthlyMm": {
+            "0": 45.9798169580569,
+            "1": 50.654739973171864,
+            "2": 27.010506979060914,
+            "3": 14.394869909515808,
+            "4": 14.358767125350127,
+            "5": 12.086925119791823,
+            "6": 10.567527259700487,
+            "7": 5.8543296253106325,
+            "8": 8.882684478703919,
+            "9": 15.890651063987015,
+            "10": 27.984083664184592,
+            "11": 42.36182931201165
+          },
+          "observedAnnualMm": 276.02673146884575,
+          "modelMonthlyMm": [
+            0,
+            0,
+            35.02434319465184,
+            18.68454669226386,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 53.708889886915635,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -3.403079622875169,
+              -2.167115340761196,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              0.6901786738244182,
+              0.7809798011128759,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 42.905048610970454,
+            "front": 2.067806697924609,
+            "convergence": 8.736034578020659,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 53.66001422913945,
+            "E": 37.82235939563519,
+            "netTransport": 18.381891083643193,
+            "storageDelta": 2.544236250138875,
+            "residual": -6.222044634709783e-14
+          },
+          "airC": 18.707438500592332,
+          "landC": 24.823289979912147
+        },
+        {
+          "name": "Australia north",
+          "bounds": {
+            "south": -18,
+            "north": -10,
+            "west": 123,
+            "east": 139
+          },
+          "validLandAreaKm2": 559442.7204421703,
+          "observedMonthlyMm": {
+            "0": 239.68878360583577,
+            "1": 237.53615881618217,
+            "2": 154.23886894967333,
+            "3": 46.00016204953091,
+            "4": 11.14620602631387,
+            "5": 4.512343608256191,
+            "6": 1.7769853385957246,
+            "7": 0.9100584662614293,
+            "8": 5.077404081040057,
+            "9": 29.14678267034523,
+            "10": 70.83941027599705,
+            "11": 181.0197098180623
+          },
+          "observedAnnualMm": 981.892873706094,
+          "modelMonthlyMm": [
+            0,
+            0,
+            125.3491925693206,
+            107.13418431873485,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 232.48337688805597,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -7.896150711382712,
+              -7.674893132363755,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -0.3872052023203301,
+              0.21710885612248063,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 193.29171780211553,
+            "front": 0,
+            "convergence": 39.19165908594004,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 99.76036640247267,
+            "E": 52.8998077752087,
+            "netTransport": 45.08828463152177,
+            "storageDelta": -1.7722739957422369,
+            "residual": -3.8753638210696216e-14
+          },
+          "airC": 22.641984618851325,
+          "landC": 28.769369256974358
+        },
+        {
+          "name": "Australia east",
+          "bounds": {
+            "south": -34,
+            "north": -26,
+            "west": 148,
+            "east": 154
+          },
+          "validLandAreaKm2": 272718.647321491,
+          "observedMonthlyMm": {
+            "0": 89.6463387160811,
+            "1": 88.39049423406932,
+            "2": 61.455165339207255,
+            "3": 39.23081341520135,
+            "4": 46.11697638490303,
+            "5": 51.372238353512806,
+            "6": 37.329960686146755,
+            "7": 36.602031430238526,
+            "8": 39.44892757976429,
+            "9": 54.419568034695885,
+            "10": 77.14853274261345,
+            "11": 86.71366981736755
+          },
+          "observedAnnualMm": 707.8747167338013,
+          "modelMonthlyMm": [
+            0,
+            0,
+            49.469219109896926,
+            25.90124031684533,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 75.37045942674223,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -0.2576186432456875,
+              1.4655917094827453,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              0.7357161853301591,
+              1.1355880255252453,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 51.58019130991589,
+            "front": 13.295863091618402,
+            "convergence": 10.494405025207982,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 48.412911015630776,
+            "E": 42.91110330160969,
+            "netTransport": 6.244736926113469,
+            "storageDelta": 0.7429292120924902,
+            "residual": 1.0083450930627025e-13
+          },
+          "airC": 17.29720917056784,
+          "landC": 22.61100685159471
+        },
+        {
+          "name": "Australia southwest",
+          "bounds": {
+            "south": -35,
+            "north": -29,
+            "west": 113,
+            "east": 120
+          },
+          "validLandAreaKm2": 202793.50641698565,
+          "observedMonthlyMm": {
+            "0": 19.0570535688757,
+            "1": 17.022827835193276,
+            "2": 25.906213506167067,
+            "3": 28.988093294932625,
+            "4": 60.61308689534099,
+            "5": 75.58874411700707,
+            "6": 84.03068472434926,
+            "7": 67.05033627822591,
+            "8": 47.795114802590426,
+            "9": 25.45882544517792,
+            "10": 22.31035233232498,
+            "11": 15.22246252426517
+          },
+          "observedAnnualMm": 489.0437953244504,
+          "modelMonthlyMm": [
+            0,
+            0,
+            21.175598439356804,
+            6.727993079014184,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 27.903591518370913,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              1.2727783863891535,
+              2.6203252311138985,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              1.0176334864876326,
+              0.7171756269541333,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 21.491888991321588,
+            "front": 6.408243896975041,
+            "convergence": 0.003458630074365479,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 17.05026890205999,
+            "E": 42.62393297602698,
+            "netTransport": -26.18027071790356,
+            "storageDelta": -0.6066066439366598,
+            "residual": -8.591061852560992e-14
+          },
+          "airC": 15.2082976902866,
+          "landC": 20.875081745290572
+        }
+      ],
+      "seaIce": {
+        "north": {
+          "extentMillionKm2": 34.13163785193332,
+          "areaMillionKm2": 33.90359319180218,
+          "iceGlobalMm": 106.80346004791747
+        },
+        "south": {
+          "extentMillionKm2": 30.168059868304855,
+          "areaMillionKm2": 30.168059868304855,
+          "iceGlobalMm": 72.71855525204661
+        }
+      }
+    },
+    {
+      "day": 90,
+      "steps": 8640,
+      "file": "build/earth-seaice-causal/shortwave-fair-900-day90.json",
+      "sha256": "0a6b95510b4b96a25041d924d64cd55d9db02e0047bd34ae2708e3b7f8e44a95",
+      "budget": {
+        "waterResidualMm": 7.345806807279587e-8,
+        "enthalpyResidualJm2": -0.00016871094703674316,
+        "maxCellVaporResidualMm": 6.0822458181064576e-12,
+        "globalNetVaporTransportMm": -1.606739432860296e-15,
+        "totalMm": 739407.3164897702,
+        "oceanChangeGlobalMm": -29.35433555347845
+      },
+      "seconds": 137.1249076,
+      "calendarCoverageS": [
+        0,
+        0,
+        1037528.1739120303,
+        2593820.4347800775,
+        2680281.115939415,
+        1464370.2753684772,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "coastalGt": {
+        "total": [
+          -732.6621349317021,
+          -181.86345275457757,
+          1064.3234590998566,
+          1978.8490467861338
+        ],
+        "months": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -125.98926053482418,
+            -22.7084316539182,
+            150.54854226106474,
+            299.2462344498076
+          ],
+          [
+            -264.1758460157468,
+            -82.03935176789975,
+            344.7953826316643,
+            691.0105804153123
+          ],
+          [
+            -230.89857723875684,
+            -58.1779060168994,
+            362.01402057766666,
+            651.0905038333234
+          ],
+          [
+            -111.59845114237072,
+            -18.937763315859645,
+            206.96551362946119,
+            337.5017280876919
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "regions": [
+        {
+          "name": "Amazon",
+          "bounds": {
+            "south": -7,
+            "north": 1,
+            "west": -68,
+            "east": -52
+          },
+          "validLandAreaKm2": 1564430.9621510943,
+          "observedMonthlyMm": {
+            "0": 252.2267552991391,
+            "1": 262.6119849219642,
+            "2": 307.6978543299425,
+            "3": 296.2698739180464,
+            "4": 257.4411646817737,
+            "5": 160.27113516341433,
+            "6": 122.15097113800532,
+            "7": 85.39578456391233,
+            "8": 84.5026092124391,
+            "9": 111.85553742308403,
+            "10": 151.96705231931128,
+            "11": 200.32061453825122
+          },
+          "observedAnnualMm": 2292.7113375092836,
+          "modelMonthlyMm": [
+            0,
+            0,
+            76.3417310618399,
+            171.30860495427427,
+            175.3638152554548,
+            90.59076649814814,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 513.6049177697172,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -3.45832155414191,
+              -5.018899461458455,
+              -6.59911894863688,
+              -7.031016660786749,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -0.6859406437861718,
+              -0.4322769554646918,
+              0.09963899546053283,
+              0.5886187974236096,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 386.88863947375086,
+            "front": 0.009800397152408399,
+            "convergence": 126.15066095609214,
+            "orographic": 0.5558169427233229
+          },
+          "wholeArea": {
+            "P": 509.7267671007709,
+            "E": 242.2707346126364,
+            "netTransport": 259.03734831091424,
+            "storageDelta": -8.418684177220648,
+            "residual": -3.77981371993937e-13
+          },
+          "airC": 20.551645168290236,
+          "landC": 26.93507486847085
+        },
+        {
+          "name": "Congo",
+          "bounds": {
+            "south": -4,
+            "north": 4,
+            "west": 15,
+            "east": 31
+          },
+          "validLandAreaKm2": 1581350.7896031223,
+          "observedMonthlyMm": {
+            "0": 68.1318877897498,
+            "1": 77.99006512449672,
+            "2": 133.805502725745,
+            "3": 142.9901417409269,
+            "4": 130.53956542685165,
+            "5": 81.08195124469613,
+            "6": 90.06368763225358,
+            "7": 109.91829960458058,
+            "8": 133.80426948601158,
+            "9": 167.28449341097792,
+            "10": 155.25908883515038,
+            "11": 87.35025470224262
+          },
+          "observedAnnualMm": 1378.2192077236828,
+          "modelMonthlyMm": [
+            0,
+            0,
+            52.858864595756536,
+            128.2076027134943,
+            128.8467837313887,
+            70.14716963534767,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 380.0604206759868,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -1.9479481911959742,
+              -3.153336739254007,
+              -5.423582565963074,
+              -6.1833271089000785,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -0.6483672098980776,
+              -0.4938032716405297,
+              -0.08481545517573592,
+              0.3252836886461815,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 332.11818680008827,
+            "front": 3.4683727126057767e-7,
+            "convergence": 47.90388477434664,
+            "orographic": 0.038348754715429305
+          },
+          "wholeArea": {
+            "P": 380.06042067598696,
+            "E": 229.9677384353542,
+            "netTransport": 148.72950482580976,
+            "storageDelta": -1.3631774148231661,
+            "residual": -1.9229062786507714e-13
+          },
+          "airC": 19.477233995188726,
+          "landC": 26.346441733189465
+        },
+        {
+          "name": "India",
+          "bounds": {
+            "south": 18,
+            "north": 25,
+            "west": 74,
+            "east": 86
+          },
+          "validLandAreaKm2": 788000.1995061378,
+          "observedMonthlyMm": {
+            "0": 12.158634423932531,
+            "1": 11.72660846332105,
+            "2": 15.25961239260873,
+            "3": 17.046216784117238,
+            "4": 31.92443550269676,
+            "5": 171.66808702639133,
+            "6": 310.51859522047073,
+            "7": 290.32228605116063,
+            "8": 192.90035294901347,
+            "9": 62.66664988624698,
+            "10": 14.721261787898758,
+            "11": 7.145718678289215
+          },
+          "observedAnnualMm": 1138.0584591661475,
+          "modelMonthlyMm": [
+            0,
+            0,
+            15.976064169783902,
+            44.93758360160657,
+            71.31440101846344,
+            47.221785571432235,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 179.44983436128615,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -6.757532106781503,
+              -8.241078248856374,
+              -8.30924268295938,
+              -7.916168383803787,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -1.6006329519235925,
+              -1.6784710100558602,
+              -1.0909977573922887,
+              -0.7215969196211036,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 67.74892018607123,
+            "front": 34.17890849324119,
+            "convergence": 22.045287908741393,
+            "orographic": 55.47671777323231
+          },
+          "wholeArea": {
+            "P": 157.89816009659103,
+            "E": 203.01192352652998,
+            "netTransport": -38.410819353627474,
+            "storageDelta": 6.702944076311412,
+            "residual": -5.060636344318643e-14
+          },
+          "airC": 17.24801479946609,
+          "landC": 27.937957307645547
+        },
+        {
+          "name": "Himalaya foreland",
+          "bounds": {
+            "south": 25,
+            "north": 29,
+            "west": 79,
+            "east": 91
+          },
+          "validLandAreaKm2": 528694.768030383,
+          "observedMonthlyMm": {
+            "0": 15.312899871502239,
+            "1": 19.197505710022032,
+            "2": 23.742873810435164,
+            "3": 44.64304980008825,
+            "4": 95.1799554249309,
+            "5": 210.13723191226595,
+            "6": 334.03821319000446,
+            "7": 298.50670402165105,
+            "8": 197.43464254370346,
+            "9": 56.02293101433188,
+            "10": 6.779904326368383,
+            "11": 6.7847622718058185
+          },
+          "observedAnnualMm": 1307.7806738971096,
+          "modelMonthlyMm": [
+            0,
+            0,
+            32.91975311978996,
+            74.29736514685645,
+            108.25344730278469,
+            69.79467204718135,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 285.26523761661247,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -4.868412320257776,
+              -7.308431834710402,
+              -8.418573239478494,
+              -8.306639988880946,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -3.7728761168739173,
+              -3.98578494243351,
+              -2.655118677024574,
+              -1.3911337115130369,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 19.00680683289985,
+            "convergence": 0,
+            "orographic": 266.25843078371264
+          },
+          "wholeArea": {
+            "P": 285.26523761661247,
+            "E": 222.54094285064713,
+            "netTransport": 68.66048105134688,
+            "storageDelta": 5.936186285381108,
+            "residual": -4.686621461284328e-13
+          },
+          "airC": 15.500634351053463,
+          "landC": 24.572494902519225
+        },
+        {
+          "name": "Tibet",
+          "bounds": {
+            "south": 31,
+            "north": 36,
+            "west": 80,
+            "east": 94
+          },
+          "validLandAreaKm2": 721502.60895447,
+          "observedMonthlyMm": {
+            "0": 2.979150797163194,
+            "1": 3.3799369149068803,
+            "2": 4.5363020858703695,
+            "3": 6.671596575203615,
+            "4": 18.142793539927734,
+            "5": 44.65832953667905,
+            "6": 65.88017182953182,
+            "7": 65.40973139418129,
+            "8": 34.70534534832386,
+            "9": 7.899508107012232,
+            "10": 1.6514982682984327,
+            "11": 1.4769096231892198
+          },
+          "observedAnnualMm": 257.3912740202877,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0.01669548859498292,
+            0.09046190530234673,
+            2.5234710990918106,
+            2.661748126452788,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 5.2923766194419235,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -0.5644743448396987,
+              -2.8888139702507964,
+              -4.74193078905362,
+              -5.010207364370405,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -3.4992602964238038,
+              -3.000345492558352,
+              -1.678943793724097,
+              -0.7023054810872392,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0.008206002308070637,
+            "convergence": 0,
+            "orographic": 5.284170617133853
+          },
+          "wholeArea": {
+            "P": 5.292376619441922,
+            "E": 76.6356516621875,
+            "netTransport": -65.35372980044696,
+            "storageDelta": 5.989545242298809,
+            "residual": 1.767636974189026e-13
+          },
+          "airC": 12.718602181579286,
+          "landC": 21.556198437471608
+        },
+        {
+          "name": "Australia interior",
+          "bounds": {
+            "south": -29,
+            "north": -21,
+            "west": 126,
+            "east": 142
+          },
+          "validLandAreaKm2": 1431886.3161111374,
+          "observedMonthlyMm": {
+            "0": 45.9798169580569,
+            "1": 50.654739973171864,
+            "2": 27.010506979060914,
+            "3": 14.394869909515808,
+            "4": 14.358767125350127,
+            "5": 12.086925119791823,
+            "6": 10.567527259700487,
+            "7": 5.8543296253106325,
+            "8": 8.882684478703919,
+            "9": 15.890651063987015,
+            "10": 27.984083664184592,
+            "11": 42.36182931201165
+          },
+          "observedAnnualMm": 276.02673146884575,
+          "modelMonthlyMm": [
+            0,
+            0,
+            35.02434319465184,
+            27.93473238703338,
+            5.688076934004906,
+            0.4150647483943266,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 69.06221726408428,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -3.403079622875169,
+              -1.3209464838621157,
+              1.016181247368913,
+              1.9019889732125088,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              0.6901786738244182,
+              0.9205267443049178,
+              1.1632093405087727,
+              1.4969600154367622,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 44.113722510341894,
+            "front": 16.168912507574717,
+            "convergence": 8.779582246167868,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 68.99936991603127,
+            "E": 88.55946652868133,
+            "netTransport": -28.851222159504733,
+            "storageDelta": -9.291125546855069,
+            "residual": -3.945486476457357e-13
+          },
+          "airC": 7.709703672504702,
+          "landC": 12.605244408224905
+        },
+        {
+          "name": "Australia north",
+          "bounds": {
+            "south": -18,
+            "north": -10,
+            "west": 123,
+            "east": 139
+          },
+          "validLandAreaKm2": 559442.7204421703,
+          "observedMonthlyMm": {
+            "0": 239.68878360583577,
+            "1": 237.53615881618217,
+            "2": 154.23886894967333,
+            "3": 46.00016204953091,
+            "4": 11.14620602631387,
+            "5": 4.512343608256191,
+            "6": 1.7769853385957246,
+            "7": 0.9100584662614293,
+            "8": 5.077404081040057,
+            "9": 29.14678267034523,
+            "10": 70.83941027599705,
+            "11": 181.0197098180623
+          },
+          "observedAnnualMm": 981.892873706094,
+          "modelMonthlyMm": [
+            0,
+            0,
+            125.3491925693206,
+            202.16885308879813,
+            37.0760440277403,
+            8.276367467479286,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 372.8704571533391,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -7.896150711382712,
+              -7.3133154179442394,
+              -5.8150287409976675,
+              -4.910158114165665,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -0.3872052023203301,
+              0.7028410943970237,
+              2.2109067906391666,
+              2.722763680892458,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 291.6700381293962,
+            "front": 22.807243131846576,
+            "convergence": 58.39317589209554,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 261.6981575866111,
+            "E": 199.69192052444507,
+            "netTransport": 49.28928592308669,
+            "storageDelta": -12.716951139079372,
+            "residual": -5.609209027773882e-14
+          },
+          "airC": 15.315774254369387,
+          "landC": 17.68436250472564
+        },
+        {
+          "name": "Australia east",
+          "bounds": {
+            "south": -34,
+            "north": -26,
+            "west": 148,
+            "east": 154
+          },
+          "validLandAreaKm2": 272718.647321491,
+          "observedMonthlyMm": {
+            "0": 89.6463387160811,
+            "1": 88.39049423406932,
+            "2": 61.455165339207255,
+            "3": 39.23081341520135,
+            "4": 46.11697638490303,
+            "5": 51.372238353512806,
+            "6": 37.329960686146755,
+            "7": 36.602031430238526,
+            "8": 39.44892757976429,
+            "9": 54.419568034695885,
+            "10": 77.14853274261345,
+            "11": 86.71366981736755
+          },
+          "observedAnnualMm": 707.8747167338013,
+          "modelMonthlyMm": [
+            0,
+            0,
+            49.469219109896926,
+            42.80191309446851,
+            16.18704739851592,
+            3.4799304351885882,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 111.93811003807005,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -0.2576186432456875,
+              2.533554083612996,
+              5.005086854932785,
+              5.596380347436482,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              0.7357161853301591,
+              1.4644359253017223,
+              2.068572257404093,
+              2.3987517340271785,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 51.685072084676435,
+            "front": 49.73763781096763,
+            "convergence": 10.515400142425953,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 91.85315194219186,
+            "E": 136.37652587223872,
+            "netTransport": -53.99469752800238,
+            "storageDelta": -9.471323597955285,
+            "residual": 2.6173570163554523e-13
+          },
+          "airC": 5.5500423555107545,
+          "landC": 7.847254939582001
+        },
+        {
+          "name": "Australia southwest",
+          "bounds": {
+            "south": -35,
+            "north": -29,
+            "west": 113,
+            "east": 120
+          },
+          "validLandAreaKm2": 202793.50641698565,
+          "observedMonthlyMm": {
+            "0": 19.0570535688757,
+            "1": 17.022827835193276,
+            "2": 25.906213506167067,
+            "3": 28.988093294932625,
+            "4": 60.61308689534099,
+            "5": 75.58874411700707,
+            "6": 84.03068472434926,
+            "7": 67.05033627822591,
+            "8": 47.795114802590426,
+            "9": 25.45882544517792,
+            "10": 22.31035233232498,
+            "11": 15.22246252426517
+          },
+          "observedAnnualMm": 489.0437953244504,
+          "modelMonthlyMm": [
+            0,
+            0,
+            21.175598439356804,
+            14.729494798095836,
+            5.657114933737058,
+            0.011727708120476864,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 41.573935879309964,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              1.2727783863891535,
+              3.432974984547813,
+              5.242900139068454,
+              5.6579148643331445,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              1.0176334864876326,
+              0.7614743317063655,
+              1.1470871065213366,
+              1.3079905820676134,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 21.491888991321588,
+            "front": 20.078588257914255,
+            "convergence": 0.003458630074365479,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 32.19417777100082,
+            "E": 119.26898833001613,
+            "netTransport": -97.12237035197454,
+            "storageDelta": -10.04755979295991,
+            "residual": -6.568116733759822e-13
+          },
+          "airC": 3.8118001183904084,
+          "landC": 8.009271063020208
+        }
+      ],
+      "seaIce": {
+        "north": {
+          "extentMillionKm2": 24.06648174236457,
+          "areaMillionKm2": 24.06648174236457,
+          "iceGlobalMm": 88.70904475021317
+        },
+        "south": {
+          "extentMillionKm2": 51.28891465451845,
+          "areaMillionKm2": 47.815097725756864,
+          "iceGlobalMm": 112.65707312665491
+        }
+      }
+    },
+    {
+      "day": 180,
+      "steps": 17280,
+      "file": "build/earth-seaice-causal/shortwave-fair-900-day180.json",
+      "sha256": "000d04626c49773b419dc83bdd235fe2e23ff519c04c98f45183d3819f1d3587",
+      "budget": {
+        "waterResidualMm": 5.052424967288971e-8,
+        "enthalpyResidualJm2": -0.00016836822032928467,
+        "maxCellVaporResidualMm": 1.2846612662542611e-11,
+        "globalNetVaporTransportMm": 2.6990755309776028e-14,
+        "totalMm": 739407.3164897473,
+        "oceanChangeGlobalMm": -69.60524490545504
+      },
+      "seconds": 306.59373459999995,
+      "calendarCoverageS": [
+        0,
+        0,
+        1037528.1739120303,
+        2593820.4347800775,
+        2680281.115939415,
+        2593820.434780077,
+        2680281.1159394123,
+        2680281.115939414,
+        1285987.6087095737,
+        0,
+        0,
+        0
+      ],
+      "coastalGt": {
+        "total": [
+          -1544.8340658427032,
+          -191.7305470588337,
+          2703.280000849332,
+          4439.8446137508545
+        ],
+        "months": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -125.98926053482418,
+            -22.7084316539182,
+            150.54854226106474,
+            299.2462344498076
+          ],
+          [
+            -264.1758460157468,
+            -82.03935176789975,
+            344.7953826316643,
+            691.0105804153123
+          ],
+          [
+            -230.89857723875684,
+            -58.1779060168994,
+            362.01402057766666,
+            651.0905038333234
+          ],
+          [
+            -196.71380144661342,
+            -25.840901698528175,
+            378.36934384447164,
+            600.9240469896137
+          ],
+          [
+            -229.0216112460311,
+            3.8732058482816623,
+            501.844106652731,
+            726.9925120504796
+          ],
+          [
+            -315.51613198279045,
+            6.5390359406541565,
+            645.6543350556004,
+            954.6314310977356
+          ],
+          [
+            -182.51883737793932,
+            -13.376197710523531,
+            320.05426982613,
+            515.9493049145935
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "regions": [
+        {
+          "name": "Amazon",
+          "bounds": {
+            "south": -7,
+            "north": 1,
+            "west": -68,
+            "east": -52
+          },
+          "validLandAreaKm2": 1564430.9621510943,
+          "observedMonthlyMm": {
+            "0": 252.2267552991391,
+            "1": 262.6119849219642,
+            "2": 307.6978543299425,
+            "3": 296.2698739180464,
+            "4": 257.4411646817737,
+            "5": 160.27113516341433,
+            "6": 122.15097113800532,
+            "7": 85.39578456391233,
+            "8": 84.5026092124391,
+            "9": 111.85553742308403,
+            "10": 151.96705231931128,
+            "11": 200.32061453825122
+          },
+          "observedAnnualMm": 2292.7113375092836,
+          "modelMonthlyMm": [
+            0,
+            0,
+            76.3417310618399,
+            171.30860495427427,
+            175.3638152554548,
+            156.7334820308072,
+            146.9043179215795,
+            137.57750221217927,
+            63.78270076406079,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 928.0121542001999,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -3.45832155414191,
+              -5.018899461458455,
+              -6.59911894863688,
+              -7.043378757831752,
+              -6.787137649528504,
+              -5.465901467788128,
+              -3.7189564128192014,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -0.6859406437861718,
+              -0.4322769554646918,
+              0.09963899546053283,
+              0.7340137050443657,
+              1.3737480026745557,
+              1.78947760932409,
+              1.888748648890246,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 696.0398003975776,
+            "front": 12.728890723270322,
+            "convergence": 217.81152140266528,
+            "orographic": 1.4319416766852464
+          },
+          "wholeArea": {
+            "P": 921.6954782464721,
+            "E": 484.9405750693294,
+            "netTransport": 426.53260619902017,
+            "storageDelta": -10.222296978120596,
+            "residual": 2.0162001130148245e-12
+          },
+          "airC": 19.65504747790868,
+          "landC": 27.52970164367929
+        },
+        {
+          "name": "Congo",
+          "bounds": {
+            "south": -4,
+            "north": 4,
+            "west": 15,
+            "east": 31
+          },
+          "validLandAreaKm2": 1581350.7896031223,
+          "observedMonthlyMm": {
+            "0": 68.1318877897498,
+            "1": 77.99006512449672,
+            "2": 133.805502725745,
+            "3": 142.9901417409269,
+            "4": 130.53956542685165,
+            "5": 81.08195124469613,
+            "6": 90.06368763225358,
+            "7": 109.91829960458058,
+            "8": 133.80426948601158,
+            "9": 167.28449341097792,
+            "10": 155.25908883515038,
+            "11": 87.35025470224262
+          },
+          "observedAnnualMm": 1378.2192077236828,
+          "modelMonthlyMm": [
+            0,
+            0,
+            52.858864595756536,
+            128.2076027134943,
+            128.8467837313887,
+            124.57107195972128,
+            129.03887497086174,
+            125.63218087361355,
+            61.49532858438799,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 750.6507074292235,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -1.9479481911959742,
+              -3.153336739254007,
+              -5.423582565963074,
+              -6.2017339157185285,
+              -5.673827287125763,
+              -3.6648119995312727,
+              -1.9509376299933425,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -0.6483672098980776,
+              -0.4938032716405297,
+              -0.08481545517573592,
+              0.4463731005868307,
+              0.9753939610284725,
+              1.3230132568397353,
+              1.4733266647944268,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 639.4851026361189,
+            "front": 1.1057631970978195,
+            "convergence": 110.02149284129236,
+            "orographic": 0.038348754715429305
+          },
+          "wholeArea": {
+            "P": 750.6507074292238,
+            "E": 461.303702947093,
+            "netTransport": 287.42427940097866,
+            "storageDelta": -1.9227250811529224,
+            "residual": -7.340794638821535e-13
+          },
+          "airC": 20.47738207013805,
+          "landC": 28.05500520976568
+        },
+        {
+          "name": "India",
+          "bounds": {
+            "south": 18,
+            "north": 25,
+            "west": 74,
+            "east": 86
+          },
+          "validLandAreaKm2": 788000.1995061378,
+          "observedMonthlyMm": {
+            "0": 12.158634423932531,
+            "1": 11.72660846332105,
+            "2": 15.25961239260873,
+            "3": 17.046216784117238,
+            "4": 31.92443550269676,
+            "5": 171.66808702639133,
+            "6": 310.51859522047073,
+            "7": 290.32228605116063,
+            "8": 192.90035294901347,
+            "9": 62.66664988624698,
+            "10": 14.721261787898758,
+            "11": 7.145718678289215
+          },
+          "observedAnnualMm": 1138.0584591661475,
+          "modelMonthlyMm": [
+            0,
+            0,
+            15.976064169783902,
+            44.93758360160657,
+            71.31440101846344,
+            88.15965650540387,
+            106.28014861613337,
+            102.13086422016576,
+            35.485106345349294,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 464.28382447690626,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -6.757532106781503,
+              -8.241078248856374,
+              -8.30924268295938,
+              -7.854338359328965,
+              -7.847795289893342,
+              -7.900718821890249,
+              -7.272391445031846,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -1.6006329519235925,
+              -1.6784710100558602,
+              -1.0909977573922887,
+              -0.6697086203610321,
+              -0.5297708784630045,
+              -0.698888248186698,
+              -1.0114336343100614,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 240.06410453727216,
+            "front": 34.388817115398304,
+            "convergence": 59.179445927481886,
+            "orographic": 130.65145689675424
+          },
+          "wholeArea": {
+            "P": 393.0258949573929,
+            "E": 413.81237362430403,
+            "netTransport": -11.451048476928188,
+            "storageDelta": 9.335430189984066,
+            "residual": 1.1676420172301857e-12
+          },
+          "airC": 21.055675802016083,
+          "landC": 29.70635567430378
+        },
+        {
+          "name": "Himalaya foreland",
+          "bounds": {
+            "south": 25,
+            "north": 29,
+            "west": 79,
+            "east": 91
+          },
+          "validLandAreaKm2": 528694.768030383,
+          "observedMonthlyMm": {
+            "0": 15.312899871502239,
+            "1": 19.197505710022032,
+            "2": 23.742873810435164,
+            "3": 44.64304980008825,
+            "4": 95.1799554249309,
+            "5": 210.13723191226595,
+            "6": 334.03821319000446,
+            "7": 298.50670402165105,
+            "8": 197.43464254370346,
+            "9": 56.02293101433188,
+            "10": 6.779904326368383,
+            "11": 6.7847622718058185
+          },
+          "observedAnnualMm": 1307.7806738971096,
+          "modelMonthlyMm": [
+            0,
+            0,
+            32.91975311978996,
+            74.29736514685645,
+            108.25344730278469,
+            128.25953226720907,
+            154.6509015019216,
+            145.2890095659833,
+            57.70811160846697,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 701.3781205130142,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -4.868412320257776,
+              -7.308431834710402,
+              -8.418573239478494,
+              -8.22262327789216,
+              -7.51863611542712,
+              -6.160703468117364,
+              -4.283747334400004,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -3.7728761168739173,
+              -3.98578494243351,
+              -2.655118677024574,
+              -1.165567924378302,
+              -0.33175254152695527,
+              -0.6110787583711216,
+              -1.0518182780559493,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 19.00680683289985,
+            "convergence": 0,
+            "orographic": 682.3713136801139
+          },
+          "wholeArea": {
+            "P": 701.3781205130142,
+            "E": 446.057570956922,
+            "netTransport": 261.86848243833975,
+            "storageDelta": 6.547932882246927,
+            "residual": -5.494863823211442e-13
+          },
+          "airC": 18.164714770382375,
+          "landC": 23.527881413266755
+        },
+        {
+          "name": "Tibet",
+          "bounds": {
+            "south": 31,
+            "north": 36,
+            "west": 80,
+            "east": 94
+          },
+          "validLandAreaKm2": 721502.60895447,
+          "observedMonthlyMm": {
+            "0": 2.979150797163194,
+            "1": 3.3799369149068803,
+            "2": 4.5363020858703695,
+            "3": 6.671596575203615,
+            "4": 18.142793539927734,
+            "5": 44.65832953667905,
+            "6": 65.88017182953182,
+            "7": 65.40973139418129,
+            "8": 34.70534534832386,
+            "9": 7.899508107012232,
+            "10": 1.6514982682984327,
+            "11": 1.4769096231892198
+          },
+          "observedAnnualMm": 257.3912740202877,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0.01669548859498292,
+            0.09046190530234673,
+            2.5234710990918106,
+            5.073793504110875,
+            6.084635540326716,
+            5.019112341431647,
+            1.9253915192706224,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 20.733561398129016,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -0.5644743448396987,
+              -2.8888139702507964,
+              -4.74193078905362,
+              -4.920109516979133,
+              -4.062862417169816,
+              -1.6527131722914203,
+              0.7647723876488337,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -3.4992602964238038,
+              -3.000345492558352,
+              -1.678943793724097,
+              -0.6790279009742995,
+              -0.4708572437580126,
+              -0.47730923244527784,
+              -0.7172841754288762,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0.03795592312389274,
+            "front": 0.008206002308070637,
+            "convergence": 0.017958556001414053,
+            "orographic": 20.66944091669564
+          },
+          "wholeArea": {
+            "P": 20.733561398129005,
+            "E": 97.61932743508441,
+            "netTransport": -70.68992587104164,
+            "storageDelta": 6.195840165913697,
+            "residual": -8.579242199587992e-14
+          },
+          "airC": 14.684329114180514,
+          "landC": 20.273189846293633
+        },
+        {
+          "name": "Australia interior",
+          "bounds": {
+            "south": -29,
+            "north": -21,
+            "west": 126,
+            "east": 142
+          },
+          "validLandAreaKm2": 1431886.3161111374,
+          "observedMonthlyMm": {
+            "0": 45.9798169580569,
+            "1": 50.654739973171864,
+            "2": 27.010506979060914,
+            "3": 14.394869909515808,
+            "4": 14.358767125350127,
+            "5": 12.086925119791823,
+            "6": 10.567527259700487,
+            "7": 5.8543296253106325,
+            "8": 8.882684478703919,
+            "9": 15.890651063987015,
+            "10": 27.984083664184592,
+            "11": 42.36182931201165
+          },
+          "observedAnnualMm": 276.02673146884575,
+          "modelMonthlyMm": [
+            0,
+            0,
+            35.02434319465184,
+            27.93473238703338,
+            5.688076934004906,
+            0.4200716334466215,
+            0.05706419345482117,
+            5.941357706574428,
+            7.361494555833276,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 82.42714060499918,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -3.403079622875169,
+              -1.3209464838621157,
+              1.016181247368913,
+              1.9056732456778203,
+              1.1739990918053478,
+              -1.5011087495162674,
+              -4.053651236141405,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              0.6901786738244182,
+              0.9205267443049178,
+              1.1632093405087727,
+              1.5588662898304937,
+              2.0081311497489494,
+              2.4045370841777802,
+              2.606282672147525,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 44.113722510341894,
+            "front": 29.533835848489502,
+            "convergence": 8.779582246167868,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 82.35213103536998,
+            "E": 108.44592617146857,
+            "netTransport": -35.32370475570723,
+            "storageDelta": -9.229909619609185,
+            "residual": -5.487841770281636e-13
+          },
+          "airC": 4.008735852150892,
+          "landC": 15.80862431881377
+        },
+        {
+          "name": "Australia north",
+          "bounds": {
+            "south": -18,
+            "north": -10,
+            "west": 123,
+            "east": 139
+          },
+          "validLandAreaKm2": 559442.7204421703,
+          "observedMonthlyMm": {
+            "0": 239.68878360583577,
+            "1": 237.53615881618217,
+            "2": 154.23886894967333,
+            "3": 46.00016204953091,
+            "4": 11.14620602631387,
+            "5": 4.512343608256191,
+            "6": 1.7769853385957246,
+            "7": 0.9100584662614293,
+            "8": 5.077404081040057,
+            "9": 29.14678267034523,
+            "10": 70.83941027599705,
+            "11": 181.0197098180623
+          },
+          "observedAnnualMm": 981.892873706094,
+          "modelMonthlyMm": [
+            0,
+            0,
+            125.3491925693206,
+            202.16885308879813,
+            37.0760440277403,
+            13.869946544958243,
+            9.099199276392646,
+            3.649254913891448,
+            2.602532966365565,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 393.8150233874673,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -7.896150711382712,
+              -7.3133154179442394,
+              -5.8150287409976675,
+              -4.89703123659152,
+              -5.52862518222827,
+              -7.158385828349127,
+              -7.922157867050544,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              -0.3872052023203301,
+              0.7028410943970237,
+              2.2109067906391666,
+              2.854929218801739,
+              2.831883196590827,
+              1.65326658621815,
+              0.900195527941617,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 293.01593820138254,
+            "front": 41.53819899088765,
+            "convergence": 59.26088619519651,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 312.66836389524866,
+            "E": 421.36406273001757,
+            "netTransport": -124.0753132834871,
+            "storageDelta": -15.379614448718241,
+            "residual": -5.803549647982033e-14
+          },
+          "airC": 11.354304774942705,
+          "landC": 23.85447899769582
+        },
+        {
+          "name": "Australia east",
+          "bounds": {
+            "south": -34,
+            "north": -26,
+            "west": 148,
+            "east": 154
+          },
+          "validLandAreaKm2": 272718.647321491,
+          "observedMonthlyMm": {
+            "0": 89.6463387160811,
+            "1": 88.39049423406932,
+            "2": 61.455165339207255,
+            "3": 39.23081341520135,
+            "4": 46.11697638490303,
+            "5": 51.372238353512806,
+            "6": 37.329960686146755,
+            "7": 36.602031430238526,
+            "8": 39.44892757976429,
+            "9": 54.419568034695885,
+            "10": 77.14853274261345,
+            "11": 86.71366981736755
+          },
+          "observedAnnualMm": 707.8747167338013,
+          "modelMonthlyMm": [
+            0,
+            0,
+            49.469219109896926,
+            42.80191309446851,
+            16.18704739851592,
+            5.953742237693547,
+            8.741069177318213,
+            20.506495589126494,
+            13.325701887177988,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 156.98518849419787,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -0.2576186432456875,
+              2.533554083612996,
+              5.005086854932785,
+              5.548522751695335,
+              4.363368436485797,
+              1.8536006042186364,
+              -0.8710881451971342,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              0.7357161853301591,
+              1.4644359253017223,
+              2.068572257404093,
+              2.4526682969075217,
+              2.51425170692635,
+              2.1030300873371335,
+              1.7041544172721892,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 51.685072084676435,
+            "front": 94.78471626709526,
+            "convergence": 10.515400142425953,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 143.14780199339663,
+            "E": 260.78222683337765,
+            "netTransport": -127.60095447605771,
+            "storageDelta": -9.966529636076258,
+            "residual": 4.006545566677043e-13
+          },
+          "airC": -0.04516480545765944,
+          "landC": 10.093570878481898
+        },
+        {
+          "name": "Australia southwest",
+          "bounds": {
+            "south": -35,
+            "north": -29,
+            "west": 113,
+            "east": 120
+          },
+          "validLandAreaKm2": 202793.50641698565,
+          "observedMonthlyMm": {
+            "0": 19.0570535688757,
+            "1": 17.022827835193276,
+            "2": 25.906213506167067,
+            "3": 28.988093294932625,
+            "4": 60.61308689534099,
+            "5": 75.58874411700707,
+            "6": 84.03068472434926,
+            "7": 67.05033627822591,
+            "8": 47.795114802590426,
+            "9": 25.45882544517792,
+            "10": 22.31035233232498,
+            "11": 15.22246252426517
+          },
+          "observedAnnualMm": 489.0437953244504,
+          "modelMonthlyMm": [
+            0,
+            0,
+            21.175598439356804,
+            14.729494798095836,
+            5.657114933737058,
+            0.011727708120476864,
+            0.09475506662884597,
+            0.6551894388622057,
+            2.5025163217270547,
+            0,
+            0,
+            0
+          ],
+          "modelCumulativeMm": 44.82639670652817,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              1.2727783863891535,
+              3.432974984547813,
+              5.242900139068454,
+              5.602278249080866,
+              5.0432181424798905,
+              3.536154529097036,
+              1.29701907874454,
+              null,
+              null,
+              null
+            ],
+            "north": [
+              null,
+              null,
+              1.0176334864876326,
+              0.7614743317063655,
+              1.1470871065213366,
+              1.4326930435861305,
+              2.0348750393131643,
+              2.5137316031865655,
+              2.8184369386036794,
+              null,
+              null,
+              null
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 21.491888991321588,
+            "front": 23.331049085132296,
+            "convergence": 0.003458630074365479,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 35.82184919499537,
+            "E": 202.10260638069903,
+            "netTransport": -178.46105135032872,
+            "storageDelta": -12.180294164625966,
+            "residual": -9.243860551014785e-13
+          },
+          "airC": -2.168200735467167,
+          "landC": 10.702100472560517
+        }
+      ],
+      "seaIce": {
+        "north": {
+          "extentMillionKm2": 11.201103816890082,
+          "areaMillionKm2": 11.15716568271328,
+          "iceGlobalMm": 18.983747848898993
+        },
+        "south": {
+          "extentMillionKm2": 72.21838681881862,
+          "areaMillionKm2": 72.11212662000732,
+          "iceGlobalMm": 215.39846976898644
+        }
+      }
+    },
+    {
+      "day": 270,
+      "steps": 25920,
+      "file": "build/earth-seaice-causal/shortwave-fair-900-day270.json",
+      "sha256": "426f70b855b4ee544a4c1e7a9b2d3d71b0886269a86cacba2fa64ca8719af636",
+      "budget": {
+        "waterResidualMm": 6.530899554491043e-8,
+        "enthalpyResidualJm2": -0.00017142295837402344,
+        "maxCellVaporResidualMm": 2.2737367544323206e-11,
+        "globalNetVaporTransportMm": 8.768294732261792e-14,
+        "totalMm": 739407.316489762,
+        "oceanChangeGlobalMm": -89.64790036471095
+      },
+      "seconds": 411.2872053,
+      "calendarCoverageS": [
+        0,
+        0,
+        1037528.1739120303,
+        2593820.4347800775,
+        2680281.115939415,
+        2593820.434780077,
+        2680281.1159394123,
+        2680281.115939414,
+        2593820.43478008,
+        2680281.115939405,
+        2593820.434780076,
+        1194065.623210013
+      ],
+      "coastalGt": {
+        "total": [
+          -2486.159881737186,
+          -371.08810614664895,
+          3802.1736297862653,
+          6659.421617670124
+        ],
+        "months": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -125.98926053482418,
+            -22.7084316539182,
+            150.54854226106474,
+            299.2462344498076
+          ],
+          [
+            -264.1758460157468,
+            -82.03935176789975,
+            344.7953826316643,
+            691.0105804153123
+          ],
+          [
+            -230.89857723875684,
+            -58.1779060168994,
+            362.01402057766666,
+            651.0905038333234
+          ],
+          [
+            -196.71380144661342,
+            -25.840901698528175,
+            378.36934384447164,
+            600.9240469896137
+          ],
+          [
+            -229.0216112460311,
+            3.8732058482816623,
+            501.844106652731,
+            726.9925120504796
+          ],
+          [
+            -315.51613198279045,
+            6.5390359406541565,
+            645.6543350556004,
+            954.6314310977356
+          ],
+          [
+            -375.0238775701605,
+            -35.965356995843656,
+            620.6561416221107,
+            1031.645376188111
+          ],
+          [
+            -373.6040862445231,
+            -66.27421188315623,
+            464.4664532891373,
+            904.3447514168165
+          ],
+          [
+            -276.2827737560347,
+            -66.23720800825055,
+            253.32595743903315,
+            595.8459392033201
+          ],
+          [
+            -98.93391570170509,
+            -24.256979911089125,
+            80.4993464127902,
+            203.69024202558435
+          ]
+        ]
+      },
+      "regions": [
+        {
+          "name": "Amazon",
+          "bounds": {
+            "south": -7,
+            "north": 1,
+            "west": -68,
+            "east": -52
+          },
+          "validLandAreaKm2": 1564430.9621510943,
+          "observedMonthlyMm": {
+            "0": 252.2267552991391,
+            "1": 262.6119849219642,
+            "2": 307.6978543299425,
+            "3": 296.2698739180464,
+            "4": 257.4411646817737,
+            "5": 160.27113516341433,
+            "6": 122.15097113800532,
+            "7": 85.39578456391233,
+            "8": 84.5026092124391,
+            "9": 111.85553742308403,
+            "10": 151.96705231931128,
+            "11": 200.32061453825122
+          },
+          "observedAnnualMm": 2292.7113375092836,
+          "modelMonthlyMm": [
+            0,
+            0,
+            76.3417310618399,
+            171.30860495427427,
+            175.3638152554548,
+            156.7334820308072,
+            146.9043179215795,
+            137.57750221217927,
+            127.66023478197022,
+            128.08709194967278,
+            122.16982397693646,
+            58.23933996119129
+          ],
+          "modelCumulativeMm": 1300.3859441059133,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -3.45832155414191,
+              -5.018899461458455,
+              -6.59911894863688,
+              -7.043378757831752,
+              -6.787137649528504,
+              -5.465901467788128,
+              -3.119125797139414,
+              -2.24697171061926,
+              -3.537068848370095,
+              -4.381892327814443
+            ],
+            "north": [
+              null,
+              null,
+              -0.6859406437861718,
+              -0.4322769554646918,
+              0.09963899546053283,
+              0.7340137050443657,
+              1.3737480026745557,
+              1.78947760932409,
+              1.8609772466179493,
+              1.6209300914329263,
+              1.1506094397530615,
+              0.751155334706633
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 1014.0180064360778,
+            "front": 13.546496872340914,
+            "convergence": 271.1769000117249,
+            "orographic": 1.6445407857631626
+          },
+          "wholeArea": {
+            "P": 1291.6730617214419,
+            "E": 752.1867514369959,
+            "netTransport": 530.946205090573,
+            "storageDelta": -8.540105193867086,
+            "residual": 5.84992028561386e-12
+          },
+          "airC": 21.10886031629923,
+          "landC": 28.24046927570572
+        },
+        {
+          "name": "Congo",
+          "bounds": {
+            "south": -4,
+            "north": 4,
+            "west": 15,
+            "east": 31
+          },
+          "validLandAreaKm2": 1581350.7896031223,
+          "observedMonthlyMm": {
+            "0": 68.1318877897498,
+            "1": 77.99006512449672,
+            "2": 133.805502725745,
+            "3": 142.9901417409269,
+            "4": 130.53956542685165,
+            "5": 81.08195124469613,
+            "6": 90.06368763225358,
+            "7": 109.91829960458058,
+            "8": 133.80426948601158,
+            "9": 167.28449341097792,
+            "10": 155.25908883515038,
+            "11": 87.35025470224262
+          },
+          "observedAnnualMm": 1378.2192077236828,
+          "modelMonthlyMm": [
+            0,
+            0,
+            52.858864595756536,
+            128.2076027134943,
+            128.8467837313887,
+            124.57107195972128,
+            129.03887497086174,
+            125.63218087361355,
+            124.50639213096775,
+            131.61327877940096,
+            131.42442295465904,
+            61.61001042878468
+          ],
+          "modelCumulativeMm": 1138.309483138646,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -1.9479481911959742,
+              -3.153336739254007,
+              -5.423582565963074,
+              -6.2017339157185285,
+              -5.673827287125763,
+              -3.6648119995312727,
+              -1.9537035111210848,
+              -3.223721516747319,
+              -5.460624301738928,
+              -6.177934019948383
+            ],
+            "north": [
+              null,
+              null,
+              -0.6483672098980776,
+              -0.4938032716405297,
+              -0.08481545517573592,
+              0.4463731005868307,
+              0.9753939610284725,
+              1.3230132568397353,
+              1.472155335781149,
+              1.319884732932053,
+              0.932274391388591,
+              0.5312810132010041
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 957.9715538569297,
+            "front": 1.1057631970978195,
+            "convergence": 179.19381732990678,
+            "orographic": 0.038348754715429305
+          },
+          "wholeArea": {
+            "P": 1138.309483138646,
+            "E": 699.3797037601406,
+            "netTransport": 435.94556518394654,
+            "storageDelta": -2.984214194560764,
+            "residual": -1.715960706860642e-12
+          },
+          "airC": 17.510213675634418,
+          "landC": 24.747296318726228
+        },
+        {
+          "name": "India",
+          "bounds": {
+            "south": 18,
+            "north": 25,
+            "west": 74,
+            "east": 86
+          },
+          "validLandAreaKm2": 788000.1995061378,
+          "observedMonthlyMm": {
+            "0": 12.158634423932531,
+            "1": 11.72660846332105,
+            "2": 15.25961239260873,
+            "3": 17.046216784117238,
+            "4": 31.92443550269676,
+            "5": 171.66808702639133,
+            "6": 310.51859522047073,
+            "7": 290.32228605116063,
+            "8": 192.90035294901347,
+            "9": 62.66664988624698,
+            "10": 14.721261787898758,
+            "11": 7.145718678289215
+          },
+          "observedAnnualMm": 1138.0584591661475,
+          "modelMonthlyMm": [
+            0,
+            0,
+            15.976064169783902,
+            44.93758360160657,
+            71.31440101846344,
+            88.15965650540387,
+            106.28014861613337,
+            102.13086422016576,
+            59.89392122237966,
+            23.54370463972135,
+            10.436156927714345,
+            2.5886186093937926
+          ],
+          "modelCumulativeMm": 525.2611195307668,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -6.757532106781503,
+              -8.241078248856374,
+              -8.30924268295938,
+              -7.854338359328965,
+              -7.847795289893342,
+              -7.900718821890249,
+              -6.797295148934509,
+              -4.375558518072549,
+              -1.967541682118101,
+              -0.9521255195362875
+            ],
+            "north": [
+              null,
+              null,
+              -1.6006329519235925,
+              -1.6784710100558602,
+              -1.0909977573922887,
+              -0.6697086203610321,
+              -0.5297708784630045,
+              -0.698888248186698,
+              -1.1513252488031536,
+              -1.8568074355069975,
+              -2.472863118232607,
+              -2.6942775580455027
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 258.8030641496367,
+            "front": 53.54304722610624,
+            "convergence": 63.77417769153066,
+            "orographic": 149.14083046349316
+          },
+          "wholeArea": {
+            "P": 459.08672534793686,
+            "E": 526.1531505193229,
+            "netTransport": -69.56666211269871,
+            "storageDelta": -2.500236941312735,
+            "residual": -1.548926421269157e-13
+          },
+          "airC": 6.623774345635354,
+          "landC": 11.746080631744007
+        },
+        {
+          "name": "Himalaya foreland",
+          "bounds": {
+            "south": 25,
+            "north": 29,
+            "west": 79,
+            "east": 91
+          },
+          "validLandAreaKm2": 528694.768030383,
+          "observedMonthlyMm": {
+            "0": 15.312899871502239,
+            "1": 19.197505710022032,
+            "2": 23.742873810435164,
+            "3": 44.64304980008825,
+            "4": 95.1799554249309,
+            "5": 210.13723191226595,
+            "6": 334.03821319000446,
+            "7": 298.50670402165105,
+            "8": 197.43464254370346,
+            "9": 56.02293101433188,
+            "10": 6.779904326368383,
+            "11": 6.7847622718058185
+          },
+          "observedAnnualMm": 1307.7806738971096,
+          "modelMonthlyMm": [
+            0,
+            0,
+            32.91975311978996,
+            74.29736514685645,
+            108.25344730278469,
+            128.25953226720907,
+            154.6509015019216,
+            145.2890095659833,
+            107.0284832388047,
+            70.95563419513003,
+            34.47559237365176,
+            9.43267294265616
+          ],
+          "modelCumulativeMm": 865.5623916547912,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -4.868412320257776,
+              -7.308431834710402,
+              -8.418573239478494,
+              -8.22262327789216,
+              -7.51863611542712,
+              -6.160703468117364,
+              -3.4947918689980684,
+              -0.2806031188948303,
+              2.066592936096482,
+              2.9427278530567014
+            ],
+            "north": [
+              null,
+              null,
+              -3.7728761168739173,
+              -3.98578494243351,
+              -2.655118677024574,
+              -1.165567924378302,
+              -0.33175254152695527,
+              -0.6110787583711216,
+              -1.243864494212398,
+              -1.9879689786912722,
+              -2.597755365410414,
+              -2.9482879367528096
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 19.00680683289985,
+            "convergence": 0,
+            "orographic": 846.5555848218906
+          },
+          "wholeArea": {
+            "P": 865.5623916547911,
+            "E": 582.5131505146284,
+            "netTransport": 282.116805809463,
+            "storageDelta": -0.9324353306978671,
+            "residual": 1.8426741614045268e-12
+          },
+          "airC": 0.1908505022295799,
+          "landC": 2.85015918553853
+        },
+        {
+          "name": "Tibet",
+          "bounds": {
+            "south": 31,
+            "north": 36,
+            "west": 80,
+            "east": 94
+          },
+          "validLandAreaKm2": 721502.60895447,
+          "observedMonthlyMm": {
+            "0": 2.979150797163194,
+            "1": 3.3799369149068803,
+            "2": 4.5363020858703695,
+            "3": 6.671596575203615,
+            "4": 18.142793539927734,
+            "5": 44.65832953667905,
+            "6": 65.88017182953182,
+            "7": 65.40973139418129,
+            "8": 34.70534534832386,
+            "9": 7.899508107012232,
+            "10": 1.6514982682984327,
+            "11": 1.4769096231892198
+          },
+          "observedAnnualMm": 257.3912740202877,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0.01669548859498292,
+            0.09046190530234673,
+            2.5234710990918106,
+            5.073793504110875,
+            6.084635540326716,
+            5.019112341431647,
+            3.4423774281000563,
+            1.7680153263056502,
+            0.46200864009838905,
+            0.0006946562434339464
+          ],
+          "modelCumulativeMm": 24.481265929605986,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -0.5644743448396987,
+              -2.8888139702507964,
+              -4.74193078905362,
+              -4.920109516979133,
+              -4.062862417169816,
+              -1.6527131722914203,
+              1.5660629213532782,
+              4.291949674581258,
+              5.74697511190269,
+              5.829530389561087
+            ],
+            "north": [
+              null,
+              null,
+              -3.4992602964238038,
+              -3.000345492558352,
+              -1.678943793724097,
+              -0.6790279009742995,
+              -0.4708572437580126,
+              -0.47730923244527784,
+              -0.8418355259764698,
+              -1.3542704501389973,
+              -1.5951901486179754,
+              -2.0291370651708105
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0.03795592312389274,
+            "front": 0.008206002308070637,
+            "convergence": 0.017958556001414053,
+            "orographic": 24.417145448172608
+          },
+          "wholeArea": {
+            "P": 24.481265929605975,
+            "E": 101.66254027637697,
+            "netTransport": -76.45651143228004,
+            "storageDelta": 0.7247629144910137,
+            "residual": 5.674869201432915e-14
+          },
+          "airC": -5.703143074232173,
+          "landC": -5.457510650183963
+        },
+        {
+          "name": "Australia interior",
+          "bounds": {
+            "south": -29,
+            "north": -21,
+            "west": 126,
+            "east": 142
+          },
+          "validLandAreaKm2": 1431886.3161111374,
+          "observedMonthlyMm": {
+            "0": 45.9798169580569,
+            "1": 50.654739973171864,
+            "2": 27.010506979060914,
+            "3": 14.394869909515808,
+            "4": 14.358767125350127,
+            "5": 12.086925119791823,
+            "6": 10.567527259700487,
+            "7": 5.8543296253106325,
+            "8": 8.882684478703919,
+            "9": 15.890651063987015,
+            "10": 27.984083664184592,
+            "11": 42.36182931201165
+          },
+          "observedAnnualMm": 276.02673146884575,
+          "modelMonthlyMm": [
+            0,
+            0,
+            35.02434319465184,
+            27.93473238703338,
+            5.688076934004906,
+            0.4200716334466215,
+            0.05706419345482117,
+            5.941357706574428,
+            17.87224068112582,
+            38.130956298202605,
+            66.69244034870371,
+            38.80949953610723
+          ],
+          "modelCumulativeMm": 236.57078291330524,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -3.403079622875169,
+              -1.3209464838621157,
+              1.016181247368913,
+              1.9056732456778203,
+              1.1739990918053478,
+              -1.5011087495162674,
+              -4.7949722218637625,
+              -6.868482788459616,
+              -7.696651739515575,
+              -7.728573036684059
+            ],
+            "north": [
+              null,
+              null,
+              0.6901786738244182,
+              0.9205267443049178,
+              1.1632093405087727,
+              1.5588662898304937,
+              2.0081311497489494,
+              2.4045370841777802,
+              2.606267120624403,
+              2.0078166142570684,
+              1.2616126864950699,
+              0.9944028066984915
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 130.72549973349192,
+            "front": 71.16287650368209,
+            "convergence": 34.682406676131535,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 236.35550099908465,
+            "E": 253.59924298468067,
+            "netTransport": -20.437950846146027,
+            "storageDelta": -3.194208860550535,
+            "residual": -5.264914917361217e-13
+          },
+          "airC": 13.771579057002043,
+          "landC": 25.12261727702139
+        },
+        {
+          "name": "Australia north",
+          "bounds": {
+            "south": -18,
+            "north": -10,
+            "west": 123,
+            "east": 139
+          },
+          "validLandAreaKm2": 559442.7204421703,
+          "observedMonthlyMm": {
+            "0": 239.68878360583577,
+            "1": 237.53615881618217,
+            "2": 154.23886894967333,
+            "3": 46.00016204953091,
+            "4": 11.14620602631387,
+            "5": 4.512343608256191,
+            "6": 1.7769853385957246,
+            "7": 0.9100584662614293,
+            "8": 5.077404081040057,
+            "9": 29.14678267034523,
+            "10": 70.83941027599705,
+            "11": 181.0197098180623
+          },
+          "observedAnnualMm": 981.892873706094,
+          "modelMonthlyMm": [
+            0,
+            0,
+            125.3491925693206,
+            202.16885308879813,
+            37.0760440277403,
+            13.869946544958243,
+            9.099199276392646,
+            3.649254913891448,
+            11.019566189099367,
+            37.037732528608956,
+            81.81741985694131,
+            57.01745533847818
+          ],
+          "modelCumulativeMm": 578.1046643342293,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -7.896150711382712,
+              -7.3133154179442394,
+              -5.8150287409976675,
+              -4.89703123659152,
+              -5.52862518222827,
+              -7.158385828349127,
+              -7.927310893668896,
+              -7.733177181410043,
+              -6.504167454375649,
+              -5.568182942832147
+            ],
+            "north": [
+              null,
+              null,
+              -0.3872052023203301,
+              0.7028410943970237,
+              2.2109067906391666,
+              2.854929218801739,
+              2.831883196590827,
+              1.65326658621815,
+              0.8848168566417062,
+              0.9435232131619296,
+              0.8474238418842192,
+              0.4323545732708244
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 455.1341640778047,
+            "front": 42.00700765897437,
+            "convergence": 80.96349259744923,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 386.2978931697437,
+            "E": 651.5763813235405,
+            "netTransport": -274.6946622263527,
+            "storageDelta": -9.416174072555242,
+            "residual": 6.880115887478117e-13
+          },
+          "airC": 16.975729769947293,
+          "landC": 27.095229750293242
+        },
+        {
+          "name": "Australia east",
+          "bounds": {
+            "south": -34,
+            "north": -26,
+            "west": 148,
+            "east": 154
+          },
+          "validLandAreaKm2": 272718.647321491,
+          "observedMonthlyMm": {
+            "0": 89.6463387160811,
+            "1": 88.39049423406932,
+            "2": 61.455165339207255,
+            "3": 39.23081341520135,
+            "4": 46.11697638490303,
+            "5": 51.372238353512806,
+            "6": 37.329960686146755,
+            "7": 36.602031430238526,
+            "8": 39.44892757976429,
+            "9": 54.419568034695885,
+            "10": 77.14853274261345,
+            "11": 86.71366981736755
+          },
+          "observedAnnualMm": 707.8747167338013,
+          "modelMonthlyMm": [
+            0,
+            0,
+            49.469219109896926,
+            42.80191309446851,
+            16.18704739851592,
+            5.953742237693547,
+            8.741069177318213,
+            20.506495589126494,
+            27.154014510547256,
+            35.426814871550725,
+            76.80512883101564,
+            59.77331399440278
+          ],
+          "modelCumulativeMm": 342.8187588145358,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              -0.2576186432456875,
+              2.533554083612996,
+              5.005086854932785,
+              5.548522751695335,
+              4.363368436485797,
+              1.8536006042186364,
+              -1.9395260592614108,
+              -5.844924387888414,
+              -7.7108506121575875,
+              -8.172586748635263
+            ],
+            "north": [
+              null,
+              null,
+              0.7357161853301591,
+              1.4644359253017223,
+              2.068572257404093,
+              2.4526682969075217,
+              2.51425170692635,
+              2.1030300873371335,
+              1.6398842776638811,
+              1.4099105273024342,
+              0.9256369021611326,
+              0.7422682221960551
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 119.65577002868444,
+            "front": 165.14754466057533,
+            "convergence": 58.015444125275586,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 275.1988252438256,
+            "E": 452.6155709268797,
+            "netTransport": -181.66207268440235,
+            "storageDelta": -4.245327001347264,
+            "residual": 1.0256695939788925e-12
+          },
+          "airC": 10.550415846807141,
+          "landC": 23.510243924839585
+        },
+        {
+          "name": "Australia southwest",
+          "bounds": {
+            "south": -35,
+            "north": -29,
+            "west": 113,
+            "east": 120
+          },
+          "validLandAreaKm2": 202793.50641698565,
+          "observedMonthlyMm": {
+            "0": 19.0570535688757,
+            "1": 17.022827835193276,
+            "2": 25.906213506167067,
+            "3": 28.988093294932625,
+            "4": 60.61308689534099,
+            "5": 75.58874411700707,
+            "6": 84.03068472434926,
+            "7": 67.05033627822591,
+            "8": 47.795114802590426,
+            "9": 25.45882544517792,
+            "10": 22.31035233232498,
+            "11": 15.22246252426517
+          },
+          "observedAnnualMm": 489.0437953244504,
+          "modelMonthlyMm": [
+            0,
+            0,
+            21.175598439356804,
+            14.729494798095836,
+            5.657114933737058,
+            0.011727708120476864,
+            0.09475506662884597,
+            0.6551894388622057,
+            8.244399641996013,
+            24.056134115003726,
+            37.13393879870825,
+            25.181914459034502
+          ],
+          "modelCumulativeMm": 136.94026739954344,
+          "monthlyWindMps": {
+            "east": [
+              null,
+              null,
+              1.2727783863891535,
+              3.432974984547813,
+              5.242900139068454,
+              5.602278249080866,
+              5.0432181424798905,
+              3.536154529097036,
+              0.2962700303740118,
+              -3.705578313428709,
+              -6.53269168242331,
+              -7.332394106660488
+            ],
+            "north": [
+              null,
+              null,
+              1.0176334864876326,
+              0.7614743317063655,
+              1.1470871065213366,
+              1.4326930435861305,
+              2.0348750393131643,
+              2.5137316031865655,
+              2.9259097155498446,
+              3.360564189361646,
+              3.3368244581600184,
+              2.9224637423655606
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 39.516844822165524,
+            "front": 94.96908107011895,
+            "convergence": 2.4543415072595156,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 122.23045974923356,
+            "E": 376.9543713703632,
+            "netTransport": -261.2690158700428,
+            "storageDelta": -6.545104248914131,
+            "residual": -9.699808726495249e-13
+          },
+          "airC": 7.751832089766424,
+          "landC": 22.716112225054985
+        }
+      ],
+      "seaIce": {
+        "north": {
+          "extentMillionKm2": 32.50034429185889,
+          "areaMillionKm2": 27.55636189792145,
+          "iceGlobalMm": 56.34514314351327
+        },
+        "south": {
+          "extentMillionKm2": 51.28891465451845,
+          "areaMillionKm2": 51.40382876537291,
+          "iceGlobalMm": 192.98951421863703
+        }
+      }
+    },
+    {
+      "day": 365,
+      "steps": 35040,
+      "file": "build/earth-seaice-causal/shortwave-fair-900-day365.json",
+      "sha256": "f44caf503e4a96a6b8763edd48165f322c39ec36a0c7cdbc95e5fd0c96c2e73a",
+      "budget": {
+        "waterResidualMm": 7.136259227991104e-8,
+        "enthalpyResidualJm2": -0.00017148256301879883,
+        "maxCellVaporResidualMm": 3.956301952712238e-11,
+        "globalNetVaporTransportMm": 7.892452123946391e-14,
+        "totalMm": 739407.3164897681,
+        "oceanChangeGlobalMm": -116.06811251793988
+      },
+      "seconds": 528.8898035,
+      "calendarCoverageS": [
+        2680281.115939416,
+        2420899.0724614,
+        2658132.492781811,
+        2593820.4347800775,
+        2680281.115939415,
+        2593820.434780077,
+        2680281.1159394123,
+        2680281.115939414,
+        2593820.43478008,
+        2680281.115939405,
+        2593820.434780076,
+        2680281.115939416
+      ],
+      "coastalGt": {
+        "total": [
+          -3043.298077064854,
+          -554.6002080275955,
+          4272.633285599217,
+          7870.531570691709
+        ],
+        "months": [
+          [
+            -170.33280251339448,
+            -51.63074383342768,
+            138.98410121310994,
+            360.9476475599318
+          ],
+          [
+            -156.92197694617332,
+            -58.067800880668244,
+            135.60077753029,
+            350.5905553571319
+          ],
+          [
+            -248.24547951474278,
+            -71.09022834083936,
+            260.24249141099637,
+            579.578199266579
+          ],
+          [
+            -264.1758460157468,
+            -82.03935176789975,
+            344.7953826316643,
+            691.0105804153123
+          ],
+          [
+            -230.89857723875684,
+            -58.1779060168994,
+            362.01402057766666,
+            651.0905038333234
+          ],
+          [
+            -196.71380144661342,
+            -25.840901698528175,
+            378.36934384447164,
+            600.9240469896137
+          ],
+          [
+            -229.0216112460311,
+            3.8732058482816623,
+            501.844106652731,
+            726.9925120504796
+          ],
+          [
+            -315.51613198279045,
+            6.5390359406541565,
+            645.6543350556004,
+            954.6314310977356
+          ],
+          [
+            -375.0238775701605,
+            -35.965356995843656,
+            620.6561416221107,
+            1031.645376188111
+          ],
+          [
+            -373.6040862445231,
+            -66.27421188315623,
+            464.4664532891373,
+            904.3447514168165
+          ],
+          [
+            -276.2827737560347,
+            -66.23720800825055,
+            253.32595743903315,
+            595.8459392033201
+          ],
+          [
+            -206.5611125899039,
+            -49.688740391019216,
+            166.68017433240806,
+            422.9300273133314
+          ]
+        ]
+      },
+      "regions": [
+        {
+          "name": "Amazon",
+          "bounds": {
+            "south": -7,
+            "north": 1,
+            "west": -68,
+            "east": -52
+          },
+          "validLandAreaKm2": 1564430.9621510943,
+          "observedMonthlyMm": {
+            "0": 252.2267552991391,
+            "1": 262.6119849219642,
+            "2": 307.6978543299425,
+            "3": 296.2698739180464,
+            "4": 257.4411646817737,
+            "5": 160.27113516341433,
+            "6": 122.15097113800532,
+            "7": 85.39578456391233,
+            "8": 84.5026092124391,
+            "9": 111.85553742308403,
+            "10": 151.96705231931128,
+            "11": 200.32061453825122
+          },
+          "observedAnnualMm": 2292.7113375092836,
+          "modelMonthlyMm": [
+            150.47594481731664,
+            150.63960022308865,
+            185.18859218697312,
+            171.30860495427427,
+            175.3638152554548,
+            156.7334820308072,
+            146.9043179215795,
+            137.57750221217927,
+            127.66023478197022,
+            128.08709194967278,
+            122.16982397693646,
+            134.17463112232045
+          ],
+          "modelCumulativeMm": 1786.2836414325845,
+          "monthlyWindMps": {
+            "east": [
+              -3.69049034431637,
+              -2.4049536411829706,
+              -2.638983019530784,
+              -5.018899461458455,
+              -6.59911894863688,
+              -7.043378757831752,
+              -6.787137649528504,
+              -5.465901467788128,
+              -3.119125797139414,
+              -2.24697171061926,
+              -3.537068848370095,
+              -4.420770699379478
+            ],
+            "north": [
+              -0.03393842703008569,
+              -0.51523084195409,
+              -0.6937150904041247,
+              -0.4322769554646918,
+              0.09963899546053283,
+              0.7340137050443657,
+              1.3737480026745557,
+              1.78947760932409,
+              1.8609772466179493,
+              1.6209300914329263,
+              1.1506094397530615,
+              0.5845652253591452
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 1387.9277421021745,
+            "front": 13.546496872340914,
+            "convergence": 383.0705501570616,
+            "orographic": 1.7388523009978136
+          },
+          "wholeArea": {
+            "P": 1775.6263730656738,
+            "E": 1037.5958061056388,
+            "netTransport": 729.8819940383408,
+            "storageDelta": -8.148572921683424,
+            "residual": 1.0534039329846176e-11
+          },
+          "airC": 22.792223304967592,
+          "landC": 30.04279264596431
+        },
+        {
+          "name": "Congo",
+          "bounds": {
+            "south": -4,
+            "north": 4,
+            "west": 15,
+            "east": 31
+          },
+          "validLandAreaKm2": 1581350.7896031223,
+          "observedMonthlyMm": {
+            "0": 68.1318877897498,
+            "1": 77.99006512449672,
+            "2": 133.805502725745,
+            "3": 142.9901417409269,
+            "4": 130.53956542685165,
+            "5": 81.08195124469613,
+            "6": 90.06368763225358,
+            "7": 109.91829960458058,
+            "8": 133.80426948601158,
+            "9": 167.28449341097792,
+            "10": 155.25908883515038,
+            "11": 87.35025470224262
+          },
+          "observedAnnualMm": 1378.2192077236828,
+          "modelMonthlyMm": [
+            146.52829683476045,
+            135.8819473166303,
+            146.2354817502203,
+            128.2076027134943,
+            128.8467837313887,
+            124.57107195972128,
+            129.03887497086174,
+            125.63218087361355,
+            124.50639213096775,
+            131.61327877940096,
+            131.42442295465904,
+            140.31005648198385
+          ],
+          "modelCumulativeMm": 1592.796390497699,
+          "monthlyWindMps": {
+            "east": [
+              -5.645262630256776,
+              -3.721051187840608,
+              -1.9925118389108578,
+              -3.153336739254007,
+              -5.423582565963074,
+              -6.2017339157185285,
+              -5.673827287125763,
+              -3.6648119995312727,
+              -1.9537035111210848,
+              -3.223721516747319,
+              -5.460624301738928,
+              -6.211905097610146
+            ],
+            "north": [
+              -0.2734492747662897,
+              -0.7558593101212178,
+              -0.833525310959408,
+              -0.4938032716405297,
+              -0.08481545517573592,
+              0.4463731005868307,
+              0.9753939610284725,
+              1.3230132568397353,
+              1.472155335781149,
+              1.319884732932053,
+              0.932274391388591,
+              0.3554862674870866
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 1305.5506231225945,
+            "front": 1.2324871394241903,
+            "convergence": 285.9749314809715,
+            "orographic": 0.038348754715429305
+          },
+          "wholeArea": {
+            "P": 1592.7963904976993,
+            "E": 946.0918123496002,
+            "netTransport": 642.7877076838755,
+            "storageDelta": -3.916870464224489,
+            "residual": -1.0258460747536448e-12
+          },
+          "airC": 17.704727718829133,
+          "landC": 25.71717156924734
+        },
+        {
+          "name": "India",
+          "bounds": {
+            "south": 18,
+            "north": 25,
+            "west": 74,
+            "east": 86
+          },
+          "validLandAreaKm2": 788000.1995061378,
+          "observedMonthlyMm": {
+            "0": 12.158634423932531,
+            "1": 11.72660846332105,
+            "2": 15.25961239260873,
+            "3": 17.046216784117238,
+            "4": 31.92443550269676,
+            "5": 171.66808702639133,
+            "6": 310.51859522047073,
+            "7": 290.32228605116063,
+            "8": 192.90035294901347,
+            "9": 62.66664988624698,
+            "10": 14.721261787898758,
+            "11": 7.145718678289215
+          },
+          "observedAnnualMm": 1138.0584591661475,
+          "modelMonthlyMm": [
+            1.9050298492289979,
+            2.390501068159028,
+            19.960432538081385,
+            44.93758360160657,
+            71.31440101846344,
+            88.15965650540387,
+            106.28014861613337,
+            102.13086422016576,
+            59.89392122237966,
+            23.54370463972135,
+            10.436156927714345,
+            4.729930001757375
+          ],
+          "modelCumulativeMm": 535.6823302088178,
+          "monthlyWindMps": {
+            "east": [
+              -1.6147865664074534,
+              -3.554523449354127,
+              -6.164181319107365,
+              -8.241078248856374,
+              -8.30924268295938,
+              -7.854338359328965,
+              -7.847795289893342,
+              -7.900718821890249,
+              -6.797295148934509,
+              -4.375558518072549,
+              -1.967541682118101,
+              -0.870197058340153
+            ],
+            "north": [
+              -2.3463662909824716,
+              -2.204113139933608,
+              -1.8721559314798495,
+              -1.6784710100558602,
+              -1.0909977573922887,
+              -0.6697086203610321,
+              -0.5297708784630045,
+              -0.698888248186698,
+              -1.1513252488031536,
+              -1.8568074355069975,
+              -2.472863118232607,
+              -2.64003590408413
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 258.8030641496367,
+            "front": 57.6896688346489,
+            "convergence": 63.77417769153066,
+            "orographic": 155.41541953299972
+          },
+          "wholeArea": {
+            "P": 472.75058396057835,
+            "E": 621.4742490618719,
+            "netTransport": -150.25860390083676,
+            "storageDelta": -1.534938799543486,
+            "residual": -2.464303101216124e-13
+          },
+          "airC": 3.770485423162654,
+          "landC": 16.15819534335509
+        },
+        {
+          "name": "Himalaya foreland",
+          "bounds": {
+            "south": 25,
+            "north": 29,
+            "west": 79,
+            "east": 91
+          },
+          "validLandAreaKm2": 528694.768030383,
+          "observedMonthlyMm": {
+            "0": 15.312899871502239,
+            "1": 19.197505710022032,
+            "2": 23.742873810435164,
+            "3": 44.64304980008825,
+            "4": 95.1799554249309,
+            "5": 210.13723191226595,
+            "6": 334.03821319000446,
+            "7": 298.50670402165105,
+            "8": 197.43464254370346,
+            "9": 56.02293101433188,
+            "10": 6.779904326368383,
+            "11": 6.7847622718058185
+          },
+          "observedAnnualMm": 1307.7806738971096,
+          "modelMonthlyMm": [
+            10.176776520911003,
+            20.73540583118285,
+            60.72915083830471,
+            74.29736514685645,
+            108.25344730278469,
+            128.25953226720907,
+            154.6509015019216,
+            145.2890095659833,
+            107.0284832388047,
+            70.95563419513003,
+            34.47559237365176,
+            16.713014849897757
+          ],
+          "modelCumulativeMm": 931.5643136326472,
+          "monthlyWindMps": {
+            "east": [
+              2.226535056933778,
+              -0.20866384628702556,
+              -3.554182939285137,
+              -7.308431834710402,
+              -8.418573239478494,
+              -8.22262327789216,
+              -7.51863611542712,
+              -6.160703468117364,
+              -3.4947918689980684,
+              -0.2806031188948303,
+              2.066592936096482,
+              2.9809894515907494
+            ],
+            "north": [
+              -3.1440408699266404,
+              -3.307179137180755,
+              -3.1551424225763727,
+              -3.98578494243351,
+              -2.655118677024574,
+              -1.165567924378302,
+              -0.33175254152695527,
+              -0.6110787583711216,
+              -1.243864494212398,
+              -1.9879689786912722,
+              -2.597755365410414,
+              -3.0260951455167913
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 23.892487614244178,
+            "convergence": 0,
+            "orographic": 907.6718260184017
+          },
+          "wholeArea": {
+            "P": 931.5643136326474,
+            "E": 667.7013550251727,
+            "netTransport": 263.7021389341982,
+            "storageDelta": -0.16081967326441968,
+            "residual": 1.200698799645276e-11
+          },
+          "airC": -0.813058814860085,
+          "landC": 6.46323890977817
+        },
+        {
+          "name": "Tibet",
+          "bounds": {
+            "south": 31,
+            "north": 36,
+            "west": 80,
+            "east": 94
+          },
+          "validLandAreaKm2": 721502.60895447,
+          "observedMonthlyMm": {
+            "0": 2.979150797163194,
+            "1": 3.3799369149068803,
+            "2": 4.5363020858703695,
+            "3": 6.671596575203615,
+            "4": 18.142793539927734,
+            "5": 44.65832953667905,
+            "6": 65.88017182953182,
+            "7": 65.40973139418129,
+            "8": 34.70534534832386,
+            "9": 7.899508107012232,
+            "10": 1.6514982682984327,
+            "11": 1.4769096231892198
+          },
+          "observedAnnualMm": 257.3912740202877,
+          "modelMonthlyMm": [
+            0,
+            0,
+            0.01669548859498292,
+            0.09046190530234673,
+            2.5234710990918106,
+            5.073793504110875,
+            6.084635540326716,
+            5.019112341431647,
+            3.4423774281000563,
+            1.7680153263056502,
+            0.46200864009838905,
+            0.0006946562434339464
+          ],
+          "modelCumulativeMm": 24.481265929605986,
+          "monthlyWindMps": {
+            "east": [
+              5.2518853350214005,
+              4.197991731119534,
+              1.3615293018878902,
+              -2.8888139702507964,
+              -4.74193078905362,
+              -4.920109516979133,
+              -4.062862417169816,
+              -1.6527131722914203,
+              1.5660629213532782,
+              4.291949674581258,
+              5.74697511190269,
+              5.733195395045779
+            ],
+            "north": [
+              -2.509894840619029,
+              -2.025052016299116,
+              -2.1983480845013483,
+              -3.000345492558352,
+              -1.678943793724097,
+              -0.6790279009742995,
+              -0.4708572437580126,
+              -0.47730923244527784,
+              -0.8418355259764698,
+              -1.3542704501389973,
+              -1.5951901486179754,
+              -2.2150734420614193
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 0.03795592312389274,
+            "front": 0.008206002308070637,
+            "convergence": 0.017958556001414053,
+            "orographic": 24.417145448172608
+          },
+          "wholeArea": {
+            "P": 24.481265929605975,
+            "E": 101.67259140874759,
+            "netTransport": -76.45084896534412,
+            "storageDelta": 0.7404765137977638,
+            "residual": 2.7336643847706887e-13
+          },
+          "airC": -5.5698015000323835,
+          "landC": 2.8030170363191473
+        },
+        {
+          "name": "Australia interior",
+          "bounds": {
+            "south": -29,
+            "north": -21,
+            "west": 126,
+            "east": 142
+          },
+          "validLandAreaKm2": 1431886.3161111374,
+          "observedMonthlyMm": {
+            "0": 45.9798169580569,
+            "1": 50.654739973171864,
+            "2": 27.010506979060914,
+            "3": 14.394869909515808,
+            "4": 14.358767125350127,
+            "5": 12.086925119791823,
+            "6": 10.567527259700487,
+            "7": 5.8543296253106325,
+            "8": 8.882684478703919,
+            "9": 15.890651063987015,
+            "10": 27.984083664184592,
+            "11": 42.36182931201165
+          },
+          "observedAnnualMm": 276.02673146884575,
+          "modelMonthlyMm": [
+            109.07615789806952,
+            81.58515443975068,
+            70.07650754737287,
+            27.93473238703338,
+            5.688076934004906,
+            0.4200716334466215,
+            0.05706419345482117,
+            5.941357706574428,
+            17.87224068112582,
+            38.130956298202605,
+            66.69244034870371,
+            94.88331773568626
+          ],
+          "modelCumulativeMm": 518.3580778034244,
+          "monthlyWindMps": {
+            "east": [
+              -7.503258327145893,
+              -6.649643652442472,
+              -4.4226498842879005,
+              -1.3209464838621157,
+              1.016181247368913,
+              1.9056732456778203,
+              1.1739990918053478,
+              -1.5011087495162674,
+              -4.7949722218637625,
+              -6.868482788459616,
+              -7.696651739515575,
+              -7.700433047744128
+            ],
+            "north": [
+              0.768324508974865,
+              0.7579993509775691,
+              0.7879177891409254,
+              0.9205267443049178,
+              1.1632093405087727,
+              1.5588662898304937,
+              2.0081311497489494,
+              2.4045370841777802,
+              2.606267120624403,
+              2.0078166142570684,
+              1.2616126864950699,
+              0.9401070414745519
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 368.52762924905153,
+            "front": 72.81822799821025,
+            "convergence": 77.01222055616414,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 517.8863664709135,
+            "E": 467.9671325464024,
+            "netTransport": 50.367550206728126,
+            "storageDelta": 0.4483162822156101,
+            "residual": -1.4829300074609559e-12
+          },
+          "airC": 17.3116441419628,
+          "landC": 25.197898275165585
+        },
+        {
+          "name": "Australia north",
+          "bounds": {
+            "south": -18,
+            "north": -10,
+            "west": 123,
+            "east": 139
+          },
+          "validLandAreaKm2": 559442.7204421703,
+          "observedMonthlyMm": {
+            "0": 239.68878360583577,
+            "1": 237.53615881618217,
+            "2": 154.23886894967333,
+            "3": 46.00016204953091,
+            "4": 11.14620602631387,
+            "5": 4.512343608256191,
+            "6": 1.7769853385957246,
+            "7": 0.9100584662614293,
+            "8": 5.077404081040057,
+            "9": 29.14678267034523,
+            "10": 70.83941027599705,
+            "11": 181.0197098180623
+          },
+          "observedAnnualMm": 981.892873706094,
+          "modelMonthlyMm": [
+            187.9913578125737,
+            225.4448139122177,
+            281.7747610041843,
+            202.16885308879813,
+            37.0760440277403,
+            13.869946544958243,
+            9.099199276392646,
+            3.649254913891448,
+            11.019566189099367,
+            37.037732528608956,
+            81.81741985694131,
+            139.76507127763105
+          ],
+          "modelCumulativeMm": 1230.7140204330371,
+          "monthlyWindMps": {
+            "east": [
+              -6.076572201289861,
+              -7.590296100513041,
+              -8.211222164939414,
+              -7.3133154179442394,
+              -5.8150287409976675,
+              -4.89703123659152,
+              -5.52862518222827,
+              -7.158385828349127,
+              -7.927310893668896,
+              -7.733177181410043,
+              -6.504167454375649,
+              -5.477375020224809
+            ],
+            "north": [
+              0.04529135132956369,
+              0.26694893981428397,
+              0.2835280843071504,
+              0.7028410943970237,
+              2.2109067906391666,
+              2.854929218801739,
+              2.831883196590827,
+              1.65326658621815,
+              0.8848168566417062,
+              0.9435232131619296,
+              0.8474238418842192,
+              0.30794646834824074
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 1034.6718276576319,
+            "front": 42.03489259726273,
+            "convergence": 154.00730017813984,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 651.8138266790185,
+            "E": 914.5071291531739,
+            "netTransport": -266.30349278066603,
+            "storageDelta": -3.6101903065101553,
+            "residual": 5.485622710201825e-13
+          },
+          "airC": 21.664047680400813,
+          "landC": 28.958324456611308
+        },
+        {
+          "name": "Australia east",
+          "bounds": {
+            "south": -34,
+            "north": -26,
+            "west": 148,
+            "east": 154
+          },
+          "validLandAreaKm2": 272718.647321491,
+          "observedMonthlyMm": {
+            "0": 89.6463387160811,
+            "1": 88.39049423406932,
+            "2": 61.455165339207255,
+            "3": 39.23081341520135,
+            "4": 46.11697638490303,
+            "5": 51.372238353512806,
+            "6": 37.329960686146755,
+            "7": 36.602031430238526,
+            "8": 39.44892757976429,
+            "9": 54.419568034695885,
+            "10": 77.14853274261345,
+            "11": 86.71366981736755
+          },
+          "observedAnnualMm": 707.8747167338013,
+          "modelMonthlyMm": [
+            220.53823638615282,
+            181.37988475607855,
+            137.47289338442073,
+            42.80191309446851,
+            16.18704739851592,
+            5.953742237693547,
+            8.741069177318213,
+            20.506495589126494,
+            27.154014510547256,
+            35.426814871550725,
+            76.80512883101564,
+            157.28150657803596
+          ],
+          "modelCumulativeMm": 930.2487468149262,
+          "monthlyWindMps": {
+            "east": [
+              -7.329444106516232,
+              -5.045200397344065,
+              -1.5246256202901147,
+              2.533554083612996,
+              5.005086854932785,
+              5.548522751695335,
+              4.363368436485797,
+              1.8536006042186364,
+              -1.9395260592614108,
+              -5.844924387888414,
+              -7.7108506121575875,
+              -8.147100343254959
+            ],
+            "north": [
+              0.5046153374324894,
+              0.6427948413413661,
+              0.8576164053919092,
+              1.4644359253017223,
+              2.068572257404093,
+              2.4526682969075217,
+              2.51425170692635,
+              2.1030300873371335,
+              1.6398842776638811,
+              1.4099105273024342,
+              0.9256369021611326,
+              0.6916301639604104
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 537.2712585516493,
+            "front": 190.37918693165886,
+            "convergence": 198.7156465811069,
+            "orographic": 3.882654750508413
+          },
+          "wholeArea": {
+            "P": 611.3350627185432,
+            "E": 700.3198703249607,
+            "netTransport": -89.23907587455051,
+            "storageDelta": -0.2542682681320767,
+            "residual": 8.747697202031173e-13
+          },
+          "airC": 15.60357787654823,
+          "landC": 23.406427841328252
+        },
+        {
+          "name": "Australia southwest",
+          "bounds": {
+            "south": -35,
+            "north": -29,
+            "west": 113,
+            "east": 120
+          },
+          "validLandAreaKm2": 202793.50641698565,
+          "observedMonthlyMm": {
+            "0": 19.0570535688757,
+            "1": 17.022827835193276,
+            "2": 25.906213506167067,
+            "3": 28.988093294932625,
+            "4": 60.61308689534099,
+            "5": 75.58874411700707,
+            "6": 84.03068472434926,
+            "7": 67.05033627822591,
+            "8": 47.795114802590426,
+            "9": 25.45882544517792,
+            "10": 22.31035233232498,
+            "11": 15.22246252426517
+          },
+          "observedAnnualMm": 489.0437953244504,
+          "modelMonthlyMm": [
+            84.2452932420863,
+            64.69228011880178,
+            39.677022569837035,
+            14.729494798095836,
+            5.657114933737058,
+            0.011727708120476864,
+            0.09475506662884597,
+            0.6551894388622057,
+            8.244399641996013,
+            24.056134115003726,
+            37.13393879870825,
+            63.832158883245995
+          ],
+          "modelCumulativeMm": 343.0295093151255,
+          "monthlyWindMps": {
+            "east": [
+              -6.516678259342967,
+              -4.018866866739115,
+              -0.269280725765964,
+              3.432974984547813,
+              5.242900139068454,
+              5.602278249080866,
+              5.0432181424798905,
+              3.536154529097036,
+              0.2962700303740118,
+              -3.705578313428709,
+              -6.53269168242331,
+              -7.386319415989033
+            ],
+            "north": [
+              2.096767600238839,
+              1.679462697402507,
+              1.366178592138438,
+              0.7614743317063655,
+              1.1470871065213366,
+              1.4326930435861305,
+              2.0348750393131643,
+              2.5137316031865655,
+              2.9259097155498446,
+              3.360564189361646,
+              3.3368244581600184,
+              2.724498110197332
+            ]
+          },
+          "precipitationComponentsMm": {
+            "saturation": 0,
+            "convection": 192.02525685460915,
+            "front": 145.96726222573025,
+            "convergence": 5.036990234783857,
+            "orographic": 0
+          },
+          "wholeArea": {
+            "P": 250.56125582180724,
+            "E": 614.624322710224,
+            "netTransport": -367.0111090939035,
+            "storageDelta": -2.948042205483567,
+            "residual": 3.211492993002955e-12
+          },
+          "airC": 12.445314623285185,
+          "landC": 21.131594202950737
+        }
+      ],
+      "seaIce": {
+        "north": {
+          "extentMillionKm2": 46.59170966396827,
+          "areaMillionKm2": 45.72037787841355,
+          "iceGlobalMm": 137.8910714492424
+        },
+        "south": {
+          "extentMillionKm2": 30.168059868304855,
+          "areaMillionKm2": 30.168059868304855,
+          "iceGlobalMm": 128.4450890270997
+        }
+      }
+    }
+  ],
+  "strictRestoreNextStepExact": true
+}

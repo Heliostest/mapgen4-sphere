@@ -1,0 +1,266 @@
+{
+  "savedSimulationValid": true,
+  "initialDay": 0,
+  "separateReservoirs": true,
+  "observedIceSource": "GFZ GDEMM2024, 1 arcmin; Greenland BedMachine v5 and Antarctica BedMachine v3 ice thickness and masks",
+  "cryospherePoints": [
+    {
+      "name": "Antarctica",
+      "landIceM": 2526,
+      "shelfIceM": 0,
+      "airC": -59.63717239822347,
+      "surfaceC": -60.646347991001335
+    },
+    {
+      "name": "Greenland",
+      "landIceM": 3087.5,
+      "shelfIceM": 0,
+      "airC": -59.557340752606706,
+      "surfaceC": -50.664437097660766
+    },
+    {
+      "name": "Tibet",
+      "landIceM": 0,
+      "shelfIceM": 0,
+      "airC": -16.500853953852015,
+      "surfaceC": -16.409541308304313
+    },
+    {
+      "name": "Himalaya",
+      "landIceM": 0,
+      "shelfIceM": 0,
+      "airC": -14.57865631016665,
+      "surfaceC": -13.857375438364897
+    }
+  ],
+  "water": {
+    "shelfIceMm": 1040.6982230206804,
+    "landIceMm": 49438.576237719324,
+    "snowMm": 10.245717975257032,
+    "iceMm": 177.27481521128234,
+    "meltMmDay": 0,
+    "totalMm": 739407.3164896969,
+    "residualMm": 1.1641532182693481e-10,
+    "atmosphereMm": 13.864299796532547,
+    "soilMm": 7.22044216608472,
+    "surfaceMm": 0.5545182612496745,
+    "oceanMm": 688718.8822355465,
+    "rainMmDay": 1.952639860706422,
+    "evaporationMmDay": 1.5472667300371252,
+    "maxDischargeM3S": 24701.075423785955
+  },
+  "energy": {
+    "energyResidualJm2": 0,
+    "iceFraction": 0.18899884261941877,
+    "snowFraction": 0.3297912852452638,
+    "albedo": 0.38835954072368917,
+    "maxCurrentMps": 0
+  },
+  "systems": {
+    "oceanStrengthMps": 0.3,
+    "vegetation": true,
+    "iceAlbedo": true,
+    "terrainWater": true,
+    "glaciers": true,
+    "dynamicCirculation": true
+  },
+  "knownLocations": [
+    {
+      "name": "Africa",
+      "land": true,
+      "triangle": 180816,
+      "elevation": 0.03533700108528137
+    },
+    {
+      "name": "South America",
+      "land": true,
+      "triangle": 147905,
+      "elevation": 0.015161007642745972
+    },
+    {
+      "name": "North America",
+      "land": true,
+      "triangle": 71281,
+      "elevation": 0.06744600087404251
+    },
+    {
+      "name": "Eurasia",
+      "land": true,
+      "triangle": 114514,
+      "elevation": 0.1109590008854866
+    },
+    {
+      "name": "Australia",
+      "land": true,
+      "triangle": 63078,
+      "elevation": 0.024631991982460022
+    },
+    {
+      "name": "Greenland",
+      "land": true,
+      "triangle": 213164,
+      "elevation": 0.3028950095176697
+    },
+    {
+      "name": "Antarctica",
+      "land": true,
+      "triangle": 107476,
+      "elevation": 0.271136999130249
+    },
+    {
+      "name": "Atlantic",
+      "land": false,
+      "triangle": 177293,
+      "elevation": -0.3852681815624237
+    },
+    {
+      "name": "Pacific",
+      "land": false,
+      "triangle": 41377,
+      "elevation": -0.39392271637916565
+    },
+    {
+      "name": "Indian Ocean",
+      "land": false,
+      "triangle": 118604,
+      "elevation": -0.3582718074321747
+    },
+    {
+      "name": "Arctic Ocean",
+      "land": false,
+      "triangle": 215339,
+      "elevation": -0.3855154514312744
+    }
+  ],
+  "maxHeightErrorM": 0.0009415054319106275,
+  "maxClimateHeightDifference": 3.710920459809586e-14,
+  "importedHeightsPreservedByRivers": true,
+  "savedClimateMatchesImportedTerrain": true,
+  "heightChecks": [
+    {
+      "name": "Tibetan Plateau",
+      "latitude": 33,
+      "longitude": 87,
+      "sourceM": 5092.11,
+      "expectedRangeM": [
+        4000,
+        6000
+      ],
+      "nearestTriangleM": 5116,
+      "climateLocalHeightM": 5151
+    },
+    {
+      "name": "Himalaya",
+      "latitude": 28.25,
+      "longitude": 86.85,
+      "sourceM": 5225.1,
+      "expectedRangeM": [
+        4500,
+        8000
+      ],
+      "nearestTriangleM": 4948,
+      "climateLocalHeightM": 5129
+    },
+    {
+      "name": "Altiplano",
+      "latitude": -20,
+      "longitude": -68,
+      "sourceM": 3653.5,
+      "expectedRangeM": [
+        3000,
+        6000
+      ],
+      "nearestTriangleM": 3654,
+      "climateLocalHeightM": 3471
+    },
+    {
+      "name": "Amazon Plain",
+      "latitude": -3,
+      "longitude": -60,
+      "sourceM": 65.27,
+      "expectedRangeM": [
+        0,
+        400
+      ],
+      "nearestTriangleM": 44,
+      "climateLocalHeightM": 35
+    },
+    {
+      "name": "Ganges Plain",
+      "latitude": 25,
+      "longitude": 84,
+      "sourceM": 100.77,
+      "expectedRangeM": [
+        0,
+        400
+      ],
+      "nearestTriangleM": 107,
+      "climateLocalHeightM": 66
+    },
+    {
+      "name": "West Siberian Plain",
+      "latitude": 60,
+      "longitude": 70,
+      "sourceM": 59.06,
+      "expectedRangeM": [
+        0,
+        400
+      ],
+      "nearestTriangleM": 89,
+      "climateLocalHeightM": 46
+    },
+    {
+      "name": "Greenland Ice Sheet",
+      "latitude": 73,
+      "longitude": -40,
+      "sourceM": 3120.33,
+      "expectedRangeM": [
+        2000,
+        3600
+      ],
+      "nearestTriangleM": 3091,
+      "climateLocalHeightM": 3091
+    },
+    {
+      "name": "South Pole",
+      "latitude": -90,
+      "longitude": 0,
+      "sourceM": 2833.73,
+      "expectedRangeM": [
+        2500,
+        3200
+      ],
+      "nearestTriangleM": 2771,
+      "climateLocalHeightM": 2838
+    },
+    {
+      "name": "North Pacific Basin",
+      "latitude": 25,
+      "longitude": -150,
+      "sourceM": -5306.19,
+      "expectedRangeM": [
+        -6500,
+        -3000
+      ],
+      "nearestTriangleM": -5433,
+      "climateLocalHeightM": 0
+    },
+    {
+      "name": "Mariana Trench",
+      "latitude": 11.35,
+      "longitude": 142.2,
+      "sourceM": -9599.77,
+      "expectedRangeM": [
+        -11000,
+        -6000
+      ],
+      "nearestTriangleM": -9351,
+      "climateLocalHeightM": 0
+    }
+  ],
+  "longitudeWrap": true,
+  "northPoleOcean": true,
+  "southPoleLand": true,
+  "finiteTerrain": true,
+  "note": "ETOPO 2022 ice-surface terrain preserved. Independent observed ice thickness initializes conserved reservoirs; terrain is not increased by ice thickness. Climate, seasonal sea ice and vegetation remain uncalibrated model estimates."
+}

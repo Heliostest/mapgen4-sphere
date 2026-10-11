@@ -1,0 +1,278 @@
+{
+  "generatedAtUtc": "2026-10-11T06:05:41.235Z",
+  "bindings": [
+    {
+      "path": "sea-ice-thermodynamics.ts",
+      "sha256": "401ec81a0bf168eb3cc211c9028df931e1bd7b7cee8b0b19f76c24d71ac39cde"
+    },
+    {
+      "path": "environment.ts",
+      "sha256": "7211bd2c70594ed78a2c1714426523aa57adce17cf5a3613185cd346d1905720"
+    },
+    {
+      "path": "thermal.ts",
+      "sha256": "a65cc73dfd6ec9f021146b15acd7d35e680e843a89605b6b3b4b4a23d045d9dc"
+    },
+    {
+      "path": "thermal-runtime.ts",
+      "sha256": "15fd9478705c7cc67ed1380e1819897d0d619c9ba09d0e0eade50308496a5d78"
+    },
+    {
+      "path": "water.ts",
+      "sha256": "754b5fcdce9a453d845da6d5a53ddcd920918f329533f280e778bb7a20315f39"
+    },
+    {
+      "path": "circulation.ts",
+      "sha256": "42ad6555ff02d686b7510b23f3fe4b49144ec499f2cd0d49aea8b230e0e40698"
+    },
+    {
+      "path": "climate-diagnostics.ts",
+      "sha256": "2b1107089b78aad9bde62e4fa18face7387576d6b95bd985ee25fdd79cdf2834"
+    },
+    {
+      "path": "ocean.ts",
+      "sha256": "aca21cdc04ba065fa17397f1eb0c2a1051cd3984a9418e17f3a8c9930421ebf1"
+    },
+    {
+      "path": "refinement-surface.ts",
+      "sha256": "30bf5426c2cd53a73ceb42f982994da28ff34acf7e88ac8421b446d31911f8b3"
+    },
+    {
+      "path": "runtime-state.ts",
+      "sha256": "4a5406e8b2daca7cd49eaac75524ecf90c9532b5ede2e00d78871a297d82f95a"
+    },
+    {
+      "path": "environment-panel.ts",
+      "sha256": "1263bc79640e41c0e78048b6a34f661d4217f447dc295b4b87c1d66a80aa664f"
+    },
+    {
+      "path": "geometry.ts",
+      "sha256": "266d1868d4a3d8f3632a9c88b8259d73334c19e2143bf63412468427a45eaa39"
+    },
+    {
+      "path": "terrain-water-view.ts",
+      "sha256": "664f729b183e6c9b6590713d4166133707d2453bc45bc056aa1499fddcff7b21"
+    },
+    {
+      "path": "config.js",
+      "sha256": "a433230caaf102eea16814b365e4f3df7d5dba556268907fcac56502feecca0a"
+    },
+    {
+      "path": "scenes/earth-land-sea/earth-simulation.json",
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+    },
+    {
+      "path": "scenes/earth-land-sea/scene-config.json",
+      "sha256": "9b811ee7c064dbd11c20d7f21dfe47607815fc720dcdc9e9a17ef66c09a71253"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-p1-20261011/integrate.ts",
+      "sha256": "1011f3686a5feb341389d7402bb0450c797af51567c761e2a5404960561ba7dc"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-p1-20261011/performance.ts",
+      "sha256": "2aac00d1c38d4962ece23cb55481ac710000cd38d85621de102d43a4c8523bb7"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-p1-20261011/acceptance.json",
+      "sha256": "1a172c5fc6f5b5986c1dcee7f5b4077cada49c66905d037136c45a08651d0f74"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-p1-20261011/performance.json",
+      "sha256": "1bd346b602d0bea22421187762132a34673392c6bdb2b52512b0761ce45068fa"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-p1-20261011/nsidc-1981-2010.json",
+      "sha256": "44c177346606c529813175e9b3531d842ac534cc71b4b785c2d06c48aa5248ed"
+    }
+  ],
+  "runs": [
+    {
+      "label": "baseline",
+      "dt": 1800,
+      "bundleSha256": "194fe6345d2199c89110687985d5a3d783f7c7c7fa2923f9961f667ac38ee3b1",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-p1/baseline-1800-day0.json",
+          "sha256": "cc426b23142d5202255711e8df361ff3353d9eb7694307bab5905046e64059e7"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-p1/baseline-1800-day24.json",
+          "sha256": "6b03c6a551ef2d3f3f972162d811ccb68d254632df7e0eb392862e6c68edd50c"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-p1/baseline-1800-day90.json",
+          "sha256": "f4ae9f29a377a59c3903c59bed3ff0769fdad5175b298180282c1c0563e0322e"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-p1/baseline-1800-day180.json",
+          "sha256": "6804f1808e0b897ecc2bef4700f85f392fbc232dd111fed0688801e24062ea60"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-p1/baseline-1800-day270.json",
+          "sha256": "842c74848bebcd5f4c4cb91372f2d52b74fa7459ce72ae039fc6711bf950492e"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-p1/baseline-1800-day365.json",
+          "sha256": "b86afea385182f2add1c506fe7e203e7bf30170f0276d587327971fe7058a403"
+        },
+        {
+          "day": 730,
+          "path": "build/earth-seaice-p1/baseline-1800-day730.json",
+          "sha256": "790f045f1902bce5a8114d026348d8f13837794798c6f268983d5dc50a8f7820"
+        }
+      ],
+      "strictRestoreNextStepExact": true
+    },
+    {
+      "label": "conductive-v2",
+      "dt": 1800,
+      "bundleSha256": "272b3cab5f53ddaaffa0d02b4a6fc8a34910a972d01748bdf27adecd54a977fb",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-p1/conductive-v2-1800-day0.json",
+          "sha256": "8aa9d4076837f9b8f2a046b47e08a32422ca216f4d83bddae448f79228f902a4"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-p1/conductive-v2-1800-day24.json",
+          "sha256": "8d78f70da08462c00a7107ed22f6cf94c36ae7f2c2c181e5c721dfd05d9e274b"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-p1/conductive-v2-1800-day90.json",
+          "sha256": "c5c2c761a4301552446b18de654ed1c56b6636e0e65eaf130be271e971677d99"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-p1/conductive-v2-1800-day180.json",
+          "sha256": "24abf38acf40e005745f685512be3e90b257ac3ae78815e1381ab9b7cd90bb03"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-p1/conductive-v2-1800-day270.json",
+          "sha256": "0872d6dd293f91a07eea70668f0bb839133efdd44b5fce081fedc103081a4220"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-p1/conductive-v2-1800-day365.json",
+          "sha256": "6a816d960066258f32fec5f21e057eb7ae028f330091df43b384ac1a67347a39"
+        },
+        {
+          "day": 730,
+          "path": "build/earth-seaice-p1/conductive-v2-1800-day730.json",
+          "sha256": "9b6884c64ebbd15ff376cff0b85e1de886ef0bf405cf55d325a0f7f1016e4a6b"
+        }
+      ],
+      "strictRestoreNextStepExact": true
+    },
+    {
+      "label": "conductive-v2",
+      "dt": 900,
+      "bundleSha256": "272b3cab5f53ddaaffa0d02b4a6fc8a34910a972d01748bdf27adecd54a977fb",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-p1/conductive-v2-900-day0.json",
+          "sha256": "ea1e4b193f7faca08eac1d06b45d86c14a6b91f8c350a712abc82b63db27e1d6"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-p1/conductive-v2-900-day24.json",
+          "sha256": "1ef90c811bb0f0c751275ad0e9e8cb272416c62db1e21f0712e55ae0c5b40e56"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-p1/conductive-v2-900-day90.json",
+          "sha256": "622fec00d94a5b891f65d83bf21942d8277f64fb7c6b6b963125d0269c100035"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-p1/conductive-v2-900-day180.json",
+          "sha256": "450a687058094cd64365c143f438323c067f3ab87cdb8d6c1eaa9744652316cf"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-p1/conductive-v2-900-day270.json",
+          "sha256": "18ac845b5ef733626ff8fa2e43f3a5539d24ade7cf648a76e11120150a95288f"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-p1/conductive-v2-900-day365.json",
+          "sha256": "4b7ba1ed80ac07122704f4112abbc4ba9e1caf29d01b0d49dfb6dbf292e2ccf8"
+        }
+      ],
+      "strictRestoreNextStepExact": true
+    },
+    {
+      "label": "conductive-v2",
+      "dt": 450,
+      "bundleSha256": "272b3cab5f53ddaaffa0d02b4a6fc8a34910a972d01748bdf27adecd54a977fb",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-p1/conductive-v2-450-day0.json",
+          "sha256": "390f92909f2823c99c6f8c26cfec3f400d67f5c91a215a0fb8230731cd23f573"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-p1/conductive-v2-450-day24.json",
+          "sha256": "adea81289e110c0d14c59192b93c91f4f76e6ed1cd3be42e558a06fb8e585f6c"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-p1/conductive-v2-450-day90.json",
+          "sha256": "06d1e18745980065f0410e17989b7db1e163d03493c1b559e366912935f63a84"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-p1/conductive-v2-450-day180.json",
+          "sha256": "5614dd3000a9490f668fb945f81069cf051f996c197179a6f85b64e8deb70849"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-p1/conductive-v2-450-day270.json",
+          "sha256": "cae564424998dc76c59d5960ac37ee60eb1d4df2dd4102b3515085ea9f00e4bc"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-p1/conductive-v2-450-day365.json",
+          "sha256": "b191a6ceef5472c5c137939b2201ab5723bfcd9c276417a6996bdceccacb4aa3"
+        }
+      ],
+      "strictRestoreNextStepExact": true
+    },
+    {
+      "label": "formal-legacy-conductive-v2",
+      "dt": 1800,
+      "bundleSha256": "272b3cab5f53ddaaffa0d02b4a6fc8a34910a972d01748bdf27adecd54a977fb",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-p1/formal-legacy-conductive-v2-1800-day0.json",
+          "sha256": "782a7d08ede3ca0ba6766b2c48eb2c02fc3b1abc681408edbbb0e27f4b7ab22b"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-p1/formal-legacy-conductive-v2-1800-day24.json",
+          "sha256": "3af4f07e87221333a5929a6b47ee1fd444e2a88f1589d7d573eaced944b63715"
+        }
+      ],
+      "strictRestoreNextStepExact": true
+    }
+  ],
+  "graphics": "WebGL2 blocked in prior authorized session. No GPU screenshot/foreground timing supplied or inferred.",
+  "v1": "Reproduction evidence retained only; rejected because exhausted liquid could produce negative temperatures and restore/rollback diagnostics were stale."
+}

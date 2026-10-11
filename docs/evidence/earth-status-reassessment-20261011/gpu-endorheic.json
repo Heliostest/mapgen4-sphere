@@ -1,0 +1,186 @@
+{
+  "status": "PASS",
+  "fixture": "controlled finite negative inland bed; no observed water levels or rainfall claim",
+  "figures": [
+    {
+      "label": "零库存：负高程干床",
+      "blue": 0,
+      "volumeM3": 0,
+      "riverTriangles": 0
+    },
+    {
+      "label": "少量蓄水：湖岸在盆底",
+      "blue": 522067,
+      "volumeM3": 4119165684493343,
+      "riverTriangles": 0
+    },
+    {
+      "label": "更多蓄水：湖岸扩大",
+      "blue": 1594040,
+      "volumeM3": 52076269903057064,
+      "riverTriangles": 0
+    },
+    {
+      "label": "排干：恢复干床",
+      "blue": 0,
+      "volumeM3": 0,
+      "riverTriangles": 0
+    }
+  ],
+  "checks": [
+    {
+      "name": "渲染不会改写细粗网格与外洋库存",
+      "pass": true,
+      "detail": {
+        "triangles": 476
+      }
+    },
+    {
+      "name": "渲染不会改写细粗网格与外洋库存",
+      "pass": true,
+      "detail": {
+        "triangles": 476
+      }
+    },
+    {
+      "name": "渲染不会改写细粗网格与外洋库存",
+      "pass": true,
+      "detail": {
+        "triangles": 476
+      }
+    },
+    {
+      "name": "渲染不会改写细粗网格与外洋库存",
+      "pass": true,
+      "detail": {
+        "triangles": 476
+      }
+    },
+    {
+      "name": "零库存与排干无蓝色湖水",
+      "pass": true,
+      "detail": [
+        {
+          "label": "零库存：负高程干床",
+          "blue": 0
+        },
+        {
+          "label": "少量蓄水：湖岸在盆底",
+          "blue": 522067
+        },
+        {
+          "label": "更多蓄水：湖岸扩大",
+          "blue": 1594040
+        },
+        {
+          "label": "排干：恢复干床",
+          "blue": 0
+        }
+      ]
+    },
+    {
+      "name": "蓄水增加使实际 GPU 湖面扩大",
+      "pass": true,
+      "detail": [
+        {
+          "blue": 0,
+          "volumeM3": 0
+        },
+        {
+          "blue": 522067,
+          "volumeM3": 4119165684493343
+        },
+        {
+          "blue": 1594040,
+          "volumeM3": 52076269903057064
+        },
+        {
+          "blue": 0,
+          "volumeM3": 0
+        }
+      ]
+    },
+    {
+      "name": "显示门槛为 0 也不画零流量",
+      "pass": true,
+      "detail": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "负高程湖盆保留有限床与有效格子",
+      "pass": true,
+      "detail": {
+        "minimumBedM": -2307.826116681099
+      }
+    },
+    {
+      "name": "实际 GPU 高程通道保留负床",
+      "pass": true,
+      "detail": {
+        "negativePixels": 1983475,
+        "minimumShaderElevation": -0.230712890625,
+        "format": 6403,
+        "type": 5131
+      }
+    },
+    {
+      "name": "渲染不会改写细粗网格与外洋库存",
+      "pass": true,
+      "detail": {
+        "triangles": 476
+      }
+    },
+    {
+      "name": "渲染不会改写细粗网格与外洋库存",
+      "pass": true,
+      "detail": {
+        "triangles": 476
+      }
+    },
+    {
+      "name": "干负床坡面响应相反光照",
+      "pass": true,
+      "detail": {
+        "changedNegativePixels": 985404
+      }
+    },
+    {
+      "name": "拾取负床与 GPU 半径一致，切换分类后重新构建",
+      "pass": true,
+      "detail": {
+        "inlandPickingError": 0.000020417735015598737,
+        "marinePickingError": 0.000023144450096879154,
+        "restoredPickingError": 0.000020417735015598737
+      }
+    },
+    {
+      "name": "渲染不会改写细粗网格与外洋库存",
+      "pass": true,
+      "detail": {
+        "triangles": 476
+      }
+    },
+    {
+      "name": "双图层实际 GPU 上传容量足够",
+      "pass": true,
+      "detail": {
+        "referenceTriangles": 561,
+        "physicalTriangles": 561,
+        "riverTriangles": 1122,
+        "uploadBytes": 94248,
+        "bufferBytes": 239904
+      }
+    },
+    {
+      "name": "WebGL 无错误",
+      "pass": true,
+      "detail": {
+        "error": 0
+      }
+    }
+  ]
+}

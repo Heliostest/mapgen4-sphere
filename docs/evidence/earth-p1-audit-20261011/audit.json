@@ -1,0 +1,1682 @@
+{
+  "generatedAtUtc": "2026-10-11T05:05:40.456Z",
+  "nodeVersion": "v24.11.1",
+  "base": "e3222280a0ceddd597245f3c45d75f75d2def9f5",
+  "formalSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "meshTriangles": 215348,
+  "sourceSha256": "4e40681c5cb0fa74619a1ffb07dd904c74a3d5433be50a574263b89c57370b96",
+  "bindings": [
+    {
+      "path": "environment.ts",
+      "sha256": "af6295d092587fed5b4bb9019694a8987c679eb5f3034bd00715d1edc399dbf9",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "thermal.ts",
+      "sha256": "cd8d823aafc2c5e43f13c4bdc137d9b203ff4616862b2c4388e4c2c2942ecc87",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "ocean.ts",
+      "sha256": "f0ef39d02f1de678c6224b9d79d225a450da657fa25772c785c8627a7b7c443d",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "sea-ice.ts",
+      "sha256": "231050cc2e94a1b3a810e389272296ff70329f41141af8b7cb2b214033ef2e2c",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "terrain-water-view.ts",
+      "sha256": "ab6068f171aa8ffdcdec46604f0bdc3e12ff043fc2dbb98fda25906b6f9ff50f",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "surface-grid.ts",
+      "sha256": "5af822cc3ce30a09db820841d15a017dd2850f72ab0c51ade2a14162d6f7e02c",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "climate.ts",
+      "sha256": "2bd07a05d8fe0598f3d608e3096600b43cab47cd9f29f4a5107e85c6e8e21da9",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "config.js",
+      "sha256": "a433230caaf102eea16814b365e4f3df7d5dba556268907fcac56502feecca0a",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "scenes/earth-land-sea/earth-simulation.json",
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+      "unchangedFromBase": true
+    }
+  ],
+  "notes": [
+    "Annual checkpoints are reused actual integrations, restored by current strict loader with authored terrain; no fresh annual or repeated-year run.",
+    "Sea-ice extent/area are mass-derived coverage proxies (0.5 m equals 100%, extent threshold 15%), not satellite concentration. Confirmed inland water and land excluded; shelf-occupied marine area not independently removed.",
+    "Short sequential Node CPU sample: 2 warmup + 5 timed single physical steps from same formal day-zero stock; not foreground browser FPS, GPU time, or a before/after performance comparison."
+  ],
+  "checkpoints": [
+    {
+      "series": "formal-legacy",
+      "path": "build/refinement/before-day0.json",
+      "sha256": "b5bf8faa0c07aff32ba858eb601f95361c33af018f364b9f791493e3187e2e8f",
+      "actualDay": 0,
+      "stepS": 1800,
+      "moistureScheme": "legacy",
+      "airRadiationFraction": 0,
+      "budget": {
+        "waterResidualMm": 1.1641532182693481e-10,
+        "enthalpyResidualJm2": -0.00008487701416015625
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 177.2748152112826,
+        "north": {
+          "extentMillionKm2": 44.56299973047479,
+          "areaMillionKm2": 35.389556226757875
+        },
+        "south": {
+          "extentMillionKm2": 52.576305036925646,
+          "areaMillionKm2": 35.85975055715425
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 37.09459930048885
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 40.26405086359644
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 37.09459930048885
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 40.26405086359644
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 37.09459930048885
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 40.26405086359644
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 35.389556226757875
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 35.85975055715425
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 35.389556226757875
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 35.85975055715425
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 33.79115578369502,
+            "areaMillionKm2": 35.389556226757875
+          },
+          "south": {
+            "extentMillionKm2": 31.76632813115142,
+            "areaMillionKm2": 35.85975055715425
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 33.79115578369502,
+            "areaMillionKm2": 30.789602802094063
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 33.657600403933166
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 33.79115578369502,
+            "areaMillionKm2": 30.789602802094063
+          },
+          "south": {
+            "extentMillionKm2": 31.76632813115142,
+            "areaMillionKm2": 33.657600403933166
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 33.77717371634511,
+            "areaMillionKm2": 30.789602802094063
+          },
+          "south": {
+            "extentMillionKm2": 31.455450250712058,
+            "areaMillionKm2": 33.657600403933166
+          }
+        }
+      ]
+    },
+    {
+      "series": "formal-legacy",
+      "path": "build/refinement/before-day90.json",
+      "sha256": "2a0502ab63851643a96ef88f7ec8a42752d9dda7e995a7b74c0df632b2e2d537",
+      "actualDay": 90,
+      "stepS": 1800,
+      "moistureScheme": "legacy",
+      "airRadiationFraction": 0,
+      "budget": {
+        "waterResidualMm": -2.7241185307502747e-8,
+        "enthalpyResidualJm2": -0.00018358230590820312
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 442.9883230366714,
+        "north": {
+          "extentMillionKm2": 33.828640690099796,
+          "areaMillionKm2": 33.823853564028255
+        },
+        "south": {
+          "extentMillionKm2": 47.26311944396202,
+          "areaMillionKm2": 36.781386858296734
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 442.9883230366714,
+          "north": {
+            "extentMillionKm2": 33.828640690099796,
+            "areaMillionKm2": 33.828640690099796
+          },
+          "south": {
+            "extentMillionKm2": 51.69077410476504,
+            "areaMillionKm2": 42.107323465881414
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 442.9883230366714,
+          "north": {
+            "extentMillionKm2": 33.828640690099796,
+            "areaMillionKm2": 33.828640690099796
+          },
+          "south": {
+            "extentMillionKm2": 49.47694677436353,
+            "areaMillionKm2": 42.107323465881414
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 442.9883230366714,
+          "north": {
+            "extentMillionKm2": 33.828640690099796,
+            "areaMillionKm2": 33.828640690099796
+          },
+          "south": {
+            "extentMillionKm2": 47.26311944396202,
+            "areaMillionKm2": 42.107323465881414
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 442.9883230366714,
+          "north": {
+            "extentMillionKm2": 33.828640690099796,
+            "areaMillionKm2": 33.823853564028255
+          },
+          "south": {
+            "extentMillionKm2": 48.148650376122625,
+            "areaMillionKm2": 36.781386858296734
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 442.9883230366714,
+          "north": {
+            "extentMillionKm2": 33.828640690099796,
+            "areaMillionKm2": 33.823853564028255
+          },
+          "south": {
+            "extentMillionKm2": 47.26311944396202,
+            "areaMillionKm2": 36.781386858296734
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 442.9883230366714,
+          "north": {
+            "extentMillionKm2": 33.828640690099796,
+            "areaMillionKm2": 33.823853564028255
+          },
+          "south": {
+            "extentMillionKm2": 42.081821436639316,
+            "areaMillionKm2": 36.781386858296734
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 442.9883230366714,
+          "north": {
+            "extentMillionKm2": 33.828640690099796,
+            "areaMillionKm2": 33.34573190953508
+          },
+          "south": {
+            "extentMillionKm2": 46.820353977881716,
+            "areaMillionKm2": 34.1184185545044
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 442.9883230366714,
+          "north": {
+            "extentMillionKm2": 33.828640690099796,
+            "areaMillionKm2": 33.34573190953508
+          },
+          "south": {
+            "extentMillionKm2": 42.081821436639316,
+            "areaMillionKm2": 34.1184185545044
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 442.9883230366714,
+          "north": {
+            "extentMillionKm2": 33.828640690099796,
+            "areaMillionKm2": 33.34573190953508
+          },
+          "south": {
+            "extentMillionKm2": 31.455450250712058,
+            "areaMillionKm2": 34.1184185545044
+          }
+        }
+      ]
+    },
+    {
+      "series": "formal-legacy",
+      "path": "build/refinement/before-day180.json",
+      "sha256": "bbdcac8e15bd4e54416f232a9f4c5e3a174b7a32531f14b803a6f94719238434",
+      "actualDay": 180,
+      "stepS": 1800,
+      "moistureScheme": "legacy",
+      "airRadiationFraction": 0,
+      "budget": {
+        "waterResidualMm": -7.706694304943085e-8,
+        "enthalpyResidualJm2": -0.00020816922187805176
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 697.3518073649376,
+        "north": {
+          "extentMillionKm2": 22.540873090941883,
+          "areaMillionKm2": 22.248751270104716
+        },
+        "south": {
+          "extentMillionKm2": 52.576305036925646,
+          "areaMillionKm2": 52.576305036925646
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 697.3518073649376,
+          "north": {
+            "extentMillionKm2": 22.55505455176349,
+            "areaMillionKm2": 22.402968588306422
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 697.3518073649376,
+          "north": {
+            "extentMillionKm2": 22.55505455176349,
+            "areaMillionKm2": 22.402968588306422
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 697.3518073649376,
+          "north": {
+            "extentMillionKm2": 22.540873090941883,
+            "areaMillionKm2": 22.402968588306422
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 697.3518073649376,
+          "north": {
+            "extentMillionKm2": 22.55505455176349,
+            "areaMillionKm2": 22.248751270104716
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 697.3518073649376,
+          "north": {
+            "extentMillionKm2": 22.540873090941883,
+            "areaMillionKm2": 22.248751270104716
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 697.3518073649376,
+          "north": {
+            "extentMillionKm2": 22.31949035790173,
+            "areaMillionKm2": 22.248751270104716
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 697.3518073649376,
+          "north": {
+            "extentMillionKm2": 22.31949035790173,
+            "areaMillionKm2": 21.861966830846935
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 697.3518073649376,
+          "north": {
+            "extentMillionKm2": 22.31949035790173,
+            "areaMillionKm2": 21.861966830846935
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 697.3518073649376,
+          "north": {
+            "extentMillionKm2": 22.083976812114336,
+            "areaMillionKm2": 21.861966830846935
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        }
+      ]
+    },
+    {
+      "series": "formal-legacy",
+      "path": "build/refinement/before-day270.json",
+      "sha256": "e64be42cdf066c3be7370262e2d364efe94545dd900820f12f9dfdc5db118283",
+      "actualDay": 270,
+      "stepS": 1800,
+      "moistureScheme": "legacy",
+      "airRadiationFraction": 0,
+      "budget": {
+        "waterResidualMm": -1.0081566870212555e-7,
+        "enthalpyResidualJm2": -0.00021350383758544922
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 875.452005768405,
+        "north": {
+          "extentMillionKm2": 27.23897167896848,
+          "areaMillionKm2": 25.379279000905814
+        },
+        "south": {
+          "extentMillionKm2": 52.576305036925646,
+          "areaMillionKm2": 52.576305036925646
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 875.452005768405,
+          "north": {
+            "extentMillionKm2": 27.681737145048782,
+            "areaMillionKm2": 26.38620526031552
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 875.452005768405,
+          "north": {
+            "extentMillionKm2": 27.681737145048782,
+            "areaMillionKm2": 26.38620526031552
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 875.452005768405,
+          "north": {
+            "extentMillionKm2": 27.23897167896848,
+            "areaMillionKm2": 26.38620526031552
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 875.452005768405,
+          "north": {
+            "extentMillionKm2": 27.681737145048782,
+            "areaMillionKm2": 25.379279000905814
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 875.452005768405,
+          "north": {
+            "extentMillionKm2": 27.23897167896848,
+            "areaMillionKm2": 25.379279000905814
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 875.452005768405,
+          "north": {
+            "extentMillionKm2": 26.149356019431796,
+            "areaMillionKm2": 25.379279000905814
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 875.452005768405,
+          "north": {
+            "extentMillionKm2": 26.424854531659538,
+            "areaMillionKm2": 24.72343169736337
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.486343450574
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 875.452005768405,
+          "north": {
+            "extentMillionKm2": 26.149356019431796,
+            "areaMillionKm2": 24.72343169736337
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.486343450574
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 875.452005768405,
+          "north": {
+            "extentMillionKm2": 24.53781272238554,
+            "areaMillionKm2": 24.72343169736337
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.486343450574
+          }
+        }
+      ]
+    },
+    {
+      "series": "formal-legacy",
+      "path": "build/refinement/before-day365.json",
+      "sha256": "3649c328f8890f2e565fdd343e190806e4de968044127186a2ed05570e1c15fd",
+      "actualDay": 365,
+      "stepS": 1800,
+      "moistureScheme": "legacy",
+      "airRadiationFraction": 0,
+      "budget": {
+        "waterResidualMm": -1.1024530977010727e-7,
+        "enthalpyResidualJm2": -0.0002599954605102539
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 1121.6462788428048,
+        "north": {
+          "extentMillionKm2": 46.26034277146744,
+          "areaMillionKm2": 46.144455673320465
+        },
+        "south": {
+          "extentMillionKm2": 50.937130758245374,
+          "areaMillionKm2": 49.3132666247909
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 1121.6462788428048,
+          "north": {
+            "extentMillionKm2": 46.26034277146744,
+            "areaMillionKm2": 46.26034277146744
+          },
+          "south": {
+            "extentMillionKm2": 51.37989622432568,
+            "areaMillionKm2": 50.84075403686861
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 1121.6462788428048,
+          "north": {
+            "extentMillionKm2": 46.26034277146744,
+            "areaMillionKm2": 46.26034277146744
+          },
+          "south": {
+            "extentMillionKm2": 51.37989622432568,
+            "areaMillionKm2": 50.84075403686861
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 1121.6462788428048,
+          "north": {
+            "extentMillionKm2": 46.26034277146744,
+            "areaMillionKm2": 46.26034277146744
+          },
+          "south": {
+            "extentMillionKm2": 50.937130758245374,
+            "areaMillionKm2": 50.84075403686861
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 1121.6462788428048,
+          "north": {
+            "extentMillionKm2": 46.26034277146744,
+            "areaMillionKm2": 46.144455673320465
+          },
+          "south": {
+            "extentMillionKm2": 51.37989622432568,
+            "areaMillionKm2": 49.3132666247909
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 1121.6462788428048,
+          "north": {
+            "extentMillionKm2": 46.26034277146744,
+            "areaMillionKm2": 46.144455673320465
+          },
+          "south": {
+            "extentMillionKm2": 50.937130758245374,
+            "areaMillionKm2": 49.3132666247909
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 1121.6462788428048,
+          "north": {
+            "extentMillionKm2": 46.26034277146744,
+            "areaMillionKm2": 46.144455673320465
+          },
+          "south": {
+            "extentMillionKm2": 50.937130758245374,
+            "areaMillionKm2": 49.3132666247909
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 1121.6462788428048,
+          "north": {
+            "extentMillionKm2": 46.26034277146744,
+            "areaMillionKm2": 45.84305212982168
+          },
+          "south": {
+            "extentMillionKm2": 50.937130758245374,
+            "areaMillionKm2": 45.01095584263097
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 1121.6462788428048,
+          "north": {
+            "extentMillionKm2": 46.26034277146744,
+            "areaMillionKm2": 45.84305212982168
+          },
+          "south": {
+            "extentMillionKm2": 50.937130758245374,
+            "areaMillionKm2": 45.01095584263097
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 1121.6462788428048,
+          "north": {
+            "extentMillionKm2": 46.26034277146744,
+            "areaMillionKm2": 45.84305212982168
+          },
+          "south": {
+            "extentMillionKm2": 49.16606889392417,
+            "areaMillionKm2": 45.01095584263097
+          }
+        }
+      ],
+      "restoreNextStepExact": true,
+      "nextStepBudget": {
+        "waterResidualMm": -1.1047814041376114e-7,
+        "enthalpyResidualJm2": -0.0002575516700744629
+      }
+    },
+    {
+      "series": "p0-experimental-450",
+      "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day0.json",
+      "sha256": "b56e9da011dfe7fbae89229804aa871a8035a09695b03d37a937ebb0f7b3c8d4",
+      "actualDay": 0,
+      "stepS": 450,
+      "moistureScheme": "transport",
+      "airRadiationFraction": 0.5,
+      "budget": {
+        "waterResidualMm": 1.1641532182693481e-10,
+        "enthalpyResidualJm2": -0.00008487701416015625
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 177.2748152112826,
+        "north": {
+          "extentMillionKm2": 44.56299973047479,
+          "areaMillionKm2": 35.389556226757875
+        },
+        "south": {
+          "extentMillionKm2": 52.576305036925646,
+          "areaMillionKm2": 35.85975055715425
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 37.09459930048885
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 40.26405086359644
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 37.09459930048885
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 40.26405086359644
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 37.09459930048885
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 40.26405086359644
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 35.389556226757875
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 35.85975055715425
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 44.56299973047479,
+            "areaMillionKm2": 35.389556226757875
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 35.85975055715425
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 33.79115578369502,
+            "areaMillionKm2": 35.389556226757875
+          },
+          "south": {
+            "extentMillionKm2": 31.76632813115142,
+            "areaMillionKm2": 35.85975055715425
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 33.79115578369502,
+            "areaMillionKm2": 30.789602802094063
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 33.657600403933166
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 33.79115578369502,
+            "areaMillionKm2": 30.789602802094063
+          },
+          "south": {
+            "extentMillionKm2": 31.76632813115142,
+            "areaMillionKm2": 33.657600403933166
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 177.2748152112826,
+          "north": {
+            "extentMillionKm2": 33.77717371634511,
+            "areaMillionKm2": 30.789602802094063
+          },
+          "south": {
+            "extentMillionKm2": 31.455450250712058,
+            "areaMillionKm2": 33.657600403933166
+          }
+        }
+      ]
+    },
+    {
+      "series": "p0-experimental-450",
+      "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day90.json",
+      "sha256": "0c965a27babdf188e37716caf6c1362daa051bf5fe48e462bcc7a5b08cf014c8",
+      "actualDay": 90,
+      "stepS": 450,
+      "moistureScheme": "transport",
+      "airRadiationFraction": 0.5,
+      "budget": {
+        "waterResidualMm": 1.5343539416790009e-7,
+        "enthalpyResidualJm2": -0.0001033097505569458
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 386.23085055330137,
+        "north": {
+          "extentMillionKm2": 24.942490836544952,
+          "areaMillionKm2": 24.32325191528599
+        },
+        "south": {
+          "extentMillionKm2": 52.13353957084534,
+          "areaMillionKm2": 40.36080166333138
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 386.23085055330137,
+          "north": {
+            "extentMillionKm2": 25.385256302625255,
+            "areaMillionKm2": 24.580022088207414
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 48.69093475889814
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 386.23085055330137,
+          "north": {
+            "extentMillionKm2": 24.942490836544952,
+            "areaMillionKm2": 24.580022088207414
+          },
+          "south": {
+            "extentMillionKm2": 52.13353957084534,
+            "areaMillionKm2": 48.69093475889814
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 386.23085055330137,
+          "north": {
+            "extentMillionKm2": 24.942490836544952,
+            "areaMillionKm2": 24.580022088207414
+          },
+          "south": {
+            "extentMillionKm2": 52.13353957084534,
+            "areaMillionKm2": 48.69093475889814
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 386.23085055330137,
+          "north": {
+            "extentMillionKm2": 24.942490836544952,
+            "areaMillionKm2": 24.32325191528599
+          },
+          "south": {
+            "extentMillionKm2": 52.13353957084534,
+            "areaMillionKm2": 40.36080166333138
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 386.23085055330137,
+          "north": {
+            "extentMillionKm2": 24.942490836544952,
+            "areaMillionKm2": 24.32325191528599
+          },
+          "south": {
+            "extentMillionKm2": 52.13353957084534,
+            "areaMillionKm2": 40.36080166333138
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 386.23085055330137,
+          "north": {
+            "extentMillionKm2": 24.49972537046465,
+            "areaMillionKm2": 24.32325191528599
+          },
+          "south": {
+            "extentMillionKm2": 49.03418130828323,
+            "areaMillionKm2": 40.36080166333138
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 386.23085055330137,
+          "north": {
+            "extentMillionKm2": 24.942490836544952,
+            "areaMillionKm2": 24.194866828825283
+          },
+          "south": {
+            "extentMillionKm2": 52.13353957084534,
+            "areaMillionKm2": 35.90812595702172
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 386.23085055330137,
+          "north": {
+            "extentMillionKm2": 24.49972537046465,
+            "areaMillionKm2": 24.194866828825283
+          },
+          "south": {
+            "extentMillionKm2": 49.03418130828323,
+            "areaMillionKm2": 35.90812595702172
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 386.23085055330137,
+          "north": {
+            "extentMillionKm2": 24.06648174236457,
+            "areaMillionKm2": 24.194866828825283
+          },
+          "south": {
+            "extentMillionKm2": 31.455450250712058,
+            "areaMillionKm2": 35.90812595702172
+          }
+        }
+      ]
+    },
+    {
+      "series": "p0-experimental-450",
+      "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day180.json",
+      "sha256": "8092f78593ef5bf322c66d704cd5a11ffeccef474756a85f594364f89ee885e5",
+      "actualDay": 180,
+      "stepS": 450,
+      "moistureScheme": "transport",
+      "airRadiationFraction": 0.5,
+      "budget": {
+        "waterResidualMm": -1.979060471057892e-9,
+        "enthalpyResidualJm2": -0.000022590160369873047
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 638.7881490598309,
+        "north": {
+          "extentMillionKm2": 19.79900588173749,
+          "areaMillionKm2": 19.301746915876794
+        },
+        "south": {
+          "extentMillionKm2": 52.576305036925646,
+          "areaMillionKm2": 52.576305036925646
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 638.7881490598309,
+          "north": {
+            "extentMillionKm2": 19.79900588173749,
+            "areaMillionKm2": 19.537500023212917
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 638.7881490598309,
+          "north": {
+            "extentMillionKm2": 19.79900588173749,
+            "areaMillionKm2": 19.537500023212917
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 638.7881490598309,
+          "north": {
+            "extentMillionKm2": 19.79900588173749,
+            "areaMillionKm2": 19.537500023212917
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 638.7881490598309,
+          "north": {
+            "extentMillionKm2": 19.79900588173749,
+            "areaMillionKm2": 19.301746915876794
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 638.7881490598309,
+          "north": {
+            "extentMillionKm2": 19.79900588173749,
+            "areaMillionKm2": 19.301746915876794
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 638.7881490598309,
+          "north": {
+            "extentMillionKm2": 19.38030375620503,
+            "areaMillionKm2": 19.301746915876794
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 638.7881490598309,
+          "north": {
+            "extentMillionKm2": 19.38030375620503,
+            "areaMillionKm2": 18.10747570157209
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 638.7881490598309,
+          "north": {
+            "extentMillionKm2": 19.38030375620503,
+            "areaMillionKm2": 18.10747570157209
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 638.7881490598309,
+          "north": {
+            "extentMillionKm2": 19.38030375620503,
+            "areaMillionKm2": 18.10747570157209
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        }
+      ]
+    },
+    {
+      "series": "p0-experimental-450",
+      "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day270.json",
+      "sha256": "695d8c4b0ddea46a6ab729c5faab993bba2507d8dd2fb7f73b74cf10a7b5d641",
+      "actualDay": 270,
+      "stepS": 450,
+      "moistureScheme": "transport",
+      "airRadiationFraction": 0.5,
+      "budget": {
+        "waterResidualMm": -1.3015232980251312e-7,
+        "enthalpyResidualJm2": 0.00009036064147949219
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 796.3789389932981,
+        "north": {
+          "extentMillionKm2": 26.448709774684453,
+          "areaMillionKm2": 25.110917586194148
+        },
+        "south": {
+          "extentMillionKm2": 52.576305036925646,
+          "areaMillionKm2": 52.576305036925646
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 796.3789389932981,
+          "north": {
+            "extentMillionKm2": 27.762875360178118,
+            "areaMillionKm2": 25.83746170291218
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 796.3789389932981,
+          "north": {
+            "extentMillionKm2": 26.448709774684453,
+            "areaMillionKm2": 25.83746170291218
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 796.3789389932981,
+          "north": {
+            "extentMillionKm2": 26.448709774684453,
+            "areaMillionKm2": 25.83746170291218
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 796.3789389932981,
+          "north": {
+            "extentMillionKm2": 26.448709774684453,
+            "areaMillionKm2": 25.110917586194148
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 796.3789389932981,
+          "north": {
+            "extentMillionKm2": 26.448709774684453,
+            "areaMillionKm2": 25.110917586194148
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 796.3789389932981,
+          "north": {
+            "extentMillionKm2": 25.218537889438945,
+            "areaMillionKm2": 25.110917586194148
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.576305036925646
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 796.3789389932981,
+          "north": {
+            "extentMillionKm2": 25.303322765922406,
+            "areaMillionKm2": 24.592520530541492
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.55118432888441
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 796.3789389932981,
+          "north": {
+            "extentMillionKm2": 25.218537889438945,
+            "areaMillionKm2": 24.592520530541492
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.55118432888441
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 796.3789389932981,
+          "north": {
+            "extentMillionKm2": 24.789489934683814,
+            "areaMillionKm2": 24.592520530541492
+          },
+          "south": {
+            "extentMillionKm2": 52.576305036925646,
+            "areaMillionKm2": 52.55118432888441
+          }
+        }
+      ]
+    },
+    {
+      "series": "p0-experimental-450",
+      "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day365.json",
+      "sha256": "539a83410c5f049271e1e9e27364184f86d91c05dd0ada168bf55c11b16d6a65",
+      "actualDay": 365,
+      "stepS": 450,
+      "moistureScheme": "transport",
+      "airRadiationFraction": 0.5,
+      "budget": {
+        "waterResidualMm": -2.0442530512809753e-7,
+        "enthalpyResidualJm2": 0.0002186298370361328
+      },
+      "proxy": {
+        "proxyThicknessM": 0.5,
+        "threshold": 0.15,
+        "seaIceGlobalEquivalentMm": 997.6957199744962,
+        "north": {
+          "extentMillionKm2": 41.13785649679854,
+          "areaMillionKm2": 40.55631808166948
+        },
+        "south": {
+          "extentMillionKm2": 35.44033944543478,
+          "areaMillionKm2": 34.26843930395285
+        }
+      },
+      "sensitivity": [
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 997.6957199744962,
+          "north": {
+            "extentMillionKm2": 41.13785649679854,
+            "areaMillionKm2": 40.895943627025574
+          },
+          "south": {
+            "extentMillionKm2": 35.44033944543478,
+            "areaMillionKm2": 35.15332478912836
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 997.6957199744962,
+          "north": {
+            "extentMillionKm2": 41.13785649679854,
+            "areaMillionKm2": 40.895943627025574
+          },
+          "south": {
+            "extentMillionKm2": 35.44033944543478,
+            "areaMillionKm2": 35.15332478912836
+          }
+        },
+        {
+          "proxyThicknessM": 0.25,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 997.6957199744962,
+          "north": {
+            "extentMillionKm2": 41.13785649679854,
+            "areaMillionKm2": 40.895943627025574
+          },
+          "south": {
+            "extentMillionKm2": 35.44033944543478,
+            "areaMillionKm2": 35.15332478912836
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 997.6957199744962,
+          "north": {
+            "extentMillionKm2": 41.13785649679854,
+            "areaMillionKm2": 40.55631808166948
+          },
+          "south": {
+            "extentMillionKm2": 35.44033944543478,
+            "areaMillionKm2": 34.26843930395285
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 997.6957199744962,
+          "north": {
+            "extentMillionKm2": 41.13785649679854,
+            "areaMillionKm2": 40.55631808166948
+          },
+          "south": {
+            "extentMillionKm2": 35.44033944543478,
+            "areaMillionKm2": 34.26843930395285
+          }
+        },
+        {
+          "proxyThicknessM": 0.5,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 997.6957199744962,
+          "north": {
+            "extentMillionKm2": 41.13785649679854,
+            "areaMillionKm2": 40.55631808166948
+          },
+          "south": {
+            "extentMillionKm2": 34.99757397935448,
+            "areaMillionKm2": 34.26843930395285
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.1,
+          "seaIceGlobalEquivalentMm": 997.6957199744962,
+          "north": {
+            "extentMillionKm2": 41.13785649679854,
+            "areaMillionKm2": 39.497139080682054
+          },
+          "south": {
+            "extentMillionKm2": 34.99757397935448,
+            "areaMillionKm2": 32.861944777332454
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.15,
+          "seaIceGlobalEquivalentMm": 997.6957199744962,
+          "north": {
+            "extentMillionKm2": 41.13785649679854,
+            "areaMillionKm2": 39.497139080682054
+          },
+          "south": {
+            "extentMillionKm2": 34.99757397935448,
+            "areaMillionKm2": 32.861944777332454
+          }
+        },
+        {
+          "proxyThicknessM": 1,
+          "threshold": 0.3,
+          "seaIceGlobalEquivalentMm": 997.6957199744962,
+          "north": {
+            "extentMillionKm2": 40.216692536313374,
+            "areaMillionKm2": 39.497139080682054
+          },
+          "south": {
+            "extentMillionKm2": 34.11204304719387,
+            "areaMillionKm2": 32.861944777332454
+          }
+        }
+      ],
+      "restoreNextStepExact": true,
+      "nextStepBudget": {
+        "waterResidualMm": -2.043088898062706e-7,
+        "enthalpyResidualJm2": 0.00024121999740600586
+      }
+    }
+  ],
+  "performance": {
+    "style": {
+      "enabled": true,
+      "minFlowM3S": 1000,
+      "widthCoefficient": 0.025,
+      "maxWidthRatio": 0.35
+    },
+    "records": [
+      {
+        "mode": "classic",
+        "stepS": 1800,
+        "samples": [
+          {
+            "physicalMs": 37.806400000001304,
+            "syncMappingMs": 18.870899999998073,
+            "waterGeometryMs": 201.52100000000064,
+            "totalMs": 258.1983
+          },
+          {
+            "physicalMs": 31.107299999999668,
+            "syncMappingMs": 14.983000000000175,
+            "waterGeometryMs": 244.26640000000043,
+            "totalMs": 290.3567000000003
+          },
+          {
+            "physicalMs": 38.97899999999936,
+            "syncMappingMs": 15.455799999999726,
+            "waterGeometryMs": 207.53009999999995,
+            "totalMs": 261.96489999999903
+          },
+          {
+            "physicalMs": 33.954399999998714,
+            "syncMappingMs": 14.80580000000191,
+            "waterGeometryMs": 212.54650000000038,
+            "totalMs": 261.306700000001
+          },
+          {
+            "physicalMs": 34.88880000000063,
+            "syncMappingMs": 15.565300000002026,
+            "waterGeometryMs": 191.99399999999878,
+            "totalMs": 242.44810000000143
+          }
+        ],
+        "median": {
+          "physicalMs": 34.88880000000063,
+          "syncMappingMs": 15.455799999999726,
+          "waterGeometryMs": 207.53009999999995,
+          "totalMs": 261.306700000001
+        },
+        "encodeMs": 626.515000000003,
+        "decodeMs": 513.1269999999968,
+        "documentBytes": 11090933,
+        "sameTimeCachedWaterGeometryMs": 0.034299999999348074,
+        "budget": {
+          "waterResidualMm": 0,
+          "enthalpyResidualJm2": -0.00015336618525907397
+        }
+      },
+      {
+        "mode": "balanced",
+        "stepS": 1800,
+        "samples": [
+          {
+            "physicalMs": 108.11290000000008,
+            "syncMappingMs": 43.87129999999888,
+            "waterGeometryMs": 316.6739000000016,
+            "totalMs": 468.65810000000056
+          },
+          {
+            "physicalMs": 53.15729999999894,
+            "syncMappingMs": 49.53280000000086,
+            "waterGeometryMs": 235.47160000000076,
+            "totalMs": 338.16170000000056
+          },
+          {
+            "physicalMs": 49.01429999999891,
+            "syncMappingMs": 48.76800000000367,
+            "waterGeometryMs": 226.93199999999706,
+            "totalMs": 324.71429999999964
+          },
+          {
+            "physicalMs": 52.89459999999963,
+            "syncMappingMs": 49.514100000000326,
+            "waterGeometryMs": 307.97669999999925,
+            "totalMs": 410.3853999999992
+          },
+          {
+            "physicalMs": 48.253200000002835,
+            "syncMappingMs": 51.5112999999983,
+            "waterGeometryMs": 182.45769999999902,
+            "totalMs": 282.22220000000016
+          }
+        ],
+        "median": {
+          "physicalMs": 52.89459999999963,
+          "syncMappingMs": 49.514100000000326,
+          "waterGeometryMs": 235.47160000000076,
+          "totalMs": 338.16170000000056
+        },
+        "encodeMs": 875.3059000000067,
+        "decodeMs": 392.08839999999327,
+        "documentBytes": 12654070,
+        "sameTimeCachedWaterGeometryMs": 0.01720000000204891,
+        "budget": {
+          "waterResidualMm": 1.1641532182693481e-9,
+          "enthalpyResidualJm2": -0.00017721307813189924
+        }
+      },
+      {
+        "mode": "high",
+        "stepS": 1800,
+        "samples": [
+          {
+            "physicalMs": 69.0364000000045,
+            "syncMappingMs": 116.80249999999796,
+            "waterGeometryMs": 189.88450000000012,
+            "totalMs": 375.7234000000026
+          },
+          {
+            "physicalMs": 60.66599999999744,
+            "syncMappingMs": 117.06940000000031,
+            "waterGeometryMs": 187.7873000000036,
+            "totalMs": 365.52270000000135
+          },
+          {
+            "physicalMs": 60.58720000000176,
+            "syncMappingMs": 107.39689999999973,
+            "waterGeometryMs": 184.2242000000042,
+            "totalMs": 352.2083000000057
+          },
+          {
+            "physicalMs": 65.31199999999808,
+            "syncMappingMs": 122.2751999999964,
+            "waterGeometryMs": 183.8510000000024,
+            "totalMs": 371.43819999999687
+          },
+          {
+            "physicalMs": 64.92710000000079,
+            "syncMappingMs": 122.64020000000164,
+            "waterGeometryMs": 189.43099999999686,
+            "totalMs": 376.9982999999993
+          }
+        ],
+        "median": {
+          "physicalMs": 64.92710000000079,
+          "syncMappingMs": 117.06940000000031,
+          "waterGeometryMs": 187.7873000000036,
+          "totalMs": 371.43819999999687
+        },
+        "encodeMs": 1120.8812000000034,
+        "decodeMs": 778.8425999999963,
+        "documentBytes": 15635446,
+        "sameTimeCachedWaterGeometryMs": 0.17360000000189757,
+        "budget": {
+          "waterResidualMm": -1.6298145055770874e-9,
+          "enthalpyResidualJm2": -0.00011386914411559701
+        }
+      }
+    ]
+  }
+}

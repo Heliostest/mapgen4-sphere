@@ -1,0 +1,187 @@
+{
+  "createdAtUtc": "2026-10-11T01:48:25.135Z",
+  "cwd": "D:\\ws\\app\\mapgen4\\mapgen4-sphere",
+  "head": "e3222280a0ceddd597245f3c45d75f75d2def9f5",
+  "branch": "main",
+  "remotes": "origin\thttps://github.com/Heliostest/mapgen4-sphere.git (fetch)\norigin\thttps://github.com/Heliostest/mapgen4-sphere.git (push)\nupstream\thttps://github.com/redblobgames/mapgen4.git (fetch)\nupstream\thttps://github.com/redblobgames/mapgen4.git (push)",
+  "liveOriginMain": "e3222280a0ceddd597245f3c45d75f75d2def9f5\trefs/heads/main",
+  "initialWorkingTree": "Clean main...origin/main observed before evidence creation; no tracked files modified by this reassessment.",
+  "currentStatus": "?? docs/evidence/earth-status-reassessment-20261011/",
+  "agentInstructions": {
+    "ancestorPaths": [
+      {
+        "path": "D:/AGENTS.md",
+        "exists": false
+      },
+      {
+        "path": "D:/ws/AGENTS.md",
+        "exists": false
+      },
+      {
+        "path": "D:/ws/app/AGENTS.md",
+        "exists": false
+      },
+      {
+        "path": "D:/ws/app/mapgen4/AGENTS.md",
+        "exists": false
+      },
+      {
+        "path": "D:/ws/app/mapgen4/mapgen4-sphere/AGENTS.md",
+        "exists": false
+      }
+    ],
+    "repositoryFiles": ""
+  },
+  "service": {
+    "port": 8002,
+    "initial": "No listener observed; first real Chrome request ERR_CONNECTION_REFUSED.",
+    "started": "npm run build; PORT=8002 node scripts/serve.mjs from actual repository",
+    "host": "127.0.0.1",
+    "cacheControl": "no-store",
+    "ports8000And8001": "No listener observed at initial inspection; neither started, stopped nor modified."
+  },
+  "buildVersion": {
+    "implementation": "sphere-original-renderer",
+    "builtAt": "2026-10-11T01:37:25.199Z"
+  },
+  "hashes": [
+    {
+      "path": "build/_bundle.js",
+      "bytes": 323447,
+      "sha256": "00478116880924559bd23e05047d2bcf195e23c353e72ac6fd202f276e09f0ba",
+      "browserHash": {
+        "bytes": 323447,
+        "sha256": "00478116880924559bd23e05047d2bcf195e23c353e72ac6fd202f276e09f0ba"
+      },
+      "browserBytesMatch": true
+    },
+    {
+      "path": "build/_worker.js",
+      "bytes": 15433,
+      "sha256": "58a7001dbd6ec28813702762e8473f1199fa5ba6669a23b1b2620cfd09843ad7",
+      "browserHash": {
+        "bytes": 15433,
+        "sha256": "58a7001dbd6ec28813702762e8473f1199fa5ba6669a23b1b2620cfd09843ad7"
+      },
+      "browserBytesMatch": true
+    },
+    {
+      "path": "build/version.json",
+      "bytes": 82,
+      "sha256": "20ee8dbc8a546032a6e8ec3e57d22a4fd13a0301fc4874dcc293990abba31436",
+      "browserHash": {
+        "bytes": 82,
+        "sha256": "20ee8dbc8a546032a6e8ec3e57d22a4fd13a0301fc4874dcc293990abba31436"
+      },
+      "browserBytesMatch": true
+    },
+    {
+      "path": "scenes/earth-land-sea/earth-simulation.json",
+      "bytes": 11364186,
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+      "browserHash": {
+        "bytes": 11364186,
+        "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+      },
+      "browserBytesMatch": true
+    },
+    {
+      "path": "scenes/earth-land-sea/earth-terrain.json",
+      "bytes": 6099330,
+      "sha256": "6cb1a9c2b7f2c288650826e150f074e1598c36e7ada9e62d14ae49824d1b9156"
+    },
+    {
+      "path": "scenes/earth-land-sea/scene-config.json",
+      "bytes": 436,
+      "sha256": "9b811ee7c064dbd11c20d7f21dfe47607815fc720dcdc9e9a17ef66c09a71253"
+    }
+  ],
+  "initialBrowserControls": {
+    "button-navigate": "true",
+    "environment-albedo": true,
+    "environment-circulation": true,
+    "environment-current": "0.3",
+    "environment-glaciers": true,
+    "environment-map": "surface",
+    "environment-resolution": "",
+    "environment-terrain-water": true,
+    "environment-vegetation": true,
+    "environment-weather": false,
+    "geomorph-diffusion": "10000",
+    "geomorph-duration": "100000",
+    "geomorph-erodibility": "1",
+    "geomorph-preview": true,
+    "geomorph-settling": "10000",
+    "planet-albedo": "0.3",
+    "planet-camera": "surface",
+    "planet-density": "5513.4",
+    "planet-distance": "1",
+    "planet-inspect": "false",
+    "planet-layer": "surface",
+    "planet-ocean-depth": "11",
+    "planet-orbit-phase": "0",
+    "planet-period": "23.9344695944",
+    "planet-play": "false",
+    "planet-radius": "6371.0084",
+    "planet-relief": "10",
+    "planet-retrograde": false,
+    "planet-speed": "3600",
+    "planet-spin-phase": "0",
+    "planet-tilt": "23.43928",
+    "planet-time-days": "0.000000",
+    "terrain-load": "",
+    "thermal-capacity": "2",
+    "thermal-depth": "10",
+    "thermal-diffusion": "0.55",
+    "thermal-emissivity": "0.61",
+    "thermal-enabled": true,
+    "water-depth": "1000",
+    "water-efficiency": "0.5",
+    "water-enabled": true,
+    "water-mixing": "1000000",
+    "water-routing": "1",
+    "water-soil-capacity": "150",
+    "water-unified": false,
+    "water-wind": "10"
+  },
+  "viewport": [
+    2327,
+    1105
+  ],
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+  "finalVerification": {
+    "atUtc": "2026-10-11T02:03:55.002Z",
+    "head": "e3222280a0ceddd597245f3c45d75f75d2def9f5",
+    "liveOriginMain": "e3222280a0ceddd597245f3c45d75f75d2def9f5\trefs/heads/main",
+    "status": "?? docs/evidence/earth-status-reassessment-20261011/",
+    "trackedDiffEmpty": true,
+    "currentSourcesAndBuildUnchanged": true,
+    "portSnapshot": [
+      {
+        "LocalAddress": "127.0.0.1",
+        "LocalPort": 8002,
+        "OwningProcess": 72368
+      },
+      {
+        "LocalAddress": "127.0.0.1",
+        "LocalPort": 8000,
+        "OwningProcess": 74744
+      }
+    ],
+    "portNote": "8000 has a separate listener at completion; 8001 none; this reassessment started only 8002 and never operated 8000/8001.",
+    "finalPage": {
+      "label": "final-formal-default-after-all-diagnostics",
+      "screenshot": "final-formal-default-day0.jpg",
+      "clockDay": "0.000000",
+      "layer": "surface",
+      "play": "false",
+      "quality": "classic",
+      "renderWait": "two iframe animation callbacks after change; renderer draw loop precedes observation",
+      "sharedMoisture": false,
+      "x": "820",
+      "y": "420",
+      "zoom": "0.26",
+      "logs": []
+    }
+  }
+}

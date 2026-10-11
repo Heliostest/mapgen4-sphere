@@ -1,0 +1,303 @@
+{
+  "base": "e3222280a0ceddd597245f3c45d75f75d2def9f5",
+  "branch": "codex/earth-moisture-p0",
+  "defaults": [
+    {
+      "path": "scenes/earth-land-sea/earth-simulation.json",
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+      "unchangedAgainstBase": true
+    },
+    {
+      "path": "scenes/earth-land-sea/scene-config.json",
+      "sha256": "9b811ee7c064dbd11c20d7f21dfe47607815fc720dcdc9e9a17ef66c09a71253",
+      "unchangedAgainstBase": true
+    },
+    {
+      "path": "config.js",
+      "sha256": "a433230caaf102eea16814b365e4f3df7d5dba556268907fcac56502feecca0a",
+      "unchangedAgainstBase": true
+    },
+    {
+      "path": "environment.ts",
+      "sha256": "af6295d092587fed5b4bb9019694a8987c679eb5f3034bd00715d1edc399dbf9",
+      "unchangedAgainstBase": true
+    },
+    {
+      "path": "surface-grid.ts",
+      "sha256": "5af822cc3ce30a09db820841d15a017dd2850f72ab0c51ade2a14162d6f7e02c",
+      "unchangedAgainstBase": true
+    }
+  ],
+  "productHashes": [
+    {
+      "path": "climate-diagnostics.ts",
+      "sha256": "2b1107089b78aad9bde62e4fa18face7387576d6b95bd985ee25fdd79cdf2834"
+    },
+    {
+      "path": "circulation.ts",
+      "sha256": "3305f24115f41e781e3f85189e726e9d8aaaf5ca095ee78c1901e4b60f2047bf"
+    },
+    {
+      "path": "water.ts",
+      "sha256": "970b8d7141770c3ab1be65d12d8656ad5e5150b73f699d28f621c63763249c3f"
+    },
+    {
+      "path": "reference-moisture.ts",
+      "sha256": "6b55f772522c5f4cc285d832bc8f77551d217600cb7eceba11eb19a0e05b86b9"
+    },
+    {
+      "path": "planet-controls.ts",
+      "sha256": "0117a3a0883eb1d73ecf7c595a47cd6d3ce26f6d7a3a91d7cd38b9d00b96be33"
+    },
+    {
+      "path": "scenes/earth-land-sea/sidebar-zh.js",
+      "sha256": "b3bf30ac41bc757f92875e42240744df775c824a9dada18d7563c068dd63ec3d"
+    },
+    {
+      "path": "tests/climate-diagnostics.test.ts",
+      "sha256": "7365b7eb0c3ce23efb8a165f22b9e641aafefbb3ec2d193023612c93d96069df"
+    },
+    {
+      "path": "tests/circulation.test.ts",
+      "sha256": "892fb620898116dbc56abb1727b05f9d5401099e6151dd9f144757e3009fc243"
+    },
+    {
+      "path": "tests/moisture.test.ts",
+      "sha256": "7538ae5da9fc0b28d2596010da5e77519735a6176af03f1bad4942df31c6b3c8"
+    },
+    {
+      "path": "scripts/test.mjs",
+      "sha256": "c35fdf9180aa2553e887acfdac0b82aa08dc667803963ebf93fd0fe347a85e04"
+    }
+  ],
+  "bundles": [
+    {
+      "path": "build/earth-moisture-p0/integrate-before.mjs",
+      "sha256": "bb9ab33aa2f1328a954d5cc26657b09b543cc6a040bc56822aa390f402c90bf7"
+    },
+    {
+      "path": "build/earth-moisture-p0/integrate-after.mjs",
+      "sha256": "4c03397ecebdb790eda8a412b98af5554633fa22ddb6f70dd3ccf2347c51ad58"
+    },
+    {
+      "path": "build/_bundle.js",
+      "sha256": "7e0e02dd5656e285d50f986802690a65fac21b2814d593b54160bbec2c4e6265"
+    },
+    {
+      "path": "build/_worker.js",
+      "sha256": "58a7001dbd6ec28813702762e8473f1199fa5ba6669a23b1b2620cfd09843ad7"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/PLAN.md",
+      "sha256": "0a7175e02e09d7e19ca404f480f5d3c344876a67ef550aa4b6b89db02c487f52"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/REPORT.md",
+      "sha256": "7eaee501cf70276a161dc8e24683b48c82af00cb8c02182ca3a57bcfd3a1dc5a"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/REVIEW.md",
+      "sha256": "0e15586d9dfc4ac1c744ffae77fab4ab131eeeef13964119932f4772c39e1c93"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/ablation.mjs",
+      "sha256": "2095ac8127bb9c9c4866df9d963574fda15b7bbe457b6247decbe686c42811a7"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/after-assessment.png",
+      "sha256": "4a91007de030adacaaf19ebb26a470bda438aa175c7036246b739afaa76d0fad"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/after-assessment.svg",
+      "sha256": "a64fa5f3f8b678b44576af9d6be54c6f7669024948989449be26f5475649dc03"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/air-column-reference-valid.json",
+      "sha256": "eb62aa9043f439e7a73895f56fa559eac777acd2fae50737408b0bac7950dace"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/air-pressure-reference-valid.json",
+      "sha256": "f206a4dd10c3f60d43e01409aa287e918649dc37d0cacac1dcb349211b0deb0d"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/annual-comparison.png",
+      "sha256": "b730d1d0b53ca667d47dfd1a64bd74a3c2cceef813b1d001ae7441ce661792ab"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/annual-comparison.svg",
+      "sha256": "64e64491eb487f3bd8bdeb658ea72906bccceeb893fafbbb7e8157875137de9c"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/before-1800-continuous.json",
+      "sha256": "0b188b989e3bbcabd170a639fbce9a2a1881875cfd7a4f580093c57a7e969ded"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/before-assessment.png",
+      "sha256": "1aed3b904fd15f6101138e14ec9907d6f6a8c25882c7be4bf977d3e41ea8883c"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/before-assessment.svg",
+      "sha256": "c8119ecb97185f47397aac5fd71cb6fd12a31e27d68ed9640b2eff3d951a95ae"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/before-browser-bindings.json",
+      "sha256": "451ecc4ce2fc6afdb6ff032d82b7d6d792e5e221482199e6e15d10c8eaf8f223"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/before-reference-valid.json",
+      "sha256": "2f830f980aea27be94c113f6c154e8abc8e8e63f879a9f0ca3cba126d9a81aff"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/build.log",
+      "sha256": "85ff2e367ce3b45e2f8b602e66b797d85c5b47867d46b3892a7974901f3d34ec"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/bundle.mjs",
+      "sha256": "6d63073a4b0da6c0a9a565aa3e71971f558c77fa47b5cec3d2d30614e73d1d32"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/coast-pressure-reference-valid.json",
+      "sha256": "94fe08fa90825aaff5acf6efc96fd2b3f13bc4028db2221c72411a684a3253fa"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/comparison.json",
+      "sha256": "9bc02abf79e417d141545394103ffef7717745505b7af7f34b173ee7542b5d37"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/continuous-front-1800-continuous.json",
+      "sha256": "56f02a1e82513aa3a53ab0bdb9397cb43bb80454ec1d974f119b4c1f5d0e09a2"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/continuous-front-450-continuous.json",
+      "sha256": "d0a77bfa1fd83a474bc3ab9efe6703d04db551c2fca782d6a3cb2aa92043bcc4"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/continuous-front-900-continuous.json",
+      "sha256": "bd83b49a3e15e8237fb29907454b5568d0a53c8e65e592377caaff92c9a17ba8"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/continuous-front-reference-valid.json",
+      "sha256": "c32475a66fb576f98005d607653782eff4ad7893900a4905017efcfc88abfffc"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/convergence-supply.png",
+      "sha256": "9eaf740b9971f28cdc5b029cf8f8550c6a5696f60e2ac0bd6933efa788587e29"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/convergence-supply.svg",
+      "sha256": "70001fb1b511fbe03b4a6901cffe4eb5380f6ecfb390645c28a274fae8024fda"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/depth-experiment-reference-valid.json",
+      "sha256": "8bacda06dffcd8c98da552033ef43f6f4846d292ca95b015a91feefdc0989a6b"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/diagnostic-after.png",
+      "sha256": "d7f25fd6760eac6957a9ccd2e6951dc3768b598309db02cfbb14589ba03e3b46"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/diagnostic-before.png",
+      "sha256": "97574827f933c25c28dfc5b8a978e9152df7b2a6b08413143aa021e8aad5346b"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/diagnostic-browser-audit.json",
+      "sha256": "97ddcbe7472a7948da2df3d9092cc53caab79320c64737217beb038e4f05f4bc"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/energy-center-meridional-reference-valid.json",
+      "sha256": "b8474e03c8a30ade77bc331e76e7b740cd49704523513c0768066f88b962e42a"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/energy-center-reference-valid.json",
+      "sha256": "d0eef8e5e39509d296acf659aad58522dc0be4c4555fbee872f0bf66b6d66df6"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/extract-gpcc-grid.py",
+      "sha256": "4ee415e4a9667a7fe5ca18bb9d50cc8b058e7856e76dab4d702137d6a8ad9ef7"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/gpcc-grid.json",
+      "sha256": "01ed704dd31cec9376d27fafd902cfeb5c77862f7d8b3cf2e9e6b5d4226dbbc4"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/make-report.py",
+      "sha256": "32c4783f6a5222fcff3927454035f7578fa9ec0c430718fb2772d5f503bc2686"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/monthly-comparison.png",
+      "sha256": "338def08b130ac3fdd19cfa6a14986aed83faa0c7ee17b23f3f8a8a59f847617"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/monthly-comparison.svg",
+      "sha256": "31a518a7b963d6c2e08784cb206b1887f549bffcbffea79037c46e5485d9dc79"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/no-meridional-template-reference-valid.json",
+      "sha256": "34c718c870269d2d7043306471393481dd0de6f7f8bdaebc3260aaf7477bb28d"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/no-orography-reference-valid.json",
+      "sha256": "3cfcb45706e4c9a4d3ca285e87fb51e467c9d29584401cc074351d4876898e6c"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/plot.py",
+      "sha256": "429e5b9aac7fca2a52a6e5cbe38866a3775a1be47bbe0a3949aa5695b805ebdd"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/pressure-diagnostic-reference-valid.json",
+      "sha256": "3187d08902e62377ffedf6db27edd0e8b320c6e1cff2cb0194e4d68c651bb7e4"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/pressure-reference-valid.json",
+      "sha256": "9a163d8a3728c35cc1e44b668dd7e72fcaf73cc603971de730ee500ecabe1d1d"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/resolved-lapse-reference-valid.json",
+      "sha256": "73d115fe08d3ffd63f44a481cdf77001a2227ba9bf41c6a9cddcdabdf96153e9"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/summarize.py",
+      "sha256": "088a986f06b27d85ef6283f28a6434b18ff03a9da7018b137e8f4bf9196b2710"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/surface-center-reference-valid.json",
+      "sha256": "5a5ae10cc3f8553c5b0b128c221224ab7566ba93cc5f2d3394456f7e8063bc58"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/tests.log",
+      "sha256": "70451b957b66ff2c72c42041a0fbb3d74b98f27592cb6da7c482e8e037c6ba66"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/typecheck.log",
+      "sha256": "37ce53af52bf8045685e41a8f381c21976bf681429b812a2eebf082b51a6170f"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/verify-bindings.mjs",
+      "sha256": "b8702054847ccd1549ebdd2de2e79f7b4bc2dd30d9956e4c82a5ec7a5ad7faa3"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/viewer.html",
+      "sha256": "6d6944da68bf3782859efbb5a6762c85540b1250b1c3f932cd348b8ec5b58f7e"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/webgl-blocker.png",
+      "sha256": "0ea9c0cbaea2703279e283f9a2c53a04e408b67be0a2a9903d0a37b7e1ecb20e"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-p0-20261011/webgl-errors.json",
+      "sha256": "676a34b40b454411b2165e19a656eb2127ae68d81c689650d8a573104aff18c8"
+    }
+  ],
+  "initialStocksEqualAcrossRuns": true,
+  "formalDefaults": {
+    "moistureScheme": "legacy (absent)",
+    "airRadiationFraction": "0 (absent)",
+    "refinement": "classic (absent)"
+  },
+  "screenshots": {
+    "diagnostic": "Two dimensional actual-data plots visually checked; diagnostic-before.png and diagnostic-after.png",
+    "earthRenderer": "BLOCKED: Chrome WebGL context loss; fresh tabs require WebGL2. invalid-captures excluded."
+  }
+}

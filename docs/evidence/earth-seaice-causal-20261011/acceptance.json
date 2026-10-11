@@ -1,0 +1,3186 @@
+{
+  "formalSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+  "strictRestoreNextStepExact": true,
+  "physicalYearDays": 365.2563498050648,
+  "integrationDays": 365,
+  "missingOrbitalYearDays": 0.256349805064815,
+  "method": "Six full authored Earth real 365-day integrations; exact same initial physical stocks and full routing. Experimental transport/airRadiationFraction=0.5 in all runs. Fair two-by-two controls use identical ocean wet support. Pair before/after shortwave at both flags on. No seasonal seeks. Monthly model concentration time means and 1981-2010 monthly observed concentration means both remapped to the exact same fixed valid marine weights, then apply 15% coarse-cell threshold. Model concentration is still a mass-derived proxy, not an independently evolved concentration. One transient year is not a converged climate.",
+  "observationalStatus": "Same-grid acceptance performed; seasonal coverage remains failed. No threshold tuning, formal defaults or source stocks changed.",
+  "observation": {
+    "product": "NOAA/NSIDC G02202 v02r00; NASA Team monthly field (not the merged official CDR)",
+    "doi": "10.7265/N55M63M1",
+    "variable": "goddard_nt_seaice_conc_monthly",
+    "commonMillionKm2": {
+      "north": 39.14592713864067,
+      "south": 47.216423824953466
+    },
+    "unrepresentedMarineMillionKm2": {
+      "north": 0.16642909886079596,
+      "south": 0
+    },
+    "yearsPerMonth": {
+      "north": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "south": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ]
+    },
+    "excludedFiles": {
+      "north": [],
+      "south": []
+    },
+    "extent": {
+      "north": {
+        "min": 8.351492671826735,
+        "max": 18.48156194816776,
+        "minMonth": 9,
+        "maxMonth": 2
+      },
+      "south": {
+        "min": 4.442236063425625,
+        "max": 25.06525275764551,
+        "minMonth": 2,
+        "maxMonth": 8
+      }
+    },
+    "area": {
+      "north": {
+        "min": 4.278156374029147,
+        "max": 14.15021671142743,
+        "minMonth": 9,
+        "maxMonth": 3
+      },
+      "south": {
+        "min": 2.0812012164004874,
+        "max": 14.867841969942413,
+        "minMonth": 2,
+        "maxMonth": 9
+      }
+    },
+    "quadratureConvergence": [
+      {
+        "from": 1,
+        "to": 4,
+        "supportDifferenceMillionKm2": 0.7962614054085159,
+        "globalIceAreaDifferenceMillionKm2": [
+          0.29108742427963474,
+          0.31174934194628123,
+          0.306924192413416,
+          0.2868136040953164,
+          0.2438721193547578,
+          0.1878826573002383,
+          0.1222390946355586,
+          0.08405742665910547,
+          0.08090732949779687,
+          0.12460491569442578,
+          0.18980209344308593,
+          0.24946768468907812
+        ],
+        "hemispheres": {
+          "north": {
+            "iceAreaDifferenceMillionKm2": [
+              0.2809152612413516,
+              0.30576676030126954,
+              0.3041630112796875,
+              0.2811350443848496,
+              0.23690325877901564,
+              0.17870965657165233,
+              0.11229062601216797,
+              0.07304209592559863,
+              0.06938711573627587,
+              0.11375925702504004,
+              0.17799908427367186,
+              0.2347709522590625
+            ],
+            "extentDifferenceMillionKm2": [
+              0.31316483373009374,
+              0.3454265081533594,
+              0.6686551477403399,
+              0.31316483373009374,
+              0.4745440774903965,
+              0.23630408028825,
+              0.17732115833727735,
+              0.08669257431466211,
+              0.31775712195790917,
+              0.14622123127349024,
+              0.19927227806929884,
+              0.29502773517811526
+            ],
+            "supportDifferenceMillionKm2": 0.6002221797316789
+          },
+          "south": {
+            "iceAreaDifferenceMillionKm2": [
+              0.010172163038282226,
+              0.005982581645010986,
+              0.0027611811337280275,
+              0.005678559710466797,
+              0.006968860575743164,
+              0.009173000728585937,
+              0.009948468623392577,
+              0.011015330733507812,
+              0.011520213761521484,
+              0.010845658669388672,
+              0.011803009169414062,
+              0.014696732430016601
+            ],
+            "extentDifferenceMillionKm2": [
+              0.00101600913515625,
+              0.0009228567281796874,
+              0.0019538197594951173,
+              0.0017761601341132812,
+              0.015405152339908202,
+              0.016771501864339844,
+              0.01410157855248047,
+              0.01745991967603125,
+              0.012870691231429688,
+              0.01410157855248047,
+              0.014101578552472656,
+              0.009217070333392578
+            ],
+            "supportDifferenceMillionKm2": 0.196039225676837
+          }
+        }
+      },
+      {
+        "from": 4,
+        "to": 16,
+        "supportDifferenceMillionKm2": 0.19952473930701092,
+        "globalIceAreaDifferenceMillionKm2": [
+          0.03693548966503125,
+          0.04027297445491211,
+          0.039646733464611325,
+          0.03491321135829297,
+          0.029137130291703124,
+          0.025259602097949217,
+          0.015186992667917969,
+          0.009124582991101563,
+          0.008042991947527344,
+          0.01425875316109375,
+          0.01979027671721094,
+          0.02752014539065625
+        ],
+        "hemispheres": {
+          "north": {
+            "iceAreaDifferenceMillionKm2": [
+              0.03697062123377148,
+              0.04029241233714258,
+              0.03940764762790039,
+              0.034982656772029296,
+              0.030034418163441406,
+              0.02649395911576953,
+              0.015510355596828125,
+              0.00932656979916211,
+              0.008329157796614747,
+              0.014533351534134766,
+              0.01942526922519922,
+              0.02718169194788867
+            ],
+            "extentDifferenceMillionKm2": [
+              0.04039916993071875,
+              0.04756424070657031,
+              0.04756424070657031,
+              0.04039916993071875,
+              0.03518522212083594,
+              0.03188373436913477,
+              0.027140920776111327,
+              0.013306702430871094,
+              0.014240592162788087,
+              0.01983130983301367,
+              0.02904244962694922,
+              0.03386181955348633
+            ],
+            "supportDifferenceMillionKm2": 0.13089157453344205
+          },
+          "south": {
+            "iceAreaDifferenceMillionKm2": [
+              0.000035131568739746094,
+              0.00001943788223071289,
+              0.00023908583671142578,
+              0.00006944541373925782,
+              0.0008972878717402343,
+              0.0012343570178222655,
+              0.00032336292891015626,
+              0.0002019868080605469,
+              0.0002861658490878906,
+              0.00027459837304492186,
+              0.00036500749200976565,
+              0.00033845344276757814
+            ],
+            "extentDifferenceMillionKm2": [
+              0.0026621214956171874,
+              0.00018997137561132813,
+              0.43071311803811624,
+              0.0023012717288691405,
+              0.002315064969294922,
+              0.0012638710588085938,
+              0.0014299630933125,
+              0.0012774643315195313,
+              0.002998887386652344,
+              0.0014299630933085937,
+              0.44419542917360155,
+              0.003540074836205078
+            ],
+            "supportDifferenceMillionKm2": 0.06863316477356889
+          }
+        }
+      }
+    ]
+  },
+  "budgetMax": {
+    "waterResidualMm": 2.3469328880310059e-7,
+    "enthalpyResidualJm2": 0.00021463632583618164,
+    "maxCellVaporResidualMm": 3.956301952712238e-11
+  },
+  "runs": [
+    {
+      "name": "control-1800",
+      "conductiveSeaIce": false,
+      "underIceOcean": false,
+      "monthlyCoverageS": [
+        2680281.1159394085,
+        2420899.0724614076,
+        2658132.492781807,
+        2593820.4347800775,
+        2680281.115939415,
+        2593820.434780077,
+        2680281.115939416,
+        2680281.115939405,
+        2593820.434780078,
+        2680281.115939416,
+        2593820.434780076,
+        2680281.115939416
+      ],
+      "iceInitialGlobalMm": 177.27481521128254,
+      "iceDay365GlobalMm": 996.9276917383575,
+      "budgetMax": {
+        "waterResidualMm": 5.820766091346741e-8,
+        "enthalpyResidualJm2": 0.00021195411682128906,
+        "maxCellVaporResidualMm": 2.3874235921539366e-11
+      },
+      "hemispheres": {
+        "north": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 30.917066857796147,
+              "areaMillionKm2": 29.999684260377148,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.167794598594462
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4307938976042379
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 34.586280985998755,
+              "areaMillionKm2": 32.770271285977046,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.03638388703092
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4793168161814872
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 34.14351551991845,
+              "areaMillionKm2": 32.06238278528788,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.15021671142743
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.45814171100050144
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.365158933047518,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.389609362213658
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.41281886068371765
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.339566750065536,
+              "observed": {
+                "extentMillionKm2": 15.674448946738137,
+                "areaMillionKm2": 11.788484233868763
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4502661850740164
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 28.236640939512558,
+              "areaMillionKm2": 23.701488251209682,
+              "observed": {
+                "extentMillionKm2": 14.02843970130404,
+                "areaMillionKm2": 9.54200329706872
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3672892814095169
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 21.581593207022447,
+              "areaMillionKm2": 21.324207990349855,
+              "observed": {
+                "extentMillionKm2": 12.567818511588577,
+                "areaMillionKm2": 6.499799769757095
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.38054842263154176
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 19.89317949017419,
+              "areaMillionKm2": 18.952313013312807,
+              "observed": {
+                "extentMillionKm2": 9.203854808887874,
+                "areaMillionKm2": 4.623497918171271
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.36721880947573055
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 17.64635778701397,
+              "areaMillionKm2": 17.16325613118056,
+              "observed": {
+                "extentMillionKm2": 8.351492671826735,
+                "areaMillionKm2": 4.278156374029147
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.33091345183832277
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 17.21725871681702,
+              "areaMillionKm2": 16.879429312999044,
+              "observed": {
+                "extentMillionKm2": 11.018009362416526,
+                "areaMillionKm2": 6.468290259318029
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.26988609124721763
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 21.581593207022447,
+              "areaMillionKm2": 19.631106321800083,
+              "observed": {
+                "extentMillionKm2": 13.307528925816415,
+                "areaMillionKm2": 9.251517681997894
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.26932794086914646
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 28.472902860235507,
+              "areaMillionKm2": 23.984205185236718,
+              "observed": {
+                "extentMillionKm2": 15.331204340393532,
+                "areaMillionKm2": 11.47601749167261
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3215947795507673
+            }
+          ],
+          "extent": {
+            "min": 17.21725871681702,
+            "max": 34.586280985998755,
+            "minMonth": 10,
+            "maxMonth": 2
+          },
+          "area": {
+            "min": 16.879429312999044,
+            "max": 32.770271285977046,
+            "minMonth": 10,
+            "maxMonth": 2
+          },
+          "meanConcentrationMAE": 0.37817635396385035,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 11.804201372059
+        },
+        "south": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 43.16903813005356,
+              "areaMillionKm2": 43.16430126395324,
+              "observed": {
+                "extentMillionKm2": 6.59545271318289,
+                "areaMillionKm2": 3.4389069367093255
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.8413469849014357
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 43.041777751904455,
+              "areaMillionKm2": 38.43975868422185,
+              "observed": {
+                "extentMillionKm2": 4.442236063425625,
+                "areaMillionKm2": 2.0812012164004874
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7700404758016893
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 32.98798084236743,
+              "areaMillionKm2": 30.72079840490507,
+              "observed": {
+                "extentMillionKm2": 6.494984720487827,
+                "areaMillionKm2": 2.730356019607623
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5928115710132362
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.05014195236823,
+              "observed": {
+                "extentMillionKm2": 8.652248208036864,
+                "areaMillionKm2": 5.166936315497112
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5058476900329697
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.05014195236823,
+              "observed": {
+                "extentMillionKm2": 15.390237658320387,
+                "areaMillionKm2": 8.084624458765632
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4440546587838069
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 34.75584627326294,
+              "observed": {
+                "extentMillionKm2": 21.547723553747137,
+                "areaMillionKm2": 10.797873202938897
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5074076984906128
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.34570819419951,
+              "observed": {
+                "extentMillionKm2": 23.759047019774954,
+                "areaMillionKm2": 13.050235065349787
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6416307140573243
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.3511975985892,
+              "observed": {
+                "extentMillionKm2": 25.06525275764551,
+                "areaMillionKm2": 14.42888504628297
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6125510522827956
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.3511975985892,
+              "observed": {
+                "extentMillionKm2": 24.519910736744894,
+                "areaMillionKm2": 14.867841969942413
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6032520166045174
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.3511975985892,
+              "observed": {
+                "extentMillionKm2": 24.64457795193556,
+                "areaMillionKm2": 14.343765162208049
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6143521000981461
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.3511975985892,
+              "observed": {
+                "extentMillionKm2": 22.8921526346806,
+                "areaMillionKm2": 11.963439778525421
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6647649379065256
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.332406646628705,
+              "observed": {
+                "extentMillionKm2": 14.526859820911305,
+                "areaMillionKm2": 7.286262974054815
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7634240763648812
+            }
+          ],
+          "extent": {
+            "min": 29.05014195236823,
+            "max": 43.3511975985892,
+            "minMonth": 4,
+            "maxMonth": 6
+          },
+          "area": {
+            "min": 29.05014195236823,
+            "max": 43.3511975985892,
+            "minMonth": 4,
+            "maxMonth": 8
+          },
+          "meanConcentrationMAE": 0.6301236646948284,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 23.518898331691066
+        }
+      }
+    },
+    {
+      "name": "thermal-only-1800",
+      "conductiveSeaIce": true,
+      "underIceOcean": false,
+      "monthlyCoverageS": [
+        2680281.1159394085,
+        2420899.0724614076,
+        2658132.492781807,
+        2593820.4347800775,
+        2680281.115939415,
+        2593820.434780077,
+        2680281.115939416,
+        2680281.115939405,
+        2593820.434780078,
+        2680281.115939416,
+        2593820.434780076,
+        2680281.115939416
+      ],
+      "iceInitialGlobalMm": 177.27481521128254,
+      "iceDay365GlobalMm": 269.1061967792954,
+      "budgetMax": {
+        "waterResidualMm": 6.728805601596832e-8,
+        "enthalpyResidualJm2": 0.0001738518476486206,
+        "maxCellVaporResidualMm": 2.4101609596982598e-11
+      },
+      "hemispheres": {
+        "north": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 35.76419986748637,
+              "areaMillionKm2": 32.31820754038798,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.167794598594462
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.48967461002673524
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 35.8604115515743,
+              "areaMillionKm2": 35.70903662198746,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.03638388703092
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5538147679104075
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 35.8604115515743,
+              "areaMillionKm2": 33.36787786092189,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.15021671142743
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4911173271310351
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.36984894735044,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.389609362213658
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4128620615263815
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.32228515508754,
+              "observed": {
+                "extentMillionKm2": 15.674448946738137,
+                "areaMillionKm2": 11.788484233868763
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4498247190968077
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 27.1182031370782,
+              "areaMillionKm2": 22.963111255016706,
+              "observed": {
+                "extentMillionKm2": 14.02843970130404,
+                "areaMillionKm2": 9.54200329706872
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.34779260266730033
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 21.49472166163461,
+              "areaMillionKm2": 20.176705574603723,
+              "observed": {
+                "extentMillionKm2": 12.567818511588577,
+                "areaMillionKm2": 6.499799769757095
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.35134754743637947
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 16.387450178080908,
+              "areaMillionKm2": 13.335940213146948,
+              "observed": {
+                "extentMillionKm2": 9.203854808887874,
+                "areaMillionKm2": 4.623497918171271
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.25536903203229616
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 9.720133675961566,
+              "areaMillionKm2": 9.726002359217707,
+              "observed": {
+                "extentMillionKm2": 8.351492671826735,
+                "areaMillionKm2": 4.278156374029147
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.1929128811415947
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 13.185417587490333,
+              "areaMillionKm2": 11.589700213422379,
+              "observed": {
+                "extentMillionKm2": 11.018009362416526,
+                "areaMillionKm2": 6.468290259318029
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.16082801314094658
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 21.581593207022447,
+              "areaMillionKm2": 17.540420697348107,
+              "observed": {
+                "extentMillionKm2": 13.307528925816415,
+                "areaMillionKm2": 9.251517681997894
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.21580458918605078
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 25.233769371450567,
+              "observed": {
+                "extentMillionKm2": 15.331204340393532,
+                "areaMillionKm2": 11.47601749167261
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.35299777246428965
+            }
+          ],
+          "extent": {
+            "min": 9.720133675961566,
+            "max": 35.8604115515743,
+            "minMonth": 9,
+            "maxMonth": 2
+          },
+          "area": {
+            "min": 9.726002359217707,
+            "max": 35.70903662198746,
+            "minMonth": 9,
+            "maxMonth": 2
+          },
+          "meanConcentrationMAE": 0.3561954936466854,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 11.142021031230923
+        },
+        "south": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 43.16903813005356,
+              "areaMillionKm2": 42.148575330891354,
+              "observed": {
+                "extentMillionKm2": 6.59545271318289,
+                "areaMillionKm2": 3.4389069367093255
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.8198348530884141
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 30.927181506777206,
+              "areaMillionKm2": 30.183027630969242,
+              "observed": {
+                "extentMillionKm2": 4.442236063425625,
+                "areaMillionKm2": 2.0812012164004874
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.595173446815514
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.12136615297925,
+              "observed": {
+                "extentMillionKm2": 6.494984720487827,
+                "areaMillionKm2": 2.730356019607623
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5589370815378063
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.05014195236823,
+              "observed": {
+                "extentMillionKm2": 8.652248208036864,
+                "areaMillionKm2": 5.166936315497112
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5058476900329697
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.1847714548096,
+              "observed": {
+                "extentMillionKm2": 15.390237658320387,
+                "areaMillionKm2": 8.084624458765632
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4468815785042025
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 39.412588547768,
+              "observed": {
+                "extentMillionKm2": 21.547723553747137,
+                "areaMillionKm2": 10.797873202938897
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6060331744853458
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 44.35559797497506,
+              "observed": {
+                "extentMillionKm2": 23.759047019774954,
+                "areaMillionKm2": 13.050235065349787
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6630185086800386
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 46.92439702048845,
+              "observed": {
+                "extentMillionKm2": 25.06525275764551,
+                "areaMillionKm2": 14.42888504628297
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6882247604070316
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.04389011299633,
+              "observed": {
+                "extentMillionKm2": 24.519910736744894,
+                "areaMillionKm2": 14.867841969942413
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6814588131947673
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.04389011299633,
+              "observed": {
+                "extentMillionKm2": 24.64457795193556,
+                "areaMillionKm2": 14.343765162208049
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6925582731978648
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.033367909843186,
+              "observed": {
+                "extentMillionKm2": 22.8921526346806,
+                "areaMillionKm2": 11.963439778525421
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7427485033880015
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 45.914486682559236,
+              "areaMillionKm2": 44.04677066401579,
+              "observed": {
+                "extentMillionKm2": 14.526859820911305,
+                "areaMillionKm2": 7.286262974054815
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7785534081582299
+            }
+          ],
+          "extent": {
+            "min": 29.05014195236823,
+            "max": 47.04389011299633,
+            "minMonth": 3,
+            "maxMonth": 7
+          },
+          "area": {
+            "min": 29.05014195236823,
+            "max": 47.04389011299633,
+            "minMonth": 4,
+            "maxMonth": 9
+          },
+          "meanConcentrationMAE": 0.6482725076241822,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 23.933424708431
+        }
+      }
+    },
+    {
+      "name": "fair-transport-1800",
+      "conductiveSeaIce": false,
+      "underIceOcean": true,
+      "monthlyCoverageS": [
+        2680281.1159394085,
+        2420899.0724614076,
+        2658132.492781807,
+        2593820.4347800775,
+        2680281.115939415,
+        2593820.434780077,
+        2680281.115939416,
+        2680281.115939405,
+        2593820.434780078,
+        2680281.115939416,
+        2593820.434780076,
+        2680281.115939416
+      ],
+      "iceInitialGlobalMm": 177.27481521128254,
+      "iceDay365GlobalMm": 994.9059859450499,
+      "budgetMax": {
+        "waterResidualMm": 7.834751158952713e-8,
+        "enthalpyResidualJm2": 0.00021463632583618164,
+        "maxCellVaporResidualMm": 3.205968823749572e-11
+      },
+      "hemispheres": {
+        "north": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 30.917066857796147,
+              "areaMillionKm2": 30.04948136136608,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.167794598594462
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4320571888350747
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 34.586280985998755,
+              "areaMillionKm2": 32.856267608510144,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.03638388703092
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4815136302262414
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 34.14351551991845,
+              "areaMillionKm2": 32.12065676161279,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.15021671142743
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4596303454660619
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.36395848772049,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.389609362213658
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.41279504712259507
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.317557505941807,
+              "observed": {
+                "extentMillionKm2": 15.674448946738137,
+                "areaMillionKm2": 11.788484233868763
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4497039492111186
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 28.236640939512558,
+              "areaMillionKm2": 23.47848941746093,
+              "observed": {
+                "extentMillionKm2": 14.02843970130404,
+                "areaMillionKm2": 9.54200329706872
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3618548894048479
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 21.581593207022447,
+              "areaMillionKm2": 21.313780605661638,
+              "observed": {
+                "extentMillionKm2": 12.567818511588577,
+                "areaMillionKm2": 6.499799769757095
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3802820504837756
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 19.89317949017419,
+              "areaMillionKm2": 18.797157714134986,
+              "observed": {
+                "extentMillionKm2": 9.203854808887874,
+                "areaMillionKm2": 4.623497918171271
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3632553877178115
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 17.64635778701397,
+              "areaMillionKm2": 16.84777419505467,
+              "observed": {
+                "extentMillionKm2": 8.351492671826735,
+                "areaMillionKm2": 4.278156374029147
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.32285782555979686
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 16.800723813564037,
+              "areaMillionKm2": 16.489392843082186,
+              "observed": {
+                "extentMillionKm2": 11.018009362416526,
+                "areaMillionKm2": 6.468290259318029
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.2599225624693964
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 21.581593207022447,
+              "areaMillionKm2": 19.483126332931132,
+              "observed": {
+                "extentMillionKm2": 13.307528925816415,
+                "areaMillionKm2": 9.251517681997894
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.26554042857431387
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 24.08992110180927,
+              "observed": {
+                "extentMillionKm2": 15.331204340393532,
+                "areaMillionKm2": 11.47601749167261
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.32429445604054236
+            }
+          ],
+          "extent": {
+            "min": 16.800723813564037,
+            "max": 34.586280985998755,
+            "minMonth": 10,
+            "maxMonth": 2
+          },
+          "area": {
+            "min": 16.489392843082186,
+            "max": 32.856267608510144,
+            "minMonth": 10,
+            "maxMonth": 2
+          },
+          "meanConcentrationMAE": 0.37614231342596466,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 11.84322181374092
+        },
+        "south": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 43.16903813005356,
+              "areaMillionKm2": 42.98343976761415,
+              "observed": {
+                "extentMillionKm2": 6.59545271318289,
+                "areaMillionKm2": 3.4389069367093255
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.837516506400785
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 42.21426941953229,
+              "areaMillionKm2": 38.26308232303932,
+              "observed": {
+                "extentMillionKm2": 4.442236063425625,
+                "areaMillionKm2": 2.0812012164004874
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7662986345763242
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 32.98798084236743,
+              "areaMillionKm2": 30.71725734569454,
+              "observed": {
+                "extentMillionKm2": 6.494984720487827,
+                "areaMillionKm2": 2.730356019607623
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5927365746682429
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.05014195236823,
+              "observed": {
+                "extentMillionKm2": 8.652248208036864,
+                "areaMillionKm2": 5.166936315497112
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5058476900329697
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.05014195236823,
+              "observed": {
+                "extentMillionKm2": 15.390237658320387,
+                "areaMillionKm2": 8.084624458765632
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4440546587838069
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 43.2239372204401,
+              "areaMillionKm2": 34.772408945539006,
+              "observed": {
+                "extentMillionKm2": 21.547723553747137,
+                "areaMillionKm2": 10.797873202938897
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.507758480505309
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.34354513663184,
+              "observed": {
+                "extentMillionKm2": 23.759047019774954,
+                "areaMillionKm2": 13.050235065349787
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6415849025071804
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.3511975985892,
+              "observed": {
+                "extentMillionKm2": 25.06525275764551,
+                "areaMillionKm2": 14.42888504628297
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6125510522827956
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.3511975985892,
+              "observed": {
+                "extentMillionKm2": 24.519910736744894,
+                "areaMillionKm2": 14.867841969942413
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6032520166045174
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.3511975985892,
+              "observed": {
+                "extentMillionKm2": 24.64457795193556,
+                "areaMillionKm2": 14.343765162208049
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6143521000981461
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.3511975985892,
+              "observed": {
+                "extentMillionKm2": 22.8921526346806,
+                "areaMillionKm2": 11.963439778525421
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6647649379065256
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 43.33020052205324,
+              "observed": {
+                "extentMillionKm2": 14.526859820911305,
+                "areaMillionKm2": 7.286262974054815
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7633773526955147
+            }
+          ],
+          "extent": {
+            "min": 29.05014195236823,
+            "max": 43.3511975985892,
+            "minMonth": 4,
+            "maxMonth": 7
+          },
+          "area": {
+            "min": 29.05014195236823,
+            "max": 43.3511975985892,
+            "minMonth": 4,
+            "maxMonth": 8
+          },
+          "meanConcentrationMAE": 0.629507908921843,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 23.43933427248096
+        }
+      }
+    },
+    {
+      "name": "fair-both-1800",
+      "conductiveSeaIce": true,
+      "underIceOcean": true,
+      "monthlyCoverageS": [
+        2680281.1159394085,
+        2420899.0724614076,
+        2658132.492781807,
+        2593820.4347800775,
+        2680281.115939415,
+        2593820.434780077,
+        2680281.115939416,
+        2680281.115939405,
+        2593820.434780078,
+        2680281.115939416,
+        2593820.434780076,
+        2680281.115939416
+      ],
+      "iceInitialGlobalMm": 177.27481521128254,
+      "iceDay365GlobalMm": 268.03904675674596,
+      "budgetMax": {
+        "waterResidualMm": 8.242204785346985e-8,
+        "enthalpyResidualJm2": 0.0001716017723083496,
+        "maxCellVaporResidualMm": 2.773958840407431e-11
+      },
+      "hemispheres": {
+        "north": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 35.76419986748637,
+              "areaMillionKm2": 32.33070865726698,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.167794598594462
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4899951534595213
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 35.8604115515743,
+              "areaMillionKm2": 35.707778939871176,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.03638388703092
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5537807781198948
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 35.8604115515743,
+              "areaMillionKm2": 33.36080083450877,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.15021671142743
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4909365413653017
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.367717894905187,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.389609362213658
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4128268187015088
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.270682092588466,
+              "observed": {
+                "extentMillionKm2": 15.674448946738137,
+                "areaMillionKm2": 11.788484233868763
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4485064960715542
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 25.60944138144718,
+              "areaMillionKm2": 22.750320854013797,
+              "observed": {
+                "extentMillionKm2": 14.02843970130404,
+                "areaMillionKm2": 9.54200329706872
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3429869010980659
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 21.49472166163461,
+              "areaMillionKm2": 20.103296901885386,
+              "observed": {
+                "extentMillionKm2": 12.567818511588577,
+                "areaMillionKm2": 6.499799769757095
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3494807441640331
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 16.387450178080908,
+              "areaMillionKm2": 13.059066795953155,
+              "observed": {
+                "extentMillionKm2": 9.203854808887874,
+                "areaMillionKm2": 4.623497918171271
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.24865801137851848
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 9.720133675961566,
+              "areaMillionKm2": 9.71034571536466,
+              "observed": {
+                "extentMillionKm2": 8.351492671826735,
+                "areaMillionKm2": 4.278156374029147
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.1935660776547705
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 13.185417587490333,
+              "areaMillionKm2": 11.570892421910488,
+              "observed": {
+                "extentMillionKm2": 11.018009362416526,
+                "areaMillionKm2": 6.468290259318029
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.1584160699682522
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 21.581593207022447,
+              "areaMillionKm2": 17.563924830385762,
+              "observed": {
+                "extentMillionKm2": 13.307528925816415,
+                "areaMillionKm2": 9.251517681997894
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.21638960473282823
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 25.240776921169687,
+              "observed": {
+                "extentMillionKm2": 15.331204340393532,
+                "areaMillionKm2": 11.47601749167261
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.35309163132211213
+            }
+          ],
+          "extent": {
+            "min": 9.720133675961566,
+            "max": 35.8604115515743,
+            "minMonth": 9,
+            "maxMonth": 2
+          },
+          "area": {
+            "min": 9.71034571536466,
+            "max": 35.707778939871176,
+            "minMonth": 9,
+            "maxMonth": 2
+          },
+          "meanConcentrationMAE": 0.35488623566969674,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 11.016290884928338
+        },
+        "south": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 43.16903813005356,
+              "areaMillionKm2": 41.95543995599585,
+              "observed": {
+                "extentMillionKm2": 6.59545271318289,
+                "areaMillionKm2": 3.4389069367093255
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.8157444252404366
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 30.64092511423252,
+              "areaMillionKm2": 30.17554304757458,
+              "observed": {
+                "extentMillionKm2": 4.442236063425625,
+                "areaMillionKm2": 2.0812012164004874
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5950149302912128
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.121365622137848,
+              "observed": {
+                "extentMillionKm2": 6.494984720487827,
+                "areaMillionKm2": 2.730356019607623
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5589370702950786
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.05014195236823,
+              "observed": {
+                "extentMillionKm2": 8.652248208036864,
+                "areaMillionKm2": 5.166936315497112
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5058476900329697
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.18801079226936,
+              "observed": {
+                "extentMillionKm2": 15.390237658320387,
+                "areaMillionKm2": 8.084624458765632
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4469501846627665
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 39.41948057613508,
+              "observed": {
+                "extentMillionKm2": 21.547723553747137,
+                "areaMillionKm2": 10.797873202938897
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6061791412445527
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 44.360490536659874,
+              "observed": {
+                "extentMillionKm2": 23.759047019774954,
+                "areaMillionKm2": 13.050235065349787
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6631221285921046
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 46.92437629795649,
+              "observed": {
+                "extentMillionKm2": 25.06525275764551,
+                "areaMillionKm2": 14.42888504628297
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6882243215230528
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.04389011299633,
+              "observed": {
+                "extentMillionKm2": 24.519910736744894,
+                "areaMillionKm2": 14.867841969942413
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6814588131947673
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.04389011299633,
+              "observed": {
+                "extentMillionKm2": 24.64457795193556,
+                "areaMillionKm2": 14.343765162208049
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6925582731978648
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.01607156721419,
+              "observed": {
+                "extentMillionKm2": 22.8921526346806,
+                "areaMillionKm2": 11.963439778525421
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7423821829166943
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 45.914486682559236,
+              "areaMillionKm2": 44.03124122466773,
+              "observed": {
+                "extentMillionKm2": 14.526859820911305,
+                "areaMillionKm2": 7.286262974054815
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7782245090572385
+            }
+          ],
+          "extent": {
+            "min": 29.05014195236823,
+            "max": 47.04389011299633,
+            "minMonth": 3,
+            "maxMonth": 7
+          },
+          "area": {
+            "min": 29.05014195236823,
+            "max": 47.04389011299633,
+            "minMonth": 4,
+            "maxMonth": 9
+          },
+          "meanConcentrationMAE": 0.6478869725207282,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 23.909570009052278
+        }
+      }
+    },
+    {
+      "name": "shortwave-fair-1800",
+      "conductiveSeaIce": true,
+      "underIceOcean": true,
+      "monthlyCoverageS": [
+        2680281.1159394085,
+        2420899.0724614076,
+        2658132.492781807,
+        2593820.4347800775,
+        2680281.115939415,
+        2593820.434780077,
+        2680281.115939416,
+        2680281.115939405,
+        2593820.434780078,
+        2680281.115939416,
+        2593820.434780076,
+        2680281.115939416
+      ],
+      "iceInitialGlobalMm": 177.27481521128254,
+      "iceDay365GlobalMm": 266.2658262442434,
+      "budgetMax": {
+        "waterResidualMm": 2.3469328880310059e-7,
+        "enthalpyResidualJm2": 0.00017320364713668823,
+        "maxCellVaporResidualMm": 2.7966962079517543e-11
+      },
+      "hemispheres": {
+        "north": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 35.76419986748637,
+              "areaMillionKm2": 32.17835939183732,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.167794598594462
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.48611153928744455
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 35.8604115515743,
+              "areaMillionKm2": 35.62550627348935,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.03638388703092
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5516774860872461
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 35.80701217360952,
+              "areaMillionKm2": 33.32434788472278,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.15021671142743
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4900053346612966
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.36268308511487,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.389609362213658
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4127544198279793
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.269219149154228,
+              "observed": {
+                "extentMillionKm2": 15.674448946738137,
+                "areaMillionKm2": 11.788484233868763
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.44846912453532606
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 25.60944138144718,
+              "areaMillionKm2": 22.744239472595062,
+              "observed": {
+                "extentMillionKm2": 14.02843970130404,
+                "areaMillionKm2": 9.54200329706872
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3428364576827307
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 21.49472166163461,
+              "areaMillionKm2": 20.09650588343844,
+              "observed": {
+                "extentMillionKm2": 12.567818511588577,
+                "areaMillionKm2": 6.499799769757095
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3493192370697594
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 16.387450178080908,
+              "areaMillionKm2": 13.03527867670954,
+              "observed": {
+                "extentMillionKm2": 9.203854808887874,
+                "areaMillionKm2": 4.623497918171271
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.24818998111179086
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 9.720133675961566,
+              "areaMillionKm2": 9.699084938589463,
+              "observed": {
+                "extentMillionKm2": 8.351492671826735,
+                "areaMillionKm2": 4.278156374029147
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.19331989194413998
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 13.185417587490333,
+              "areaMillionKm2": 11.548766311741074,
+              "observed": {
+                "extentMillionKm2": 11.018009362416526,
+                "areaMillionKm2": 6.468290259318029
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.1582866208880419
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 21.581593207022447,
+              "areaMillionKm2": 17.514664085249944,
+              "observed": {
+                "extentMillionKm2": 13.307528925816415,
+                "areaMillionKm2": 9.251517681997894
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.2151358559602563
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 25.177354910953138,
+              "observed": {
+                "extentMillionKm2": 15.331204340393532,
+                "areaMillionKm2": 11.47601749167261
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.35148006820738753
+            }
+          ],
+          "extent": {
+            "min": 9.720133675961566,
+            "max": 35.8604115515743,
+            "minMonth": 9,
+            "maxMonth": 2
+          },
+          "area": {
+            "min": 9.699084938589463,
+            "max": 35.62550627348935,
+            "minMonth": 9,
+            "maxMonth": 2
+          },
+          "meanConcentrationMAE": 0.35396550143861666,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 11.011840936764607
+        },
+        "south": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 43.16903813005356,
+              "areaMillionKm2": 41.81836978549341,
+              "observed": {
+                "extentMillionKm2": 6.59545271318289,
+                "areaMillionKm2": 3.4389069367093255
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.8128414063457693
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 30.212187432563358,
+              "areaMillionKm2": 29.99998892651761,
+              "observed": {
+                "extentMillionKm2": 4.442236063425625,
+                "areaMillionKm2": 2.0812012164004874
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5912968570693228
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.12136677723419,
+              "observed": {
+                "extentMillionKm2": 6.494984720487827,
+                "areaMillionKm2": 2.730356019607623
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5589370947589462
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.05014195236823,
+              "observed": {
+                "extentMillionKm2": 8.652248208036864,
+                "areaMillionKm2": 5.166936315497112
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5058476900329697
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.186342158995455,
+              "observed": {
+                "extentMillionKm2": 15.390237658320387,
+                "areaMillionKm2": 8.084624458765632
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.44691484455992236
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 39.24188227346685,
+              "observed": {
+                "extentMillionKm2": 21.547723553747137,
+                "areaMillionKm2": 10.797873202938897
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6024177741548589
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 44.29431997637119,
+              "observed": {
+                "extentMillionKm2": 23.759047019774954,
+                "areaMillionKm2": 13.050235065349787
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6617206975872068
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 46.84099418946436,
+              "observed": {
+                "extentMillionKm2": 25.06525275764551,
+                "areaMillionKm2": 14.42888504628297
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6864583659140203
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.04389011299633,
+              "observed": {
+                "extentMillionKm2": 24.519910736744894,
+                "areaMillionKm2": 14.867841969942413
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6814588131947673
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.04389011299633,
+              "observed": {
+                "extentMillionKm2": 24.64457795193556,
+                "areaMillionKm2": 14.343765162208049
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6925582731978648
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.00186623994494,
+              "observed": {
+                "extentMillionKm2": 22.8921526346806,
+                "areaMillionKm2": 11.963439778525421
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7420813272796409
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 45.914486682559236,
+              "areaMillionKm2": 43.921228797350956,
+              "observed": {
+                "extentMillionKm2": 14.526859820911305,
+                "areaMillionKm2": 7.286262974054815
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7758945480308673
+            }
+          ],
+          "extent": {
+            "min": 29.05014195236823,
+            "max": 47.04389011299633,
+            "minMonth": 3,
+            "maxMonth": 7
+          },
+          "area": {
+            "min": 29.05014195236823,
+            "max": 47.04389011299633,
+            "minMonth": 4,
+            "maxMonth": 9
+          },
+          "meanConcentrationMAE": 0.646535641010513,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 23.87384186891318
+        }
+      }
+    },
+    {
+      "name": "shortwave-fair-900",
+      "conductiveSeaIce": true,
+      "underIceOcean": true,
+      "monthlyCoverageS": [
+        2680281.115939416,
+        2420899.0724614,
+        2658132.492781811,
+        2593820.4347800775,
+        2680281.115939415,
+        2593820.434780077,
+        2680281.1159394123,
+        2680281.115939414,
+        2593820.43478008,
+        2680281.115939405,
+        2593820.434780076,
+        2680281.115939416
+      ],
+      "iceInitialGlobalMm": 177.27481521128254,
+      "iceDay365GlobalMm": 266.3361604763421,
+      "budgetMax": {
+        "waterResidualMm": 7.345806807279587e-8,
+        "enthalpyResidualJm2": 0.00017148256301879883,
+        "maxCellVaporResidualMm": 3.956301952712238e-11
+      },
+      "hemispheres": {
+        "north": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 35.76419986748637,
+              "areaMillionKm2": 32.188574822689596,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.167794598594462
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.48636522074551797
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 35.8604115515743,
+              "areaMillionKm2": 35.62945553753674,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.03638388703092
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5517681781877596
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 35.80701217360952,
+              "areaMillionKm2": 33.32509224223094,
+              "observed": {
+                "extentMillionKm2": 18.48156194816776,
+                "areaMillionKm2": 14.15021671142743
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.49002434960263463
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.362713145108895,
+              "observed": {
+                "extentMillionKm2": 17.447709034419614,
+                "areaMillionKm2": 13.389609362213658
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.4127548408234529
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 29.26996957470738,
+              "observed": {
+                "extentMillionKm2": 15.674448946738137,
+                "areaMillionKm2": 11.788484233868763
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.44848829448755356
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 26.051342326393932,
+              "areaMillionKm2": 22.749768463943642,
+              "observed": {
+                "extentMillionKm2": 14.02843970130404,
+                "areaMillionKm2": 9.54200329706872
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.3429793710749361
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 21.49472166163461,
+              "areaMillionKm2": 20.100969197917365,
+              "observed": {
+                "extentMillionKm2": 12.567818511588577,
+                "areaMillionKm2": 6.499799769757095
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.349434067507091
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 16.387450178080908,
+              "areaMillionKm2": 13.053520913966828,
+              "observed": {
+                "extentMillionKm2": 9.203854808887874,
+                "areaMillionKm2": 4.623497918171271
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.2486019953958899
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 9.720133675961566,
+              "areaMillionKm2": 9.700645198295886,
+              "observed": {
+                "extentMillionKm2": 8.351492671826735,
+                "areaMillionKm2": 4.278156374029147
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.1933260149144551
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 13.185417587490333,
+              "areaMillionKm2": 11.552656217459733,
+              "observed": {
+                "extentMillionKm2": 11.018009362416526,
+                "areaMillionKm2": 6.468290259318029
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.1582525614510994
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 21.581593207022447,
+              "areaMillionKm2": 17.524992041005927,
+              "observed": {
+                "extentMillionKm2": 13.307528925816415,
+                "areaMillionKm2": 9.251517681997894
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.21539481419859238
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 29.357683063671537,
+              "areaMillionKm2": 25.18629896255106,
+              "observed": {
+                "extentMillionKm2": 15.331204340393532,
+                "areaMillionKm2": 11.47601749167261
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.35169782125420485
+            }
+          ],
+          "extent": {
+            "min": 9.720133675961566,
+            "max": 35.8604115515743,
+            "minMonth": 9,
+            "maxMonth": 2
+          },
+          "area": {
+            "min": 9.700645198295886,
+            "max": 35.62945553753674,
+            "minMonth": 9,
+            "maxMonth": 2
+          },
+          "meanConcentrationMAE": 0.3540906274702656,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 11.04866601551017
+        },
+        "south": {
+          "monthly": [
+            {
+              "month": 1,
+              "extentMillionKm2": 43.16903813005356,
+              "areaMillionKm2": 41.84261435312016,
+              "observed": {
+                "extentMillionKm2": 6.59545271318289,
+                "areaMillionKm2": 3.4389069367093255
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.8133548837687239
+            },
+            {
+              "month": 2,
+              "extentMillionKm2": 30.64092511423252,
+              "areaMillionKm2": 30.028783060684095,
+              "observed": {
+                "extentMillionKm2": 4.442236063425625,
+                "areaMillionKm2": 2.0812012164004874
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5919066900857586
+            },
+            {
+              "month": 3,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.121822133990907,
+              "observed": {
+                "extentMillionKm2": 6.494984720487827,
+                "areaMillionKm2": 2.730356019607623
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5589467387920988
+            },
+            {
+              "month": 4,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.05014195236823,
+              "observed": {
+                "extentMillionKm2": 8.652248208036864,
+                "areaMillionKm2": 5.166936315497112
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.5058476900329697
+            },
+            {
+              "month": 5,
+              "extentMillionKm2": 29.05014195236823,
+              "areaMillionKm2": 29.185527286186026,
+              "observed": {
+                "extentMillionKm2": 15.390237658320387,
+                "areaMillionKm2": 8.084624458765632
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.446897586310707
+            },
+            {
+              "month": 6,
+              "extentMillionKm2": 43.3511975985892,
+              "areaMillionKm2": 39.23694499497075,
+              "observed": {
+                "extentMillionKm2": 21.547723553747137,
+                "areaMillionKm2": 10.797873202938897
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6023132071822644
+            },
+            {
+              "month": 7,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 44.29222825179318,
+              "observed": {
+                "extentMillionKm2": 23.759047019774954,
+                "areaMillionKm2": 13.050235065349787
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6616763968035271
+            },
+            {
+              "month": 8,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 46.840020563131624,
+              "observed": {
+                "extentMillionKm2": 25.06525275764551,
+                "areaMillionKm2": 14.42888504628297
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6864377454126381
+            },
+            {
+              "month": 9,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.04389011299633,
+              "observed": {
+                "extentMillionKm2": 24.519910736744894,
+                "areaMillionKm2": 14.867841969942413
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6814588131947673
+            },
+            {
+              "month": 10,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.04389011299633,
+              "observed": {
+                "extentMillionKm2": 24.64457795193556,
+                "areaMillionKm2": 14.343765162208049
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.6925582731978648
+            },
+            {
+              "month": 11,
+              "extentMillionKm2": 47.04389011299633,
+              "areaMillionKm2": 47.00302594076174,
+              "observed": {
+                "extentMillionKm2": 22.8921526346806,
+                "areaMillionKm2": 11.963439778525421
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.7421058886657613
+            },
+            {
+              "month": 12,
+              "extentMillionKm2": 45.914486682559236,
+              "areaMillionKm2": 43.928944157570974,
+              "observed": {
+                "extentMillionKm2": 14.526859820911305,
+                "areaMillionKm2": 7.286262974054815
+              },
+              "concentrationMeanAbsoluteErrorFraction": 0.776057952193974
+            }
+          ],
+          "extent": {
+            "min": 29.05014195236823,
+            "max": 47.04389011299633,
+            "minMonth": 3,
+            "maxMonth": 7
+          },
+          "area": {
+            "min": 29.05014195236823,
+            "max": 47.04389011299633,
+            "minMonth": 4,
+            "maxMonth": 9
+          },
+          "meanConcentrationMAE": 0.646630155470088,
+          "extentMonthlyMeanAbsoluteErrorMillionKm2": 23.909570009052278
+        }
+      }
+    }
+  ],
+  "monthlyObserved": [
+    {
+      "north": {
+        "extentMillionKm2": 17.447709034419614,
+        "areaMillionKm2": 13.167794598594462
+      },
+      "south": {
+        "extentMillionKm2": 6.59545271318289,
+        "areaMillionKm2": 3.4389069367093255
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 18.48156194816776,
+        "areaMillionKm2": 14.03638388703092
+      },
+      "south": {
+        "extentMillionKm2": 4.442236063425625,
+        "areaMillionKm2": 2.0812012164004874
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 18.48156194816776,
+        "areaMillionKm2": 14.15021671142743
+      },
+      "south": {
+        "extentMillionKm2": 6.494984720487827,
+        "areaMillionKm2": 2.730356019607623
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 17.447709034419614,
+        "areaMillionKm2": 13.389609362213658
+      },
+      "south": {
+        "extentMillionKm2": 8.652248208036864,
+        "areaMillionKm2": 5.166936315497112
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 15.674448946738137,
+        "areaMillionKm2": 11.788484233868763
+      },
+      "south": {
+        "extentMillionKm2": 15.390237658320387,
+        "areaMillionKm2": 8.084624458765632
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 14.02843970130404,
+        "areaMillionKm2": 9.54200329706872
+      },
+      "south": {
+        "extentMillionKm2": 21.547723553747137,
+        "areaMillionKm2": 10.797873202938897
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 12.567818511588577,
+        "areaMillionKm2": 6.499799769757095
+      },
+      "south": {
+        "extentMillionKm2": 23.759047019774954,
+        "areaMillionKm2": 13.050235065349787
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 9.203854808887874,
+        "areaMillionKm2": 4.623497918171271
+      },
+      "south": {
+        "extentMillionKm2": 25.06525275764551,
+        "areaMillionKm2": 14.42888504628297
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 8.351492671826735,
+        "areaMillionKm2": 4.278156374029147
+      },
+      "south": {
+        "extentMillionKm2": 24.519910736744894,
+        "areaMillionKm2": 14.867841969942413
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 11.018009362416526,
+        "areaMillionKm2": 6.468290259318029
+      },
+      "south": {
+        "extentMillionKm2": 24.64457795193556,
+        "areaMillionKm2": 14.343765162208049
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 13.307528925816415,
+        "areaMillionKm2": 9.251517681997894
+      },
+      "south": {
+        "extentMillionKm2": 22.8921526346806,
+        "areaMillionKm2": 11.963439778525421
+      }
+    },
+    {
+      "north": {
+        "extentMillionKm2": 15.331204340393532,
+        "areaMillionKm2": 11.47601749167261
+      },
+      "south": {
+        "extentMillionKm2": 14.526859820911305,
+        "areaMillionKm2": 7.286262974054815
+      }
+    }
+  ],
+  "factors": {
+    "north": [
+      {
+        "month": 1,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 4.847133009690221,
+          "thermalAtTransportOn": 4.847133009690221,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 2.318523280010833,
+          "thermalAtTransportOn": 2.2812272959009015,
+          "transportAtThermalOff": 0.04979710098893264,
+          "transportAtThermalOn": 0.012501116879001017,
+          "interaction": -0.037295984109931624,
+          "shortwaveFixAtBothOn": -0.1523492654296632,
+          "dt1800To900": 0.010215430852277052
+        }
+      },
+      {
+        "month": 2,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 1.2741305655755468,
+          "thermalAtTransportOn": 1.2741305655755468,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 2.9387653360104125,
+          "thermalAtTransportOn": 2.8515113313610314,
+          "transportAtThermalOff": 0.08599632253309863,
+          "transportAtThermalOn": -0.0012576821162824103,
+          "interaction": -0.08725400464938105,
+          "shortwaveFixAtBothOn": -0.08227266638182584,
+          "dt1800To900": 0.003949264047392376
+        }
+      },
+      {
+        "month": 3,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 1.7168960316558497,
+          "thermalAtTransportOn": 1.7168960316558497,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": -0.053399377964780115,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 1.3054950756340062,
+          "thermalAtTransportOn": 1.2401440728959798,
+          "transportAtThermalOff": 0.05827397632491227,
+          "transportAtThermalOn": -0.00707702641311414,
+          "interaction": -0.06535100273802641,
+          "shortwaveFixAtBothOn": -0.03645294978598912,
+          "dt1800To900": 0.0007443575081538256
+        }
+      },
+      {
+        "month": 4,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 0,
+          "thermalAtTransportOn": 0,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 0.004690014302923373,
+          "thermalAtTransportOn": 0.0037594071846953625,
+          "transportAtThermalOff": -0.0012004453270257898,
+          "transportAtThermalOn": -0.0021310524452538004,
+          "interaction": -0.0009306071182280107,
+          "shortwaveFixAtBothOn": -0.0050348097903167854,
+          "dt1800To900": 0.00003005999402461157
+        }
+      },
+      {
+        "month": 5,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 0,
+          "thermalAtTransportOn": 0,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -0.017281594977998083,
+          "thermalAtTransportOn": -0.04687541335334089,
+          "transportAtThermalOff": -0.022009244123729843,
+          "transportAtThermalOn": -0.05160306249907265,
+          "interaction": -0.029593818375342806,
+          "shortwaveFixAtBothOn": -0.0014629434342374736,
+          "dt1800To900": 0.0007504255531500803
+        }
+      },
+      {
+        "month": 6,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": -1.1184378024343573,
+          "thermalAtTransportOn": -2.627199558065378,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": -1.5087617556310207,
+          "interaction": -1.5087617556310207,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0.44190094494675236
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -0.7383769961929758,
+          "thermalAtTransportOn": -0.7281685634471344,
+          "transportAtThermalOff": -0.2229988337487505,
+          "transportAtThermalOn": -0.21279040100290914,
+          "interaction": 0.010208432745841378,
+          "shortwaveFixAtBothOn": -0.006081381418734821,
+          "dt1800To900": 0.005528991348580092
+        }
+      },
+      {
+        "month": 7,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": -0.08687154538783659,
+          "thermalAtTransportOn": -0.08687154538783659,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -1.147502415746132,
+          "thermalAtTransportOn": -1.2104837037762515,
+          "transportAtThermalOff": -0.010427384688217245,
+          "transportAtThermalOn": -0.07340867271833673,
+          "interaction": -0.06298128803011949,
+          "shortwaveFixAtBothOn": -0.00679101844694685,
+          "dt1800To900": 0.004463314478925895
+        }
+      },
+      {
+        "month": 8,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": -3.5057293120932833,
+          "thermalAtTransportOn": -3.5057293120932833,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -5.616372800165859,
+          "thermalAtTransportOn": -5.738090918181831,
+          "transportAtThermalOff": -0.1551552991778209,
+          "transportAtThermalOn": -0.27687341719379255,
+          "interaction": -0.12171811801597343,
+          "shortwaveFixAtBothOn": -0.02378811924361557,
+          "dt1800To900": 0.018242237257288352
+        }
+      },
+      {
+        "month": 9,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": -7.926224111052402,
+          "thermalAtTransportOn": -7.926224111052402,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -7.437253771962853,
+          "thermalAtTransportOn": -7.1374284796900085,
+          "transportAtThermalOff": -0.3154819361258916,
+          "transportAtThermalOn": -0.015656643853047214,
+          "interaction": 0.2998252922728426,
+          "shortwaveFixAtBothOn": -0.011260776775197101,
+          "dt1800To900": 0.0015602597064230395
+        }
+      },
+      {
+        "month": 10,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": -4.031841129326688,
+          "thermalAtTransportOn": -3.615306226073704,
+          "transportAtThermalOff": -0.4165349032529839,
+          "transportAtThermalOn": 0,
+          "interaction": 0.4165349032529839,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -5.289729099576665,
+          "thermalAtTransportOn": -4.918500421171698,
+          "transportAtThermalOff": -0.3900364699168577,
+          "transportAtThermalOn": -0.01880779151189138,
+          "interaction": 0.3712286784049681,
+          "shortwaveFixAtBothOn": -0.022126110169413238,
+          "dt1800To900": 0.0038899057186583264
+        }
+      },
+      {
+        "month": 11,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 0,
+          "thermalAtTransportOn": 0,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -2.090685624451975,
+          "thermalAtTransportOn": -1.91920150254537,
+          "transportAtThermalOff": -0.14797998886895058,
+          "transportAtThermalOn": 0.02350413303765464,
+          "interaction": 0.17148412190660522,
+          "shortwaveFixAtBothOn": -0.04926074513581824,
+          "dt1800To900": 0.010327955755982998
+        }
+      },
+      {
+        "month": 12,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 0.8847802034360299,
+          "thermalAtTransportOn": 0,
+          "transportAtThermalOff": 0.8847802034360299,
+          "transportAtThermalOn": 0,
+          "interaction": -0.8847802034360299,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 1.2495641862138491,
+          "thermalAtTransportOn": 1.150855819360416,
+          "transportAtThermalOff": 0.10571591657255297,
+          "transportAtThermalOn": 0.0070075497191197655,
+          "interaction": -0.0987083668534332,
+          "shortwaveFixAtBothOn": -0.06342201021654859,
+          "dt1800To900": 0.008944051597921998
+        }
+      }
+    ],
+    "south": [
+      {
+        "month": 1,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 0,
+          "thermalAtTransportOn": 0,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -1.015725933061887,
+          "thermalAtTransportOn": -1.027999811618301,
+          "transportAtThermalOff": -0.18086149633909088,
+          "transportAtThermalOn": -0.1931353748955047,
+          "interaction": -0.01227387855641382,
+          "shortwaveFixAtBothOn": -0.1370701705024402,
+          "dt1800To900": 0.0242445676267522
+        }
+      },
+      {
+        "month": 2,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": -12.114596245127249,
+          "thermalAtTransportOn": -11.573344305299774,
+          "transportAtThermalOff": -0.8275083323721617,
+          "transportAtThermalOn": -0.2862563925446864,
+          "interaction": 0.5412519398274753,
+          "shortwaveFixAtBothOn": -0.42873768166916193,
+          "dt1800To900": 0.42873768166916193
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -8.256731053252608,
+          "thermalAtTransportOn": -8.087539275464742,
+          "transportAtThermalOff": -0.17667636118252972,
+          "transportAtThermalOn": -0.007484583394663957,
+          "interaction": 0.16919177778786576,
+          "shortwaveFixAtBothOn": -0.17555412105696888,
+          "dt1800To900": 0.028794134166485463
+        }
+      },
+      {
+        "month": 3,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": -3.937838889999199,
+          "thermalAtTransportOn": -3.937838889999199,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": -1.5994322519258226,
+          "thermalAtTransportOn": -1.5958917235566936,
+          "transportAtThermalOff": -0.003541059210530051,
+          "transportAtThermalOn": -5.308414010585238e-7,
+          "interaction": 0.0035405283691289924,
+          "shortwaveFixAtBothOn": 0.0000011550963421314009,
+          "dt1800To900": 0.00045535675671715126
+        }
+      },
+      {
+        "month": 4,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 0,
+          "thermalAtTransportOn": 0,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 0,
+          "thermalAtTransportOn": 0,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        }
+      },
+      {
+        "month": 5,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 0,
+          "thermalAtTransportOn": 0,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 0.13462950244137062,
+          "thermalAtTransportOn": 0.13786883990113097,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0.0032393374597603497,
+          "interaction": 0.0032393374597603497,
+          "shortwaveFixAtBothOn": -0.0016686332739048737,
+          "dt1800To900": -0.0008148728094283797
+        }
+      },
+      {
+        "month": 6,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 0,
+          "thermalAtTransportOn": 0.12726037814910285,
+          "transportAtThermalOff": -0.12726037814910285,
+          "transportAtThermalOn": 0,
+          "interaction": 0.12726037814910285,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 4.6567422745050635,
+          "thermalAtTransportOn": 4.6470716305960735,
+          "transportAtThermalOff": 0.016562672276066337,
+          "transportAtThermalOn": 0.006892028367076364,
+          "interaction": -0.009670643908989973,
+          "shortwaveFixAtBothOn": -0.17759830266822973,
+          "dt1800To900": -0.0049372784961008165
+        }
+      },
+      {
+        "month": 7,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 3.6926925144071276,
+          "thermalAtTransportOn": 3.6926925144071276,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 1.009889780775552,
+          "thermalAtTransportOn": 1.0169454000280354,
+          "transportAtThermalOff": -0.0021630575676709896,
+          "transportAtThermalOn": 0.0048925616848123354,
+          "interaction": 0.007055619252483325,
+          "shortwaveFixAtBothOn": -0.06617056028868262,
+          "dt1800To900": -0.002091724578008325
+        }
+      },
+      {
+        "month": 8,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 3.6926925144071276,
+          "thermalAtTransportOn": 3.6926925144071276,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 3.573199421899247,
+          "thermalAtTransportOn": 3.57317869936729,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": -0.00002072253195706253,
+          "interaction": -0.00002072253195706253,
+          "shortwaveFixAtBothOn": -0.08338210849213112,
+          "dt1800To900": -0.0009736263327368988
+        }
+      },
+      {
+        "month": 9,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 3.6926925144071276,
+          "thermalAtTransportOn": 3.6926925144071276,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 3.6926925144071276,
+          "thermalAtTransportOn": 3.6926925144071276,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        }
+      },
+      {
+        "month": 10,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 3.6926925144071276,
+          "thermalAtTransportOn": 3.6926925144071276,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 3.6926925144071276,
+          "thermalAtTransportOn": 3.6926925144071276,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        }
+      },
+      {
+        "month": 11,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 3.6926925144071276,
+          "thermalAtTransportOn": 3.6926925144071276,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 3.6821703112539836,
+          "thermalAtTransportOn": 3.6648739686249883,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": -0.017296342628995376,
+          "interaction": -0.017296342628995376,
+          "shortwaveFixAtBothOn": -0.014205327269252166,
+          "dt1800To900": 0.0011597008167996137
+        }
+      },
+      {
+        "month": 12,
+        "extentMillionKm2": {
+          "thermalAtTransportOff": 2.5632890839700337,
+          "thermalAtTransportOn": 2.5632890839700337,
+          "transportAtThermalOff": 0,
+          "transportAtThermalOn": 0,
+          "interaction": 0,
+          "shortwaveFixAtBothOn": 0,
+          "dt1800To900": 0
+        },
+        "areaMillionKm2": {
+          "thermalAtTransportOff": 0.7143640173870835,
+          "thermalAtTransportOn": 0.7010407026144918,
+          "transportAtThermalOff": -0.002206124575465651,
+          "transportAtThermalOn": -0.015529439348057394,
+          "interaction": -0.013323314772591743,
+          "shortwaveFixAtBothOn": -0.11001242731677507,
+          "dt1800To900": 0.007715360220018397
+        }
+      }
+    ]
+  },
+  "southMidWinter": [
+    {
+      "name": "control-1800",
+      "month": 8,
+      "coarseCentreLatitudeBand": [
+        -55,
+        -40
+      ],
+      "fields": {
+        "cover": 0.5053063319843244,
+        "iceKgM2": 929.4591791036336,
+        "airK": 266.5743943464714,
+        "oceanK": 271.66065502820834,
+        "absorbedWm2": 98.08659687882881,
+        "iceArea": 0.502711575672425,
+        "skinK": 271.66065502820834,
+        "conductionUpWm2": 0,
+        "iceAirWm2": 0,
+        "iceOceanWm2": 0,
+        "seaRadiationWm2": 3.725427448278031,
+        "oceanAdvectionWm2": 0.04851317009011203,
+        "phaseNetKgM2S": 0.00014903022457531698
+      }
+    },
+    {
+      "name": "thermal-only-1800",
+      "month": 8,
+      "coarseCentreLatitudeBand": [
+        -55,
+        -40
+      ],
+      "fields": {
+        "cover": 0.9833949373102886,
+        "iceKgM2": 762.8749678858102,
+        "airK": 256.9726800304666,
+        "oceanK": 271.3500000000003,
+        "absorbedWm2": 63.89138141605929,
+        "iceArea": 0.9760173075434464,
+        "skinK": 258.83988394896033,
+        "conductionUpWm2": 31.749437550253063,
+        "iceAirWm2": 18.16069094159575,
+        "iceOceanWm2": -31.749437550255507,
+        "seaRadiationWm2": -13.97284111550946,
+        "oceanAdvectionWm2": 0.0020601597243806173,
+        "phaseNetKgM2S": 0.00010120034174777657
+      }
+    },
+    {
+      "name": "fair-transport-1800",
+      "month": 8,
+      "coarseCentreLatitudeBand": [
+        -55,
+        -40
+      ],
+      "fields": {
+        "cover": 0.5060090756650787,
+        "iceKgM2": 929.3373413494564,
+        "airK": 266.57274308042736,
+        "oceanK": 271.65713169757714,
+        "absorbedWm2": 98.03760229313119,
+        "iceArea": 0.5033828721240977,
+        "skinK": 271.65713169757714,
+        "conductionUpWm2": 0,
+        "iceAirWm2": 0,
+        "iceOceanWm2": 0,
+        "seaRadiationWm2": 3.6863666087826323,
+        "oceanAdvectionWm2": 0.04621209232525062,
+        "phaseNetKgM2S": 0.0001491013975916444
+      }
+    },
+    {
+      "name": "fair-both-1800",
+      "month": 8,
+      "coarseCentreLatitudeBand": [
+        -55,
+        -40
+      ],
+      "fields": {
+        "cover": 0.983362003601949,
+        "iceKgM2": 762.5619074434413,
+        "airK": 256.97117528508323,
+        "oceanK": 271.3500000000003,
+        "absorbedWm2": 63.89394029859265,
+        "iceArea": 0.9759863087387453,
+        "skinK": 258.83985194462787,
+        "conductionUpWm2": 31.760231772124744,
+        "iceAirWm2": 18.17377039956316,
+        "iceOceanWm2": -31.760231772127167,
+        "seaRadiationWm2": -13.970988028165293,
+        "oceanAdvectionWm2": 0.05795630651777681,
+        "phaseNetKgM2S": 0.00010107916529961906
+      }
+    },
+    {
+      "name": "shortwave-fair-1800",
+      "month": 8,
+      "coarseCentreLatitudeBand": [
+        -55,
+        -40
+      ],
+      "fields": {
+        "cover": 0.9720346359003753,
+        "iceKgM2": 746.2690384164391,
+        "airK": 256.9805740979722,
+        "oceanK": 271.3500000000003,
+        "absorbedWm2": 64.59676355375636,
+        "iceArea": 0.9646810818960757,
+        "skinK": 258.82367488291817,
+        "conductionUpWm2": 32.007122236694876,
+        "iceAirWm2": 17.826012293152186,
+        "iceOceanWm2": -32.00712223669726,
+        "seaRadiationWm2": -13.392901720385806,
+        "oceanAdvectionWm2": 0.05748504200546811,
+        "phaseNetKgM2S": 0.00010188344138517223,
+        "lastPhaseHeatWm2": 0
+      }
+    },
+    {
+      "name": "shortwave-fair-900",
+      "month": 8,
+      "coarseCentreLatitudeBand": [
+        -55,
+        -40
+      ],
+      "fields": {
+        "cover": 0.9718864127744519,
+        "iceKgM2": 746.0442403242425,
+        "airK": 256.9816551361995,
+        "oceanK": 271.3500000000003,
+        "absorbedWm2": 64.60318446548062,
+        "iceArea": 0.9645810691319003,
+        "skinK": 258.8261734861779,
+        "conductionUpWm2": 32.002406932571695,
+        "iceAirWm2": 17.82034594882544,
+        "iceOceanWm2": -32.00240693257408,
+        "seaRadiationWm2": -13.390633092764578,
+        "oceanAdvectionWm2": 0.05748348240658254,
+        "phaseNetKgM2S": 0.0001018885489683752,
+        "lastPhaseHeatWm2": 0
+      }
+    }
+  ],
+  "gpcc": [
+    {
+      "name": "Amazon",
+      "bounds": {
+        "south": -7,
+        "north": 1,
+        "west": -68,
+        "east": -52
+      },
+      "validLandAreaKm2": 1564430.9621510943,
+      "observedAnnualMm": 2292.7113375092836,
+      "oldBoth1800Mm": 1783.233995375807,
+      "after1800Mm": 1783.180482443503,
+      "after900Mm": 1786.2836414325845,
+      "bias900Percent": -22.088593875357343,
+      "dtAbsoluteDifferenceMm": 3.103158989081521,
+      "modelSeasons": {
+        "JJA": 441.21530216456597,
+        "DJF": 435.29017616272574
+      },
+      "observedSeasons": {
+        "JJA": 367.817890865332,
+        "DJF": 715.1593547593545
+      },
+      "wholeArea": {
+        "P": 1775.6263730656738,
+        "E": 1037.5958061056388,
+        "netTransport": 729.8819940383408,
+        "storageDelta": -8.148572921683424,
+        "residual": 1.0534039329846176e-11
+      }
+    },
+    {
+      "name": "Congo",
+      "bounds": {
+        "south": -4,
+        "north": 4,
+        "west": 15,
+        "east": 31
+      },
+      "validLandAreaKm2": 1581350.7896031223,
+      "observedAnnualMm": 1378.2192077236828,
+      "oldBoth1800Mm": 1587.7864148075973,
+      "after1800Mm": 1587.799872547678,
+      "after900Mm": 1592.796390497699,
+      "bias900Percent": 15.569162116701275,
+      "dtAbsoluteDifferenceMm": 4.996517950020916,
+      "modelSeasons": {
+        "JJA": 379.24212780419657,
+        "DJF": 422.72030063337456
+      },
+      "observedSeasons": {
+        "JJA": 281.0639384815303,
+        "DJF": 233.47220761648913
+      },
+      "wholeArea": {
+        "P": 1592.7963904976993,
+        "E": 946.0918123496002,
+        "netTransport": 642.7877076838755,
+        "storageDelta": -3.916870464224489,
+        "residual": -1.0258460747536448e-12
+      }
+    },
+    {
+      "name": "India",
+      "bounds": {
+        "south": 18,
+        "north": 25,
+        "west": 74,
+        "east": 86
+      },
+      "validLandAreaKm2": 788000.1995061378,
+      "observedAnnualMm": 1138.0584591661475,
+      "oldBoth1800Mm": 541.3059351967618,
+      "after1800Mm": 541.3152517577262,
+      "after900Mm": 535.6823302088178,
+      "bias900Percent": -52.9301569796941,
+      "dtAbsoluteDifferenceMm": 5.632921548908371,
+      "modelSeasons": {
+        "JJA": 296.570669341703,
+        "DJF": 9.025460919145402
+      },
+      "observedSeasons": {
+        "JJA": 772.5089682980226,
+        "DJF": 31.030961565542796
+      },
+      "wholeArea": {
+        "P": 472.75058396057835,
+        "E": 621.4742490618719,
+        "netTransport": -150.25860390083676,
+        "storageDelta": -1.534938799543486,
+        "residual": -2.464303101216124e-13
+      }
+    },
+    {
+      "name": "Himalaya foreland",
+      "bounds": {
+        "south": 25,
+        "north": 29,
+        "west": 79,
+        "east": 91
+      },
+      "validLandAreaKm2": 528694.768030383,
+      "observedAnnualMm": 1307.7806738971096,
+      "oldBoth1800Mm": 935.7140816103889,
+      "after1800Mm": 935.719663144341,
+      "after900Mm": 931.5643136326472,
+      "bias900Percent": -28.767542430747184,
+      "dtAbsoluteDifferenceMm": 4.155349511693771,
+      "modelSeasons": {
+        "JJA": 428.199443335114,
+        "DJF": 47.62519720199161
+      },
+      "observedSeasons": {
+        "JJA": 842.6821491239214,
+        "DJF": 41.295167853330085
+      },
+      "wholeArea": {
+        "P": 931.5643136326474,
+        "E": 667.7013550251727,
+        "netTransport": 263.7021389341982,
+        "storageDelta": -0.16081967326441968,
+        "residual": 1.200698799645276e-11
+      }
+    },
+    {
+      "name": "Tibet",
+      "bounds": {
+        "south": 31,
+        "north": 36,
+        "west": 80,
+        "east": 94
+      },
+      "validLandAreaKm2": 721502.60895447,
+      "observedAnnualMm": 257.3912740202877,
+      "oldBoth1800Mm": 24.41086732165111,
+      "after1800Mm": 24.426541516124693,
+      "after900Mm": 24.481265929605986,
+      "bias900Percent": -90.48869623774567,
+      "dtAbsoluteDifferenceMm": 0.05472441348129209,
+      "modelSeasons": {
+        "JJA": 16.17754138586924,
+        "DJF": 0.0006946562434339464
+      },
+      "observedSeasons": {
+        "JJA": 175.94823276039216,
+        "DJF": 7.835997335259293
+      },
+      "wholeArea": {
+        "P": 24.481265929605975,
+        "E": 101.67259140874759,
+        "netTransport": -76.45084896534412,
+        "storageDelta": 0.7404765137977638,
+        "residual": 2.7336643847706887e-13
+      }
+    },
+    {
+      "name": "Australia interior",
+      "bounds": {
+        "south": -29,
+        "north": -21,
+        "west": 126,
+        "east": 142
+      },
+      "validLandAreaKm2": 1431886.3161111374,
+      "observedAnnualMm": 276.02673146884575,
+      "oldBoth1800Mm": 522.8181378750295,
+      "after1800Mm": 523.4579794634033,
+      "after900Mm": 518.3580778034244,
+      "bias900Percent": 87.79270943978474,
+      "dtAbsoluteDifferenceMm": 5.099901659978855,
+      "modelSeasons": {
+        "JJA": 6.418493533475871,
+        "DJF": 285.5446300735065
+      },
+      "observedSeasons": {
+        "JJA": 28.508782004802946,
+        "DJF": 138.9963862432404
+      },
+      "wholeArea": {
+        "P": 517.8863664709135,
+        "E": 467.9671325464024,
+        "netTransport": 50.367550206728126,
+        "storageDelta": 0.4483162822156101,
+        "residual": -1.4829300074609559e-12
+      }
+    },
+    {
+      "name": "Australia north",
+      "bounds": {
+        "south": -18,
+        "north": -10,
+        "west": 123,
+        "east": 139
+      },
+      "validLandAreaKm2": 559442.7204421703,
+      "observedAnnualMm": 981.892873706094,
+      "oldBoth1800Mm": 1229.145770972679,
+      "after1800Mm": 1229.298669080658,
+      "after900Mm": 1230.7140204330371,
+      "bias900Percent": 25.340966758194618,
+      "dtAbsoluteDifferenceMm": 1.415351352379048,
+      "modelSeasons": {
+        "JJA": 26.618400735242336,
+        "DJF": 553.2012430024224
+      },
+      "observedSeasons": {
+        "JJA": 7.199387413113344,
+        "DJF": 658.2446522400802
+      },
+      "wholeArea": {
+        "P": 651.8138266790185,
+        "E": 914.5071291531739,
+        "netTransport": -266.30349278066603,
+        "storageDelta": -3.6101903065101553,
+        "residual": 5.485622710201825e-13
+      }
+    },
+    {
+      "name": "Australia east",
+      "bounds": {
+        "south": -34,
+        "north": -26,
+        "west": 148,
+        "east": 154
+      },
+      "validLandAreaKm2": 272718.647321491,
+      "observedAnnualMm": 707.8747167338013,
+      "oldBoth1800Mm": 942.9772731535473,
+      "after1800Mm": 944.4685281564261,
+      "after900Mm": 930.2487468149262,
+      "bias900Percent": 31.414320193152136,
+      "dtAbsoluteDifferenceMm": 14.219781341499925,
+      "modelSeasons": {
+        "JJA": 35.20130700413826,
+        "DJF": 559.1996277202674
+      },
+      "observedSeasons": {
+        "JJA": 125.30423046989809,
+        "DJF": 264.75050276751796
+      },
+      "wholeArea": {
+        "P": 611.3350627185432,
+        "E": 700.3198703249607,
+        "netTransport": -89.23907587455051,
+        "storageDelta": -0.2542682681320767,
+        "residual": 8.747697202031173e-13
+      }
+    },
+    {
+      "name": "Australia southwest",
+      "bounds": {
+        "south": -35,
+        "north": -29,
+        "west": 113,
+        "east": 120
+      },
+      "validLandAreaKm2": 202793.50641698565,
+      "observedAnnualMm": 489.0437953244504,
+      "oldBoth1800Mm": 337.0189203299052,
+      "after1800Mm": 339.53780442385664,
+      "after900Mm": 343.0295093151255,
+      "bias900Percent": -29.85709815875558,
+      "dtAbsoluteDifferenceMm": 3.491704891268853,
+      "modelSeasons": {
+        "JJA": 0.7616722136115286,
+        "DJF": 212.76973224413405
+      },
+      "observedSeasons": {
+        "JJA": 226.66976511958222,
+        "DJF": 51.302343928334146
+      },
+      "wholeArea": {
+        "P": 250.56125582180724,
+        "E": 614.624322710224,
+        "netTransport": -367.0111090939035,
+        "storageDelta": -2.948042205483567,
+        "residual": 3.211492993002955e-12
+      }
+    }
+  ],
+  "maxSkinBalanceResidualWm2": 9.99946792035189e-11,
+  "temporalConvergence": {
+    "north": {
+      "maxMonthlyExtentDifferenceMillionKm2": 0.44190094494675236,
+      "maxMonthlyAreaDifferenceMillionKm2": 0.018242237257288352,
+      "monthlyConcentrationWeightedAbsoluteDifference": [
+        0.00027272844097024813,
+        0.00010088569453000962,
+        0.000019081331491614017,
+        7.678958253610152e-7,
+        0.00003337886486546038,
+        0.00018223963544762995,
+        0.00012487260586971873,
+        0.0004741486213146473,
+        0.00003985752338676959,
+        0.00011938861569391349,
+        0.00026383219177333303,
+        0.00022859671622440811
+      ]
+    },
+    "south": {
+      "maxMonthlyExtentDifferenceMillionKm2": 0.42873768166916193,
+      "maxMonthlyAreaDifferenceMillionKm2": 0.028794134166485463,
+      "monthlyConcentrationWeightedAbsoluteDifference": [
+        0.0005134774229544639,
+        0.0006098330164358837,
+        0.000009644033152579794,
+        0,
+        0.00001725824921532602,
+        0.00010456697259444788,
+        0.0000443007836797909,
+        0.00002062050138218873,
+        0,
+        0,
+        0.00002456138612046064,
+        0.00016342931548877972
+      ]
+    }
+  },
+  "diagnosticCorrection": "Frozen old bundles label env.oceanHeatJm2/dt as waterLatentWm2. This is only the final phase-call heat after overwrite, not full evaporation latent heat or full phase heat. It was excluded from analysis. New harness calls it lastPhaseHeatWm2; actual net phase is accumulated across both phase calls.",
+  "limitations": [
+    "No independent concentration: before full ice coverage, A=M/(rho*0.5m), hence diagnosed thickness M/(rho*A)=0.5m. Basal freezing cannot thicken at fixed area in this representation.",
+    "Whole-column radiative forcing remains the original effective closure; shortwave allocation fixes leads versus ice but is not a full downwelling-longwave/snow/ice dynamics model.",
+    "NSIDC G02202 v2 NT historical field differs from current G02135; cross-check limited to cached north Jan-Jun. Explicit version and mask, no claimed product equivalence.",
+    "NSIDC square polar grid limits spatial support; all no-data/pole holes excluded. Common extent is not the native extent including filled pole hole.",
+    "Fixed shelf geometry and terrain-centroid lake/marine classification; 16-subsample quadrature convergence attached."
+  ]
+}

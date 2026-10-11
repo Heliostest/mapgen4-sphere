@@ -1,0 +1,379 @@
+{
+  "generatedAtUtc": "2026-10-11T07:46:27.848Z",
+  "bindings": [
+    {
+      "path": "sea-ice-thermodynamics.ts",
+      "sha256": "d27651f9b5b6c143eb54be3a5c9d29c418c809aea686a607e56db4e2c34e1853"
+    },
+    {
+      "path": "environment.ts",
+      "sha256": "6f764c02864bdb6eaa7ed02142ce935995f5d94d13c5aff63365a606d73aa8ed"
+    },
+    {
+      "path": "ocean.ts",
+      "sha256": "7454692152ffb62f7d2d719a3317284c83f52b43c1488ae2daa4f86cb8e762db"
+    },
+    {
+      "path": "refinement-surface.ts",
+      "sha256": "4b6ec44b060c5840061b5bcbb463ec90978cadde24c6b25ddb1add17ba084cfd"
+    },
+    {
+      "path": "runtime-state.ts",
+      "sha256": "4f25a208eec5f1349092d68dea34db9371482507d18ec966bf8536ada25fff83"
+    },
+    {
+      "path": "environment-panel.ts",
+      "sha256": "139b0f3dac15ff0199daa724ce40285654a526bd597cca96ffb4153d9b328159"
+    },
+    {
+      "path": "scenes/earth-land-sea/sidebar-zh.js",
+      "sha256": "0dedcefc7974b6e4af0dcbfb972e7ec68119d537e6473ce71d8c7fc0d18c70c5"
+    },
+    {
+      "path": "tests/environment.test.ts",
+      "sha256": "800a8847a58f86f465599e1e416fc9aff70d67bd473ebcfc97ab418b89833650"
+    },
+    {
+      "path": "tests/simulation.test.ts",
+      "sha256": "3aa4b600edb52b60126c7781f9d67809fd812d716fe32a4b21017b2c21e05ddb"
+    },
+    {
+      "path": "config.js",
+      "sha256": "a433230caaf102eea16814b365e4f3df7d5dba556268907fcac56502feecca0a"
+    },
+    {
+      "path": "scenes/earth-land-sea/earth-simulation.json",
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+    },
+    {
+      "path": "scenes/earth-land-sea/scene-config.json",
+      "sha256": "9b811ee7c064dbd11c20d7f21dfe47607815fc720dcdc9e9a17ef66c09a71253"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/integrate.ts",
+      "sha256": "1c0b6c908d11b795b54216b95f1549357304fb3bbd4581552808ed934c20b89e"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/analyze.mjs",
+      "sha256": "99b5920e162f2c64c20882659ce05aa77a4c91da77eea4bc2ac0bb85c2df2da3"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/analyze-factorial.mjs",
+      "sha256": "4536b38c3559a6390f896b352f58d9b6803c88a20801d44c630d5d5bdafbb72e"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/export-mask.ts",
+      "sha256": "d87c72162922ba71843e525970f94f58e967f5bd6e3a8ef25fe42c160f669370"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/prepare-fair.mjs",
+      "sha256": "febfec06d340f84d7bc48302f72f5145903b7fa0a64a619ccbe0c8d657e060a4"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/download-ncei.mjs",
+      "sha256": "2a5727d9b8e2f20207bbddd09e13403c032dd935e2fb1f6467d3fb6002f9c65e"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/remap-nsidc.py",
+      "sha256": "24e73cc9add189afce75e55caa5116084a8daa6d8625460c51ebbba811483dba"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/check-index.py",
+      "sha256": "b1b28bc8d7a53f76db3609d0b4685bb5e8b0e599a1c111230acaeb176cbba35b"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/plot.py",
+      "sha256": "204abc0aceffe16862ae06bc35d6490edb025e343b94fb923d590df19560ab7c"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/report.mjs",
+      "sha256": "ee68f231645087c2d06d3537219b71109dfcd84e0918b39e541a2f0d79805cd8"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/acceptance.json",
+      "sha256": "fc478c8a6ea51b4807d1ed94c7550ea6c8f66538ace446a8846e84af138bb2b2"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/nsidc-same-grid.json",
+      "sha256": "9d6b40b75acc3fa2424708c4d81065f7c7c30d7ab395f44f0d8815419be62fb2"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/nsidc-inputs.json",
+      "sha256": "f897a7a90bce2b2b20886110b6887378785c2935c24e5c6e9f9d2665679232d6"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/nsidc-index-crosscheck.json",
+      "sha256": "c5cdc7ee0fc6dd6ed4e552fe45802f35b75b239f14015b42348bd7c66edab24b"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/REPORT.md",
+      "sha256": "793cb2698124577c97aa4d4320f9713eab13d35a3f016029a520acbb9c14d604"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/REVIEW.md",
+      "sha256": "b1f1d11f3fe3b42e70e7a2f819feea8e93e1a058eb3607f655772608b885c79f"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/verification.json",
+      "sha256": "f12f51e7e8c0c42795e9be386cc2d33708461dfcd55cb9bfd7f12a3ac96bf689"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/same-grid-seasonality.png",
+      "sha256": "d35ca51dc120fe92543efacacc3f6dea1c86af0de9feaf759b11a612246fbd05"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/south-winter-cause.png",
+      "sha256": "497a0c3a087d251d23385f4000f04bb306bccaa556ba16d8e8b326a612ee19d0"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/finalize.mjs",
+      "sha256": "156b7d792987cac3e6ba64103ab6bc09e25b73d0297ac01583cda167cd75199e"
+    }
+  ],
+  "runs": [
+    {
+      "label": "control",
+      "dt": 1800,
+      "bundleSha256": "39ca069a45b38a4f02abd14877be8df519dd295ebb8c4094caf63da7554d40f2",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "strictRestoreNextStepExact": true,
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-causal/control-1800-day0.json",
+          "sha256": "683048a2ad1ead11fd582f8c27b0fdb7847afaf7f75394913b924ee3bcf2daff"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-causal/control-1800-day24.json",
+          "sha256": "6214c5fa4810f5d5796c7f38e963a8eb3111be76180c46d47fd15f01fe3e4fdc"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-causal/control-1800-day90.json",
+          "sha256": "b583feccfe80b47253de694eed58770b7ee2520d1b0b82f055485b406bad57dc"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-causal/control-1800-day180.json",
+          "sha256": "2bea5491d04bd2ee6071714a68b1d269bde45a9018a00f6ca48f1a46a79b0a9d"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-causal/control-1800-day270.json",
+          "sha256": "8ba7d2feb4a5b5417ac8ddf0c4942fd16b061a2897264efc1f174cda1ef8da5f"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-causal/control-1800-day365.json",
+          "sha256": "67f4c9bdc4103a7a01364917fff229c1a11833c8f0fc02e132930a85708592c1"
+        }
+      ]
+    },
+    {
+      "label": "thermal-only",
+      "dt": 1800,
+      "bundleSha256": "39ca069a45b38a4f02abd14877be8df519dd295ebb8c4094caf63da7554d40f2",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "strictRestoreNextStepExact": true,
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-causal/thermal-only-1800-day0.json",
+          "sha256": "c7017614619b35b4a315119e6c8257af1beaef0a99642cd587906fb42cda603b"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-causal/thermal-only-1800-day24.json",
+          "sha256": "b22ff07c598d905cbe7f8d03c5660493c6de0b1c185d8838323c68b054fb4c99"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-causal/thermal-only-1800-day90.json",
+          "sha256": "f906900f5fc8fcb08c94492be7acaa310cf0230ecaf817da5184d7ee89e95673"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-causal/thermal-only-1800-day180.json",
+          "sha256": "ba01978ab335fa376fb17ecf2ff70c8508a955ef8688870a70ce27d9f4a595f5"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-causal/thermal-only-1800-day270.json",
+          "sha256": "d2c38d6995404cf372093d95eacc69a8d30e53d239825fed9469ff303b65e57c"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-causal/thermal-only-1800-day365.json",
+          "sha256": "7e7e84023f48f03eff1fddb44f15feff5bab4535db91f653a6f1f738269828b9"
+        }
+      ]
+    },
+    {
+      "label": "fair-transport",
+      "dt": 1800,
+      "bundleSha256": "4180a41e7862ed07cb252490275884adab6f3f176d1707f160cb71dac4a41dbd",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "strictRestoreNextStepExact": true,
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-causal/fair-transport-1800-day0.json",
+          "sha256": "c172fe2724d311f66f54b9fbfd11a37bd62128446f2d6a1b883be2af8629bec0"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-causal/fair-transport-1800-day24.json",
+          "sha256": "020266f94dea93235a4c1af39f9df3787fb0e8e393e3d4d413e36fee49c12c74"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-causal/fair-transport-1800-day90.json",
+          "sha256": "a3ebb1fdbf835fef8aa3c5aa8a589c0fcf05354672f1ba0de1f366888e7aea7b"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-causal/fair-transport-1800-day180.json",
+          "sha256": "775abdb8b9369f50306fd8483442f6228f917a1cc3f9c4eb6c4608e7c60c83e0"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-causal/fair-transport-1800-day270.json",
+          "sha256": "5ddf3d6936ce1016304583c73a07242dd75b4726f31a18e28b7f34e0ba8f57ce"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-causal/fair-transport-1800-day365.json",
+          "sha256": "7fc8cab7cb3a15adaf3a288a38726be6f0b4357b7ca228e5aab5d9fb30c48e0c"
+        }
+      ]
+    },
+    {
+      "label": "fair-both",
+      "dt": 1800,
+      "bundleSha256": "4180a41e7862ed07cb252490275884adab6f3f176d1707f160cb71dac4a41dbd",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "strictRestoreNextStepExact": true,
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-causal/fair-both-1800-day0.json",
+          "sha256": "415e0488b5df5b8e0272da5fa3ffef8a8b761e9bde73786a9ffc7437948c497e"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-causal/fair-both-1800-day24.json",
+          "sha256": "5d142264da868b535f781ef6b974899466bae059a828a21a7408ac6299eabbdd"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-causal/fair-both-1800-day90.json",
+          "sha256": "647fc9d8083a1bcd1f7fb8c865f536738a94a5b057f50e16ce55a60888024bad"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-causal/fair-both-1800-day180.json",
+          "sha256": "61ff8f0c2bfbf0f29db0e02ce156a06f2e8a20298bd65ecb339e67047af3018f"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-causal/fair-both-1800-day270.json",
+          "sha256": "4acfde92ebd30ee4dd35592613107314b0a3bc03713a58fd30b1b516cdc35475"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-causal/fair-both-1800-day365.json",
+          "sha256": "fba1208548e4ac0e93e59febb56154bfccba6e34c189df08ab6d347cff4d861e"
+        }
+      ]
+    },
+    {
+      "label": "shortwave-fair",
+      "dt": 1800,
+      "bundleSha256": "08f553fb0376d9645ca97ee44eb9135b65609175ef5bb49e79ada97dbfabf826",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "strictRestoreNextStepExact": true,
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-causal/shortwave-fair-1800-day0.json",
+          "sha256": "415e0488b5df5b8e0272da5fa3ffef8a8b761e9bde73786a9ffc7437948c497e"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-causal/shortwave-fair-1800-day24.json",
+          "sha256": "0545943f5ba87360dcd4554df670d2f181a185d0b104214e3fc3d2b7b05fffae"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-causal/shortwave-fair-1800-day90.json",
+          "sha256": "2395e5edb1505ccaf4903d31c14b9e89b2cefaef4deb1ade7cb442ad56286f85"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-causal/shortwave-fair-1800-day180.json",
+          "sha256": "75227aa829fd61bb2c5427233e02477fd4f580de67f97384f2c7cda9dc90de89"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-causal/shortwave-fair-1800-day270.json",
+          "sha256": "4ca1af8c711e68657134a4dde919f3b72ebd300485182be94b5756c98627439f"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-causal/shortwave-fair-1800-day365.json",
+          "sha256": "5dd13db971486d491714bfc3a02516c7ce867dce8a802b9a4d9057c2347b48a6"
+        }
+      ]
+    },
+    {
+      "label": "shortwave-fair",
+      "dt": 900,
+      "bundleSha256": "08f553fb0376d9645ca97ee44eb9135b65609175ef5bb49e79ada97dbfabf826",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "strictRestoreNextStepExact": true,
+      "records": [
+        {
+          "day": 0,
+          "path": "build/earth-seaice-causal/shortwave-fair-900-day0.json",
+          "sha256": "120934949e19f672e653b047536f799523a1b30ffa93c0f07a06979bd1fb5a43"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-seaice-causal/shortwave-fair-900-day24.json",
+          "sha256": "8148b93633758ca2f9c12dbaee64f0610095bfc31cd782329edc4d55237ad322"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-seaice-causal/shortwave-fair-900-day90.json",
+          "sha256": "0a6b95510b4b96a25041d924d64cd55d9db02e0047bd34ae2708e3b7f8e44a95"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-seaice-causal/shortwave-fair-900-day180.json",
+          "sha256": "000d04626c49773b419dc83bdd235fe2e23ff519c04c98f45183d3819f1d3587"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-seaice-causal/shortwave-fair-900-day270.json",
+          "sha256": "426f70b855b4ee544a4c1e7a9b2d3d71b0886269a86cacba2fa64ca8719af636"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-seaice-causal/shortwave-fair-900-day365.json",
+          "sha256": "f44caf503e4a96a6b8763edd48165f322c39ec36a0c7cdbc95e5fd0c96c2e73a"
+        }
+      ]
+    }
+  ],
+  "baselines": {
+    "original": "build/earth-seaice-causal/integrate-factorial.mjs",
+    "sharedMask": "build/earth-seaice-causal/integrate-factorial-sharedmask.mjs",
+    "current": "build/earth-seaice-causal/integrate-shortwave-sharedmask.mjs"
+  },
+  "excludedRuns": [
+    "transport-only/both old bundle changes the lake mask along with frozen mask; superseded by fair-transport/fair-both.",
+    "shortwave-1800/900 were intentionally stopped partial probes and use the confounded mask; not accepted."
+  ],
+  "graphics": "Numeric plots only. Prior WebGL2 initialization blocker remains; no browser restart or internal GPU pages used."
+}

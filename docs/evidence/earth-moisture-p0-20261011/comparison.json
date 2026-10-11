@@ -1,0 +1,546 @@
+{
+  "status": "PARTIAL — numerical repair passes; regional supply acceptance fails",
+  "periodDays": 365,
+  "calendar": "Earth phase zero March20. Gregorian month lengths scaled to the orbital year. Period is 365 actual Earth days, about 0.25 day short of an orbit; no annual-total extrapolation.",
+  "budgets": {
+    "1800": {
+      "waterResidualMm": -3.2444950193166733e-07,
+      "enthalpyResidualJm2": -0.00022304058074951172,
+      "maxCellVaporResidualMm": 6.184563972055912e-11,
+      "globalNetVaporTransportMm": -1.2286044095668715e-13,
+      "totalMm": 739407.3164893723,
+      "oceanChangeGlobalMm": -750.6455726157874
+    },
+    "900": {
+      "waterResidualMm": 1.1257361620664597e-07,
+      "enthalpyResidualJm2": -0.00021630525588989258,
+      "maxCellVaporResidualMm": 4.9112713895738125e-11,
+      "globalNetVaporTransportMm": 9.54830350588212e-15,
+      "totalMm": 739407.3164898093,
+      "oceanChangeGlobalMm": -750.9529079416534
+    },
+    "450": {
+      "waterResidualMm": -2.1141022443771362e-07,
+      "enthalpyResidualJm2": 0.0002187490463256836,
+      "maxCellVaporResidualMm": 8.640199666842818e-11,
+      "globalNetVaporTransportMm": -2.8040301562152575e-13,
+      "totalMm": 739407.3164894853,
+      "oceanChangeGlobalMm": -751.1104042187799
+    }
+  },
+  "acceptance": {
+    "before1800": {
+      "India_JJA_wetter_than_DJF": true,
+      "India_net_vapor_import": false,
+      "Foreland_wetter_than_Tibet": false,
+      "Australia_interior_drier_than_east": true,
+      "Australia_interior_drier_than_north": true,
+      "Australia_north_DJF_wetter_than_JJA": true,
+      "Australia_southwest_JJA_wetter_than_DJF": true
+    },
+    "1800": {
+      "India_JJA_wetter_than_DJF": true,
+      "India_net_vapor_import": false,
+      "Foreland_wetter_than_Tibet": false,
+      "Australia_interior_drier_than_east": false,
+      "Australia_interior_drier_than_north": true,
+      "Australia_north_DJF_wetter_than_JJA": true,
+      "Australia_southwest_JJA_wetter_than_DJF": false
+    },
+    "900": {
+      "India_JJA_wetter_than_DJF": true,
+      "India_net_vapor_import": false,
+      "Foreland_wetter_than_Tibet": false,
+      "Australia_interior_drier_than_east": false,
+      "Australia_interior_drier_than_north": true,
+      "Australia_north_DJF_wetter_than_JJA": true,
+      "Australia_southwest_JJA_wetter_than_DJF": false
+    },
+    "450": {
+      "India_JJA_wetter_than_DJF": true,
+      "India_net_vapor_import": false,
+      "Foreland_wetter_than_Tibet": false,
+      "Australia_interior_drier_than_east": false,
+      "Australia_interior_drier_than_north": true,
+      "Australia_north_DJF_wetter_than_JJA": true,
+      "Australia_southwest_JJA_wetter_than_DJF": false
+    }
+  },
+  "regions": [
+    {
+      "name": "Amazon",
+      "bounds": {
+        "south": -7,
+        "north": 1,
+        "west": -68,
+        "east": -52
+      },
+      "validLandAreaKm2": 1564430.9621510943,
+      "observedAnnualMm": 2292.7113375092836,
+      "before1800P": 2811.2809774895713,
+      "afterP": {
+        "1800": 1862.2669580441293,
+        "900": 1857.9293564243262,
+        "450": 1855.412498080315
+      },
+      "afterE": {
+        "1800": 1162.6915729364487,
+        "900": 1161.5387204829046,
+        "450": 1161.038228039533
+      },
+      "afterNetVaporTransport": {
+        "1800": 689.1297560209837,
+        "900": 685.943954964827,
+        "450": 683.9302714267375
+      },
+      "afterVaporStorageDelta": {
+        "1800": -14.162264402053095,
+        "900": -14.134327921625207,
+        "450": -14.120011486654786
+      },
+      "wholeAreaVaporResidual": {
+        "1800": 3.9758736355111434e-13,
+        "900": 1.6908098206619648e-12,
+        "450": 7.113552452571371e-13
+      },
+      "P900minus1800": -4.337601619803081,
+      "P450minus900": -2.5168583440113252,
+      "relativeP450vs900": 0.001356495305823028,
+      "beforeSeasons": {
+        "DJF": 593.6560835303693,
+        "JJA": 415.68609824069654
+      },
+      "afterSeasons": {
+        "DJF": 450.4715424370159,
+        "JJA": 331.01387483619294
+      },
+      "observationSeasons": {
+        "DJF": 715.1593547593545,
+        "JJA": 367.81789086533195
+      }
+    },
+    {
+      "name": "Congo",
+      "bounds": {
+        "south": -4,
+        "north": 4,
+        "west": 15,
+        "east": 31
+      },
+      "validLandAreaKm2": 1581350.7896031223,
+      "observedAnnualMm": 1378.2192077236828,
+      "before1800P": 1963.1251867760107,
+      "afterP": {
+        "1800": 1897.1776978901325,
+        "900": 1893.0233311766096,
+        "450": 1890.914197871107
+      },
+      "afterE": {
+        "1800": 1184.7462560075455,
+        "900": 1183.386056711589,
+        "450": 1182.6953090001352
+      },
+      "afterNetVaporTransport": {
+        "1800": 704.5634976772899,
+        "900": 701.7874999077615,
+        "450": 700.378876714873
+      },
+      "afterVaporStorageDelta": {
+        "1800": -7.867944205292976,
+        "900": -7.8497745572527835,
+        "450": -7.840012156099212
+      },
+      "wholeAreaVaporResidual": {
+        "1800": 5.010436510133331e-12,
+        "900": 7.2311046039885696e-12,
+        "450": 6.21724893790088e-13
+      },
+      "P900minus1800": -4.154366713522904,
+      "P450minus900": -2.10913330550261,
+      "relativeP450vs900": 0.0011154040240837926,
+      "beforeSeasons": {
+        "DJF": 348.290376780746,
+        "JJA": 261.3886104243366
+      },
+      "afterSeasons": {
+        "DJF": 398.27520903181943,
+        "JJA": 497.16651387649404
+      },
+      "observationSeasons": {
+        "DJF": 233.47220761648913,
+        "JJA": 281.0639384815303
+      }
+    },
+    {
+      "name": "India",
+      "bounds": {
+        "south": 18,
+        "north": 25,
+        "west": 74,
+        "east": 86
+      },
+      "validLandAreaKm2": 788000.1995061378,
+      "observedAnnualMm": 1138.0584591661475,
+      "before1800P": 102.63427719757553,
+      "afterP": {
+        "1800": 240.57941328156588,
+        "900": 241.82256535641636,
+        "450": 242.06189558334083
+      },
+      "afterE": {
+        "1800": 465.429258739737,
+        "900": 467.9090506497988,
+        "450": 467.9800702407693
+      },
+      "afterNetVaporTransport": {
+        "1800": -243.2254012417682,
+        "900": -244.6160210175573,
+        "450": -244.4603276680306
+      },
+      "afterVaporStorageDelta": {
+        "1800": -0.8271012705447259,
+        "900": -0.7249202462178096,
+        "450": -0.7222390291866653
+      },
+      "wholeAreaVaporResidual": {
+        "1800": 3.419639871577154e-13,
+        "900": 3.9596385828274896e-13,
+        "450": 1.690346598168663e-12
+      },
+      "P900minus1800": 1.2431520748504852,
+      "P450minus900": 0.2393302269244657,
+      "relativeP450vs900": 0.000988714999309197,
+      "beforeSeasons": {
+        "DJF": 0,
+        "JJA": 57.34768903006311
+      },
+      "afterSeasons": {
+        "DJF": 1.1516902582498207,
+        "JJA": 137.88165059459357
+      },
+      "observationSeasons": {
+        "DJF": 31.030961565542796,
+        "JJA": 772.5089682980226
+      }
+    },
+    {
+      "name": "Himalaya foreland",
+      "bounds": {
+        "south": 25,
+        "north": 29,
+        "west": 79,
+        "east": 91
+      },
+      "validLandAreaKm2": 528694.768030383,
+      "observedAnnualMm": 1307.7806738971096,
+      "before1800P": 0,
+      "afterP": {
+        "1800": 954.1995389972866,
+        "900": 989.821160332896,
+        "450": 989.1377010011071
+      },
+      "afterE": {
+        "1800": 584.1986551355371,
+        "900": 616.2529421424408,
+        "450": 615.9919277275269
+      },
+      "afterNetVaporTransport": {
+        "1800": 370.11188257964255,
+        "900": 374.65574644367194,
+        "450": 374.2395250932168
+      },
+      "afterVaporStorageDelta": {
+        "1800": 0.11099871789633295,
+        "900": 1.0875282532249126,
+        "450": 1.093751819642502
+      },
+      "wholeAreaVaporResidual": {
+        "1800": 3.1796787425264487e-12,
+        "900": 8.2719016821405e-12,
+        "450": 5.821713481661089e-12
+      },
+      "P900minus1800": 35.62162133560946,
+      "P450minus900": -0.6834593317889812,
+      "relativeP450vs900": 0.0006909647980228147,
+      "beforeSeasons": {
+        "DJF": 0,
+        "JJA": 0
+      },
+      "afterSeasons": {
+        "DJF": 39.40834674479447,
+        "JJA": 583.9322142504761
+      },
+      "observationSeasons": {
+        "DJF": 41.29516785333009,
+        "JJA": 842.6821491239215
+      }
+    },
+    {
+      "name": "Tibet",
+      "bounds": {
+        "south": 31,
+        "north": 36,
+        "west": 80,
+        "east": 94
+      },
+      "validLandAreaKm2": 721502.60895447,
+      "observedAnnualMm": 257.3912740202877,
+      "before1800P": 0,
+      "afterP": {
+        "1800": 1877.2904017910814,
+        "900": 1894.327587758838,
+        "450": 1893.4254809476286
+      },
+      "afterE": {
+        "1800": 422.34615591829504,
+        "900": 421.5817004352945,
+        "450": 421.1892487055801
+      },
+      "afterNetVaporTransport": {
+        "1800": 1457.0644499251132,
+        "900": 1474.937146679089,
+        "450": 1474.4567543865785
+      },
+      "afterVaporStorageDelta": {
+        "1800": 2.120204052334496,
+        "900": 2.1912593555444677,
+        "450": 2.220522144536674
+      },
+      "wholeAreaVaporResidual": {
+        "1800": 7.31845494268675e-12,
+        "900": -1.494482795173166e-12,
+        "450": 6.206378129318563e-12
+      },
+      "P900minus1800": 17.037185967756614,
+      "P450minus900": -0.9021068112094781,
+      "relativeP450vs900": 0.0004764416768902827,
+      "beforeSeasons": {
+        "DJF": 0,
+        "JJA": 0
+      },
+      "afterSeasons": {
+        "DJF": 147.09245581670365,
+        "JJA": 886.1861162730711
+      },
+      "observationSeasons": {
+        "DJF": 7.835997335259294,
+        "JJA": 175.94823276039216
+      }
+    },
+    {
+      "name": "Australia interior",
+      "bounds": {
+        "south": -29,
+        "north": -21,
+        "west": 126,
+        "east": 142
+      },
+      "validLandAreaKm2": 1431886.3161111374,
+      "observedAnnualMm": 276.02673146884575,
+      "before1800P": 647.153639589504,
+      "afterP": {
+        "1800": 1142.7953508169805,
+        "900": 1144.2362423939205,
+        "450": 1144.9136389866608
+      },
+      "afterE": {
+        "1800": 541.4876670662029,
+        "900": 541.5400189191711,
+        "450": 541.5639501546538
+      },
+      "afterNetVaporTransport": {
+        "1800": 598.6874676578636,
+        "900": 600.0570975157237,
+        "450": 600.7019986654109
+      },
+      "afterVaporStorageDelta": {
+        "1800": -3.040034234531247,
+        "900": -3.0586195612338463,
+        "450": -3.067007472463998
+      },
+      "wholeAreaVaporResidual": {
+        "1800": 6.693664305849086e-13,
+        "900": -4.095445619184275e-12,
+        "450": 1.190554579063433e-12
+      },
+      "P900minus1800": 1.4408915769399755,
+      "P450minus900": 0.6773965927402514,
+      "relativeP450vs900": 0.0005916573701923938,
+      "beforeSeasons": {
+        "DJF": 368.77762286773446,
+        "JJA": 0
+      },
+      "afterSeasons": {
+        "DJF": 653.3377229169807,
+        "JJA": 6.364904387354149
+      },
+      "observationSeasons": {
+        "DJF": 138.9963862432404,
+        "JJA": 28.508782004802942
+      }
+    },
+    {
+      "name": "Australia north",
+      "bounds": {
+        "south": -18,
+        "north": -10,
+        "west": 123,
+        "east": 139
+      },
+      "validLandAreaKm2": 559442.7204421703,
+      "observedAnnualMm": 981.892873706094,
+      "before1800P": 1096.1231193768112,
+      "afterP": {
+        "1800": 1948.9728920354855,
+        "900": 1954.9573622412647,
+        "450": 1957.9541651767415
+      },
+      "afterE": {
+        "1800": 980.4717529766845,
+        "900": 980.7884809005252,
+        "450": 980.9459975305303
+      },
+      "afterNetVaporTransport": {
+        "1800": 101.06610915769355,
+        "900": 99.17059022953596,
+        "450": 98.30282138667717
+      },
+      "afterVaporStorageDelta": {
+        "1800": -9.82456745930762,
+        "900": -9.79851901117322,
+        "450": -9.778887409679408
+      },
+      "wholeAreaVaporResidual": {
+        "1800": 1.3149251050268072e-12,
+        "900": -1.306011958587837e-13,
+        "450": 6.231821369511775e-13
+      },
+      "P900minus1800": 5.984470205779189,
+      "P450minus900": 2.9968029354768078,
+      "relativeP450vs900": 0.0015305786972833917,
+      "beforeSeasons": {
+        "DJF": 530.5737540170536,
+        "JJA": 0
+      },
+      "afterSeasons": {
+        "DJF": 966.3614596971738,
+        "JJA": 27.85643210856846
+      },
+      "observationSeasons": {
+        "DJF": 658.2446522400802,
+        "JJA": 7.199387413113344
+      }
+    },
+    {
+      "name": "Australia east",
+      "bounds": {
+        "south": -34,
+        "north": -26,
+        "west": 148,
+        "east": 154
+      },
+      "validLandAreaKm2": 272718.647321491,
+      "observedAnnualMm": 707.8747167338013,
+      "before1800P": 874.783342565937,
+      "afterP": {
+        "1800": 780.7498248982763,
+        "900": 783.9313158025569,
+        "450": 785.5067068861096
+      },
+      "afterE": {
+        "1800": 677.7288248382572,
+        "900": 677.7239167164233,
+        "450": 677.7210594836926
+      },
+      "afterNetVaporTransport": {
+        "1800": -55.156554106679806,
+        "900": -51.77184091974234,
+        "450": -50.07460984177684
+      },
+      "afterVaporStorageDelta": {
+        "1800": -3.0244435305947457,
+        "900": -3.016729196880134,
+        "450": -3.010782025914555
+      },
+      "wholeAreaVaporResidual": {
+        "1800": 7.381506497733831e-13,
+        "900": 3.032513622660479e-12,
+        "450": 7.930417357610994e-13
+      },
+      "P900minus1800": 3.181490904280622,
+      "P450minus900": 1.5753910835526312,
+      "relativeP450vs900": 0.002005573052072039,
+      "beforeSeasons": {
+        "DJF": 527.0997545095959,
+        "JJA": 0
+      },
+      "afterSeasons": {
+        "DJF": 527.0284186667121,
+        "JJA": 7.465711460284984
+      },
+      "observationSeasons": {
+        "DJF": 264.75050276751796,
+        "JJA": 125.30423046989809
+      }
+    },
+    {
+      "name": "Australia southwest",
+      "bounds": {
+        "south": -35,
+        "north": -29,
+        "west": 113,
+        "east": 120
+      },
+      "validLandAreaKm2": 202793.50641698565,
+      "observedAnnualMm": 489.0437953244504,
+      "before1800P": 450.64296274205134,
+      "afterP": {
+        "1800": 776.5314355499033,
+        "900": 780.0075152823002,
+        "450": 781.6475234397723
+      },
+      "afterE": {
+        "1800": 808.0095823196626,
+        "900": 807.6379484697757,
+        "450": 807.4556754449944
+      },
+      "afterNetVaporTransport": {
+        "1800": -41.60274590181243,
+        "900": -37.800320963006186,
+        "450": -35.96520396925123
+      },
+      "afterVaporStorageDelta": {
+        "1800": -4.940857329620072,
+        "900": -4.876232182112906,
+        "450": -4.80683367279502
+      },
+      "wholeAreaVaporResidual": {
+        "1800": 2.308562548263227e-13,
+        "900": -7.17388000127376e-13,
+        "450": -1.9277223696659916e-12
+      },
+      "P900minus1800": 3.4760797323968973,
+      "P450minus900": 1.6400081574720389,
+      "relativeP450vs900": 0.002098142843535031,
+      "beforeSeasons": {
+        "DJF": 71.19414834537933,
+        "JJA": 224.06143336490345
+      },
+      "afterSeasons": {
+        "DJF": 369.6439546802109,
+        "JJA": 193.00935338362302
+      },
+      "observationSeasons": {
+        "DJF": 51.302343928334146,
+        "JJA": 226.66976511958222
+      }
+    }
+  ],
+  "sources": {
+    "before-1800-continuous.json": "0b188b989e3bbcabd170a639fbce9a2a1881875cfd7a4f580093c57a7e969ded",
+    "continuous-front-1800-continuous.json": "56f02a1e82513aa3a53ab0bdb9397cb43bb80454ec1d974f119b4c1f5d0e09a2",
+    "continuous-front-900-continuous.json": "bd83b49a3e15e8237fb29907454b5568d0a53c8e65e592377caaff92c9a17ba8",
+    "continuous-front-450-continuous.json": "d0a77bfa1fd83a474bc3ab9efe6703d04db551c2fca782d6a3cb2aa92043bcc4",
+    "gpcc-grid.json": "01ed704dd31cec9376d27fafd902cfeb5c77862f7d8b3cf2e9e6b5d4226dbbc4"
+  }
+}

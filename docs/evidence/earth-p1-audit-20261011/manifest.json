@@ -1,0 +1,109 @@
+﻿{
+    "createdAtUtc":  "2026-10-11T05:06:49.8057306Z",
+    "files":  [
+                  {
+                      "path":  "environment.ts",
+                      "sha256":  "af6295d092587fed5b4bb9019694a8987c679eb5f3034bd00715d1edc399dbf9"
+                  },
+                  {
+                      "path":  "thermal.ts",
+                      "sha256":  "cd8d823aafc2c5e43f13c4bdc137d9b203ff4616862b2c4388e4c2c2942ecc87"
+                  },
+                  {
+                      "path":  "ocean.ts",
+                      "sha256":  "f0ef39d02f1de678c6224b9d79d225a450da657fa25772c785c8627a7b7c443d"
+                  },
+                  {
+                      "path":  "sea-ice.ts",
+                      "sha256":  "231050cc2e94a1b3a810e389272296ff70329f41141af8b7cb2b214033ef2e2c"
+                  },
+                  {
+                      "path":  "thermal-runtime.ts",
+                      "sha256":  "15fd9478705c7cc67ed1380e1819897d0d619c9ba09d0e0eade50308496a5d78"
+                  },
+                  {
+                      "path":  "refinement-surface.ts",
+                      "sha256":  "99acd9200b3c001d177b28e43c09553224e3788760d7ff72df52375364683f6c"
+                  },
+                  {
+                      "path":  "water.ts",
+                      "sha256":  "754b5fcdce9a453d845da6d5a53ddcd920918f329533f280e778bb7a20315f39"
+                  },
+                  {
+                      "path":  "circulation.ts",
+                      "sha256":  "42ad6555ff02d686b7510b23f3fe4b49144ec499f2cd0d49aea8b230e0e40698"
+                  },
+                  {
+                      "path":  "runtime-state.ts",
+                      "sha256":  "092d95aa78a267c281a5d1c0f59e9ecfe57f20b9ce5485cee2ea67ccda7fbc98"
+                  },
+                  {
+                      "path":  "climate-diagnostics.ts",
+                      "sha256":  "2b1107089b78aad9bde62e4fa18face7387576d6b95bd985ee25fdd79cdf2834"
+                  },
+                  {
+                      "path":  "reference-moisture.ts",
+                      "sha256":  "6b55f772522c5f4cc285d832bc8f77551d217600cb7eceba11eb19a0e05b86b9"
+                  },
+                  {
+                      "path":  "terrain-water-view.ts",
+                      "sha256":  "ab6068f171aa8ffdcdec46604f0bdc3e12ff043fc2dbb98fda25906b6f9ff50f"
+                  },
+                  {
+                      "path":  "planet-controls.ts",
+                      "sha256":  "ea24bd8d0b23b13b8710b9a4892f00c53dfcce3692fa9bdcc06b6ea0114d5034"
+                  },
+                  {
+                      "path":  "render.ts",
+                      "sha256":  "d1be233462f2893ee8732dd3b1c95a4b5895bd0c313b3541994d1e41f4032ffe"
+                  },
+                  {
+                      "path":  "terrain-water.ts",
+                      "sha256":  "deea88f1006c89ed2e15016cf72aacc33266197f6df0c05e344e6173cd8441bf"
+                  },
+                  {
+                      "path":  "river-channels.ts",
+                      "sha256":  "4b45b4dd27e05e5dbd646764eb2a6503dbf3af8d3af8e9e59ce5f220374af575"
+                  },
+                  {
+                      "path":  "surface-grid.ts",
+                      "sha256":  "5af822cc3ce30a09db820841d15a017dd2850f72ab0c51ade2a14162d6f7e02c"
+                  },
+                  {
+                      "path":  "climate.ts",
+                      "sha256":  "2bd07a05d8fe0598f3d608e3096600b43cab47cd9f29f4a5107e85c6e8e21da9"
+                  },
+                  {
+                      "path":  "config.js",
+                      "sha256":  "a433230caaf102eea16814b365e4f3df7d5dba556268907fcac56502feecca0a"
+                  },
+                  {
+                      "path":  "scenes/earth-land-sea/earth-simulation.json",
+                      "sha256":  "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+                  },
+                  {
+                      "path":  "scenes/earth-land-sea/scene-config.json",
+                      "sha256":  "9b811ee7c064dbd11c20d7f21dfe47607815fc720dcdc9e9a17ef66c09a71253"
+                  },
+                  {
+                      "path":  "docs/evidence/earth-p1-audit-20261011/audit.ts",
+                      "sha256":  "4e40681c5cb0fa74619a1ffb07dd904c74a3d5433be50a574263b89c57370b96"
+                  },
+                  {
+                      "path":  "docs/evidence/earth-p1-audit-20261011/audit.json",
+                      "sha256":  "6c2fe10b9cb3ff15a4b7e2868f3a2950a6e8e9c027bd33f7efdedcbfdd6a7dd5"
+                  },
+                  {
+                      "path":  "build/earth-p1-audit/audit.mjs",
+                      "sha256":  "5310b321b371c60b0c149b665eb497d2595d1276681c75619b88d8c26ae96555"
+                  },
+                  {
+                      "path":  "docs/evidence/earth-p1-audit-20261011/REPORT.md",
+                      "sha256":  "9cd6e4c75596039acee1d53fa969b21e48f39380ae024ae2c0fae54791d038b4"
+                  }
+              ],
+    "commands":  [
+                     "node node_modules/esbuild/bin/esbuild docs/evidence/earth-p1-audit-20261011/audit.ts --bundle --platform=node --format=esm --outfile=build/earth-p1-audit/audit.mjs",
+                     "node --expose-gc build/earth-p1-audit/audit.mjs"
+                 ]
+}

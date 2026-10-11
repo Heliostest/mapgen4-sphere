@@ -1,0 +1,10 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>地球 P0 · 真实积分验证</title>
+<style>body{margin:0;background:#f2f4f5;color:#202b35;font:16px/1.5 "Microsoft YaHei",sans-serif}main{max-width:1440px;margin:26px auto;background:white;padding:24px 32px}h1{font-size:25px;margin:0}p{margin:8px 0}button{font:inherit;padding:8px 20px;border:1px solid #a8b8c4;background:white;margin:10px 8px 8px 0;cursor:pointer}button[aria-pressed=true]{background:#146da0;color:white}img{width:100%;display:block}aside{border-left:4px solid #cf7048;padding:8px 15px;background:#fff5ef}.meta{font-size:13px;color:#536474}</style>
+<main><h1>地球 P0：真实积分与观测对照</h1>
+<p>正式默认保持原样。候选改动通过预算检查，<strong>区域供水验收尚未通过</strong>。</p>
+<button id="before" aria-pressed="true">修复前</button><button id="after" aria-pressed="false">当前候选</button>
+<p id="state">修复前：印度、南麓和青藏缺雨。</p><img id="plot" src="before-assessment.png" alt="修复前的全年及月降水诊断图">
+<aside>已完成 1800 / 900 / 450 秒全年实际积分。候选仍存在印度水汽净输出、青藏过湿、澳洲内陆过湿与西南季节反转。</aside>
+<p class="meta">图表直接读取实际运行结果；统一 GPCC 有效陆地区域权重。365 个实际地球日；第 0 日对应 3 月 20 日。此页是二维诊断图，地球 WebGL 页面截图因上下文丢失另列为未完成。</p>
+<p><a href="annual-comparison.png">全年对照</a> · <a href="monthly-comparison.png">九区月降水</a> · <a href="convergence-supply.png">收敛与净输运</a> · <a href="REPORT.md">验证报告</a></p>
+</main><script>for(const mode of ['before','after'])document.querySelector('#'+mode).onclick=()=>{for(const name of ['before','after'])document.querySelector('#'+name).setAttribute('aria-pressed',String(name===mode));document.querySelector('#plot').src=mode+'-assessment.png';document.querySelector('#plot').alt=(mode==='before'?'修复前':'当前候选')+'的全年及月降水诊断图';document.querySelector('#state').textContent=mode==='before'?'修复前：印度、南麓和青藏缺雨。':'当前候选：步长收敛改善，区域供水仍未通过。'};</script></html>
