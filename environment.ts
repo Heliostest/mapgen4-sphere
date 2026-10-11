@@ -3,15 +3,19 @@ import {FUSION_J_KG as LF,VAPORIZATION_J_KG as LV,type WaterModel} from './water
 import {OceanTransport,type OceanCheckpoint} from './ocean.ts';
 import {AtmosphericCirculation,type AtmosphereCheckpoint} from './circulation.ts';
 import {derivePlanet} from './planet.ts';
-export const SEA_FREEZE_K=271.35,SNOW_MELT_K=273.15;
+import {seaIceSurfaceExchange,SEA_ICE_FREEZE_K} from './sea-ice-thermodynamics.ts';
+export const SEA_FREEZE_K=SEA_ICE_FREEZE_K,SNOW_MELT_K=273.15;
 export const DEFAULT_ENVIRONMENT:Readonly<EnvironmentConfig>=Object.freeze({oceanStrengthMps:.3,vegetation:true,iceAlbedo:true,terrainWater:false,glaciers:false,dynamicCirculation:false});
-export type EnvironmentConfig={oceanStrengthMps:number;vegetation:boolean;iceAlbedo:boolean;terrainWater?:boolean;glaciers?:boolean;dynamicCirculation?:boolean};
+export type EnvironmentConfig={oceanStrengthMps:number;vegetation:boolean;iceAlbedo:boolean;terrainWater?:boolean;glaciers?:boolean;dynamicCirculation?:boolean;conductiveSeaIce?:boolean;underIceOcean?:boolean};
+export interface SeaIceHeatDiagnostics {iceArea:Float64Array;skinK:Float64Array;conductiveWm2:Float64Array;airWm2:Float64Array;oceanWm2:Float64Array;radiationWm2:Float64Array;balanceResidualWm2:Float64Array;}
 export interface EnvironmentCheckpoint {atmosphere:AtmosphereCheckpoint;ocean:OceanCheckpoint;}
 const clamp=(x:number)=>Math.max(0,Math.min(1,x));
 
 /** Total enthalpy is the sum of sensible reservoirs + Lv*vapor - Lf*ice.
  * Sensible heat of moving rain/runoff is omitted. */
 export class EnvironmentModel {
+    readonly seaIceHeat:SeaIceHeatDiagnostics|null;
+    seaIceHeatTimeS:number|null=null;
     surfaceSolver:{phase(dt:number):void;refresh():void;reconcileIce():void;route(dt:number):void;resetRates():void;compact(dt:number):void}|null=null;
     readonly ocean:OceanTransport;
     readonly atmosphere:AtmosphericCirculation|null;
@@ -25,7 +29,12 @@ export class EnvironmentModel {
     readonly vegetation:Float64Array;
     readonly initialEnthalpy:number;
     constructor(readonly thermal:ThermalModel,readonly water:WaterModel,readonly config:EnvironmentConfig,initialEnthalpy?:number) {
-        const n=thermal.grid.count;this.ocean=new OceanTransport(thermal,water,!!config.dynamicCirculation);
+        if(config.conductiveSeaIce&&!thermal.config.separateReservoirs)throw new Error('Conductive sea ice requires separate thermal reservoirs');
+        // Older conductive experiments enabled both closures. An explicit
+        // transport switch separates factorial probes without changing saves.
+        const n=thermal.grid.count;this.ocean=new OceanTransport(thermal,water,!!config.dynamicCirculation,config.underIceOcean??!!config.conductiveSeaIce);
+        this.seaIceHeat=config.conductiveSeaIce?{iceArea:new Float64Array(n),skinK:new Float64Array(n),conductiveWm2:new Float64Array(n),airWm2:new Float64Array(n),oceanWm2:new Float64Array(n),radiationWm2:new Float64Array(n),balanceResidualWm2:new Float64Array(n)}:null;
+        thermal.oceanSurfaceSolver=config.conductiveSeaIce?this:null;
         this.atmosphere=config.dynamicCirculation?new AtmosphericCirculation(thermal,water):null;
         if(config.glaciers)water.attachGlacier(derivePlanet(thermal.planet).gravityMps2);
         this.iceCover=new Float64Array(n);this.snowCover=new Float64Array(n);this.landEvaporation=new Float64Array(n).fill(1);this.heatJm2=new Float64Array(n);this.vegetation=new Float64Array(n).fill(.5);
@@ -52,8 +61,18 @@ export class EnvironmentModel {
         }
         this.initialEnthalpy=initialEnthalpy??this.enthalpy();this.refresh();this.ocean.step(0,config.oceanStrengthMps);
     }
+    stepOceanSurface(k:number,dt:number) {
+        const m=this.thermal,w=this.water,wet=1-w.land[k];
+        const base=clamp(m.orbit.bondAlbedo+(this.config.vegetation?w.land[k]*.06*(.5-this.vegetation[k]):0));
+        const flux=seaIceSurfaceExchange({wetArea:wet,marineArea:Math.max(0,wet-w.inlandWaterFraction[k]),iceKgM2:w.seaIceKgM2[k],waterK:m.oceanTemperatureK[k],airK:m.temperatureK[k],waterCapacity:m.oceanCapacity[k],airCapacity:m.capacity[k],absorbedWm2:m.absorbedWm2[k],waterAlbedo:base,iceAlbedo:this.config.iceAlbedo?Math.max(base,.65):base,emissivity:(1-(m.config.airRadiationFraction??0))*m.config.emissivity,dt});
+        m.oceanTemperatureK[k]=flux.waterK;m.temperatureK[k]=flux.airK;
+        const d=this.seaIceHeat!;d.iceArea[k]=flux.iceArea;d.skinK[k]=flux.skinK;d.conductiveWm2[k]=flux.conductiveWm2;d.airWm2[k]=flux.iceAirWm2;d.oceanWm2[k]=flux.iceOceanWm2;d.radiationWm2[k]=flux.radiationWm2;d.balanceResidualWm2[k]=flux.balanceResidualWm2;
+        return flux.radiationWm2;
+    }
     checkpoint():EnvironmentCheckpoint|null {return this.atmosphere?{atmosphere:this.atmosphere.checkpoint(),ocean:this.ocean.checkpoint()!}:null;}
     restore(s:EnvironmentCheckpoint|null) {
+        this.seaIceHeatTimeS=null;
+        if(this.seaIceHeat)for(const field of Object.values(this.seaIceHeat))field.fill(0);
         if(!!s!==!!this.atmosphere)throw new Error('Mismatched circulation state');
         if(s){this.atmosphere!.restore(s.atmosphere);this.ocean.restore(s.ocean,this.config.oceanStrengthMps);}
         this.ocean.step(0,this.config.oceanStrengthMps);
@@ -151,6 +170,7 @@ export class EnvironmentModel {
         if(m.config.separateReservoirs){m.applyLandHeat(this.landHeatJm2);m.applyOceanHeat(this.oceanHeatJm2);}
         this.phase(dt);this.surfaceSolver?.compact(dt);w.glacier?.step(dt,m.landTemperatureK);
         if(this.surfaceSolver){this.surfaceSolver.reconcileIce();this.surfaceSolver.route(dt);}else w.routeSurface(dt);
+        if(this.seaIceHeat)this.seaIceHeatTimeS=m.timeS+dt;
     }
     diagnostics() {
         const m=this.thermal,w=this.water,n=w.grid.count;let land=0,wet=0,ice=0,snow=0,albedo=0,current=0;

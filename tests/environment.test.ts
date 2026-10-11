@@ -10,9 +10,35 @@ import {OceanTransport} from '../ocean.ts';
 import {VegetationModel} from '../vegetation.ts';
 import {generateSurfaceReference} from '../surface.ts';
 import {captureEnvironment,comparisonCSV} from '../environment-comparison.ts';
+import {seaIceSurfaceExchange} from '../sea-ice-thermodynamics.ts';
 
 const g=makeThermalGrid(8,4),n=g.count;
 const near=(a:number,b:number,t=1e-5)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
+test('conductive ice exposes conservative summer melt heat and a cold partial-cover skin',()=>{
+    const x={wetArea:.7,marineArea:.5,iceKgM2:917*.5*.25,waterK:271.35,airK:300,waterCapacity:42e6*.7,airCapacity:10e6,absorbedWm2:500,emissivity:.5,dt:900};
+    for(const airK of [240,300]){
+        const d=seaIceSurfaceExchange({...x,airK,absorbedWm2:airK===240?0:500});
+        near(d.iceArea,.25,1e-12);
+        near(x.waterCapacity*(d.waterK-x.waterK)+x.airCapacity*(d.airK-airK),x.dt*d.radiationWm2,1e-5);
+        if(airK===300){near(d.skinK,271.35);assert.ok(d.iceOceanWm2>0,'summer surplus supplies finite ice melt');}
+        else{assert.ok(d.skinK<271.35);assert.ok(d.conductiveWm2>0);near(d.balanceResidualWm2,0,1e-9);}
+    }
+    const open=seaIceSurfaceExchange({...x,iceKgM2:0});assert.equal(open.iceArea,0);assert.equal(open.iceOceanWm2,0);
+    near(x.waterCapacity*(open.waterK-x.waterK)+x.airCapacity*(open.airK-x.airK),x.dt*open.radiationWm2,1e-5);
+});
+test('partly frozen ocean partitions absorbed sunshine between leads and ice without changing the external budget',()=>{
+    // 300 incident W/m2, half water at albedo .3, half ice at .65.
+    const x={wetArea:1,marineArea:1,iceKgM2:917*.5*.5,waterK:271.35,airK:260,waterCapacity:42e6,airCapacity:10e6,absorbedWm2:157.5,emissivity:.3,dt:1800};
+    const mixed=seaIceSurfaceExchange(x),split=seaIceSurfaceExchange({...x,waterAlbedo:.3,iceAlbedo:.65} as any);
+    near((split as any).openShortwaveWm2,105,1e-10);near((split as any).iceShortwaveWm2,52.5,1e-10);
+    assert.ok(split.waterK>mixed.waterK,'open leads must retain their larger share of sunshine');
+    assert.ok(split.skinK<mixed.skinK,'ice skin must not receive sunshine absorbed by open leads');
+    near(x.waterCapacity*(split.waterK-x.waterK)+x.airCapacity*(split.airK-x.airK),x.dt*split.radiationWm2,1e-5);
+    near(split.balanceResidualWm2,0,1e-9);
+    const noContrast=seaIceSurfaceExchange({...x,waterAlbedo:.3,iceAlbedo:.3} as any);
+    near(noContrast.waterK,mixed.waterK,1e-12);near(noContrast.airK,mixed.airK,1e-12);
+});
+
 function setup(f=0,t=270,windMps=0) {
     const land=new Float64Array(n).fill(f),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,DEFAULT_THERMAL,land,0,g);
     m.temperatureK.fill(t);
@@ -73,6 +99,71 @@ test('closed ocean gyres redistribute heat conservatively, preserve uniform fiel
     m.temperatureK[0]=300;const energy=m.energy();ocean.step(1800,1);near(m.energy(),energy);
     assert.ok(m.temperatureK.some((t,i)=>i!==0&&t>280));assert.ok(m.temperatureK.every(t=>t>=280&&t<=300));
     w.land.fill(1);m.temperatureK[0]=320;const dry=m.temperatureK.slice();ocean.step(1800,1);assert.deepEqual(m.temperatureK,dry);assert.ok(ocean.eastMps.every(v=>v===0));
+});
+// Mutations caught: applying winter loss to the full mixed layer regardless
+// of ice thickness; treating frozen ocean as absent liquid heat carrier.
+test('conductive sea ice limits winter growth more strongly through thick ice',()=>{
+    function growth(thicknessM:number,enabled:boolean) {
+        const land=new Float64Array(n),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,separateReservoirs:true},land,0,g);
+        m.temperatureK.fill(240);m.oceanTemperatureK.fill(271.35);
+        const w=new WaterModel(g,DEFAULT_PLANET.radiusM,land,new Float64Array(n),m.temperatureK,{...DEFAULT_WATER,evaporationFraction:0,windMps:0,moistureDiffusivityM2s:0});
+        w.seedFrozen(new Float64Array(n),new Float64Array(n).fill(917*thicknessM));
+        const e=new EnvironmentModel(m,w,{...DEFAULT_ENVIRONMENT,conductiveSeaIce:enabled} as any),before=w.seaIceKgM2[0];
+        m.advanceTo(m.stepS);e.phase(m.stepS);
+        near(w.diagnostics().residualMm,0,1e-7);
+        near(e.enthalpy()-e.initialEnthalpy-m.radiationJm2,0,1e-4);
+        return w.seaIceKgM2[0]-before;
+    }
+    const thin=growth(.5,true),thick=growth(2,true);
+    assert.ok(thin>0,'winter forcing should freeze water');
+    assert.ok(thick<thin*.7,`${thick} thick-ice growth should be smaller than ${thin} thin-ice growth`);
+    near(growth(.5,false),growth(2,false),1e-9);
+});
+test('sea ice conduction and under-ice ocean transport can be controlled independently',()=>{
+    for(const [conduction,transport] of [[true,false],[false,true],[true,true],[false,false]]) {
+        const {m,w}=separateSetup();
+        const e=new EnvironmentModel(m,w,{...DEFAULT_ENVIRONMENT,conductiveSeaIce:conduction,underIceOcean:transport} as any);
+        assert.equal(!!m.oceanSurfaceSolver,conduction);
+        assert.equal(e.ocean.underIce,transport);
+    }
+    const {m,w}=separateSetup();
+    assert.equal(new EnvironmentModel(m,w,{...DEFAULT_ENVIRONMENT,conductiveSeaIce:true}).ocean.underIce,true,'previous conductive saves retain their transport mode');
+});
+
+test('conductive sea ice retains conservative heat transport beneath a frozen ocean',()=>{
+    const land=new Float64Array(n),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,separateReservoirs:true},land,0,g);
+    m.oceanTemperatureK.fill(271.35);m.oceanTemperatureK[0]=280;
+    const w=new WaterModel(g,DEFAULT_PLANET.radiusM,land,new Float64Array(n),m.temperatureK,DEFAULT_WATER);
+    w.seedFrozen(new Float64Array(n),new Float64Array(n).fill(917));w.setWinds(new Float64Array(n).fill(10),new Float64Array(n));
+    const before=m.oceanTemperatureK.slice(),energy=m.energy();
+    const ocean=new OceanTransport(m,w,false,true);ocean.step(1800,1);
+    assert.ok(m.oceanTemperatureK.some((t,k)=>k!==0&&t>before[k]),'liquid beneath ice must carry heat');
+    near(m.energy(),energy,1e-4);
+    assert.ok(m.oceanTemperatureK.every(t=>t>=271.35&&t<=280));
+    w.land.fill(1);const dry=m.oceanTemperatureK.slice();ocean.step(1800,1);assert.deepEqual(m.oceanTemperatureK,dry);
+});
+
+test('under-ice transport changes only the frozen mask and keeps the same ice-free wet support',()=>{
+    const a=separateSetup(),b=separateSetup();
+    for(const {m,w} of [a,b]) {
+        w.config.windMps=10;
+        w.inlandWaterFraction.fill(.3);w.setWinds(new Float64Array(n).fill(10),new Float64Array(n));m.oceanTemperatureK[0]=280;
+    }
+    const iceFree=new OceanTransport(a.m,a.w,false,false),under=new OceanTransport(b.m,b.w,false,true);
+    iceFree.step(1800,1);under.step(1800,1);
+    assert.deepEqual(iceFree.heatWm2,under.heatWm2);assert.deepEqual(iceFree.eastMps,under.eastMps);
+    assert.deepEqual(a.m.oceanTemperatureK,b.m.oceanTemperatureK);
+});
+test('conductive ice cannot extract unlimited heat after the finite liquid ocean is exhausted',()=>{
+    const land=new Float64Array(n),orbit={...DEFAULT_ORBIT,distanceM:3*DEFAULT_ORBIT.distanceM};
+    const m=new ThermalModel(DEFAULT_PLANET,orbit,{...DEFAULT_THERMAL,separateReservoirs:true,oceanDepthM:.1,diffusion:0},land,0,g);
+    m.temperatureK.fill(240);m.oceanTemperatureK.fill(271.35);
+    const w=new WaterModel(g,DEFAULT_PLANET.radiusM,land,new Float64Array(n),m.temperatureK,{...DEFAULT_WATER,initialOceanDepthM:.4585,evaporationFraction:0,windMps:0,moistureDiffusivityM2s:0});
+    w.seedFrozen(new Float64Array(n),new Float64Array(n).fill(458.5));
+    const e=new EnvironmentModel(m,w,{...DEFAULT_ENVIRONMENT,conductiveSeaIce:true,vegetation:false,oceanStrengthMps:0});
+    assert.ok(w.oceanGlobalKgM2<1e-10);
+    assert.doesNotThrow(()=>{while(m.timeS<30*86400)m.advanceTo(m.timeS+m.stepS,1,dt=>e.step(dt));});
+    assert.ok(m.oceanTemperatureK.every(t=>t>0));near(w.diagnostics().residualMm,0,1e-7);near(e.diagnostics().energyResidualJm2,0,.001);
 });
 test('vegetation changes gradually under sustained drought and its checkpoint restores memory',()=>{
     const land=new Float64Array(n).fill(1),r=generateSurfaceReference(g,DEFAULT_PLANET,DEFAULT_ORBIT,DEFAULT_THERMAL,DEFAULT_WATER,land,new Float64Array(n));

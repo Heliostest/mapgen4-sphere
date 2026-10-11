@@ -5,6 +5,7 @@ import type {EnvironmentModel} from './environment.ts';
 import {makeSurfacePartition,partitionCell,type SurfacePartition,type RefinementQuality,MAX_SURFACE_PATCHES} from './refinement-topology.ts';
 import {type SurfaceTerrain} from './surface-grid.ts';
 import {record,field} from './runtime-state.ts';
+import {seaIceSurfaceExchange} from './sea-ice-thermodynamics.ts';
 
 const stores=['snow','ice','grounded','shelfLand','shelfSea','soil','surface'] as const;
 type Store=typeof stores[number];
@@ -44,7 +45,11 @@ export class RefinedSurface {
         // liquid even in parents with no dry land.
         r.terrainSource=source;r.attachRouting(false);
         for(let t=0;t<p.parent.length;t++) {
-            const k=p.parent[t];r.rain[t]=w.precipitationKgM2S[k]*(p.land[t]+p.sea[t]);r.landK[t]=Math.max(1,m.landTemperatureK[k]-.0065*(p.heightM[t]-r.meanHeight[k]));r.seaK[t]=m.oceanTemperatureK[k];
+            const k=p.parent[t],f=w.land[k];
+            r.rain[t]=w.config.moistureScheme==='transport'
+                ? (f>0?w.landPrecipitationKgM2S[k]*p.land[t]/f:0)+(f<1?w.oceanPrecipitationKgM2S[k]*p.sea[t]/(1-f):0)
+                : w.precipitationKgM2S[k]*(p.land[t]+p.sea[t]);
+            r.landK[t]=Math.max(1,m.landTemperatureK[k]-.0065*(p.heightM[t]-r.meanHeight[k]));r.seaK[t]=m.oceanTemperatureK[k];
         }
         // Recenter clipped contrasts exactly in sensible-heat space.
         for(let k=0;k<m.grid.count;k++) {
@@ -165,14 +170,24 @@ export class RefinedSurface {
     }
     stepSurface(k:number,dt:number,insolation:number) {
         const m=this.model,p=this.partition,airFraction=m.config.airRadiationFraction??0;let net=0;
+        const iceHeat=this.environment?.seaIceHeat;
+        if(iceHeat)for(const field of Object.values(iceHeat))field[k]=0;
         for(let t=p.offset[k];t<p.offset[k+1];t++)for(const ocean of [false,true]) {
             const area=ocean?p.sea[t]:p.land[t];if(area===0)continue;
             const a=ocean?this.seaK:this.landK,cs=area*(ocean?m.config.oceanDepthM*4.2e6:m.config.landHeatCapacity),scale=ocean?1:Math.max(.55,Math.exp(-.0065*p.heightM[t]/288.15));
+            if(ocean&&iceHeat) {
+                const e=this.environment!,base=Math.max(0,Math.min(1,m.orbit.bondAlbedo+(e.config.vegetation?p.land[t]/(p.land[t]+p.sea[t])*.06*(.5-e.vegetation[k]):0)));
+                const airK=this.seaAirK(t),flux=seaIceSurfaceExchange({wetArea:area,marineArea:Math.max(0,area-this.lakeArea[t]),iceKgM2:this.ice[t],waterK:a[t],airK,waterCapacity:cs,airCapacity:m.capacity[k],absorbedWm2:(1-this.albedo[t])*insolation,waterAlbedo:base,iceAlbedo:e.config.iceAlbedo?Math.max(base,.65):base,emissivity:(1-airFraction)*m.config.emissivity,dt});
+                a[t]=flux.waterK;m.temperatureK[k]+=flux.airK-airK;net+=flux.radiationWm2;
+                iceHeat.iceArea[k]+=flux.iceArea;iceHeat.skinK[k]+=flux.iceArea*flux.skinK;iceHeat.conductiveWm2[k]+=flux.conductiveWm2;iceHeat.airWm2[k]+=flux.iceAirWm2;iceHeat.oceanWm2[k]+=flux.iceOceanWm2;iceHeat.radiationWm2[k]+=flux.radiationWm2;iceHeat.balanceResidualWm2[k]+=flux.balanceResidualWm2;
+                continue;
+            }
             const radiation=area*((1-this.albedo[t])*insolation-(1-airFraction)*m.config.emissivity*SIGMA*(a[t]/scale)**4);
             a[t]+=dt*radiation/cs;net+=radiation;
             const ca=m.capacity[k],rate=10*area*(1/ca+1/cs),heat=(a[t]-(ocean?this.seaAirK(t):this.landAirK(t)))*(-Math.expm1(-dt*rate))/(1/ca+1/cs);
             a[t]-=heat/cs;m.temperatureK[k]+=heat/ca;
         }
+        if(iceHeat&&iceHeat.iceArea[k]>0)iceHeat.skinK[k]/=iceHeat.iceArea[k];
         this.temperatures(k);return net;
     }
     phase(dt:number) {
@@ -218,20 +233,24 @@ export class RefinedSurface {
         m.applySurfaceCellHeat(k,0,-amount*LV);this.temperatures(k);
     }
     private aggregateCell(k:number) {const p=this.partition;for(const kind of stores){let sum=0;for(let t=p.offset[k];t<p.offset[k+1];t++)sum+=this[kind][t];this.water[coarse[kind]][k]=sum;}this.temperatures(k);}
-    precipitate(k:number,rain:number,dt:number) {
-        const p=this.partition,w=this.water,q=p.level[k],start=p.offset[k],u=w.windEastMps[k],v=w.windNorthMps[k],speed=Math.hypot(u,v),weights=new Float64Array(q*q);let sum=0,snow=0;
+    precipitate(k:number,rain:number,dt:number,landRain?:number) {
+        const p=this.partition,w=this.water,q=p.level[k],start=p.offset[k],u=w.windEastMps[k],v=w.windNorthMps[k],speed=Math.hypot(u,v),weights=new Float64Array(q*q);let sum=0,snow=0,landWeight=0,seaWeight=0;
         for(let t=start;t<p.offset[k+1];t++) {
             const x=(t-start)%q,y=Math.floor((t-start)/q),xx=Math.max(0,Math.min(q-1,x-Math.round(speed>0?u/speed:0))),yy=Math.max(0,Math.min(q-1,y+Math.round(speed>0?v/speed:0))),up=p.heightM[start+yy*q+xx];
             weights[t-start]=(p.land[t]+p.sea[t])*Math.exp(Math.max(-1,Math.min(1,(p.heightM[t]-up)/1000)));sum+=weights[t-start];
+            const area=p.land[t]+p.sea[t];landWeight+=weights[t-start]*p.land[t]/area;seaWeight+=weights[t-start]*p.sea[t]/area;
         }
         for(let t=start;t<p.offset[k+1];t++) {
-            const amount=rain*weights[t-start]/sum,area=p.land[t]+p.sea[t],land=amount*p.land[t]/area;
+            const area=p.land[t]+p.sea[t],uniform=rain*weights[t-start]/sum;
+            const land=landRain===undefined?uniform*p.land[t]/area:landWeight>0?landRain*weights[t-start]*p.land[t]/area/landWeight:0;
+            const sea=landRain===undefined?uniform*p.sea[t]/area:seaWeight>0?(rain-landRain)*weights[t-start]*p.sea[t]/area/seaWeight:0,amount=landRain===undefined?uniform:land+sea;
             this.rain[t]=amount/dt;const frozen=this.landAirK(t)<273.15?land:0;this.snowfall[t]=frozen/dt;this.snow[t]+=frozen;snow+=frozen;
             const liquid=land-frozen,capacity=w.config.soilCapacityKgM2*p.land[t],infiltration=Math.min(liquid,Math.max(0,capacity-this.soil[t]));
             this.soil[t]+=infiltration;this.surface[t]+=liquid-infiltration;
             const drainage=Math.max(0,this.soil[t]-.7*capacity)*(-Math.expm1(-dt/(3*86400)));this.soil[t]-=drainage;this.surface[t]+=drainage;
             const lake=this.lakeArea[t];
-            this.surface[t]+=amount*lake/area;w.oceanGlobalKgM2+=amount*Math.max(0,p.sea[t]-lake)/area/w.grid.count;
+            this.surface[t]+=landRain===undefined?amount*lake/area:p.sea[t]>0?sea*lake/p.sea[t]:0;
+            w.oceanGlobalKgM2+=(landRain===undefined?amount*Math.max(0,p.sea[t]-lake)/area:p.sea[t]>0?sea*Math.max(0,p.sea[t]-lake)/p.sea[t]:0)/w.grid.count;
         }
         this.aggregateCell(k);return snow;
     }

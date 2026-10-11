@@ -77,12 +77,15 @@ function bedLevel(depth:number,bed:LakeBed) {
     return (lo+hi)/2;
 }
 const cache=new WeakMap<object,{time:number;style:string;view:TerrainWaterView}>();
+const riverScratch=new WeakMap<RoutingNetwork,Float32Array>();
 export function terrainWaterView(rt:ThermalRuntime,display:ChannelDisplay={}):TerrainWaterView|null {
     const w=rt.water,route=w?.routing,source=rt.terrainSource,m=rt.model;
     if(!route||!source?.mesh||!m)return null;
     const min=display.minFlowM3S??300,width=display.widthCoefficient??.07,max=display.maxWidthRatio??.85,enabled=display.enabled??true,style=JSON.stringify([min,width,max,enabled]);
     const cached=cache.get(route);if(cached?.time===m.timeS&&cached.style===style)return cached.view;
-    const mesh=source.mesh,n=mesh.numTriangles,buffer=new Float32Array(126*mesh.numSolidTriangles),channels=riverChannelField(rt);
+    const mesh=source.mesh,n=mesh.numTriangles,channels=riverChannelField(rt);
+    let buffer=riverScratch.get(route.network);
+    if(!buffer){buffer=new Float32Array(126*mesh.numSolidTriangles);riverScratch.set(route.network,buffer);}
     const params={lg_min_flow:Math.log(min/100),lg_river_width:Math.log(width),max_width:max,headwaters:true};
     let riverTriangles=enabled?Geometry.setRiverGeometry({mesh,s_downslope_t:channels.receiverSide,flow_s:channels.sides},5.5,params,buffer):0;
     // True instantaneous finite-volume transfer is a separate overlay. It can

@@ -49,13 +49,14 @@ export function waterConfig(v:unknown):WaterConfig {
     return {...(c.moistureScheme==='transport'?{moistureScheme:'transport' as const}:{}),evaporationFraction:scalar(c.evaporationFraction,'evaporation fraction',0,1),soilCapacityKgM2:scalar(c.soilCapacityKgM2,'soil capacity',1,1000),initialOceanDepthM:scalar(c.initialOceanDepthM,'water inventory',0,10000),windMps:scalar(c.windMps,'wind',-100,100),moistureDiffusivityM2s:scalar(c.moistureDiffusivityM2s,'moisture mixing',0,1e7),routingSpeedMps:scalar(c.routingSpeedMps,'routing speed',.01,10)};
 }
 export function environmentConfig(v:unknown):EnvironmentConfig {
-    const c=record(v);return {oceanStrengthMps:scalar(c.oceanStrengthMps,'ocean current',0,2),vegetation:boolean(c.vegetation),iceAlbedo:boolean(c.iceAlbedo),terrainWater:c.terrainWater===undefined?false:boolean(c.terrainWater),glaciers:c.glaciers===undefined?false:boolean(c.glaciers),dynamicCirculation:c.dynamicCirculation===undefined?false:boolean(c.dynamicCirculation)};
+    const c=record(v);return {oceanStrengthMps:scalar(c.oceanStrengthMps,'ocean current',0,2),vegetation:boolean(c.vegetation),iceAlbedo:boolean(c.iceAlbedo),terrainWater:c.terrainWater===undefined?false:boolean(c.terrainWater),glaciers:c.glaciers===undefined?false:boolean(c.glaciers),dynamicCirculation:c.dynamicCirculation===undefined?false:boolean(c.dynamicCirculation),...(c.conductiveSeaIce===undefined?{}:{conductiveSeaIce:boolean(c.conductiveSeaIce)}),...(c.underIceOcean===undefined?{}:{underIceOcean:boolean(c.underIceOcean)})};
 }
 export function decodeRuntimeState(value:unknown):RuntimeState {
     const d=record(value),g=record(d.grid);if(d.version!==1)throw new Error('Unsupported simulation state version');
     const width=scalar(g.width,'grid width',4,8192,true),height=scalar(g.height,'grid height',2,4096,true),n=width*height,sn=SURFACE_WIDTH*SURFACE_HEIGHT;
     if(n>16384)throw new Error('Simulation grid too large');
     const result:RuntimeState={version:1,grid:{width,height},enabled:boolean(d.enabled),waterEnabled:boolean(d.waterEnabled),config:thermalConfig(d.config),waterConfig:waterConfig(d.waterConfig),environmentConfig:environmentConfig(d.environmentConfig),iceInventory:decodeIceInventory(d.iceInventory),state:null};
+    if(result.environmentConfig.conductiveSeaIce&&!result.config.separateReservoirs)throw new Error('Conductive sea ice requires separate thermal reservoirs');
     if(d.refinement!==undefined){if(d.refinement!=='balanced'&&d.refinement!=='high')throw new Error('Invalid refinement quality');result.refinement=d.refinement;}
     if(d.state===null)return result;
     if(!result.enabled)throw new Error('Disabled simulation has active state');
@@ -86,6 +87,11 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
             routing={volumeM3:f(r,'volumeM3',length),fluxM3S:f(r,'fluxM3S',length),receiverSide:new Int32Array(receivers)};
         }else if(w.routing!==undefined&&w.routing!==null)throw new Error('Unexpected terrain routing state');
         water={snowfallKgM2S:w.snowfallKgM2S===undefined||w.snowfallKgM2S===null?null:f(w,'snowfallKgM2S'),atmosphereKgM2:f(w,'atmosphereKgM2'),soilKgM2:f(w,'soilKgM2'),surfaceKgM2:f(w,'surfaceKgM2'),snowKgM2:f(w,'snowKgM2'),seaIceKgM2:f(w,'seaIceKgM2'),meltKgM2S:f(w,'meltKgM2S'),precipitationKgM2S:f(w,'precipitationKgM2S'),evaporationKgM2S:f(w,'evaporationKgM2S'),dischargeM3S:f(w,'dischargeM3S'),windEastMps:f(w,'windEastMps',n,-wind,wind),windNorthMps:f(w,'windNorthMps',n,-wind,wind),oceanGlobalKgM2:scalar(w.oceanGlobalKgM2,'ocean store',0),elapsedS:scalar(w.elapsedS,'water age',0,Number.MAX_SAFE_INTEGER),initialTotalMm:scalar(w.initialTotalMm,'initial water',0),routing,landIceKgM2,landIceCorrection,glacier,shelfLandIceKgM2:w.shelfLandIceKgM2===undefined?new Float64Array(n):f(w,'shelfLandIceKgM2'),shelfSeaIceKgM2:w.shelfSeaIceKgM2===undefined?new Float64Array(n):f(w,'shelfSeaIceKgM2')};
+        if(w.landPrecipitationKgM2S!==undefined){
+            if(result.waterConfig.moistureScheme!=='transport')throw new Error('Unexpected land precipitation');
+            water.landPrecipitationKgM2S=f(w,'landPrecipitationKgM2S');
+            if(water.landPrecipitationKgM2S.some((p,i)=>p>water!.precipitationKgM2S[i]+1e-12))throw new Error('Invalid land precipitation allocation');
+        }
         vegetation={meanK:f(v,'meanK',sn,0,1e5),rainMm:f(v,'rainMm',sn),cover:f(v,'cover',sn,0,1),weights:f(v,'weights',sn*Object.keys(BIOMES).length,0,1)};
         const types=Object.keys(BIOMES).length;
         for(let i=0;i<sn;i++){let sum=0;for(let b=0;b<types;b++)sum+=vegetation.weights[i*types+b];if(Math.abs(sum-1)>1e-8)throw new Error('Invalid vegetation mixture');}
@@ -115,7 +121,7 @@ export function decodeRuntimeState(value:unknown):RuntimeState {
     if(s.refined!==undefined)state.refined=decodeRefinedCheckpoint(s.refined,n);
     if(state.refined){const p=state.refined.partition;for(let k=0;k<n;k++){const q=p.level[k];for(let t=p.offset[k];t<p.offset[k+1];t++){const a=t-p.offset[k],u=(k%width+(a%q+.5)/q)/width,v=Math.acos(1-2*(Math.floor(k/width)+(Math.floor(a/q)+.5)/q)/height)/Math.PI;if(Math.abs(p.u[t]-u)>1e-12||Math.abs(p.v[t]-v)>1e-12)throw new Error('Invalid refinement registration');}}}
     if(!!state.refined!==!!(result.refinement&&result.config.separateReservoirs&&water))throw new Error('Missing or unexpected refined reservoirs');
-    if(water?.snowfallKgM2S?.some((v,i)=>v>water!.precipitationKgM2S[i]*(state.refined?1:state.land[i])+1e-12))throw new Error('Snowfall exceeds precipitation on land');
+    if(water?.snowfallKgM2S?.some((v,i)=>v>(water!.landPrecipitationKgM2S?.[i]??water!.precipitationKgM2S[i]*(state.refined?1:state.land[i]))+1e-12))throw new Error('Snowfall exceeds precipitation on land');
     if(!Number.isFinite(time)||time>Number.MAX_SAFE_INTEGER||time>state.lastTarget+1e-6||state.lastTarget-time>=state.stepS+1e-6)throw new Error('Inconsistent simulation time');
     if(water&&Math.abs(water.elapsedS-age)>Math.max(1e-6,age*1e-10))throw new Error('Inconsistent water age');
     return result;

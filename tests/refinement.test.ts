@@ -9,17 +9,35 @@ import {TerrainWater} from '../terrain-water.ts';
 import {makeSurfacePartition} from '../refinement-topology.ts';
 import {sampleTerrainGrid} from '../thermal.ts';
 import {makeSphereMesh} from '../sphere-mesh.ts';
-function fixture(coast=false) {
+function fixture(coast=false,transport=false,refined=true,coastThreshold=4,conductive=false) {
     const g=makeThermalGrid(8,4),rt=new ThermalRuntime(g);
     rt.enabled=rt.waterEnabled=true;rt.config.separateReservoirs=true;
+    if(conductive)rt.environmentConfig.conductiveSeaIce=true;
+    if(transport)rt.waterConfig.moistureScheme='transport';
     const directions:number[]=[],elevation:number[]=[];
     for(let j=0;j<32;j++)for(let x=0;x<64;x++) {
         directions.push(...uvToDirection((x+.5)/64,Math.acos(1-2*(j+.5)/32)/Math.PI));
-        elevation.push(coast&&x%8>=4?-.2:x%8>=4?.65:.005);
+        elevation.push(coast&&x%8>=coastThreshold?-.2:x%8>=4?.65:.005);
     }
     rt.setTerrain(new Float64Array(g.count).fill(coast?.5:1),new Float64Array(g.count).fill(coast?.005:.3275),{directions,elevation});
-    (rt as any).refinement='balanced';rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);return rt;
+    if(refined)rt.refinement='balanced';rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);return rt;
 }
+test('refined conductive ice uses local thickness and records the ice surface heat balance',()=>{
+    function growth(thickness:number) {
+        const rt=fixture(true,false,true,4,true),r=rt.refinedSurface!,m=rt.model!,w=rt.water!,k=0;
+        m.temperatureK.fill(240);r.seaK.fill(271.35);
+        const total=w.diagnostics().totalMm;
+        r.ice.set(r.partition.sea.map(a=>a*917*thickness));r.aggregate();w.oceanGlobalKgM2+=total-w.diagnostics().totalMm;
+        const before=w.seaIceKgM2[k],enthalpy=rt.environment!.enthalpy();
+        const radiation=r.stepSurface(k,m.stepS,0);r.phase(m.stepS);
+        assert.ok(Math.abs(rt.environment!.enthalpy()-enthalpy-radiation*m.stepS/m.grid.count)<.001);
+        assert.ok(Math.abs(w.diagnostics().residualMm)<1e-7);
+        const d=rt.environment!.seaIceHeat!;assert.ok(d.iceArea[k]>0);assert.ok(d.skinK[k]<271.35);
+        assert.ok(Math.abs(d.balanceResidualWm2[k])<1e-8);
+        return w.seaIceKgM2[k]-before;
+    }
+    const thin=growth(.5),thick=growth(2);assert.ok(thin>0&&thick<thin*.7);
+});
 test('resolved highland and lowland keep independent evolving surface temperatures and snow',()=>{
     const rt=fixture(),v=Math.acos(.25)/Math.PI,u0=.28,u1=.34;
     assert.equal(thermalCell(rt.grid,u0,v),thermalCell(rt.grid,u1,v));
@@ -36,6 +54,72 @@ test('refined mixed coast keeps marine and land phases distinct',()=>{
     assert.ok(Math.abs(rt.water!.diagnostics().residualMm)<1e-7);
     const r=rt.refinedSurface!,p=r.partition,sea=p.land.findIndex(l=>l===0);
     assert.ok(sea>=0);assert.equal(rt.sampleWater(p.u[sea],p.v[sea])!.soilMm,null);assert.equal(rt.sampleWater(p.u[sea],p.v[sea])!.surfaceMm,null);
+});
+test('explicit coastal precipitation deposits only its land share in refined soil and snow',()=>{
+    const rt=fixture(true),r=rt.refinedSurface!,w=rt.water!,k=12;
+    r.landK.fill(270);rt.model!.temperatureK.fill(270);r.aggregate();const before=w.diagnostics().totalMm,snow=w.snowKgM2[k],ocean=w.oceanGlobalKgM2;
+    const frozen=r.precipitate(k,10,1800,8);r.aggregate();
+    assert.ok(Math.abs(frozen-8)<1e-12);assert.ok(Math.abs(w.snowKgM2[k]-snow-8)<1e-12);
+    assert.ok(Math.abs(w.oceanGlobalKgM2-ocean-2/w.grid.count)<1e-9);
+    assert.ok(Math.abs(w.diagnostics().totalMm-before-10/w.grid.count)<1e-9);
+});
+test('changing refined quality retains the recorded transport land deposition and exact continuation',()=>{
+    const rt=fixture(true,true),r=rt.refinedSurface!,w=rt.water!;
+    const inventory=w.diagnostics().totalMm;
+    r.landK.fill(260);r.seaK.fill(305);rt.model!.temperatureK.fill(260);w.atmosphereKgM2.fill(20);r.aggregate();
+    // Define a cold-air test fixture with a finite ocean donor, then start
+    // its heat ledger before any actual step; do not hide integration errors.
+    w.oceanGlobalKgM2+=inventory-w.diagnostics().totalMm;
+    (rt.environment as any).initialEnthalpy=rt.environment!.enthalpy()-rt.model!.radiationJm2;
+    rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,rt.model!.timeS+rt.model!.stepS,null);
+    assert.ok(w.snowfallKgM2S!.some(p=>p>0));const land=w.landPrecipitationKgM2S.slice(),sea=w.oceanPrecipitationKgM2S.slice();
+    rt.enableRefinement('high');assert.deepEqual(rt.water!.landPrecipitationKgM2S,land);assert.deepEqual(rt.water!.oceanPrecipitationKgM2S,sea);
+    const restored=ThermalRuntime.fromSnapshot(rt.snapshot(),DEFAULT_PLANET,DEFAULT_ORBIT);
+    const target=rt.model!.timeS+rt.model!.stepS;rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,target,null);restored.sync(DEFAULT_PLANET,DEFAULT_ORBIT,target,null);
+    assert.deepEqual(restored.snapshot(),rt.snapshot());
+});
+for(const remap of [false,true])test(`old terrain-weighted transport rain ${remap?'after coastal remap ':''}survives load-save-load and exact continuation`,()=>{
+    const rt=fixture(true,true,true,remap?3:4),r=rt.refinedSurface!,w=rt.water!,inventory=w.diagnostics().totalMm;
+    r.landK.fill(260);r.seaK.fill(remap?260:305);rt.model!.temperatureK.fill(260);w.atmosphereKgM2.fill(20);r.aggregate();
+    w.oceanGlobalKgM2+=inventory-w.diagnostics().totalMm;
+    (rt.environment as any).initialEnthalpy=rt.environment!.enthalpy()-rt.model!.radiationJm2;
+    // Reproduce the old surface solver's real deposition law, which did not
+    // accept a separate land amount. Both mass and latent heat still advance.
+    const precipitate=r.precipitate.bind(r);r.precipitate=(k,rain,dt)=>precipitate(k,rain,dt);
+    rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,rt.model!.timeS+rt.model!.stepS,null);
+    if(remap)rt.enableRefinement('high');
+    const saved=rt.snapshot(),fine=saved.state!.refined!,p=fine.partition,expected=new Float64Array(rt.grid.count);
+    delete saved.state!.water!.landPrecipitationKgM2S;
+    for(let t=0;t<p.parent.length;t++)expected[p.parent[t]]+=fine.rain[t]*p.land[t]/(p.land[t]+p.sea[t]);
+    if(remap)assert.ok(expected.some((v,k)=>v<saved.state!.water!.snowfallKgM2S![k]-1e-12),'Old remapping makes the rain-only split unrecoverable');
+    else assert.ok(expected.some((v,k)=>v>w.precipitationKgM2S[k]*w.land[k]+1e-12));
+    const restored=ThermalRuntime.fromSnapshot(saved,DEFAULT_PLANET,DEFAULT_ORBIT);
+    assert.equal(restored.water!.landPrecipitationKnown,false);
+    assert.equal('landPrecipitationKgM2S' in restored.snapshot().state!.water!,false,'Do not persist a fabricated split');
+    for(let k=0;k<rt.grid.count;k++)assert.ok(Math.abs(restored.water!.landPrecipitationKgM2S[k]-Math.min(saved.state!.water!.precipitationKgM2S[k],Math.max(saved.state!.water!.snowfallKgM2S![k],expected[k])))<1e-12);
+    const shown=restored.model!.timeS,beforeRollback=restored.snapshot();
+    restored.sync(DEFAULT_PLANET,DEFAULT_ORBIT,shown+restored.model!.stepS,shown);
+    assert.equal(restored.water!.landPrecipitationKnown,true);
+    restored.sync(DEFAULT_PLANET,DEFAULT_ORBIT,shown,shown);
+    assert.equal(restored.water!.landPrecipitationKnown,false,'Presented-frame rollback must retain unknown allocation');
+    assert.deepEqual(restored.snapshot(),beforeRollback);
+    const twice=ThermalRuntime.fromSnapshot(restored.snapshot(),DEFAULT_PLANET,DEFAULT_ORBIT);
+    assert.deepEqual(twice.snapshot(),restored.snapshot());
+    const target=restored.model!.timeS+restored.model!.stepS;
+    restored.sync(DEFAULT_PLANET,DEFAULT_ORBIT,target,null);twice.sync(DEFAULT_PLANET,DEFAULT_ORBIT,target,null);
+    assert.equal(restored.water!.landPrecipitationKnown,true);assert.ok(restored.snapshot().state!.water!.landPrecipitationKgM2S);
+    assert.deepEqual(twice.snapshot(),restored.snapshot());
+});
+test('first refinement retains recorded land and ocean precipitation without changing stocks',()=>{
+    const rt=fixture(true,true,false),w=rt.water!,before=w.checkpoint();
+    w.precipitationKgM2S.fill(10);w.landPrecipitationKgM2S.fill(8);w.oceanPrecipitationKgM2S.fill(2);
+    rt.enableRefinement('balanced');const r=rt.refinedSurface!,p=r.partition,land=new Float64Array(rt.grid.count),sea=land.slice();
+    assert.ok(p.land.every((l,t)=>l===0||p.sea[t]===0),'Fixture resolves separate land and sea patches');
+    for(let t=0;t<p.parent.length;t++){land[p.parent[t]]+=r.rain[t]*p.land[t]/(p.land[t]+p.sea[t]);sea[p.parent[t]]+=r.rain[t]*p.sea[t]/(p.land[t]+p.sea[t]);}
+    for(let k=0;k<rt.grid.count;k++){assert.ok(Math.abs(land[k]-8)<1e-12);assert.ok(Math.abs(sea[k]-2)<1e-12);}
+    for(const key of ['atmosphereKgM2','soilKgM2','surfaceKgM2','snowKgM2','seaIceKgM2','landIceKgM2'] as const)
+        for(let k=0;k<rt.grid.count;k++)assert.ok(Math.abs(w[key][k]-before[key][k])<=8*Number.EPSILON*Math.max(1,before[key][k]),'Only patch aggregation roundoff');
+    assert.equal(w.oceanGlobalKgM2,before.oceanGlobalKgM2);
 });
 test('refined snapshot restores all independent stores and continues identically',()=>{
     const rt=fixture();rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,1800,null);
