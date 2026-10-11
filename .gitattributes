@@ -1,3 +1,13 @@
 # Preserve the archived byte fingerprints across Windows and Unix checkouts.
 docs/evidence/circulation-stage4-20261009/** text=auto eol=lf
 docs/evidence/weather-stage5-20261009/** text=auto eol=lf
+
+# Keep original climate evidence bytes, including generated SVG formatting.
+# Production source still uses the repository's normal whitespace checks.
+docs/evidence/earth-moisture-p0-20261011/** -text -whitespace
+docs/evidence/earth-moisture-structural-20261011/** -text -whitespace
+docs/evidence/earth-p1-audit-20261011/** -text -whitespace
+docs/evidence/earth-physics-information-20261011/** -text -whitespace
+docs/evidence/earth-seaice-causal-20261011/** -text -whitespace
+docs/evidence/earth-seaice-p1-20261011/** -text -whitespace
+docs/evidence/earth-status-reassessment-20261011/** -text -whitespace

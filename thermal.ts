@@ -77,6 +77,7 @@ export interface ThermalInitial {temperatureK:ArrayLike<number>;landTemperatureK
 
 export class ThermalModel {
     surfaceSolver:{stepSurface(k:number,dt:number,insolation:number):number}|null=null;
+    oceanSurfaceSolver:{stepOceanSurface(k:number,dt:number):number}|null=null;
     readonly temperatureK:Float64Array;
     readonly absorbedWm2:Float64Array;
     readonly capacity:Float64Array;
@@ -228,6 +229,7 @@ export class ThermalModel {
                 for(const ocean of [false,true]) {
                     const fraction=ocean?1-this.land[i]:this.land[i],surface=ocean?this.oceanTemperatureK:this.landTemperatureK,capacity=ocean?this.oceanCapacity:this.landCapacity;
                     if(fraction===0)continue;
+                    if(ocean&&this.oceanSurfaceSolver){radiation+=this.oceanSurfaceSolver.stepOceanSurface(i,this.stepS);continue;}
                     const net=fraction*(this.absorbedWm2[i]-(1-airFraction)*config.emissivity*SIGMA*(surface[i]/(ocean?1:this.radiationScale[i]))**4);
                     radiation+=net;surface[i]+=this.stepS*net/capacity[i];
                     // Exact two-reservoir relaxation: finite exchange never

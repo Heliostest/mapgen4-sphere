@@ -20,6 +20,33 @@ function runtime(water=true,separate=false) {
 function advance(rt:ThermalRuntime,batches:number) {
     for(let j=0;j<batches;j++)rt.sync(planet,orbit,rt.model!.timeS+rt.maxAdvanceS,rt.model!.timeS);
 }
+test('conductive sea ice roundtrips with exact continuation and rejects incompatible reservoirs',()=>{
+    const initial=runtime(true,true).snapshot();initial.environmentConfig.conductiveSeaIce=true;
+    const a=ThermalRuntime.fromSnapshot(initial,planet,orbit);advance(a,2);
+    const saved=a.snapshot(),b=ThermalRuntime.fromSnapshot(saved,planet,orbit);
+    assert.equal(b.environment!.seaIceHeatTimeS,null,'a restored checkpoint has no recorded interval heat flux');
+    assert.equal(b.environmentConfig.conductiveSeaIce,true);advance(a,1);advance(b,1);
+    assert.equal(b.environment!.seaIceHeatTimeS,b.model!.timeS);
+    assert.deepEqual(a.snapshot(),b.snapshot());assert.ok(Math.abs(a.environment!.diagnostics().energyResidualJm2)<.001);
+    const time=a.model!.timeS;a.sync(planet,orbit,time+a.model!.stepS,time);a.sync(planet,orbit,time+2*a.model!.stepS,time);a.sync(planet,orbit,time,time);
+    assert.equal(a.model!.timeS,time);assert.equal(a.environment!.seaIceHeatTimeS,null,'rollback must invalidate the future heat diagnostic');
+    const bad=runtime().snapshot();bad.environmentConfig.conductiveSeaIce=true;
+    assert.throws(()=>decodeRuntimeState(bad),/separate thermal reservoirs/);
+});
+test('independent under-ice transport switches survive decoding and exact continuation',()=>{
+    for(const [conductiveSeaIce,underIceOcean] of [[true,false],[false,true]]) {
+        const initial=runtime(true,true).snapshot();
+        Object.assign(initial.environmentConfig,{conductiveSeaIce,underIceOcean});
+        const a=ThermalRuntime.fromSnapshot(initial,planet,orbit);advance(a,1);
+        const decoded=decodeRuntimeState(a.snapshot());
+        assert.equal((decoded.environmentConfig as any).underIceOcean,underIceOcean);
+        const b=ThermalRuntime.fromSnapshot(decoded,planet,orbit);advance(a,1);advance(b,1);
+        assert.deepEqual(a.snapshot(),b.snapshot());
+    }
+    const bad=runtime(true,true).snapshot();(bad.environmentConfig as any).underIceOcean='yes';
+    assert.throws(()=>decodeRuntimeState(bad));
+});
+
 test('a JSON save and reload continues exactly with conserved budgets and geographic cover',()=>{
     const a=runtime();advance(a,15);
     assert.equal(typeof a.snapshot,'function','runtime must expose a complete snapshot');
@@ -65,6 +92,24 @@ test('weather view preference roundtrips, defaults off for old saves, and reject
     const legacy=decodeSimulationDocument(JSON.stringify(old),identity,8);assert.equal(legacy.view.weather,false);assert.equal(legacy.runtime.state!.water!.snowfallKgM2S,null);
     old.view.weather='yes';assert.throws(()=>decodeSimulationDocument(JSON.stringify(old),identity,8));
     const bad=documentFixture();bad.runtime.state!.water!.snowfallKgM2S=new Float64Array(32).fill(99);assert.throws(()=>encodeSimulationDocument(bad),/Snowfall/);
+});
+test('transport saves validate snowfall against actual land deposition and retain old uniform-deposition saves',()=>{
+    const a=runtime(true,true),saved=a.snapshot();saved.waterConfig.moistureScheme='transport';
+    const w=saved.state!.water!,k=1;
+    w.precipitationKgM2S.fill(0);w.snowfallKgM2S=new Float64Array(32);w.precipitationKgM2S[k]=1;
+    (w as any).landPrecipitationKgM2S=new Float64Array(32);(w as any).landPrecipitationKgM2S[k]=.8;w.snowfallKgM2S[k]=.7;
+    const decoded=decodeRuntimeState(saved);assert.equal((decoded.state!.water as any).landPrecipitationKgM2S[k],.8);
+    const restored=ThermalRuntime.fromSnapshot(saved,planet,orbit);
+    assert.equal(restored.water!.landPrecipitationKgM2S[k],.8);assert.ok(Math.abs(restored.water!.oceanPrecipitationKgM2S[k]-.2)<1e-15);
+    assert.deepEqual(restored.snapshot(),decoded);
+    advance(restored,1);const next=ThermalRuntime.fromSnapshot(restored.snapshot(),planet,orbit);
+    advance(restored,1);advance(next,1);assert.deepEqual(next.snapshot(),restored.snapshot());
+    for(const invalid of [-1,NaN,1.1]){const bad=structuredClone(saved);(bad.state!.water as any).landPrecipitationKgM2S[k]=invalid;assert.throws(()=>decodeRuntimeState(bad),/land precipitation|landPrecipitation/);}
+    w.snowfallKgM2S[k]=.9;assert.throws(()=>decodeRuntimeState(saved),/Snowfall/);
+    delete (w as any).landPrecipitationKgM2S;w.snowfallKgM2S[k]=.4;
+    const old=ThermalRuntime.fromSnapshot(saved,planet,orbit);assert.equal(old.water!.landPrecipitationKgM2S[k],.5);
+    w.snowfallKgM2S[k]=.6;assert.throws(()=>decodeRuntimeState(saved),/Snowfall/);
+    assert.equal('landPrecipitationKgM2S' in a.snapshot().state!.water!,false,'Formal legacy snapshots keep their original shape');
 });
 test('older complete v1 worlds without optional terrain routing retain coarse mode',()=>{
     const d=JSON.parse(encodeSimulationDocument(documentFixture()));delete d.runtime.environmentConfig.terrainWater;delete d.runtime.state.water.routing;

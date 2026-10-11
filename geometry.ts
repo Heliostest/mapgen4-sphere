@@ -94,11 +94,27 @@ export function clamp(x: number, lo: number, hi: number): number {
 /**
  * Fill a buffer with river geometry
  */
+const riverAtlasCache=new WeakMap<Mesh,Float32Array[]>();
 function setRiverGeometry(map: Pick<Map,'mesh'|'s_downslope_t'|'flow_s'>, spacing: number, riversParam: any, P: Float32Array): number {
     const MIN_FLOW = Math.exp(riversParam.lg_min_flow);
     const RIVER_WIDTH = Math.exp(riversParam.lg_river_width);
     let {mesh, s_downslope_t, flow_s} = map;
     let {numSolidTriangles, length_s} = mesh;
+    let atlas=riverAtlasCache.get(mesh);
+    if(!atlas){atlas=[];riverAtlasCache.set(mesh,atlas);}
+    // Longitude seams and polar copies depend only on this mesh. Widths
+    // remain dynamic; each caller receives its own output buffer.
+    function add(s1:number,s2:number,s3:number,width1:number,width2:number) {
+        let primitive=atlas![s1];
+        if(!primitive){
+            const vertices=[s1,s2,s3].map((s,i)=>{const r=mesh.r_begin_s(s);return [mesh.x_of_r(r),mesh.y_of_r(r),0,0,+(i===0),+(i===1),+(i===2)];});
+            primitive=new Float32Array(atlasTriangles(vertices).flat(2));atlas![s1]=primitive;
+        }
+        if(p+primitive.length>P.length)throw new Error('River atlas buffer overflow');
+        P.set(primitive,p);
+        for(let j=0;j<primitive.length;j+=7){P[p+j+2]=width1;P[p+j+3]=width2;}
+        p+=primitive.length;
+    }
 
     function riverSize(s: number, flow: number): number {
         if (s < 0) { return 1; }
@@ -115,19 +131,6 @@ function setRiverGeometry(map: Pick<Map,'mesh'|'s_downslope_t'|'flow_s'>, spacin
         let s_in2 = mesh.s_next_s(s_in1);
         let flow_in1 = flow_s[mesh.s_opposite_s(s_in1)];
         let flow_in2 = flow_s[mesh.s_opposite_s(s_in2)];
-
-        function add(s1, s2, s3, width1, width2) { // no flow on side s3
-            let r1 = mesh.r_begin_s(s1),
-                r2 = mesh.r_begin_s(s2),
-                r3 = mesh.r_begin_s(s3);
-            const vertices = [r1,r2,r3].map((r,i)=>[
-                mesh.x_of_r(r),mesh.y_of_r(r),width1,width2,
-                +(i===0),+(i===1),+(i===2),
-            ]);
-            for (const triangle of atlasTriangles(vertices)) {
-                for (const vertex of triangle) for (const value of vertex) P[p++] = value;
-            }
-        }
 
         if (flow_in1 > MIN_FLOW) {
             add(s_out, s_in1, s_in2, riverSize(s_out, outflow), riverSize(s_in1, flow_in1));

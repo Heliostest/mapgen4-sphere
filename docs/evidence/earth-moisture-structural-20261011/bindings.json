@@ -1,0 +1,583 @@
+{
+  "base": "e3222280a0ceddd597245f3c45d75f75d2def9f5",
+  "defaults": [
+    {
+      "path": "scenes/earth-land-sea/earth-simulation.json",
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+      "unchangedAgainstBase": true
+    },
+    {
+      "path": "scenes/earth-land-sea/scene-config.json",
+      "sha256": "9b811ee7c064dbd11c20d7f21dfe47607815fc720dcdc9e9a17ef66c09a71253",
+      "unchangedAgainstBase": true
+    },
+    {
+      "path": "config.js",
+      "sha256": "a433230caaf102eea16814b365e4f3df7d5dba556268907fcac56502feecca0a",
+      "unchangedAgainstBase": true
+    },
+    {
+      "path": "environment.ts",
+      "sha256": "af6295d092587fed5b4bb9019694a8987c679eb5f3034bd00715d1edc399dbf9",
+      "unchangedAgainstBase": true
+    },
+    {
+      "path": "surface-grid.ts",
+      "sha256": "5af822cc3ce30a09db820841d15a017dd2850f72ab0c51ade2a14162d6f7e02c",
+      "unchangedAgainstBase": true
+    },
+    {
+      "path": "climate.ts",
+      "sha256": "2bd07a05d8fe0598f3d608e3096600b43cab47cd9f29f4a5107e85c6e8e21da9",
+      "unchangedAgainstBase": true
+    }
+  ],
+  "productHashes": [
+    {
+      "path": "circulation.ts",
+      "sha256": "42ad6555ff02d686b7510b23f3fe4b49144ec499f2cd0d49aea8b230e0e40698"
+    },
+    {
+      "path": "water.ts",
+      "sha256": "754b5fcdce9a453d845da6d5a53ddcd920918f329533f280e778bb7a20315f39"
+    },
+    {
+      "path": "reference-moisture.ts",
+      "sha256": "6b55f772522c5f4cc285d832bc8f77551d217600cb7eceba11eb19a0e05b86b9"
+    },
+    {
+      "path": "refinement-surface.ts",
+      "sha256": "99acd9200b3c001d177b28e43c09553224e3788760d7ff72df52375364683f6c"
+    },
+    {
+      "path": "runtime-state.ts",
+      "sha256": "092d95aa78a267c281a5d1c0f59e9ecfe57f20b9ce5485cee2ea67ccda7fbc98"
+    },
+    {
+      "path": "thermal-runtime.ts",
+      "sha256": "15fd9478705c7cc67ed1380e1819897d0d619c9ba09d0e0eade50308496a5d78"
+    },
+    {
+      "path": "climate-diagnostics.ts",
+      "sha256": "2b1107089b78aad9bde62e4fa18face7387576d6b95bd985ee25fdd79cdf2834"
+    },
+    {
+      "path": "planet-controls.ts",
+      "sha256": "ea24bd8d0b23b13b8710b9a4892f00c53dfcce3692fa9bdcc06b6ea0114d5034"
+    },
+    {
+      "path": "scenes/earth-land-sea/sidebar-zh.js",
+      "sha256": "f0d14ddf617c052498fc37bdeff2570903768af95c6c65a8945dff2e3870298c"
+    },
+    {
+      "path": "scripts/test.mjs",
+      "sha256": "c35fdf9180aa2553e887acfdac0b82aa08dc667803963ebf93fd0fe347a85e04"
+    },
+    {
+      "path": "tests/circulation.test.ts",
+      "sha256": "8dc2079d6334af23845b5d4102e5d9c175c1f3ed3aa3fed6e3b266ea4dd85842"
+    },
+    {
+      "path": "tests/moisture.test.ts",
+      "sha256": "c3eeb451e382d4c0d8e16af0b58d2f05d02cfa1eac1ae3b8d5aee0b7ba1a5c50"
+    },
+    {
+      "path": "tests/simulation.test.ts",
+      "sha256": "eb55fe8365e18fc1986d40385097f6dd272d7c97e2880f2c3ccd584b822c6dee"
+    },
+    {
+      "path": "tests/refinement.test.ts",
+      "sha256": "9b772bcf4cd6f5ff4edd1c70a34a1ca43456b6bce6b56ae99d6b5384f87213f5"
+    },
+    {
+      "path": "tests/climate-diagnostics.test.ts",
+      "sha256": "7365b7eb0c3ce23efb8a165f22b9e641aafefbb3ec2d193023612c93d96069df"
+    }
+  ],
+  "runs": [
+    {
+      "name": "baseline-1800",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "initialStocksHashSource": "Derived from original preserved day-zero snapshot; old baseline harness did not emit this field",
+      "bundle": "build/earth-moisture-structural/integrate-baseline.mjs",
+      "bundleSha256": "9d09c21ea9fb2bde1eea2d47173927954769daefba98a1beacd268f7b8b91df0",
+      "snapshots": [
+        {
+          "day": 0,
+          "path": "build/earth-moisture-structural/baseline-1800-day0.json",
+          "sha256": "29cde9ca10049032b88240742e9bcb3fc16794c926366a161172e8dcc542067a"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-moisture-structural/baseline-1800-day24.json",
+          "sha256": "f24e9ec8df32b6dc652e986b8381ca1d81c8876a9dc41751a5fce2051c3a5bd7"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-moisture-structural/baseline-1800-day90.json",
+          "sha256": "8c1e6515dedebba1a2c58ab4cfffc144979e203c5bd9948efd126b5d7c176da6"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-moisture-structural/baseline-1800-day180.json",
+          "sha256": "3aedf651f063b5d463c99bce7fab954c841626c8bb0d0e3bc630df10e9437387"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-moisture-structural/baseline-1800-day270.json",
+          "sha256": "cc33b46afb13f11efb8875cdfda85fdf1051447f398035162b10604aa7e7ac7b"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-moisture-structural/baseline-1800-day365.json",
+          "sha256": "975730203973b58e92a2132053666753df4cdea22f76e143ad64b98f0a10b47a"
+        }
+      ]
+    },
+    {
+      "name": "coastal-deposition-v2-1800",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "initialStocksHashSource": "Recorded during integration and independently verified",
+      "bundle": "build/earth-moisture-structural/integrate-coastal-deposition-v2.mjs",
+      "bundleSha256": "6e3ac2781b23ab3f32bc8992b223744b6aeef6d803185352c0b5798867d4a07f",
+      "snapshots": [
+        {
+          "day": 0,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-1800-day0.json",
+          "sha256": "cc426b23142d5202255711e8df361ff3353d9eb7694307bab5905046e64059e7"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-1800-day24.json",
+          "sha256": "6b03c6a551ef2d3f3f972162d811ccb68d254632df7e0eb392862e6c68edd50c"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-1800-day90.json",
+          "sha256": "f4ae9f29a377a59c3903c59bed3ff0769fdad5175b298180282c1c0563e0322e"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-1800-day180.json",
+          "sha256": "6804f1808e0b897ecc2bef4700f85f392fbc232dd111fed0688801e24062ea60"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-1800-day270.json",
+          "sha256": "842c74848bebcd5f4c4cb91372f2d52b74fa7459ce72ae039fc6711bf950492e"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-1800-day365.json",
+          "sha256": "b86afea385182f2add1c506fe7e203e7bf30170f0276d587327971fe7058a403"
+        }
+      ]
+    },
+    {
+      "name": "coastal-deposition-v2-900",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "initialStocksHashSource": "Recorded during integration and independently verified",
+      "bundle": "build/earth-moisture-structural/integrate-coastal-deposition-v2.mjs",
+      "bundleSha256": "6e3ac2781b23ab3f32bc8992b223744b6aeef6d803185352c0b5798867d4a07f",
+      "snapshots": [
+        {
+          "day": 0,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-900-day0.json",
+          "sha256": "1b78d6ae92b5dfab28fd062185f06ba87f98379d79419636a77a3942e1d9b607"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-900-day24.json",
+          "sha256": "72f0f38c08cb6d20ba25d751c51de0268019df535a94849aef2abf095411c1d4"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-900-day90.json",
+          "sha256": "747cc5ccc4011f3a63df8b7a910edb70017ab157147cf803eb2877e20bd53dd8"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-900-day180.json",
+          "sha256": "52f88eeb94588778e16e9795e3405faeabb23163743fa7e2a930d7af15d28a45"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-900-day270.json",
+          "sha256": "008c9e9d36107b30651764eee05537d0fe46490071e55e8cd711900ca074a7fd"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-900-day365.json",
+          "sha256": "9c67096deb89aa1e62342ea8619514e052015ebb80e638ae4d387fe8066207e4"
+        }
+      ]
+    },
+    {
+      "name": "coastal-deposition-v2-450",
+      "initialStocksSha256": "51961e8bb0611e0e79c7d4bef14a379c6ca8db2072c3f45f205d0e79cb5b93f5",
+      "initialStocksHashSource": "Recorded during integration and independently verified",
+      "bundle": "build/earth-moisture-structural/integrate-coastal-deposition-v2.mjs",
+      "bundleSha256": "6e3ac2781b23ab3f32bc8992b223744b6aeef6d803185352c0b5798867d4a07f",
+      "snapshots": [
+        {
+          "day": 0,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day0.json",
+          "sha256": "b56e9da011dfe7fbae89229804aa871a8035a09695b03d37a937ebb0f7b3c8d4"
+        },
+        {
+          "day": 24,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day24.json",
+          "sha256": "83d8bb94a2528bbdb876a2dcf6f05856867018ec613d126abf8abd44f2364f4f"
+        },
+        {
+          "day": 90,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day90.json",
+          "sha256": "0c965a27babdf188e37716caf6c1362daa051bf5fe48e462bcc7a5b08cf014c8"
+        },
+        {
+          "day": 180,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day180.json",
+          "sha256": "8092f78593ef5bf322c66d704cd5a11ffeccef474756a85f594364f89ee885e5"
+        },
+        {
+          "day": 270,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day270.json",
+          "sha256": "695d8c4b0ddea46a6ab729c5faab993bba2507d8dd2fb7f73b74cf10a7b5d641"
+        },
+        {
+          "day": 365,
+          "path": "build/earth-moisture-structural/coastal-deposition-v2-450-day365.json",
+          "sha256": "539a83410c5f049271e1e9e27364184f86d91c05dd0ada168bf55c11b16d6a65"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/.gitignore",
+      "sha256": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/actual-low-level-reference-valid.json",
+      "sha256": "3ac3b3bd108fe5991a154875b1c4ecf24c8f24568ce3d421946044b0433df1fe"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/analyze.py",
+      "sha256": "7647b926c0baaceaf6f84522c5e1cf2ccf645ee31fe98fcbbafedfa0e2ce07fa"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/annual-comparison.png",
+      "sha256": "ea869752b00aadcbeac1f7302b40c9b4d9a0017c87938f885be6fe1e7cf6c98f"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/annual-comparison.svg",
+      "sha256": "a8a9fe4c5b1e3661a11e047e480d7cae70e6e69aa3b02c2c1b59d75e59c5947f"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/baseline-1800-continuous.json",
+      "sha256": "b885573e35e2cb0683934db5ed67eed4ead9059d305dcbf4bb2349aa3ddc08d0"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/boundary-anomaly-1800-continuous.json",
+      "sha256": "a323967c45f381dfb8929d3f5671a625a09879b637645b50f9a7adcee646143f"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/boundary-anomaly-reference-valid.json",
+      "sha256": "bf3d9c298fd0c60078a625e41bcaf78f2e15130376d80f058c6458131233fbcc"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/boundary-anomaly.mjs",
+      "sha256": "5b181761c5d36655ba18cf6b06d8513d6e1655563828e4e1fdf250c58113e129"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/boundary-parcel-reference-valid.json",
+      "sha256": "2b000c6a63d69b9b7bacbc2067ba34115c9cfec2c2a6c3a3fac506eee61f0306"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/boundary-parcel.mjs",
+      "sha256": "739eae5d61a1688087b718e4ceeedd3e9504c42accb6037f1fd7f2f926c3b0d9"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/build.log",
+      "sha256": "85ff2e367ce3b45e2f8b602e66b797d85c5b47867d46b3892a7974901f3d34ec"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/bundle.mjs",
+      "sha256": "4e199773c92524303b3a7435dd5d5b7fc259cd571ebef511495fe8637d12c265"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/circulation-only-reference-valid.json",
+      "sha256": "d01d081e633b8ea7e65163a733167bba44c295b7a6bc16b0ae62a5e32b9b2103"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/coastal-deposition-1800-continuous.json",
+      "sha256": "0d031d911ca36785481795915cb681bf7009658b7d791439e1f6840dd033cdf4"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/coastal-deposition-v2-1800-continuous.json",
+      "sha256": "f33cba26c88f2342d8c0418cb4c1454a03a89a2b8366f53576959f57b51ac79f"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/coastal-deposition-v2-450-continuous.json",
+      "sha256": "64ea8a3bb036dfa64fbe30f501d8fbb83450e41346f3d0e82d410a9bee382b13"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/coastal-deposition-v2-900-continuous.json",
+      "sha256": "5780aea644928a1f63b8ea2c9b9433c0fdda67ffd1fb3ff678103e92c799dec7"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/comparison.json",
+      "sha256": "025a7062723f4d10c3615abac62e30a7be0a014fd3219465b9653f81e3c6006b"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/convergence.png",
+      "sha256": "341629c8ffa824b1bb57fca410411a95f53aeff8d9b6897deccff75f9b422fff"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/convergence.svg",
+      "sha256": "378aa354e01222d7ba4f4453dfeb4a01ec758d090a034ced02ce7f525029ce67"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/counter-eddy-1800-continuous.json",
+      "sha256": "6aadc0d026445885982679b05e5c96cd72c79fb11ceab14cbf881b3f2ebf0cad"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/counter-eddy-reference-valid.json",
+      "sha256": "650d70c7186b7c5ab9b36e7a4f4d42e4861cb79551395ae787322d34794e95e8"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/face-cloud-1800-continuous.json",
+      "sha256": "bd3f1e0b6b608f2208ac944794089c6daa21f62a9cd1d628b0896ebf52331064"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/face-cloud-reference-valid.json",
+      "sha256": "2f27d24df1e71b104dbb658f306dde056c5e1e5b5a6296a54764d849824e16b9"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/final-compatibility-1800-continuous.json",
+      "sha256": "280fd3e1f43241ffed843e9d50872ba99cc43978cd6e9a8263fc3e19647a5f02"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/final-source-equivalence.json",
+      "sha256": "73749c6fcefb13979d48dcb9df2c42102239ca07b91fc895c7d58f2b97c792f4"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/friction-balance-1800-continuous.json",
+      "sha256": "4ff3d3455499297bc2873d2586a8fe204019b046a934a3107133167103eb6e48"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/friction-balance-reference-valid.json",
+      "sha256": "2c48fdf6b7ce3c187196bfbc589036164fe27141813a12de5ecad6027af95a97"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/friction-balance.mjs",
+      "sha256": "1097da3929bda655e46c8b4668a0279016ea2eec4e0a39a414b6fbf662ac6861"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/front-lift-green.log",
+      "sha256": "c03004cdc4cbcc643c7aa88bab5fd918838b29f76dd3e25adc6addafa4e59ebc"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/front-lift-red.log",
+      "sha256": "de498a40c057e81ecd7042c3513a18e72d255ee0c321a788c9e3a9a42f03248a"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/frozen-baseline-circulation.ts",
+      "sha256": "3305f24115f41e781e3f85189e726e9d8aaaf5ca095ee78c1901e4b60f2047bf"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/frozen-baseline-reference-moisture.ts",
+      "sha256": "6b55f772522c5f4cc285d832bc8f77551d217600cb7eceba11eb19a0e05b86b9"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/frozen-baseline-water.ts",
+      "sha256": "970b8d7141770c3ab1be65d12d8656ad5e5150b73f699d28f621c63763249c3f"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/full-gross-reference-valid.json",
+      "sha256": "fd71d956e3b0ab7bad0ead32ab6abd59103d922c2330965738dc31c286445ff5"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/full-potential-reference-valid.json",
+      "sha256": "1fb6c06c4c5423b9800b234878f5c24213674a61b8bc92b422e5508a23ad13ce"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/gpcc-grid.json",
+      "sha256": "01ed704dd31cec9376d27fafd902cfeb5c77862f7d8b3cf2e9e6b5d4226dbbc4"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/hypothesis-contracts.mjs",
+      "sha256": "f9c11002994c7b04f759f808cd5d1719c6e0a5eed17a0a5adab69ed1b1bd9b3d"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/hypothesis-contracts.ts",
+      "sha256": "917e933816f1a73feeab360c32006fb51228b18cc784d29079966f78c501e6bc"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/integrate.ts",
+      "sha256": "13977ec1543e95300b63e3420ac5b8bd0fd0ea77ccc15d49b4b24a48185a7430"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/investigate.ts",
+      "sha256": "a9ac0a412c346a90a5c54badb76a6de752f1eab7b0741fb14d598bec387763a2"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/isentropic-face-reference-valid.json",
+      "sha256": "666eeee7afd67abcfe2c43663870526cc436bf87e073ceb7bca897ad7789ca4a"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/land-drag-reference-valid.json",
+      "sha256": "cd26096c79bd82f436c5569e624098d73a3b660c046670abaaca8470549fbdac"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/marine-closure-reference-valid.json",
+      "sha256": "016168ec077e69f57bb026871b17c0e039c72e98c6272050d014ac1bb3865b5f"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/marine-friction-reference-valid.json",
+      "sha256": "da2e616513e0e7b6c792002e21ebd60d6343bc7fdae2854249aee55b8c2e84b5"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/marine-friction.mjs",
+      "sha256": "5a5e6934029cab37e775a59d5b67bc52895ed866cc9450733da5559b08c3cba5"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/monthly-comparison.png",
+      "sha256": "b680f5497aa92d2ba79c964115293d3d74e3c5dede8c176149be40eafe6a078a"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/monthly-comparison.svg",
+      "sha256": "f10018c315522eb5ea6ec438d228531a7930217eec77861e247c7a34d9c4271b"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/monthly-winds.png",
+      "sha256": "e73a4a42b63babd350b59720a95e39c9b33518d9a258748625782aed4767f606"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/monthly-winds.svg",
+      "sha256": "b08c0bde3a0862494e42a5b9d9242f9272b2f7faa2e1eef4ac938d509bb2f8bd"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/old-refined-proof.log",
+      "sha256": "4563ccac5943abeaf3e7952d5a42c6987ff46fda232cd406f676d4f508e926b1"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/old-refined-remap-proof.log",
+      "sha256": "d3f52f94375a65bc28fb18a3a5fc3ba53bd6a85a622370453b062c56e6590665"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/parcel-closure-reference-valid.json",
+      "sha256": "5c94a7845c18e0f13d5a00b4f92fceab3203e70608be1537d86459a2a934147a"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/PLAN.md",
+      "sha256": "1dc17a1ed047a6f1b67ec785d220467c6e35336f869dbe019d55c8adb0d800e1"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/plot.py",
+      "sha256": "a9bf9fb0b9e954219d4517856a6602257c090e2bfff2a1b9a6cdd32f90b1be18"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/refinement-compat-green.log",
+      "sha256": "61916405d042744ffe8ee39e3d624b4a606a946f7cef5f4bb1c5c544086e59cb"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/refinement-compat-red.log",
+      "sha256": "7fda0007cc9704b7cc7b1b6a8e5a8b95306a0bf2cf4cf2704cff2ee78a8d9158"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/refinement-rollback-red.log",
+      "sha256": "b6ad5dfc3645b153cab2b42d590c734d150825a97d6845ba1239a964f97c4846"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/REPORT.md",
+      "sha256": "e79f8376d9f4f46d9630bb9fa964da36b169666cbe650f76f3957b8c453924dd"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/report.py",
+      "sha256": "f5a1aa2d1ce89de3ecca64e11178d15ee58cf6c0f0f69d4ada386a5e2b646a40"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/reproduce-old-refined-transport.mjs",
+      "sha256": "6ef8773c6ec283e70f479ec784ce4673a555e3b442db51f8f24ddde263693fb7"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/REVIEW.md",
+      "sha256": "3a719134b14630b3f719608f65fc3a1c1d2cf89cb8ab50f5ceb83b636f8b90ab"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/seasonal-land-reference-valid.json",
+      "sha256": "ad1dda3d6953b49861fe339dd04d45adbffa3a1739439b9acd66520ef176b7a3"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/seasonal-return-reference-valid.json",
+      "sha256": "eb66287e03b319eb9d0896c59a90aa8b88cdb281e61cc82befa28023dde69fda"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/sensible-closure-reference-valid.json",
+      "sha256": "1cfe35cfeb3af7a8769e01bdc94852264af3f3b59c5d5ceedf60ea78ed7141be"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/sensible-entrainment-1800-continuous.json",
+      "sha256": "196f2dadb60f8291a284b55ebfc702d0907614c302ae7f5a286e9a82dc7a00c9"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/sensible-entrainment-reference-valid.json",
+      "sha256": "211d5343134e8dec2e5dc08ed4e5cea0e5be9d01dfb41b72016ee01e265131c7"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/slower-drag-reference-valid.json",
+      "sha256": "7732d4913d9e62143fd3eec97f3f32f7adbf655b6ca76358edfa121e234085c6"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/SPEC.md",
+      "sha256": "4d0ac6f7130e11119b2a6b6f80da2a4427bd598a2977e20c28488bb218d50e6b"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/supply-comparison.png",
+      "sha256": "ea9d75c1dc055ab1e45aa200ee47fbafd82b5b83adad0b00f5de42ecb63b2301"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/supply-comparison.svg",
+      "sha256": "d66b52feea00d4284bcdc61edee9032675c27b5fc49867a4a3db6fdcc9be8ece"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/surface-anomaly-1800-continuous.json",
+      "sha256": "2153f36579c472b19ae6b259c0336e8eb56742c03ce8b4b401db85ca764a3938"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/surface-anomaly-reference-valid.json",
+      "sha256": "5c75a202c879ba892feba2e89211cb87010b3e4f103647938151fe3631aa004a"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/surface-anomaly.mjs",
+      "sha256": "c089a938f5435c882b065292e263b6a71980cf9527565d0813f6ed61b2115322"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/tests.log",
+      "sha256": "39ce7fb3f0cf7e54fb45d417790123ad91570734c79869a27e35a054060d3fcf"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/total-momentum-reference-valid.json",
+      "sha256": "0f75a6b0d6677f042b2793574d2215e7992401f8aaeadb04de31b49ccfb77165"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/typecheck.log",
+      "sha256": "37ce53af52bf8045685e41a8f381c21976bf681429b812a2eebf082b51a6170f"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/verify-bindings.mjs",
+      "sha256": "9ccf255091c239757515143253a7e9272f64b2005610acd3ae33c843305a84de"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/webgl-blocker.jpg",
+      "sha256": "5f604afc339c957444c0e15f4adb9f5c6e5b9d7975774a2f37d5500ed8e4ec66"
+    }
+  ],
+  "initialPhysicalStateEqualAcrossRuns": true,
+  "addedInitialDiagnostic": "land precipitation = original column precipitation * original land fraction; no stock migration",
+  "screenshots": {
+    "earthRenderer": "PENDING: WebGL2 initialization fails; user chose to continue numerical acceptance. chrome://gpu was rejected automatically (HTTP/HTTPS-only policy). No Chrome restart authorized or performed.",
+    "numericCharts": "Actual-integration charts, explicitly separate from WebGL screenshots."
+  }
+}

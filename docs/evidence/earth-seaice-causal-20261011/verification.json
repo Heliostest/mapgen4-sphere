@@ -1,0 +1,35 @@
+{
+  "generatedAtUtc": "2026-10-11T07:46:28.992Z",
+  "tests": {
+    "passed": 251,
+    "total": 251,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "formalEarthVerify": "passed",
+  "diffCheck": "passed",
+  "defaults": "DEFAULT_ENVIRONMENT text exactly matches HEAD; formal JSON SHA unchanged; classic/legacy/formal radiation unchanged",
+  "formalSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "bindings": [
+    {
+      "path": "build/earth-seaice-causal/tests-final.log",
+      "sha256": "0a7a4c3e8e7b1ab0a2c930261ece2f93c205ac1384accd147192b85fa20b9ef8"
+    },
+    {
+      "path": "build/earth-seaice-causal/typecheck-final.log",
+      "sha256": "37ce53af52bf8045685e41a8f381c21976bf681429b812a2eebf082b51a6170f"
+    },
+    {
+      "path": "build/earth-seaice-causal/build-final.log",
+      "sha256": "85ff2e367ce3b45e2f8b602e66b797d85c5b47867d46b3892a7974901f3d34ec"
+    },
+    {
+      "path": "build/earth-seaice-causal/verify-final.log",
+      "sha256": "683deab20003b314fa6bb6e47c0ee5b7d114348b604dabda83ed137e6d7cc4d7"
+    }
+  ],
+  "bundleAndSnapshotSha": "verified every primary run bundle and checkpoint against manifest",
+  "observation": "720 NSIDC source SHA plus remapped arrays independently verified; seasonal coverage acceptance still failed",
+  "remaining": "Independent concentration/ice thickness and multiple-year convergence remain open. WebGL screenshots pending prior recovery."
+}

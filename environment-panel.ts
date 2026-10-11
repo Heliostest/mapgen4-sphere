@@ -15,6 +15,10 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
       <label><input id="environment-circulation" type="checkbox"> Evolving wind &amp; ocean circulation</label>
       <output class="planet-note" id="environment-wind-state" data-info-for="environment-circulation"></output>
       <p class="planet-note" data-info-for="environment-circulation">Temperature contrasts drive bounded wind perturbations with rotation and surface drag. Closed ocean currents respond to the actual winds over five days. Changing mode restarts climate. Wind and ocean-current maps show these vectors; pressure and deep ocean are not simulated.</p>
+      <label><input id="environment-conductive-ice" type="checkbox"> Ice-thickness heat exchange (experimental)</label>
+      <p class="planet-note" data-info-for="environment-conductive-ice">Thicker sea ice insulates the ocean; summer surface heat melts the existing ice inventory. Requires separate air, land and ocean temperatures. Changing mode restarts climate; seasonal coverage is not calibrated.</p>
+      <label><input id="environment-under-ice" type="checkbox"> Ocean heat transport beneath ice (experimental)</label>
+      <p class="planet-note" data-info-for="environment-under-ice">Liquid water can carry heat beneath sea ice. This switch is independent of ice-thickness heat exchange. Changing mode restarts climate.</p>
       <label><input id="environment-weather" type="checkbox"> Cloud cover on Planet surface</label>
       <output class="planet-note" id="environment-weather-state"></output>
       <p class="planet-note" data-info-for="environment-weather">Soft white cloud cover follows atmospheric moisture and evolves with Play. Pause freezes it. Display only; climate and water budgets are preserved.</p>
@@ -45,6 +49,17 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         }catch(error){el('environment-resolution-status').textContent=(error as Error).message;el<HTMLSelectElement>('environment-resolution').value=rt.refinement??'';}
     }));
     el<HTMLInputElement>('environment-weather').addEventListener('change',()=>change(()=>weather.set(el<HTMLInputElement>('environment-weather').checked)));
+    el<HTMLInputElement>('environment-conductive-ice').addEventListener('change',()=>change(()=>{
+        rt.environmentConfig.underIceOcean=el<HTMLInputElement>('environment-under-ice').checked;
+        rt.environmentConfig.conductiveSeaIce=el<HTMLInputElement>('environment-conductive-ice').checked;
+        if(rt.environmentConfig.conductiveSeaIce){rt.enabled=rt.waterEnabled=true;rt.config.separateReservoirs=true;}
+        rt.invalidate();
+    }));
+    el<HTMLInputElement>('environment-under-ice').addEventListener('change',()=>change(()=>{
+        rt.environmentConfig.underIceOcean=el<HTMLInputElement>('environment-under-ice').checked;
+        if(rt.environmentConfig.underIceOcean)rt.enabled=rt.waterEnabled=true;
+        rt.invalidate();
+    }));
     el<HTMLInputElement>('environment-current').addEventListener('change',event=>{
         const input=event.target as HTMLInputElement;if(!input.checkValidity()||!Number.isFinite(input.valueAsNumber)){input.setAttribute('aria-invalid','true');return;}
         input.removeAttribute('aria-invalid');change(()=>{rt.environmentConfig.oceanStrengthMps=input.valueAsNumber;rt.invalidate();});
@@ -166,5 +181,5 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         if(model!==rt.model){model=rt.model;history=[];lastTime=-1;}
         if(d&&rt.model&&rt.model.timeS!==lastTime){lastTime=rt.model.timeS;const age=(lastTime-rt.model.epochS)/86400;history=history.filter(h=>h.time<age);history.push({time:age,metrics:d});if(history.length>240)history=history.filter((_,i)=>i%2===0);if(!baseline)baseline=captureEnvironment(rt);if(dialog.open){current=captureEnvironment(rt);render();}}
         if(dialog.open&&!d)render();
-    },restoreInputs(){el<HTMLSelectElement>('environment-resolution').value=rt.refinement??'';el<HTMLInputElement>('environment-weather').checked=weather.get();el<HTMLInputElement>('environment-circulation').checked=!!rt.environmentConfig.dynamicCirculation;el<HTMLInputElement>('environment-current').value=String(rt.environmentConfig.oceanStrengthMps);el<HTMLInputElement>('environment-vegetation').checked=rt.environmentConfig.vegetation;el<HTMLInputElement>('environment-albedo').checked=rt.environmentConfig.iceAlbedo;el<HTMLInputElement>('environment-terrain-water').checked=!!rt.environmentConfig.terrainWater;el<HTMLInputElement>('environment-glaciers').checked=!!rt.environmentConfig.glaciers;}};
+    },restoreInputs(){el<HTMLInputElement>('environment-under-ice').checked=rt.environmentConfig.underIceOcean??!!rt.environmentConfig.conductiveSeaIce;el<HTMLInputElement>('environment-conductive-ice').checked=!!rt.environmentConfig.conductiveSeaIce;el<HTMLSelectElement>('environment-resolution').value=rt.refinement??'';el<HTMLInputElement>('environment-weather').checked=weather.get();el<HTMLInputElement>('environment-circulation').checked=!!rt.environmentConfig.dynamicCirculation;el<HTMLInputElement>('environment-current').value=String(rt.environmentConfig.oceanStrengthMps);el<HTMLInputElement>('environment-vegetation').checked=rt.environmentConfig.vegetation;el<HTMLInputElement>('environment-albedo').checked=rt.environmentConfig.iceAlbedo;el<HTMLInputElement>('environment-terrain-water').checked=!!rt.environmentConfig.terrainWater;el<HTMLInputElement>('environment-glaciers').checked=!!rt.environmentConfig.glaciers;}};
 }

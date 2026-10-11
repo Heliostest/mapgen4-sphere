@@ -11,7 +11,7 @@ export class OceanTransport {
     private readonly faces:{a:number;b:number;east:boolean}[]=[];
     private readonly loops:{faces:number[];cells:number[];latitude:number;longitude:number}[]=[];
     private readonly circulationMps:Float64Array;
-    constructor(readonly thermal:ThermalModel,readonly water:WaterModel,readonly dynamic=false) {
+    constructor(readonly thermal:ThermalModel,readonly water:WaterModel,readonly dynamic=false,readonly underIce=false) {
         const {grid}=thermal,{width:w,height:h,count:n}=grid;
         this.eastMps=new Float64Array(n);this.northMps=new Float64Array(n);this.heatWm2=new Float64Array(n);
         for(let j=0;j<h;j++)for(let x=0;x<w;x++)this.faces.push({a:j*w+x,b:j*w+(x+1)%w,east:true});
@@ -36,7 +36,10 @@ export class OceanTransport {
             const loop=this.loops[l];
             // The global liquid reservoir supplies every wet surface column.
             // Retain wind memory while empty, but no liquid can carry heat.
-            const wet=w.oceanGlobalKgM2>0?Math.min(...loop.cells.map(i=>(1-w.land[i])*Math.max(0,1-Math.max(w.seaIceKgM2[i]/(917*.5*Math.max(1e-12,1-w.land[i])),w.shelfSeaIceKgM2[i]/(917*5*Math.max(1e-12,1-w.land[i])))))):0;
+            // Frozen cover does not remove the liquid mixed layer below it.
+            // Opt-in thermodynamics retains the prescribed ocean forcing;
+            // there is no independent ice velocity/stress model here.
+            const wet=w.oceanGlobalKgM2>0?Math.min(...loop.cells.map(i=>this.underIce?1-w.land[i]:(1-w.land[i])*Math.max(0,1-Math.max(w.seaIceKgM2[i]/(917*.5*Math.max(1e-12,1-w.land[i])),w.shelfSeaIceKgM2[i]/(917*5*Math.max(1e-12,1-w.land[i])))))):0;
             const wind=loop.cells.reduce((sum,i)=>sum+w.windEastMps[i],0)/4;
             let circulation=strengthMps*Math.tanh(wind/5)*Math.sin(2*loop.latitude)*Math.sin(loop.longitude)*wet/4;
             if(this.dynamic) {

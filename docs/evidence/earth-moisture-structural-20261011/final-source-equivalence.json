@@ -1,0 +1,25 @@
+{
+  "finalBundle": "build/earth-moisture-structural/integrate-final-compatibility.mjs",
+  "sha256": "9181fd879fde503166681714ed806a04b77a928027679c7d00f4fb9d2f32a3c6",
+  "strictRestoreNextStepExact": true,
+  "actualDays": 24,
+  "explanation": "Final changes concern old refined save compatibility, refined diagnostics and UI; the full-year comparison uses classic terrain. A final-source actual integration from identical initial stocks is exactly equal at days 0 and 24 to the preserved classic physics bundle.",
+  "snapshots": [
+    {
+      "day": 0,
+      "finalPath": "build/earth-moisture-structural/final-compatibility-1800-day0.json",
+      "finalSha256": "cc426b23142d5202255711e8df361ff3353d9eb7694307bab5905046e64059e7",
+      "frozenPath": "build/earth-moisture-structural/coastal-deposition-v2-1800-day0.json",
+      "frozenSha256": "cc426b23142d5202255711e8df361ff3353d9eb7694307bab5905046e64059e7",
+      "entireRuntimeExactlyEqual": true
+    },
+    {
+      "day": 24,
+      "finalPath": "build/earth-moisture-structural/final-compatibility-1800-day24.json",
+      "finalSha256": "6b03c6a551ef2d3f3f972162d811ccb68d254632df7e0eb392862e6c68edd50c",
+      "frozenPath": "build/earth-moisture-structural/coastal-deposition-v2-1800-day24.json",
+      "frozenSha256": "6b03c6a551ef2d3f3f972162d811ccb68d254632df7e0eb392862e6c68edd50c",
+      "entireRuntimeExactlyEqual": true
+    }
+  ]
+}

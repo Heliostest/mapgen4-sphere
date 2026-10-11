@@ -7,10 +7,66 @@ import {WaterModel,DEFAULT_WATER} from '../water.ts';
 import {DEFAULT_PLANET} from '../planet.ts';
 import {DEFAULT_ORBIT} from '../astronomy.ts';
 import {ThermalRuntime} from '../thermal-runtime.ts';
-import {generateClimate} from '../climate.ts';
+import {generateClimate,circulationWinds} from '../climate.ts';
 
 const grid=makeThermalGrid(8,4),n=grid.count;
 const near=(a:number,b:number,t=1e-5)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
+function modernSetup(){
+ const land=new Float64Array(n).fill(.5),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,separateReservoirs:true,airRadiationFraction:.5},land,0,grid);
+ m.temperatureK.fill(300);m.landTemperatureK.fill(300);m.oceanTemperatureK.fill(300);m.capacity.fill(1004*10000);
+ const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,land,new Float64Array(n),m.temperatureK,{...DEFAULT_WATER,moistureScheme:'transport'});w.atmosphereKgM2.fill(0);
+ return {m,w,a:new AtmosphericCirculation(m,w)};
+}
+test('transport mountains with the same sea-level thermal state do not create a spurious dry pressure barrier',()=>{
+ const {m,w,a}=modernSetup(),flat=modernSetup();w.land.fill(1);flat.w.land.fill(1);w.heightM[1]=4000;
+ const scale=Math.exp(-.0065*4000/288.15);m.radiationScale[1]=scale;m.landTemperatureK[1]=300*scale;
+ a.step(1800,900);flat.a.step(1800,900);
+ for(let k=0;k<n;k++){near(a.eastMps[k],flat.a.eastMps[k],1e-11);near(a.northMps[k],flat.a.northMps[k],1e-11);}
+});
+test('column vapor drives density buoyancy rather than releasing latent heat into the pressure potential',()=>{
+ const wet=modernSetup(),warm=modernSetup();wet.w.atmosphereKgM2[1]=20;
+ // MetPy virtual-temperature formula: T=300 K, mixing ratio .002,
+ // molecular mass ratio .622. Independently evaluated delta T_v.
+ const delta=300*((.002+.622)/(.622*1.002)-1);
+ warm.m.landTemperatureK[1]+=delta;warm.m.oceanTemperatureK[1]+=delta;
+ wet.a.step(1800,900);warm.a.step(1800,900);
+ for(let k=0;k<n;k++){near(wet.a.eastMps[k],warm.a.eastMps[k],1e-11);near(wet.a.northMps[k],warm.a.northMps[k],1e-11);}
+});
+test('zonally uniform seasonal thermal contrast drives low-level meridional flow and reverses with the heat gradient',()=>{
+ const run=(gradient:number)=>{
+  const s=modernSetup();
+  for(let i=0;i<n;i++){const t=300+gradient*grid.sinLat[Math.floor(i/grid.width)];s.m.landTemperatureK[i]=s.m.oceanTemperatureK[i]=t;}
+  const base=circulationWinds(grid,s.m.planet,s.m.orbit,900,s.w.land,s.w.config.windMps);
+  s.w.setWinds(base.eastMps,new Float64Array(n));
+  for(let k=0;k<16;k++)s.a.step(21600,900);
+  s.a.validateWinds(900);return s.w;
+ };
+ const north=run(30),south=run(-30),uniform=run(0);
+ for(const i of [8,16]){
+  assert.ok(north.windNorthMps[i]-uniform.windNorthMps[i]>.05,'Zonal mean heating must not be subtracted from meridional pressure forcing');
+  assert.ok(south.windNorthMps[i]-uniform.windNorthMps[i]<-.05,'Seasonal heat reversal reverses the low-level thermal flow');
+  near(uniform.windNorthMps[i],0,1e-8);
+ }
+});
+test('marine meridional thermal gradients drive the overturning branch even at local surface-air equilibrium',()=>{
+ const s=modernSetup();s.w.land.fill(0);
+ for(let i=0;i<n;i++)s.m.temperatureK[i]=s.m.oceanTemperatureK[i]=300+30*grid.sinLat[Math.floor(i/grid.width)];
+ const base=circulationWinds(grid,s.m.planet,s.m.orbit,900,s.w.land,s.w.config.windMps);s.w.setWinds(base.eastMps,new Float64Array(n));
+ for(let k=0;k<16;k++)s.a.step(21600,900);
+ assert.ok(s.w.windNorthMps[8]>.05&&s.w.windNorthMps[16]>.05,'Marine latitude forcing must survive local surface-air equilibrium');
+ s.a.validateWinds(900);
+});
+test('a terrestrial planet retains latitude heating and a missing marine row introduces no pressure jump',()=>{
+ const run=(mask:'ocean'|'gap'|'land')=>{
+  const s=modernSetup();s.w.land.fill(mask==='land'?1:0);if(mask==='gap')s.w.land.fill(1,8,16);
+  for(let i=0;i<n;i++)s.m.temperatureK[i]=s.m.landTemperatureK[i]=s.m.oceanTemperatureK[i]=300+30*grid.sinLat[Math.floor(i/grid.width)];
+  const base=circulationWinds(grid,s.m.planet,s.m.orbit,900,s.w.land,s.w.config.windMps);s.w.setWinds(base.eastMps,new Float64Array(n));
+  for(let k=0;k<16;k++)s.a.step(21600,900);return s.w;
+ };
+ const land=run('land'),ocean=run('ocean'),gap=run('gap');
+ assert.ok(land.windNorthMps[8]>.05&&land.windNorthMps[16]>.05,'Terrestrial latitude heating cannot disappear');
+ for(const i of [0,16,24])near(gap.windNorthMps[i],ocean.windNorthMps[i],1e-11);
+});
 function setup(planet=DEFAULT_PLANET) {
     const land=new Float64Array(n),m=new ThermalModel(planet,DEFAULT_ORBIT,DEFAULT_THERMAL,land,0,grid);
     m.temperatureK.fill(290);

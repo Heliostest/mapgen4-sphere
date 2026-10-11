@@ -1,0 +1,190 @@
+{
+  "checks": [
+    {
+      "name": "shared heat faces conserve energy",
+      "error": 0,
+      "tolerance": 1e-10,
+      "status": "pass"
+    },
+    {
+      "name": "diffusion reduces temperature variance",
+      "status": "pass"
+    },
+    {
+      "name": "Coriolis alone does no work",
+      "error": 0,
+      "tolerance": 1e-12,
+      "status": "pass"
+    },
+    {
+      "name": "linear drag dissipates kinetic energy",
+      "error": 0,
+      "tolerance": 1e-12,
+      "status": "pass"
+    },
+    {
+      "name": "Coriolis alone does no work",
+      "error": 0,
+      "tolerance": 1e-12,
+      "status": "pass"
+    },
+    {
+      "name": "linear drag dissipates kinetic energy",
+      "error": 0,
+      "tolerance": 1e-12,
+      "status": "pass"
+    },
+    {
+      "name": "Coriolis alone does no work",
+      "error": 0,
+      "tolerance": 1e-12,
+      "status": "pass"
+    },
+    {
+      "name": "linear drag dissipates kinetic energy",
+      "error": 0,
+      "tolerance": 1e-12,
+      "status": "pass"
+    },
+    {
+      "name": "finite freezing conserves enthalpy",
+      "error": 0,
+      "tolerance": 0.00001,
+      "status": "pass"
+    },
+    {
+      "name": "finite freezing conserves water",
+      "error": 0,
+      "tolerance": 1e-7,
+      "status": "pass"
+    },
+    {
+      "name": "available marine freezing heat restores freezing boundary",
+      "error": 0,
+      "tolerance": 1e-12,
+      "status": "pass"
+    },
+    {
+      "name": "melting consumes latent heat",
+      "error": 0.0000019073486328125,
+      "tolerance": 0.00001,
+      "status": "pass"
+    },
+    {
+      "name": "melting conserves water",
+      "error": 1.1641532182693481e-9,
+      "tolerance": 1e-7,
+      "status": "pass"
+    },
+    {
+      "name": "exhausted ocean creates neither mass nor latent energy",
+      "error": 0,
+      "tolerance": 0.00001,
+      "status": "pass"
+    },
+    {
+      "name": "closed ocean loops preserve uniform temperature",
+      "error": 0,
+      "tolerance": 1e-12,
+      "status": "pass"
+    },
+    {
+      "name": "ocean advection conserves heat",
+      "error": 0.0000019073486328125,
+      "tolerance": 0.00001,
+      "status": "pass"
+    },
+    {
+      "name": "donor limited ocean advection introduces no new extrema",
+      "status": "pass"
+    },
+    {
+      "name": "global absorbed shortwave respects spherical S/4",
+      "error": 1.1368683772161603e-13,
+      "tolerance": 1e-10,
+      "status": "pass"
+    },
+    {
+      "name": "36 ice surface cases conserve heat and absorbed sunshine",
+      "status": "pass",
+      "maxIceEnergyErrorJm2": 0.0000022439053282141685,
+      "maxSkinResidualWm2": 4.842792833414933e-11
+    }
+  ],
+  "limitations": {
+    "iceThicknessSamples": [
+      {
+        "massKgM2": 45.85,
+        "cover": 0.1,
+        "derivedThicknessM": 0.5
+      },
+      {
+        "massKgM2": 114.625,
+        "cover": 0.25,
+        "derivedThicknessM": 0.5
+      },
+      {
+        "massKgM2": 343.875,
+        "cover": 0.75,
+        "derivedThicknessM": 0.5
+      },
+      {
+        "massKgM2": 458.5,
+        "cover": 1,
+        "derivedThicknessM": 0.5
+      }
+    ],
+    "independentConcentration": false,
+    "verticalOceanEntrainment": false,
+    "fullAtmosphericLongwaveExchange": false,
+    "bathymetryInputInThermalAndCirculation": false
+  },
+  "formalSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "bindings": [
+    {
+      "path": "thermal.ts",
+      "sha256": "a65cc73dfd6ec9f021146b15acd7d35e680e843a89605b6b3b4b4a23d045d9dc"
+    },
+    {
+      "path": "water.ts",
+      "sha256": "754b5fcdce9a453d845da6d5a53ddcd920918f329533f280e778bb7a20315f39"
+    },
+    {
+      "path": "environment.ts",
+      "sha256": "6f764c02864bdb6eaa7ed02142ce935995f5d94d13c5aff63365a606d73aa8ed"
+    },
+    {
+      "path": "sea-ice-thermodynamics.ts",
+      "sha256": "d27651f9b5b6c143eb54be3a5c9d29c418c809aea686a607e56db4e2c34e1853"
+    },
+    {
+      "path": "ocean.ts",
+      "sha256": "7454692152ffb62f7d2d719a3317284c83f52b43c1488ae2daa4f86cb8e762db"
+    },
+    {
+      "path": "circulation.ts",
+      "sha256": "42ad6555ff02d686b7510b23f3fe4b49144ec499f2cd0d49aea8b230e0e40698"
+    },
+    {
+      "path": "refinement-surface.ts",
+      "sha256": "4b6ec44b060c5840061b5bcbb463ec90978cadde24c6b25ddb1add17ba084cfd"
+    },
+    {
+      "path": "refinement-topology.ts",
+      "sha256": "b4b5d3f2e3f4fd351ae055c8e70a963c8f90c62ad0cf979aba3639283b7a717d"
+    },
+    {
+      "path": "thermal-runtime.ts",
+      "sha256": "15fd9478705c7cc67ed1380e1819897d0d619c9ba09d0e0eade50308496a5d78"
+    },
+    {
+      "path": "runtime-state.ts",
+      "sha256": "4f25a208eec5f1349092d68dea34db9371482507d18ec966bf8536ada25fff83"
+    },
+    {
+      "path": "vegetation.ts",
+      "sha256": "5da01d26d6468b8ab1ea436271ad99c9f7b9d4ed8f567a0e64041de1f6346f98"
+    }
+  ],
+  "bundleSha256": "443b32a675a73bc78c2e857e521b770045f5e18a2ad29c4f2ecf1461b44cc06e"
+}

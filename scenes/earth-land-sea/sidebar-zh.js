@@ -33,6 +33,8 @@ const labels={
   'Soil capacity (mm per land area)':'土壤容量（陆地毫米水深）','Initial ocean water depth (m)':'初始海洋水深（米）',
   'Wind belt strength (m/s; negative reverses)':'风带强度（米/秒；负值反向）','Vapor mixing (m²/s)':'水汽混合（m²/s）',
   'Surface travel speed (m/s)':'地表水流速（米/秒）','Ice, ocean & vegetation':'冰雪、海流与植被',
+  'Ice-thickness heat exchange (experimental)':'冰厚热交换（实验）',
+  'Ocean heat transport beneath ice (experimental)':'冰下海洋热输送（实验）',
   'Ocean circulation strength (m/s)':'海流强度（米/秒）','Evolving wind & ocean circulation':'动态大气与海洋环流',
   'Cloud cover on Planet surface':'显示云层','Evolve vegetation & feedback':'植被演化与反馈','Ice / snow albedo feedback':'冰雪反照率反馈',
   'Grounded ice flow & glacial erosion':'陆地冰川流动与侵蚀','Terrain rivers, lakes & wetlands':'地形河流、湖泊与湿地',
@@ -118,6 +120,8 @@ const notes=[
   ['Enabling water or changing its','启用水循环或修改参数，会在当前时刻重新开始温度和水循环演化。绘制地形、修改物理参数和手动修改时间也会重启；地形保持不变。'],
   ['Generate climate initializes all','生成气候会立即初始化各系统；播放后演化冰雪、潜热、海流与植被。修改参数时，环境对比仍保留已采集的基准。'],
   ['Temperature contrasts drive bounded','温差结合自转与地表阻力驱动有界风场扰动。封闭海流在约五天内响应风场；切换模式会重新生成气候。风与海流图显示相应矢量，不模拟气压和深海。'],
+  ['Thicker sea ice insulates the ocean','较厚海冰减缓海洋散热，夏季表面热量融化已有海冰。需要空气、陆地和海洋独立温度；切换会重新生成气候，季节覆盖尚未标定。'],
+  ['Liquid water can carry heat beneath sea ice','冰下液态海水可输送热量；此开关独立于冰厚热交换。切换会重新生成气候。'],
   ['Soft white cloud cover','白色云层跟随大气水汽变化，播放时演化、暂停时静止；只影响显示，不改变气候或水量。'],
   ['Vegetation responds to','植被在多年尺度上响应气温、降雨与土壤湿度，并反馈到气候；不模拟物种或碳循环。'],
   ['Snow and ice reflect','冰雪反射更多阳光，改变地表吸收的能量及后续气温。'],
@@ -185,6 +189,10 @@ const fragments={
   'global equivalent':'全球当量','global mm':'全球毫米','global m':'全球米',
   '° lat, ':'° 纬度，','° lon':'° 经度','seafloor':'海底深度','elevation':'海拔',
   'solar time undefined at pole':'极点无定义太阳时','h local solar time':'时当地太阳时','°C daily-mean cell':'°C 网格日均气温',
+  '°C current parent air':'°C 当前粗气柱温度','°C current mixed surface':'°C 当前地表混合热库温度','parent cell center ':'粗网格格心 ','parent land ':'粗格陆地比例 ','mean land elevation ':'陆地平均海拔 ',
+  'stored reference annual mean ':'存储的参考年均 ',
+  'Current parent air under daily-mean forcing; local surface is reported separately.':'日均辐射驱动下的当前粗气柱温度；当地地表温度单独报告。',
+  'Current mixed surface reservoir under daily-mean forcing.':'日均辐射驱动下的当前地表混合热库温度。',
   'estimated wind E ':'估算风速：向东 ',' / N ':' / 向北 ','potential cover: ':'潜在地表：',
   'local surface estimate ':'当地地表估算 ','annual mean ':'年均 ','mm per Earth year':'毫米/地球年',
   'local air ':'当地空气估算 ','local surface ':'当地表面估算 ','ice shelf ':'浮冰架 ',
@@ -193,6 +201,8 @@ const fragments={
   'mm/day per whole cell':'毫米/天（整个网格）','rain/snow phase unavailable':'暂无雨雪相态',
   'current column at day ':'当前气柱时间：第 ','precipitation ':'降水 ',
   'total precipitation ':'总降水 ','generated initial estimate':'初始生成估算','latest simulated-step rate':'最近一步的速率',
+  'climate-cell land precipitation ':'气候格陆地降水 ',
+  'land precipitation allocation unavailable in old refined save':'旧细分存档未记录陆海降水分配',
   'local land snow ':'当地陆地积雪 ','local grounded ice ':'当地陆冰 ',
   'coarse-cell land snow ':'粗网格陆地积雪 ',' / melt ':' / 融雪 ',' / ocean ice ':' / 海冰 ',
   'cell outflow ':'网格流出量 ','grounded ice cell ':'网格陆冰 ',' / flow ':' / 流速 ',
@@ -225,7 +235,7 @@ const parameters={planet:'行星',orbit:'轨道',thermal:'温度模型',water:'�
   landHeatCapacity:'陆地热容量（J/m²/K）',diffusion:'热输送系数',evaporationFraction:'蒸发能量比例',soilCapacityKgM2:'土壤容量（千克/平方米）',
   initialOceanDepthM:'初始海洋水深（米）',windMps:'风带强度（米/秒）',moistureDiffusivityM2s:'水汽混合系数（m²/s）',
   routingSpeedMps:'地表流速（米/秒）',oceanStrengthMps:'海流强度（米/秒）',vegetation:'植被反馈',iceAlbedo:'冰雪反照率反馈',
-  terrainWater:'地形汇流',glaciers:'陆地冰川',dynamicCirculation:'动态环流'};
+  terrainWater:'地形汇流',glaciers:'陆地冰川',dynamicCirculation:'动态环流',conductiveSeaIce:'冰厚热交换（实验）',underIceOcean:'冰下海洋热输送（实验）'};
 
 export function translate(text) {
   const trimmed=text.trim();if(!trimmed)return text;

@@ -13,7 +13,8 @@ const cache=new Map<string,MoistureReference>(),DAY=86400;
 /** One spinup and one recorded cycle using the live moisture closure.
  * Stable ordinary configurations integrate the coupled thermal model at the
  * real year and radius at no more than the live time step, bounded by
- * 131072 steps and 200 million edge-steps across both orbits.
+ * 262144 steps and 600 million edge-steps across both orbits. This includes
+ * the Earth 1800/900/450-second convergence sequence on the same real year.
  * Stiff/long-year cases use prescribed periodic temperature heat baths over
  * an explicitly compressed cycle, <=4096 steps; external heat is reported.
  * This short initialization does not claim climate equilibrium. */
@@ -54,7 +55,7 @@ export function referenceMoisture(target:ClimateGrid,planet:PlanetConfig,orbit:O
     const fields=['atmosphereKgM2','rainMmDay','evaporationMmDay','soilFraction','humidityFraction','surfaceMm','temperatureK','landTemperatureK','oceanTemperatureK','windEastMps','windNorthMps'] as const;
     const months=Array.from({length:12},()=>Object.fromEntries(fields.map(k=>[k,zero()])) as MoistureMonth);
     const coupledStep=Math.min(maxStepS,model.stepS,w.maxStepS,yearS/720);
-    if(2*Math.ceil(yearS/coupledStep)<=131072&&2*Math.ceil(yearS/coupledStep)*grid.edges.length<=2e8) {
+    if(2*Math.ceil(yearS/coupledStep)<=262144&&2*Math.ceil(yearS/coupledStep)*grid.edges.length<=6e8) {
         // Integrate the actual coupled model without enlarging its live step.
         // Exotic stiff configurations use the explicitly
         // marked prescribed-temperature approximation below.

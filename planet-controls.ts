@@ -21,6 +21,7 @@ import {terrainWaterView} from './terrain-water-view.ts';
 import {weatherView,weatherFields} from './weather.ts';
 import {thermalCell} from './thermal.ts';
 import {installInfoNotes} from './panel-info.ts';
+import {cellBounds} from './climate-diagnostics.ts';
 
 type Sample={uv:[number,number];elevation:number};
 type Options={
@@ -250,7 +251,7 @@ export function installPlanetControls(options:Options) {
             layer==='wind'?(thermal.model?'Estimated surface wind: arrows point toward flow; dark blue → green = 0–30 m/s. Geographic circulation template, not a pressure solver.':thermal.status):
             layer==='erosion'?(geomorph.model?'Net bed change: −100 m blue · 0 m cream · +100 m red; outside values saturate. Coarse preview; source climate and artistic rivers are retained.':'Capture current water in Erosion & deposition preview to begin.'):
             waterLayer()?(!thermal.water?thermal.status:layer==='precipitation'?`Precipitation: 0–20 mm/day · dark blue → cyan → cream. ${initialWater?'Generated initial estimate':'Latest simulated-step rate'}; higher values saturate.`:layer==='soil-moisture'?'Soil moisture: 0–100% of soil capacity · brown → green; ocean blue. Fraction per land area.':`Cell surface outflow: 0–10⁷ m³/s · dark blue → cyan, log scale. ${initialWater?'Generated initial estimate':'Latest simulated-step transfer'}; higher values saturate. Planet surface channel widths are climate-fed estimates.`):
-            layer==='temperature'?(thermal.model?'Temperature: −80 °C blue · 0 °C cream · +60 °C red. Generated daily-mean reference is ready while paused; Play evolves it. Outside values saturate.':thermal.status):
+            layer==='temperature'?(thermal.model?`Temperature: −80 °C blue · 0 °C cream · +60 °C red. ${thermal.config.separateReservoirs?'Current parent air under daily-mean forcing; local surface is reported separately.':'Current mixed surface reservoir under daily-mean forcing.'} Outside values saturate.`:thermal.status):
             layer==='day-night'?'Day / night · night brightness helps editing; night receives 0 W/m².':'Terrain editing · physical settings preserve your terrain.';
         if(layer==='surface'&&weatherVisible&&thermal.water)legend.textContent+=' Clouds: column water / temperature-dependent capacity proxy, 70–100% saturation → 0–100% cover; at most 66% opacity. Surface illustration, not measured humidity or 3D cloud water.';
         warning.textContent=p.rotationRatio>.05?'Rapid spin: the spherical gravity/sea-level approximation becomes inaccurate.':
@@ -260,18 +261,23 @@ export function installPlanetControls(options:Options) {
             const height=probe.elevation>0?probe.elevation*planet.reliefM:physicalHeight(Math.max(-1,probe.elevation),planet);
             probeOutput.textContent=`${((.5-probe.uv[1])*180).toFixed(2)}° lat, ${((probe.uv[0]-.5)*360).toFixed(2)}° lon · ${height.toFixed(0)} m ${height<0?'seafloor':'elevation'} · ${incidentFlux(direction,sun.direction,o.fluxWm2).toFixed(1)} W/m² · ${local===null?'solar time undefined at pole':`${local.toFixed(2)} h local solar time`}`;
             const cellK=thermal.sample(...probe.uv);
-            if(cellK!==null) probeOutput.textContent+=` · ${(cellK-273.15).toFixed(1)} °C daily-mean cell`;
+            if(cellK!==null) {
+                const k=thermalCell(thermal.grid,...probe.uv),b=cellBounds(thermal.grid,k),lat=Math.asin(thermal.grid.sinLat[Math.floor(k/thermal.grid.width)])*180/Math.PI;
+                probeOutput.textContent+=` · ${(cellK-273.15).toFixed(1)} °C ${thermal.config.separateReservoirs?'current parent air':'current mixed surface'} · parent cell center ${lat.toFixed(2)}° lat, ${((b.west+b.east)/2).toFixed(2)}° lon`;
+                if(thermal.water)probeOutput.textContent+=` · parent land ${(100*thermal.water.land[k]).toFixed(0)}% / mean land elevation ${thermal.water.heightM[k].toFixed(0)} m`;
+            }
             const wind=thermal.sampleWind(...probe.uv);
             if(wind)probeOutput.textContent+=` · estimated wind E ${wind.eastMps.toFixed(1)} / N ${wind.northMps.toFixed(1)} m/s`;
             const cover=thermal.sampleSurface(...probe.uv);
             const localThermalLabel=thermal.config.separateReservoirs?'local air':'local surface estimate';
             if(cover&&layer==='surface')probeOutput.textContent+=probe.elevation>0
-                ?` · potential cover: ${BIOMES[cover.biome].label} · vegetation ${(100*cover.vegetationFraction).toFixed(0)}% · snow ${(100*cover.snowFraction).toFixed(0)}% · ${localThermalLabel} ${(cover.localTemperatureK-273.15).toFixed(1)} °C · annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
+                ?` · potential cover: ${BIOMES[cover.biome].label} · vegetation ${(100*cover.vegetationFraction).toFixed(0)}% · snow ${(100*cover.snowFraction).toFixed(0)}% · ${localThermalLabel} ${(cover.localTemperatureK-273.15).toFixed(1)} °C · stored reference annual mean ${(cover.meanTemperatureK-273.15).toFixed(1)} °C / ${cover.annualRainMm.toFixed(0)} mm per Earth year`
                 :` · potential cover: ocean · sea ice ${(100*cover.seaIceFraction).toFixed(0)}% · ${thermal.config.separateReservoirs?'local air':'local ice / water estimate'} ${(cover.localTemperatureK-273.15).toFixed(1)} °C`;
             if(cover&&layer==='surface'&&thermal.config.separateReservoirs)probeOutput.textContent+=` · local surface ${(cover.surfaceTemperatureK-273.15).toFixed(1)} °C · ice shelf ${cover.shelfIceM.toFixed(1)} m`;
             const water=thermal.sampleWater(...probe.uv);
             if(weatherVisible&&thermal.model&&thermal.water){const f=weatherFields(thermal.model,thermal.water),k=thermalCell(thermal.grid,...probe.uv);probeOutput.textContent+=` · column saturation proxy ${(100*f.saturation[k]).toFixed(0)}% · cloud display ${(100*f.cloud[k]).toFixed(0)}% · ${f.phaseAvailable?`liquid precipitation ${f.rainMmDay[k].toFixed(2)} / land snowfall ${f.snowMmDay[k].toFixed(2)} mm/day per whole cell`:'rain/snow phase unavailable'} (current column at day ${(thermal.model.timeS/86400).toFixed(3)}; precipitation ${f.precipitationSource})`;}
             if(water)probeOutput.textContent+=` · total precipitation ${water.precipitationMmDay.toFixed(2)} mm/day (${initialWater?'generated initial estimate':'latest simulated-step rate'}) · ${water.soilMm===null?'ocean':`soil ${water.soilMm.toFixed(1)} mm / standing ${water.surfaceMm!.toFixed(1)} mm per land area`} · ${thermal.refinedSurface?'local land snow':'coarse-cell land snow'} ${water.snowMm.toFixed(1)} mm / melt ${water.meltMmDay.toFixed(2)} mm/day / ocean ice ${water.iceM.toFixed(2)} m · cell outflow ${water.dischargeM3S.toExponential(2)} m³/s`;
+            if(water&&thermal.water?.config.moistureScheme==='transport'){const k=thermalCell(thermal.grid,...probe.uv),f=thermal.water.land[k];if(f>0)probeOutput.textContent+=thermal.water.landPrecipitationKnown?` · climate-cell land precipitation ${(86400*thermal.water.landPrecipitationKgM2S[k]/f).toFixed(2)} mm/day per land area (${initialWater?'generated initial estimate':'latest simulated-step rate'})`:' · land precipitation allocation unavailable in old refined save';}
             const erosion=geomorph.sample(...probe.uv);
             const fineWater=thermal.sampleTerrainWater(...probe.uv);
             if(water&&(thermal.environmentConfig.glaciers||thermal.iceInventory)&&probe.elevation>0)probeOutput.textContent+=` · ${thermal.refinedSurface?'local grounded ice':'grounded ice cell'} ${water.landIceM.toFixed(1)} m / flow ${water.iceSpeedMyr.toFixed(2)} m/yr`;

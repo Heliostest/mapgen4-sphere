@@ -22,6 +22,15 @@ interface RefinedDisplay {
     snowMm:Float64Array;iceKgM2:Float64Array;landIceKgM2:Float64Array;shelfLandIceKgM2:Float64Array;shelfSeaIceKgM2:Float64Array;vegetation:Float64Array;
 }
 export interface ThermalTexture {width:number;height:number;pixels:Uint8Array;timeS:number;}
+/** Old remapping mixed rain and snowfall differently inside coastal patches.
+ * Return an explicitly unknown diagnostic estimate, never a new stock. */
+function oldRefinedLandEstimate(water:WaterCheckpoint,refined:RefinedCheckpoint|null|undefined) {
+    if(water.landPrecipitationKgM2S||!refined)return undefined;
+    const p=refined.partition,estimate=new Float64Array(water.precipitationKgM2S.length);
+    for(let t=0;t<p.parent.length;t++)estimate[p.parent[t]]+=refined.rain[t]*p.land[t]/(p.land[t]+p.sea[t]);
+    for(let k=0;k<estimate.length;k++)estimate[k]=Math.min(water.precipitationKgM2S[k],Math.max(water.snowfallKgM2S?.[k]??0,estimate[k]));
+    return estimate;
+}
 /** Synchronous ownership avoids stale worker replies. Retain the acknowledged
  * visible state across any number of updates queued before the next draw. */
 export class ThermalRuntime {
@@ -104,7 +113,7 @@ export class ThermalRuntime {
         const m=rt.model=new ThermalModel(planet,orbit,rt.config,s.land,s.epochS,rt.grid,{temperatureK:s.thermal.temperatureK,radiationScale:s.radiationScale,absorbedWm2:s.thermal.absorbedWm2,landTemperatureK:s.thermal.landTemperatureK,oceanTemperatureK:s.thermal.oceanTemperatureK},s.initialEnergyJm2);
         if(s.water) {
             rt.water=new WaterModel(rt.grid,planet.radiusM,s.land,s.height.map(h=>h*planet.reliefM),m.temperatureK,rt.waterConfig,undefined,s.water.initialTotalMm);
-            rt.water.restore(s.water);
+            rt.water.restore(s.water,rt.waterConfig.moistureScheme==='transport'?oldRefinedLandEstimate(s.water,s.refined):undefined);
             if(rt.iceInventory)rt.water.glacierBedM=rt.compatibleBed(planet);
             rt.environment=new EnvironmentModel(m,rt.water,rt.environmentConfig,s.initialEnthalpy!);
             rt.environment.restore(s.circulation);
@@ -180,6 +189,8 @@ export class ThermalRuntime {
         m.restore(thermal);if(m.stepS<before.stepS-1e-9)throw new Error('Terrain edit changes the stable integration step; reset climate explicitly');m.stepS=before.stepS;
         const w=new WaterModel(this.grid,before.planet.radiusM,land,height.map(h=>h*before.planet.reliefM),m.temperatureK,this.waterConfig,undefined,previous.initialTotalMm);
         w.oceanGlobalKgM2=previous.oceanGlobalKgM2;w.atmosphereKgM2.set(previous.atmosphereKgM2);w.elapsedS=previous.elapsedS;for(const key of ['precipitationKgM2S','evaporationKgM2S','meltKgM2S','dischargeM3S'] as const)w[key].set(previous[key]);w.snowfallKgM2S=previous.snowfallKgM2S?.slice()??null;w.setWinds(previous.windEastMps,previous.windNorthMps);
+        w.landPrecipitationKgM2S.set(previous.landPrecipitationKgM2S);w.oceanPrecipitationKgM2S.set(previous.oceanPrecipitationKgM2S);
+        w.landPrecipitationKnown=previous.landPrecipitationKnown;
         if(this.environmentConfig.terrainWater) {
             if(!source?.mesh)throw new Error('Refined terrain water requires the authored mesh');
             const network=terrainRoutingNetwork(source.mesh,source.elevation,this.grid,before.planet.radiusM,before.planet.reliefM,source.quadElements,source.drainage?.inlandLakeId,before.planet.oceanDepthM);
@@ -430,7 +441,7 @@ export class ThermalRuntime {
         if(timeS<this.lastTarget) {
             if(this.presented && m.epochS+this.presented.thermal.steps*m.stepS<=timeS) {
                 m.restore(this.presented.thermal);
-                if(this.water&&this.presented.water)this.water.restore(this.presented.water);
+                if(this.water&&this.presented.water)this.water.restore(this.presented.water,this.water.config.moistureScheme==='transport'?oldRefinedLandEstimate(this.presented.water,this.presented.refined):undefined);
                 this.environment?.restore(this.presented.circulation);
                 if(this.refinedSurface&&this.presented.refined)this.refinedSurface.restore(this.presented.refined);
                 this.iceEnergy=this.presented.ice.slice();
