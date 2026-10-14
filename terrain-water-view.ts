@@ -3,16 +3,11 @@ import Geometry from './geometry.ts';
 import {atlasTriangles} from './sphere.ts';
 import type {RoutingNetwork} from './terrain-water.ts';
 import {riverChannelField} from './river-channels.ts';
+import {triangleStorageDepth} from './lake-storage.ts';
+export {triangleStorageDepth} from './lake-storage.ts';
 
 export interface TerrainWaterView {rivers:Float32Array;riverTriangles:number;lakes:Float32Array;timeS:number;oceanDepthRatio?:number;inlandVertices?:Uint8Array;}
 export interface ChannelDisplay {minFlowM3S?:number;widthCoefficient?:number;maxWidthRatio?:number;enabled?:boolean;}
-/** Mean positive depth over a linear triangular bed (exact piecewise integral). */
-export function triangleStorageDepth(h:number,a:number,b:number,c:number) {
-    if(a>b)[a,b]=[b,a];if(b>c)[b,c]=[c,b];if(a>b)[a,b]=[b,a];
-    if(h<=a)return 0;if(h>=c)return h-(a+b+c)/3;
-    if(h<=b)return (h-a)**3/(3*(b-a)*(c-a));
-    return h-(a+b+c)/3+(c-h)**3/(3*(c-a)*(c-b));
-}
 /** Sub-triangle shore reconstruction; routing itself uses cell-mean columns. */
 export function lakeSurfaceLevel(depth:number,corners:number[],center:number) {
     let lo=Math.min(center,...corners),hi=Math.max(center,...corners)+depth;

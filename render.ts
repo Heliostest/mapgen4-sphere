@@ -511,7 +511,8 @@ const frag_drape = `
         vec3 body_normal=vec3(cos(lat)*sin(lon),sin(lat),cos(lat)*cos(lon));
         biome_color=surface_color(biome_color,body_normal,v_em.x);
         vec3 base_color=mix(biome_color, water_color.rgb, water_color.a);
-        out_fragcolor = vec4(weather_color(planet_color(base_color,body_normal) * light / outline,body_normal), 1);
+        vec3 color=weather_color(planet_color(base_color,body_normal) * light / outline,body_normal);
+        out_fragcolor = vec4(planet_lighting(color,body_normal), 1);
     }`;
 
 const vert_final = `

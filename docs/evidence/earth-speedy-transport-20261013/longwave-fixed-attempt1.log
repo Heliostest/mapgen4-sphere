@@ -1,0 +1,34 @@
+{"implementation":"fixed","case":"opaque-isothermal","emissivity":0.0,"fluxes":{"up":459.27,"down":459.27,"olr":459.27,"heat":-459.2699999999999,"residual":5.684341886080802e-14,"bottomHeat":0.0,"oceanUp":459.27,"landUp":459.27,"oceanT":300.0,"landT":300.0,"dt":[-0.0003589990996015936,0.0,0.0,0.0,0.0,0.0,0.0,0.0]}}
+{"implementation":"fixed","case":"opaque-isothermal","emissivity":0.25,"fluxes":{"up":459.27,"down":459.27,"olr":459.27,"heat":-459.2699999999999,"residual":5.684341886080802e-14,"bottomHeat":0.0,"oceanUp":459.27,"landUp":459.27,"oceanT":300.0,"landT":300.0,"dt":[-0.0003589990996015936,0.0,0.0,0.0,0.0,0.0,0.0,0.0]}}
+{"implementation":"fixed","case":"opaque-isothermal","emissivity":0.98,"fluxes":{"up":459.27,"down":459.27,"olr":459.27,"heat":-459.2699999999999,"residual":5.684341886080802e-14,"bottomHeat":2.600676082701277e-14,"oceanUp":459.27,"landUp":459.27,"oceanT":300.0,"landT":300.0,"dt":[-0.0003589990996015936,0.0,0.0,0.0,0.0,0.0,0.0,2.0328790734103208e-20]}}
+{"implementation":"fixed","case":"opaque-isothermal","emissivity":1.0,"fluxes":{"up":459.27,"down":459.27,"olr":459.27,"heat":-459.2699999999999,"residual":5.684341886080802e-14,"bottomHeat":0.0,"oceanUp":459.27,"landUp":459.27,"oceanT":300.0,"landT":300.0,"dt":[-0.0003589990996015936,0.0,0.0,0.0,0.0,0.0,0.0,0.0]}}
+Perfectly reflecting surface has zero net absorption: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\longwave-test.jl:66
+  Expression: a.oceanUp == a.landUp == a.up
+   Evaluated: 385.234252942075 == 385.234252942075 == 385.23425294207493
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\longwave-test.jl:66 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\longwave-test.jl:64 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [6] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\longwave-test.jl:48
+{"implementation":"fixed","case":"reflecting-surface","fluxes":{"up":385.23425294207493,"down":385.234252942075,"olr":289.75833194907835,"heat":-289.75833194907835,"residual":5.684341886080802e-14,"bottomHeat":-48.222897661265094,"oceanUp":385.234252942075,"landUp":385.234252942075,"oceanT":300.0,"landT":290.0,"dt":[-6.8313053860741035e-6,-9.823536432207211e-6,-1.8079930391303636e-5,-3.2737684249538786e-5,-4.63551813052329e-5,-4.529403227423113e-5,-2.9680131583997788e-5,-3.769455187705264e-5]}}
+{"implementation":"fixed","case":"default-radiation","fluxes":{"up":440.66623319684146,"down":385.234252942075,"olr":289.89638390503245,"heat":-234.46440365026606,"residual":-5.684341886080802e-14,"bottomHeat":1.6947328891905495,"oceanUp":457.7892850588415,"landUp":400.7124455188415,"oceanT":300.0,"landT":290.0,"dt":[-6.82275433022111e-6,-9.811968208777317e-6,-1.805763044131648e-5,-3.268397615864453e-5,-4.6201645736390635e-5,-4.471879062483864e-5,-2.630252768324314e-5,1.3247274615903817e-6]}}
+Test Summary:                                                        | Pass  Fail  Total   Time
+Gray surface longwave reflection                                     |  174     1    175  13.4s
+  Opaque isothermal surface and bottom air exchange zero             |   24           24   8.5s
+  Emissivity one is native bitwise-equivalent                        |   27           27   1.9s
+  Perfectly reflecting surface has zero net absorption               |    5     1      6   2.9s
+  Transparent atmosphere retains native fluxes and zero air heating  |   48           48   0.0s
+  Mixed land and ocean retain separate emissivities and temperatures |   63           63   0.0s
+  Default component preserves coefficients and declarations          |    7            7   0.1s
+RNG of the outermost testset: Random.Xoshiro(0x8984555623868805, 0xf2e93c931dc1389b, 0x1cba6ad6ff4b55de, 0xb26349c643e937d7, 0xd29b25ae54a3660d)
+ERROR: LoadError: Some tests did not pass: 174 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\longwave-test.jl:47

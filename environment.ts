@@ -1,12 +1,12 @@
 import type {ThermalModel} from './thermal.ts';
 import {FUSION_J_KG as LF,VAPORIZATION_J_KG as LV,type WaterModel} from './water.ts';
 import {OceanTransport,type OceanCheckpoint} from './ocean.ts';
-import {AtmosphericCirculation,type AtmosphereCheckpoint} from './circulation.ts';
+import {AtmosphericCirculation,type AtmosphereCheckpoint,type CirculationScheme} from './circulation.ts';
 import {derivePlanet} from './planet.ts';
 import {seaIceSurfaceExchange,SEA_ICE_FREEZE_K} from './sea-ice-thermodynamics.ts';
 export const SEA_FREEZE_K=SEA_ICE_FREEZE_K,SNOW_MELT_K=273.15;
 export const DEFAULT_ENVIRONMENT:Readonly<EnvironmentConfig>=Object.freeze({oceanStrengthMps:.3,vegetation:true,iceAlbedo:true,terrainWater:false,glaciers:false,dynamicCirculation:false});
-export type EnvironmentConfig={oceanStrengthMps:number;vegetation:boolean;iceAlbedo:boolean;terrainWater?:boolean;glaciers?:boolean;dynamicCirculation?:boolean;conductiveSeaIce?:boolean;underIceOcean?:boolean};
+export type EnvironmentConfig={oceanStrengthMps:number;vegetation:boolean;iceAlbedo:boolean;terrainWater?:boolean;glaciers?:boolean;dynamicCirculation?:boolean;conductiveSeaIce?:boolean;underIceOcean?:boolean;separateSurfaceAlbedo?:boolean;circulationScheme?:CirculationScheme;boundaryLayerDepthM?:number;pressureLayerDepthM?:number};
 export interface SeaIceHeatDiagnostics {iceArea:Float64Array;skinK:Float64Array;conductiveWm2:Float64Array;airWm2:Float64Array;oceanWm2:Float64Array;radiationWm2:Float64Array;balanceResidualWm2:Float64Array;}
 export interface EnvironmentCheckpoint {atmosphere:AtmosphereCheckpoint;ocean:OceanCheckpoint;}
 const clamp=(x:number)=>Math.max(0,Math.min(1,x));
@@ -26,16 +26,18 @@ export class EnvironmentModel {
     readonly landHeatJm2:Float64Array;readonly oceanHeatJm2:Float64Array;
     get landTemperatureK() {return this.thermal.config.separateReservoirs?this.thermal.landTemperatureK:undefined;}
     get oceanTemperatureK() {return this.thermal.config.separateReservoirs?this.thermal.oceanTemperatureK:undefined;}
+    get surfaceAlbedo() {return this.thermal.surfaceAlbedo?{...this.thermal.surfaceAlbedo,mean:this.thermal.albedo}:undefined;}
     readonly vegetation:Float64Array;
     readonly initialEnthalpy:number;
     constructor(readonly thermal:ThermalModel,readonly water:WaterModel,readonly config:EnvironmentConfig,initialEnthalpy?:number) {
         if(config.conductiveSeaIce&&!thermal.config.separateReservoirs)throw new Error('Conductive sea ice requires separate thermal reservoirs');
+        if(config.separateSurfaceAlbedo&&!thermal.config.separateReservoirs)throw new Error('Separate surface albedo requires separate thermal reservoirs');
         // Older conductive experiments enabled both closures. An explicit
         // transport switch separates factorial probes without changing saves.
         const n=thermal.grid.count;this.ocean=new OceanTransport(thermal,water,!!config.dynamicCirculation,config.underIceOcean??!!config.conductiveSeaIce);
         this.seaIceHeat=config.conductiveSeaIce?{iceArea:new Float64Array(n),skinK:new Float64Array(n),conductiveWm2:new Float64Array(n),airWm2:new Float64Array(n),oceanWm2:new Float64Array(n),radiationWm2:new Float64Array(n),balanceResidualWm2:new Float64Array(n)}:null;
         thermal.oceanSurfaceSolver=config.conductiveSeaIce?this:null;
-        this.atmosphere=config.dynamicCirculation?new AtmosphericCirculation(thermal,water):null;
+        this.atmosphere=config.dynamicCirculation?new AtmosphericCirculation(thermal,water,config.circulationScheme,config.boundaryLayerDepthM,config.pressureLayerDepthM):null;
         if(config.glaciers)water.attachGlacier(derivePlanet(thermal.planet).gravityMps2);
         this.iceCover=new Float64Array(n);this.snowCover=new Float64Array(n);this.landEvaporation=new Float64Array(n).fill(1);this.heatJm2=new Float64Array(n);this.vegetation=new Float64Array(n).fill(.5);
         this.glacierCover=new Float64Array(n);
@@ -63,8 +65,9 @@ export class EnvironmentModel {
     }
     stepOceanSurface(k:number,dt:number) {
         const m=this.thermal,w=this.water,wet=1-w.land[k];
-        const base=clamp(m.orbit.bondAlbedo+(this.config.vegetation?w.land[k]*.06*(.5-this.vegetation[k]):0));
-        const flux=seaIceSurfaceExchange({wetArea:wet,marineArea:Math.max(0,wet-w.inlandWaterFraction[k]),iceKgM2:w.seaIceKgM2[k],waterK:m.oceanTemperatureK[k],airK:m.temperatureK[k],waterCapacity:m.oceanCapacity[k],airCapacity:m.capacity[k],absorbedWm2:m.absorbedWm2[k],waterAlbedo:base,iceAlbedo:this.config.iceAlbedo?Math.max(base,.65):base,emissivity:(1-(m.config.airRadiationFraction??0))*m.config.emissivity,dt});
+        const base=clamp(m.orbit.bondAlbedo+(this.config.separateSurfaceAlbedo?0:this.config.vegetation?w.land[k]*.06*(.5-this.vegetation[k]):0));
+        const absorbed=m.surfaceAlbedo&&m.albedo[k]<1?m.absorbedWm2[k]*(1-m.surfaceAlbedo.ocean[k])/(1-m.albedo[k]):m.absorbedWm2[k];
+        const flux=seaIceSurfaceExchange({wetArea:wet,marineArea:Math.max(0,wet-w.inlandWaterFraction[k]),iceKgM2:w.seaIceKgM2[k],waterK:m.oceanTemperatureK[k],airK:m.temperatureK[k],waterCapacity:m.oceanCapacity[k],airCapacity:m.capacity[k],absorbedWm2:absorbed,waterAlbedo:base,iceAlbedo:this.config.iceAlbedo?Math.max(base,.65):base,emissivity:(1-(m.config.airRadiationFraction??0))*m.config.emissivity,dt});
         m.oceanTemperatureK[k]=flux.waterK;m.temperatureK[k]=flux.airK;
         const d=this.seaIceHeat!;d.iceArea[k]=flux.iceArea;d.skinK[k]=flux.skinK;d.conductiveWm2[k]=flux.conductiveWm2;d.airWm2[k]=flux.iceAirWm2;d.oceanWm2[k]=flux.iceOceanWm2;d.radiationWm2[k]=flux.radiationWm2;d.balanceResidualWm2[k]=flux.balanceResidualWm2;
         return flux.radiationWm2;
@@ -87,6 +90,8 @@ export class EnvironmentModel {
     }
     refresh(vegetation?:ArrayLike<number>) {
         const m=this.thermal,w=this.water;
+        if(this.config.separateSurfaceAlbedo)m.surfaceAlbedo??={land:new Float64Array(w.grid.count),ocean:new Float64Array(w.grid.count)};
+        else m.surfaceAlbedo=null;
         if(vegetation)this.vegetation.set(vegetation);
         for(let i=0;i<w.grid.count;i++) {
             const f=w.land[i],v=this.vegetation[i];
@@ -99,6 +104,7 @@ export class EnvironmentModel {
             const landFrozen=Math.max(this.snowCover[i],this.glacierCover[i],this.shelfLandCover[i]),frozen=f*landFrozen+(1-f)*this.oceanFrozenCover[i];
             const base=clamp(m.orbit.bondAlbedo+(this.config.vegetation?f*.06*(.5-v):0));
             m.albedo[i]=this.config.iceAlbedo?base+(Math.max(base,.65)-base)*frozen:base;
+            if(m.surfaceAlbedo){const lb=clamp(m.orbit.bondAlbedo+(this.config.vegetation?.06*(.5-v):0)),sb=m.orbit.bondAlbedo;m.surfaceAlbedo.land[i]=this.config.iceAlbedo?lb+(Math.max(lb,.65)-lb)*landFrozen:lb;m.surfaceAlbedo.ocean[i]=this.config.iceAlbedo?sb+(Math.max(sb,.65)-sb)*this.oceanFrozenCover[i]:sb;m.albedo[i]=f*m.surfaceAlbedo.land[i]+(1-f)*m.surfaceAlbedo.ocean[i];}
             this.landEvaporation[i]=this.config.vegetation?(.6+.4*v)*(1-landFrozen):1-landFrozen;
         }
         this.surfaceSolver?.refresh();
@@ -119,16 +125,16 @@ export class EnvironmentModel {
             t-=glacier*LF/c;this.heatJm2[i]-=glacier*LF;
             for(const shelf of [w.shelfLandIceKgM2,w.shelfSeaIceKgM2]) {
                 const melt=Math.min(shelf[i],Math.max(0,(t-SNOW_MELT_K)*c/LF));
-                shelf[i]-=melt;w.oceanGlobalKgM2+=melt/n;t-=melt*LF/c;this.heatJm2[i]-=melt*LF;
+                shelf[i]-=melt;w.addOceanWater(melt/n);t-=melt*LF/c;this.heatJm2[i]-=melt*LF;
             }
             const ice=Math.min(w.seaIceKgM2[i],Math.max(0,(t-SEA_FREEZE_K)*c/LF));
-            w.seaIceKgM2[i]-=ice;w.oceanGlobalKgM2+=ice/n;
+            w.seaIceKgM2[i]-=ice;w.addOceanWater(ice/n);
             t-=ice*LF/c;this.heatJm2[i]-=ice*LF;
             // Mixed cells share one temperature; limit freezing by their wet area.
             freeze[i]=Math.max(0,(SEA_FREEZE_K-t)*c/LF)*(1-w.land[i]-w.inlandWaterFraction[i]);freezeRequest+=freeze[i]/n;
         }
         const fraction=freezeRequest>0?Math.min(1,w.oceanGlobalKgM2/freezeRequest):0;
-        w.oceanGlobalKgM2-=freezeRequest*fraction;
+        w.addOceanWater(-freezeRequest*fraction);
         for(let i=0;i<n;i++){const amount=freeze[i]*fraction;w.seaIceKgM2[i]+=amount;this.heatJm2[i]+=amount*LF;}
         m.applyHeat(this.heatJm2);
     }
@@ -144,13 +150,13 @@ export class EnvironmentModel {
                 const glacier=Math.min(w.landIceKgM2[i],Math.max(0,(lt-SNOW_MELT_K)*lc/LF));
                 w.addLandIce(i,-glacier);w.surfaceKgM2[i]+=glacier;w.meltKgM2S[i]+=glacier/dt;lt-=glacier*LF/lc;this.landHeatJm2[i]-=glacier*LF;
                 const shelf=Math.min(w.shelfLandIceKgM2[i],Math.max(0,(lt-SNOW_MELT_K)*lc/LF));
-                w.shelfLandIceKgM2[i]-=shelf;w.oceanGlobalKgM2+=shelf/n;this.landHeatJm2[i]-=shelf*LF;
+                w.shelfLandIceKgM2[i]-=shelf;w.addOceanWater(shelf/n);this.landHeatJm2[i]-=shelf*LF;
             }
             if(oc>0) {
                 const shelf=Math.min(w.shelfSeaIceKgM2[i],Math.max(0,(ot-SNOW_MELT_K)*oc/LF));
-                w.shelfSeaIceKgM2[i]-=shelf;w.oceanGlobalKgM2+=shelf/n;ot-=shelf*LF/oc;this.oceanHeatJm2[i]-=shelf*LF;
+                w.shelfSeaIceKgM2[i]-=shelf;w.addOceanWater(shelf/n);ot-=shelf*LF/oc;this.oceanHeatJm2[i]-=shelf*LF;
                 const ice=Math.min(w.seaIceKgM2[i],Math.max(0,(ot-SEA_FREEZE_K)*oc/LF));
-                w.seaIceKgM2[i]-=ice;w.oceanGlobalKgM2+=ice/n;ot-=ice*LF/oc;this.oceanHeatJm2[i]-=ice*LF;
+                w.seaIceKgM2[i]-=ice;w.addOceanWater(ice/n);ot-=ice*LF/oc;this.oceanHeatJm2[i]-=ice*LF;
                 // oc already contains wet fraction: applying it again would
                 // leave a coastal ocean colder than its freezing boundary.
                 const wet=1-w.land[i],open=wet>0?(wet-w.inlandWaterFraction[i])/wet:0;
@@ -158,7 +164,7 @@ export class EnvironmentModel {
             }
         }
         const fraction=freezeRequest>0?Math.min(1,w.oceanGlobalKgM2/freezeRequest):0;
-        w.oceanGlobalKgM2-=freezeRequest*fraction;
+        w.addOceanWater(-freezeRequest*fraction);
         for(let i=0;i<n;i++){const amount=freeze[i]*fraction;w.seaIceKgM2[i]+=amount;this.oceanHeatJm2[i]+=amount*LF;}
         m.applyLandHeat(this.landHeatJm2);m.applyOceanHeat(this.oceanHeatJm2);
     }

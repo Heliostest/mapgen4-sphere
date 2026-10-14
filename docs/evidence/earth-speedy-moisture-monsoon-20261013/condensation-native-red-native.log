@@ -1,0 +1,35 @@
+{"label":"dry-below-rain","residualKgM2S":-0.0004198755838169618,"residualMmDay":-36.2772504417855,"enthalpyWm2":0.0,"rainKgM2S":1.7728645833782846e-5,"snowKgM2S":0.0}
+column water and moist enthalpy conservation: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\condensation-test.jl:37
+  Expression: abs(residual) < 1.0e-12
+   Evaluated: 0.0004198755838169618 < 1.0e-12
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\condensation-test.jl:12
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\condensation-test.jl:37 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+{"label":"rain-without-reevap","residualKgM2S":5.421010862427522e-20,"residualMmDay":4.683753385137379e-15,"enthalpyWm2":0.0,"rainKgM2S":0.0004800461350959062,"snowKgM2S":0.0}
+{"label":"melting-snow","residualKgM2S":-0.00011156851183933829,"residualMmDay":-9.639519422918829,"enthalpyWm2":-3.4421935796684416e-14,"rainKgM2S":4.710767275647702e-6,"snowKgM2S":0.0}
+column water and moist enthalpy conservation: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\condensation-test.jl:37
+  Expression: abs(residual) < 1.0e-12
+   Evaluated: 0.00011156851183933829 < 1.0e-12
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\condensation-test.jl:12
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\condensation-test.jl:37 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+{"label":"no-condensation","residualKgM2S":0.0,"residualMmDay":0.0,"enthalpyWm2":0.0,"rainKgM2S":0.0,"snowKgM2S":0.0}
+Test Summary:                                | Pass  Fail  Total  Time
+column water and moist enthalpy conservation |   10     2     12  4.2s
+RNG of the outermost testset: Random.Xoshiro(0xa1ff7219a6983e8c, 0x8a9b4b5ce339ce80, 0xeffc707e2cd7d211, 0xd31586438e1e224c, 0xb7563280134fb475)
+ERROR: LoadError: Some tests did not pass: 10 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\condensation-test.jl:11

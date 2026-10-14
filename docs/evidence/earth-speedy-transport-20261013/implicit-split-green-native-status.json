@@ -1,0 +1,53 @@
+{
+  "startedUTC": "2026-10-13T07:20:59.827Z",
+  "completedUTC": "2026-10-13T07:22:13.099Z",
+  "script": "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl",
+  "configuration": {
+    "SPEEDY_CASE": "implicit-split-green",
+    "SPEEDY_MODE": null,
+    "SPEEDY_SMOKE": null,
+    "MOISTURE_IMPLEMENTATION": null,
+    "MASS_IMPLEMENTATION": null,
+    "MIXING_IMPLEMENTATION": null,
+    "AUDIT_STAGES": null,
+    "DIAG_DAYS": null,
+    "PHYSICS_FIX": null,
+    "SPEEDY_SENSITIVITY": null
+  },
+  "sourceBefore": {
+    "docs/evidence/earth-speedy-transport-20261013/protocol.md": "7c11dd68086ee2940106f0fad49f8fa54b5ec5bdae0bcd64d50298a685f53364",
+    "docs/evidence/earth-speedy-transport-20261013/v2-protocol.md": "223eae94b0318e597e34f7942f5e112ec6865bcad5808e9c18b04eab7db8135b",
+    "docs/evidence/earth-speedy-transport-20261013/run-v2-julia.mjs": "08b86d7e3fd8ec0cdc085b6392ce3985792f51aa25ec44fd2cdc560c8d31551f",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl": "ace46127dff87263b6cd770dc0fe3525f326f68b98c185de4a137b23f7b02561",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-corrected.jl": "1af4513f14c7f66a42a3253f7288df18e84d7d1c4757edff0aadfa43949275d2",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-split-reference.jl": "224ce07c9552709f31c2e74521e3624ae5894c2a7319ca404faed59c11124d31"
+  },
+  "sourceAfter": {
+    "docs/evidence/earth-speedy-transport-20261013/protocol.md": "7c11dd68086ee2940106f0fad49f8fa54b5ec5bdae0bcd64d50298a685f53364",
+    "docs/evidence/earth-speedy-transport-20261013/v2-protocol.md": "223eae94b0318e597e34f7942f5e112ec6865bcad5808e9c18b04eab7db8135b",
+    "docs/evidence/earth-speedy-transport-20261013/run-v2-julia.mjs": "08b86d7e3fd8ec0cdc085b6392ce3985792f51aa25ec44fd2cdc560c8d31551f",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl": "ace46127dff87263b6cd770dc0fe3525f326f68b98c185de4a137b23f7b02561",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-corrected.jl": "1af4513f14c7f66a42a3253f7288df18e84d7d1c4757edff0aadfa43949275d2",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-split-reference.jl": "224ce07c9552709f31c2e74521e3624ae5894c2a7319ca404faed59c11124d31"
+  },
+  "sourceUnchanged": true,
+  "inputsBefore": {
+    "build/earth-speedyweather/annual-initial.jld2": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8",
+    "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083"
+  },
+  "inputsAfter": {
+    "build/earth-speedyweather/annual-initial.jld2": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8",
+    "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083"
+  },
+  "inputsUnchanged": true,
+  "args": [
+    "--startup-file=no",
+    "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl"
+  ],
+  "code": 0
+}

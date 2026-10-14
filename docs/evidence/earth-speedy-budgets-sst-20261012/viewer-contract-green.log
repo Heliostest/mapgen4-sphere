@@ -1,0 +1,22 @@
+✔ comparison decodes independent full precision case data without clipping temperature (206.3336ms)
+✔ rejects wrong envelope identity and initial 2001 atmosphere/land inventory SHA (16.2453ms)
+✔ rejects missing, duplicate, reordered or misleading case identities (215.9612ms)
+✔ checks every case model, statistics year and acceptance state (169.9474ms)
+✔ rejects other sigma coordinates even when top-to-bottom order is valid (54.3421ms)
+✔ retains monthly, grid, field and physical surface validation with case context (407.8082ms)
+✔ out-of-range actual wind fails the comparison instead of clipping for byte encoding (46.2038ms)
+✔ replay defaults to seasonal January near-surface wind (75.6979ms)
+✔ switching cases preserves month, layer and field choice while selecting fresh case data (73.9349ms)
+✔ packed texture cache separates case identity at the same month and level (0.3248ms)
+✔ invalid case or selection cannot fall back silently to another dataset (80.2063ms)
+✔ existing renderer packing reports temperature saturation but preserves raw fields (4.4799ms)
+✔ probe follows the selected case and derives layer pressure from actual surface pressure (82.1349ms)
+✔ probe rejects invalid cell indices instead of returning undefined raw values (75.1103ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1651.1925

@@ -1,0 +1,15 @@
+import {spawn} from 'node:child_process';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {resolve,basename} from 'node:path';
+const folder='docs/evidence/earth-speedyweather-20261012',out='build/earth-speedyweather';
+const script=process.argv[2];if(!script)throw Error('Supply a saved Julia script path');
+const env={...process.env,JULIA_DEPOT_PATH:resolve(`${out}/depot`),JULIA_NUM_THREADS:'2',OPENBLAS_NUM_THREADS:'1'};
+const args=['--startup-file=no',`--project=${folder}/julia-env`,script];
+const child=spawn(resolve(`${out}/runtime/julia-1.12.7/bin/julia.exe`),args,{env,windowsHide:true});
+let output='';child.stdout.on('data',c=>output+=c);child.stderr.on('data',c=>output+=c);
+const code=await new Promise((resolve,reject)=>{child.on('error',reject);child.on('close',resolve);});
+const name=basename(script,'.jl');await writeFile(`${folder}/${name}-native.log`,output);
+const result={createdUTC:new Date().toISOString(),script,scriptSha256:createHash('sha256').update(await readFile(script)).digest('hex'),args,code};
+await writeFile(`${folder}/${name}-native-status.json`,JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify(result));console.log(output.slice(-1500));process.exitCode=code;

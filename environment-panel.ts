@@ -19,6 +19,10 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
       <p class="planet-note" data-info-for="environment-conductive-ice">Thicker sea ice insulates the ocean; summer surface heat melts the existing ice inventory. Requires separate air, land and ocean temperatures. Changing mode restarts climate; seasonal coverage is not calibrated.</p>
       <label><input id="environment-under-ice" type="checkbox"> Ocean heat transport beneath ice (experimental)</label>
       <p class="planet-note" data-info-for="environment-under-ice">Liquid water can carry heat beneath sea ice. This switch is independent of ice-thickness heat exchange. Changing mode restarts climate.</p>
+      <label><input id="environment-surface-albedo" type="checkbox"> Separate land and ocean sunlight (experimental)</label>
+      <p class="planet-note" data-info-for="environment-surface-albedo">Land snow and sea ice reflect sunlight on their own surface. Requires separate surface temperatures. Keeps the current water, heat and date.</p>
+      <label><input id="environment-liquid-ocean" type="checkbox"> Evaporation from cold open seawater (experimental)</label>
+      <p class="planet-note" data-info-for="environment-liquid-ocean">Open seawater can evaporate near its freezing point; existing ice blocks evaporation. Keeps the current water, heat and date.</p>
       <label><input id="environment-weather" type="checkbox"> Cloud cover on Planet surface</label>
       <output class="planet-note" id="environment-weather-state"></output>
       <p class="planet-note" data-info-for="environment-weather">Soft white cloud cover follows atmospheric moisture and evolves with Play. Pause freezes it. Display only; climate and water budgets are preserved.</p>
@@ -49,6 +53,7 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
         }catch(error){el('environment-resolution-status').textContent=(error as Error).message;el<HTMLSelectElement>('environment-resolution').value=rt.refinement??'';}
     }));
     el<HTMLInputElement>('environment-weather').addEventListener('change',()=>change(()=>weather.set(el<HTMLInputElement>('environment-weather').checked)));
+    for(const [id,key] of [['environment-surface-albedo','separateSurfaceAlbedo'],['environment-liquid-ocean','liquidOceanEvaporation']] as const)el<HTMLInputElement>(id).addEventListener('change',()=>change(()=>rt.configureSurfacePhysics({[key]:el<HTMLInputElement>(id).checked})));
     el<HTMLInputElement>('environment-conductive-ice').addEventListener('change',()=>change(()=>{
         rt.environmentConfig.underIceOcean=el<HTMLInputElement>('environment-under-ice').checked;
         rt.environmentConfig.conductiveSeaIce=el<HTMLInputElement>('environment-conductive-ice').checked;
@@ -156,6 +161,8 @@ export function installEnvironmentPanel(root:HTMLElement,rt:ThermalRuntime,chang
     return {snapshot:():ComparisonState=>structuredClone({baseline,history}),restore(s:ComparisonState){
         baseline=structuredClone(s.baseline);history=structuredClone(s.history);model=rt.model;lastTime=model?.timeS??-1;current=captureEnvironment(rt);if(dialog.open)render();
     },refresh(){
+        for(const id of ['environment-surface-albedo','environment-liquid-ocean'])el<HTMLInputElement>(id).disabled=!rt.water||!rt.environment||!rt.config.separateReservoirs;
+        el<HTMLInputElement>('environment-surface-albedo').checked=!!rt.environmentConfig.separateSurfaceAlbedo;el<HTMLInputElement>('environment-liquid-ocean').checked=!!rt.waterConfig.liquidOceanEvaporation;
         get('environment-play').textContent=clock.isPlaying()?'Pause':'Play';
         const d=environmentMetrics(rt);el<HTMLButtonElement>('environment-compare').disabled=!d;
         const glacier=rt.water?.glacier,gd=glacier?.diagnostics(),glacierOutput=el('environment-glacier');

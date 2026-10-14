@@ -1,0 +1,18 @@
+✔ valid monthly fields retain unquantized values in independent Float64 arrays (43.2143ms)
+✔ rejects wrong model, date range, dataset identity and unsupported acceptance state (13.1896ms)
+✔ rejects grid shape, north-first convention and field length mismatches (32.802ms)
+✔ rejects non-finite fields and physically invalid surface values (84.0704ms)
+✔ rejects invalid sigma coordinate and top-to-bottom ordering (5.3591ms)
+✔ rejects instantaneous frames, duplicate or unordered months, and missing labels (5.4431ms)
+✔ temperature colors saturate explicitly while signed winds retain flow orientation (2.1843ms)
+✔ winds outside byte encoding range are rejected without silent velocity clipping (2.2703ms)
+✔ inspector maps equal-area cells north-first and wraps the longitude seam (0.2661ms)
+✔ malformed JSON and missing document members are rejected (0.3555ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 282.5361

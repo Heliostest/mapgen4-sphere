@@ -1,6 +1,10 @@
 // Presentation vocabulary for this Chinese scene. Simulation identifiers and
 // saved JSON remain unchanged; scientific symbols retain their standard units.
 const labels={
+  'Separate land and ocean sunlight (experimental)':'陆海分别吸收阳光（实验）',
+  'Evaporation from cold open seawater (experimental)':'低温开放海水蒸发（实验）',
+  'Land snow and sea ice reflect sunlight on their own surface. Requires separate surface temperatures. Keeps the current water, heat and date.':'积雪和海冰只影响各自表面的阳光吸收。需要独立的陆海温度；保留当前水量、热量和日期。',
+  'Open seawater can evaporate near its freezing point; existing ice blocks evaporation. Keeps the current water, heat and date.':'未结冰海水在接近结冰点时仍可蒸发，已有海冰阻挡蒸发。保留当前水量、热量和日期。',
   'Surface resolution':'地表细节','Classic':'经典','Refined: balanced':'细分：均衡（实验）','Refined: high':'细分：精细（实验）',
   'Generate initial climate at the current date. In refined mode, rebuild the surface mapping while preserving evolved heat, water and time. Reset time explicitly to initialize anew; Play evolves the result.':'在当前日期生成初始气候。细分档下仅重建地表映射，保留已有热量、水量和时间；明确重置时间才重新初始化。点击播放继续演化。',
   'Resolve independent mountain, coast and polar surface temperatures and frozen stores. Quality and terrain edits preserve water, heat and elapsed time. Atmosphere and glacier flow remain coarse; rainfall climate is still approximate. High detail costs more per step.':'山地、海岸和极区地表可独立演化温度与冰雪。切换细分档位或编辑地形会保留水、热和时间。区域降水与窄冰川仍有局限；精细档运行更慢。',

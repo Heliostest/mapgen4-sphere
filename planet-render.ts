@@ -26,8 +26,9 @@ export function makePlanetView(planet:PlanetConfig,orbit:OrbitConfig,timeS:numbe
     const sun=sunState(planet,orbit,timeS);
     const model=camera==='space' ? mat4.create() : null;
     if(model) {
+        // Keep terrain fixed in the navigation camera. Sidereal rotation and
+        // annual motion are already included in the body-relative sunlight.
         mat4.rotateZ(model,model,-planet.obliquityRad);
-        mat4.rotateY(model,model,sun.spinAngleRad);
     }
     return {timeS,layer,model,sunDirection:sun.direction,fluxWm2:sun.fluxWm2};
 }
@@ -70,6 +71,11 @@ export const planet_fragment=`
         return t<0.57142857 ? mix(cold,mild,t/0.57142857) : mix(mild,hot,(t-0.57142857)/0.42857143);
     }
     float planet_cosine(vec3 n) { return max(0.0,dot(normalize(n),u_sun_direction)); }
+    vec3 planet_lighting(vec3 color,vec3 n) {
+        if(u_planet_layer!=9) return color;
+        float cosine=dot(normalize(n),u_sun_direction);
+        return color*(0.18+0.82*smoothstep(-0.04,0.12,cosine));
+    }
     float wind_segment(vec2 p,vec2 a,vec2 b) {
         vec2 d=b-a;return length(p-a-d*clamp(dot(p-a,d)/dot(d,d),0.0,1.0));
     }

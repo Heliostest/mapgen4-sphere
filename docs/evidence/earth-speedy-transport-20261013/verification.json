@@ -1,0 +1,156 @@
+{
+  "checkedUTC": "2026-10-13T08:54:55.273Z",
+  "manifestSHA256": "8b5c368764caa331c24867af9f191fbd2ba65cf6d401c14b2c52370adc1b9a78",
+  "evidenceIntegrityPassed": true,
+  "bindingsVerified": 669,
+  "previousBindingsVerified": 366,
+  "nativeSourceFilesVerified": 105,
+  "subordinateBindingsVerified": 199,
+  "provenanceBindingsVerified": 817,
+  "archivesVerified": 63,
+  "frozenManifestsVerified": [
+    {
+      "path": "docs/evidence/earth-speedy-moisture-monsoon-20261013/manifest.json",
+      "sha256": "d2ebb76691bd0f6e386ce5a4ec56b55fe4892212a221d9a01aad193d05c18676",
+      "bindings": 366
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/manifest.json",
+      "sha256": "9efb55d09caa657f288552c6dd8a06215cd944fa5baf3995a356543ec8466e28",
+      "bindings": 195
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/manifest.json",
+      "sha256": "128837c49b720e38789998593112f430b245b1b02142b6877800df0007e85a4d",
+      "bindings": 122
+    }
+  ],
+  "recursivePreviousBindingsVerified": 683,
+  "uniqueFrozenFilesVerified": 550,
+  "formalDefaultUnchanged": true,
+  "formalDefaultPromoted": false,
+  "climateAcceptancePassed": false,
+  "climateAndStartupAcceptancePassed": false,
+  "startupAudits": [
+    {
+      "path": "build/earth-speedy-transport/audit-combined.json",
+      "physicsFix": "combined",
+      "thresholdMm": 0.05,
+      "modes": [
+        {
+          "mode": "slab",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.06254226245954173,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        },
+        {
+          "mode": "seasonal",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.06253495637950807,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        }
+      ]
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-all-corrections.json",
+      "physicsFix": "all-corrections",
+      "thresholdMm": 0.05,
+      "modes": [
+        {
+          "mode": "slab",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.0631897496963671,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        },
+        {
+          "mode": "seasonal",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.06318242443020472,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        }
+      ]
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-all-corrections-split-reference.json",
+      "physicsFix": "all-corrections-split-reference",
+      "thresholdMm": 0.05,
+      "modes": [
+        {
+          "mode": "slab",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.06136883025519289,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        },
+        {
+          "mode": "seasonal",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.061360944008787985,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        }
+      ]
+    }
+  ],
+  "completedSixYearCases": 3,
+  "failedCandidateRuns": [
+    {
+      "case": "all-corrections-seasonal",
+      "code": 1
+    },
+    {
+      "case": "all-corrections-sensitivity",
+      "code": 1
+    },
+    {
+      "case": "baseline-sensitivity",
+      "code": 4294967295
+    },
+    {
+      "case": "clouds-full-sensitivity",
+      "code": 4294967295
+    },
+    {
+      "case": "implicit-sensitivity",
+      "code": 1
+    }
+  ],
+  "failedDiagnosticExecutions": [
+    {
+      "case": "implicit-instability-all",
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-probe.jl",
+      "code": 4294967295
+    },
+    {
+      "case": "implicit-instability-thermal",
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-probe.jl",
+      "code": 4294967295
+    },
+    {
+      "case": "wet-carrier-native-red",
+      "script": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-native-red.jl",
+      "code": 1
+    },
+    {
+      "case": "wet-carrier-projected-native-red",
+      "script": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-projected-native-red.jl",
+      "code": 1
+    },
+    {
+      "case": "wet-carrier-prototype-green",
+      "script": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-test.jl",
+      "code": 1
+    }
+  ],
+  "note": "Integrity PASS does not mean every experiment passed. Candidate failures, red tests and unmet climate gates remain in the evidence."
+}

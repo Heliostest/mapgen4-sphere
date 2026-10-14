@@ -1,0 +1,18 @@
+{
+  "createdUTC": "2026-10-13T05:53:34.716Z",
+  "passed": true,
+  "valuesChecked": 2851224,
+  "maxError": 0,
+  "largest": null,
+  "sources": [
+    {
+      "path": "build/earth-speedy-moisture-monsoon/coupled-seasonal-statistics.json",
+      "sha256": "4e06e996754751a416c8daea147de331762d3d85f4e01ef3bb313de71e8314e0"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-v2-statistics.json",
+      "sha256": "90fd09302b1fb1b2c08f12ae2b3d967cf3f710172fe40d0d2fed73f049767304"
+    }
+  ],
+  "note": "All stored monthly fields match the original continuous run, including rain and evap. A new Observer accumulates the same physical trajectory after restoring the frozen state and dry-mass target."
+}

@@ -1,0 +1,53 @@
+{
+  "startedUTC": "2026-10-13T08:12:59.375Z",
+  "completedUTC": "2026-10-13T08:13:11.884Z",
+  "script": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-fields-verify.jl",
+  "configuration": {
+    "SPEEDY_CASE": "wet-carrier-fields-verify",
+    "SPEEDY_MODE": null,
+    "SPEEDY_SMOKE": null,
+    "MOISTURE_IMPLEMENTATION": null,
+    "MASS_IMPLEMENTATION": "fixed",
+    "MIXING_IMPLEMENTATION": null,
+    "AUDIT_STAGES": null,
+    "DIAG_DAYS": null,
+    "PHYSICS_FIX": "all-corrections-split-reference",
+    "SPEEDY_SENSITIVITY": "0"
+  },
+  "sourceBefore": {
+    "docs/evidence/earth-speedy-transport-20261013/protocol.md": "7c11dd68086ee2940106f0fad49f8fa54b5ec5bdae0bcd64d50298a685f53364",
+    "docs/evidence/earth-speedy-transport-20261013/v2-protocol.md": "223eae94b0318e597e34f7942f5e112ec6865bcad5808e9c18b04eab7db8135b",
+    "docs/evidence/earth-speedy-transport-20261013/v3-protocol.md": "b23e4f73ebc4d915ae438fd0eeb7a7f4f7f35d17bf42d81f5de1a0649d05c515",
+    "docs/evidence/earth-speedy-transport-20261013/run-v3-julia.mjs": "96c770b0711b4057b269406ae76933962223daf09e3e96de0fd701769b6b635a",
+    "docs/evidence/earth-speedy-transport-20261013/wet-carrier-fields-verify.jl": "1c8ba5d89d568a69b6da2292f4c267ed1e8ef59b3c6d3c6c5770f7704fc81259",
+    "docs/evidence/earth-speedy-transport-20261013/wet-carrier-prototype.jl": "7257bb812f89f266bd891bef3197008c9dd8ba74312be387ae865bc29808833f"
+  },
+  "sourceAfter": {
+    "docs/evidence/earth-speedy-transport-20261013/protocol.md": "7c11dd68086ee2940106f0fad49f8fa54b5ec5bdae0bcd64d50298a685f53364",
+    "docs/evidence/earth-speedy-transport-20261013/v2-protocol.md": "223eae94b0318e597e34f7942f5e112ec6865bcad5808e9c18b04eab7db8135b",
+    "docs/evidence/earth-speedy-transport-20261013/v3-protocol.md": "b23e4f73ebc4d915ae438fd0eeb7a7f4f7f35d17bf42d81f5de1a0649d05c515",
+    "docs/evidence/earth-speedy-transport-20261013/run-v3-julia.mjs": "96c770b0711b4057b269406ae76933962223daf09e3e96de0fd701769b6b635a",
+    "docs/evidence/earth-speedy-transport-20261013/wet-carrier-fields-verify.jl": "1c8ba5d89d568a69b6da2292f4c267ed1e8ef59b3c6d3c6c5770f7704fc81259",
+    "docs/evidence/earth-speedy-transport-20261013/wet-carrier-prototype.jl": "7257bb812f89f266bd891bef3197008c9dd8ba74312be387ae865bc29808833f"
+  },
+  "sourceUnchanged": true,
+  "inputsBefore": {
+    "build/earth-speedyweather/annual-initial.jld2": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8",
+    "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083"
+  },
+  "inputsAfter": {
+    "build/earth-speedyweather/annual-initial.jld2": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8",
+    "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083"
+  },
+  "inputsUnchanged": true,
+  "args": [
+    "--startup-file=no",
+    "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+    "docs/evidence/earth-speedy-transport-20261013/wet-carrier-fields-verify.jl"
+  ],
+  "code": 0
+}

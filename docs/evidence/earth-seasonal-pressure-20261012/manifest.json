@@ -1,0 +1,410 @@
+{
+  "date": "2026-10-12",
+  "formalDefaultUnchanged": true,
+  "regionalClimateAccepted": false,
+  "fullInitialStockSha256": "952addee2268260c7acb5cee1f2fe576414c88539719b3b6559d624d5a89ceca",
+  "coarseInitialStockSha256": "49281e830762d245e2cca0cab3b742972a01a23553ee8487e2eaf74168fcc350",
+  "verification": {
+    "tests": 278,
+    "failed": 0,
+    "typecheck": true,
+    "build": true,
+    "diffCheck": true,
+    "independentReadOnlyReview": "Ready for experimental delivery; no critical or important findings; minor face-attribution coverage addressed",
+    "fullAnnualArms": 3,
+    "coarseAnnualArms": 21,
+    "dailyAuditsPerFullArm": 366,
+    "serializedJsonNextStepExact": true,
+    "coarseHalfStepComparison": true,
+    "actualVaporStockResidualMaxMm": 7.912603905424476e-11,
+    "calendarAdvectiveDiffusiveFluxResidualMaxMm": 3.780087354243733e-12,
+    "actualWebGLScreenshots": 3
+  },
+  "files": [
+    {
+      "file": "scenes/earth-land-sea/earth-simulation.json",
+      "bytes": 11364186,
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+    },
+    {
+      "file": "build/earth-lakes-freeze-temperate/lake-day0.json",
+      "bytes": 10819303,
+      "sha256": "24bfe8b9a4768000574aa3febf3ed2be692ed2a071346175a9f0463280c2854b"
+    },
+    {
+      "file": "docs/evidence/earth-moisture-structural-20261011/gpcc-grid.json",
+      "bytes": 1066816,
+      "sha256": "01ed704dd31cec9376d27fafd902cfeb5c77862f7d8b3cf2e9e6b5d4226dbbc4"
+    },
+    {
+      "file": "docs/evidence/earth-seaice-causal-20261011/nsidc-same-grid.json",
+      "bytes": 338265,
+      "sha256": "9d6b40b75acc3fa2424708c4d81065f7c7c30d7ab395f44f0d8815419be62fb2"
+    },
+    {
+      "file": "circulation-scheme.ts",
+      "bytes": 839,
+      "sha256": "b9ac3e923bd264088040abb9d611ebf31999191dbbba4946bd1aebdad1f4d85a"
+    },
+    {
+      "file": "circulation.ts",
+      "bytes": 11348,
+      "sha256": "96fec57c0ef1a2925a23c009f60453bdfd06ee5647d20d26c287089760fbb502"
+    },
+    {
+      "file": "climate.ts",
+      "bytes": 8385,
+      "sha256": "2bd07a05d8fe0598f3d608e3096600b43cab47cd9f29f4a5107e85c6e8e21da9"
+    },
+    {
+      "file": "environment.ts",
+      "bytes": 15354,
+      "sha256": "d2535e14bb9581654a90d713ea50de7c5e4d03de200770ddd38f1d772f4b8420"
+    },
+    {
+      "file": "runtime-state.ts",
+      "bytes": 18728,
+      "sha256": "eb3355e4aa9f857f2b0ae1c49514ef7909a9b07e6588899db794401f40a4ff94"
+    },
+    {
+      "file": "water.ts",
+      "bytes": 44562,
+      "sha256": "f1f6d5d3018a3a677cbfa306701237ab3bc57979153b1578102dd8e649105847"
+    },
+    {
+      "file": "thermal.ts",
+      "bytes": 17944,
+      "sha256": "3ba51ac23d17f97a784c6291f4e41eecc2ff9b31865a160180179859bd3e3793"
+    },
+    {
+      "file": "thermal-runtime.ts",
+      "bytes": 51881,
+      "sha256": "1ee7a5c63b0c0a011d45a9bc347205433ffd9c198a19f95fd7f6ed78d7eb0d0e"
+    },
+    {
+      "file": "refinement-surface.ts",
+      "bytes": 30731,
+      "sha256": "481b04f6bcc0c55acd776bc69935a58a7369f7f9d516262e215a508da5b02503"
+    },
+    {
+      "file": "terrain-water.ts",
+      "bytes": 16688,
+      "sha256": "a81c5b8d1570e2594e2e517eea2a084a638ddd5675540ab5d68a678ed92412d7"
+    },
+    {
+      "file": "tests/circulation.test.ts",
+      "bytes": 20346,
+      "sha256": "10e0795f0d0ca39c9d20bdb2d5e7392b4133ae773e1cac27c67bc18e27c0f31c"
+    },
+    {
+      "file": "tests/moisture.test.ts",
+      "bytes": 22345,
+      "sha256": "7ddaac69c8a254d75b7c5dfd8d6082d5e712338118e2592b77b476bf7b5b2c90"
+    },
+    {
+      "file": "tests/simulation.test.ts",
+      "bytes": 22281,
+      "sha256": "ab3bf7b3d4db861b762cab6b9c29b3d92f8e1d0aba22b07c5919ce7da1edd2ef"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/analyze.mjs",
+      "bytes": 3558,
+      "sha256": "f1ecdaa1b6a41b6408abbdb3c927501b469ea15cdfd82abce26cac97e80064a6"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/balanced-asia.jpg",
+      "bytes": 64334,
+      "sha256": "5d6db7cc3d644526417536924ab847e89571e8234ba4f2bdc5ccc8fbf4909167"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/before-asia.jpg",
+      "bytes": 59043,
+      "sha256": "7738f3ae9c38488c33d6c9e2e2cb244a0b6892d0dede59f1701d263047af45ed"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/boundary-asia.jpg",
+      "bytes": 63930,
+      "sha256": "daebbbff9b70ae4e523e96a7ddfa7d122d9a97753001475e7e36043b06f2c4c8"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/bundles/39731bcd6660c98473a685db372ea6224365eafa749f453b032a5776c45eb64f.mjs.gz",
+      "bytes": 61526,
+      "sha256": "8e747e83ed1a1c66d1ba017b17a416c1b6f21e632dad6a4501b1bd791618d5c1"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/bundles/4723256b37a627f50ec66c06efe8b3c8fcd9b4cc10fa1ecaab19cd43bee0f088.mjs.gz",
+      "bytes": 61395,
+      "sha256": "bb55172f6cd33e86f115a62e8533c188dfd6d4c9ec0c0a8b4de7b34e36f81f2e"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/bundles/59652f60ecae1fad518c35451a448d932b2caabe507c81650b4bc7c26d22bc36.mjs.gz",
+      "bytes": 80775,
+      "sha256": "68e7a1e73c4a00fa7936b2471fd9892c9c14fd5a2f61ea30a19e6535d8d7627d"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/bundles/ac5df02b036aef44534d4bcc2fd37a2423c5338612a4c4badf044d365ce2850c.mjs.gz",
+      "bytes": 61114,
+      "sha256": "68ea32bc289df64ce81ecaff4b8d66dff7967378c79ec4e26433f5dfbc1b196f"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/causes.ts",
+      "bytes": 3297,
+      "sha256": "965c03680e94a87efa5f121ac80aef07c6c90f626258cafb443a5866889f48a8"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/comparison.json",
+      "bytes": 673590,
+      "sha256": "ac25b8e08a47a8a42827af0c6714ac8a57514cba0f2633b8d16d14bdc02e22f2"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/full-causes.json",
+      "bytes": 90645,
+      "sha256": "7a8086f58129d0b41cfaef3e063e5792c19b81a0c83a27eaf6eefe43176f5409"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/full.ts",
+      "bytes": 15274,
+      "sha256": "d481504e68a448758910b35680cae8f26090514661540dd7f8eb9ed0244d16b5"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/manifest.mjs",
+      "bytes": 5034,
+      "sha256": "210869e8d830911fb41ab87341be32403cb0548ec39786c3f6a6ba9905d3e0a5"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/preview.mjs",
+      "bytes": 2053,
+      "sha256": "de68ab5c28b8b2d01653fdf02784dd1384d528ca793cd56fa3793ff4d6a7b421"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/profiles.json",
+      "bytes": 6068,
+      "sha256": "56776e0d12656adf55b0c64364b76f4547da4c022771cccb5e6ea2fe4e07c4a5"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/protocol.md",
+      "bytes": 5893,
+      "sha256": "3f7afc8876710c72a36f501fa9f9100b0e7de4ee5c25a71675062d49ddc61931"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/full-balanced.json.gz",
+      "bytes": 1706417,
+      "sha256": "704b4406d00ad4e9e0a2c8fdec99647ab2099039dcf0f7213253e1d044f7823a"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/full-boundaryMix1.json.gz",
+      "bytes": 1727092,
+      "sha256": "0cde2a2a05cea64a02d86e9fa7836a357b22403b7cb461998cc53fa2ea667942"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/full-control.json.gz",
+      "bytes": 1680364,
+      "sha256": "935db84ea00c62c89ffbc40e5820b04919e0e8f2cb58d9b54797756a46cd0298"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-balanced.json.gz",
+      "bytes": 1704973,
+      "sha256": "d6cc127dc1172066b606efcacaf8262a15090c39ac32c08225f026353c10899c"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-balanced900.json.gz",
+      "bytes": 1703430,
+      "sha256": "97b48cecc576913f6e16e001f7b7b8fd2c9086e6b5cc0ad773dcec8003c6fed3"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-balancedMix1.json.gz",
+      "bytes": 1720075,
+      "sha256": "14edc0291b060c154ad9610398a41bac09059a639448673a023ce261ddce5086"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-balancedNoOro.json.gz",
+      "bytes": 1691045,
+      "sha256": "cdf1179448e2ebe6d86bd26ae7f7efc513a0ed143e4feed921994d400fe8320d"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-boundary.json.gz",
+      "bytes": 1710482,
+      "sha256": "6fc1a3102fefa79132861a62a8f262419897b26707b37b3bcec900432d9086b1"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-boundaryLayer500.json.gz",
+      "bytes": 1720205,
+      "sha256": "7efb885e13170bdc35ecc637d3de82f801e25a5485a9922805c82e0b013f70f3"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-boundaryMix1.json.gz",
+      "bytes": 1725745,
+      "sha256": "0a10d73df8eb382a4204e7d54ce68099a55ef8a8d98761c9712ce7a42b7134ff"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-boundaryMix1900.json.gz",
+      "bytes": 1724547,
+      "sha256": "05d57fb4a59790b9f2a63f0dfc5617e0957c01bef756d372f3ba88db26dd8fcf"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-boundaryNoOro.json.gz",
+      "bytes": 1696544,
+      "sha256": "5864b87cbad8706fe6c5f9262f0eb416e8da4689586ac5f78b1a48e5205740e9"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-boundaryStress.json.gz",
+      "bytes": 1718437,
+      "sha256": "e77bb33229461bd087043ec7ffd2df6a8b8702d32ccfffedbf8d8f8e4967b182"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-control.json.gz",
+      "bytes": 1678746,
+      "sha256": "d7f45ab384cfe08b99d5560824fece71d308b8a296683887da7df345af149237"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-dragOnly.json.gz",
+      "bytes": 1685747,
+      "sha256": "ce5ecb077e6d7b4424acd169aba32ba369fc4f2edaf7da7380d2ec0d646fadc2"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-layer1000.json.gz",
+      "bytes": 1694188,
+      "sha256": "0ec21976288f9e9c68286a11ab710f85ece7e66a79841bf3e2a0d757375e1711"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-layer500.json.gz",
+      "bytes": 1711918,
+      "sha256": "dd7933124f826c3f87022e538e560bc7d46011791491755ebfe674b3e765931c"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-pressure.json.gz",
+      "bytes": 1686080,
+      "sha256": "b9b449cbce1e3dd21b213f7299ec4bbbcd7cd1f68efe06d921a863980a739bb9"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-pressureNoOro.json.gz",
+      "bytes": 1674557,
+      "sha256": "ea73479be913f5f2acd09cbbab2fa0d783c7dd4b77bc038317b9ec09d2410805"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-shallowPressure.json.gz",
+      "bytes": 1707585,
+      "sha256": "2b191bcee8905903b0432a402cbb37ec2bf8a746524d2a9cf7312551763a3ce4"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-signed.json.gz",
+      "bytes": 1677806,
+      "sha256": "3fe7410b357961fe902bb8cd07da9b08a78908de98b6d3604c0c7223d3b91851"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-stress1000.json.gz",
+      "bytes": 1675813,
+      "sha256": "dc00ec3bc1e9784bd3fa9e18375f57a43cb205977b1cdf5bffe1b5aeb277ce08"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-stress2000.json.gz",
+      "bytes": 1667190,
+      "sha256": "de49faa8b6be4645c193c44ae02c16297960c21d49e581a6c74bc996f752444f"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/raw/screen-stress500.json.gz",
+      "bytes": 1689514,
+      "sha256": "3363186b66464c36f57f443ca95bb9d40114c7b825fe7e52e12cd7c7da061e68"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/report.md",
+      "bytes": 12819,
+      "sha256": "9217eb1e760cfa8813bcf9fda91dc20a1108194b2e84004c6a0c7d485c153915"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/report.mjs",
+      "bytes": 9628,
+      "sha256": "9150dae7916b535ad7c7bbd77e969363d7beff412b1fc3d2eb4429f20ee7a28f"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/restore.ts",
+      "bytes": 4041,
+      "sha256": "691d90509068aa369dfc9b95ead30aed2d78d12be4ac0767e162d6dd4654a78d"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/review.md",
+      "bytes": 1705,
+      "sha256": "bc49a4ecf278e7a04f33017b63e33e71809e0c633f3df879abeb1d44d32d48db"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/screen-causes.json",
+      "bytes": 634181,
+      "sha256": "2989ce2df59c16c8ad716a787fd08e9f363b876c4ee84c5499a255150a2f7114"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/screen.ts",
+      "bytes": 12001,
+      "sha256": "980441e29084b0b96585e1942dd8e2dbab685ef75620d742fb8678ef1c6f4d01"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/serialized-restore.json",
+      "bytes": 738,
+      "sha256": "f29f08a8edef57f4d74295e246efdbb9c8ae8e22446310dd3b1152c94088fd2e"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/setup.mjs",
+      "bytes": 643,
+      "sha256": "296d84df3fd31bf3cb79330880cd231d63e2dcaccd138133fbf840cfb43e2138"
+    },
+    {
+      "file": "docs/evidence/earth-seasonal-pressure-20261012/webgl-verification.json",
+      "bytes": 1566,
+      "sha256": "9ed47e1ca958e8767d82fabc45101a87b999de316c667a250a8fb6fbc969bc7e"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/full-balanced-day0.json",
+      "bytes": 10833103,
+      "sha256": "cd4c6a7bc29819187890d022e9ab33cd242737998a122b0807f20c8e2ab83c45"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/full-balanced-day365.json",
+      "bytes": 12074069,
+      "sha256": "2899fc0b5ccc69b4a4444927742fb22b040484539981a8345716772c75b6e277"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/full-boundaryMix1-day0.json",
+      "bytes": 10833103,
+      "sha256": "554688e83c9773b9298ea051a42e6608090d84b8f5094a32369d155a00ae7b47"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/full-boundaryMix1-day365.json",
+      "bytes": 11999036,
+      "sha256": "a736d2d7ab7fb1081785ce76c972019e2175c310ee4743ec6da431595ccd07bd"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/full-control-day0.json",
+      "bytes": 10833063,
+      "sha256": "becdf2063c5c3223b22cd52443d8e7c4b2b3f2509cc6fbc7400ff607337af6e8"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/full-control-day365.json",
+      "bytes": 11904353,
+      "sha256": "8e30fe161047f247bf3f773406c3f1335efde84469c9efe89f0e7ba9910b08e1"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/before-preview.html",
+      "bytes": 7843,
+      "sha256": "0909a27371ec71715ec3066491a220aef392e402ed7f5c18a963898dfb1cac94"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/balanced-preview.html",
+      "bytes": 7882,
+      "sha256": "9f5d4838f5d6b5c3a62d0c1bc96ef4f50fa8dcb83ea331d6f287a85ad07b93c7"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/boundary-preview.html",
+      "bytes": 7902,
+      "sha256": "400cda322ad00ea9fb4a85f1a53480838985fb274a623f4589f7010d96f22d86"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/initial-preview.html",
+      "bytes": 7885,
+      "sha256": "859572bfaf6459b45b127dc89affb8b772ad9d7ab37512a155dabb71ef950f5f"
+    },
+    {
+      "file": "build/earth-seasonal-pressure/test-output.txt",
+      "bytes": 54426,
+      "sha256": "cb3c844ab97e44f780a7e3cbd19d077e8c44e6fb262e6369b018785e1a75e386"
+    }
+  ]
+}

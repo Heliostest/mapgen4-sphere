@@ -1,0 +1,123 @@
+{
+  "direct": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    }
+  },
+  "mild": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    }
+  },
+  "mix3": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    },
+    "water": {
+      "moistureDiffusivityM2s": 3000000
+    }
+  },
+  "evap045": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    },
+    "water": {
+      "evaporationFraction": 0.45
+    }
+  },
+  "ocean10": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    },
+    "environment": {
+      "oceanStrengthMps": 1
+    }
+  },
+  "mix6": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    },
+    "water": {
+      "moistureDiffusivityM2s": 6000000
+    }
+  },
+  "mix3heat11": {
+    "thermal": {
+      "diffusion": 1.1,
+      "emissivity": 0.575
+    },
+    "water": {
+      "moistureDiffusivityM2s": 3000000
+    }
+  },
+  "mix3heat14": {
+    "thermal": {
+      "diffusion": 1.4,
+      "emissivity": 0.575
+    },
+    "water": {
+      "moistureDiffusivityM2s": 3000000
+    }
+  },
+  "mix2evap048": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    },
+    "water": {
+      "moistureDiffusivityM2s": 2000000,
+      "evaporationFraction": 0.48
+    }
+  },
+  "mix4": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000
+    }
+  },
+  "mix4cool": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000
+    }
+  },
+  "mix6cool": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.585
+    },
+    "water": {
+      "moistureDiffusivityM2s": 6000000
+    }
+  },
+  "mix4dt900": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000
+    }
+  },
+  "mix4cooldt900": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000
+    }
+  }
+}

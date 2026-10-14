@@ -1,0 +1,12 @@
+Test Summary:                             | Pass  Total  Time
+two startup half clocks and constant flux |   20     20  0.3s
+Test Summary:                                        | Pass  Total  Time
+checkpoints retain both RAW memory and startup phase |    6      6  0.6s
+{"counter":0,"atmosphericChange":0.0018000000000029104,"flux":0.0018,"residual":2.910432311820088e-15}
+{"counter":1,"atmosphericChange":0.005400000000001626,"flux":0.0054,"residual":1.6254358969902682e-15}
+{"counter":2,"atmosphericChange":-0.027869400000000155,"flux":-0.0278694,"residual":-1.5612511283791264e-16}
+{"counter":3,"atmosphericChange":-0.0041945399999931965,"flux":-0.004194539999999999,"residual":6.802718111043049e-15}
+{"counter":4,"atmosphericChange":0.006327486000003546,"flux":0.006327485999999998,"residual":3.548376870110559e-15}
+{"counter":5,"atmosphericChange":-0.0004855373999959056,"flux":-0.0004855373999999999,"residual":4.09427266395701e-15}
+Test Summary:                                           | Pass  Total  Time
+external flux budget matches native Leapfrog/RAW update |    6      6  0.3s

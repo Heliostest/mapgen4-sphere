@@ -19,7 +19,7 @@ export class RefinedSurface {
     readonly landK:Float64Array;readonly seaK:Float64Array;
     readonly snow:Float64Array;readonly ice:Float64Array;readonly grounded:Float64Array;readonly shelfLand:Float64Array;readonly shelfSea:Float64Array;readonly soil:Float64Array;readonly surface:Float64Array;
     readonly rain:Float64Array;readonly snowfall:Float64Array;readonly melt:Float64Array;
-    private readonly albedo:Float64Array;private readonly oceanDemand:Float64Array;
+    private readonly albedo:Float64Array;private readonly landAlbedo:Float64Array;private readonly seaAlbedo:Float64Array;private readonly oceanDemand:Float64Array;
     private readonly lastLand:Float64Array;private readonly lastSea:Float64Array;
     private readonly meanHeight:Float64Array;private readonly maxHeight:Float64Array;
     private environment:EnvironmentModel|null=null;
@@ -30,7 +30,7 @@ export class RefinedSurface {
         const count=partition.parent.length,n=model.grid.count;
         for(const key of stores)this[key]=new Float64Array(count);
         this.landK=new Float64Array(count);this.seaK=new Float64Array(count);this.rain=new Float64Array(count);this.snowfall=new Float64Array(count);this.melt=new Float64Array(count);
-        this.lakeArea=new Float64Array(count);this.albedo=new Float64Array(count);this.oceanDemand=new Float64Array(count);this.meanHeight=new Float64Array(n);this.maxHeight=new Float64Array(n);
+        this.lakeArea=new Float64Array(count);this.albedo=new Float64Array(count);this.landAlbedo=new Float64Array(count);this.seaAlbedo=new Float64Array(count);this.oceanDemand=new Float64Array(count);this.meanHeight=new Float64Array(n);this.maxHeight=new Float64Array(n);
         this.lastLand=model.landTemperatureK.slice();this.lastSea=model.oceanTemperatureK.slice();
         for(let t=0;t<count;t++){const k=partition.parent[t];this.meanHeight[k]+=partition.heightM[t]*partition.land[t];if(partition.land[t]>0)this.maxHeight[k]=Math.max(this.maxHeight[k],partition.heightM[t]);}
         for(let k=0;k<n;k++)if(water.land[k]>0)this.meanHeight[k]/=water.land[k];
@@ -86,7 +86,7 @@ export class RefinedSurface {
                     const carrier=(t:number,sea:boolean)=>kind==='surface'?part.land[t]+r.lakeArea[t]:sea?part.sea[t]:part.land[t];
                     let sum=candidates.reduce((sum,b)=>sum+b.overlap*carrier(b.t,ocean),0),sea=ocean;
                     if(sum===0) {
-                        if(kind==='soil'||kind==='surface'){w.oceanGlobalKgM2+=old[kind][a]/w.grid.count;continue;}
+                        if(kind==='soil'||kind==='surface'){w.addOceanWater(old[kind][a]/w.grid.count);continue;}
                         sea=!ocean;target=kind==='shelfLand'?'shelfSea':kind==='shelfSea'?'shelfLand':ocean?'snow':'ice';
                         sum=candidates.reduce((sum,b)=>sum+b.overlap*(sea?part.sea[b.t]:part.land[b.t]),0);
                     }
@@ -155,14 +155,18 @@ export class RefinedSurface {
         if(!this.environment)return;
         const p=this.partition,e=this.environment,m=this.model,clamp=(v:number)=>Math.max(0,Math.min(1,v));
         for(let k=0;k<m.grid.count;k++) {
-            let sum=0,snow=0,ice=0,ground=0,shelfLand=0,shelfSea=0,landFrozen=0,seaFrozen=0;
+            let sum=0,landReflect=0,seaReflect=0,snow=0,ice=0,ground=0,shelfLand=0,shelfSea=0,landFrozen=0,seaFrozen=0;
             for(let t=p.offset[k];t<p.offset[k+1];t++) {
                 const l=p.land[t],s=p.sea[t],sn=l>0?clamp(this.snow[t]/(30*l)):0,g=l>0?clamp(this.grounded[t]/(917*5*l)):0,sl=l>0?clamp(this.shelfLand[t]/(917*5*l)):0,i=s>0?clamp(this.ice[t]/(917*.5*s)):0,ss=s>0?clamp(this.shelfSea[t]/(917*5*s)):0;
                 const lf=Math.max(sn,g,sl),sf=Math.max(i,ss),base=clamp(m.orbit.bondAlbedo+(e.config.vegetation?l/(l+s)*.06*(.5-e.vegetation[k]):0));
-                this.albedo[t]=e.config.iceAlbedo?base+(Math.max(base,.65)-base)*(l*lf+s*sf)/(l+s):base;sum+=(l+s)*this.albedo[t];
+                this.albedo[t]=e.config.iceAlbedo?base+(Math.max(base,.65)-base)*(l*lf+s*sf)/(l+s):base;
+                if(e.config.separateSurfaceAlbedo){const lb=clamp(m.orbit.bondAlbedo+(e.config.vegetation?.06*(.5-e.vegetation[k]):0)),sb=m.orbit.bondAlbedo;this.landAlbedo[t]=e.config.iceAlbedo?lb+(Math.max(lb,.65)-lb)*lf:lb;this.seaAlbedo[t]=e.config.iceAlbedo?sb+(Math.max(sb,.65)-sb)*sf:sb;this.albedo[t]=(l*this.landAlbedo[t]+s*this.seaAlbedo[t])/(l+s);}
+                else this.landAlbedo[t]=this.seaAlbedo[t]=this.albedo[t];
+                sum+=(l+s)*this.albedo[t];landReflect+=l*this.landAlbedo[t];seaReflect+=s*this.seaAlbedo[t];
                 snow+=l*sn;ground+=l*g;shelfLand+=l*sl;ice+=s*i;shelfSea+=s*ss;landFrozen+=l*lf;seaFrozen+=s*sf;
             }
             const l=this.water.land[k],s=1-l;m.albedo[k]=sum;
+            if(m.surfaceAlbedo){m.surfaceAlbedo.land[k]=l>0?landReflect/l:0;m.surfaceAlbedo.ocean[k]=s>0?seaReflect/s:0;}
             e.snowCover[k]=l>0?snow/l:0;e.glacierCover[k]=l>0?ground/l:0;e.shelfLandCover[k]=l>0?shelfLand/l:0;
             e.iceCover[k]=s>0?ice/s:0;e.shelfSeaCover[k]=s>0?shelfSea/s:0;e.oceanFrozenCover[k]=s>0?seaFrozen/s:0;
             e.landEvaporation[k]=(e.config.vegetation?(.6+.4*e.vegetation[k]):1)*(l>0?1-landFrozen/l:1);
@@ -176,13 +180,13 @@ export class RefinedSurface {
             const area=ocean?p.sea[t]:p.land[t];if(area===0)continue;
             const a=ocean?this.seaK:this.landK,cs=area*(ocean?m.config.oceanDepthM*4.2e6:m.config.landHeatCapacity),scale=ocean?1:Math.max(.55,Math.exp(-.0065*p.heightM[t]/288.15));
             if(ocean&&iceHeat) {
-                const e=this.environment!,base=Math.max(0,Math.min(1,m.orbit.bondAlbedo+(e.config.vegetation?p.land[t]/(p.land[t]+p.sea[t])*.06*(.5-e.vegetation[k]):0)));
-                const airK=this.seaAirK(t),flux=seaIceSurfaceExchange({wetArea:area,marineArea:Math.max(0,area-this.lakeArea[t]),iceKgM2:this.ice[t],waterK:a[t],airK,waterCapacity:cs,airCapacity:m.capacity[k],absorbedWm2:(1-this.albedo[t])*insolation,waterAlbedo:base,iceAlbedo:e.config.iceAlbedo?Math.max(base,.65):base,emissivity:(1-airFraction)*m.config.emissivity,dt});
+                const e=this.environment!,base=Math.max(0,Math.min(1,m.orbit.bondAlbedo+(e.config.separateSurfaceAlbedo?0:e.config.vegetation?p.land[t]/(p.land[t]+p.sea[t])*.06*(.5-e.vegetation[k]):0)));
+                const airK=this.seaAirK(t),flux=seaIceSurfaceExchange({wetArea:area,marineArea:Math.max(0,area-this.lakeArea[t]),iceKgM2:this.ice[t],waterK:a[t],airK,waterCapacity:cs,airCapacity:m.capacity[k],absorbedWm2:(1-this.seaAlbedo[t])*insolation,waterAlbedo:base,iceAlbedo:e.config.iceAlbedo?Math.max(base,.65):base,emissivity:(1-airFraction)*m.config.emissivity,dt});
                 a[t]=flux.waterK;m.temperatureK[k]+=flux.airK-airK;net+=flux.radiationWm2;
                 iceHeat.iceArea[k]+=flux.iceArea;iceHeat.skinK[k]+=flux.iceArea*flux.skinK;iceHeat.conductiveWm2[k]+=flux.conductiveWm2;iceHeat.airWm2[k]+=flux.iceAirWm2;iceHeat.oceanWm2[k]+=flux.iceOceanWm2;iceHeat.radiationWm2[k]+=flux.radiationWm2;iceHeat.balanceResidualWm2[k]+=flux.balanceResidualWm2;
                 continue;
             }
-            const radiation=area*((1-this.albedo[t])*insolation-(1-airFraction)*m.config.emissivity*SIGMA*(a[t]/scale)**4);
+            const radiation=area*((1-(ocean?this.seaAlbedo[t]:this.landAlbedo[t]))*insolation-(1-airFraction)*m.config.emissivity*SIGMA*(a[t]/scale)**4);
             a[t]+=dt*radiation/cs;net+=radiation;
             const ca=m.capacity[k],rate=10*area*(1/ca+1/cs),heat=(a[t]-(ocean?this.seaAirK(t):this.landAirK(t)))*(-Math.expm1(-dt*rate))/(1/ca+1/cs);
             a[t]-=heat/cs;m.temperatureK[k]+=heat/ca;
@@ -197,17 +201,17 @@ export class RefinedSurface {
             const k=p.parent[t],lc=p.land[t]*m.config.landHeatCapacity,sc=p.sea[t]*m.config.oceanDepthM*4.2e6;
             if(lc>0)for(const kind of ['snow','grounded','shelfLand'] as const) {
                 const melt=Math.min(this[kind][t],Math.max(0,(this.landK[t]-273.15)*lc/LF));this[kind][t]-=melt;this.landK[t]-=melt*LF/lc;lh[k]-=melt*LF;
-                if(kind==='shelfLand')w.oceanGlobalKgM2+=melt/m.grid.count;else{this.surface[t]+=melt;this.melt[t]+=melt/dt;w.meltKgM2S[k]+=melt/dt;}
+                if(kind==='shelfLand')w.addOceanWater(melt/m.grid.count);else{this.surface[t]+=melt;this.melt[t]+=melt/dt;w.meltKgM2S[k]+=melt/dt;}
             }
             if(sc>0) {
                 for(const [kind,limit] of [['shelfSea',273.15],['ice',271.35]] as const) {
-                    const melt=Math.min(this[kind][t],Math.max(0,(this.seaK[t]-limit)*sc/LF));this[kind][t]-=melt;this.seaK[t]-=melt*LF/sc;sh[k]-=melt*LF;w.oceanGlobalKgM2+=melt/m.grid.count;
+                    const melt=Math.min(this[kind][t],Math.max(0,(this.seaK[t]-limit)*sc/LF));this[kind][t]-=melt;this.seaK[t]-=melt*LF/sc;sh[k]-=melt*LF;w.addOceanWater(melt/m.grid.count);
                 }
                 const open=p.sea[t]>0?Math.max(0,1-this.lakeArea[t]/p.sea[t]):0;
                 freeze[t]=Math.max(0,(271.35-this.seaK[t])*sc/LF)*open;request+=freeze[t]/m.grid.count;
             }
         }
-        const ratio=request>0?Math.min(1,w.oceanGlobalKgM2/request):0;w.oceanGlobalKgM2=Math.max(0,w.oceanGlobalKgM2-request*ratio);
+        const ratio=request>0?Math.min(1,w.oceanGlobalKgM2/request):0;if(w.config.compensatedOceanTransfers)w.addOceanWater(-Math.min(w.oceanGlobalKgM2,request*ratio));else w.oceanGlobalKgM2=Math.max(0,w.oceanGlobalKgM2-request*ratio);
         for(let t=0;t<freeze.length;t++)if(freeze[t]>0){const amount=freeze[t]*ratio,k=p.parent[t];this.ice[t]+=amount;this.seaK[t]+=amount*LF/(p.sea[t]*m.config.oceanDepthM*4.2e6);sh[k]+=amount*LF;}
         m.applyLandHeat(lh);m.applyOceanHeat(sh);this.aggregate();w.landIceCorrection.fill(0);
     }
@@ -215,14 +219,15 @@ export class RefinedSurface {
         const p=this.partition,w=this.water,m=this.model,e=this.environment!;let landEvap=0,lakeEvap=0,ocean=0,lh=0,sh=0;
         for(let t=p.offset[k];t<p.offset[k+1];t++) {
             const l=p.land[t],s=p.sea[t],frozen=l>0?Math.min(1,Math.max(this.snow[t]/(l*30),this.grounded[t]/(l*917*5),this.shelfLand[t]/(l*917*5))):0;
-            const demand=potential*deficit*Math.max(0,Math.min(1,(this.landK[t]-273.15)/5))*l*(e.config.vegetation?(.6+.4*e.vegetation[k]):1)*(1-frozen);
+            const landPotential=e.config.separateSurfaceAlbedo&&m.albedo[k]<1?potential*(1-this.landAlbedo[t])/(1-m.albedo[k]):potential,seaPotential=e.config.separateSurfaceAlbedo&&m.albedo[k]<1?potential*(1-this.seaAlbedo[t])/(1-m.albedo[k]):potential;
+            const demand=landPotential*deficit*Math.max(0,Math.min(1,(this.landK[t]-273.15)/5))*l*(e.config.vegetation?(.6+.4*e.vegetation[k]):1)*(1-frozen);
             const lakeArea=this.lakeArea[t];
-            const lakeDemand=potential*deficit*Math.max(0,Math.min(1,(this.seaK[t]-273.15)/5))*lakeArea;
+            const lakeDemand=seaPotential*deficit*Math.max(0,Math.min(1,(this.seaK[t]-273.15)/5))*lakeArea;
             const surface=Math.min(this.surface[t],demand+lakeDemand),lake=Math.min(surface,lakeDemand),soil=Math.min(this.soil[t],Math.max(0,demand-surface+lake));
             this.surface[t]-=surface;this.soil[t]-=soil;landEvap+=surface-lake+soil;lakeEvap+=lake;lh-=LV*(surface-lake+soil);sh-=LV*lake;
             if(l>0)this.landK[t]-=LV*(surface-lake+soil)/(l*m.config.landHeatCapacity);if(s>0)this.seaK[t]-=LV*lake/(s*m.config.oceanDepthM*4.2e6);
             const ice=s>0?Math.min(1,Math.max(this.ice[t]/(s*917*.5),this.shelfSea[t]/(s*917*5))):0;
-            this.oceanDemand[t]=potential*deficit*Math.max(0,Math.min(1,(this.seaK[t]-273.15)/5))*Math.max(0,s-lakeArea)*(1-ice);ocean+=this.oceanDemand[t];
+            this.oceanDemand[t]=seaPotential*deficit*(w.config.liquidOceanEvaporation?1:Math.max(0,Math.min(1,(this.seaK[t]-273.15)/5)))*Math.max(0,s-lakeArea)*(1-ice);ocean+=this.oceanDemand[t];
         }
         m.applySurfaceCellHeat(k,lh,sh);
         this.aggregateCell(k);return {landEvap,lakeEvap,oceanDemand:ocean};
@@ -250,7 +255,7 @@ export class RefinedSurface {
             const drainage=Math.max(0,this.soil[t]-.7*capacity)*(-Math.expm1(-dt/(3*86400)));this.soil[t]-=drainage;this.surface[t]+=drainage;
             const lake=this.lakeArea[t];
             this.surface[t]+=landRain===undefined?amount*lake/area:p.sea[t]>0?sea*lake/p.sea[t]:0;
-            w.oceanGlobalKgM2+=(landRain===undefined?amount*Math.max(0,p.sea[t]-lake)/area:p.sea[t]>0?sea*Math.max(0,p.sea[t]-lake)/p.sea[t]:0)/w.grid.count;
+            w.addOceanWater((landRain===undefined?amount*Math.max(0,p.sea[t]-lake)/area:p.sea[t]>0?sea*Math.max(0,p.sea[t]-lake)/p.sea[t]:0)/w.grid.count);
         }
         this.aggregateCell(k);return snow;
     }

@@ -1,0 +1,181 @@
+Interior Richardson uses the lowest air level and relative elevation: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:69
+  Expression: isapprox(a[8], b[8]; atol = 1.0e-10)
+   Evaluated: isapprox(3.3632522541413294, 121.07708114908786; atol = 1.0e-10)
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:53 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:69 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+Interior Richardson uses the lowest air level and relative elevation: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:71
+  Expression: a[8] < cold[8]
+   Evaluated: 3.3632522541413294 < 3.3632522541413294
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:53 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:71 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+{"implementation":"native","interiorFlat":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.3632522541413294],"interiorMountain":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,121.07708114908786],"interiorColdSkin":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.3632522541413294]}
+{"implementation":"native","hot":{"land":0.0,"skin":310.0,"sst":310.0,"availability":1.0,"ice":0.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0002792896525170563,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":32.047331629136224,"water":5.537734632255457e-5},"cold":{"land":0.0,"skin":260.0,"sst":260.0,"availability":1.0,"ice":0.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0002792896525170563,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":-49.32292408760781,"water":-7.467918102454684e-6}}
+Surface stability responds to the independent lower boundary: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:80
+  Expression: hot.ri < 0
+   Evaluated: 3.5554714293494585 < 0
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:76 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:80 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+Surface stability responds to the independent lower boundary: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:82
+  Expression: hot.ri < cold.ri
+   Evaluated: 3.5554714293494585 < 3.5554714293494585
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:76 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:82 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+Surface stability responds to the independent lower boundary: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:83
+  Expression: hot.drag > cold.drag
+   Evaluated: 0.0002792896525170563 > 0.0002792896525170563
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:76 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:83 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+{"implementation":"native","hot":{"land":1.0,"skin":310.0,"sst":310.0,"availability":1.0,"ice":0.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0013926064509144425,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":159.7958261579492,"water":0.0002761249800280482},"cold":{"land":1.0,"skin":260.0,"sst":260.0,"availability":1.0,"ice":0.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0013926064509144425,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":-245.93615138738886,"water":-3.723686441889935e-5}}
+Surface stability responds to the independent lower boundary: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:80
+  Expression: hot.ri < 0
+   Evaluated: 3.5554714293494585 < 0
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:76 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:80 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+Surface stability responds to the independent lower boundary: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:82
+  Expression: hot.ri < cold.ri
+   Evaluated: 3.5554714293494585 < 3.5554714293494585
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:76 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:82 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+Surface stability responds to the independent lower boundary: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:83
+  Expression: hot.drag > cold.drag
+   Evaluated: 0.0013926064509144425 > 0.0013926064509144425
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:76 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:83 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+Surface stability responds to the independent lower boundary: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:90
+  Expression: land.ri < mixed.ri < ocean.ri
+   Evaluated: 3.5554714293494585 < 3.5554714293494585 < 3.5554714293494585
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:76 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:90 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+Surface stability responds to the independent lower boundary: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:94
+  Expression: wet.ri < dry.ri
+   Evaluated: 3.5554714293494585 < 3.5554714293494585
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:52
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:76 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:94 [inlined]
+ [6] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+{"implementation":"native","mixed":{"land":0.5,"skin":310.0,"sst":280.0,"availability":1.0,"ice":0.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0011502568376780137,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":31.44998158739306,"water":0.00011461067406667546},"dry":{"land":1.0,"skin":295.0,"sst":295.0,"availability":0.0,"ice":0.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0013926064509144425,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":38.07623289434776,"water":-4.8493861858008536e-5},"wet":{"land":1.0,"skin":295.0,"sst":295.0,"availability":1.0,"ice":0.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0013926064509144425,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":38.07623289434776,"water":8.496663587972526e-5},"flat":{"land":1.0,"skin":310.0,"sst":310.0,"availability":1.0,"ice":0.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0013926064509144425,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":159.7958261579492,"water":0.0002761249800280482},"mountain":{"land":1.0,"skin":310.0,"sst":310.0,"availability":1.0,"ice":0.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0013926064509144425,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":159.7958261579492,"water":0.0002761249800280482},"ice":{"land":0.0,"skin":310.0,"sst":310.0,"availability":1.0,"ice":1.0,"snow":0.0,"ri":3.5554714293494585,"drag":0.0002792896525170563,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":0.31730031315976454,"water":5.482905576490551e-7},"snowy":{"land":1.0,"skin":310.0,"sst":310.0,"availability":1.0,"ice":0.0,"snow":0.1,"ri":3.5554714293494585,"drag":0.0013926064509144425,"air":{"density":1.1956289831886715,"temperature":290.3077111243847,"wind":4.8541219597369},"heat":53.26527538598306,"water":9.204166000934939e-5}}
+Test Summary:                                                          | Pass  Fail  Total   Time
+Boundary layer physics                                                 |  142    10    152  32.5s
+  Interior Richardson uses the lowest air level and relative elevation |   24     2     26  28.3s
+  Surface stability responds to the independent lower boundary         |  118     8    126   4.2s
+RNG of the outermost testset: Random.Xoshiro(0x4da725cf7bd4ae5b, 0xe4037d1856f1bce3, 0x1d4eb45f70bb7bb9, 0x4d9b7b3ec2961b00, 0xab7b81ad066e0ca1)
+ERROR: LoadError: Some tests did not pass: 142 passed, 10 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\boundary-layer-test.jl:51

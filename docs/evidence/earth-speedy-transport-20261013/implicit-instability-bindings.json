@@ -1,0 +1,271 @@
+{
+  "createdUTC": "2026-10-13T07:15:55.114Z",
+  "passed": true,
+  "note": "Code 0 means a source-preserving diagnostic reproduced the instability; it does not mean model stability acceptance.",
+  "verifiedDependencies": 133,
+  "nativeSourceCount": 105,
+  "runs": [
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-v2-native-status.json",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-v2-native-status.json",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-window-native-status.json",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-window-native-status.json",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    }
+  ],
+  "mismatches": [],
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-native-status.json",
+      "bytes": 7567,
+      "sha256": "88d36281ab0db055b7ca68c91e912ee6f0564c242a192adf66a5a153bcdaf38c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-native.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-v2-native-status.json",
+      "bytes": 7561,
+      "sha256": "ca0f1376da5e548dbba85157f6505b7379713d394933a977343848c3d80dfa9f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-v2-native.log",
+      "bytes": 14320,
+      "sha256": "e240954bef8c3d5097bdff15bea2c17905fbb82d29de846810fc07b1a7055401"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-window-native-status.json",
+      "bytes": 7569,
+      "sha256": "f9eb712f9c87d26efe1833c143b0e29d5a8e8c872bd11ffa8830b20dce9f8836"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-window-native.log",
+      "bytes": 11430,
+      "sha256": "4181fc9cc768f184800b43063259796dc92a85e71322dc189dde747a625c2538"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-bind.mjs",
+      "bytes": 2612,
+      "sha256": "10b5b70f2025d7c79f1a962465ac00c2a536f959e0f78734792288bbe27ace3c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-probe.jl",
+      "bytes": 6193,
+      "sha256": "736432db8107d385f107b27ed2a6b29e8d639a8d3e153f07af7dc69eab10b444"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-projection-status.json",
+      "bytes": 2465,
+      "sha256": "be6702e115bf667e6fa62a215e18fbdd79766733892a7c6b9a1e5df457c513dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-projection.jl",
+      "bytes": 1165,
+      "sha256": "cbf61777cdbae172674be279cf1b26694991c3da50098aae31b64a6914bec41c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-projection.log",
+      "bytes": 530,
+      "sha256": "4d6138aaa6a6e130c114d5eea20c986b6f1fc55e37030ea44d2692a6388d2f98"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-report.md",
+      "bytes": 9814,
+      "sha256": "d86202660f3e0a58e4ff338f82413fd61ab4c8c22a93d08d95f2505f386ebc51"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-native-status.json",
+      "bytes": 7573,
+      "sha256": "61dc5b726b407e290837fb5086ba5c1d7af02ca147930ad3198bc40147b0eeab"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-native.log",
+      "bytes": 953,
+      "sha256": "b802967407ee4c82b29a5f0962665573d1ee27b834525c0789493dc7a998f7cc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-v2-native-status.json",
+      "bytes": 7567,
+      "sha256": "771155a5a7a71ddb2009ef9866c16289ccbe3ad4919e29e12b3649c78c8d28ac"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-v2-native.log",
+      "bytes": 13390,
+      "sha256": "54d20b092eccc434edae65ebaa1fa8598421ea7b05eac35a3fda805c1e81bfc2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-window-native-status.json",
+      "bytes": 7575,
+      "sha256": "7713ef66e0f77c9123aca2f833d3b3852d55d541ea1d220f4944bf794fad20be"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-window-native.log",
+      "bytes": 11160,
+      "sha256": "134755f359054ceb0967dcbdd6407ecf1ba3bd369f5f8dd210ebe044e35547ba"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-verification.json",
+      "bytes": 18790,
+      "sha256": "28015908c3fa4ad1359b9e3900649d8ebda4ab91ca823c4aa85742e86aa66a4d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-verify.mjs",
+      "bytes": 3017,
+      "sha256": "38ad9ec62eebf373bbb299ab994f9ba1db84b8877d8cc27c975f8d69c32e554d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-window.jl",
+      "bytes": 3690,
+      "sha256": "524f40d0400ef32cd5a320d3dfc3ceb9d1336cad5f6da49d5ba246ec9da63f67"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2-failure-fields.jld2",
+      "bytes": 10408605,
+      "sha256": "e57bbfd97a36a58d01dc99171745f022c1c211a89c2e96ac90c490274a938af7"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2-first-bad.jld2",
+      "bytes": 9579735,
+      "sha256": "32884b0484344f643a2fd5084b0d460b38baa7e76609461364dde9d0e4715ca2"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2-initial.json",
+      "bytes": 929,
+      "sha256": "cda9ad1d7fc2bf62ee078202d0efa6d8bf2a8be2f5db85124ce2718b9ea4bdb5"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2-progress.json",
+      "bytes": 2788,
+      "sha256": "27649e38e4b706da0e02ec0ca1364a18a30d6d3efcbc182e41c6c89adb282ff5"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2.json",
+      "bytes": 8674111,
+      "sha256": "9ff8d738f88919387f4d83f479fd14795c424298118115c6022d033dc8e709d3"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-courant-half.jld2",
+      "bytes": 9579735,
+      "sha256": "0f717ffa8e92a8c8d650cda2601c44732d59d3ee5e2dfd66f494df939e01e386"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-courant-half.json",
+      "bytes": 5208,
+      "sha256": "7b4edf0860ff6048f627e4e3a60d923b64db18ab1463402d5b0e60e0ac1022f7"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-last-positive.jld2",
+      "bytes": 9579735,
+      "sha256": "4b0b2fddf149267b6982b947b59cf5f782a9e64316d6fb935921298e64d45537"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-progress.json",
+      "bytes": 5198,
+      "sha256": "e01537f1ec25fd2f298133c250ca004192c6cea7eca5ba5593c4ff870d46f178"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-start.jld2",
+      "bytes": 9579735,
+      "sha256": "c490ce9616a9dd5494895c5a4325cb5c808469f0da8c46761a10d3e5eb678e91"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-start.json",
+      "bytes": 5251,
+      "sha256": "5b8587793620d1ad904ceec4ab2d8406eb686a62433ba8e7dd478c02ccf85ff6"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window.json",
+      "bytes": 508931,
+      "sha256": "13284f9ffc6c1043d9caf8216d7ee84f9bb5dcd1a2e41edbdaaf24700c414a70"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-projection.json",
+      "bytes": 529,
+      "sha256": "7653122da333c9deccbaf4fd7cabe2fe2fd2bf950f782d0bbff7234a1ba31036"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-initial.json",
+      "bytes": 922,
+      "sha256": "897c19235f0404851659449756e1e84e9f80df91ec369c60a0057548151be8f4"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2-failure-fields.jld2",
+      "bytes": 10408605,
+      "sha256": "5c130248bf4cbadd0ea1d011d522da951c699f6e0a0514a637ce9188bfc0eb71"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2-first-bad.jld2",
+      "bytes": 9578991,
+      "sha256": "b0fef014f756b133917889c0cf021e557642514f077f060fe6ee9d63c9bb1c58"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2-initial.json",
+      "bytes": 922,
+      "sha256": "897c19235f0404851659449756e1e84e9f80df91ec369c60a0057548151be8f4"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2-progress.json",
+      "bytes": 2803,
+      "sha256": "78cf8ce57c6a1a99297ca4734813f5aa7bb59833ec9ec7f133acb47fcf5479bc"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2.json",
+      "bytes": 7793217,
+      "sha256": "943a99607d8f06e25d47473770ceb2755b1841c71cdb820d14ef12801f9eef36"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-courant-half.jld2",
+      "bytes": 9578991,
+      "sha256": "cce4e9271ceab4a013b716028afc6228986e36a174c6dc922a53fd88392481c2"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-courant-half.json",
+      "bytes": 5165,
+      "sha256": "6f2e0f5c87636710ba6fdd42eb836202331d0e1aeeb31b5258b361aaeffbe3bd"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-last-positive.jld2",
+      "bytes": 9578991,
+      "sha256": "656222fe481c961ef6f401552b8274fc1760fe8a375e36a0227e46a824c8bee8"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-progress.json",
+      "bytes": 5113,
+      "sha256": "d238c66be4b491601b8d4795ea55bb1f439ce898806315b97e2375b3b036fea5"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-start.jld2",
+      "bytes": 9578991,
+      "sha256": "ee4529d1fa1b75f05f0c6f05787239390d97d2601d0fc1678c5fd8ae17fe800c"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-start.json",
+      "bytes": 5227,
+      "sha256": "69e37dc2501baabb2cf2dd1c52ed453433114fc5ac3ee406f277da811c4ae251"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window.json",
+      "bytes": 506041,
+      "sha256": "edbf68bdde67f353b047fe9cd6594e65e3890573efeb03ecb6c06d353958862d"
+    }
+  ]
+}

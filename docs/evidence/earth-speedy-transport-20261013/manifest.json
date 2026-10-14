@@ -1,0 +1,4409 @@
+{
+  "createdUTC": "2026-10-13T08:54:35.878Z",
+  "head": "80414dc6ee18670993cc5f01820a0efc1c5632f9",
+  "software": {
+    "julia": "1.12.7",
+    "SpeedyWeather": "0.23.0",
+    "node": "v24.11.1"
+  },
+  "formalPath": "scenes/earth-land-sea/earth-simulation.json",
+  "formalSHA256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "formalDefaultPromoted": false,
+  "defaultDeclarations": [
+    {
+      "path": "thermal.ts",
+      "name": "DEFAULT_THERMAL",
+      "sha256": "200ac46a9f0859ce59007b176c62f99b023048f4258dba4e52852467e078ae6c"
+    },
+    {
+      "path": "water.ts",
+      "name": "DEFAULT_WATER",
+      "sha256": "0a1607b40bd1dbda009459782ed2058c66dadea28c3cccc1dd5244cd37da83c6"
+    },
+    {
+      "path": "environment.ts",
+      "name": "DEFAULT_ENVIRONMENT",
+      "sha256": "bd711fb48c64ef9149d5639b93abcbf8ffef9c104dbf9f097cc189d71d5a719f"
+    }
+  ],
+  "previousManifest": {
+    "path": "docs/evidence/earth-speedy-moisture-monsoon-20261013/manifest.json",
+    "sha256": "d2ebb76691bd0f6e386ce5a4ec56b55fe4892212a221d9a01aad193d05c18676"
+  },
+  "experimentNotes": [
+    "Native red tests and candidate failures are retained; evidence integrity is distinct from physics or climate acceptance.",
+    "All build artifacts are retained and bound, including failed-run initial checkpoints and progress. Only completed candidates appear in the comparison.",
+    "Seven-and-a-half-minute startup sensitivity does not replace the thirty-minute climate protocol."
+  ],
+  "completedCandidates": [
+    {
+      "prefix": "baseline-sensitivity-v2",
+      "physicsFix": "baseline",
+      "stage": "same-2006-state-one-year-sensitivity",
+      "calls": 17520,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 2.0978120589424885,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "clouds-precip-sensitivity",
+      "physicsFix": "clouds-precip",
+      "stage": "same-2006-state-one-year-sensitivity",
+      "calls": 17520,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 2.0461808514313535,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "clouds-full-sensitivity-v2",
+      "physicsFix": "clouds-full",
+      "stage": "same-2006-state-one-year-sensitivity",
+      "calls": 17520,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 2.023777195909661,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "parcel-sensitivity",
+      "physicsFix": "parcel",
+      "stage": "same-2006-state-one-year-sensitivity",
+      "calls": 17520,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 2.2009184367755386,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "combined-sensitivity",
+      "physicsFix": "combined",
+      "stage": "same-2006-state-one-year-sensitivity",
+      "calls": 17520,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 2.1312402949498903,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "evaporation-sensitivity",
+      "physicsFix": "combined-evaporation",
+      "stage": "same-2006-state-one-year-sensitivity",
+      "calls": 17520,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 2.1686001596382605,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "longwave-sensitivity",
+      "physicsFix": "combined-longwave",
+      "stage": "same-2006-state-one-year-sensitivity",
+      "calls": 17520,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 2.073110984847445,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "parcel-seasonal",
+      "physicsFix": "parcel",
+      "stage": "five-year-spinup-one-statistics-year",
+      "calls": 105169,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 12.854650465160084,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "combined-seasonal",
+      "physicsFix": "combined",
+      "stage": "five-year-spinup-one-statistics-year",
+      "calls": 105169,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 12.491062886495872,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "split-reference-sensitivity",
+      "physicsFix": "all-corrections-split-reference",
+      "stage": "same-2006-state-one-year-sensitivity",
+      "calls": 17520,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 3.181091626196818,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "thermal-split-reference-sensitivity",
+      "physicsFix": "combined-implicit-split-reference",
+      "stage": "same-2006-state-one-year-sensitivity",
+      "calls": 17520,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 3.1566874627576245,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    },
+    {
+      "prefix": "split-reference-seasonal",
+      "physicsFix": "all-corrections-split-reference",
+      "stage": "five-year-spinup-one-statistics-year",
+      "calls": 105169,
+      "monsoonPassed": false,
+      "waterPassed": true,
+      "landWaterPassed": true,
+      "dryAirMassPassed": true,
+      "fullBudgetChecks": {
+        "waterLimitMm": 18.720932140505028,
+        "waterPassed": true,
+        "landWaterPassed": true,
+        "dryAirMassPassed": true
+      }
+    }
+  ],
+  "startupAudits": [
+    {
+      "path": "build/earth-speedy-transport/audit-combined.json",
+      "physicsFix": "combined",
+      "thresholdMm": 0.05,
+      "modes": [
+        {
+          "mode": "slab",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.06254226245954173,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        },
+        {
+          "mode": "seasonal",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.06253495637950807,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        }
+      ]
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-all-corrections.json",
+      "physicsFix": "all-corrections",
+      "thresholdMm": 0.05,
+      "modes": [
+        {
+          "mode": "slab",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.0631897496963671,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        },
+        {
+          "mode": "seasonal",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.06318242443020472,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        }
+      ]
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-all-corrections-split-reference.json",
+      "physicsFix": "all-corrections-split-reference",
+      "thresholdMm": 0.05,
+      "modes": [
+        {
+          "mode": "slab",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.06136883025519289,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        },
+        {
+          "mode": "seasonal",
+          "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+          "calls": 145,
+          "maxDiscreteResidualMm": 0.061360944008787985,
+          "stepsOverOriginalPointZeroFive": 5,
+          "pointwiseWaterPassed": false
+        }
+      ]
+    }
+  ],
+  "nativeExecutions": [
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/all-corrections-seasonal-native-status.json",
+      "code": 1,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run-v2.jl",
+      "configuration": {
+        "SPEEDY_CASE": "all-corrections-seasonal",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/all-corrections-sensitivity-native-status.json",
+      "code": 1,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run-v2.jl",
+      "configuration": {
+        "SPEEDY_CASE": "all-corrections-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/audit-all-corrections-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/audit-v2-candidate.jl",
+      "configuration": {
+        "SPEEDY_CASE": "audit-all-corrections",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/audit-combined-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/audit-candidate.jl",
+      "configuration": {
+        "SPEEDY_CASE": "audit-combined",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/audit-projected-initial-v3-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/audit-projected-initial.jl",
+      "configuration": {
+        "SPEEDY_CASE": "audit-projected-initial-v3",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": "fixed",
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": "fixed",
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections-split-reference",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/audit-split-reference-v3-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/audit-v3-candidate.jl",
+      "configuration": {
+        "SPEEDY_CASE": "audit-split-reference-v3",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": "fixed",
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": "fixed",
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections-split-reference",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/baseline-sensitivity-native-status.json",
+      "code": 4294967295,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "configuration": {
+        "SPEEDY_CASE": "baseline-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "baseline",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/baseline-sensitivity-v2-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "configuration": {
+        "SPEEDY_CASE": "baseline-sensitivity-v2",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "baseline",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/clouds-full-sensitivity-native-status.json",
+      "code": 4294967295,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "configuration": {
+        "SPEEDY_CASE": "clouds-full-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "clouds-full",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/clouds-full-sensitivity-v2-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "configuration": {
+        "SPEEDY_CASE": "clouds-full-sensitivity-v2",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "clouds-full",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/clouds-precip-sensitivity-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "configuration": {
+        "SPEEDY_CASE": "clouds-precip-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "clouds-precip",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/combined-seasonal-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "configuration": {
+        "SPEEDY_CASE": "combined-seasonal",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/combined-sensitivity-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "configuration": {
+        "SPEEDY_CASE": "combined-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/diagnostic-replay-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/replay-diagnostics.jl",
+      "configuration": {
+        "SPEEDY_CASE": "diagnostic-replay",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": "365"
+      },
+      "sourceUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/evaporation-sensitivity-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run-v2.jl",
+      "configuration": {
+        "SPEEDY_CASE": "evaporation-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined-evaporation",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-native-status.json",
+      "code": 4294967295,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-probe.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-instability-all",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-v2-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-probe.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-instability-all-v2",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-window-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-window.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-instability-all-window",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-native-status.json",
+      "code": 4294967295,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-probe.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-instability-thermal",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined-implicit",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-v2-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-probe.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-instability-thermal-v2",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined-implicit",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-window-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-window.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-instability-thermal-window",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined-implicit",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-sensitivity-native-status.json",
+      "code": 1,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run-v2.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined-implicit",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-split-all-window-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-split-window.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-split-all-window",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-split-green-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-split-green",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": null,
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": null,
+        "SPEEDY_SENSITIVITY": null
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-split-startup-probe-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-split-startup-probe.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-split-startup-probe",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-split-thermal-window-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-split-window.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-split-thermal-window",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined-implicit",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-green-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-test.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-split-v2-green",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": null,
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": null,
+        "SPEEDY_SENSITIVITY": null
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-startup-probe-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-startup-probe.jl",
+      "configuration": {
+        "SPEEDY_CASE": "implicit-split-v2-startup-probe",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/longwave-sensitivity-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run-v2.jl",
+      "configuration": {
+        "SPEEDY_CASE": "longwave-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined-longwave",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/parcel-seasonal-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "configuration": {
+        "SPEEDY_CASE": "parcel-seasonal",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "parcel",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/parcel-sensitivity-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "configuration": {
+        "SPEEDY_CASE": "parcel-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "parcel",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/split-reference-seasonal-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run-v3.jl",
+      "configuration": {
+        "SPEEDY_CASE": "split-reference-seasonal",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": "fixed",
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": "fixed",
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections-split-reference",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/split-reference-sensitivity-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run-v3.jl",
+      "configuration": {
+        "SPEEDY_CASE": "split-reference-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": "fixed",
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": "fixed",
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections-split-reference",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/thermal-split-reference-sensitivity-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/run-v3.jl",
+      "configuration": {
+        "SPEEDY_CASE": "thermal-split-reference-sensitivity",
+        "SPEEDY_MODE": "seasonal",
+        "SPEEDY_SMOKE": "0",
+        "MOISTURE_IMPLEMENTATION": "fixed",
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": "fixed",
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "combined-implicit-split-reference",
+        "SPEEDY_SENSITIVITY": "1"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence.jl",
+      "configuration": {
+        "SPEEDY_CASE": "timestep-convergence",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-fields-verify-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-fields-verify.jl",
+      "configuration": {
+        "SPEEDY_CASE": "wet-carrier-fields-verify",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections-split-reference",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-native-red-native-status.json",
+      "code": 1,
+      "script": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-native-red.jl",
+      "configuration": {
+        "SPEEDY_CASE": "wet-carrier-native-red",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections-split-reference",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-projected-native-red-native-status.json",
+      "code": 1,
+      "script": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-projected-native-red.jl",
+      "configuration": {
+        "SPEEDY_CASE": "wet-carrier-projected-native-red",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections-split-reference",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-prototype-green-native-status.json",
+      "code": 1,
+      "script": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-test.jl",
+      "configuration": {
+        "SPEEDY_CASE": "wet-carrier-prototype-green",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections-split-reference",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    },
+    {
+      "file": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-prototype-green-v2-native-status.json",
+      "code": 0,
+      "script": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-test-v2.jl",
+      "configuration": {
+        "SPEEDY_CASE": "wet-carrier-prototype-green-v2",
+        "SPEEDY_MODE": null,
+        "SPEEDY_SMOKE": null,
+        "MOISTURE_IMPLEMENTATION": null,
+        "MASS_IMPLEMENTATION": "fixed",
+        "MIXING_IMPLEMENTATION": null,
+        "AUDIT_STAGES": null,
+        "DIAG_DAYS": null,
+        "PHYSICS_FIX": "all-corrections-split-reference",
+        "SPEEDY_SENSITIVITY": "0"
+      },
+      "sourceUnchanged": true,
+      "inputsUnchanged": true
+    }
+  ],
+  "bindings": [
+    {
+      "path": "build/earth-speedy-transport/all-corrections-seasonal-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/all-corrections-seasonal-initial-inventory.json",
+      "bytes": 1513,
+      "sha256": "e2981869eac804f8974278760cd5ed3801a0c4eca6ff521c384c7fb9ed00f3f8"
+    },
+    {
+      "path": "build/earth-speedy-transport/all-corrections-seasonal-initial.jld2",
+      "bytes": 9543071,
+      "sha256": "f7f7fba9fea92ce878f7d7309e7d034ece0658a4a1ad3d4a6392797e5c166772"
+    },
+    {
+      "path": "build/earth-speedy-transport/all-corrections-seasonal-progress.json",
+      "bytes": 255,
+      "sha256": "09ec9474cba180d33c5b271d2265204e13dd26ef77eea39b3597e9884191312b"
+    },
+    {
+      "path": "build/earth-speedy-transport/all-corrections-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/all-corrections-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/all-corrections-sensitivity-initial.jld2",
+      "bytes": 9579735,
+      "sha256": "0bf19dccfd5e001088030e297a15c7b74851d86dedc4cf65be896393234b3399"
+    },
+    {
+      "path": "build/earth-speedy-transport/all-corrections-sensitivity-progress.json",
+      "bytes": 254,
+      "sha256": "c73a92d856d79aa0c3a61a7b07f07b36e4c5a0a0b3021a5556ff79be5b61b0dc"
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-all-corrections-split-reference-projected-initial.json",
+      "bytes": 558263,
+      "sha256": "3f76d726edc98cc49e42889d7af031fc8e666f1c9a4ff3df29d17093c30a2c52"
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-all-corrections-split-reference.json",
+      "bytes": 501458,
+      "sha256": "d02f81bccd281cedb200d63f39a02d305a0a2c3407ae570863d222bbc80ec32d"
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-all-corrections.json",
+      "bytes": 501568,
+      "sha256": "87a2442da58b4a1b4048a2bfb1f95487647c38fe2cf084b7298387e5772f4891"
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-combined.json",
+      "bytes": 503179,
+      "sha256": "60dcb65b362874064fb4a9df47219b5161fd4fc5fe9ad3c801f767dc3f8667ca"
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-projected-initial-v3-runner.log",
+      "bytes": 8226,
+      "sha256": "1858b8464666d40559bddf8ddb9a5a38139dd44272a28f0fa238da2af8642412"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-initial.jld2",
+      "bytes": 9575453,
+      "sha256": "5fd579ac28746a043594f27d70d390bd44500700dd75871b3724baab9b6ff581"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-progress.json",
+      "bytes": 257,
+      "sha256": "d04822f735996c8433b8cb22abbb43897ee591a95a31c9d6cf15410d6f8a7b2e"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-v2-final.jld2",
+      "bytes": 9575453,
+      "sha256": "44e71d3e39bac4574ec8d354ebbd12fba2d9c5bcc39ad2124022521dfe3501e7"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-v2-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-v2-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-v2-initial.jld2",
+      "bytes": 9575453,
+      "sha256": "515faab05c73df0e4e5d71968cfefa64533cc80d3b357c16f9686dc8c23d1ccd"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-v2-progress.json",
+      "bytes": 256,
+      "sha256": "1fde46844883af3564014d3aa69824752164f302fbb1bfe83f504446db89efb8"
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-v2-statistics.json",
+      "bytes": 52901633,
+      "sha256": "90fd09302b1fb1b2c08f12ae2b3d967cf3f710172fe40d0d2fed73f049767304"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-initial.jld2",
+      "bytes": 9576352,
+      "sha256": "9a2fb90abc3ae9a5389001cfbb02e6b4cd8a6dad00fa098ab1651e6711874f96"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-progress.json",
+      "bytes": 257,
+      "sha256": "5422759c0155a166cbe48dd738e2d47a60c7e9efcfc3913a8310c26bd24a116b"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-v2-final.jld2",
+      "bytes": 9576352,
+      "sha256": "a75c9690bc1ca6142cc7759e4577c5fd3e398208a43b6bde5b900045c42c4137"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-v2-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-v2-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-v2-initial.jld2",
+      "bytes": 9576352,
+      "sha256": "6190aafdc018b5330bd95eaa12a5b4e332b8ffad1ec3515863046b6be044a1e0"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-v2-progress.json",
+      "bytes": 227,
+      "sha256": "5de6919f572ee99ade1fab841e9e64a8329fd9bdad0de27a84da9ffd620e0893"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-full-sensitivity-v2-statistics.json",
+      "bytes": 52915334,
+      "sha256": "bb157a16cff7d76fd5f8fd6efd02a06e295ddddc494b727d2dbff2f4441559ba"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-precip-sensitivity-final.jld2",
+      "bytes": 9576352,
+      "sha256": "dde4679bea3a5bc0de952e51e22feacd99e13c089323cc6e03aa3ae53c7bce84"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-precip-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-precip-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-precip-sensitivity-initial.jld2",
+      "bytes": 9576352,
+      "sha256": "50419ec9efb768a1b99232dc101eca6439a8570409350163f024917a1d6b8592"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-precip-sensitivity-progress.json",
+      "bytes": 254,
+      "sha256": "30a187a55648deb687301824feafe39d033b89ca05a6c6a682954cf0960cf29a"
+    },
+    {
+      "path": "build/earth-speedy-transport/clouds-precip-sensitivity-statistics.json",
+      "bytes": 52952854,
+      "sha256": "5ddde17db76b8a367135f72c9d027a39f7df48ec1cc1db1862353ed416598d5b"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-seasonal-final.jld2",
+      "bytes": 9541783,
+      "sha256": "69b9a6c30a1128673b2de1e8cc2021ec0d00210ebef23715984e67ae6cab32d2"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-seasonal-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-seasonal-initial-inventory.json",
+      "bytes": 1513,
+      "sha256": "e2981869eac804f8974278760cd5ed3801a0c4eca6ff521c384c7fb9ed00f3f8"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-seasonal-initial.jld2",
+      "bytes": 9541783,
+      "sha256": "94e23caa727ed8c9c753218ef516caa93d8f26720be6c04daf87402d79495ac7"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-seasonal-progress.json",
+      "bytes": 255,
+      "sha256": "5ca1608d12eb1fe3cb45c6cbeaf1c53202cfc273e9a147af7c716227bb8b460a"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-seasonal-statistics-start.jld2",
+      "bytes": 9541783,
+      "sha256": "91a78ed23ac47488f48e2f28b8523fb2a76dc734e3bf4624c959ee08d59cef7a"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-seasonal-statistics.json",
+      "bytes": 55424295,
+      "sha256": "27be60f77f3fc84d5f0dc3d4cdf5be54fa66b0895d889436bd9af3811f445c5b"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-sensitivity-final.jld2",
+      "bytes": 9578447,
+      "sha256": "68acb0dd472e86bd0e386bd4559dd82a8f6dacac9586d4c5c00fb604bae69d1a"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-sensitivity-initial.jld2",
+      "bytes": 9578447,
+      "sha256": "e3deea0e4869ba99de25be5cf3ef39f678d16d890b390db3413c9e58374333eb"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-sensitivity-progress.json",
+      "bytes": 256,
+      "sha256": "7243632a94b842ae50c9ebfd5be5dc3d20c7ca87a737ef25aada909e2706d660"
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-sensitivity-statistics.json",
+      "bytes": 53054188,
+      "sha256": "ce9bdd662a8959fa6849a26dfb5ec78ebdc781559e6e2f2bdca4617e8859eb57"
+    },
+    {
+      "path": "build/earth-speedy-transport/compare-sensitivity-bundle.mjs",
+      "bytes": 11319,
+      "sha256": "8ba7c1a82b20d855deaf27082a50170fe21b553b2bb0c9fe81577a80237fff4f"
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-audit.json",
+      "bytes": 53098,
+      "sha256": "03638f2eaab829668da8dd4d6f4495e343a182430fbd65247b9cfb657f2834a7"
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-bench.json",
+      "bytes": 2924,
+      "sha256": "ede746f8f8cc013dbcd2e618175554ae710140056b89b19d5fd8df5da600edd1"
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-bench.log",
+      "bytes": 5854,
+      "sha256": "52320311fae954540cf85245d0afb6c69a607cf6c64fc98061c957b3b74a27f9"
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-green-initial.log",
+      "bytes": 5242,
+      "sha256": "d78fe5fcf37f4d1a288662955d3104e32fd2ade6662fc261c32bfccb72d83a5b"
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-green.log",
+      "bytes": 3264,
+      "sha256": "46ffa8f1fa887fd0978998316fe389f8ade9b730a30dc8ad5b0c95ddd9c287c8"
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-july-snapshot.json",
+      "bytes": 345373,
+      "sha256": "9f6dcbfe5eeaf7cbaf1d6984e71b92bf9aacc289a944d3e82d6abff5c2c13d91"
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-july-snapshot.log",
+      "bytes": 21660,
+      "sha256": "87dea13f53fcf42391125644306b32f355b30691aa0239e6f2eecd1f1ec87d9b"
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-red-initial.log",
+      "bytes": 5514,
+      "sha256": "95ce6d10a23c5adcac22a4cb256e4d2771621d78ec5e9dee1dcb69af4c1b326a"
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-red.log",
+      "bytes": 5530,
+      "sha256": "5ce515db62ff462933ea3186d36b4390ccd90dfa5939d70b5a0b512624bafd1c"
+    },
+    {
+      "path": "build/earth-speedy-transport/diagnostic-july-start.jld2",
+      "bytes": 9575453,
+      "sha256": "6241c2b3511e3873abad4d37e5314e29f26c40df124e12efb6ad355637e065ba"
+    },
+    {
+      "path": "build/earth-speedy-transport/diagnostic-weights.json",
+      "bytes": 113310,
+      "sha256": "0b47110a91d768ed526eff0a62a0881f369faf68ff466e744521a9c78de721a4"
+    },
+    {
+      "path": "build/earth-speedy-transport/evaporation-sensitivity-final.jld2",
+      "bytes": 9578831,
+      "sha256": "f38bc240906cab278e354c5a49402102b2c7517babec6195bc5f3d572166d37d"
+    },
+    {
+      "path": "build/earth-speedy-transport/evaporation-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/evaporation-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/evaporation-sensitivity-initial.jld2",
+      "bytes": 9578831,
+      "sha256": "3502b4daf64dd3c6a645c091842184d7a42e84e3563417aac3b3e91ab6e6df7b"
+    },
+    {
+      "path": "build/earth-speedy-transport/evaporation-sensitivity-progress.json",
+      "bytes": 256,
+      "sha256": "6f9e733d54e00e2c483d3413c2a11deacc7cf7a4e462e6b93214764659e13726"
+    },
+    {
+      "path": "build/earth-speedy-transport/evaporation-sensitivity-statistics.json",
+      "bytes": 52901000,
+      "sha256": "8a2e35aab8a621e37de5dc17cf1a300040d9d63e82090a73a7fee71cacb426dd"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-fixed-matrix.json",
+      "bytes": 775,
+      "sha256": "dff39f54908d56faa8a613cb55d69d05d3283a27344bcbfbc185fef0bff08adc"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-flux-prototype.json",
+      "bytes": 956,
+      "sha256": "a2fd3f48a7caa4c60ddfd00dd776dfd2f70bebac4394d92e1991b9e8e614a1af"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2-failure-fields.jld2",
+      "bytes": 10408605,
+      "sha256": "e57bbfd97a36a58d01dc99171745f022c1c211a89c2e96ac90c490274a938af7"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2-first-bad.jld2",
+      "bytes": 9579735,
+      "sha256": "32884b0484344f643a2fd5084b0d460b38baa7e76609461364dde9d0e4715ca2"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2-initial.json",
+      "bytes": 929,
+      "sha256": "cda9ad1d7fc2bf62ee078202d0efa6d8bf2a8be2f5db85124ce2718b9ea4bdb5"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2-progress.json",
+      "bytes": 2788,
+      "sha256": "27649e38e4b706da0e02ec0ca1364a18a30d6d3efcbc182e41c6c89adb282ff5"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-v2.json",
+      "bytes": 8674111,
+      "sha256": "9ff8d738f88919387f4d83f479fd14795c424298118115c6022d033dc8e709d3"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-courant-half.jld2",
+      "bytes": 9579735,
+      "sha256": "0f717ffa8e92a8c8d650cda2601c44732d59d3ee5e2dfd66f494df939e01e386"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-courant-half.json",
+      "bytes": 5208,
+      "sha256": "7b4edf0860ff6048f627e4e3a60d923b64db18ab1463402d5b0e60e0ac1022f7"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-last-positive.jld2",
+      "bytes": 9579735,
+      "sha256": "4b0b2fddf149267b6982b947b59cf5f782a9e64316d6fb935921298e64d45537"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-progress.json",
+      "bytes": 5198,
+      "sha256": "e01537f1ec25fd2f298133c250ca004192c6cea7eca5ba5593c4ff870d46f178"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-start.jld2",
+      "bytes": 9579735,
+      "sha256": "c490ce9616a9dd5494895c5a4325cb5c808469f0da8c46761a10d3e5eb678e91"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window-start.json",
+      "bytes": 5251,
+      "sha256": "5b8587793620d1ad904ceec4ab2d8406eb686a62433ba8e7dd478c02ccf85ff6"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-all-window.json",
+      "bytes": 508931,
+      "sha256": "13284f9ffc6c1043d9caf8216d7ee84f9bb5dcd1a2e41edbdaaf24700c414a70"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-projection.json",
+      "bytes": 529,
+      "sha256": "7653122da333c9deccbaf4fd7cabe2fe2fd2bf950f782d0bbff7234a1ba31036"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-initial.json",
+      "bytes": 922,
+      "sha256": "897c19235f0404851659449756e1e84e9f80df91ec369c60a0057548151be8f4"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2-failure-fields.jld2",
+      "bytes": 10408605,
+      "sha256": "5c130248bf4cbadd0ea1d011d522da951c699f6e0a0514a637ce9188bfc0eb71"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2-first-bad.jld2",
+      "bytes": 9578991,
+      "sha256": "b0fef014f756b133917889c0cf021e557642514f077f060fe6ee9d63c9bb1c58"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2-initial.json",
+      "bytes": 922,
+      "sha256": "897c19235f0404851659449756e1e84e9f80df91ec369c60a0057548151be8f4"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2-progress.json",
+      "bytes": 2803,
+      "sha256": "78cf8ce57c6a1a99297ca4734813f5aa7bb59833ec9ec7f133acb47fcf5479bc"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-v2.json",
+      "bytes": 7793217,
+      "sha256": "943a99607d8f06e25d47473770ceb2755b1841c71cdb820d14ef12801f9eef36"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-courant-half.jld2",
+      "bytes": 9578991,
+      "sha256": "cce4e9271ceab4a013b716028afc6228986e36a174c6dc922a53fd88392481c2"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-courant-half.json",
+      "bytes": 5165,
+      "sha256": "6f2e0f5c87636710ba6fdd42eb836202331d0e1aeeb31b5258b361aaeffbe3bd"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-last-positive.jld2",
+      "bytes": 9578991,
+      "sha256": "656222fe481c961ef6f401552b8274fc1760fe8a375e36a0227e46a824c8bee8"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-progress.json",
+      "bytes": 5113,
+      "sha256": "d238c66be4b491601b8d4795ea55bb1f439ce898806315b97e2375b3b036fea5"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-start.jld2",
+      "bytes": 9578991,
+      "sha256": "ee4529d1fa1b75f05f0c6f05787239390d97d2601d0fc1678c5fd8ae17fe800c"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window-start.json",
+      "bytes": 5227,
+      "sha256": "69e37dc2501baabb2cf2dd1c52ed453433114fc5ac3ee406f277da811c4ae251"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-instability-thermal-window.json",
+      "bytes": 506041,
+      "sha256": "edbf68bdde67f353b047fe9cd6594e65e3890573efeb03ecb6c06d353958862d"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-native-matrix.json",
+      "bytes": 6718,
+      "sha256": "b208d980cda96d0b81dfad694bc8ffb825aca407ce43d11112b3ec87a7535d80"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-sensitivity-initial.jld2",
+      "bytes": 9578991,
+      "sha256": "ef54c40b0a34fd7802ec5bd33ee590137b6a413e7d24df9e9050a6be419be6d6"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-sensitivity-progress.json",
+      "bytes": 253,
+      "sha256": "797661c51b2440e212bfae3cc3a2621ca1e1d51362fbe5a8b5c18c0d69e880f5"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-all-window-final.jld2",
+      "bytes": 9581119,
+      "sha256": "23966f5a46af310fdbc020f6d4e619d56761c963554e7152cea5bb72598c9bba"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-all-window-initial.jld2",
+      "bytes": 9581119,
+      "sha256": "7e0892e3ff15485eadb17382347646e7e9d8744827afa2377b2d60d1192a5ad9"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-all-window-progress.json",
+      "bytes": 2368,
+      "sha256": "0ae74ea7325ebea3ac43a65cfd1c3263e02aa26fa27c9694a7218a21a78eb8af"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-all-window.json",
+      "bytes": 234501,
+      "sha256": "6f25f72a2d66f8c52a13440ce8fea5bc4ae5794b4f448d3bcc66b01b6a9d8a22"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-candidate-test.json",
+      "bytes": 66,
+      "sha256": "7e869c6c61e2cc782f41644c4714b2c592e3a422f41cffbd1428a5265c13b143"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-roundtrip.jld2",
+      "bytes": 18247,
+      "sha256": "b8d353d9fd90468dc62e06894a6b8a6b65aced4c950458b6718b1438140761a9"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-startup-probe.json",
+      "bytes": 1796,
+      "sha256": "79b59a83a49a63f7d3dd1bf2e4f9d9de120c820c65d96e699bfb637198973808"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-thermal-window-final.jld2",
+      "bytes": 9580367,
+      "sha256": "0f99cd20700f4160b8638367ed7e77aa7184eeb1970edb6e9d65129064ef56c2"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-thermal-window-initial.jld2",
+      "bytes": 9580367,
+      "sha256": "37c718d6bfefe3ce9674500038f53ffe4dbf48e054f3ddd3d6411abb6404a9a5"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-thermal-window-progress.json",
+      "bytes": 2384,
+      "sha256": "05b6e8d48ca8310e2a8c61701d6d3b8690a98df2598dee1e31b310a1af0713b0"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-thermal-window.json",
+      "bytes": 231766,
+      "sha256": "07213c29c7f50038c3be4e307bd2cc8c4e57c84c5f42a0a33e8efbae7db9fb83"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-v2-candidate-test.json",
+      "bytes": 66,
+      "sha256": "7e869c6c61e2cc782f41644c4714b2c592e3a422f41cffbd1428a5265c13b143"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-v2-roundtrip.jld2",
+      "bytes": 18247,
+      "sha256": "432fa66e1d455d477f4542e3912fbe2c5f795d2ad21a46f3334e09d5b668ec3d"
+    },
+    {
+      "path": "build/earth-speedy-transport/implicit-split-v2-startup-probe.json",
+      "bytes": 1761,
+      "sha256": "48461b0bdfe77f6f724d31991158779d0dbdf53f850c5aa2da90c383b47587cd"
+    },
+    {
+      "path": "build/earth-speedy-transport/longwave-sensitivity-final.jld2",
+      "bytes": 9578807,
+      "sha256": "5d40dd1031f5e461dcb82c97641e6bc1d47807269b186f3824d7a0870335227f"
+    },
+    {
+      "path": "build/earth-speedy-transport/longwave-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/longwave-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/longwave-sensitivity-initial.jld2",
+      "bytes": 9578807,
+      "sha256": "aeac90e4178b8f54086d69ee95efb244b753411062a2df5e634cd6cac0325e38"
+    },
+    {
+      "path": "build/earth-speedy-transport/longwave-sensitivity-progress.json",
+      "bytes": 256,
+      "sha256": "76b73c5967d1fe31c62ac008fb8ae8845943489744714725875331df71eca455"
+    },
+    {
+      "path": "build/earth-speedy-transport/longwave-sensitivity-statistics.json",
+      "bytes": 53024766,
+      "sha256": "1b0ab34d4ac0fec6e16e0dc5838956440a8ec38cca17d8d99f42b2ff6a75959b"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-seasonal-final.jld2",
+      "bytes": 9540871,
+      "sha256": "56039ecafbac3ada33e429a6b6028c7d673cf3b5f050910c0d8011da39475164"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-seasonal-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-seasonal-initial-inventory.json",
+      "bytes": 1513,
+      "sha256": "e2981869eac804f8974278760cd5ed3801a0c4eca6ff521c384c7fb9ed00f3f8"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-seasonal-initial.jld2",
+      "bytes": 9540871,
+      "sha256": "9b277ff7e3ced870dc3a2751e3a3eafd9184a92411a444ee6b06d33576fe1531"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-seasonal-progress.json",
+      "bytes": 257,
+      "sha256": "ba990a090d5fd1f8972ebf0142dcd65789028a33b1cef833faba0ca9c1932e4f"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-seasonal-statistics-start.jld2",
+      "bytes": 9540871,
+      "sha256": "082d139128c52bb2109aa07beb9934832580ee1e789cd700dc50faf313713249"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-seasonal-statistics.json",
+      "bytes": 55406578,
+      "sha256": "5fe935507b8697775afd32e10b9aa80b31c320da72c934b3ffe237dcef252b69"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-sensitivity-final.jld2",
+      "bytes": 9577535,
+      "sha256": "e257e0c88c35462a52ff664c996d3c0d9331d0a621b758dccb574b0f2d376421"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-sensitivity-initial.jld2",
+      "bytes": 9577535,
+      "sha256": "ba9d005e540e359edd1dd792d8bc33b90a5db8fb09aa266b378a6cdd2fe3752a"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-sensitivity-progress.json",
+      "bytes": 256,
+      "sha256": "9d8139916f6c08503a0e443196a9d3383660a3694c830f168a12d7429472c40d"
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-sensitivity-statistics.json",
+      "bytes": 53042405,
+      "sha256": "18cc29d1f9c99eadf65a58c45171f911f83f8035b0d18d5d5bfed57ea823905c"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-candidates-base.json",
+      "bytes": 440897,
+      "sha256": "4016b33647a546978eef892fb56e4e9f955424490665f3ceed6bd0aeb34c957e"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-candidates.json",
+      "bytes": 5017669,
+      "sha256": "522d75bfe9880b56ab48ff492f0a7cf1890a0f25b4ab46a22bd807bcca546344"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-candidates.log",
+      "bytes": 51396,
+      "sha256": "f26aaf6255a2e88d98788c5ed9232b5515c5c040ad178d5c2ee9d66b99c6bfc4"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-columns-base.json",
+      "bytes": 440897,
+      "sha256": "4016b33647a546978eef892fb56e4e9f955424490665f3ceed6bd0aeb34c957e"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-columns.json",
+      "bytes": 694649,
+      "sha256": "8674808f66797d1422529e071ea0dba073cf7a9965e91477c1167e2ffdd097fe"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-columns.log",
+      "bytes": 55820,
+      "sha256": "0b50040d09ee041e78de6ad374abfccc96d2322ff33c2d6903d0d18972d1305b"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-errors.json",
+      "bytes": 5238,
+      "sha256": "05c0fac864684bbb5bfce692f69f334d83687cb55ff3f3adeaa3b15ba6dc1ea8"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-reference-invariance-compact.log",
+      "bytes": 27786,
+      "sha256": "323d2e58635ecc805152816f87b1716e075383b70f0218e2d673982eaab3cfe5"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-reference-invariance-recorded.log",
+      "bytes": 14534,
+      "sha256": "2f490b669078b244ad60db398424c987dd45f3097b49adb932cd467e59156526"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-reference-invariance-rows.log",
+      "bytes": 2676,
+      "sha256": "51bf2521489f6a2b468bc9fe75c618624697b0bdf371661c6645b007fcf3a3fb"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-reference-invariance-valid.log",
+      "bytes": 34602,
+      "sha256": "30ba8dd95509bbb37fb94b6f98387d0167c02168e5e41b3bd42198f9f24c953d"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-reference-invariance.json",
+      "bytes": 8556,
+      "sha256": "d1268b8f8f0e89556a9cc38598b9f05e68cd47fe91f0a6fd6b7e444121bba8ca"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-reference-invariance.log",
+      "bytes": 1510,
+      "sha256": "2d39d838640e35c946348f3bfb62d79b6d089dc6fc79997c15a22d532f5646f9"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-reference-raw.jld2",
+      "bytes": 1790585,
+      "sha256": "33841f23f306166eb9d37df55288fd500f3a4e1fc7f924ff5d0d00795f63438b"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-stability.json",
+      "bytes": 440897,
+      "sha256": "4016b33647a546978eef892fb56e4e9f955424490665f3ceed6bd0aeb34c957e"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-stability.log",
+      "bytes": 46586,
+      "sha256": "f8dce3d882d008bfc895808683c5533d98d7533ad9490901f6d2e8e87fe10e6e"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-window-stability-current-mean.log",
+      "bytes": 51500,
+      "sha256": "a7662229306e1e749dede311a6fbde8d69c7561880c2553652f0b0d97704ccdd"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-window-stability.json",
+      "bytes": 1678437,
+      "sha256": "dab7e8e317faa1fc3ccee389946c11998414e704d663a103b9b4137e04e10a58"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-window-stability.log",
+      "bytes": 51500,
+      "sha256": "068be4a6a75ae55acfd75b0b4fb5cacdd1147fed490c11fe420fa6f4a82fcf22"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-moisture-carrier-counterexamples.json",
+      "bytes": 1351,
+      "sha256": "e506a91eb6a32ac2ecc5737bb0f6a051f846799ba47222f03783316164e76e34"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-moisture-carrier-counterexamples.log",
+      "bytes": 5380,
+      "sha256": "e94a9ae5e06975f5cc927a281daf5d8217cbacd7bd6eccb44f54636b7bc2dbb3"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-amplification-base-v2.json",
+      "bytes": 440897,
+      "sha256": "4016b33647a546978eef892fb56e4e9f955424490665f3ceed6bd0aeb34c957e"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-amplification-v2.json",
+      "bytes": 914,
+      "sha256": "6fa307bed022f7f7ab34f0649165a5b77943350fe1646c38553558cf90df8f6c"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-amplification-v2.log",
+      "bytes": 48734,
+      "sha256": "683f1462e153ecdf524506284f0ecac8acea3f717610ecb926dc1fc0c259da6b"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-grid-test-v2.json",
+      "bytes": 1533,
+      "sha256": "f5bafdae4bd38c60500402efac641d9edbbfcafc4d6748a6b485fe33a3772ccb"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-grid-test-v2.log",
+      "bytes": 3472,
+      "sha256": "4bbea8a8c9976a330324de3f0924d597a5215f9b007c8a2e80ae39876835111b"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-grid-test.json",
+      "bytes": 1533,
+      "sha256": "2990f5486f485cb0256dd3cb7490d7ea66b7afdbc60ee9c418400debb6c51042"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-grid-test.log",
+      "bytes": 3472,
+      "sha256": "a6ccde6e1307c0f44980192403fe8a85153b3414aa3c50dc0d33229b1f660f5a"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-test-v2-final.log",
+      "bytes": 4846,
+      "sha256": "c42b135ab60d888a676d5b777f0d3eef808b89bab09304855cebb2d82fe1b463"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-test-v2.json",
+      "bytes": 2068,
+      "sha256": "f2d091dd6a68db420ecb470429a121e9d5f724a9a51fd8c661bf5632d04d6d89"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-test-v2.log",
+      "bytes": 2758,
+      "sha256": "2fb949e3e02b3fab160c0cfcaa2c97fe0bef3fe07d9afdacace5eff634ccef60"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-test.json",
+      "bytes": 2068,
+      "sha256": "2fff438630993f6baa1bc3ac3c1ad31b49ec86fea9528ccec8b318324594687b"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-test.log",
+      "bytes": 4438,
+      "sha256": "2cc6588b272100c1b290f955645ed95ae2124203804c042930f7c562bfbc50ce"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-grid-history.log",
+      "bytes": 1914,
+      "sha256": "d13867994d3f0ba05fe815cfe022504399a1cebf767f88de81e7eda559561adf"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-projection-audit-comparison.json",
+      "bytes": 162342,
+      "sha256": "f22801fadb0c4f710bd5e746336192eb4b78757051cdc50638cd6c7255a328d9"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-projection-audit-comparison.log",
+      "bytes": 15430,
+      "sha256": "10f171623bf676873832206cc4e924b7dca3c3b6e31c9155990286d56bdf76c9"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-projection-reload.json",
+      "bytes": 1538,
+      "sha256": "32d60bd2523b7a220434eb4730e7f72cb58e4098e0ee576dafed32ddda385ceb"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-projection-reload.log",
+      "bytes": 3426,
+      "sha256": "97c876208fa84058c9b0c63dd4f0c6199835d971d9a16e276a2de9bbb39036a8"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-reference-operators-aux.log",
+      "bytes": 10856,
+      "sha256": "ac542202a017b0470612d2d11b3a0278ecf72ebad477f7d055cd8f453ac3412c"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-reference-operators.json",
+      "bytes": 4260,
+      "sha256": "91785c405ee58417e6dfce63013ca1280d7774bc67b6723410517dcdd3dd0fbe"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-reference-operators.log",
+      "bytes": 6860,
+      "sha256": "d9c07eb4a644ba26e4826a4f855063b98d05a236d13afa5a003a2a5f38471d36"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-reference-predictions.jld2",
+      "bytes": 222109,
+      "sha256": "03c324f36570f9b17bb36d080e0134f39a7be5127a579647585bfb239fbdd5af"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-scalar-auxiliary.json",
+      "bytes": 19706,
+      "sha256": "6ebe288a9093c164f77519ece65f13d31c7ba51c345c8b1b6e16f67bf04975ab"
+    },
+    {
+      "path": "build/earth-speedy-transport/readonly-scalar-auxiliary.log",
+      "bytes": 59564,
+      "sha256": "5f2f203a4a1011e6aa0bf420daa48dbb8ce86747637136e22f1ed9e5ccffe9c7"
+    },
+    {
+      "path": "build/earth-speedy-transport/replay-diagnostics.json",
+      "bytes": 594221,
+      "sha256": "ff682b78334ee7de1d210c4f526787214ad53e35ad72aa3ea0e0dd6aaac1a7e5"
+    },
+    {
+      "path": "build/earth-speedy-transport/replay-progress.json",
+      "bytes": 77,
+      "sha256": "5103e7bc95d9fb261d524c3bc441df7907a9d6fbb6f1993e629591b74ea0ed22"
+    },
+    {
+      "path": "build/earth-speedy-transport/scalar-initial-projection-2001.jld2",
+      "bytes": 9594092,
+      "sha256": "6cfe9bf04fc287fbf0a9c189892302403243548f3edc6e8e417a01506060515c"
+    },
+    {
+      "path": "build/earth-speedy-transport/scalar-initial-projection-2006.jld2",
+      "bytes": 9598707,
+      "sha256": "e36cfbffa4ee0cc04ae33edf2a3f8aebd03ab7ad1c5c0f5caaa78746359a5bb0"
+    },
+    {
+      "path": "build/earth-speedy-transport/scalar-initial-projection-green-final.log",
+      "bytes": 46436,
+      "sha256": "379d21b7941fb9874f039465529969ca872250ed27c546b85dd02cac83a2af4b"
+    },
+    {
+      "path": "build/earth-speedy-transport/scalar-initial-projection-green.log",
+      "bytes": 4662,
+      "sha256": "9a09ce9adfd8057334329c69fefdb095e588b8a35fac3e94f653c14614445f1c"
+    },
+    {
+      "path": "build/earth-speedy-transport/scalar-initial-projection-native-red.log",
+      "bytes": 19482,
+      "sha256": "e6f650124406db5ef77710d4aa2c4b1a7edfdc05c22840aa75d31389172cc977"
+    },
+    {
+      "path": "build/earth-speedy-transport/scalar-initial-projection-verification.json",
+      "bytes": 21272,
+      "sha256": "bc8f0cdf867cff8aa9be732d06e1eb3eb3854326ec6259e9e4edd5824a73b5b7"
+    },
+    {
+      "path": "build/earth-speedy-transport/short-comparison.log",
+      "bytes": 30108,
+      "sha256": "fffc5bf35d7d2087fe9ec8749247e558c2c567d2d027167fe4ee25e1c35dfede"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-seasonal-final.jld2",
+      "bytes": 9544455,
+      "sha256": "ca92a2f10baa71d6271d5e0ff56a16ba5c6e78f097da9102ae19ec3509f110da"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-seasonal-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-seasonal-initial-inventory.json",
+      "bytes": 1513,
+      "sha256": "e2981869eac804f8974278760cd5ed3801a0c4eca6ff521c384c7fb9ed00f3f8"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-seasonal-initial.jld2",
+      "bytes": 9544455,
+      "sha256": "4a58112b7f46e8cac514dff442651e9d43430cdd5ab6e7fcb571b3fc4f12c9d8"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-seasonal-progress.json",
+      "bytes": 254,
+      "sha256": "88679aff62b0f82297fe8e79b5ab672d7e024bb74aac0269f5f143c9bf319e30"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-seasonal-statistics-start.jld2",
+      "bytes": 9544455,
+      "sha256": "cb4c8188998d71b2e859199d6c45d1e83a861ce9e794526017b704d66296aab0"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-seasonal-statistics.json",
+      "bytes": 55078842,
+      "sha256": "be9bcb9f19374a9ae3a103a135849d272489f4c8986edb74e307e011b89214ee"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-sensitivity-final.jld2",
+      "bytes": 9581119,
+      "sha256": "5fd0f820d3999aa49f3ed07e7284bb42d1bef6ba5e309b760e7884fb8c5983e9"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-sensitivity-initial.jld2",
+      "bytes": 9581119,
+      "sha256": "f4eb269abc840ee87683a7d5db9aa05ddb275f5dfdadb80727e5d2e32246a2a8"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-sensitivity-progress.json",
+      "bytes": 254,
+      "sha256": "35b7439da7da68dc7e6d6063f2f13a9419e9486e68ba560f394f0229ec3cb8a2"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-sensitivity-statistics.json",
+      "bytes": 52994266,
+      "sha256": "58eade34deb73bc3fc14f722bc032599c726a1776c0307c029eb8a52778b9689"
+    },
+    {
+      "path": "build/earth-speedy-transport/startup-budget-analysis.json",
+      "bytes": 276416,
+      "sha256": "99e35d49e2ec5e7ea615dbca2ed5e87dc6396c0fc3096d6ff4c7d4d2e0c912f7"
+    },
+    {
+      "path": "build/earth-speedy-transport/startup-trace-slab.json",
+      "bytes": 19229,
+      "sha256": "35b6ff2bda3cd8a0542a9bbefe964f51290f66a94fe6f2cc3218c661b647a96d"
+    },
+    {
+      "path": "build/earth-speedy-transport/startup-trace-split-seasonal.json",
+      "bytes": 238865,
+      "sha256": "09c2bf240d9707e298b78e32de832f8d6075b13bfb6ce80481209e581f7857bc"
+    },
+    {
+      "path": "build/earth-speedy-transport/startup-trace-split-slab.json",
+      "bytes": 238703,
+      "sha256": "7f6f14b221585e3d358c5c903550b57b35c8818959eae849db5557fa7d9363b2"
+    },
+    {
+      "path": "build/earth-speedy-transport/startup-trace-v1-slab.json",
+      "bytes": 19229,
+      "sha256": "35b6ff2bda3cd8a0542a9bbefe964f51290f66a94fe6f2cc3218c661b647a96d"
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-green-complete.log",
+      "bytes": 4168,
+      "sha256": "329850ed26a45ab89a6337c85ca1769f976350ac9fdb1a1653d7ee827386e0c0"
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-green-final.log",
+      "bytes": 5576,
+      "sha256": "e4d30f053d0e06a239440802fc1f7df0666bd97c0e3f03a888ccfaa5049b8550"
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-green-snow.log",
+      "bytes": 4168,
+      "sha256": "286940be943866571205e48295ef70b8114a451791dbbba26cbbb2dd3220bc30"
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-green.log",
+      "bytes": 4954,
+      "sha256": "97ea8155af4efcc89087c72520d1d852c29b2e9ef169570303893bc00e77b59a"
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-red.log",
+      "bytes": 26638,
+      "sha256": "be5b116130c3fad9c44249ac25896f23b77e7ce05e7c9866704bb75f273e54a8"
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-snapshot-complete.log",
+      "bytes": 18034,
+      "sha256": "2b7660ee2a228e0747ed485fa69539943d992dc1cf108c1ef1f971bb7b10a7d5"
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-snapshot-final.log",
+      "bytes": 25494,
+      "sha256": "6d3ac7be3d64a9f43b0ee05e8715a9364742699ef89dbea2672c667bf0457fd5"
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-snapshot.json",
+      "bytes": 9014,
+      "sha256": "c2447a75ae2e66ee41e6a94a457ab70c8b5ab653d7f0c442b0512049c3465880"
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-snapshot.log",
+      "bytes": 2292,
+      "sha256": "38b74a774b57bd8a61774f459605022e56d18e49c80f8b639b8eaf846b5e6783"
+    },
+    {
+      "path": "build/earth-speedy-transport/thermal-split-reference-sensitivity-final.jld2",
+      "bytes": 9580367,
+      "sha256": "f97d114b97a77f13c26ffdab61fffd4075f1f158070b246e8b244195f05a1120"
+    },
+    {
+      "path": "build/earth-speedy-transport/thermal-split-reference-sensitivity-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-transport/thermal-split-reference-sensitivity-initial-inventory.json",
+      "bytes": 549,
+      "sha256": "d8eb177def1efae8d3146b7a6055dffccbdd23719822368791b2c0e40bb2120f"
+    },
+    {
+      "path": "build/earth-speedy-transport/thermal-split-reference-sensitivity-initial.jld2",
+      "bytes": 9580367,
+      "sha256": "7c23d57a6c2b7bef0492b882fe07abdb59608a8a628550e7c454e5db1ce08393"
+    },
+    {
+      "path": "build/earth-speedy-transport/thermal-split-reference-sensitivity-progress.json",
+      "bytes": 250,
+      "sha256": "8b8a5ac7e2c6f9887dede95cf3ae99c48dd2860bc9f3ed19a77fc8670599ec85"
+    },
+    {
+      "path": "build/earth-speedy-transport/thermal-split-reference-sensitivity-statistics.json",
+      "bytes": 53074576,
+      "sha256": "9364751085b2e84782a33c1d641d098ce62c0964a40c50187012012fb1b2b920"
+    },
+    {
+      "path": "build/earth-speedy-transport/timestep-convergence-1800s.json",
+      "bytes": 82873,
+      "sha256": "efca2dcc478ebc003b593c93cde1e5ee988327b74d93b8e0cafb84bc736f0ba6"
+    },
+    {
+      "path": "build/earth-speedy-transport/timestep-convergence-450s.json",
+      "bytes": 321077,
+      "sha256": "d913ff75ae866ea048ccc47d3b2088c72294ce5ae642a80fa39b52209c094a62"
+    },
+    {
+      "path": "build/earth-speedy-transport/timestep-convergence-900s.json",
+      "bytes": 162012,
+      "sha256": "ff31a0b8e57f71a658f4fd3904b11279a131aa7b39df53f3cbdc848494a5bdd5"
+    },
+    {
+      "path": "build/earth-speedy-transport/timestep-convergence-summary.json",
+      "bytes": 39992,
+      "sha256": "47a69e7e75ed948d2d1265fbd932f8d42dc8b1c8b8035fe72953ee71c3c42001"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-annual-analysis.json",
+      "bytes": 2891898,
+      "sha256": "39273d5c692892e3b1e55b7923a17128f26b83efc40bf09cd1cdc45162c097ac"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-annual-analysis.log",
+      "bytes": 65642,
+      "sha256": "ced21aa76783958f9626caeb1f0a9682b970e4433bad27284799827a4f969f23"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-annual-candidate-fields.json",
+      "bytes": 7460070,
+      "sha256": "7bda78191762b381b92c94d54305d3f4b25799e5adb154e5f2da46d029547001"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-annual-sensitivity-comparison.json",
+      "bytes": 206484,
+      "sha256": "c9475155c126a509bb199ab986db1b8107d15c58835778426dfcd100c101c0b0"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-sixyear-analysis.json",
+      "bytes": 408837,
+      "sha256": "677462c68d65335f8f889f0312054dff967f65777f98d180975f3c9f747f2530"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-sixyear-analysis.log",
+      "bytes": 138790,
+      "sha256": "1fdad7dc3cb1f25564bec6324a4e0df18689f6b70ad2e3a7295abc6fa3af7614"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-sixyear-candidate-fields.json",
+      "bytes": 8949346,
+      "sha256": "c9f097ceee2a378d15c2fd5e4252edc3c03387690a33cdb425dee22e9329e806"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-sixyear-sensitivity-comparison.json",
+      "bytes": 247759,
+      "sha256": "925fb59e167392f6d70d8001bcb6feb035179fe02290b4b12df9baef4a09b3b0"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-thermal-analysis.json",
+      "bytes": 1246853,
+      "sha256": "75f4bc5687da0e07069477cff7e5f2fc738dbe46d2ba1345ac74a66739a16d36"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-thermal-analysis.log",
+      "bytes": 71486,
+      "sha256": "40c196385cb30f4e7e18e50c5528c3980779369e3184fe1020086671767b24db"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-thermal-candidate-fields.json",
+      "bytes": 8205139,
+      "sha256": "161814934e18588caaf5a475a2a45b115c5e52987b8ffe9588f9e094444152cb"
+    },
+    {
+      "path": "build/earth-speedy-transport/v3-climate-review-thermal-sensitivity-comparison.json",
+      "bytes": 227124,
+      "sha256": "12b32bcbf41c744a4a3feec6bed730dc30a28d955b1dd8303afff8bd47d57579"
+    },
+    {
+      "path": "build/earth-speedy-transport/wet-carrier-fields-verification.json",
+      "bytes": 1675,
+      "sha256": "6eb847dc17b0b867339d16bbc4e04086d699c4d86a1e9fb713d70a95b1682c1e"
+    },
+    {
+      "path": "build/earth-speedy-transport/wet-carrier-interface-red-final.log",
+      "bytes": 2113,
+      "sha256": "2c1d7bb06d3df07af21c5e2f60c3e5c61cad80075eb10a4e731948d7ff51336e"
+    },
+    {
+      "path": "build/earth-speedy-transport/wet-carrier-interface-red-status.json",
+      "bytes": 55,
+      "sha256": "ba1aca26f252224f68d1a97f7a32312094ca7e595e0bdb5f5abb9551798b8c52"
+    },
+    {
+      "path": "build/earth-speedy-transport/wet-carrier-interface-red.json",
+      "bytes": 2113,
+      "sha256": "2c1d7bb06d3df07af21c5e2f60c3e5c61cad80075eb10a4e731948d7ff51336e"
+    },
+    {
+      "path": "build/earth-speedy-transport/wet-carrier-interface-red.log",
+      "bytes": 4372,
+      "sha256": "0fd7b6d460c585dd0e0ea006e5e31db970d817c0f44c637dfd6cb8a87625f620"
+    },
+    {
+      "path": "build/earth-speedy-transport/wet-carrier-native-red.json",
+      "bytes": 1394,
+      "sha256": "4775ac927f77e3ae8f2178bf297b63f8716dcf23140a2bca4f4e528b28d93917"
+    },
+    {
+      "path": "build/earth-speedy-transport/wet-carrier-projected-native-red.json",
+      "bytes": 9415,
+      "sha256": "aecedab64ff608a24ff8a718a04860bfecfcf987dd6eec0992c9b02624ff4342"
+    },
+    {
+      "path": "build/earth-speedy-transport/wet-carrier-prototype-fields.jld2",
+      "bytes": 1428456,
+      "sha256": "3d41c0f1b7e392fb80c0ff39a014923e1f99166250631837fd49cfd4859e9d0a"
+    },
+    {
+      "path": "build/earth-speedy-transport/wet-carrier-prototype-test.json",
+      "bytes": 18425,
+      "sha256": "df661a70dcdd6fb52da719bd0ce29372cb9964452b2e64ce6b5de43531231117"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/CURRENT-STATE.md",
+      "bytes": 17603,
+      "sha256": "8edfe34e6fb1264125e6e94dab8731cd0271e6f2a1fda5407ee504c76b11c912"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/WORKING-NOTES.md",
+      "bytes": 4503,
+      "sha256": "544c4d3d803644cc334bc5d4b3f12ee8f3f47402300379af464067e10b014c18"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/all-corrections-seasonal-native-status.json",
+      "bytes": 7157,
+      "sha256": "265a5e179ffb9d739e9dfec7e4cb38709a4cb545672c4e463912627ad60eb4cb"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/all-corrections-seasonal-native.log",
+      "bytes": 207175,
+      "sha256": "3ac8fc840ef749a6e15799edc20fb636150a14301559d61521dd69a3600a98a0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/all-corrections-sensitivity-native-status.json",
+      "bytes": 7218,
+      "sha256": "1d78182a9729c35ab80fb04ea6084ed5df0e3cbac13bdccef1a2abb001ea662e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/all-corrections-sensitivity-native.log",
+      "bytes": 204041,
+      "sha256": "b79951b4779e3a99d1eb423107abf065682541ac5c0952a7ff38603ab74f3a48"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/archive-outputs.mjs",
+      "bytes": 1784,
+      "sha256": "ae55c23a9b70fb50f8549ba6c616a83d4bbae9442007f01a71e72e56b8854aa1"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-all-corrections-native-status.json",
+      "bytes": 7208,
+      "sha256": "e2d1c287db2817a87613cfa8a9df2f15bf120ed7eddbf740ee12f6632e6fee62"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-all-corrections-native.log",
+      "bytes": 3756,
+      "sha256": "c8ed6e3d7e81b34b402c87932ece9992160c425ef40d93454a6cf0d6bede23e3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-candidate.jl",
+      "bytes": 4212,
+      "sha256": "9b46e91119e9b77e7d4e5c25776aa4d09d91cb42e0cd6a551acd0359771eeac0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-combined-native-status.json",
+      "bytes": 6018,
+      "sha256": "7d2f7097e1b91faf48aa0ef46eefdde6f765e34549ad2575e1bcb0be9e4d0c54"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-combined-native.log",
+      "bytes": 3731,
+      "sha256": "b64e22986ea9abed7652d0198810c9311c6eead4c58ac53c0e69ef55f498e9a6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-projected-initial-v3-native-status.json",
+      "bytes": 8131,
+      "sha256": "aeefe86761aa35befa8c7d1dd3aa1136299d9fe7cb5b777656655ee835322b0a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-projected-initial-v3-native.log",
+      "bytes": 4037,
+      "sha256": "82bf5976687e7295ac8c15e649ed3f3277562d841ee2085c30137f0c01b6a962"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-projected-initial.jl",
+      "bytes": 5544,
+      "sha256": "ba8bb778d7316b482731b1a5f70289a897599776c9a7835398fbb8d0b8592785"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-split-reference-v3-native-status.json",
+      "bytes": 7815,
+      "sha256": "acc610099cfe4229b02075fd2485f5158b2edcae26a6959e5189d3a19fd42016"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-split-reference-v3-native.log",
+      "bytes": 3810,
+      "sha256": "4d4deda87398f8bb3073380b87b41db252aab238b4a3a15c0037b5ddb870a3ea"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-v2-candidate.jl",
+      "bytes": 4488,
+      "sha256": "4afe458c05e5e36829cfd45449ed8033fe0d142c13341d58027c080ca89ebcb5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/audit-v3-candidate.jl",
+      "bytes": 4416,
+      "sha256": "1323f0082130ed54a976509910bdbddebea81f821d67656e320034b33d60e6ec"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/baseline-replay-verification.json",
+      "bytes": 721,
+      "sha256": "7db897036ab499599c8f916bfd3912c1dec12b531c59a626efad7a17ea560b62"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/baseline-sensitivity-native-status.json",
+      "bytes": 5465,
+      "sha256": "937dd5cb24fc0c3e59bfa6783ff1be47c22131f83ce6662324453556e87345f5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/baseline-sensitivity-native.log",
+      "bytes": 1118,
+      "sha256": "045c814338f3bb344a5dd48632bba03d5b630d2c75baf02e7fe296285aa4810c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/baseline-sensitivity-v2-native-status.json",
+      "bytes": 5459,
+      "sha256": "1455fe9db8a6a56711aba2cf274ca94a2dd6409509e9981f1bd6fb80755d8fd6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/baseline-sensitivity-v2-native.log",
+      "bytes": 7012,
+      "sha256": "e29e3012209a5fdab8d6cf2cab8832c0846cdbce543e25ca23a1a8b956caa2ae"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/candidate-fields.json",
+      "bytes": 8949346,
+      "sha256": "c9f097ceee2a378d15c2fd5e4252edc3c03387690a33cdb425dee22e9329e806"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/candidate-selection.md",
+      "bytes": 1149,
+      "sha256": "ce569bb85c59006d7fd22a2f9c806d0c10e84a387d3575b984f7bf2c58092e66"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/check-native-sources.mjs",
+      "bytes": 1543,
+      "sha256": "0d10f1b54aaa871e7f0f0d3263fa3836c774ff643de7fdffc74c4a11c212d1e0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/circulation-followup.md",
+      "bytes": 5102,
+      "sha256": "3f36f9e9e8e5f61b81d9804d5c817e1fe4738e7fe5d2c00bf41ccce8301bc92e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-LICENSE-SpeedyWeather.txt",
+      "bytes": 14000,
+      "sha256": "6afd64935f7c7f3acf677a23e6b90077db9f2a9ef3e2a68fadf5c4fa48d5239b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-correction.jl",
+      "bytes": 5026,
+      "sha256": "544322dbc709ccf37233cfe2932d337ed1f7191d0c14c385f5061595a45c613f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-full.json",
+      "bytes": 764,
+      "sha256": "b984f8ac9e0a5c1465f0bef1549027b1d332a000cd01e0ad12467ed7ebe09ba9"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-full.log",
+      "bytes": 1269,
+      "sha256": "771704107100526a7754e3397073c4c081461653189a2c82304949890c8f762c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-native-source.jl",
+      "bytes": 8061,
+      "sha256": "9fc96f97064a4745559e06d9a975c4636000ec8865f81549dd7b9cacc93bbc5f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-native.json",
+      "bytes": 484,
+      "sha256": "dfcfb5bd05fc2dcd651989335c36404ce7ce88c50f0cce3fe31080c2b0bb6c2b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-native.log",
+      "bytes": 20785,
+      "sha256": "d5d8d323b479ab97e7fc0f75ecf9d08c97ea8c3fc3fe2c8eec5d9edc297b625b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-precip_only.json",
+      "bytes": 771,
+      "sha256": "62f8fb05da8c04f9da0380b39856ffdc65f4f2c6e462b8dd5889e939a6b075bf"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-precip_only.log",
+      "bytes": 1286,
+      "sha256": "6eb3434ea363e8a4e5e8aec1597bb255a80f4451e08bffe88be9f22d1c1bdc04"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-provenance.json",
+      "bytes": 1249,
+      "sha256": "0a0b19c88e447e030792cc5731225d22854afeec6bce47dffccf3cfa800e4644"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-report.md",
+      "bytes": 4787,
+      "sha256": "3d2b0f67fcf832650c4d88b0eeb3587847dc32463323d1f77796b50155a2b60a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-run.mjs",
+      "bytes": 1725,
+      "sha256": "c32b2b50eebf8a15b6ceb8ff426cdc4d8a84c28b49965b2bbdf6f240b204ca0f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/cloud-test.jl",
+      "bytes": 6514,
+      "sha256": "bbded7ba786ea53cdafcbf535b00c7151638065c8234ebc3b48b078fd9a70b2d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/clouds-full-sensitivity-native-status.json",
+      "bytes": 5753,
+      "sha256": "945a8ad763b4b244e56c274736c7496eb02b04f9f0d4d50e4c72c9939e4c39e5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/clouds-full-sensitivity-native.log",
+      "bytes": 1118,
+      "sha256": "6441d1b1d0e3696c78eb31e1ce9f08de50a776fc9e3a0ecaef48a3760ddd403a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/clouds-full-sensitivity-v2-native-status.json",
+      "bytes": 5747,
+      "sha256": "f08a35c6f4953d4b8d8a5f08e15fd5c11cfa2cdbddb01907b9592a8f111c4180"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/clouds-full-sensitivity-v2-native.log",
+      "bytes": 6985,
+      "sha256": "1d1d2237edb77eee88b697b65f5958c55a61907653070d6271d82b3ca0f6dffe"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/clouds-precip-sensitivity-native-status.json",
+      "bytes": 5748,
+      "sha256": "ab1949d1b30dce5451b10566dcfd103bcbb6e88190a01eb4568c421989e10732"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/clouds-precip-sensitivity-native.log",
+      "bytes": 7025,
+      "sha256": "9d2e12da6551d5257d2a13c0a9c47eba891095e58494a195929a1abd848e9992"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/combined-seasonal-native-status.json",
+      "bytes": 5967,
+      "sha256": "4408f8c4f5ea3bdc2b55204dfa25e9011ea493c79d54f0329b2f90c470c9da54"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/combined-seasonal-native.log",
+      "bytes": 22987,
+      "sha256": "9063fa75494b029fbd0b0615660ca6283645a5a14cc80e0d66987600091126d6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/combined-sensitivity-native-status.json",
+      "bytes": 6028,
+      "sha256": "2d56ce828c72a6a631fce933c4165cac207bcfa4c8ff4ad8a1adc7c2bdca5706"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/combined-sensitivity-native.log",
+      "bytes": 7022,
+      "sha256": "93cb90fc3854cedbfc78b9cfa66aa7535f2f7df3eaeb7df59fcc1dce04d38333"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/compare-sensitivity.mjs",
+      "bytes": 4714,
+      "sha256": "96d22b4931246888c3336f7d4b58b1a907879af7c4046a9da397a219cd895e6f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-LICENSE.txt",
+      "bytes": 14000,
+      "sha256": "6afd64935f7c7f3acf677a23e6b90077db9f2a9ef3e2a68fadf5c4fa48d5239b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-audit.jl",
+      "bytes": 6680,
+      "sha256": "076f2a6814c76df716698e988a787809dcdacc9d703efe7a8c391812b43981be"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-bench.jl",
+      "bytes": 2881,
+      "sha256": "90188a4450c25240f0ac7440ca94b84fcafda7afa19f46b4f72ae41d75154b2b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-corrected.jl",
+      "bytes": 6859,
+      "sha256": "1013b8b2b122dec190066a1d2d5fb0fc5e5eff105fb6285796e1f4116168458f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-july-snapshot.jl",
+      "bytes": 2463,
+      "sha256": "69fc04339a14407ddf6f567d529d5d1d648f6805ae4816064a6f4b10d12ce1e6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-report.md",
+      "bytes": 8869,
+      "sha256": "2285589453cb98a04a4a4668a10a14531a3227778343c50af22b1719c2b40c96"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-test.jl",
+      "bytes": 7804,
+      "sha256": "fdde5822ea3d04b1bdde62ca18a47e83b7a05e78344ce20a1c464b040e3a779e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-verification.json",
+      "bytes": 6991,
+      "sha256": "e372cd87990a632620d8b3fdc7e3cc11908889a0fb7b38feacb951fcd3667c7b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-verify.mjs",
+      "bytes": 4833,
+      "sha256": "ab169cc060ae404f1345625392ea291344b6d3bdfd70b4f30f1fb1ce960de354"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/create-v2-driver.py",
+      "bytes": 2163,
+      "sha256": "4b277dc91229bc204982960f1edee663e23407890097cff436c5ab009c4b2134"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/create-v3-driver.py",
+      "bytes": 949,
+      "sha256": "27cda085392011daa422c0e133630877e6ebeb9f4178fb2de9b16acecb8b0895"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/diagnostic-replay-native-status.json",
+      "bytes": 3863,
+      "sha256": "1a7540611f4d7b19219f27c49108d091550d2f1508a5d402b926fb764540f9a7"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/diagnostic-replay-native.log",
+      "bytes": 3032,
+      "sha256": "090e5d9a191e4fc6c34f2efc58db45ba552f4be67091606ba620a5103937ba6f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/evaporation-sensitivity-native-status.json",
+      "bytes": 7219,
+      "sha256": "a4644bcb55e83be8e5d4533fc701df44365d2f789f58e43c43bfba7d5ba0e52e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/evaporation-sensitivity-native.log",
+      "bytes": 7005,
+      "sha256": "e51facd1d0c39254131673404fc346747dd1b0788154bb923694c74c2806aec5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/final-review.md",
+      "bytes": 3781,
+      "sha256": "cafaefddac8c50aae4cb379679a3c9ab391dd513a3fe7f5abe314e6968441b3a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-corrected.jl",
+      "bytes": 5587,
+      "sha256": "1af4513f14c7f66a42a3253f7288df18e84d7d1c4757edff0aadfa43949275d2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-fixed-final-green-status.json",
+      "bytes": 2393,
+      "sha256": "899f54cf837327eba23c61243440a6adfd675ba3508ec6fe6a0c63dc7e0b59fc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-fixed-final-green.log",
+      "bytes": 1084,
+      "sha256": "f6268edcfb10eb3c4d6383c70da7cecd9f668bf3215d2f5c25df1deffcb3ce14"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-fixed-green-status.json",
+      "bytes": 2107,
+      "sha256": "5ab20581cf7c1a961aee473998814fc03251e12a7a4a3e21968a0bdc02c801e1"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-fixed-green.log",
+      "bytes": 24661,
+      "sha256": "0da6a04c005716270a1e174ba9466a3218a548bf67a4d27f39654e8b77fd2c4b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-flux-prototype-final-green-status.json",
+      "bytes": 2433,
+      "sha256": "5a88b038b620244333405cbe6350b7367e7e00e2fcb54bdb02184253d6cbca1f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-flux-prototype-final-green.log",
+      "bytes": 986,
+      "sha256": "412012de582e99570cb9baff4912810563b2782fa33c44fece0b323a82e8e9f4"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-flux-prototype-green-status.json",
+      "bytes": 2433,
+      "sha256": "627246cfc7c797f480c47cd25eb4a09b322cd5a7df4a091bb2fd896aee4e6a4e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-flux-prototype-green.log",
+      "bytes": 756,
+      "sha256": "8e783aeea9dc1ef7f3b589b9e87ed1f4821ed3be151643cd7fc4d0607fffeafc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-flux-prototype.jl",
+      "bytes": 2996,
+      "sha256": "2d995dd47f59396873be452b2f38389a12eb4180be056a51e2822607ee333fdc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-followup.md",
+      "bytes": 12727,
+      "sha256": "8fcf720e002f3559814b23ff0409432ee9d101aa387057a464e78a8b789b8b16"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-native-status.json",
+      "bytes": 7567,
+      "sha256": "88d36281ab0db055b7ca68c91e912ee6f0564c242a192adf66a5a153bcdaf38c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-native.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-v2-native-status.json",
+      "bytes": 7561,
+      "sha256": "ca0f1376da5e548dbba85157f6505b7379713d394933a977343848c3d80dfa9f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-v2-native.log",
+      "bytes": 14320,
+      "sha256": "e240954bef8c3d5097bdff15bea2c17905fbb82d29de846810fc07b1a7055401"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-window-native-status.json",
+      "bytes": 7569,
+      "sha256": "f9eb712f9c87d26efe1833c143b0e29d5a8e8c872bd11ffa8830b20dce9f8836"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-all-window-native.log",
+      "bytes": 11430,
+      "sha256": "4181fc9cc768f184800b43063259796dc92a85e71322dc189dde747a625c2538"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-bind.mjs",
+      "bytes": 2612,
+      "sha256": "10b5b70f2025d7c79f1a962465ac00c2a536f959e0f78734792288bbe27ace3c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-bindings.json",
+      "bytes": 11219,
+      "sha256": "ef1cb1c2f95b1f4061c02c5786f4b3a28f147b2314c60d909b1692fba41453aa"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-probe.jl",
+      "bytes": 6193,
+      "sha256": "736432db8107d385f107b27ed2a6b29e8d639a8d3e153f07af7dc69eab10b444"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-projection-status.json",
+      "bytes": 2465,
+      "sha256": "be6702e115bf667e6fa62a215e18fbdd79766733892a7c6b9a1e5df457c513dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-projection.jl",
+      "bytes": 1165,
+      "sha256": "cbf61777cdbae172674be279cf1b26694991c3da50098aae31b64a6914bec41c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-projection.log",
+      "bytes": 530,
+      "sha256": "4d6138aaa6a6e130c114d5eea20c986b6f1fc55e37030ea44d2692a6388d2f98"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-report.md",
+      "bytes": 9814,
+      "sha256": "d86202660f3e0a58e4ff338f82413fd61ab4c8c22a93d08d95f2505f386ebc51"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-native-status.json",
+      "bytes": 7573,
+      "sha256": "61dc5b726b407e290837fb5086ba5c1d7af02ca147930ad3198bc40147b0eeab"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-native.log",
+      "bytes": 953,
+      "sha256": "b802967407ee4c82b29a5f0962665573d1ee27b834525c0789493dc7a998f7cc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-v2-native-status.json",
+      "bytes": 7567,
+      "sha256": "771155a5a7a71ddb2009ef9866c16289ccbe3ad4919e29e12b3649c78c8d28ac"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-v2-native.log",
+      "bytes": 13390,
+      "sha256": "54d20b092eccc434edae65ebaa1fa8598421ea7b05eac35a3fda805c1e81bfc2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-window-native-status.json",
+      "bytes": 7575,
+      "sha256": "7713ef66e0f77c9123aca2f833d3b3852d55d541ea1d220f4944bf794fad20be"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-thermal-window-native.log",
+      "bytes": 11160,
+      "sha256": "134755f359054ceb0967dcbdd6407ecf1ba3bd369f5f8dd210ebe044e35547ba"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-verification.json",
+      "bytes": 18790,
+      "sha256": "28015908c3fa4ad1359b9e3900649d8ebda4ab91ca823c4aa85742e86aa66a4d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-verify.mjs",
+      "bytes": 3017,
+      "sha256": "38ad9ec62eebf373bbb299ab994f9ba1db84b8877d8cc27c975f8d69c32e554d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-instability-window.jl",
+      "bytes": 3690,
+      "sha256": "524f40d0400ef32cd5a320d3dfc3ceb9d1336cad5f6da49d5ba246ec9da63f67"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-matrix-native-red-status.json",
+      "bytes": 2107,
+      "sha256": "a78c9c6561db6e34e34e0ee080755113eef8a080a53fc71f6eb85e3de3127a6b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-matrix-native-red.log",
+      "bytes": 10185,
+      "sha256": "e08d6c7e6c1e74811a659bb35d414dea7f408044c76c1e384f0d007a917b6537"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-native-red-status.json",
+      "bytes": 2107,
+      "sha256": "b66e35fa1c6735ab7ce2242d34652dae3afca2aafb1c92949015c9e807b178ee"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-native-red.log",
+      "bytes": 949,
+      "sha256": "f988273d09c63d988fd47f3356b780a7e71a7589d60f8bcd22932eb42e47bcdb"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-preservation-verification.json",
+      "bytes": 5533,
+      "sha256": "5532dd5f85bc2d928315dbad6cdb53c180a9676d086276c050743fc690d36f17"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-preservation-verification.mjs",
+      "bytes": 2812,
+      "sha256": "8af4f33c04ac79450308f495312d4370bf3005a172de7b68945e21f69a6788c5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-run.mjs",
+      "bytes": 1911,
+      "sha256": "62fd9b85b9db0695bf05c631ed7c262413a925ea0dab0bcbb1090514578a6355"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-sensitivity-native-status.json",
+      "bytes": 7213,
+      "sha256": "a9b3e44dfffb16a5d9ebfd9fc8a3f68ae2e2588ccb4448688ce550947d8537cb"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-sensitivity-native.log",
+      "bytes": 203465,
+      "sha256": "da102300f5ee54d3e31dd799d206e4cb6f827db3ae56b782964b183a02045718"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-all-window-native-status.json",
+      "bytes": 8115,
+      "sha256": "6d19813c720660fa025c84a2f199b8a533a7857d0e89868124ad0da879104944"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-all-window-native.log",
+      "bytes": 1896,
+      "sha256": "3fa8c02d6f3449bf1e4eb6dc2150e42f3630bb5f51692b39fbb0fbbd7f82ec8c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-bind.mjs",
+      "bytes": 2827,
+      "sha256": "2468db68a9688a7736c7f797a5676f85e66c5c873d7c0f5511016bde071696ea"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-bindings.json",
+      "bytes": 10684,
+      "sha256": "fb28ac224b0dd8f50c08b161b26258d5c6b9eb91a9b06cc59ae710f710f4f7c8"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-green-native-status.json",
+      "bytes": 3719,
+      "sha256": "baab7ef0cc68f0ae13818383afcffa402a1bd1df5c9ff70f2410f8e6114a85bc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-green-native.log",
+      "bytes": 654,
+      "sha256": "46377d19c33ab30096930beba6090bbb0ac47633cac87b06003843631df34cbd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-red-status.json",
+      "bytes": 2417,
+      "sha256": "6820325824d9d9f120e042a1bc35768c105fa93e2fb26c6dc58b6009e2e85225"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-red.log",
+      "bytes": 127001,
+      "sha256": "656f3616df4065a91bd1291cadba5608a244fbaa2e7fc76ccc734272c7e750ec"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-reference-v2.jl",
+      "bytes": 4628,
+      "sha256": "22f9ef9c91190285d6aafc543abce8c6e706d11662a907a3eab4dd6cd02bfcfd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-reference.jl",
+      "bytes": 4425,
+      "sha256": "224ce07c9552709f31c2e74521e3624ae5894c2a7319ca404faed59c11124d31"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-report.md",
+      "bytes": 8041,
+      "sha256": "a545064d8a9749b72f03c920f49246a640f922533be230e776691e8df40b8111"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-startup-probe-native-status.json",
+      "bytes": 7282,
+      "sha256": "66ca4a8596acf62ba480aa4d8eb4600f3ee4a73cea939128f54db5189136d224"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-startup-probe-native.log",
+      "bytes": 1797,
+      "sha256": "211a80c68ce2640747bcc30e0536d848f5afcfa3e997aacbd6fe3c0b8cc06abe"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-startup-probe.jl",
+      "bytes": 1302,
+      "sha256": "8e9725229c984c2450ef4e768b1f2ce52dcb92f5096a0463edb30a970593d31b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-startup-real-red.log",
+      "bytes": 2228,
+      "sha256": "91a16e42766fa61dbdb003912550a6c9ffba849a677c4afeea280a9407b9a7da"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-startup-red-status.json",
+      "bytes": 2429,
+      "sha256": "7d7cc5bf0ce3369db48c52486c7fe17f8b7dde4f010fa833069f6b348c07c74a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-startup-red.log",
+      "bytes": 610,
+      "sha256": "9fdf54f7fbaadf7cdcd2d6aa61f7db79069eb60fa970179ec521882a35ce1df0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-startup-verify.mjs",
+      "bytes": 472,
+      "sha256": "970a5b19bdacd13604f45d225e5a7255469db7cd0ce59c246928b4f232a4dce6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl",
+      "bytes": 6499,
+      "sha256": "ace46127dff87263b6cd770dc0fe3525f326f68b98c185de4a137b23f7b02561"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-thermal-window-native-status.json",
+      "bytes": 8121,
+      "sha256": "9e4995fea0f5c3a625d467f273a2ffa9de63b9c8338a31b493c76326a1cfb600"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-thermal-window-native.log",
+      "bytes": 1895,
+      "sha256": "4e42e5f0e816a13034cd77d7b279175c4673d495cbda66d673c08089edb98884"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-green-native-status.json",
+      "bytes": 4038,
+      "sha256": "739adea2b721e86d221e69b7af2467e4fd69bb619b9b5c298c388387bcdd9617"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-green-native.log",
+      "bytes": 610,
+      "sha256": "459f00f6881f2d566a89059f6674e04dc9023f570670a3082db89be56a85bdb9"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-startup-probe-native-status.json",
+      "bytes": 7303,
+      "sha256": "7951011f284566c72804bb2bfc8c5695f7b2ade30dfee9bdff31a3f63de3bb64"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-startup-probe-native.log",
+      "bytes": 1762,
+      "sha256": "24dcaab07b311d5f4a7c4550919c93d16da86dbfef672e578e324dc43e16ba71"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-startup-probe.jl",
+      "bytes": 1308,
+      "sha256": "0b85302a5a10ece9881b6a2c9dac5ff857fe0b5383149ec16afce6a7f8ac8f1e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-v2-test.jl",
+      "bytes": 6848,
+      "sha256": "e72be73d27dd1c9a08c7adb04473e16b85e18d863b0d2a0e8c2a8c55c7bbcf9b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-verification.json",
+      "bytes": 901,
+      "sha256": "d9d24761a7e3c7f21609465e604fa8be4703f276d85988b424b626153b08f32f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-verify.mjs",
+      "bytes": 3763,
+      "sha256": "db80b040b523c5a0d80f3f1a96624ad19359d081fbb04cc9455313e66bddae1b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-window.jl",
+      "bytes": 7178,
+      "sha256": "87e765e55f815283492fbf951fe96a2c92ae12dbade2f1af15ae7c092420aff3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-test-red.jl",
+      "bytes": 3361,
+      "sha256": "a4c44d9eb3921a4713c74a5e63d9fa0695fefae275a26fc05a9c4bd278021a33"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-test.jl",
+      "bytes": 11220,
+      "sha256": "b5b6432ccd319e98a6606ef716b36df4f65632442be1d737b9055cfb7a8bc178"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/india-process-budgets.png",
+      "bytes": 146951,
+      "sha256": "e63aeaa97b1e254bbe6528ff63c0f4ececea60a279e0c0e90bd6c20cd60c8074"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/india-process-budgets.svg",
+      "bytes": 77337,
+      "sha256": "a5c99526649d8e422494a29f1e271fd6ab922f81cc69fef8c4839ffca8f3c54e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-corrected.jl",
+      "bytes": 2708,
+      "sha256": "b047709d264a07e057152af95a6f9f1d6e1b78550441909dbc51935fd1053785"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-fixed-attempt1.json",
+      "bytes": 775,
+      "sha256": "f3363a5b32f12a0eb8dd9b7cc718dffa9bf3fe6b68979ad6821658ec0ba2510e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-fixed-attempt1.log",
+      "bytes": 4610,
+      "sha256": "86a88a5d6820ed66a669e491b86884fc03c69da9c01faf73b2bf2b5823f96006"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-fixed.json",
+      "bytes": 775,
+      "sha256": "fa92fa5ef445c018cd6be89a79f1a2b9d04ef992e366046a0bcf556d3a20188e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-fixed.log",
+      "bytes": 2427,
+      "sha256": "df43bf68f77ba7f250c064b0a386bfde06e8a26591ca0bac0a1311f69d54a92b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-native.json",
+      "bytes": 490,
+      "sha256": "04943f58f42b76393983d97371ef34f335c6aa2d97003473e75ee23aa9342ab2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-native.log",
+      "bytes": 34984,
+      "sha256": "ec7e7f72270b1bf544597a1fa30e1ce15997c9b20ed15878e9b507791d89f900"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-sensitivity-native-status.json",
+      "bytes": 7213,
+      "sha256": "40adfbfa35ff1da6c491c35408f3086178ae779fe10b2818da8ec4a9a06b8708"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-sensitivity-native.log",
+      "bytes": 7013,
+      "sha256": "6d56811d75e937bb58e5a9f041132e041a7a1422a1982693219385bcecb0b59f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/longwave-test.jl",
+      "bytes": 5098,
+      "sha256": "071204fd1bd3c6435fd609120d5cec11ca173c2401f07ba71431e9d60ae0d10a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/make-manifest.mjs",
+      "bytes": 4296,
+      "sha256": "267df64e76689723d95996b4bbc9052ceebae20fbba8ebb8fab5506fe6abd26a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/make-report.mjs",
+      "bytes": 24276,
+      "sha256": "64cd27b55457aefe5c0473616971fbb2859d66bd787ee7466a1e9af7a4793625"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/native-source-baseline.json",
+      "bytes": 24476,
+      "sha256": "a19c4f561df97a281b31486eb0e3db76dc75a00bc7439f8f728700a8d70bb856"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/native-source-verification.json",
+      "bytes": 169,
+      "sha256": "98d946a8cb74773743d6e1f1a114926f0eda1240e1b4c71ba087c154e0932ae1"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/parcel-seasonal-native-status.json",
+      "bytes": 5681,
+      "sha256": "2c031be51abe3c386f33049d03c38b70b3bac23cf3c788326f3fe6728c2ad3cd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/parcel-seasonal-native.log",
+      "bytes": 23032,
+      "sha256": "bfe0b8c91eaa685c1c0268dab2f714368ba144abbb5790db2059a7db070e1912"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/parcel-sensitivity-native-status.json",
+      "bytes": 5742,
+      "sha256": "54d28f0d533c99ccd0561f72dede5d26cea381e9b6f9be8d12230a571fa9142f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/parcel-sensitivity-native.log",
+      "bytes": 7018,
+      "sha256": "6057ebc81c71d71c93e617aa30e6ceb29d22951f786c9811a202b2343ef2feeb"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-candidates.jl",
+      "bytes": 4473,
+      "sha256": "735b80ccb6549169b250f733e31d8ddba114e463ff0800c862b90b4c1ec036d6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-columns.jl",
+      "bytes": 3620,
+      "sha256": "4c5b4700ee44feb4715b9452d0cd4f19e26ddede1932930732c7ecf9456d739d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-instability-review.md",
+      "bytes": 10967,
+      "sha256": "5b48ec7e7228f06891b1cd7b8d784a227278f0707a1bee6deff66d1fd83e7e12"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-reference-invariance.jl",
+      "bytes": 4151,
+      "sha256": "78adb82807bbe0878a3f95ab5b61a775d8f2aca9aae90d417385ec7f215af352"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-stability.jl",
+      "bytes": 6003,
+      "sha256": "f990b07dc1d84ba0d4dcfc92db72cc003fff1f717a95e78c2deea67ed24a4b0b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-window-stability.jl",
+      "bytes": 2099,
+      "sha256": "0305c1494fd8e3d70f94312cf12aac3ee30c1ad98eb2986f20a5d3822bb61451"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-moisture-carrier-counterexamples.jl",
+      "bytes": 4926,
+      "sha256": "fca01495892f5db6409c08f72ae0617ab3e00b7dd79223357c08d3ca44b921bc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-moisture-carrier-review-bindings.json",
+      "bytes": 6196,
+      "sha256": "76612b6f34c50a154c2fe5245ce17fae0401d24aaa0c9d8eb9090f8339199211"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-moisture-carrier-review.md",
+      "bytes": 18154,
+      "sha256": "f4956f1ece9d63e7cf195141b41b6487912521b1d500ecbe9a09634ecaa46650"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-review-bindings.json",
+      "bytes": 6170,
+      "sha256": "3d5b4e1fb8457b5a4eea6908833ffcd6dcc5caa98d3214564bf02ea108ef5a82"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-amplification-v2.jl",
+      "bytes": 3843,
+      "sha256": "cb56a0ce10e830a9db915d126a1649ab6fe0566acc45db3076c01f56c55df6ea"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-reference-grid-test-v2.jl",
+      "bytes": 5283,
+      "sha256": "71ce3cc84f64a0cc11e1b22399e615d156cda6bbcdd9fd5b670bc307bcbfdae0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-reference-grid-test.jl",
+      "bytes": 5274,
+      "sha256": "79f34450c5ea021dc885c22e9a554ef17fce8fafa4fe99d07171d692c520eb7c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-reference-test-v2.jl",
+      "bytes": 6815,
+      "sha256": "91d4e79bff58c68fba840f6d1ca2872924c3418c018f1404a3f119e876c11487"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-reference-test.jl",
+      "bytes": 5619,
+      "sha256": "2654151df91205044f046c09720838bfd736c10433a6de9e7f1ea9b568bdb58a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/plot.py",
+      "bytes": 12701,
+      "sha256": "23895d78f1f2fc9b09781bb93635d3646a2dd8d1957652a1472c6a3ef92649a5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/preservation-verification.json",
+      "bytes": 1007,
+      "sha256": "e1a511e283ae56a0a81d650e79a43c1e8f68a1a507950760af5884294d846529"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/protocol.md",
+      "bytes": 1128,
+      "sha256": "7c11dd68086ee2940106f0fad49f8fa54b5ec5bdae0bcd64d50298a685f53364"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/radiation-followup.md",
+      "bytes": 10749,
+      "sha256": "eae3ea967f6d858a893a6b68ef2ccc7bec4e525db7960c21d0c4fb07a6e5193e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw-index.json",
+      "bytes": 27085,
+      "sha256": "7b055601707d30f7455927255ee8882ef3ec39a786f0e0240066e86f36be9db3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/baseline-sensitivity-v2-final.jld2.gz",
+      "bytes": 7521731,
+      "sha256": "edcd08cd8f4eb6adeda566ac9df2e3a54a0c4e25430d848c61b160e47c517f6b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/baseline-sensitivity-v2-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/baseline-sensitivity-v2-initial-inventory.json.gz",
+      "bytes": 377,
+      "sha256": "66f3cf29c4b32289cc4fe8e5c1469baa2c35aa2974b845acf2923291d145a5dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/baseline-sensitivity-v2-initial.jld2.gz",
+      "bytes": 7517287,
+      "sha256": "1136c5a37e295c70b07f407d98634f1bfc16002d024d829c3f3543e73086d23a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/baseline-sensitivity-v2-statistics.json.gz",
+      "bytes": 23488032,
+      "sha256": "391363a501a1ab0f20f6473f4508e98ca6a1978e08a7452233572810cf27a05d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-full-sensitivity-v2-final.jld2.gz",
+      "bytes": 7515634,
+      "sha256": "234c76ff937a7ec3ce5adf3ebcf791f1898d836c2ed8078c4d9f590aaefaae5b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-full-sensitivity-v2-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-full-sensitivity-v2-initial-inventory.json.gz",
+      "bytes": 377,
+      "sha256": "66f3cf29c4b32289cc4fe8e5c1469baa2c35aa2974b845acf2923291d145a5dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-full-sensitivity-v2-initial.jld2.gz",
+      "bytes": 7517380,
+      "sha256": "e125d462ee9a1b243524557ddb0aa0cf08a6a63e4844583999ba85b69d528495"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-full-sensitivity-v2-statistics.json.gz",
+      "bytes": 23472218,
+      "sha256": "4b30f4373acb1caf60c3493d661c7e230bd218429518a0b05eca0b8498e7fdda"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-precip-sensitivity-final.jld2.gz",
+      "bytes": 7517166,
+      "sha256": "aecb9712de2c0641e0088e7d5f197a6ef72d5fea0b530a1078c1daef84a68720"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-precip-sensitivity-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-precip-sensitivity-initial-inventory.json.gz",
+      "bytes": 377,
+      "sha256": "66f3cf29c4b32289cc4fe8e5c1469baa2c35aa2974b845acf2923291d145a5dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-precip-sensitivity-initial.jld2.gz",
+      "bytes": 7517383,
+      "sha256": "43b3e80c5f83cc1dbb6e1e1f1b91ad6a6c9b2c2a1461a0ec67000290bbf31a9b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/clouds-precip-sensitivity-statistics.json.gz",
+      "bytes": 23490305,
+      "sha256": "c6d053967d25ba1f6aee1a57b080565b050db0c6bf72aaef716f316324107f7e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-seasonal-final.jld2.gz",
+      "bytes": 7514839,
+      "sha256": "3a5e8a4f09bd9a73af6c7132e9231b4a9110b958da35f445c5020729a667a729"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-seasonal-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-seasonal-initial-inventory.json.gz",
+      "bytes": 755,
+      "sha256": "7dd259f11c5fc06a1f846b8c2585db1b8d7e614253e22ceb33e23e2af5559c46"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-seasonal-initial.jld2.gz",
+      "bytes": 2025924,
+      "sha256": "218799a9d38ec722150d5172b279110a6759c08cd7aaba6b9e06566b6ed3e7c9"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-seasonal-statistics-start.jld2.gz",
+      "bytes": 7509721,
+      "sha256": "1375cf5d63e381b7e6e5252eb871e82f2e7e08422f02a8fa47026d7d052125fe"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-seasonal-statistics.json.gz",
+      "bytes": 23983413,
+      "sha256": "4d51e3b862875b9ce140f26d15cac55dba22eb824bc154ede9b60dc83ce66d16"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-sensitivity-final.jld2.gz",
+      "bytes": 7511557,
+      "sha256": "ea88ef26ce21fd65f121b07609e4fb77787589291d36fad0be8b9757d85cd1e7"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-sensitivity-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-sensitivity-initial-inventory.json.gz",
+      "bytes": 377,
+      "sha256": "66f3cf29c4b32289cc4fe8e5c1469baa2c35aa2974b845acf2923291d145a5dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-sensitivity-initial.jld2.gz",
+      "bytes": 7517632,
+      "sha256": "91c6a9365e465e4bfe623e2493a43707a6b2554087bc2616d97fd69489685f23"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/combined-sensitivity-statistics.json.gz",
+      "bytes": 23546287,
+      "sha256": "16d0c674ec5939d6ebef73bbd1b821f43948987986f78713410e8b991d294fa8"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/evaporation-sensitivity-final.jld2.gz",
+      "bytes": 7501715,
+      "sha256": "31547f2cecc3330814beffc564f6b8268bac514793d5c708fdb7e9c0a96ff828"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/evaporation-sensitivity-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/evaporation-sensitivity-initial-inventory.json.gz",
+      "bytes": 377,
+      "sha256": "66f3cf29c4b32289cc4fe8e5c1469baa2c35aa2974b845acf2923291d145a5dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/evaporation-sensitivity-initial.jld2.gz",
+      "bytes": 7517760,
+      "sha256": "b6d312977baf0d81b8357dc71c5d684e0f7c81459876be473083f6d94901326c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/evaporation-sensitivity-statistics.json.gz",
+      "bytes": 23456567,
+      "sha256": "d810ced060302401a6971527ea0dfcb99542a9a70e6e93a6c265c432253cf4b2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/longwave-sensitivity-final.jld2.gz",
+      "bytes": 7531393,
+      "sha256": "0e9d1b00420613ce5b443bc419b0e6d9ddffa124e63995f34a067cd6239dd05a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/longwave-sensitivity-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/longwave-sensitivity-initial-inventory.json.gz",
+      "bytes": 377,
+      "sha256": "66f3cf29c4b32289cc4fe8e5c1469baa2c35aa2974b845acf2923291d145a5dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/longwave-sensitivity-initial.jld2.gz",
+      "bytes": 7517708,
+      "sha256": "26b426b164e7c3d3193a17d2aa925a392c65571c3dc9f85cfe6282a2275eb3a5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/longwave-sensitivity-statistics.json.gz",
+      "bytes": 23536160,
+      "sha256": "8366b7398e16c207b22ee15dfdd5cd4b23f3d63a36289031672df9c5dab72873"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-seasonal-final.jld2.gz",
+      "bytes": 7515870,
+      "sha256": "c3ff0b3d3fb2984d53be75b73dab1362219229a2214a20d956c9ba4e6a69fc59"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-seasonal-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-seasonal-initial-inventory.json.gz",
+      "bytes": 755,
+      "sha256": "7dd259f11c5fc06a1f846b8c2585db1b8d7e614253e22ceb33e23e2af5559c46"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-seasonal-initial.jld2.gz",
+      "bytes": 2025806,
+      "sha256": "0b0d171623f90cd6f7da4c0c8b494fad15c510de74de06fc3e4d247ca19a0cd0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-seasonal-statistics-start.jld2.gz",
+      "bytes": 7519221,
+      "sha256": "a687fd8531011dd579d4deccfac784a926a57f25f6b0a8a0562cdc7d2ed30721"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-seasonal-statistics.json.gz",
+      "bytes": 23954217,
+      "sha256": "489c569de229ca79d943321150da416ac975cb11ed1d19812ef97d7ed83dd9e0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-sensitivity-final.jld2.gz",
+      "bytes": 7518608,
+      "sha256": "fc53cee43122e9ed28403d5e39ba146bcb95c30ff1658cc08fa2349d041e1482"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-sensitivity-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-sensitivity-initial-inventory.json.gz",
+      "bytes": 377,
+      "sha256": "66f3cf29c4b32289cc4fe8e5c1469baa2c35aa2974b845acf2923291d145a5dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-sensitivity-initial.jld2.gz",
+      "bytes": 7517509,
+      "sha256": "5ef290177f163062ca317d63e361e2297223d3c0d32b9099c5ad006ba221fe13"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/parcel-sensitivity-statistics.json.gz",
+      "bytes": 23549657,
+      "sha256": "eddedb994da75258e6fae9b2ae4d86c3fbb097c93f87b562774d9c9878e98052"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-seasonal-final.jld2.gz",
+      "bytes": 7471789,
+      "sha256": "cbbfd2ca6322029aec0cd5b6ccf1f14f9be33de000703596bf17ed300c6d10e9"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-seasonal-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-seasonal-initial-inventory.json.gz",
+      "bytes": 755,
+      "sha256": "7dd259f11c5fc06a1f846b8c2585db1b8d7e614253e22ceb33e23e2af5559c46"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-seasonal-initial.jld2.gz",
+      "bytes": 2026553,
+      "sha256": "8f440d26ae12adf05f074557530040534cc665b9d8501a2628de906f3105cbfd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-seasonal-statistics-start.jld2.gz",
+      "bytes": 7470845,
+      "sha256": "007b13895e0c1c2866784645cef15468128ca0b5bc1f12a815f24ce7179504b5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-seasonal-statistics.json.gz",
+      "bytes": 23929317,
+      "sha256": "6a0108816d622bd523940246a7fbd059d69c1737d9c158388109d144e7ac0009"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-sensitivity-final.jld2.gz",
+      "bytes": 7508508,
+      "sha256": "994df28e8fa49db41dc783f0bd6e96860ba53929b840100dc9fb4b9d281abe2f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-sensitivity-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-sensitivity-initial-inventory.json.gz",
+      "bytes": 377,
+      "sha256": "66f3cf29c4b32289cc4fe8e5c1469baa2c35aa2974b845acf2923291d145a5dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-sensitivity-initial.jld2.gz",
+      "bytes": 7517641,
+      "sha256": "19d2cd23f785e745d4ae6d216d5f6533784cafa54e0bcf0972f473fa724a353d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/split-reference-sensitivity-statistics.json.gz",
+      "bytes": 23603436,
+      "sha256": "f7560a26dc32ff29ca1e7cdcab1776e10885d45ab3405f03c52b4ba304d0fcef"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/thermal-split-reference-sensitivity-final.jld2.gz",
+      "bytes": 7497928,
+      "sha256": "a37eb252b7fde8e9baf95c7608d5254d381c121c48b1115d8730060e39bf76d0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/thermal-split-reference-sensitivity-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/thermal-split-reference-sensitivity-initial-inventory.json.gz",
+      "bytes": 377,
+      "sha256": "66f3cf29c4b32289cc4fe8e5c1469baa2c35aa2974b845acf2923291d145a5dd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/thermal-split-reference-sensitivity-initial.jld2.gz",
+      "bytes": 7517448,
+      "sha256": "5cab856ac3a6085deb46ee37e733ddc00151338158689888452837d6dd532e7b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/raw/thermal-split-reference-sensitivity-statistics.json.gz",
+      "bytes": 23660254,
+      "sha256": "9e8bc0cd0497030fdc446a2e21356fd3989df5c5ebe690e927f34673d8ff9dc8"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/readonly-grid-history.jl",
+      "bytes": 1003,
+      "sha256": "751a8817999e0eca7adba88342c67204b13fd78d1fa8ffda58be73d5862dba24"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/readonly-projection-audit-comparison.mjs",
+      "bytes": 8520,
+      "sha256": "ae833c1c331a269a46375d33b8ccb589a7965eede9c97d76b830e4f4910ac0b3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/readonly-projection-reload.jl",
+      "bytes": 1444,
+      "sha256": "e9de491761871562e58607ebe3cf709ca6813547b3f6f830a154cf5eeb37ce45"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/readonly-reference-operators.jl",
+      "bytes": 5876,
+      "sha256": "366d7fc83f8d6feffa9a03e2f8db13ae12fbfcad97abc052c678b7e427d892a3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/readonly-reference-review.md",
+      "bytes": 8534,
+      "sha256": "77f884cd59a87a5e2e82fb5a470246336eeaa820a5c2d42a3790856ae5a6ed77"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/readonly-scalar-auxiliary.jl",
+      "bytes": 5896,
+      "sha256": "df012a8080c5cf882518ac661c559aa84197d17113dd8c20b34c643f9cceba47"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/readonly-v3-climate-review.mjs",
+      "bytes": 5951,
+      "sha256": "8d648ccca82b79650a676897c9b25ac0a491334d1f34eca012ac593b5199c132"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/readonly-v3-sixyear-review.mjs",
+      "bytes": 8138,
+      "sha256": "b1b5d835401fc968065c7269a0a5bad56b39a36aca0c61eb405ca09c8be9fbe4"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/readonly-v3-thermal-review.mjs",
+      "bytes": 4600,
+      "sha256": "7f53f1aba9f65ab185976256b915744517f8b65edc0159845c43f7aa65d76407"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/replay-diagnostics.jl",
+      "bytes": 6833,
+      "sha256": "1bb9657b49f0d4157c521a1fb6aeb588087b7eeeba638a381653c5988d9b8a62"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/replay-summary.json",
+      "bytes": 334458,
+      "sha256": "27cb46b6f9e4bf00c32c8336a21b26d8c950e150d84b4b149ff6143c17735f4f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/report.md",
+      "bytes": 21425,
+      "sha256": "b3d49ce75d51925094a72881b525ecef319ebc8ff495f2504de09b12341adac5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/review-evaporation.md",
+      "bytes": 6846,
+      "sha256": "c012a06c34cfced994df6f0ff76c1a8f7753e58d599b1d0a760e757256c241d5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/review-implicit.md",
+      "bytes": 8315,
+      "sha256": "6a99cf10de15f57cf35a8d68435d2adafb3f7de3db72dc624b0a61412abfdc7e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/review-parcel.md",
+      "bytes": 7146,
+      "sha256": "ff6043077ee399124343dd992727fb4235326c9bdabfc2f05f20f2158d567f38"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/run-julia.mjs",
+      "bytes": 3606,
+      "sha256": "58719a9fe29a17815f4837926450422a57056a293f86c44a6a475c0e83ac4f09"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/run-v2-julia.mjs",
+      "bytes": 3678,
+      "sha256": "08b86d7e3fd8ec0cdc085b6392ce3985792f51aa25ec44fd2cdc560c8d31551f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/run-v2.jl",
+      "bytes": 18660,
+      "sha256": "6ef15eb69c6ce44a9c1c04b9e98aed037cd5f81642eb986fd299016c69201802"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/run-v3-julia.mjs",
+      "bytes": 3663,
+      "sha256": "96c770b0711b4057b269406ae76933962223daf09e3e96de0fd701769b6b635a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/run-v3.jl",
+      "bytes": 18433,
+      "sha256": "821d60fe7d5e4c3d7943f009abac2ab295a061a1ab6b55907126bced400e6790"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/run.jl",
+      "bytes": 17866,
+      "sha256": "153c8f33aad16b61161e1c983c4f4b658bde310c0ab6945128ad7a88007b147c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/scalar-initial-projection-audit.md",
+      "bytes": 4127,
+      "sha256": "a264d7a9e8e3db25a192e6c1489c573ed430ee41e46bd1608dc790cea4cc4595"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/scalar-initial-projection-test.jl",
+      "bytes": 10797,
+      "sha256": "3d0359959b5453eaf16a9d44165b614a8c9cb55bcf78267d610dbf9cc41ca130"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/scalar-initial-projection.jl",
+      "bytes": 10518,
+      "sha256": "572893f6eacdb9594160638b320e44fd5da6fd047dcec94ae58f19a5f3e3109c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/scalar-initial-projection.md",
+      "bytes": 7034,
+      "sha256": "135d80528d9bb68269c47b33fc46a12d739b3cece99e17d5460f65c57c8dd567"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/sensitivity-comparison.json",
+      "bytes": 247759,
+      "sha256": "925fb59e167392f6d70d8001bcb6feb035179fe02290b4b12df9baef4a09b3b0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/sensitivity-rain.png",
+      "bytes": 186088,
+      "sha256": "47dd1efbd0aabc3ee0d0f75a013077e2782524140af0cd4680208d212c0f84d2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/sensitivity-rain.svg",
+      "bytes": 80892,
+      "sha256": "845f62664fcf1f63cb75b3c9b6a6427afea1995f0c5eb860fc0d6049b89ab05c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/sensitivity-v2-rain.png",
+      "bytes": 189728,
+      "sha256": "8c245681b0da3f34ab088c3c360544d33e90c1056db28812d4b023fb6d14b820"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/sensitivity-v2-rain.svg",
+      "bytes": 80184,
+      "sha256": "75082f57ba636d235097531d14c4b41f68e97393f36b0633a33babcf5a67687c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/sensitivity-v3-rain.png",
+      "bytes": 226957,
+      "sha256": "8dbdef3c30cdb79e4ecbb698ffad9e81d1bc6494e9777951707c0c30ba5cb9fa"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/sensitivity-v3-rain.svg",
+      "bytes": 85328,
+      "sha256": "d6863c26f7358135a2ceb091a189e4be47c218d82018abbf59543539487144e3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/six-year-monsoon.png",
+      "bytes": 327341,
+      "sha256": "c66432de46404d4d6f27883ba4a6a84c22f11458b7d7ee064e826f11bda1af29"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/six-year-monsoon.svg",
+      "bytes": 122758,
+      "sha256": "1394911bed4df7dab6bdbaa41a1236f503f13d61957077a097e1bd76a8482539"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/six-year-regions-budgets.png",
+      "bytes": 97605,
+      "sha256": "92cf36cd9c0b6bd9c53546ef9c64afd331e670ecee9bdf243b7ca56ad858d7f0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/six-year-regions-budgets.svg",
+      "bytes": 81651,
+      "sha256": "f8293992410513ccfc8d8e89bb77b18eb4514d90909fc3c91b243e6222cf87c6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652/corrections.jl",
+      "bytes": 1895,
+      "sha256": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/08b86d7e3fd8ec0cdc085b6392ce3985792f51aa25ec44fd2cdc560c8d31551f/run-v2-julia.mjs",
+      "bytes": 3678,
+      "sha256": "08b86d7e3fd8ec0cdc085b6392ce3985792f51aa25ec44fd2cdc560c8d31551f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/0a71db3d6f8acbee3cb4a6845e6e51c3c8c137f2062207bbc1a5a24e24beebcd/wet-carrier-test.jl",
+      "bytes": 7619,
+      "sha256": "0a71db3d6f8acbee3cb4a6845e6e51c3c8c137f2062207bbc1a5a24e24beebcd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/0b85302a5a10ece9881b6a2c9dac5ff857fe0b5383149ec16afce6a7f8ac8f1e/implicit-split-v2-startup-probe.jl",
+      "bytes": 1308,
+      "sha256": "0b85302a5a10ece9881b6a2c9dac5ff857fe0b5383149ec16afce6a7f8ac8f1e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/1013b8b2b122dec190066a1d2d5fb0fc5e5eff105fb6285796e1f4116168458f/convection-corrected.jl",
+      "bytes": 6859,
+      "sha256": "1013b8b2b122dec190066a1d2d5fb0fc5e5eff105fb6285796e1f4116168458f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/1323f0082130ed54a976509910bdbddebea81f821d67656e320034b33d60e6ec/audit-v3-candidate.jl",
+      "bytes": 4416,
+      "sha256": "1323f0082130ed54a976509910bdbddebea81f821d67656e320034b33d60e6ec"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/153c8f33aad16b61161e1c983c4f4b658bde310c0ab6945128ad7a88007b147c/run.jl",
+      "bytes": 17866,
+      "sha256": "153c8f33aad16b61161e1c983c4f4b658bde310c0ab6945128ad7a88007b147c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/1af4513f14c7f66a42a3253f7288df18e84d7d1c4757edff0aadfa43949275d2/implicit-corrected.jl",
+      "bytes": 5587,
+      "sha256": "1af4513f14c7f66a42a3253f7288df18e84d7d1c4757edff0aadfa43949275d2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/1bb9657b49f0d4157c521a1fb6aeb588087b7eeeba638a381653c5988d9b8a62/replay-diagnostics.jl",
+      "bytes": 6833,
+      "sha256": "1bb9657b49f0d4157c521a1fb6aeb588087b7eeeba638a381653c5988d9b8a62"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/1c8ba5d89d568a69b6da2292f4c267ed1e8ef59b3c6d3c6c5770f7704fc81259/wet-carrier-fields-verify.jl",
+      "bytes": 2421,
+      "sha256": "1c8ba5d89d568a69b6da2292f4c267ed1e8ef59b3c6d3c6c5770f7704fc81259"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/1f2fce86ac707cd05cf7eef59787213e659f8d8ae467e8ace93fee780f4804be/run.jl",
+      "bytes": 17374,
+      "sha256": "1f2fce86ac707cd05cf7eef59787213e659f8d8ae467e8ace93fee780f4804be"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/223eae94b0318e597e34f7942f5e112ec6865bcad5808e9c18b04eab7db8135b/v2-protocol.md",
+      "bytes": 1662,
+      "sha256": "223eae94b0318e597e34f7942f5e112ec6865bcad5808e9c18b04eab7db8135b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/224ce07c9552709f31c2e74521e3624ae5894c2a7319ca404faed59c11124d31/implicit-split-reference.jl",
+      "bytes": 4425,
+      "sha256": "224ce07c9552709f31c2e74521e3624ae5894c2a7319ca404faed59c11124d31"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/22f9ef9c91190285d6aafc543abce8c6e706d11662a907a3eab4dd6cd02bfcfd/implicit-split-reference-v2.jl",
+      "bytes": 4628,
+      "sha256": "22f9ef9c91190285d6aafc543abce8c6e706d11662a907a3eab4dd6cd02bfcfd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/2fc0240aa3e4766294250da5d34665e1010bbe227e36aeec24d75f810fc9ca85/water-preserving-mass.jl",
+      "bytes": 611,
+      "sha256": "2fc0240aa3e4766294250da5d34665e1010bbe227e36aeec24d75f810fc9ca85"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/3f71a1dec5e16fd1e85d82fab082debae122d6eda4e5809203e935f956966801/transport-model.jl",
+      "bytes": 1458,
+      "sha256": "3f71a1dec5e16fd1e85d82fab082debae122d6eda4e5809203e935f956966801"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/4afe458c05e5e36829cfd45449ed8033fe0d142c13341d58027c080ca89ebcb5/audit-v2-candidate.jl",
+      "bytes": 4488,
+      "sha256": "4afe458c05e5e36829cfd45449ed8033fe0d142c13341d58027c080ca89ebcb5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/4c38ab03f4a9a8909475a06af12cdc75dcbe6b5d6d243adbd69394c351838acd/transport-v2-model.jl",
+      "bytes": 1919,
+      "sha256": "4c38ab03f4a9a8909475a06af12cdc75dcbe6b5d6d243adbd69394c351838acd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/50e7ae93746763a5d3daa27296800db05ad9b3a9de73fa121ffa79a20ff06dd0/implicit-split-v2-test.jl",
+      "bytes": 6814,
+      "sha256": "50e7ae93746763a5d3daa27296800db05ad9b3a9de73fa121ffa79a20ff06dd0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/524f40d0400ef32cd5a320d3dfc3ceb9d1336cad5f6da49d5ba246ec9da63f67/implicit-instability-window.jl",
+      "bytes": 3690,
+      "sha256": "524f40d0400ef32cd5a320d3dfc3ceb9d1336cad5f6da49d5ba246ec9da63f67"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/544322dbc709ccf37233cfe2932d337ed1f7191d0c14c385f5061595a45c613f/cloud-correction.jl",
+      "bytes": 5026,
+      "sha256": "544322dbc709ccf37233cfe2932d337ed1f7191d0c14c385f5061595a45c613f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/572893f6eacdb9594160638b320e44fd5da6fd047dcec94ae58f19a5f3e3109c/scalar-initial-projection.jl",
+      "bytes": 10518,
+      "sha256": "572893f6eacdb9594160638b320e44fd5da6fd047dcec94ae58f19a5f3e3109c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/58719a9fe29a17815f4837926450422a57056a293f86c44a6a475c0e83ac4f09/run-julia.mjs",
+      "bytes": 3606,
+      "sha256": "58719a9fe29a17815f4837926450422a57056a293f86c44a6a475c0e83ac4f09"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/6e0a39d51da16944f67562c41bd939b034b3d8b5c4d2e96457daed5db24e2eb4/physics-model.jl",
+      "bytes": 809,
+      "sha256": "6e0a39d51da16944f67562c41bd939b034b3d8b5c4d2e96457daed5db24e2eb4"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/6ef15eb69c6ce44a9c1c04b9e98aed037cd5f81642eb986fd299016c69201802/run-v2.jl",
+      "bytes": 18660,
+      "sha256": "6ef15eb69c6ce44a9c1c04b9e98aed037cd5f81642eb986fd299016c69201802"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/70daa561a48997a195e0477e3ae4909cac13b755fee9573565b489f0423bcebb/startup-ledger.jl",
+      "bytes": 2844,
+      "sha256": "70daa561a48997a195e0477e3ae4909cac13b755fee9573565b489f0423bcebb"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/7257bb812f89f266bd891bef3197008c9dd8ba74312be387ae865bc29808833f/wet-carrier-prototype.jl",
+      "bytes": 4890,
+      "sha256": "7257bb812f89f266bd891bef3197008c9dd8ba74312be387ae865bc29808833f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/736432db8107d385f107b27ed2a6b29e8d639a8d3e153f07af7dc69eab10b444/implicit-instability-probe.jl",
+      "bytes": 6193,
+      "sha256": "736432db8107d385f107b27ed2a6b29e8d639a8d3e153f07af7dc69eab10b444"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/7a8c8e991a2fec5aa8bdde65e75f9946adafc0d9ba7d0572fa70e976e911209b/diagnostics.jl",
+      "bytes": 1235,
+      "sha256": "7a8c8e991a2fec5aa8bdde65e75f9946adafc0d9ba7d0572fa70e976e911209b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/7c11dd68086ee2940106f0fad49f8fa54b5ec5bdae0bcd64d50298a685f53364/protocol.md",
+      "bytes": 1128,
+      "sha256": "7c11dd68086ee2940106f0fad49f8fa54b5ec5bdae0bcd64d50298a685f53364"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/821d60fe7d5e4c3d7943f009abac2ab295a061a1ab6b55907126bced400e6790/run-v3.jl",
+      "bytes": 18433,
+      "sha256": "821d60fe7d5e4c3d7943f009abac2ab295a061a1ab6b55907126bced400e6790"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/8258dab6422c7ea2a245492e94c8c9eb06fad5244a0cbef851ee43094e048db0/surface-evaporation-corrected.jl",
+      "bytes": 2738,
+      "sha256": "8258dab6422c7ea2a245492e94c8c9eb06fad5244a0cbef851ee43094e048db0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/8780dedcbd1a396ecd8c2b5943dee4e9db4106abe16909aa4b9a80105836650f/wet-carrier-projected-native-red.jl",
+      "bytes": 2797,
+      "sha256": "8780dedcbd1a396ecd8c2b5943dee4e9db4106abe16909aa4b9a80105836650f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/87e765e55f815283492fbf951fe96a2c92ae12dbade2f1af15ae7c092420aff3/implicit-split-window.jl",
+      "bytes": 7178,
+      "sha256": "87e765e55f815283492fbf951fe96a2c92ae12dbade2f1af15ae7c092420aff3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/8afca38c6b542fc0944701c6517d5c19fa1565b85c1aea5575a0116b9ea859c4/run.jl",
+      "bytes": 17533,
+      "sha256": "8afca38c6b542fc0944701c6517d5c19fa1565b85c1aea5575a0116b9ea859c4"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/8e9725229c984c2450ef4e768b1f2ce52dcb92f5096a0463edb30a970593d31b/implicit-split-startup-probe.jl",
+      "bytes": 1302,
+      "sha256": "8e9725229c984c2450ef4e768b1f2ce52dcb92f5096a0463edb30a970593d31b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/96c770b0711b4057b269406ae76933962223daf09e3e96de0fd701769b6b635a/run-v3-julia.mjs",
+      "bytes": 3663,
+      "sha256": "96c770b0711b4057b269406ae76933962223daf09e3e96de0fd701769b6b635a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/99605f1e3f34ce6fe0dbd794c466dc83fe1c62c692f78e57d77c047d13a82a50/wet-carrier-test-v2.jl",
+      "bytes": 8554,
+      "sha256": "99605f1e3f34ce6fe0dbd794c466dc83fe1c62c692f78e57d77c047d13a82a50"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/9b46e91119e9b77e7d4e5c25776aa4d09d91cb42e0cd6a551acd0359771eeac0/audit-candidate.jl",
+      "bytes": 4212,
+      "sha256": "9b46e91119e9b77e7d4e5c25776aa4d09d91cb42e0cd6a551acd0359771eeac0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/9ea9a306d16dc6e3f7ea70dd1b3a753794ddc7dad19dd0ba7e69a9ef23330357/condensation.jl",
+      "bytes": 9385,
+      "sha256": "9ea9a306d16dc6e3f7ea70dd1b3a753794ddc7dad19dd0ba7e69a9ef23330357"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/ace46127dff87263b6cd770dc0fe3525f326f68b98c185de4a137b23f7b02561/implicit-split-test.jl",
+      "bytes": 6499,
+      "sha256": "ace46127dff87263b6cd770dc0fe3525f326f68b98c185de4a137b23f7b02561"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/ade63d52e8c9f3abc6e194cc2fce0f31248fe1a4cb14b3705d87571d56837add/boundary-layer.jl",
+      "bytes": 6665,
+      "sha256": "ade63d52e8c9f3abc6e194cc2fce0f31248fe1a4cb14b3705d87571d56837add"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/b047709d264a07e057152af95a6f9f1d6e1b78550441909dbc51935fd1053785/longwave-corrected.jl",
+      "bytes": 2708,
+      "sha256": "b047709d264a07e057152af95a6f9f1d6e1b78550441909dbc51935fd1053785"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/b23e4f73ebc4d915ae438fd0eeb7a7f4f7f35d17bf42d81f5de1a0649d05c515/v3-protocol.md",
+      "bytes": 2509,
+      "sha256": "b23e4f73ebc4d915ae438fd0eeb7a7f4f7f35d17bf42d81f5de1a0649d05c515"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/b6578e5a2a52e7dc506027372198d95c8a3cd683c44a51db990eba7e52b358fc/timestep-convergence.jl",
+      "bytes": 5600,
+      "sha256": "b6578e5a2a52e7dc506027372198d95c8a3cd683c44a51db990eba7e52b358fc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/ba8bb778d7316b482731b1a5f70289a897599776c9a7835398fbb8d0b8592785/audit-projected-initial.jl",
+      "bytes": 5544,
+      "sha256": "ba8bb778d7316b482731b1a5f70289a897599776c9a7835398fbb8d0b8592785"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/bdf5ad3a631aa2ff12195618033667bbf76f9902774f3444358d2929c816e50e/implicit-instability-probe.jl",
+      "bytes": 6111,
+      "sha256": "bdf5ad3a631aa2ff12195618033667bbf76f9902774f3444358d2929c816e50e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/c24c0ccfa4facdb3d308931dc36d154c322e20d1848c95b3760a315ce452c08e/transport-v3-model.jl",
+      "bytes": 1795,
+      "sha256": "c24c0ccfa4facdb3d308931dc36d154c322e20d1848c95b3760a315ce452c08e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/d08a77ae5177601a76a9442694532443fadb466663289259004fe6275ca56ce4/vertical-diffusion.jl",
+      "bytes": 8940,
+      "sha256": "d08a77ae5177601a76a9442694532443fadb466663289259004fe6275ca56ce4"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/e72be73d27dd1c9a08c7adb04473e16b85e18d863b0d2a0e8c2a8c55c7bbcf9b/implicit-split-v2-test.jl",
+      "bytes": 6848,
+      "sha256": "e72be73d27dd1c9a08c7adb04473e16b85e18d863b0d2a0e8c2a8c55c7bbcf9b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/f214103d94ebf303f022fc257789ba2a3f1b0eb8a8ed58387c5be0189ca5ead9/components.jl",
+      "bytes": 12628,
+      "sha256": "f214103d94ebf303f022fc257789ba2a3f1b0eb8a8ed58387c5be0189ca5ead9"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/source-archives/fb9b1215f417221dc482b299be6cf0e94de9d9caac2643a1fe55f82d29217220/wet-carrier-native-red.jl",
+      "bytes": 2240,
+      "sha256": "fb9b1215f417221dc482b299be6cf0e94de9d9caac2643a1fe55f82d29217220"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/split-reference-seasonal-native-status.json",
+      "bytes": 7755,
+      "sha256": "fbf2dcb2e69b7f79f55159a0e4e54d46baf33dd26f3b448bafdeedac0c6fce8d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/split-reference-seasonal-native.log",
+      "bytes": 22768,
+      "sha256": "9dcbd5d03b4ef13bcf1459124f7ea31aac393ea1b33a34607f8abc3e66d5833f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/split-reference-sensitivity-native-status.json",
+      "bytes": 7816,
+      "sha256": "d2c363a25065223026f5dd119a3c22326cc6b251bac3bdd4c8703529dd50b155"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/split-reference-sensitivity-native.log",
+      "bytes": 6983,
+      "sha256": "a8b05c9c9a34d15d82f45def60538e4eb2b8c7cddb3baec6759885578bebdfe1"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-analysis-verification-status.json",
+      "bytes": 7485,
+      "sha256": "a59bd0f72e961e08ab46ed7158ce9a3465d481e10e8cd8cac6ee84785da21095"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-analysis-verification.log",
+      "bytes": 7759,
+      "sha256": "fd0cee016a036715a01f1a92ce35694b86c1d5baf57ca72a00a7dee2a8bcdbe2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-analyze.jl",
+      "bytes": 4290,
+      "sha256": "9b21e8ae25a0300e1cc4a2b354307704023e27c9721f46ea2f7763b936f3ea2c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-candidate.png",
+      "bytes": 151360,
+      "sha256": "272817dba70ec2d36bbcaadfe262ee36e6002b3bfdb665a698a3143fbcc12aaa"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-candidate.svg",
+      "bytes": 79776,
+      "sha256": "cfe9d2bb4dbf681887c409a0ee38cc10700523553e6adb56dba5b9e7456c0475"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-ledger-final-green-status.json",
+      "bytes": 7493,
+      "sha256": "c9f641169aac139364ce5ef8509efd3608c176c21c5902de9fed6d4718058f0e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-ledger-final-green.log",
+      "bytes": 1091,
+      "sha256": "f9931ab0fc6b7fb8353faa3cb75a440e5056907512db2773e2cc4d4e45066374"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-ledger-green-status.json",
+      "bytes": 6377,
+      "sha256": "259e9339e5f906bc655ab911d548c7b08c32746f2095b354ed29683d4a66bc09"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-ledger-green.log",
+      "bytes": 1091,
+      "sha256": "f9931ab0fc6b7fb8353faa3cb75a440e5056907512db2773e2cc4d4e45066374"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-ledger-red-status.json",
+      "bytes": 6377,
+      "sha256": "ab46881e034757fc475fad853b1e5c69c98bba7a89c02614f99834b9098833ff"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-ledger-red.log",
+      "bytes": 5827,
+      "sha256": "aedaab8442acb40cc190b62da162451c503d8b497f9f8052769372c08fc90da3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-ledger-test.jl",
+      "bytes": 2754,
+      "sha256": "f8d695b8d35929facfdfb24958ba97e2fabbaad2300c87421ccc8d11c8569015"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-ledger.jl",
+      "bytes": 2844,
+      "sha256": "70daa561a48997a195e0477e3ae4909cac13b755fee9573565b489f0423bcebb"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-preservation-verification.json",
+      "bytes": 6574,
+      "sha256": "b5f71aa7f5e390457817fd8951f894b22b957d21634dedc3e9d6e0ffe44198b1"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-preservation-verification.mjs",
+      "bytes": 2508,
+      "sha256": "def2325738c3896d88118b94d282d989acd3b7fd77fae5b136b6493c08adfc1e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-report.md",
+      "bytes": 8421,
+      "sha256": "f9eb3368f23b36c30ebfca0458ffb3c84dfaf669b4d0841d71a30df0afde3b90"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-run.mjs",
+      "bytes": 2164,
+      "sha256": "856c4372ef94dfcefe2888bf79412228f4d516dfef4c7410ad68d4f5dead241e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-trace-slab-status.json",
+      "bytes": 6353,
+      "sha256": "4c52f7a74e409e6113e3c5e739cedf1e3f4a9f459de46b727fa44a8cc6f2129b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-trace-slab.log",
+      "bytes": 6734,
+      "sha256": "74b220942d62f67b3068f09d2f67f379ad78c4f789aeea5074c1251b5eb574a8"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-trace-split-seasonal-status.json",
+      "bytes": 7201,
+      "sha256": "06359ad5a3e8ae037bbfc15e6552d3421abf90fb6754c95ab42370cd99eac02e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-trace-split-seasonal.log",
+      "bytes": 89749,
+      "sha256": "e66f1daef59f92b80ac420e3f7867e13b5fb596c0cc8320f702ddef481960e39"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-trace-split-slab-status.json",
+      "bytes": 6353,
+      "sha256": "cc89c8ddae39427d376e837437037d5de59d5caafeeafe3b2963561036f5150a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-trace-split-slab.log",
+      "bytes": 89998,
+      "sha256": "1701bff708f42f65ec721b8a39a201069b1a3a0e6f10e42f5255528a62cdcf23"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-trace-v1.jl",
+      "bytes": 7452,
+      "sha256": "9545c2eb957b910a176eae905f5400a8685af281fcbc4a83ec43369c97917647"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-trace.jl",
+      "bytes": 7970,
+      "sha256": "7e815eaf16f6fd830372f48034059c2f1d40805a45f2eb3c7fbdb38194dc3db0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-v2-candidate.png",
+      "bytes": 141247,
+      "sha256": "e05746242a615506f226f5ac4f545d6f740837da4a4667f23fc601f1e9408540"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-v2-candidate.svg",
+      "bytes": 72371,
+      "sha256": "86935e2d0cfaf9e90f318d4634aaf8af2561bf2d8ef6ae289171155c1bd9cd34"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-v3-candidate.png",
+      "bytes": 147600,
+      "sha256": "3da48ab095a68377e8c4a051beb1ab2c5fc8b4abd29a0db937c4ec7f25e6d283"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/startup-v3-candidate.svg",
+      "bytes": 78655,
+      "sha256": "a04c400db53bcaba22e901a086cdf392193ac78430489abc74a68b7715823106"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/summarize-candidates.mjs",
+      "bytes": 2429,
+      "sha256": "bda05d690b1c3b846c9cb8bde346fda3ce13c641112ac2845ca577ad790478f6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/summarize-replay.mjs",
+      "bytes": 1915,
+      "sha256": "da86b087ed2c9ebfdb3c30af7fb9d81535b430c1613c7a27fe40ecafb2c50039"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-candidate-fields-snapshot.json",
+      "bytes": 3730224,
+      "sha256": "300f734d06aeaf106944d5f002bcdcb339378615ea53efc3bef683044470f5fb"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-corrected.jl",
+      "bytes": 2738,
+      "sha256": "8258dab6422c7ea2a245492e94c8c9eb06fad5244a0cbef851ee43094e048db0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-report.md",
+      "bytes": 6670,
+      "sha256": "f21c3406798b1af38ca31806cf0ac2d2562df04b83a82ebfe235133fa2f1ac70"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-snapshot.jl",
+      "bytes": 3649,
+      "sha256": "10c37957341765a56dd3d6bc5882838fa71e7badd9f219e656572595be98a448"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-test.jl",
+      "bytes": 4988,
+      "sha256": "87e2449784dd9e91fe359b3527a909cb1bbe7470eafc1410940f7b45a752836f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-verification.json",
+      "bytes": 7928,
+      "sha256": "76652e7e3e2816fa56f56467fde3e3b071576a9d9cf142af2bd90b72d11477fe"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-verify.mjs",
+      "bytes": 5036,
+      "sha256": "ef2046d2159a68bf413e63377a0a9f5be0c381d59101f560814ce9911c5e56ef"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/thermal-split-reference-sensitivity-native-status.json",
+      "bytes": 7826,
+      "sha256": "359f3262b5a1bd3ed1568200d168aeb4d98352660f5cca32d577e9d7d35a5e2a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/thermal-split-reference-sensitivity-native.log",
+      "bytes": 6986,
+      "sha256": "4af1b80c9a27abfc9ec2b0a3386e9c4d7262aa8a138d8c141ff30d0dbce6f340"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/thermal-split-selection.md",
+      "bytes": 1224,
+      "sha256": "f7d3487df09bbd2ad2d9d416ad665a95c1f92ed86cf0b912d9dd053468853fd3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-bind.mjs",
+      "bytes": 1238,
+      "sha256": "8aef32130720a7ab209ddebb253883aa4f353b4420d70caae342623d228b68d5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-bindings.json",
+      "bytes": 2423,
+      "sha256": "ec6e8b0a3d276965653caa330b656a54bc639355aaa71997d9d16a662c524e09"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-native-status.json",
+      "bytes": 7216,
+      "sha256": "9f405461c616fa02ce449257b56a86b54ec3ae696a70facae1a61f3f771adf1b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-native.log",
+      "bytes": 2853,
+      "sha256": "7453bc0f1fb9ea1a052ac4be5f0697c2a9bf26480c5e456ecb85ab6585f6e380"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-report.md",
+      "bytes": 8363,
+      "sha256": "d5b296a9418b798916e00a4f8e602e6f48c202f7546a7f9b2dc54fb1e7950b8a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-verification.json",
+      "bytes": 5871,
+      "sha256": "089f5fcd799683bdc4e52dc244de7db9ebc25686502e64aed0693d55c14af66d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-verify.mjs",
+      "bytes": 4634,
+      "sha256": "131d9494f6da8b162296d3fc92f4b3d06475649bc05311e3f19c55cda936dfb3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence.jl",
+      "bytes": 5600,
+      "sha256": "b6578e5a2a52e7dc506027372198d95c8a3cd683c44a51db990eba7e52b358fc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence.png",
+      "bytes": 199475,
+      "sha256": "ea38300192ceac958baefaef3ef41c7790c2f732459658da343bc7b03ead6d76"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence.svg",
+      "bytes": 90488,
+      "sha256": "46aeb43aad4a7732f04ee2918ce365c0fa5e58aa4d6da9bb1f7239b083eb6579"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/transport-model.jl",
+      "bytes": 1458,
+      "sha256": "3f71a1dec5e16fd1e85d82fab082debae122d6eda4e5809203e935f956966801"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/transport-v2-model.jl",
+      "bytes": 1919,
+      "sha256": "4c38ab03f4a9a8909475a06af12cdc75dcbe6b5d6d243adbd69394c351838acd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/transport-v3-model.jl",
+      "bytes": 1795,
+      "sha256": "c24c0ccfa4facdb3d308931dc36d154c322e20d1848c95b3760a315ce452c08e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/v2-protocol.md",
+      "bytes": 1662,
+      "sha256": "223eae94b0318e597e34f7942f5e112ec6865bcad5808e9c18b04eab7db8135b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/v3-climate-review.md",
+      "bytes": 32737,
+      "sha256": "53760fe6e864a506ebe635346bc5aef8d905cf41146f49ff6a2182bbeb5bebb9"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/v3-protocol.md",
+      "bytes": 2509,
+      "sha256": "b23e4f73ebc4d915ae438fd0eeb7a7f4f7f35d17bf42d81f5de1a0649d05c515"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/verify-baseline-replay.mjs",
+      "bytes": 1828,
+      "sha256": "1a09e6fa5942bbb6798f056be73dc05f8ba06ea046df63e95b4c198be06a899d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/verify-evidence.mjs",
+      "bytes": 4875,
+      "sha256": "ff7dca8a6be21ae2525744897450cf699abbaefc7ca7b238dce57900b333d3c7"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/verify-frozen-chain.mjs",
+      "bytes": 1426,
+      "sha256": "43155de32282e961a932f54763d305dcaee144cc2a793b2d088fb01a123915c5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/verify-preservation.mjs",
+      "bytes": 1117,
+      "sha256": "eb8ca327631108a1131b6c221bcd7212c5242389fe3040b95475aec0b9ec5742"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/watch-progress.mjs",
+      "bytes": 1066,
+      "sha256": "12bbf809961098e51426993aecf83cafe3000bb01223cd61d21cc5b6a5e64a7e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/weights.mjs",
+      "bytes": 2322,
+      "sha256": "3118a67f21eb83b9659fc244fd4f511ac78142fa0ab9539967d5decbe204b77b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-bind.mjs",
+      "bytes": 2990,
+      "sha256": "d50da36cbbba1670baac5ad6c95bbd45dad9f76c30cc045f1973acc9368a52f3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-bindings.json",
+      "bytes": 7755,
+      "sha256": "478784a0c4aa27a5b7eab4633c17cbd27f5457a36fa5f33fcc8ca50d3c255694"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-fields-verify-native-status.json",
+      "bytes": 3759,
+      "sha256": "4ce8c483e1bc0a65a04eacf6c307e7df841750a6ce8813a31ed0a8f526cde9a5"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-fields-verify-native.log",
+      "bytes": 1810,
+      "sha256": "0cad71a7798f15766fba778de84b7a5b3369746c421d131fcb8db8ca344a1623"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-fields-verify.jl",
+      "bytes": 2421,
+      "sha256": "1c8ba5d89d568a69b6da2292f4c267ed1e8ef59b3c6d3c6c5770f7704fc81259"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-interface-red.mjs",
+      "bytes": 1447,
+      "sha256": "995aee04d7c975355e2059b702eb86279313b3770bfdfc6411627aac9d1bc467"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-native-red-native-status.json",
+      "bytes": 7540,
+      "sha256": "559d71dd0e280158571306d3f12b8e3ce55c1aed3feaefdaec0286f1df92fd61"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-native-red-native.log",
+      "bytes": 9918,
+      "sha256": "cc7eb176fc275ef32ba2ae7d2768123c80c0b407141234ef5acaa0a75772082f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-native-red.jl",
+      "bytes": 2240,
+      "sha256": "fb9b1215f417221dc482b299be6cf0e94de9d9caac2643a1fe55f82d29217220"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-projected-native-red-native-status.json",
+      "bytes": 7890,
+      "sha256": "6a2c8a5ee34a7cd55e39b6786c7ad2961fb68dd0c139e3090db1aabda6fc94d1"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-projected-native-red-native.log",
+      "bytes": 18216,
+      "sha256": "e09be2661820c3963f5c43ca28928b2ce280b13e6f8e66c7d7140e1525893433"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-projected-native-red.jl",
+      "bytes": 2797,
+      "sha256": "8780dedcbd1a396ecd8c2b5943dee4e9db4106abe16909aa4b9a80105836650f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-prototype-green-native-status.json",
+      "bytes": 8113,
+      "sha256": "60415cd12c826b1b1785a76ad05b77ec5eea5ebc334f4126b54b17f35e9572dc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-prototype-green-native.log",
+      "bytes": 3216,
+      "sha256": "ea73672c4f4f83c2db3765dbe53fe6c61f385f9ca2bfd2c120df127f9f44706d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-prototype-green-v2-native-status.json",
+      "bytes": 8128,
+      "sha256": "3dda9b039fdd2b8b2a917011972afcd0cda4eb665de49d9a6e424d91ec29eb3e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-prototype-green-v2-native.log",
+      "bytes": 5035,
+      "sha256": "2c952946e9fd76d7a5704ac98bc9dd045d56ad4fa5d43a1bc7962027a64411a7"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-prototype.jl",
+      "bytes": 4890,
+      "sha256": "7257bb812f89f266bd891bef3197008c9dd8ba74312be387ae865bc29808833f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-report.md",
+      "bytes": 15971,
+      "sha256": "cbac433493207570f3485a8dad60ec5dbfc024155ddeaf041e74c1e3eda2b7bc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-test-v2.jl",
+      "bytes": 8554,
+      "sha256": "99605f1e3f34ce6fe0dbd794c466dc83fe1c62c692f78e57d77c047d13a82a50"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-test.jl",
+      "bytes": 7619,
+      "sha256": "0a71db3d6f8acbee3cb4a6845e6e51c3c8c137f2062207bbc1a5a24e24beebcd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-verification.json",
+      "bytes": 601,
+      "sha256": "915aad1297ffaa41a8092f5815bd9ffecee28a46e0217417b7c629a2112abb5e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/wet-carrier-verify.mjs",
+      "bytes": 5655,
+      "sha256": "42d3f38be891b889d8cb6ee29299d096d6fc4929823a9da0925c3a274bd813ba"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "mix4dt900": {
+    "stage": "coarse-screen-only",
+    "dt": 900,
+    "integrationDays": 365.2604166666667,
+    "initialStockSha256": "49281e830762d245e2cca0cab3b742972a01a23553ee8487e2eaf74168fcc350",
+    "parameters": {
+      "thermal": {"diffusion": 0.8, "emissivity": 0.575},
+      "water": {"moistureDiffusivityM2s": 4000000}
+    },
+    "finalBudget": {
+      "waterResidualMm": -0.0000012391246855258942,
+      "enthalpyResidualJm2": -0.00018043816089630127,
+      "vaporResidualMm": 2.864908310584724e-11
+    },
+    "failure": "Saved water budget mismatch at strict final snapshot restore",
+    "strictContinuation": false,
+    "includedAsAcceptedScreen": false,
+    "thresholdRelaxed": false,
+    "interpretation": "Cumulative water inventory roundoff exceeded the runtime loader tolerance (max of 1e-6 mm and its relative floating point bound). This is not evidence that physical precipitation targets passed."
+  },
+  "mix4cooldt900": {
+    "stage": "coarse-screen-only",
+    "dt": 900,
+    "integrationDays": 365.2604166666667,
+    "initialStockSha256": "49281e830762d245e2cca0cab3b742972a01a23553ee8487e2eaf74168fcc350",
+    "parameters": {
+      "thermal": {"diffusion": 0.8, "emissivity": 0.58},
+      "water": {"moistureDiffusivityM2s": 4000000}
+    },
+    "finalBudget": {
+      "waterResidualMm": -0.000001703738234937191,
+      "enthalpyResidualJm2": -0.00016048550605773926,
+      "vaporResidualMm": 2.864908310584724e-11
+    },
+    "failure": "Saved water budget mismatch at strict final snapshot restore",
+    "strictContinuation": false,
+    "includedAsAcceptedScreen": false,
+    "thresholdRelaxed": false,
+    "laterRerun": "Both failed configurations are rerun with opt-in compensated ocean transfers. Only those new results may be accepted."
+  }
+}

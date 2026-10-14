@@ -1,0 +1,1172 @@
+{
+  "createdUTC": "2026-10-12T16:20:47.954Z",
+  "software": {
+    "julia": "1.12.7",
+    "SpeedyWeather": "0.23.0",
+    "registeredGitTreeSha1": "a310694f09c0fcca98c67671b5fce53c621c72bd",
+    "T32Api": "truncation=32; includes degree zero; maximum degree 31"
+  },
+  "launches": [
+    {
+      "id": "slab",
+      "launch": {
+        "createdUTC": "2026-10-12T14:04:19.587",
+        "mode": "slab",
+        "files": {
+          "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\run.jl": "66fe52e0161798ac12c02561470b22666e4bbb52ee3e9189b749d6118c0b4c35",
+          "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\components.jl": "0d86797bd44bdc242f7fa345ae4aa094e2fdde18e928df0383cc11d0fe6a6db6",
+          "build/earth-speedyweather/annual-initial.jld2": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8",
+          "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084",
+          "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+          "scenes/earth-land-sea/earth-simulation.json": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+          "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\protocol.md": "212ffbe9eb6e50818bbfaee2d38cda35c02220acfeaaec9ecf5966e8aca02f94",
+          "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+          "docs/evidence/earth-speedyweather-20261012/diagnostics.jl": "7a8c8e991a2fec5aa8bdde65e75f9946adafc0d9ba7d0572fa70e976e911209b",
+          "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652"
+        }
+      },
+      "native": {
+        "startedUTC": "2026-10-12T14:04:14.691Z",
+        "completedUTC": "2026-10-12T14:32:56.486Z",
+        "script": "docs/evidence/earth-speedy-budgets-sst-20261012/run.jl",
+        "sourceBefore": {
+          "docs/evidence/earth-speedy-budgets-sst-20261012/run.jl": "66fe52e0161798ac12c02561470b22666e4bbb52ee3e9189b749d6118c0b4c35",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/components.jl": "0d86797bd44bdc242f7fa345ae4aa094e2fdde18e928df0383cc11d0fe6a6db6",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/protocol.md": "212ffbe9eb6e50818bbfaee2d38cda35c02220acfeaaec9ecf5966e8aca02f94"
+        },
+        "sourceAfter": {
+          "docs/evidence/earth-speedy-budgets-sst-20261012/run.jl": "66fe52e0161798ac12c02561470b22666e4bbb52ee3e9189b749d6118c0b4c35",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/components.jl": "0d86797bd44bdc242f7fa345ae4aa094e2fdde18e928df0383cc11d0fe6a6db6",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/protocol.md": "212ffbe9eb6e50818bbfaee2d38cda35c02220acfeaaec9ecf5966e8aca02f94"
+        },
+        "sourceUnchanged": true,
+        "args": [
+          "--startup-file=no",
+          "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/run.jl"
+        ],
+        "code": 0
+      }
+    },
+    {
+      "id": "seasonal",
+      "launch": {
+        "createdUTC": "2026-10-12T14:04:19.522",
+        "mode": "seasonal",
+        "files": {
+          "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\run.jl": "66fe52e0161798ac12c02561470b22666e4bbb52ee3e9189b749d6118c0b4c35",
+          "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\components.jl": "0d86797bd44bdc242f7fa345ae4aa094e2fdde18e928df0383cc11d0fe6a6db6",
+          "build/earth-speedyweather/annual-initial.jld2": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8",
+          "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084",
+          "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+          "scenes/earth-land-sea/earth-simulation.json": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+          "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\protocol.md": "212ffbe9eb6e50818bbfaee2d38cda35c02220acfeaaec9ecf5966e8aca02f94",
+          "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+          "docs/evidence/earth-speedyweather-20261012/diagnostics.jl": "7a8c8e991a2fec5aa8bdde65e75f9946adafc0d9ba7d0572fa70e976e911209b",
+          "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652"
+        }
+      },
+      "native": {
+        "startedUTC": "2026-10-12T14:04:14.705Z",
+        "completedUTC": "2026-10-12T14:34:16.504Z",
+        "script": "docs/evidence/earth-speedy-budgets-sst-20261012/run.jl",
+        "sourceBefore": {
+          "docs/evidence/earth-speedy-budgets-sst-20261012/run.jl": "66fe52e0161798ac12c02561470b22666e4bbb52ee3e9189b749d6118c0b4c35",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/components.jl": "0d86797bd44bdc242f7fa345ae4aa094e2fdde18e928df0383cc11d0fe6a6db6",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/protocol.md": "212ffbe9eb6e50818bbfaee2d38cda35c02220acfeaaec9ecf5966e8aca02f94"
+        },
+        "sourceAfter": {
+          "docs/evidence/earth-speedy-budgets-sst-20261012/run.jl": "66fe52e0161798ac12c02561470b22666e4bbb52ee3e9189b749d6118c0b4c35",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/components.jl": "0d86797bd44bdc242f7fa345ae4aa094e2fdde18e928df0383cc11d0fe6a6db6",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/protocol.md": "212ffbe9eb6e50818bbfaee2d38cda35c02220acfeaaec9ecf5966e8aca02f94"
+        },
+        "sourceUnchanged": true,
+        "args": [
+          "--startup-file=no",
+          "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+          "docs/evidence/earth-speedy-budgets-sst-20261012/run.jl"
+        ],
+        "code": 0
+      }
+    }
+  ],
+  "formalDefaultBindings": [
+    {
+      "file": "thermal.ts",
+      "name": "THERMAL",
+      "sha256": "200ac46a9f0859ce59007b176c62f99b023048f4258dba4e52852467e078ae6c",
+      "unchanged": true
+    },
+    {
+      "file": "water.ts",
+      "name": "WATER",
+      "sha256": "0a1607b40bd1dbda009459782ed2058c66dadea28c3cccc1dd5244cd37da83c6",
+      "unchanged": true
+    },
+    {
+      "file": "environment.ts",
+      "name": "ENVIRONMENT",
+      "sha256": "bd711fb48c64ef9149d5639b93abcbf8ffef9c104dbf9f097cc189d71d5a719f",
+      "unchanged": true
+    }
+  ],
+  "formalSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "oldEvidenceBindingsVerified": 122,
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/acceptance.json",
+      "bytes": 237543,
+      "sha256": "abc4443d8e1b4cd07525435d45ad35f2978f27e39814c187f3a940201381513b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/analysis-code-verification.json",
+      "bytes": 400,
+      "sha256": "856d6872474710603602aa845767fd1c9c7eb7002b08f7a3df5a9ade78709e6e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/analysis-result.log",
+      "bytes": 107416,
+      "sha256": "9368083e66234a5280027bd1ca16b1b05a031d4a9930fd5ef6070056a8158d79"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/analysis-tests.log",
+      "bytes": 368,
+      "sha256": "266184f06483d656ebe1fe3e8fbec0eaf81080fd12c86b56d3016d60fdee335b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/analyze.mjs",
+      "bytes": 12026,
+      "sha256": "242bb20efa9e5cf2d65db1c72bc6313e879c01f88ba44ad8e84fd63edb832cb3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/browser-observations.json",
+      "bytes": 34628,
+      "sha256": "62e015fc55c63e958f65a2028d3fc7238e1c536485027faa8e12b2a46f8e1190"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/browser-regional-observations.json",
+      "bytes": 5578,
+      "sha256": "1e39ab089ede33390fa6ec06e8ea0a7f2c078ebe7687f7f866ebdb0e6db19e7f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/browser-verification.json",
+      "bytes": 1959,
+      "sha256": "1533437b001786217a4b042a8321536d737ecf0c36cabd76f93ddc29fcb532bc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/budget-and-regions.png",
+      "bytes": 115204,
+      "sha256": "f46274ecf423ffeda246f9ca9d2636625b3148849f49724ea0f2fc22773696b4"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/budget-and-regions.svg",
+      "bytes": 95483,
+      "sha256": "97ab80549781347674db73bba09fd10bfa51159db7cd5b21aa8ed07ce1db9477"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/build-viewer.mjs",
+      "bytes": 2112,
+      "sha256": "28804227f9d07aad569d39fa95ced964fa9b79264e01fa100cc582ef6a5010bf"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/code-verification.json",
+      "bytes": 1209,
+      "sha256": "03209a643808b123c5ca2b08da9f8f0bfee33be82718bfc546f19bdffaab4dbf"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/comparison-contract.test.ts",
+      "bytes": 9726,
+      "sha256": "7388e1888170b4dfc24c9f64dc62fe26072b05d35d9a26dfc163c44d8a9fb720"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/comparison-contract.ts",
+      "bytes": 6049,
+      "sha256": "f84bae696dafdd2bcfe0977cfd1edb041de7d6e1e268940cfa59c0ba53dddbf7"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/components.jl",
+      "bytes": 12019,
+      "sha256": "0d86797bd44bdc242f7fa345ae4aa094e2fdde18e928df0383cc11d0fe6a6db6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/corrections-red.log",
+      "bytes": 11540,
+      "sha256": "f9de0c5934b81615714c71c2a105f90027412bc9d995e04dc4b537be6132f71a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/corrections.jl",
+      "bytes": 1895,
+      "sha256": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/corrections_test-native-status.json",
+      "bytes": 461,
+      "sha256": "fc235abbdf06db1c14ee98fdd0068b558f03b64c64b645ec7d8d6cd0e404a6f4"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/corrections_test-native.log",
+      "bytes": 120,
+      "sha256": "16c0d58ed789240f50dd89d7d2894409ddf5940e82917199f90dba0fb2097794"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/corrections_test.jl",
+      "bytes": 1574,
+      "sha256": "39428a6c641ce6e32927bc10e7c6803bcc1dc5bce0546f93cfd8253602361bab"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/final-replay.jpg",
+      "bytes": 95892,
+      "sha256": "abc3297846f310135e56d96cfe239ef25cd581c96ce8075f7c6c825c9bf92424"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/india-seasonal-july.jpg",
+      "bytes": 95892,
+      "sha256": "abc3297846f310135e56d96cfe239ef25cd581c96ce8075f7c6c825c9bf92424"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/india-slab-july.jpg",
+      "bytes": 95107,
+      "sha256": "975e2df6026d6e2cf7c6e2e6d7686cea8fb8a45b8656f5cccc564ccb77892ac6"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/make-report.mjs",
+      "bytes": 14062,
+      "sha256": "c659930f8d4cfa3a37ea0b793ae542bd82ce03b89cdf07a0afdea9e9fbd3a9a8"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/manifest.mjs",
+      "bytes": 4210,
+      "sha256": "db55383e8fd53fbad223e0a2744d0522136abfb7a9b1d44e3fb8a169d4e650e4"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/moisture-diagnostic.mjs",
+      "bytes": 753,
+      "sha256": "4310625c740e329728a276063bfa3ef79af1edc9a1741a89a934934fb8e24fdb"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/moisture-diagnostic.test.mjs",
+      "bytes": 950,
+      "sha256": "1a24d702fc11d45870650913bc41f65cf488992d5ca54a48fb503ef8780299e7"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/moisture-test.log",
+      "bytes": 274,
+      "sha256": "30397697753b493f536ea8653ce230825b810e002144dc0a0f9a4a3c4c664185"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/monsoon-comparison.png",
+      "bytes": 285936,
+      "sha256": "c1975d56076a01f509a79f4e002f15636c4cc834a29e315937c10f37d03916a8"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/monsoon-comparison.svg",
+      "bytes": 118505,
+      "sha256": "23ac852bfe9f9f069cb8c26a1377eb8850386b92469e8341358831ba4082b763"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/north-australia-seasonal-january.jpg",
+      "bytes": 95585,
+      "sha256": "5c5a7a8b1fd1cedf4fbc5bcf6c04950de51ee1a2b2b5b38b5f13ac5c33de7517"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/north-australia-slab-january.jpg",
+      "bytes": 94677,
+      "sha256": "6d963c632bf508fc24c7f1b711eae8fa3da9be7321112422a2c10260a5d66537"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/plot.py",
+      "bytes": 3216,
+      "sha256": "80a321cd7199f28144090c812235e8be2e0ccdee110c5f4891c28411c3620077"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/preview.ts",
+      "bytes": 13916,
+      "sha256": "0956c46633e086ee118f6180d86e1f3fd020c3d8ed7b1fd4cee8f7999cc73b75"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/probe-first-failed.log",
+      "bytes": 4264,
+      "sha256": "15f131bf6b617856259d32b05cd7195077f1e08d1eceefff6d49b71763b7406e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/probe-native-status.json",
+      "bytes": 1511,
+      "sha256": "de87d5900139fe3deef4f13b1f63eea1646ed6140e1a7093da792300b3da136b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/probe-native.log",
+      "bytes": 2259,
+      "sha256": "697ba580a417f2244efae32d2370ebb749f359266d748b8c0a55d6b79433baab"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/probe.jl",
+      "bytes": 4783,
+      "sha256": "e383e2114d15ef055b544cc2dc575d4a8e67aff419710af3a0649598479535c2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/protocol.md",
+      "bytes": 5245,
+      "sha256": "212ffbe9eb6e50818bbfaee2d38cda35c02220acfeaaec9ecf5966e8aca02f94"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/README.md",
+      "bytes": 5471,
+      "sha256": "1ea6ecfe65788bc060c5f47fd63faed4446ca7386f781a309fd1357e75c5bc14"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/reference-january-wind.jpg",
+      "bytes": 93142,
+      "sha256": "31daf6557028a4050e33f7fc34c4d1af5abe73f9e086c36c47363e4ff7cbda82"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/reference-july-wind.jpg",
+      "bytes": 93994,
+      "sha256": "67eb43d1a4c42873661f466365fd509782a8aae615209615c6da5b2aac80ba6e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/remap-test.log",
+      "bytes": 426,
+      "sha256": "6628097c74dd2dabeebd2e6718b16bfdd5830698c803c312d13e04aa68417f34"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/repo-test.log",
+      "bytes": 27446,
+      "sha256": "06d21dc6bb057f2e7af397477c83d8da39fcc0eb0cebeb79987c4e05d511d124"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/repo-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/report.md",
+      "bytes": 13124,
+      "sha256": "24b07b8dab8d9d6a11e440278ca5b6c8d5d387eaf7fccbe9fb3aae678c6ae73f"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/restart_test-native-status.json",
+      "bytes": 1539,
+      "sha256": "98c7c8ccb37e7baf94e338038578de12be2f8e41d8ecb4e00997dc40f72267da"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/restart_test-native.log",
+      "bytes": 3756,
+      "sha256": "966a9ab7ae50984f29911b43770cee5ded6e5460359686299d09d67619a72d27"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/restart_test.jl",
+      "bytes": 2911,
+      "sha256": "1f9d3cca5699dff1a21064f3fbec20e83b7c705fd53dfa708ae82640ff295448"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/resume-analysis-verification.json",
+      "bytes": 1310,
+      "sha256": "0b4b5bc38cf6b4b1ff4d7cf6785967fda64b5e82aac014c3cc2a6d79f69defef"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/resume-analysis.mjs",
+      "bytes": 1627,
+      "sha256": "7f797dca36d1b19e72da16606617524f6cf986c453d3480eb766ffcb5dd28590"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/resume-corrections-test-native-status.json",
+      "bytes": 1555,
+      "sha256": "9c1ec97a45fd4664ab6e0cf60acdfc8457b4fc30595e909a7f75a421997ff2fa"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/resume-corrections-test-native.log",
+      "bytes": 120,
+      "sha256": "16c0d58ed789240f50dd89d7d2894409ddf5940e82917199f90dba0fb2097794"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/resume-probe-native-status.json",
+      "bytes": 1511,
+      "sha256": "f5c288ef85bc7601a40e555fe6afbc5f174418f2ea1b00539bffd51319bf8509"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/resume-probe-native.log",
+      "bytes": 2767,
+      "sha256": "2bd692f822a3639370f7a1d78fe606631f075f941e2d74f527e9623b1c511a9d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/resume-restart-test-native-status.json",
+      "bytes": 1539,
+      "sha256": "3a1732cda372215b50bebc21776431022a49b5d5c5a55b4186e924c5596f30cc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/resume-restart-test-native.log",
+      "bytes": 3756,
+      "sha256": "abfbc99ea4a8e953dd9f3396286351f34bb44e2ea14089cb8b35c757f37128dc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/review.md",
+      "bytes": 1742,
+      "sha256": "bdf5f63f965fe17d7020c4d13c303e6897435e516f5a61248b6fb18158c63343"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/run-julia.mjs",
+      "bytes": 1792,
+      "sha256": "5897c0969151ac62791e08a09f9215645107e691a5318e657d559830c8975e34"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/run.jl",
+      "bytes": 14978,
+      "sha256": "66fe52e0161798ac12c02561470b22666e4bbb52ee3e9189b749d6118c0b4c35"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/seasonal-january-top-temperature.jpg",
+      "bytes": 61758,
+      "sha256": "d374d968e9a577a5c1521a185ba050bdc6149651e5998bcb4d13fdd00a675c42"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/seasonal-january-wind.jpg",
+      "bytes": 94212,
+      "sha256": "8cd2ffa99b7d951e641f2d6d8e5296bbdeaf9f59531bf647bf2f0b6bf6c76cee"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/seasonal-july-wind.jpg",
+      "bytes": 93665,
+      "sha256": "ad65e4e305640cfe072f76b1c13ea93d86908ea436632b99a763b6aa7d79ccaa"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/seasonal-native-status.json",
+      "bytes": 1503,
+      "sha256": "af1b69d6025c61542d06bae7854c86882b054d566706fc4294c87f015d9d4f84"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/seasonal-native.log",
+      "bytes": 22923,
+      "sha256": "c15f47c305f0b676b2388d0163a8ab6bdfa051d4b30b7f86e0be4505cb36138a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/seasonal-smoke-native-status.json",
+      "bytes": 1503,
+      "sha256": "f4bcf679f1012ac989aed35b0ca8fcb3bba7669874f8ed3f391439ab5c9b703a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/seasonal-smoke-native.log",
+      "bytes": 3929,
+      "sha256": "110ac23c5b7f99685b7981359f65be3e2cf3b4c4768be1b69d638b31960fa219"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/slab-january-wind.jpg",
+      "bytes": 93303,
+      "sha256": "d7b0e502ce8e844c3e2187133a0fd4b6ca2b506edda88c2c6dab0130d8a89a41"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/slab-july-wind.jpg",
+      "bytes": 92815,
+      "sha256": "534152fa532232ec32d8cd5ecb93d0ecbebac42722b102c7f427507a4484c7d2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/slab-native-status.json",
+      "bytes": 1503,
+      "sha256": "51c9474099d251984f43581426701a48358d70bd031ab0d729c8c9b5085c2438"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/slab-native.log",
+      "bytes": 22627,
+      "sha256": "ecbc498d9def1082b25133e48bc256713a18840bc8ed4ce4806c272739825079"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/sst-gradient.mjs",
+      "bytes": 961,
+      "sha256": "6a68474526b5cd5ab768c182d3e4a8fe9ba26976af267dec4fc0225242892778"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/sst-gradient.test.mjs",
+      "bytes": 603,
+      "sha256": "0f3f96ef4eebc9ebca59baff09606f9cedc692659d96ba3e2dcd60aba974ca32"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/unfixed-mass-reference.json",
+      "bytes": 1606,
+      "sha256": "2bc107f64e32acbafc9a1c8abf1b20405b5f4df2c515131edd7c3f0fdecbed32"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/verify-browser-observations.mjs",
+      "bytes": 2929,
+      "sha256": "f2a0cea7f98781aa48b3914960c17e10d58bcd08e0471c5cf298a5670a244987"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/verify-bundle.mjs",
+      "bytes": 2387,
+      "sha256": "875964dcf8ccc60958154d78cdc5b9fd69599db555561aae1a4c8384adf79b23"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/verify-code.mjs",
+      "bytes": 2692,
+      "sha256": "1f5f082788fbbace83facae8f4e401c727b566225ad162232a501408113fefbe"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/verify-display.mjs",
+      "bytes": 1969,
+      "sha256": "3625458b26ba36c91ab2b420af5ac6a999ba5b1bf6e29329bf99beb85924454e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/verify-final.mjs",
+      "bytes": 3484,
+      "sha256": "2e6080ccf0f4d7cd1330fab22f3d25bcf5601a40b65adb9ea2283c4238982b0e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer-build.log",
+      "bytes": 151,
+      "sha256": "73b25f63c1036e8a6903ec81fa40102b3a69345dc88821d48e862b0f3480795a"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer-bundle.log",
+      "bytes": 280,
+      "sha256": "a556ada10209a194f86eba963b19e1b383ad6830225ba93767e5df028d364928"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer-contract-green.log",
+      "bytes": 1403,
+      "sha256": "29c34a6df45f3aec6ed649d1a81021e736185e0e8645ec5420b661dc27cfa211"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer-contract-red.log",
+      "bytes": 11899,
+      "sha256": "969c957639e78bb380dae3d37f4ca90d3e36e4e2ca27999e75abfd17b236b6ea"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer-probe-red.log",
+      "bytes": 3352,
+      "sha256": "1920aa3cf5b66cad4a40290cce62c785d48ab4ec8963a679e4763a8557af11d4"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer-test.log",
+      "bytes": 1408,
+      "sha256": "16dc4532a5ffc4280867fa26c6ca38525bb8177214bca2f382af3c0311ef6b84"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer-typecheck-verification.json",
+      "bytes": 147,
+      "sha256": "dc955f844320c5e75837f9342d291fb969352daf8e83033ed33bffce82ee0b68"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer.css",
+      "bytes": 5474,
+      "sha256": "95ade48096a0bd25320a8fd56e5567e4491531f16cae45a561f081e231871eb9"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/viewer.html",
+      "bytes": 5056,
+      "sha256": "a1db115b5240d9a26b37eb0aa2a160f77be8b83b0d6069dfb69bc0ff90ca31b3"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/VIEWER.md",
+      "bytes": 7632,
+      "sha256": "f0e1d378afe26b4b801047cc0989f7aa27ae7726f7eea814a3e122949cb8941f"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/analyze-metafile.json",
+      "bytes": 2762,
+      "sha256": "6d3f76e7766594110eb9ba25bb406acf0d300558b8e57c26075b7036b90a8c13"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/analyze.bundle.mjs",
+      "bytes": 21569,
+      "sha256": "a94458d308773f2fdb31cef1c3502f80d0ee2cd3d1e1dee6678d6879270faf66"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/comparison-contract.mjs",
+      "bytes": 9464,
+      "sha256": "682bc465813ec93459259c3591c52d28cb41e591314a190cb6bb3b87be8b942a"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/comparison-contract.test.mjs",
+      "bytes": 20495,
+      "sha256": "56021a224c565b711ce53588084b7eeb91e4792f8021a93cbe2fff1a854b1a58"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/comparison-display.json",
+      "bytes": 20679668,
+      "sha256": "69845cfa4e8d80a682477d9cebc348362ac0a1b90ef129ed882868f88788061c"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/index.html",
+      "bytes": 10475,
+      "sha256": "1ec642f06d4d2e066109d6c04d53fd9c1995c27a94b0899b05f90b397ae21437"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/preview-metafile.json",
+      "bytes": 21187,
+      "sha256": "f3ee384043b7ec143cd0913215a9958f81e136f08f851c394c8526a916e2e979"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/preview.js",
+      "bytes": 176896,
+      "sha256": "2950158617b17f06e7367facfe4f50a74460e0e70f929c0c508a0b0bf6413516"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/probe-results.json",
+      "bytes": 2720,
+      "sha256": "4b99a3adb69ad6ce78490b4dce333057628dafd5b2c4a7053865cbdc501c94bd"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/restart-verification.json",
+      "bytes": 2239,
+      "sha256": "7dd8d13026c24ea4eb2a0f3310c465ff6ebc10ce14040f6160aa84ccf9e23c1a"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-initial-inventory.json",
+      "bytes": 1513,
+      "sha256": "e2981869eac804f8974278760cd5ed3801a0c4eca6ff521c384c7fb9ed00f3f8"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-launch.json",
+      "bytes": 1553,
+      "sha256": "633e82968c22f6a85052d48f313616747a0706fa58bf2c910731a5a39aa3bcfb"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-progress.json",
+      "bytes": 256,
+      "sha256": "772843637d7b642cc2a77d8110314191fdd3c74296bdf2e3334b26aaccd18ddf"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-smoke-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-smoke-initial-inventory.json",
+      "bytes": 530,
+      "sha256": "26dd8b805c94d9ffc23214516494a628cdf97248b5ced6eff198f4f872825cb1"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-smoke-launch.json",
+      "bytes": 1553,
+      "sha256": "701c5426d5f6aa8c09a7925dfb5979b6465ee80d317580ae429472197ba662d7"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-smoke-progress.json",
+      "bytes": 256,
+      "sha256": "a3c3275bbab4c02d06e9ba8accb28c11f92c195732899149e5bf024f15968ad0"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-smoke-statistics.json",
+      "bytes": 2979343,
+      "sha256": "f7c70b6aa4f8942e3456c8dc0e5516d9175be3c818a9638d4014f7c5f22b0c2d"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/seasonal-statistics.json",
+      "bytes": 38491610,
+      "sha256": "059986b3a16a5bd12de525d587a59902e7a15d667fc27c95f955536f1c038645"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/slab-geometry.json",
+      "bytes": 244030,
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/slab-initial-inventory.json",
+      "bytes": 1513,
+      "sha256": "e2981869eac804f8974278760cd5ed3801a0c4eca6ff521c384c7fb9ed00f3f8"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/slab-launch.json",
+      "bytes": 1549,
+      "sha256": "28117e20d7772de27ae04f7c4af4dba38643fa8c0c97ddbb6f9505d79462c60d"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/slab-progress.json",
+      "bytes": 250,
+      "sha256": "a4fadecc3a0c7ee6107b56dc1427dd19e15cd14e93086b48d2c9313e51d02b4f"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/slab-statistics.json",
+      "bytes": 38683493,
+      "sha256": "eaf2b73b33cda662b2ef6653292f6a71d39f8b602e67b66d16ddcb1dc2f1a2e0"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/sst-source-metadata.json",
+      "bytes": 192,
+      "sha256": "895a9ec4170708d2da726ff3fae51ebffef8728f17d7887ba6cd0739542e6307"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/viewer-bundle-verification.json",
+      "bytes": 280,
+      "sha256": "a556ada10209a194f86eba963b19e1b383ad6830225ba93767e5df028d364928"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/viewer-display-verification.json",
+      "bytes": 2434,
+      "sha256": "b3b1f0ed57fe0508ebc8b03019848ae64295bd9b97e3e76269ae29396d62665b"
+    },
+    {
+      "path": "build/earth-speedy-budgets-sst/viewer.css",
+      "bytes": 5474,
+      "sha256": "95ade48096a0bd25320a8fd56e5567e4491531f16cae45a561f081e231871eb9"
+    },
+    {
+      "path": "config.js",
+      "bytes": 682,
+      "sha256": "a433230caaf102eea16814b365e4f3df7d5dba556268907fcac56502feecca0a"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/util.js",
+      "bytes": 3606,
+      "sha256": "97801e98a1cc91a330fe1b0e56bd5254d6a1305eb7cd2cb8e25c8b69212dcfa9"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/orient2d.js",
+      "bytes": 5281,
+      "sha256": "ba1af2b1ea71924fa2e0a3e50b8972d3a83ab9a9f406dd73e851c9763a8eb741"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/orient3d.js",
+      "bytes": 14054,
+      "sha256": "c4f1939938354b1129f55b3832196d633ed307799699992447b2d3d4fd75d8f8"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/incircle.js",
+      "bytes": 26758,
+      "sha256": "784e4c897b00289869c9a9e51e0281ac550853e399a8df664afaf29494fe85b5"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/insphere.js",
+      "bytes": 23964,
+      "sha256": "5729d8c87b8f9c056fd7239b39898bdbf0c4f204290a356acc13d29c82ff5e9e"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/index.js",
+      "bytes": 233,
+      "sha256": "1e26fb2e616a0fa84dadb3a15633d9743671884d82f1abb124e20292fd0ab86d"
+    },
+    {
+      "path": "node_modules/.pnpm/delaunator@5.1.0/node_modules/delaunator/index.js",
+      "bytes": 19472,
+      "sha256": "1a941d291859ebe1f6755dfbc2024686103c5ab2f31659177c01088ab88c2ca3"
+    },
+    {
+      "path": "node_modules/.pnpm/hash-int@1.0.0/node_modules/hash-int/hashint.js",
+      "bytes": 331,
+      "sha256": "c8c0a9d4fe917c379b5bf39153e2ebd8b4079d7ad25d319d468a48aec23340de"
+    },
+    {
+      "path": "node_modules/.pnpm/@redblobgames+prng@https+++_416aa289375707ae1ec9f251aa57e488/node_modules/@redblobgames/prng/index.js",
+      "bytes": 576,
+      "sha256": "9eff784b4e9bf10e941374c432209591dab7fb6f36dd01079bd5100857b581b4"
+    },
+    {
+      "path": "dual-mesh/index.ts",
+      "bytes": 10974,
+      "sha256": "7d0a858bef75cd14126b696f4210a60fd0db3c89046603dc69a24eb56f875b4a"
+    },
+    {
+      "path": "sphere.ts",
+      "bytes": 2610,
+      "sha256": "43546831059ecec49c5240a5e08ce6b8b8de55d3ecf707d6b747c0b7dc211bd6"
+    },
+    {
+      "path": "sphere-mesh.ts",
+      "bytes": 3715,
+      "sha256": "756b91db98ae063e98e23a33e906d400850549e232de05e501051e2dd8a65cb1"
+    },
+    {
+      "path": "mesh.ts",
+      "bytes": 368,
+      "sha256": "c8f439b7226f101c1037a93da0cb19acbdd9288d5240b9c7796311d0f5d7bc0e"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/common.js",
+      "bytes": 1366,
+      "sha256": "7d825b979e1f3f30d9cf4945fc6917f3076879f20be2524af8b077e80c27babf"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/mat2.js",
+      "bytes": 10014,
+      "sha256": "d77e165b600bec9ffa03ddcc4666c43e097a74e290cc55471b2d49e54395f179"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/mat2d.js",
+      "bytes": 11176,
+      "sha256": "33a5f6cb7a0930413a603ff7f8de85b52a8f86a90e888879abe08e30677233ce"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/mat3.js",
+      "bytes": 18909,
+      "sha256": "a025ef02dc2584a4371bd73fb6ab4da82373a063361f93db793be869bd1aefec"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/mat4.js",
+      "bytes": 50779,
+      "sha256": "83bad9e6391ffa4401c6e7b4d8375338bc7fcb8c9263256f267f5f050d4cd4c2"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/vec3.js",
+      "bytes": 19232,
+      "sha256": "63eddc5433fa60fbcc241171b7bbf8305b29b203acea29576d8d7239b4f51667"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/vec4.js",
+      "bytes": 15368,
+      "sha256": "11562bccc50e673427238bb5f498802256b8d946098b9fc58efd76677ce18087"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/quat.js",
+      "bytes": 18213,
+      "sha256": "f83fe7c4136ea8006fe53ad9e092a1a7ab674e8c7299a9fa17685e76f2c8d4b7"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/quat2.js",
+      "bytes": 22130,
+      "sha256": "fb9294db615f862226d1665ca20195481faf2f2d2f7b14f1537b04664ff54aa6"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/vec2.js",
+      "bytes": 14244,
+      "sha256": "58c71a9bd30e1faba0530cf2f96cb6c90161283ed368d05936340ea65e13dad6"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/index.js",
+      "bytes": 436,
+      "sha256": "2f3fd5db07a7a4d61751561c0fcba157d5e8d93147abfa083176978cf1af208c"
+    },
+    {
+      "path": "surface-grid.ts",
+      "bytes": 6179,
+      "sha256": "5af822cc3ce30a09db820841d15a017dd2850f72ab0c51ade2a14162d6f7e02c"
+    },
+    {
+      "path": "colormap.ts",
+      "bytes": 1728,
+      "sha256": "4a2fc0b683f5fe07ecce4f2e7309247d9100ef96c78e66c1927711e4b70310c5"
+    },
+    {
+      "path": "geometry.ts",
+      "bytes": 5947,
+      "sha256": "266d1868d4a3d8f3632a9c88b8259d73334c19e2143bf63412468427a45eaa39"
+    },
+    {
+      "path": "sphere-view.ts",
+      "bytes": 3900,
+      "sha256": "07542f7c18a900748e5a1158cb0f44e37b1dc7534630e32ba774dcadd8e3d187"
+    },
+    {
+      "path": "planet.ts",
+      "bytes": 2632,
+      "sha256": "15d7f4c11ccd79c0799063b0182ea73af4f589c224383e565d4273d7d8b5fc3f"
+    },
+    {
+      "path": "astronomy.ts",
+      "bytes": 3345,
+      "sha256": "8a944e91c2182252b646fea1cbe1daae5d9be1f9199b958185b98ecae654fc1a"
+    },
+    {
+      "path": "planet-render.ts",
+      "bytes": 6749,
+      "sha256": "a6759b8f1da35e1e514bf93c7606653492dc2cde6f320013db90aae1f685c6a0"
+    },
+    {
+      "path": "terrain-preview.ts",
+      "bytes": 1689,
+      "sha256": "325b197850cee488923034ba3f6c3b465521f68cfd2049181cc14b33775e7011"
+    },
+    {
+      "path": "render.ts",
+      "bytes": 50023,
+      "sha256": "d3ff738ac1fc9a935f520e67702009023913e400443a747dbbda83ece9056330"
+    },
+    {
+      "path": "terrain-parameters.ts",
+      "bytes": 1978,
+      "sha256": "a216ef130eb3df77ddcb8a4a964ed9a7c60744ae35915f898f52a5d1fe73eee6"
+    },
+    {
+      "path": "terrain-document.ts",
+      "bytes": 6976,
+      "sha256": "92031087931b57f72b650f2d0a811bcbcfd7a857304df881692d62f43be2ea39"
+    },
+    {
+      "path": "terrain-preparation.ts",
+      "bytes": 1807,
+      "sha256": "b48da26e72cc1420d48fe96c80968d9ebe420a3f0b9fb0e7bc7bd4bff8561093"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/display-contract.ts",
+      "bytes": 6450,
+      "sha256": "d77cb78df37352cc9bd80654e35115ef429ff681a373a90c27291124762b87db"
+    },
+    {
+      "path": "build/_worker.js",
+      "bytes": 15607,
+      "sha256": "3add44407c9fca21b06ff9662ff0a680500852934b946439095f77b473cd18b3"
+    },
+    {
+      "path": "worker.ts",
+      "bytes": 3777,
+      "sha256": "427d7f4ded288475f09300527e443609a32406b408d18085003d8bd5b325f03a"
+    },
+    {
+      "path": "map.ts",
+      "bytes": 16612,
+      "sha256": "2cac147ccf33d45d6c2c14d3b6bfe998707a8299357e42b620411d15aa23b40c"
+    },
+    {
+      "path": "build/earth-speedyweather/annual-statistics.json",
+      "bytes": 35244458,
+      "sha256": "cd4fb1544f135578695e9bd13fcb055feff60f00dcb53ff37ca87d1bbe4e3a59"
+    },
+    {
+      "path": "build/earth-speedyweather/annual-geometry.json",
+      "bytes": 244040,
+      "sha256": "25cd1f70bbe9a8954969b15d544d0bcfa2716a8fb9c21203d0133f6b890ffcaf"
+    },
+    {
+      "path": "build/earth-speedyweather/display.json",
+      "bytes": 6895571,
+      "sha256": "37b8db91d185d46bc1a7453d71cb04576d09018933fb53d909f8fd529d000b9f"
+    },
+    {
+      "path": "build/earth-speedyweather/smoke-statistics.json",
+      "bytes": 2824112,
+      "sha256": "93a124423ef7de641bf876e8e02a0b3805b8449bd244014facee0d8bf46b8626"
+    },
+    {
+      "path": "build/earth-speedyweather/annual-initial.jld2",
+      "bytes": 7484904,
+      "sha256": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/manifest.json",
+      "bytes": 27842,
+      "sha256": "128837c49b720e38789998593112f430b245b1b02142b6877800df0007e85a4d"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/gpcc-grid.json",
+      "bytes": 1066816,
+      "sha256": "01ed704dd31cec9376d27fafd902cfeb5c77862f7d8b3cf2e9e6b5d4226dbbc4"
+    },
+    {
+      "path": "build/earth-seasonal-pressure/full-control.json",
+      "bytes": 6244382,
+      "sha256": "186e0f3a0140a936c89bf23984125bad2467a5eb3c826dca88cb0e798731fa5f"
+    },
+    {
+      "path": "build/earth-seasonal-pressure/full-control-day0.json",
+      "bytes": 10833063,
+      "sha256": "becdf2063c5c3223b22cd52443d8e7c4b2b3f2509cc6fbc7400ff607337af6e8"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/snow.jl",
+      "bytes": 6445,
+      "sha256": "c7ce3f905e9e5a2b673bb55fdeda39bc419d39c6304351749e88c12c4f5fd013"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/069c68617ce4163dca4c076582b4c31cb52d3b84/land-sea_mask.nc",
+      "bytes": 91667,
+      "sha256": "4be8a8aa725804aa69ff08e79de341d1f74545d97163380342d91958c1b9babe"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/70cd1588d89b925ea206267e4fffa045e72bebc0/orography.nc",
+      "bytes": 2601852,
+      "sha256": "f362a5042a5947d5ded79b9684f9e89682627a7f6f8ac2737c514425d27f930b"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/a3600cf8a624129a6194bdd789da548967a46b2e/vegetation.nc",
+      "bytes": 19967,
+      "sha256": "e76bdfb6c93d63d7ccab501ed70d55f3f8c8f42892400bfee939c971c907670c"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc",
+      "bytes": 48975,
+      "sha256": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/e346428f503ddb147b4c41301aefc43d659b4fe1/land_surface_temperature.nc",
+      "bytes": 47098,
+      "sha256": "3844d2b9ffd1d2935a248ef036b3b0aa8236e8c4d6eee28cf223a3b968f78e34"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/f907c82f9cc65e1965cf16fbae6de3788a1badaa/soil_moisture.nc",
+      "bytes": 93239,
+      "sha256": "79a6eeb31a8154c7dbf3f57a376afdcd0f7f9d6f5c223e222fcec24c43485368"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/Project.toml",
+      "bytes": 3655,
+      "sha256": "14e573d854c2ac43bc549be8dcce580c4a61262c2e9f33bea603ed55d2c9ba62"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/models/primitive_wet.jl",
+      "bytes": 10058,
+      "sha256": "bc0702587e6e2e02f97f125d9cc82dc5baff74d3d9417779064bcb1ffcdca0e9"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/time_integration.jl",
+      "bytes": 8337,
+      "sha256": "aa712aea92afa43da10e85865a00cff73cf0caaec7ed114bf396490e9181cb92"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/transform.jl",
+      "bytes": 9418,
+      "sha256": "1c9f522668aa3b03278aedb7317e6e080351321bc1dcc794c20a40770666fcf7"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/steppers/leapfrog.jl",
+      "bytes": 14166,
+      "sha256": "60f4fdbb0077ce40022a81a26f81f814d7a3792830c7b0ab971a620a464b0885"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/hole_filling.jl",
+      "bytes": 530,
+      "sha256": "c74cabc36885096debfba101731f293b0f3eeea39db9521524efc7606afa8264"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/horizontal_diffusion.jl",
+      "bytes": 20011,
+      "sha256": "7416aaf3fd0f94985aaa6bfc85dd57cae1a0ebeed2277517ca69c2fae70c509f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/ocean.jl",
+      "bytes": 14945,
+      "sha256": "8fc39bdc0b8f68300c5f1546ed3652eb5f672cc0db585c1a7ce02873e5f7b701"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/sea_ice.jl",
+      "bytes": 5531,
+      "sha256": "0dc5bba0d2efd64b5a76e5e3eb16814d3f0f75c125ed1a674d6a70da0d9109a8"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/soil_moisture.jl",
+      "bytes": 13845,
+      "sha256": "80d3123ec2050dcffdeefefb60512292bd1b055fd88e8f0b3b84db53e8eb4fa7"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/RingGrids/UqS6H/Artifacts.toml",
+      "bytes": 499,
+      "sha256": "0b81954121e7242306a536970011973099882891fb4b8fa36fc9241b5c05a3e8"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml",
+      "bytes": 207,
+      "sha256": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml",
+      "bytes": 49760,
+      "sha256": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083"
+    },
+    {
+      "path": "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\run.jl",
+      "bytes": 14978,
+      "sha256": "66fe52e0161798ac12c02561470b22666e4bbb52ee3e9189b749d6118c0b4c35"
+    },
+    {
+      "path": "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\components.jl",
+      "bytes": 12019,
+      "sha256": "0d86797bd44bdc242f7fa345ae4aa094e2fdde18e928df0383cc11d0fe6a6db6"
+    },
+    {
+      "path": "scenes/earth-land-sea/earth-simulation.json",
+      "bytes": 11364186,
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+    },
+    {
+      "path": "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\protocol.md",
+      "bytes": 5245,
+      "sha256": "212ffbe9eb6e50818bbfaee2d38cda35c02220acfeaaec9ecf5966e8aca02f94"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/diagnostics.jl",
+      "bytes": 1235,
+      "sha256": "7a8c8e991a2fec5aa8bdde65e75f9946adafc0d9ba7d0572fa70e976e911209b"
+    },
+    {
+      "path": "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedy-budgets-sst-20261012\\corrections.jl",
+      "bytes": 1895,
+      "sha256": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652"
+    }
+  ],
+  "archives": [
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/comparison-display.json.gz",
+      "bytes": 9686315,
+      "sha256": "2f505acdbd6e7bd504805038aa6afeca3fb9a38b2d1548c308b6190632fa946d",
+      "rawSha256": "69845cfa4e8d80a682477d9cebc348362ac0a1b90ef129ed882868f88788061c"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/slab-statistics.json.gz",
+      "bytes": 16751649,
+      "sha256": "c149cc254853819096f0b0099c4fa26c8e2b9379f418859ee1c65fb4f19f0e72",
+      "rawSha256": "eaf2b73b33cda662b2ef6653292f6a71d39f8b602e67b66d16ddcb1dc2f1a2e0"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/slab-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27",
+      "rawSha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/slab-initial.jld2.gz",
+      "bytes": 2024478,
+      "sha256": "98500ccb9f2038ec642da449a7771f67fffc247e513b60d7359183219b2d4151",
+      "rawSha256": "65de27c2abfe51fa4668fc1f09e25092705c4f293f0e44a87cdb10c0f90254c7"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/slab-statistics-start.jld2.gz",
+      "bytes": 7464201,
+      "sha256": "e99732d22e3b3e4181bb16a3658811ddd37293ef73142eeb504c61d50d15d71a",
+      "rawSha256": "2820c64d4219ce8f6c750fde95851f72fca72b556813f27f3cedc27dba46407e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/slab-final.jld2.gz",
+      "bytes": 7465499,
+      "sha256": "ca04f4a4cebe2cbfb65d49087e148a861af96e829106085d3a5f8844147b26a4",
+      "rawSha256": "9dd9004e7d74ba999c3709f5bbe6522a50d1fa22ac952d62bddc04349d303d94"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/seasonal-statistics.json.gz",
+      "bytes": 16630160,
+      "sha256": "c2cca19013067a6d6181781dee2f1e8d1c951c8aa4dd6dab464320f56956ea2c",
+      "rawSha256": "059986b3a16a5bd12de525d587a59902e7a15d667fc27c95f955536f1c038645"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/seasonal-geometry.json.gz",
+      "bytes": 39081,
+      "sha256": "3ece67fd5199fd4960e795d7dd117846b2f3ff86a5c15aa2ed79e6cac6e53c27",
+      "rawSha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/seasonal-initial.jld2.gz",
+      "bytes": 2024743,
+      "sha256": "c5a4debb6e7aa50237783663fb7c725d4d07447346def1b352b6daab3273eea0",
+      "rawSha256": "f44edfbdfee2b0a4bb5feeed46df5e9febaae8cf1c82c4603aa806aea66103d8"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/seasonal-statistics-start.jld2.gz",
+      "bytes": 7466877,
+      "sha256": "c14bc76b96f74ea79935c81e2b0963163130fda7a01d6743a9400b76577caf9c",
+      "rawSha256": "634467a97fb35c15154783f0c50600d86a65f49d13cc7996819fea41114e0e05"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-budgets-sst-20261012/raw/seasonal-final.jld2.gz",
+      "bytes": 7466569,
+      "sha256": "5b4f19f97161ba429f9f519e4c2baa3146284c073c8de46d2a9c17e009192478",
+      "rawSha256": "66bc1336fff2808dc3af6bf0cbf7a83ff290434b1926030e1897ba740fc16ce2"
+    }
+  ],
+  "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+  "limits": [
+    "Same 2001 initial atmosphere/land and physical ocean; 2006 states differ through actual integration.",
+    "Global pressure-mode dry-air constraint is explicit numerical correction; remaining atmospheric water residual is retained.",
+    "SST boundary includes external heat and native ice feedback; finite ocean water/ice latent inventory is unavailable.",
+    "Monthly T32 output is a single-year sensitivity comparison with GPCC climatology; regional climate acceptance remains false.",
+    "Display mesh detail is geography only; dynamical grid remains T32, eight layers."
+  ]
+}

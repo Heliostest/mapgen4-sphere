@@ -1,0 +1,41 @@
+{
+  "input": "build/earth-speedyweather/smoke-statistics.json",
+  "inputSHA256": "93a124423ef7de641bf876e8e02a0b3805b8449bd244014facee0d8bf46b8626",
+  "start": "2001-01-01T00:00:00",
+  "end": "2001-01-04T00:00:00",
+  "calls": 145,
+  "initial": {
+    "time": "2001-01-01T00:00:00",
+    "airMassKgM2": 9930.766760562276,
+    "airWaterMm": 45.42158778272518,
+    "landWaterMm": 45.05036918929187,
+    "oceanSensibleHeatJm2": 43566620605.89134,
+    "airSensibleHeatProxyJm2": 2525789736.909026,
+    "minHumidity": 0.000024488767723210088,
+    "maxHumidity": 0.030264507040974713,
+    "minAirK": 199.2738837630537,
+    "maxAirK": 307.21638020962695,
+    "maxWindMps": 35.299023335516914,
+    "iceAreaFraction": 0
+  },
+  "final": {
+    "time": "2001-01-04T00:00:00",
+    "airMassKgM2": 9934.226122243073,
+    "airWaterMm": 33.5299659818671,
+    "landWaterMm": 50.34217511361202,
+    "oceanSensibleHeatJm2": 43586123209.59826,
+    "airSensibleHeatProxyJm2": 2527681713.6481686,
+    "minHumidity": 0,
+    "maxHumidity": 0.016457928662813533,
+    "minAirK": 188.41059419803668,
+    "maxAirK": 308.30241432715144,
+    "maxWindMps": 49.44354562526945,
+    "iceAreaFraction": 0.0029465754520866553
+  },
+  "initialDryAirMassKgM2": 9885.345172779551,
+  "finalDryAirMassKgM2": 9900.696156261207,
+  "dryAirMassRelative": 0.0015529031321968034,
+  "originalPsGRelative": 0.000348347893390864,
+  "airWaterRawResidualMm": -0.16831919883405178,
+  "note": "Frozen original real three-day integration, same initial inventory. Original ps/g measures wet column mass; dry=ps/g−W is recomputed without modifying prior evidence."
+}

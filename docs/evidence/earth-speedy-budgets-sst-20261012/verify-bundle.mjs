@@ -1,0 +1,24 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {resolve} from 'node:path';
+import assert from 'node:assert/strict';
+
+const source=fileURLToPath(new URL('.',import.meta.url)),root=resolve(source,'../../..'),out=resolve(root,'build/earth-speedy-budgets-sst');
+const metadata=JSON.parse(await readFile(resolve(out,'preview-metafile.json'),'utf8'));
+const inputs=Object.keys(metadata.inputs).map(name=>name.replaceAll('\\','/'));
+const forbiddenInputs=inputs.filter(name=>/(^|\/)(thermal-runtime|simulation-document|planet-controls|water|thermal|runtime-state|painting|mapgen4)\.(ts|js)$/.test(name));
+assert.deepEqual(forbiddenInputs,[],'Replay bundle must contain no old physical runtime, controller, simulation restore or painting entry');
+assert.ok(inputs.includes('render.ts'),'Replay must use the existing Renderer');
+assert.ok(inputs.includes('terrain-document.ts'),'Geography must use only the terrain document decoder');
+assert.ok(inputs.includes('terrain-preparation.ts'),'Geography must use the existing terrain worker');
+const html=await readFile(resolve(out,'index.html'),'utf8'),js=await readFile(resolve(out,'preview.js'),'utf8');
+assert.ok(html.includes('<base href="../../">'),'Built viewer must resolve assets from the existing server root');
+assert.ok(html.includes('<style>'),'Built viewer must inline CSS for the existing tiny server');
+assert.ok(!html.includes('<link rel="stylesheet"'),'Built viewer must not rely on that server CSS MIME type');
+assert.ok(js.includes('build/_worker.js'),'Worker path must remain rooted at the existing server build directory');
+assert.ok(js.includes('build/earth-speedy-budgets-sst/comparison-display.json'),'Viewer must request the real comparison artifact');
+const preview=Object.entries(metadata.outputs).find(([name])=>name.replaceAll('\\','/').endsWith('/earth-speedy-budgets-sst/preview.js'));
+assert.ok(preview,'Comparison viewer output must be inside its own build directory');
+const report={status:'PASS',inputCount:inputs.length,forbiddenInputs,usesExistingRenderer:true,usesTerrainOnlyDecoder:true,usesExistingTerrainWorker:true,inlineCss:true,previewBytes:preview[1].bytes,browserChecked:false,realMonthlyDataChecked:false};
+await writeFile(resolve(out,'viewer-bundle-verification.json'),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify(report,null,2));

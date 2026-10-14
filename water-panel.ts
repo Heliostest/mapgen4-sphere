@@ -42,7 +42,7 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
         else {delete runtime.waterConfig.moistureScheme;delete runtime.config.airRadiationFraction;}
         runtime.invalidate();
     }));
-    const specs:[string,Exclude<keyof typeof runtime.waterConfig,'moistureScheme'>][]=[
+    const specs:[string,Exclude<keyof typeof runtime.waterConfig,'moistureScheme'|'liquidOceanEvaporation'|'compensatedOceanTransfers'|'upliftScheme'|'consistentLiftTemperature'|'buoyantConvection'|'coldFrontDisplacement'>][]=[
         ['water-efficiency','evaporationFraction'],['water-soil-capacity','soilCapacityKgM2'],['water-depth','initialOceanDepthM'],
         ['water-wind','windMps'],['water-mixing','moistureDiffusivityM2s'],['water-routing','routingSpeedMps'],
     ];

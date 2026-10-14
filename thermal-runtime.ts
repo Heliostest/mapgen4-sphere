@@ -140,6 +140,17 @@ export class ThermalRuntime {
         return rt;
     }
     private modelKey(planet:PlanetConfig,orbit:OrbitConfig) {return JSON.stringify([planet,orbit,this.config,this.waterEnabled,this.waterConfig,this.environmentConfig,this.iceInventory,this.refinement]);}
+    /** Opt-in closure migration: preserve every stock and budget origin. */
+    configureSurfacePhysics(options:{separateSurfaceAlbedo?:boolean;liquidOceanEvaporation?:boolean}) {
+        if(!this.model||!this.water||!this.environment||!this.config.separateReservoirs)throw new Error('Surface physics requires separate thermal/water reservoirs');
+        if(options.separateSurfaceAlbedo!==undefined)this.environmentConfig.separateSurfaceAlbedo=options.separateSurfaceAlbedo;
+        if(options.liquidOceanEvaporation!==undefined)this.water.config.liquidOceanEvaporation=this.waterConfig.liquidOceanEvaporation=options.liquidOceanEvaporation;
+        this.refreshEnvironment();this.key=this.modelKey(this.model.planet,this.model.orbit);this.presented=this.checkpoint();this.texture=this.surfaceTexture=this.waterTexture=null;this.refinedDisplay=null;
+    }
+    initializeLakeLevels(levels:readonly {lakeId:number;levelM:number}[]) {
+        if(!this.water?.routing||!this.model||this.model.steps!==0||this.water.elapsedS!==0)throw new Error('Observed lake levels require an attached time-zero terrain');
+        this.water.routing.initializeLakeLevels(this.water,levels);this.presented=this.checkpoint();this.texture=this.surfaceTexture=this.waterTexture=null;this.refinedDisplay=null;
+    }
     private compatibleBed(planet:PlanetConfig) {return this.landElevation!.map((h,i)=>h*planet.reliefM-(this.land![i]>0?this.initialLandIce![i]/(917*this.land![i]):0));}
     private allocationScale(requested:Float64Array,current:Float64Array) {
         const mask=requested.map(v=>v>0?1:0),weight=resampleClimateField(this.grid,mask,this.surfaceGrid);
@@ -188,7 +199,7 @@ export class ThermalRuntime {
         const m=new ThermalModel(before.planet,before.orbit,this.config,land,before.epochS,this.grid,{...thermal,radiationScale},before.initialEnergyJm2);
         m.restore(thermal);if(m.stepS<before.stepS-1e-9)throw new Error('Terrain edit changes the stable integration step; reset climate explicitly');m.stepS=before.stepS;
         const w=new WaterModel(this.grid,before.planet.radiusM,land,height.map(h=>h*before.planet.reliefM),m.temperatureK,this.waterConfig,undefined,previous.initialTotalMm);
-        w.oceanGlobalKgM2=previous.oceanGlobalKgM2;w.atmosphereKgM2.set(previous.atmosphereKgM2);w.elapsedS=previous.elapsedS;for(const key of ['precipitationKgM2S','evaporationKgM2S','meltKgM2S','dischargeM3S'] as const)w[key].set(previous[key]);w.snowfallKgM2S=previous.snowfallKgM2S?.slice()??null;w.setWinds(previous.windEastMps,previous.windNorthMps);
+        w.oceanGlobalKgM2=previous.oceanGlobalKgM2;w.oceanCorrection=previous.oceanCorrection;w.atmosphereKgM2.set(previous.atmosphereKgM2);w.elapsedS=previous.elapsedS;for(const key of ['precipitationKgM2S','evaporationKgM2S','meltKgM2S','dischargeM3S'] as const)w[key].set(previous[key]);w.snowfallKgM2S=previous.snowfallKgM2S?.slice()??null;w.setWinds(previous.windEastMps,previous.windNorthMps);
         w.landPrecipitationKgM2S.set(previous.landPrecipitationKgM2S);w.oceanPrecipitationKgM2S.set(previous.oceanPrecipitationKgM2S);
         w.landPrecipitationKnown=previous.landPrecipitationKnown;
         if(this.environmentConfig.terrainWater) {

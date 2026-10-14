@@ -1,0 +1,24 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
+import assert from 'node:assert/strict';
+const folder='docs/evidence/earth-speedyweather-20261012',out='build/earth-speedyweather';
+const load=async p=>JSON.parse(await readFile(p,'utf8')),sha=b=>createHash('sha256').update(b).digest('hex');
+const [manifest,ui,data,j]=await Promise.all([load(`${folder}/manifest.json`),load(`${folder}/webgl-verification.json`),load(`${out}/display.json`),load(`${out}/annual-statistics.json`)]);
+for(const entry of manifest.bindings)assert.equal(sha(await readFile(entry.path)),entry.sha256,entry.path);
+for(const entry of manifest.archives){const b=await readFile(`${folder}/${entry.file}`);assert.equal(sha(b),entry.sha256);assert.equal(sha(gunzipSync(b)),entry.rawSha256);}
+assert(manifest.bindings.some(v=>v.path==='build/_worker.js'));
+assert(ui.webglRendered&&ui.final.ready);assert.equal(ui.warnings.length,0);
+assert.equal(ui.january.month,1);assert.equal(ui.july.month,7);assert.equal(ui.upper.levelIndex,1);
+assert.deepEqual(ui.playStart.orientation,ui.playEnd.orientation);assert(ui.playStart.playing);assert(!ui.playEnd.playing);assert.equal(ui.playEnd.month,12);
+assert.notEqual(ui.manualMoved.orientation.x,ui.playEnd.orientation.x);assert.deepEqual(ui.final.orientation,ui.playStart.orientation);
+assert.equal(ui.temperature.temperatureSaturated,45);
+const f=data.frames[ui.probe.month-1],l=f.layers[ui.probe.level],k=ui.probe.cell;
+for(const [key,value,precision] of [['temperatureC',l.temperatureK[k]-273.15,2],['eastMps',l.windEastMps[k],3],['northMps',l.windNorthMps[k],3],['speedMps',Math.hypot(l.windEastMps[k],l.windNorthMps[k]),3],['surfaceHpa',f.surface.pressurePa[k]/100,2],['levelHpa',data.sigmaFull[ui.probe.level]*f.surface.pressurePa[k]/100,2],['rainMmDay',f.surface.rainMmDay[k],3]])assert.equal(value.toFixed(precision),ui.probe.visible[key],key);
+assert.equal(j.calls,105169);assert.equal(j.audits.length,2192);assert.equal(j.actualEnd,'2007-01-01T00:00:00');
+const total=a=>a.reduce((s,v)=>s+v,0),g=await load(`${out}/annual-geometry.json`);
+const weighted=x=>total(x.map((v,k)=>v*g.weights[k]));
+const fieldP=total(j.monthly.map(m=>weighted(m.precipitationMm))),fieldE=total(j.monthly.map(m=>weighted(m.evaporationMm)));
+assert(Math.abs(fieldP-j.statisticsBudget.precipitationMm)<1e-8);assert(Math.abs(fieldE-j.statisticsBudget.evaporationMm)<1e-8);
+const result={createdUTC:new Date().toISOString(),status:'PASS',manifestSha256:sha(await readFile(`${folder}/manifest.json`)),manifestBindings:manifest.bindings.length,archives:manifest.archives.length,producerSHA:'unchanged since launch',workerSHA:'bound',actualYearClock:'verified',dailyAudits:j.audits.length,monthlyFluxLedgerDifferenceMm:{precipitation:fieldP-j.statisticsBudget.precipitationMm,evaporation:fieldE-j.statisticsBudget.evaporationMm},UI:{webgl:true,noWarnings:true,frameSwitch:true,layerSwitch:true,probeMatchesRealData:true,playbackCameraFixed:true,manualNavigation:true,temperatureSaturationDisclosed:true},climateAcceptance:'FAILED / experimental only; software PASS does not override scientific failures'};
+await writeFile(`${folder}/final-verification.json`,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));

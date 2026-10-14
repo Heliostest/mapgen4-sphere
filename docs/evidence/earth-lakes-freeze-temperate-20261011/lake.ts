@@ -1,0 +1,36 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {makeMesh} from '../../../mesh.ts';
+import config,{HIGH_DETAIL_SPACING} from '../../../config.js';
+import Map from '../../../map.ts';
+import Geometry from '../../../geometry.ts';
+import {decodeSimulationDocument,encodeSimulationDocument} from '../../../simulation-document.ts';
+import {meshIdentity} from '../../../terrain-document.ts';
+import {ThermalRuntime} from '../../../thermal-runtime.ts';
+import {sampleTerrainGrid} from '../../../thermal.ts';
+const out='build/earth-lakes-freeze-temperate';await mkdir(out,{recursive:true});
+config.spacing=HIGH_DETAIL_SPACING;const {mesh,t_peaks}=await makeMesh(),identity=meshIdentity(mesh,config);
+const raw=await readFile('scenes/earth-land-sea/earth-simulation.json','utf8'),d=decodeSimulationDocument(raw,identity,128),planet=d.terrain.settings.planet,orbit=d.terrain.settings.orbit;
+const map=new Map(mesh,t_peaks,config);map.assignElevation(d.terrain.parameters.elevation,{size:128,constraints:new Float32Array(d.terrain.constraints.values)},new Float32Array(d.terrain.offsets!));map.assignRainfall(d.terrain.parameters.biomes);map.assignRivers(d.terrain.parameters.rivers,true);
+const elevation=new Float32Array(mesh.numRegions+mesh.numTriangles);elevation.set(map.elevation_r);elevation.set(map.elevation_t,mesh.numRegions);
+const quads=new Int32Array(mesh.numSolidSides*3);Geometry.setMapGeometry(map,0,quads,new Float32Array(elevation.length*2));
+const source={mesh,directions:mesh.xyz_r,elevation,quadElements:quads,drainage:d.terrain.drainage},rt=ThermalRuntime.fromSnapshot(d.runtime,planet,orbit),terrain=sampleTerrainGrid(rt.grid,mesh.xyz_r,elevation);rt.attachRestoredTerrain(terrain.landFraction,terrain.landElevation,source);
+const w=rt.water!,m=rt.model!,env=rt.environment!,route=w.routing!,levelSource=await readFile('scenes/earth-land-sea/lake-initial-levels.json','utf8'),levels=JSON.parse(levelSource).levels;
+const before=w.diagnostics().totalMm,heat=env.enthalpy(),initial=route.checkpoint();
+rt.initializeLakeLevels(levels);
+assert.ok(Math.abs(w.diagnostics().totalMm-before)<1e-7);assert.equal(env.enthalpy(),heat);
+const lake=()=>{let volumeM3=0,areaM2=0,wetAreaM2=0,headMinM=Infinity,headMaxM=-Infinity;for(let t=0;t<route.volumeM3.length;t++)if((route.network.inlandLakeId?.[t]??0)>0){areaM2+=route.network.areaM2[t];volumeM3+=route.volumeM3[t];if(route.volumeM3[t]>0){wetAreaM2+=route.network.areaM2[t];headMinM=Math.min(headMinM,route.headM[t]);headMaxM=Math.max(headMaxM,route.headM[t]);}}return {volumeM3,areaM2,wetTriangleAreaM2:wetAreaM2,headMinM,headMaxM};};
+const seeded=lake();assert.ok(Math.abs(seeded.headMinM+28)<1e-7&&Math.abs(seeded.headMaxM+28)<1e-7);
+const records=[];
+for(const day of [0,2,24]){
+ while(m.timeS<day*86400-m.stepS/2)rt.sync(planet,orbit,Math.min(day*86400,m.timeS+rt.maxAdvanceS),null);
+ const budget={water:w.diagnostics().residualMm,enthalpy:env.enthalpy()-env.initialEnthalpy-m.radiationJm2,partitionM3:route.diagnostics(w).partitionResidualM3};
+ assert.ok(Math.abs(budget.water)<5e-6&&Math.abs(budget.enthalpy)<.005);
+ const snapshot=rt.snapshot(),document={...d,runtime:snapshot,terrain:{...d.terrain,settings:{...d.terrain.settings,timeS:snapshot.state!.lastTarget}}};
+ await writeFile(`${out}/lake-day${day}.json`,encodeSimulationDocument(document));
+ const restored=ThermalRuntime.fromSnapshot(snapshot,planet,orbit);restored.attachRestoredTerrain(terrain.landFraction,terrain.landElevation,source);
+ const r={day:m.timeS/86400,lake:lake(),budget,strictRestored:true};records.push(r);console.log(JSON.stringify(r));
+}
+const next=m.timeS+m.stepS,restored=ThermalRuntime.fromSnapshot(rt.snapshot(),planet,orbit);restored.attachRestoredTerrain(terrain.landFraction,terrain.landElevation,source);rt.sync(planet,orbit,next,null);restored.sync(planet,orbit,next,null);assert.deepEqual(restored.snapshot(),rt.snapshot());
+await writeFile(`${out}/lake.json`,JSON.stringify({formalSha256:createHash('sha256').update(raw).digest('hex'),sourceSha256:createHash('sha256').update(levelSource).digest('hex'),oldLakeVolumeM3:Array.from(initial.volumeM3).reduce((s,v,t)=>s+((route.network.inlandLakeId?.[t]??0)>0?v:0),0),seeded,globalWaterUnchanged:true,enthalpyUnchanged:true,exactContinuation:true,records},null,2)+'\n');

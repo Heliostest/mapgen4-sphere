@@ -1,0 +1,262 @@
+{
+  "verifiedUTC": "2026-10-13T10:20:31.604Z",
+  "implementationAndConservationAcceptance": true,
+  "coreSHA": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d",
+  "fullPhysicalSphereAcceptance": false,
+  "strongPointwisePolarAccuracy": false,
+  "nativeCoarsePressureTimeAccuracy": false,
+  "originalAdjacentStepDifferenceGate": false,
+  "pressureMomentumMatchesExactBackwardEuler": true,
+  "nativePrimitiveEquationCoupling": false,
+  "climateAcceptance": false,
+  "formalDefaultPromoted": false,
+  "native": [
+    {
+      "dt": 1800,
+      "case": "real",
+      "airDriftKgM2": 0,
+      "waterDriftMm": -7.105427357601002e-15,
+      "dryDriftKgM2": 0,
+      "accepted": 144,
+      "rejections": 0,
+      "restartBitwiseEqual": true,
+      "constantTracerMaxError": 0,
+      "localAirRelativeResidual": 1.6074616689272957e-13,
+      "localWaterRelativeResidual": 2.079031020707366e-17,
+      "localDryRelativeResidual": 1.6074616760477408e-13
+    },
+    {
+      "dt": 1800,
+      "case": "constant",
+      "airDriftKgM2": 0,
+      "waterDriftMm": -5.684341886080802e-14,
+      "dryDriftKgM2": -3.637978807091713e-12,
+      "accepted": 144,
+      "rejections": 0,
+      "restartBitwiseEqual": true,
+      "constantTracerMaxError": 7.752479214140351e-15,
+      "localAirRelativeResidual": 1.6074616689272957e-13,
+      "localWaterRelativeResidual": 1.2188139880853353e-17,
+      "localDryRelativeResidual": 1.6075012719045635e-13
+    },
+    {
+      "dt": 1800,
+      "case": "sharp",
+      "airDriftKgM2": 0,
+      "waterDriftMm": -1.4210854715202004e-14,
+      "dryDriftKgM2": 0,
+      "accepted": 144,
+      "rejections": 0,
+      "restartBitwiseEqual": true,
+      "constantTracerMaxError": 0,
+      "localAirRelativeResidual": 1.6074616689272957e-13,
+      "localWaterRelativeResidual": 1.9473420892455555e-17,
+      "localDryRelativeResidual": 1.6074823859260842e-13
+    },
+    {
+      "dt": 900,
+      "case": "real",
+      "airDriftKgM2": 0,
+      "waterDriftMm": -7.887024366937112e-13,
+      "dryDriftKgM2": 1.8189894035458565e-12,
+      "accepted": 288,
+      "rejections": 0,
+      "restartBitwiseEqual": true,
+      "constantTracerMaxError": 0,
+      "localAirRelativeResidual": 4.093753230907709e-14,
+      "localWaterRelativeResidual": 3.817519718166413e-17,
+      "localDryRelativeResidual": 4.0937510509409644e-14
+    },
+    {
+      "dt": 450,
+      "case": "real",
+      "airDriftKgM2": 0,
+      "waterDriftMm": -1.3500311979441904e-12,
+      "dryDriftKgM2": 3.637978807091713e-12,
+      "accepted": 576,
+      "rejections": 0,
+      "restartBitwiseEqual": true,
+      "constantTracerMaxError": 0,
+      "localAirRelativeResidual": 1.1637463495474367e-14,
+      "localWaterRelativeResidual": 3.3715843357789857e-17,
+      "localDryRelativeResidual": 1.1637460625859926e-14
+    }
+  ],
+  "archivedSourcesVerified": 237,
+  "uniqueSourceArchives": 55,
+  "inputBindingsVerified": 2409,
+  "uniqueInputs": 115,
+  "executions": [
+    {
+      "name": "benchmark-v1",
+      "code": 0,
+      "sourceCount": 6,
+      "inputCount": 4
+    },
+    {
+      "name": "candidate-c1-analysis",
+      "code": 1,
+      "sourceCount": 7,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-benchmark",
+      "code": 0,
+      "sourceCount": 6,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-core",
+      "code": 0,
+      "sourceCount": 5,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-gradient",
+      "code": 1,
+      "sourceCount": 5,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-gradient-v2",
+      "code": 0,
+      "sourceCount": 6,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-grid",
+      "code": 0,
+      "sourceCount": 4,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-mimetic",
+      "code": 0,
+      "sourceCount": 7,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-native-1800",
+      "code": 0,
+      "sourceCount": 23,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-native-450",
+      "code": 0,
+      "sourceCount": 23,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-native-900",
+      "code": 0,
+      "sourceCount": 23,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-temporal-reference",
+      "code": 0,
+      "sourceCount": 7,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-temporal-reference-v2",
+      "code": 0,
+      "sourceCount": 7,
+      "inputCount": 115
+    },
+    {
+      "name": "candidate-c1-tilted",
+      "code": 0,
+      "sourceCount": 6,
+      "inputCount": 115
+    },
+    {
+      "name": "core-adjoint-green-v1",
+      "code": 0,
+      "sourceCount": 5,
+      "inputCount": 110
+    },
+    {
+      "name": "core-adjoint-green-v2",
+      "code": 0,
+      "sourceCount": 5,
+      "inputCount": 110
+    },
+    {
+      "name": "core-behavior-red",
+      "code": 1,
+      "sourceCount": 5,
+      "inputCount": 4
+    },
+    {
+      "name": "core-behavior-red-v2",
+      "code": 1,
+      "sourceCount": 5,
+      "inputCount": 4
+    },
+    {
+      "name": "core-green-v1",
+      "code": 1,
+      "sourceCount": 5,
+      "inputCount": 4
+    },
+    {
+      "name": "core-green-v2",
+      "code": 1,
+      "sourceCount": 5,
+      "inputCount": 4
+    },
+    {
+      "name": "core-green-v3",
+      "code": 0,
+      "sourceCount": 5,
+      "inputCount": 4
+    },
+    {
+      "name": "native-graph-smoke-v1",
+      "code": 1,
+      "sourceCount": 22,
+      "inputCount": 110
+    },
+    {
+      "name": "native-variational-smoke-v1",
+      "code": 0,
+      "sourceCount": 23,
+      "inputCount": 110
+    },
+    {
+      "name": "review-candidate-c1",
+      "code": 0,
+      "sourceCount": 6,
+      "inputCount": 115
+    },
+    {
+      "name": "tilted-rotation-v1",
+      "code": 0,
+      "sourceCount": 6,
+      "inputCount": 110
+    },
+    {
+      "name": "wet-dry-boundary-green-v1",
+      "code": 0,
+      "sourceCount": 5,
+      "inputCount": 115
+    },
+    {
+      "name": "wet-dry-boundary-red",
+      "code": 1,
+      "sourceCount": 5,
+      "inputCount": 110
+    }
+  ],
+  "pressureRefinementRatio": 0.7065046227363353,
+  "humidityRefinementRatio": 1.1505034994678687,
+  "pressureTemporalErrorsPa": [
+    163.8420700471608,
+    160.06684105062197,
+    151.20511264445076
+  ],
+  "oldEvidenceBindingsVerified": 1352,
+  "nativeSourceFilesVerified": 105
+}

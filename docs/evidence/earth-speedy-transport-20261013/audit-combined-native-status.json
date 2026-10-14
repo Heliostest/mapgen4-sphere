@@ -1,0 +1,69 @@
+{
+  "startedUTC": "2026-10-13T05:49:05.931Z",
+  "completedUTC": "2026-10-13T05:53:20.800Z",
+  "script": "docs/evidence/earth-speedy-transport-20261013/audit-candidate.jl",
+  "configuration": {
+    "SPEEDY_CASE": "audit-combined",
+    "SPEEDY_MODE": null,
+    "SPEEDY_SMOKE": "0",
+    "MOISTURE_IMPLEMENTATION": null,
+    "MASS_IMPLEMENTATION": "fixed",
+    "MIXING_IMPLEMENTATION": null,
+    "AUDIT_STAGES": null,
+    "DIAG_DAYS": null,
+    "PHYSICS_FIX": "combined",
+    "SPEEDY_SENSITIVITY": "0"
+  },
+  "sourceBefore": {
+    "docs/evidence/earth-speedy-transport-20261013/protocol.md": "7c11dd68086ee2940106f0fad49f8fa54b5ec5bdae0bcd64d50298a685f53364",
+    "docs/evidence/earth-speedy-transport-20261013/run-julia.mjs": "58719a9fe29a17815f4837926450422a57056a293f86c44a6a475c0e83ac4f09",
+    "docs/evidence/earth-speedy-transport-20261013/audit-candidate.jl": "9b46e91119e9b77e7d4e5c25776aa4d09d91cb42e0cd6a551acd0359771eeac0",
+    "docs/evidence/earth-speedy-transport-20261013/transport-model.jl": "3f71a1dec5e16fd1e85d82fab082debae122d6eda4e5809203e935f956966801",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/physics-model.jl": "6e0a39d51da16944f67562c41bd939b034b3d8b5c4d2e96457daed5db24e2eb4",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/components.jl": "f214103d94ebf303f022fc257789ba2a3f1b0eb8a8ed58387c5be0189ca5ead9",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/water-preserving-mass.jl": "2fc0240aa3e4766294250da5d34665e1010bbe227e36aeec24d75f810fc9ca85",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation.jl": "9ea9a306d16dc6e3f7ea70dd1b3a753794ddc7dad19dd0ba7e69a9ef23330357",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/boundary-layer.jl": "ade63d52e8c9f3abc6e194cc2fce0f31248fe1a4cb14b3705d87571d56837add",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/vertical-diffusion.jl": "d08a77ae5177601a76a9442694532443fadb466663289259004fe6275ca56ce4",
+    "docs/evidence/earth-speedy-transport-20261013/convection-corrected.jl": "1013b8b2b122dec190066a1d2d5fb0fc5e5eff105fb6285796e1f4116168458f",
+    "docs/evidence/earth-speedy-transport-20261013/cloud-correction.jl": "544322dbc709ccf37233cfe2932d337ed1f7191d0c14c385f5061595a45c613f",
+    "docs/evidence/earth-speedy-transport-20261013/startup-ledger.jl": "70daa561a48997a195e0477e3ae4909cac13b755fee9573565b489f0423bcebb"
+  },
+  "sourceAfter": {
+    "docs/evidence/earth-speedy-transport-20261013/protocol.md": "7c11dd68086ee2940106f0fad49f8fa54b5ec5bdae0bcd64d50298a685f53364",
+    "docs/evidence/earth-speedy-transport-20261013/run-julia.mjs": "58719a9fe29a17815f4837926450422a57056a293f86c44a6a475c0e83ac4f09",
+    "docs/evidence/earth-speedy-transport-20261013/audit-candidate.jl": "9b46e91119e9b77e7d4e5c25776aa4d09d91cb42e0cd6a551acd0359771eeac0",
+    "docs/evidence/earth-speedy-transport-20261013/transport-model.jl": "3f71a1dec5e16fd1e85d82fab082debae122d6eda4e5809203e935f956966801",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/physics-model.jl": "6e0a39d51da16944f67562c41bd939b034b3d8b5c4d2e96457daed5db24e2eb4",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/components.jl": "f214103d94ebf303f022fc257789ba2a3f1b0eb8a8ed58387c5be0189ca5ead9",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/water-preserving-mass.jl": "2fc0240aa3e4766294250da5d34665e1010bbe227e36aeec24d75f810fc9ca85",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation.jl": "9ea9a306d16dc6e3f7ea70dd1b3a753794ddc7dad19dd0ba7e69a9ef23330357",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/boundary-layer.jl": "ade63d52e8c9f3abc6e194cc2fce0f31248fe1a4cb14b3705d87571d56837add",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/vertical-diffusion.jl": "d08a77ae5177601a76a9442694532443fadb466663289259004fe6275ca56ce4",
+    "docs/evidence/earth-speedy-transport-20261013/convection-corrected.jl": "1013b8b2b122dec190066a1d2d5fb0fc5e5eff105fb6285796e1f4116168458f",
+    "docs/evidence/earth-speedy-transport-20261013/cloud-correction.jl": "544322dbc709ccf37233cfe2932d337ed1f7191d0c14c385f5061595a45c613f",
+    "docs/evidence/earth-speedy-transport-20261013/startup-ledger.jl": "70daa561a48997a195e0477e3ae4909cac13b755fee9573565b489f0423bcebb"
+  },
+  "sourceUnchanged": true,
+  "inputsBefore": {
+    "build/earth-speedyweather/annual-initial.jld2": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8",
+    "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083"
+  },
+  "inputsAfter": {
+    "build/earth-speedyweather/annual-initial.jld2": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8",
+    "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083"
+  },
+  "inputsUnchanged": true,
+  "args": [
+    "--startup-file=no",
+    "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+    "docs/evidence/earth-speedy-transport-20261013/audit-candidate.jl"
+  ],
+  "code": 0
+}

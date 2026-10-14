@@ -1,6 +1,7 @@
 import type {Mesh} from './types.d.ts';
 import {thermalCell,type ThermalGrid} from './thermal.ts';
 import {directionToUV} from './sphere.ts';
+import {LakeStorage} from './lake-storage.ts';
 
 export interface RoutingNetwork {
     cell:Int32Array;areaM2:Float64Array;bedM:Float64Array;
@@ -11,7 +12,10 @@ export interface RoutingNetwork {
     endorheic?:Int32Array;terminal?:Uint8Array;
     inlandLakeId?:Int32Array;
 }
-export interface SurfaceWaterLedger {grid:{count:number};cellAreaM2:number;surfaceKgM2:Float64Array;dischargeM3S:Float64Array;oceanGlobalKgM2:number;}
+export interface SurfaceWaterLedger {grid:{count:number};cellAreaM2:number;surfaceKgM2:Float64Array;dischargeM3S:Float64Array;oceanGlobalKgM2:number;addOceanWater?:(amount:number)=>void;}
+function oceanTransfer(water:SurfaceWaterLedger,amount:number) {
+    if(water.addOceanWater)water.addOceanWater(amount);else water.oceanGlobalKgM2+=amount;
+}
 export interface TerrainWaterCheckpoint {volumeM3:Float64Array;fluxM3S:Float64Array;receiverSide:Int32Array;}
 
 /** A finite-volume reservoir partition of the coarse surface store. It has no
@@ -35,8 +39,10 @@ export class TerrainWater {
     private readonly cellArea:Float64Array;
     private previousSurface:Float64Array;
     private readonly delta:Float64Array;
+    private readonly lakeBeds:(LakeStorage|null)[];
     constructor(readonly network:RoutingNetwork,water:SurfaceWaterLedger) {
         const n=network.cell.length;
+        this.lakeBeds=Array.from({length:n},(_,t)=>(network.inlandLakeId?.[t]??0)>0&&network.bedPatches?.[t]?.length?new LakeStorage(network.bedPatches[t]):null);
         this.volumeM3=new Float64Array(n);this.fluxM3S=new Float64Array(n);this.receiverSide=new Int32Array(n).fill(-1);this.headM=new Float64Array(n);this.delta=new Float64Array(n);
         this.byCell=Array.from({length:water.grid.count},()=>[]);this.cellArea=new Float64Array(water.grid.count);
         for(let i=0;i<n;i++)if(network.cell[i]>=0){const k=network.cell[i];this.byCell[k].push(i);this.cellArea[k]+=network.areaM2[i];}
@@ -79,7 +85,23 @@ export class TerrainWater {
         this.previousSurface=water.surfaceKgM2.slice();
     }
     synchronize(water:SurfaceWaterLedger) {this.reconcile(water);this.refreshHeads();if(this.partition){const p=this.partition;p.previous.fill(0);for(let t=0;t<p.triangle.length;t++)if(p.triangle[t]>=0)p.previous[p.triangle[t]]+=this.volumeM3[t];}}
-    refreshHeads() {for(let i=0;i<this.volumeM3.length;i++)this.headM[i]=this.network.bedM[i]+this.volumeM3[i]/this.network.areaM2[i];}
+    private storedAt(t:number,level:number) {return this.network.areaM2[t]*(this.lakeBeds[t]?.depth(level)??Math.max(0,level-this.network.bedM[t]));}
+    refreshHeads() {for(let i=0;i<this.volumeM3.length;i++){const depth=this.volumeM3[i]/this.network.areaM2[i];this.headM[i]=this.lakeBeds[i]?.level(depth)??this.network.bedM[i]+depth;}}
+    /** Explicit observed initial condition, never an automatic refill. Replace
+     * lake volumes and debit the finite ocean donor, preserving global water.
+     * Liquid mass has no sensible enthalpy in this reservoir-routing model. */
+    initializeLakeLevels(water:SurfaceWaterLedger,levels:readonly {lakeId:number;levelM:number}[]) {
+        if(this.partition)throw new Error('Initialize lake inventory before surface refinement');
+        const requested=new Map<number,number>();
+        for(const {lakeId,levelM} of levels){if(!Number.isSafeInteger(lakeId)||lakeId<=0||!Number.isFinite(levelM)||requested.has(lakeId))throw new Error('Invalid lake level');requested.set(lakeId,levelM);}
+        const values=this.volumeM3.slice(),change=new Float64Array(water.grid.count),seen=new Set<number>();let deltaM3=0;
+        for(let t=0;t<values.length;t++){const id=this.network.inlandLakeId?.[t]??0,level=requested.get(id);if(level===undefined)continue;seen.add(id);const target=this.storedAt(t,level),delta=target-values[t];values[t]=target;change[this.network.cell[t]]+=delta*1000/water.cellAreaM2;deltaM3+=delta;}
+        if(seen.size!==requested.size)throw new Error('Unknown lake inventory');
+        const globalDelta=deltaM3*1000/(water.cellAreaM2*water.grid.count);
+        if(globalDelta>water.oceanGlobalKgM2)throw new Error('Insufficient ocean inventory for observed lake level');
+        for(let k=0;k<change.length;k++)water.surfaceKgM2[k]+=change[k];oceanTransfer(water,-globalDelta);
+        this.volumeM3.set(values);this.previousSurface=water.surfaceKgM2.slice();this.refreshHeads();this.fluxM3S.fill(0);this.receiverSide.fill(-1);water.dischargeM3S.fill(0);
+    }
     route(water:SurfaceWaterLedger,dt:number,speedMps:number,diagnose=false) {
         this.reconcile(water);this.refreshHeads();this.delta.fill(0);this.fluxM3S.fill(0);this.receiverSide.fill(-1);water.dischargeM3S.fill(0);
         const {cell,areaM2,neighbors}=this.network,n=cell.length,conversion=1000/water.cellAreaM2,coarseDelta=new Float64Array(water.grid.count);
@@ -92,7 +114,13 @@ export class TerrainWater {
                 if(head<best){target=edge;best=head;}
             }
             if(!target)continue;
-            const j=target.to,available=Math.min(this.volumeM3[i],(this.headM[i]-best)/(1/areaM2[i]+(j<0?0:1/areaM2[j])));
+            const j=target.to;let available=Math.min(this.volumeM3[i],(this.headM[i]-best)/(1/areaM2[i]+(j<0?0:1/areaM2[j])));
+            if((this.lakeBeds[i]&&best<this.lakeBeds[i]!.max)||(j>=0&&this.lakeBeds[j]&&best<this.lakeBeds[j]!.max)) {
+                // Partial lake cells have a smaller wet area. Find the shared
+                // equilibrium level using volume, then respect the real sill.
+                if(j<0)available=Math.max(0,this.volumeM3[i]-this.storedAt(i,best));
+                else {let lo=Math.min(this.headM[i],this.headM[j]),hi=this.headM[i],total=this.volumeM3[i]+this.volumeM3[j];for(let iter=0;iter<32;iter++){const mid=(lo+hi)/2;if(this.storedAt(i,mid)+this.storedAt(j,mid)<total)lo=mid;else hi=mid;}available=Math.max(0,this.volumeM3[i]-this.storedAt(i,Math.max(target.sillM,(lo+hi)/2)));}
+            }
             // Limit exchanged volume even on tiny planets / unusually large dt.
             const amount=available*Math.min(.45,-Math.expm1(-dt*speedMps/target.distanceM));
             this.fluxM3S[i]=amount/dt;this.receiverSide[i]=target.side;this.delta[i]-=amount;
@@ -106,7 +134,7 @@ export class TerrainWater {
         if(!diagnose) {
             for(let i=0;i<n;i++)this.volumeM3[i]+=this.delta[i];
             for(let k=0;k<water.grid.count;k++)water.surfaceKgM2[k]+=coarseDelta[k];
-            water.oceanGlobalKgM2+=oceanM3*conversion/water.grid.count;
+            oceanTransfer(water,oceanM3*conversion/water.grid.count);
         }
         this.previousSurface=water.surfaceKgM2.slice();this.refreshHeads();
         if(this.partition){const p=this.partition;p.previous.fill(0);for(let t=0;t<n;t++)if(p.triangle[t]>=0)p.previous[p.triangle[t]]+=this.volumeM3[t];}

@@ -1,0 +1,2669 @@
+{
+  "cases": [
+    {
+      "id": "reference",
+      "budget": {
+        "year": {
+          "initial": {
+            "time": "2006-01-01T00:00:00",
+            "airMassKgM2": 9935.953938677823,
+            "airWaterMm": 16.04174273009612,
+            "landWaterMm": 178.03103482541462,
+            "oceanSensibleHeatJm2": 43744207403.44559,
+            "airSensibleHeatProxyJm2": 2465134321.7362885,
+            "minHumidity": 0,
+            "maxHumidity": 0.010868168508971935,
+            "minAirK": 188.33922129618068,
+            "maxAirK": 292.96530550880817,
+            "maxWindMps": 86.38007216051015,
+            "iceAreaFraction": 0.08572556464000156
+          },
+          "final": {
+            "time": "2007-01-01T00:00:00",
+            "airMassKgM2": 9936.058140165285,
+            "airWaterMm": 16.694529457099783,
+            "landWaterMm": 181.41605665559834,
+            "oceanSensibleHeatJm2": 43759214293.79007,
+            "airSensibleHeatProxyJm2": 2475263123.498165,
+            "minHumidity": 0,
+            "maxHumidity": 0.010736123577391562,
+            "minAirK": 185.60181941809796,
+            "maxAirK": 294.1319451590224,
+            "maxWindMps": 82.92601797252004,
+            "iceAreaFraction": 0.08762504457188977
+          },
+          "terms": {
+            "initial": {
+              "time": "2006-01-01T00:00:00",
+              "airMassKgM2": 9935.953938677823,
+              "airWaterMm": 16.04174273009612,
+              "landWaterMm": 178.03103482541462,
+              "oceanSensibleHeatJm2": 43744207403.44559,
+              "airSensibleHeatProxyJm2": 2465134321.7362885,
+              "minHumidity": 0,
+              "maxHumidity": 0.010868168508971935,
+              "minAirK": 188.33922129618068,
+              "maxAirK": 292.96530550880817,
+              "maxWindMps": 86.38007216051015,
+              "iceAreaFraction": 0.08572556464000156
+            },
+            "final": {
+              "time": "2007-01-01T00:00:00",
+              "airMassKgM2": 9936.058140165285,
+              "airWaterMm": 16.694529457099783,
+              "landWaterMm": 181.41605665559834,
+              "oceanSensibleHeatJm2": 43759214293.79007,
+              "airSensibleHeatProxyJm2": 2475263123.498165,
+              "minHumidity": 0,
+              "maxHumidity": 0.010736123577391562,
+              "minAirK": 185.60181941809796,
+              "maxAirK": 294.1319451590224,
+              "maxWindMps": 82.92601797252004,
+              "iceAreaFraction": 0.08762504457188977
+            },
+            "evaporationMm": 798.0097466399002,
+            "precipitationMm": 797.0820115910501,
+            "landEvaporationMm": 101.71985077277168,
+            "landPrecipitationMm": 181.75668554639958,
+            "runoffMm": 64.01983425544174,
+            "oceanSurfaceInputJm2": -168439226.2182027,
+            "oceanFreezingAdjustmentJm2": 183446116.5626775,
+            "oceanHeatResidualJm2": -0.000002481442606949713,
+            "incomingSolarJm2": 10761678858.487572,
+            "outgoingShortwaveJm2": 3606047361.559269,
+            "outgoingLongwaveJm2": 7262241376.975517,
+            "airMassRelative": 0.000010487315873753355,
+            "airWaterResidualMm": -0.27494832184640927,
+            "landWaterResidualMm": -12.631978688002448,
+            "toaNetJm2": -106609880.04721451
+          },
+          "totalAirMassRelative": 0.000010487315873753355,
+          "dryAirMassRelative": -0.000055301420890163655,
+          "dryAirMassPassed": false,
+          "airWaterRawResidualMm": -0.27494832184640927,
+          "airWaterExcludingCurrentModeResidualMm": -0.27494832184640927,
+          "airWaterLimitMm": 1.5950917582309503,
+          "airWaterPassed": true,
+          "landRawResidualMm": -12.631978688002448,
+          "landLedgerResidualMm": null,
+          "landWaterPassed": false
+        },
+        "full": {
+          "initial": {
+            "time": "2001-01-01T00:00:00",
+            "airMassKgM2": 9930.766760562276,
+            "airWaterMm": 45.42158778272518,
+            "landWaterMm": 45.05036918929187,
+            "oceanSensibleHeatJm2": 43566620605.89134,
+            "airSensibleHeatProxyJm2": 2525789736.909026,
+            "minHumidity": 0.000024488767723210088,
+            "maxHumidity": 0.030264507040974713,
+            "minAirK": 199.2738837630537,
+            "maxAirK": 307.21638020962695,
+            "maxWindMps": 35.299023335516914,
+            "iceAreaFraction": 0
+          },
+          "final": {
+            "time": "2007-01-01T00:00:00",
+            "airMassKgM2": 9936.058140165285,
+            "airWaterMm": 16.694529457099783,
+            "landWaterMm": 181.41605665559834,
+            "oceanSensibleHeatJm2": 43759214293.79007,
+            "airSensibleHeatProxyJm2": 2475263123.498165,
+            "minHumidity": 0,
+            "maxHumidity": 0.010736123577391562,
+            "minAirK": 185.60181941809796,
+            "maxAirK": 294.1319451590224,
+            "maxWindMps": 82.92601797252004,
+            "iceAreaFraction": 0.08762504457188977
+          },
+          "terms": {
+            "initial": {
+              "time": "2001-01-01T00:00:00",
+              "airMassKgM2": 9930.766760562276,
+              "airWaterMm": 45.42158778272518,
+              "landWaterMm": 45.05036918929187,
+              "oceanSensibleHeatJm2": 43566620605.89134,
+              "airSensibleHeatProxyJm2": 2525789736.909026,
+              "minHumidity": 0.000024488767723210088,
+              "maxHumidity": 0.030264507040974713,
+              "minAirK": 199.2738837630537,
+              "maxAirK": 307.21638020962695,
+              "maxWindMps": 35.299023335516914,
+              "iceAreaFraction": 0
+            },
+            "final": {
+              "time": "2007-01-01T00:00:00",
+              "airMassKgM2": 9936.058140165285,
+              "airWaterMm": 16.694529457099783,
+              "landWaterMm": 181.41605665559834,
+              "oceanSensibleHeatJm2": 43759214293.79007,
+              "airSensibleHeatProxyJm2": 2475263123.498165,
+              "minHumidity": 0,
+              "maxHumidity": 0.010736123577391562,
+              "minAirK": 185.60181941809796,
+              "maxAirK": 294.1319451590224,
+              "maxWindMps": 82.92601797252004,
+              "iceAreaFraction": 0.08762504457188977
+            },
+            "evaporationMm": 4541.838594761625,
+            "precipitationMm": 4568.764924594817,
+            "landEvaporationMm": 452.2504240797105,
+            "landPrecipitationMm": 968.0054453681795,
+            "runoffMm": 316.133358645752,
+            "oceanSurfaceInputJm2": -838301268.3208759,
+            "oceanFreezingAdjustmentJm2": 1030894956.2196093,
+            "oceanHeatResidualJm2": -1.0151552487513982e-8,
+            "incomingSolarJm2": 64599557208.55232,
+            "outgoingShortwaveJm2": 21656594874.000973,
+            "outgoingLongwaveJm2": 43628878901.39657,
+            "airMassRelative": 0.0005328268934905664,
+            "airWaterResidualMm": -1.8007284924333362,
+            "landWaterResidualMm": -63.255975176410516,
+            "toaNetJm2": -685916566.8452225
+          },
+          "totalAirMassRelative": 0.0005328268934905664,
+          "dryAirMassRelative": 0.0034412999580741843,
+          "dryAirMassPassed": false,
+          "airWaterRawResidualMm": -1.8007284924333362,
+          "airWaterExcludingCurrentModeResidualMm": -1.8007284924333362,
+          "airWaterLimitMm": 9.110603519356442,
+          "airWaterPassed": true,
+          "landRawResidualMm": -63.255975176410516,
+          "landLedgerResidualMm": null,
+          "landWaterPassed": false
+        },
+        "mass": null
+      },
+      "regions": [
+        {
+          "name": "Europe",
+          "bounds": {
+            "south": 45,
+            "north": 55,
+            "west": -5,
+            "east": 25
+          },
+          "fit": true,
+          "modelAnnualMm": 693.7707815483802,
+          "observedAnnualMm": 792.093176749828,
+          "annualBiasMm": -98.32239520144776,
+          "monthlyMAEMm": 11.244558500751403,
+          "DJFMm": 132.7443937261359,
+          "JJAMm": 218.94235249960028,
+          "observedDJFMm": 171.09236660520048,
+          "observedJJAMm": 238.57202467551633,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.31558312676552563,
+          "observedSummerFraction": 0.3011918694394537,
+          "summerWinterRatio": 1.6493529131731077,
+          "observedSummerWinterRatio": 1.394404843472805,
+          "peakMonth": 6,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 1457535.871717837
+        },
+        {
+          "name": "East North America",
+          "bounds": {
+            "south": 35,
+            "north": 45,
+            "west": -95,
+            "east": -75
+          },
+          "fit": true,
+          "modelAnnualMm": 2260.215628626567,
+          "observedAnnualMm": 1055.9918242302388,
+          "annualBiasMm": 1204.2238043963284,
+          "monthlyMAEMm": 100.35198369969402,
+          "DJFMm": 457.22351922513553,
+          "JJAMm": 596.2494217490209,
+          "observedDJFMm": 203.37164444957259,
+          "observedJJAMm": 307.96969285901883,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.263802008178899,
+          "observedSummerFraction": 0.2916402246613151,
+          "summerWinterRatio": 1.3040655099271685,
+          "observedSummerWinterRatio": 1.5143197258031813,
+          "peakMonth": 5,
+          "observedPeakMonth": 6,
+          "validLandAreaKm2": 1776104.2882470808
+        },
+        {
+          "name": "East Asia",
+          "bounds": {
+            "south": 30,
+            "north": 45,
+            "west": 110,
+            "east": 135
+          },
+          "fit": true,
+          "modelAnnualMm": 1779.3809384968224,
+          "observedAnnualMm": 693.9131228302147,
+          "annualBiasMm": 1085.4678156666077,
+          "monthlyMAEMm": 91.47904187167178,
+          "DJFMm": 378.21614981748513,
+          "JJAMm": 465.89827786711464,
+          "observedDJFMm": 44.99087555814697,
+          "observedJJAMm": 382.86409143675166,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.26183166728800306,
+          "observedSummerFraction": 0.5517464345899539,
+          "summerWinterRatio": 1.2318307351284234,
+          "observedSummerWinterRatio": 8.509816416929509,
+          "peakMonth": 5,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 1995598.7368180598
+        },
+        {
+          "name": "West Siberia",
+          "bounds": {
+            "south": 50,
+            "north": 60,
+            "west": 60,
+            "east": 90
+          },
+          "fit": true,
+          "modelAnnualMm": 199.0925624465709,
+          "observedAnnualMm": 451.3336911877694,
+          "annualBiasMm": -252.24112874119848,
+          "monthlyMAEMm": 21.020094061766542,
+          "DJFMm": 20.3621304036961,
+          "JJAMm": 93.30044691179577,
+          "observedDJFMm": 67.76172105003549,
+          "observedJJAMm": 180.1560091846704,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.46862849001119355,
+          "observedSummerFraction": 0.3991636625011442,
+          "summerWinterRatio": 4.582057233798092,
+          "observedSummerWinterRatio": 2.65866932529123,
+          "peakMonth": 6,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 2121168.281491064
+        },
+        {
+          "name": "India",
+          "bounds": {
+            "south": 18,
+            "north": 25,
+            "west": 74,
+            "east": 86
+          },
+          "fit": false,
+          "modelAnnualMm": 384.93204038702856,
+          "observedAnnualMm": 1138.0584591661475,
+          "annualBiasMm": -753.1264187791189,
+          "monthlyMAEMm": 81.42953593146738,
+          "DJFMm": 91.7944480508566,
+          "JJAMm": 92.35847628861757,
+          "observedDJFMm": 31.030961565542796,
+          "observedJJAMm": 772.5089682980226,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.23993449907613837,
+          "observedSummerFraction": 0.6787955065718135,
+          "summerWinterRatio": 1.0061444700604167,
+          "observedSummerWinterRatio": 24.894780223498685,
+          "peakMonth": 1,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 787998.1215941662
+        },
+        {
+          "name": "Himalaya foreland",
+          "bounds": {
+            "south": 26,
+            "north": 30,
+            "west": 76,
+            "east": 88
+          },
+          "fit": false,
+          "modelAnnualMm": 720.4824406567716,
+          "observedAnnualMm": 1120.4190368743978,
+          "annualBiasMm": -399.9365962176262,
+          "monthlyMAEMm": 83.169011013596,
+          "DJFMm": 241.77435712453143,
+          "JJAMm": 181.27222966874376,
+          "observedDJFMm": 52.17271790200613,
+          "observedJJAMm": 748.466240339592,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.251598400515495,
+          "observedSummerFraction": 0.6680234945200215,
+          "summerWinterRatio": 0.7497578809624353,
+          "observedSummerWinterRatio": 14.345931560349326,
+          "peakMonth": 1,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 523911.47445725085
+        },
+        {
+          "name": "Tibet",
+          "bounds": {
+            "south": 29,
+            "north": 35,
+            "west": 80,
+            "east": 95
+          },
+          "fit": false,
+          "modelAnnualMm": 1187.5162210183337,
+          "observedAnnualMm": 443.5370060622327,
+          "annualBiasMm": 743.979214956101,
+          "monthlyMAEMm": 62.22106925218162,
+          "DJFMm": 313.7110454350442,
+          "JJAMm": 351.35946818671334,
+          "observedDJFMm": 15.758102939090104,
+          "observedJJAMm": 292.8287652729492,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.2958776157898805,
+          "observedSummerFraction": 0.6602127021434202,
+          "summerWinterRatio": 1.1200098730966248,
+          "observedSummerWinterRatio": 18.582742250435988,
+          "peakMonth": 6,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 943266.6495742021
+        },
+        {
+          "name": "Australia southwest",
+          "bounds": {
+            "south": -35,
+            "north": -29,
+            "west": 113,
+            "east": 120
+          },
+          "fit": false,
+          "modelAnnualMm": 833.5688193097498,
+          "observedAnnualMm": 489.0437953244504,
+          "annualBiasMm": 344.52502398529936,
+          "monthlyMAEMm": 33.72529236686283,
+          "DJFMm": 148.8322158042292,
+          "JJAMm": 220.3037077947162,
+          "observedDJFMm": 51.302343928334146,
+          "observedJJAMm": 226.66976511958222,
+          "seasonDefinition": "Southern DJF summer",
+          "summerFraction": 0.1785482042472176,
+          "observedSummerFraction": 0.10490337351953971,
+          "summerWinterRatio": 0.6755774439480352,
+          "observedSummerWinterRatio": 0.22633077641064747,
+          "peakMonth": 5,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 202792.97166197546
+        },
+        {
+          "name": "Australia north",
+          "bounds": {
+            "south": -18,
+            "north": -10,
+            "west": 125,
+            "east": 140
+          },
+          "fit": false,
+          "modelAnnualMm": 410.79894265495534,
+          "observedAnnualMm": 985.874970099378,
+          "annualBiasMm": -575.0760274444226,
+          "monthlyMAEMm": 78.95778530942778,
+          "DJFMm": 73.58137292863697,
+          "JJAMm": 109.1612518268191,
+          "observedDJFMm": 660.3073838751569,
+          "observedJJAMm": 6.255096130783077,
+          "seasonDefinition": "Southern DJF summer",
+          "summerFraction": 0.1791177271613393,
+          "observedSummerFraction": 0.6697678751379567,
+          "summerWinterRatio": 0.6740612781298213,
+          "observedSummerWinterRatio": 105.56310727593772,
+          "peakMonth": 5,
+          "observedPeakMonth": 1,
+          "validLandAreaKm2": 539500.6012487026
+        },
+        {
+          "name": "Amazon",
+          "bounds": {
+            "south": -10,
+            "north": 2,
+            "west": -70,
+            "east": -50
+          },
+          "fit": false,
+          "modelAnnualMm": 740.3742346944335,
+          "observedAnnualMm": 2264.6589665098722,
+          "annualBiasMm": -1524.2847318154386,
+          "monthlyMAEMm": 127.02372765128653,
+          "DJFMm": 190.2155702725687,
+          "JJAMm": 190.09723145414932,
+          "observedDJFMm": 751.6276273605105,
+          "observedJJAMm": 327.0135119406864,
+          "seasonDefinition": "Equatorial: DJF/JJA only, no summer label",
+          "summerFraction": null,
+          "observedSummerFraction": null,
+          "summerWinterRatio": null,
+          "observedSummerWinterRatio": null,
+          "peakMonth": 9,
+          "observedPeakMonth": 3,
+          "validLandAreaKm2": 2854889.8806727803
+        },
+        {
+          "name": "Congo",
+          "bounds": {
+            "south": -5,
+            "north": 5,
+            "west": 15,
+            "east": 30
+          },
+          "fit": false,
+          "modelAnnualMm": 1054.1720423596994,
+          "observedAnnualMm": 1385.3032343468403,
+          "annualBiasMm": -331.13119198714094,
+          "monthlyMAEMm": 31.223557394368097,
+          "DJFMm": 261.97370989150835,
+          "JJAMm": 231.02995225293256,
+          "observedDJFMm": 240.19796151887022,
+          "observedJJAMm": 281.35160064633726,
+          "seasonDefinition": "Equatorial: DJF/JJA only, no summer label",
+          "summerFraction": null,
+          "observedSummerFraction": null,
+          "summerWinterRatio": null,
+          "observedSummerWinterRatio": null,
+          "peakMonth": 10,
+          "observedPeakMonth": 10,
+          "validLandAreaKm2": 1852293.6624370685
+        }
+      ],
+      "monsoon": [
+        {
+          "name": "India",
+          "marineBox": {
+            "south": 5,
+            "north": 15,
+            "west": 60,
+            "east": 90
+          },
+          "oceanMonthly": [
+            {
+              "sstK": 301.600117561033,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.600117561033,
+                "eastKPerDegree": -0.20777732164738918,
+                "northKPerDegree": -0.10014252921903805,
+                "eastKPer1000Km": -1.8920422345029995,
+                "northKPer1000Km": -0.900603401980287
+              },
+              "lowEastWindMps": -5.751858255834508,
+              "lowNorthWindMps": -0.5999094151742532,
+              "lowSpecificHumidity": 0.007973160438321225
+            },
+            {
+              "sstK": 301.4403951769664,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.4403951769664,
+                "eastKPerDegree": -0.20906555916701144,
+                "northKPerDegree": -0.09936680725250506,
+                "eastKPer1000Km": -1.9037730614088018,
+                "northKPer1000Km": -0.8936271667333983
+              },
+              "lowEastWindMps": -5.590281974653062,
+              "lowNorthWindMps": -0.6689547554120847,
+              "lowSpecificHumidity": 0.007640295131107696
+            },
+            {
+              "sstK": 301.30446390592624,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.30446390592624,
+                "eastKPerDegree": -0.20956260123166498,
+                "northKPerDegree": -0.11806823705318847,
+                "eastKPer1000Km": -1.9082991789426729,
+                "northKPer1000Km": -1.0618131655466683
+              },
+              "lowEastWindMps": -6.053670364559381,
+              "lowNorthWindMps": -0.7386480394170665,
+              "lowSpecificHumidity": 0.008591402540573712
+            },
+            {
+              "sstK": 301.3881892785729,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.3881892785729,
+                "eastKPerDegree": -0.21486817470094433,
+                "northKPerDegree": -0.09792326742764389,
+                "eastKPer1000Km": -1.9566122912811355,
+                "northKPer1000Km": -0.8806451011983802
+              },
+              "lowEastWindMps": -5.7875453794930785,
+              "lowNorthWindMps": -0.3650052360746171,
+              "lowSpecificHumidity": 0.008622297681495476
+            },
+            {
+              "sstK": 301.8855136265551,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.8855136265551,
+                "eastKPerDegree": -0.2127987154934043,
+                "northKPerDegree": -0.03745433706909634,
+                "eastKPer1000Km": -1.9377675771795082,
+                "northKPer1000Km": -0.33683494561601157
+              },
+              "lowEastWindMps": -4.234358757506547,
+              "lowNorthWindMps": -0.43741983926644196,
+              "lowSpecificHumidity": 0.008162481883081722
+            },
+            {
+              "sstK": 302.33744136741007,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.33744136741007,
+                "eastKPerDegree": -0.21333293871019512,
+                "northKPerDegree": 0.042509296003523406,
+                "eastKPer1000Km": -1.9426322702114824,
+                "northKPer1000Km": 0.38229528348363345
+              },
+              "lowEastWindMps": -3.7714263905815613,
+              "lowNorthWindMps": -0.25265032809491333,
+              "lowSpecificHumidity": 0.008252426389838639
+            },
+            {
+              "sstK": 302.96333065662526,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.96333065662526,
+                "eastKPerDegree": -0.20679906490167974,
+                "northKPerDegree": 0.12393699950074252,
+                "eastKPer1000Km": -1.8831341252618436,
+                "northKPer1000Km": 1.1145922142375668
+              },
+              "lowEastWindMps": -2.6698697058793255,
+              "lowNorthWindMps": 0.08763578924072149,
+              "lowSpecificHumidity": 0.007340115380674204
+            },
+            {
+              "sstK": 303.64743366121377,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 303.64743366121377,
+                "eastKPerDegree": -0.18493616056987836,
+                "northKPerDegree": 0.18754739867850792,
+                "eastKPer1000Km": -1.684048209452097,
+                "northKPer1000Km": 1.6866542776543616
+              },
+              "lowEastWindMps": -3.1231661965366055,
+              "lowNorthWindMps": -0.01441506376710354,
+              "lowSpecificHumidity": 0.007136818257108418
+            },
+            {
+              "sstK": 303.89502736559206,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 303.89502736559206,
+                "eastKPerDegree": -0.178336260231135,
+                "northKPerDegree": 0.15718247086405243,
+                "eastKPer1000Km": -1.623948819945071,
+                "northKPer1000Km": 1.413575921197337
+              },
+              "lowEastWindMps": -3.7631053318434122,
+              "lowNorthWindMps": -0.47803400730573,
+              "lowSpecificHumidity": 0.008515323278936908
+            },
+            {
+              "sstK": 304.14474258541617,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 304.14474258541617,
+                "eastKPerDegree": -0.19082769525290103,
+                "northKPerDegree": 0.10678371884223962,
+                "eastKPer1000Km": -1.7376971464868871,
+                "northKPer1000Km": 0.9603290551517716
+              },
+              "lowEastWindMps": -3.822038336871991,
+              "lowNorthWindMps": -0.10781407200220597,
+              "lowSpecificHumidity": 0.008248739936159925
+            },
+            {
+              "sstK": 304.07673774885086,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 304.07673774885086,
+                "eastKPerDegree": -0.20364130904050445,
+                "northKPerDegree": 0.023968557333913138,
+                "eastKPer1000Km": -1.8543792668960577,
+                "northKPer1000Km": 0.2155544147308993
+              },
+              "lowEastWindMps": -4.298489771220517,
+              "lowNorthWindMps": -0.24846714995532862,
+              "lowSpecificHumidity": 0.007546407903498562
+            },
+            {
+              "sstK": 302.98188980276205,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.98188980276205,
+                "eastKPerDegree": -0.21244746380131507,
+                "northKPerDegree": -0.12202529419655322,
+                "eastKPer1000Km": -1.9345690421752826,
+                "northKPer1000Km": -1.097399835395498
+              },
+              "lowEastWindMps": -7.058474368878816,
+              "lowNorthWindMps": -0.748511923743255,
+              "lowSpecificHumidity": 0.009025897835339072
+            }
+          ],
+          "landSkinK": null,
+          "summerLowWind": {
+            "east": 1.1691114650081502,
+            "north": 0.4821914921627732
+          },
+          "summerColumnWaterKgM2": 23.102964076391736,
+          "summerLandMinusOceanSkinK": null,
+          "summerDiagnosticMoistureConvergenceMmDay": null
+        },
+        {
+          "name": "Australia north",
+          "marineBox": {
+            "south": -10,
+            "north": -2,
+            "west": 110,
+            "east": 140
+          },
+          "oceanMonthly": [
+            {
+              "sstK": 306.64796325531586,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.64796325531586,
+                "eastKPerDegree": -0.00707434246535328,
+                "northKPerDegree": 0.5635940976959644,
+                "eastKPer1000Km": -0.06416179943216745,
+                "northKPer1000Km": 5.0685234902625265
+              },
+              "lowEastWindMps": 1.152925981377242,
+              "lowNorthWindMps": -0.0077232365843991095,
+              "lowSpecificHumidity": 0.007757848630177695
+            },
+            {
+              "sstK": 306.96436384883833,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.96436384883833,
+                "eastKPerDegree": 0.027852866744763814,
+                "northKPerDegree": 0.2996629715018704,
+                "eastKPer1000Km": 0.2526157107096141,
+                "northKPer1000Km": 2.6949338476544087
+              },
+              "lowEastWindMps": 0.776566713393682,
+              "lowNorthWindMps": 0.21397161040403886,
+              "lowSpecificHumidity": 0.007431215908707944
+            },
+            {
+              "sstK": 306.9655006335215,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.9655006335215,
+                "eastKPerDegree": 0.029258277626206405,
+                "northKPerDegree": 0.024991714042057613,
+                "eastKPer1000Km": 0.2653622933830615,
+                "northKPer1000Km": 0.22475588406964944
+              },
+              "lowEastWindMps": 1.281816025954347,
+              "lowNorthWindMps": -0.16247709261242327,
+              "lowSpecificHumidity": 0.008831965795014593
+            },
+            {
+              "sstK": 306.90262548360585,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.90262548360585,
+                "eastKPerDegree": 0.05855687644470328,
+                "northKPerDegree": -0.06964937210028961,
+                "eastKPer1000Km": 0.5310902858067443,
+                "northKPer1000Km": -0.6263718516846368
+              },
+              "lowEastWindMps": -0.19433518102054043,
+              "lowNorthWindMps": 0.34104817734552895,
+              "lowSpecificHumidity": 0.008617825351642978
+            },
+            {
+              "sstK": 306.87216465268193,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.87216465268193,
+                "eastKPerDegree": 0.045463027678354154,
+                "northKPerDegree": -0.038809961865734335,
+                "eastKPer1000Km": 0.41233368016372485,
+                "northKPer1000Km": -0.349026372307369
+              },
+              "lowEastWindMps": -1.6647257985061694,
+              "lowNorthWindMps": -0.00581321696443234,
+              "lowSpecificHumidity": 0.008577029692417788
+            },
+            {
+              "sstK": 305.96446421364993,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 305.96446421364993,
+                "eastKPerDegree": 0.031767824931154515,
+                "northKPerDegree": 0.23486869374584687,
+                "eastKPer1000Km": 0.2881230052985788,
+                "northKPer1000Km": 2.112224908395495
+              },
+              "lowEastWindMps": -1.343923718186706,
+              "lowNorthWindMps": 0.5910204197638306,
+              "lowSpecificHumidity": 0.00854905133340876
+            },
+            {
+              "sstK": 305.17651091873813,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 305.17651091873813,
+                "eastKPerDegree": -0.011569997880037321,
+                "northKPerDegree": 0.6525529917387094,
+                "eastKPer1000Km": -0.10493581375869755,
+                "northKPer1000Km": 5.868550044775283
+              },
+              "lowEastWindMps": -3.058922860889759,
+              "lowNorthWindMps": 0.5589098763454249,
+              "lowSpecificHumidity": 0.007584195701593489
+            },
+            {
+              "sstK": 305.200300431292,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 305.200300431292,
+                "eastKPerDegree": -0.02611581210912104,
+                "northKPerDegree": 0.98449427552637,
+                "eastKPer1000Km": -0.23686123576290785,
+                "northKPer1000Km": 8.853769728841723
+              },
+              "lowEastWindMps": -2.2661943990151583,
+              "lowNorthWindMps": 0.4458205227587044,
+              "lowSpecificHumidity": 0.007196804946918316
+            },
+            {
+              "sstK": 304.7335964824672,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 304.7335964824672,
+                "eastKPerDegree": -0.012847972694914674,
+                "northKPerDegree": 1.0846461212815957,
+                "eastKPer1000Km": -0.11652659610392675,
+                "northKPer1000Km": 9.754456916444868
+              },
+              "lowEastWindMps": -1.8312169773286138,
+              "lowNorthWindMps": 0.74805329416723,
+              "lowSpecificHumidity": 0.008878575835383038
+            },
+            {
+              "sstK": 305.0147271146153,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 305.0147271146153,
+                "eastKPerDegree": -0.01442036052944188,
+                "northKPerDegree": 1.1245190366300282,
+                "eastKPer1000Km": -0.13078760104715811,
+                "northKPer1000Km": 10.113042659083007
+              },
+              "lowEastWindMps": -1.4309477560435087,
+              "lowNorthWindMps": 0.29560700164011267,
+              "lowSpecificHumidity": 0.008148618118235638
+            },
+            {
+              "sstK": 305.88505302559014,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 305.88505302559014,
+                "eastKPerDegree": -0.004049505601170122,
+                "northKPerDegree": 1.0675579855651665,
+                "eastKPer1000Km": -0.03672759234574896,
+                "northKPer1000Km": 9.600779619898304
+              },
+              "lowEastWindMps": -1.0620577528245803,
+              "lowNorthWindMps": 0.3773834833580458,
+              "lowSpecificHumidity": 0.007125324778584494
+            },
+            {
+              "sstK": 306.0604594112035,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.0604594112035,
+                "eastKPerDegree": -0.0013228093722376666,
+                "northKPerDegree": 0.8745090866079285,
+                "eastKPer1000Km": -0.011997416020524253,
+                "northKPer1000Km": 7.8646491615876455
+              },
+              "lowEastWindMps": 0.7123963674300876,
+              "lowNorthWindMps": 0.4055235018033581,
+              "lowSpecificHumidity": 0.008349992717698347
+            }
+          ],
+          "landSkinK": null,
+          "summerLowWind": {
+            "east": -2.237702255863122,
+            "north": -0.0636727518275536
+          },
+          "summerColumnWaterKgM2": 26.476440555697035,
+          "summerLandMinusOceanSkinK": null,
+          "summerDiagnosticMoistureConvergenceMmDay": null
+        }
+      ]
+    },
+    {
+      "id": "slab",
+      "budget": {
+        "year": {
+          "initial": {
+            "time": "2006-01-01T00:00:00",
+            "airMassKgM2": 9900.507551937979,
+            "dryAirMassKgM2": 9885.345172779556,
+            "airWaterMm": 15.162379158421695,
+            "landWaterMm": 177.36254194108278,
+            "oceanSensibleHeatJm2": 43772445752.25228,
+            "airSensibleHeatProxyJm2": 2452368728.729777,
+            "minAirK": 185.0736607718551,
+            "maxAirK": 292.71249681222326,
+            "minHumidity": 0,
+            "maxHumidity": 0.010625058571377225,
+            "maxWindMps": 95.56919936866798,
+            "iceAreaFraction": 0.08442634584560979
+          },
+          "final": {
+            "time": "2007-01-01T00:00:00",
+            "airMassKgM2": 9900.177330275845,
+            "dryAirMassKgM2": 9885.345172779555,
+            "airWaterMm": 14.832157496289822,
+            "landWaterMm": 181.01593856746416,
+            "oceanSensibleHeatJm2": 43769242130.57602,
+            "airSensibleHeatProxyJm2": 2450071147.804412,
+            "minAirK": 184.19935911999153,
+            "maxAirK": 294.36482174869,
+            "minHumidity": 0,
+            "maxHumidity": 0.010491909328434152,
+            "maxWindMps": 87.1629160512188,
+            "iceAreaFraction": 0.08660846224193734
+          },
+          "terms": {
+            "pressureModeWaterMm": -0.0006180325436827006,
+            "incomingSolarJm2": 10761678858.487572,
+            "oceanSurfaceInputJm2": -187449714.42911565,
+            "pressureModeMassKgM2": -0.5539509485033847,
+            "evaporationMm": 801.0250769910126,
+            "snow_clipping_source": 53505.327266460576,
+            "snow_cap_outflow": 0,
+            "pressureModeSensibleJm2": -146476.91770572588,
+            "landEvaporationMm": 100.87341424775173,
+            "landPrecipitationMm": 180.60550633409582,
+            "soil_clipping_source": 0,
+            "precipitationMm": 801.0594783470092,
+            "river_runoff": 63.5848501218486,
+            "oceanHeatResidualJm2": -2.9766306397505105e-7,
+            "prescribedSstExternalHeatJm2": 0,
+            "outgoingShortwaveJm2": 3645595090.558758,
+            "deep_drainage": 12.49384533811547,
+            "oceanFreezingAdjustmentJm2": 184246092.75283325,
+            "outgoingLongwaveJm2": 7257125213.46463
+          },
+          "totalAirMassRelative": -0.000033354013458608556,
+          "dryAirMassRelative": -2.220446049250313e-16,
+          "dryAirMassPassed": true,
+          "airWaterRawResidualMm": -0.2958203061352833,
+          "airWaterExcludingCurrentModeResidualMm": -0.2952022735916006,
+          "airWaterLimitMm": 1.6020845553380219,
+          "airWaterPassed": true,
+          "landRawResidualMm": -12.493845338114113,
+          "landLedgerResidualMm": 1.3571366253017914e-12,
+          "landWaterPassed": true,
+          "oceanLedgerResidualJm2": 0.000020503997802734375
+        },
+        "full": {
+          "initial": {
+            "time": "2001-01-01T00:00:00",
+            "airMassKgM2": 9930.766760562276,
+            "dryAirMassKgM2": 9885.345172779551,
+            "airWaterMm": 45.42158778272519,
+            "landWaterMm": 45.050369189291864,
+            "oceanSensibleHeatJm2": 43566620605.89134,
+            "airSensibleHeatProxyJm2": 2525789736.909026,
+            "minAirK": 199.2738837630537,
+            "maxAirK": 307.21638020962695,
+            "minHumidity": 0.000024488767723210088,
+            "maxHumidity": 0.030264507040974713,
+            "maxWindMps": 35.299023335516914,
+            "iceAreaFraction": 0
+          },
+          "final": {
+            "time": "2007-01-01T00:00:00",
+            "airMassKgM2": 9900.177330275845,
+            "dryAirMassKgM2": 9885.345172779555,
+            "airWaterMm": 14.832157496289822,
+            "landWaterMm": 181.01593856746416,
+            "oceanSensibleHeatJm2": 43769242130.57602,
+            "airSensibleHeatProxyJm2": 2450071147.804412,
+            "minAirK": 184.19935911999153,
+            "maxAirK": 294.36482174869,
+            "minHumidity": 0,
+            "maxHumidity": 0.010491909328434152,
+            "maxWindMps": 87.1629160512188,
+            "iceAreaFraction": 0.08660846224193734
+          },
+          "terms": {
+            "incomingSolarJm2": 64599557208.55232,
+            "outgoingLongwaveJm2": 43588644774.95362,
+            "snow_clipping_source": 343448.5424160596,
+            "pressureModeWaterMm": -0.2203596495821291,
+            "prescribedSstExternalHeatJm2": 0,
+            "snow_cap_outflow": 0,
+            "pressureModeSensibleJm2": -17576517.109686323,
+            "landEvaporationMm": 450.57676910567903,
+            "landPrecipitationMm": 960.8734758833422,
+            "soil_clipping_source": 0,
+            "precipitationMm": 4559.624743394191,
+            "pressureModeMassKgM2": -69.14409077639635,
+            "river_runoff": 312.32729824850645,
+            "evaporationMm": 4530.91080959243,
+            "oceanHeatResidualJm2": -0.000019112879726890242,
+            "outgoingShortwaveJm2": 21714494165.97892,
+            "deep_drainage": 62.003839150992604,
+            "oceanFreezingAdjustmentJm2": 1034187426.1837832,
+            "oceanSurfaceInputJm2": -831565901.4991064
+          },
+          "totalAirMassRelative": -0.003080268726873059,
+          "dryAirMassRelative": 4.440892098500626e-16,
+          "dryAirMassPassed": true,
+          "airWaterRawResidualMm": -1.8754964846748408,
+          "airWaterExcludingCurrentModeResidualMm": -1.6551368350927116,
+          "airWaterLimitMm": 9.090535552986621,
+          "airWaterPassed": true,
+          "landRawResidualMm": -62.00383915098439,
+          "landLedgerResidualMm": 8.213874025386758e-12,
+          "landWaterPassed": true,
+          "oceanLedgerResidualJm2": 3.5762786865234375e-7
+        },
+        "mass": {
+          "targetDryKgM2": 9885.345172779551,
+          "waterCorrectionMm": -0.2203596495821291,
+          "sensibleCorrectionJm2": -17576517.109686323,
+          "totalMassCorrectionKgM2": -69.14409077639635,
+          "absoluteMassCorrectionKgM2": 989.2350977834172,
+          "maxRawDryRelative": 0.00022031701427227546,
+          "maxMemoryRawDryRelative": 0.000005821997201005402,
+          "memoryWaterModeMm": -0.005313935387846218,
+          "memoryTotalMassModeKgM2": -1.5424574499542827,
+          "maxMemoryDeltaLogPressure": 0.000005821980253146515,
+          "maxPostDryRelative": 1.6653345369377348e-15,
+          "corrections": 105169
+        }
+      },
+      "regions": [
+        {
+          "name": "Europe",
+          "bounds": {
+            "south": 45,
+            "north": 55,
+            "west": -5,
+            "east": 25
+          },
+          "fit": true,
+          "modelAnnualMm": 692.0335312102752,
+          "observedAnnualMm": 792.093176749828,
+          "annualBiasMm": -100.05964553955278,
+          "monthlyMAEMm": 12.690244217705432,
+          "DJFMm": 150.734557059598,
+          "JJAMm": 225.2590815284363,
+          "observedDJFMm": 171.09236660520048,
+          "observedJJAMm": 238.57202467551633,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.3255031315238265,
+          "observedSummerFraction": 0.3011918694394537,
+          "summerWinterRatio": 1.494409018891219,
+          "observedSummerWinterRatio": 1.394404843472805,
+          "peakMonth": 6,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 1457535.871717837
+        },
+        {
+          "name": "East North America",
+          "bounds": {
+            "south": 35,
+            "north": 45,
+            "west": -95,
+            "east": -75
+          },
+          "fit": true,
+          "modelAnnualMm": 2163.042979780561,
+          "observedAnnualMm": 1055.9918242302388,
+          "annualBiasMm": 1107.0511555503222,
+          "monthlyMAEMm": 92.25426296252688,
+          "DJFMm": 502.25981134063863,
+          "JJAMm": 553.1830678565028,
+          "observedDJFMm": 203.37164444957259,
+          "observedJJAMm": 307.96969285901883,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.25574298477999863,
+          "observedSummerFraction": 0.2916402246613151,
+          "summerWinterRatio": 1.1013882762786438,
+          "observedSummerWinterRatio": 1.5143197258031813,
+          "peakMonth": 4,
+          "observedPeakMonth": 6,
+          "validLandAreaKm2": 1776104.2882470808
+        },
+        {
+          "name": "East Asia",
+          "bounds": {
+            "south": 30,
+            "north": 45,
+            "west": 110,
+            "east": 135
+          },
+          "fit": true,
+          "modelAnnualMm": 1844.73401450983,
+          "observedAnnualMm": 693.9131228302147,
+          "annualBiasMm": 1150.8208916796154,
+          "monthlyMAEMm": 96.61634568383302,
+          "DJFMm": 345.9513824326373,
+          "JJAMm": 481.25337411214525,
+          "observedDJFMm": 44.99087555814697,
+          "observedJJAMm": 382.86409143675166,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.26087954703866645,
+          "observedSummerFraction": 0.5517464345899539,
+          "summerWinterRatio": 1.3911011736045125,
+          "observedSummerWinterRatio": 8.509816416929509,
+          "peakMonth": 3,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 1995598.7368180598
+        },
+        {
+          "name": "West Siberia",
+          "bounds": {
+            "south": 50,
+            "north": 60,
+            "west": 60,
+            "east": 90
+          },
+          "fit": true,
+          "modelAnnualMm": 186.98715237738713,
+          "observedAnnualMm": 451.3336911877694,
+          "annualBiasMm": -264.34653881038224,
+          "monthlyMAEMm": 22.028878234198515,
+          "DJFMm": 22.14759211985406,
+          "JJAMm": 94.44890107591128,
+          "observedDJFMm": 67.76172105003549,
+          "observedJJAMm": 180.1560091846704,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.5051090402472659,
+          "observedSummerFraction": 0.3991636625011442,
+          "summerWinterRatio": 4.264522326616409,
+          "observedSummerWinterRatio": 2.65866932529123,
+          "peakMonth": 7,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 2121168.281491064
+        },
+        {
+          "name": "India",
+          "bounds": {
+            "south": 18,
+            "north": 25,
+            "west": 74,
+            "east": 86
+          },
+          "fit": false,
+          "modelAnnualMm": 406.5239582781376,
+          "observedAnnualMm": 1138.0584591661475,
+          "annualBiasMm": -731.5345008880099,
+          "monthlyMAEMm": 85.65490162346077,
+          "DJFMm": 106.70905160347193,
+          "JJAMm": 81.10138911164844,
+          "observedDJFMm": 31.030961565542796,
+          "observedJJAMm": 772.5089682980226,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.19949965422741478,
+          "observedSummerFraction": 0.6787955065718135,
+          "summerWinterRatio": 0.7600235209007301,
+          "observedSummerWinterRatio": 24.894780223498685,
+          "peakMonth": 11,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 787998.1215941662
+        },
+        {
+          "name": "Himalaya foreland",
+          "bounds": {
+            "south": 26,
+            "north": 30,
+            "west": 76,
+            "east": 88
+          },
+          "fit": false,
+          "modelAnnualMm": 734.3026095548684,
+          "observedAnnualMm": 1120.4190368743978,
+          "annualBiasMm": -386.1164273195294,
+          "monthlyMAEMm": 78.35763210415107,
+          "DJFMm": 195.92691321114233,
+          "JJAMm": 225.06136498053212,
+          "observedDJFMm": 52.17271790200613,
+          "observedJJAMm": 748.466240339592,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.30649675222720985,
+          "observedSummerFraction": 0.6680234945200215,
+          "summerWinterRatio": 1.1487006113243503,
+          "observedSummerWinterRatio": 14.345931560349326,
+          "peakMonth": 5,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 523911.47445725085
+        },
+        {
+          "name": "Tibet",
+          "bounds": {
+            "south": 29,
+            "north": 35,
+            "west": 80,
+            "east": 95
+          },
+          "fit": false,
+          "modelAnnualMm": 1201.1411392370942,
+          "observedAnnualMm": 443.5370060622327,
+          "annualBiasMm": 757.6041331748615,
+          "monthlyMAEMm": 63.133677764571814,
+          "DJFMm": 267.8629340802146,
+          "JJAMm": 386.5525273675753,
+          "observedDJFMm": 15.758102939090104,
+          "observedJJAMm": 292.8287652729492,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.32182107059716103,
+          "observedSummerFraction": 0.6602127021434202,
+          "summerWinterRatio": 1.443098234904788,
+          "observedSummerWinterRatio": 18.582742250435988,
+          "peakMonth": 7,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 943266.6495742021
+        },
+        {
+          "name": "Australia southwest",
+          "bounds": {
+            "south": -35,
+            "north": -29,
+            "west": 113,
+            "east": 120
+          },
+          "fit": false,
+          "modelAnnualMm": 1001.098963655869,
+          "observedAnnualMm": 489.0437953244504,
+          "annualBiasMm": 512.0551683314186,
+          "monthlyMAEMm": 42.671264027618214,
+          "DJFMm": 176.01378543001277,
+          "JJAMm": 319.07096163540825,
+          "observedDJFMm": 51.302343928334146,
+          "observedJJAMm": 226.66976511958222,
+          "seasonDefinition": "Southern DJF summer",
+          "summerFraction": 0.17582056501910243,
+          "observedSummerFraction": 0.10490337351953971,
+          "summerWinterRatio": 0.5516446389475513,
+          "observedSummerWinterRatio": 0.22633077641064747,
+          "peakMonth": 9,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 202792.97166197546
+        },
+        {
+          "name": "Australia north",
+          "bounds": {
+            "south": -18,
+            "north": -10,
+            "west": 125,
+            "east": 140
+          },
+          "fit": false,
+          "modelAnnualMm": 292.58643653799277,
+          "observedAnnualMm": 985.874970099378,
+          "annualBiasMm": -693.2885335613852,
+          "monthlyMAEMm": 76.11956048021982,
+          "DJFMm": 65.2464387118958,
+          "JJAMm": 78.56022796152297,
+          "observedDJFMm": 660.3073838751569,
+          "observedJJAMm": 6.255096130783077,
+          "seasonDefinition": "Southern DJF summer",
+          "summerFraction": 0.22299884944742973,
+          "observedSummerFraction": 0.6697678751379567,
+          "summerWinterRatio": 0.8305276143528,
+          "observedSummerWinterRatio": 105.56310727593772,
+          "peakMonth": 5,
+          "observedPeakMonth": 1,
+          "validLandAreaKm2": 539500.6012487026
+        },
+        {
+          "name": "Amazon",
+          "bounds": {
+            "south": -10,
+            "north": 2,
+            "west": -70,
+            "east": -50
+          },
+          "fit": false,
+          "modelAnnualMm": 715.4211417660945,
+          "observedAnnualMm": 2264.6589665098722,
+          "annualBiasMm": -1549.2378247437778,
+          "monthlyMAEMm": 129.10315206198143,
+          "DJFMm": 154.1150502624796,
+          "JJAMm": 167.813550504748,
+          "observedDJFMm": 751.6276273605105,
+          "observedJJAMm": 327.0135119406864,
+          "seasonDefinition": "Equatorial: DJF/JJA only, no summer label",
+          "summerFraction": null,
+          "observedSummerFraction": null,
+          "summerWinterRatio": null,
+          "observedSummerWinterRatio": null,
+          "peakMonth": 5,
+          "observedPeakMonth": 3,
+          "validLandAreaKm2": 2854889.8806727803
+        },
+        {
+          "name": "Congo",
+          "bounds": {
+            "south": -5,
+            "north": 5,
+            "west": 15,
+            "east": 30
+          },
+          "fit": false,
+          "modelAnnualMm": 1074.4113914182724,
+          "observedAnnualMm": 1385.3032343468403,
+          "annualBiasMm": -310.89184292856794,
+          "monthlyMAEMm": 31.271981425870663,
+          "DJFMm": 261.99149374173805,
+          "JJAMm": 246.32403434531,
+          "observedDJFMm": 240.19796151887022,
+          "observedJJAMm": 281.35160064633726,
+          "seasonDefinition": "Equatorial: DJF/JJA only, no summer label",
+          "summerFraction": null,
+          "observedSummerFraction": null,
+          "summerWinterRatio": null,
+          "observedSummerWinterRatio": null,
+          "peakMonth": 3,
+          "observedPeakMonth": 10,
+          "validLandAreaKm2": 1852293.6624370685
+        }
+      ],
+      "monsoon": [
+        {
+          "name": "India",
+          "marineBox": {
+            "south": 5,
+            "north": 15,
+            "west": 60,
+            "east": 90
+          },
+          "oceanMonthly": [
+            {
+              "sstK": 302.87447975704646,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.87447975704646,
+                "eastKPerDegree": -0.2033063432539196,
+                "northKPerDegree": -0.13073796021014594,
+                "eastKPer1000Km": -1.8513290330673267,
+                "northKPer1000Km": -1.1757547233072756
+              },
+              "lowEastWindMps": -5.99133404271467,
+              "lowNorthWindMps": -0.3575558466273577,
+              "lowSpecificHumidity": 0.008710371460976358
+            },
+            {
+              "sstK": 302.2165476132442,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.2165476132442,
+                "eastKPerDegree": -0.20598815410156665,
+                "northKPerDegree": -0.14194735974761713,
+                "eastKPer1000Km": -1.8757498858748698,
+                "northKPer1000Km": -1.2765632752415081
+              },
+              "lowEastWindMps": -5.886174521539745,
+              "lowNorthWindMps": -0.5298109076920572,
+              "lowSpecificHumidity": 0.008574651516736623
+            },
+            {
+              "sstK": 302.1442631697657,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.1442631697657,
+                "eastKPerDegree": -0.20121274681294998,
+                "northKPerDegree": -0.10909945389164837,
+                "eastKPer1000Km": -1.832264522768931,
+                "northKPer1000Km": -0.9811549607869372
+              },
+              "lowEastWindMps": -4.485132595929752,
+              "lowNorthWindMps": -0.4552619176137158,
+              "lowSpecificHumidity": 0.008378838452614897
+            },
+            {
+              "sstK": 302.03507331622257,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.03507331622257,
+                "eastKPerDegree": -0.1920970503607555,
+                "northKPerDegree": -0.0854807439461083,
+                "eastKPer1000Km": -1.7492560281569405,
+                "northKPer1000Km": -0.7687467992074192
+              },
+              "lowEastWindMps": -5.2666382403916625,
+              "lowNorthWindMps": -0.5429822564451041,
+              "lowSpecificHumidity": 0.00905571605371186
+            },
+            {
+              "sstK": 302.2971545670919,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.2971545670919,
+                "eastKPerDegree": -0.18497368107586187,
+                "northKPerDegree": -0.006652562396127455,
+                "eastKPer1000Km": -1.684389875142163,
+                "northKPer1000Km": -0.05982793097559901
+              },
+              "lowEastWindMps": -4.256056937082484,
+              "lowNorthWindMps": -0.3934091706424026,
+              "lowSpecificHumidity": 0.008536923200111042
+            },
+            {
+              "sstK": 302.902605995121,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.902605995121,
+                "eastKPerDegree": -0.18408347445235124,
+                "northKPerDegree": 0.07325047307081003,
+                "eastKPer1000Km": -1.6762835596128158,
+                "northKPer1000Km": 0.6587573307634761
+              },
+              "lowEastWindMps": -3.551009311373768,
+              "lowNorthWindMps": -0.12216076079497977,
+              "lowSpecificHumidity": 0.007666659832395459
+            },
+            {
+              "sstK": 303.4732628752929,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 303.4732628752929,
+                "eastKPerDegree": -0.17992189265786765,
+                "northKPerDegree": 0.2019390167434403,
+                "eastKPer1000Km": -1.6383877562832099,
+                "northKPer1000Km": 1.8160812083536015
+              },
+              "lowEastWindMps": -2.8814802336674274,
+              "lowNorthWindMps": -0.13798958672481712,
+              "lowSpecificHumidity": 0.007579666912622817
+            },
+            {
+              "sstK": 303.8708349686886,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 303.8708349686886,
+                "eastKPerDegree": -0.1801185338023077,
+                "northKPerDegree": 0.2639172458900207,
+                "eastKPer1000Km": -1.640178391311959,
+                "northKPer1000Km": 2.373464814034619
+              },
+              "lowEastWindMps": -3.043940914731661,
+              "lowNorthWindMps": -0.07533799715977609,
+              "lowSpecificHumidity": 0.00786341706749699
+            },
+            {
+              "sstK": 304.06814119569515,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 304.06814119569515,
+                "eastKPerDegree": -0.18156979426222036,
+                "northKPerDegree": 0.2770191388366953,
+                "eastKPer1000Km": -1.6533937223290702,
+                "northKPer1000Km": 2.4912929680884064
+              },
+              "lowEastWindMps": -3.86076432968463,
+              "lowNorthWindMps": -0.13158940087698948,
+              "lowSpecificHumidity": 0.008046966937120786
+            },
+            {
+              "sstK": 304.1491635003239,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 304.1491635003239,
+                "eastKPerDegree": -0.18286643057048244,
+                "northKPerDegree": 0.25971998977556826,
+                "eastKPer1000Km": -1.6652010294912314,
+                "northKPer1000Km": 2.335717982941603
+              },
+              "lowEastWindMps": -3.2355757274028205,
+              "lowNorthWindMps": -0.10107498380001374,
+              "lowSpecificHumidity": 0.0075459075503437065
+            },
+            {
+              "sstK": 304.1642459568015,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 304.1642459568015,
+                "eastKPerDegree": -0.19082745424111544,
+                "northKPerDegree": 0.2106352684822557,
+                "eastKPer1000Km": -1.7376949518081142,
+                "northKPer1000Km": 1.8942884791458516
+              },
+              "lowEastWindMps": -4.114866253718026,
+              "lowNorthWindMps": -0.07715912364765938,
+              "lowSpecificHumidity": 0.00725917408433622
+            },
+            {
+              "sstK": 303.6102253320199,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 303.6102253320199,
+                "eastKPerDegree": -0.21031429835045237,
+                "northKPerDegree": 0.06291077843777249,
+                "eastKPer1000Km": -1.9151442122938758,
+                "northKPer1000Km": 0.56577022294255
+              },
+              "lowEastWindMps": -5.146423109306412,
+              "lowNorthWindMps": -0.2556882402411988,
+              "lowSpecificHumidity": 0.0077244029503576415
+            }
+          ],
+          "landSkinK": [
+            301.77113658547273,
+            303.40838257277136,
+            305.95605255945463,
+            312.06673501686106,
+            310.0940334262306,
+            310.8619199248206,
+            310.24201168479533,
+            311.96470657940625,
+            308.13539388960083,
+            305.31036859664766,
+            298.87281035391425,
+            301.0582784545659
+          ],
+          "summerLowWind": {
+            "east": 1.5364693693010316,
+            "north": 0.6718023253812462
+          },
+          "summerColumnWaterKgM2": 23.27613543797218,
+          "summerLandMinusOceanSkinK": 7.603485336063159,
+          "summerDiagnosticMoistureConvergenceMmDay": 0.0385573564692301
+        },
+        {
+          "name": "Australia north",
+          "marineBox": {
+            "south": -10,
+            "north": -2,
+            "west": 110,
+            "east": 140
+          },
+          "oceanMonthly": [
+            {
+              "sstK": 306.4802706963492,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.4802706963492,
+                "eastKPerDegree": -0.021771175031707692,
+                "northKPerDegree": 0.6155208144354812,
+                "eastKPer1000Km": -0.19745690467040217,
+                "northKPer1000Km": 5.535511673145219
+              },
+              "lowEastWindMps": 1.1489953841636025,
+              "lowNorthWindMps": 0.02618008627363736,
+              "lowSpecificHumidity": 0.008375020198362742
+            },
+            {
+              "sstK": 306.82230178174825,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.82230178174825,
+                "eastKPerDegree": -0.021697712527752606,
+                "northKPerDegree": 0.20220841584586932,
+                "eastKPer1000Km": -0.19679062558260915,
+                "northKPer1000Km": 1.8185039726878969
+              },
+              "lowEastWindMps": 0.9933357945294244,
+              "lowNorthWindMps": 0.07872767171899442,
+              "lowSpecificHumidity": 0.008362303295778988
+            },
+            {
+              "sstK": 307.30605227313725,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 307.30605227313725,
+                "eastKPerDegree": -0.0038010323311664916,
+                "northKPerDegree": -0.026290068731549175,
+                "eastKPer1000Km": -0.03447402712858477,
+                "northKPer1000Km": -0.2364322683137061
+              },
+              "lowEastWindMps": 0.8313268269464515,
+              "lowNorthWindMps": -0.10256256327304505,
+              "lowSpecificHumidity": 0.008263431906874535
+            },
+            {
+              "sstK": 307.09977158935925,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 307.09977158935925,
+                "eastKPerDegree": 0.045699021576542945,
+                "northKPerDegree": -0.08821331828595882,
+                "eastKPer1000Km": 0.41447406186519914,
+                "northKPer1000Km": -0.7933214306434861
+              },
+              "lowEastWindMps": 0.04342585736531798,
+              "lowNorthWindMps": 0.09009391053526628,
+              "lowSpecificHumidity": 0.00929134455681345
+            },
+            {
+              "sstK": 306.76312484014534,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.76312484014534,
+                "eastKPerDegree": 0.04788404920615239,
+                "northKPerDegree": -0.08852805910235377,
+                "eastKPer1000Km": 0.43429149439852,
+                "northKPer1000Km": -0.7961519628079708
+              },
+              "lowEastWindMps": -0.6878587911364502,
+              "lowNorthWindMps": 0.272907995521234,
+              "lowSpecificHumidity": 0.00879298081164212
+            },
+            {
+              "sstK": 306.54347512320555,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.54347512320555,
+                "eastKPerDegree": 0.0374466885507637,
+                "northKPerDegree": 0.12768396092528136,
+                "eastKPer1000Km": 0.3396283021298372,
+                "northKPer1000Km": 1.1482894478938848
+              },
+              "lowEastWindMps": -1.3273330856294716,
+              "lowNorthWindMps": 0.302453972557016,
+              "lowSpecificHumidity": 0.008024407740711339
+            },
+            {
+              "sstK": 305.882999054878,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 305.882999054878,
+                "eastKPerDegree": 0.004242626336257577,
+                "northKPerDegree": 0.40570772628162166,
+                "eastKPer1000Km": 0.038479129528400075,
+                "northKPer1000Km": 3.648617239332248
+              },
+              "lowEastWindMps": -1.8526229884955874,
+              "lowNorthWindMps": 0.5681671997368003,
+              "lowSpecificHumidity": 0.007983837961538781
+            },
+            {
+              "sstK": 305.0521061408567,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 305.0521061408567,
+                "eastKPerDegree": -0.02619351139850921,
+                "northKPerDegree": 0.6614335501100675,
+                "eastKPer1000Km": -0.23756594100529063,
+                "northKPer1000Km": 5.948414824935131
+              },
+              "lowEastWindMps": -1.8487443723953951,
+              "lowNorthWindMps": 0.44878734627747063,
+              "lowSpecificHumidity": 0.008082442000226286
+            },
+            {
+              "sstK": 304.55902449806257,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 304.55902449806257,
+                "eastKPerDegree": -0.03681113059465587,
+                "northKPerDegree": 0.8239577567191221,
+                "eastKPer1000Km": -0.33386401487529416,
+                "northKPer1000Km": 7.410030129818356
+              },
+              "lowEastWindMps": -2.411456556955737,
+              "lowNorthWindMps": 0.4413014332392948,
+              "lowSpecificHumidity": 0.008173586573990142
+            },
+            {
+              "sstK": 304.9059582671963,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 304.9059582671963,
+                "eastKPerDegree": -0.02837612571606112,
+                "northKPerDegree": 0.8963145351006716,
+                "eastKPer1000Km": -0.257361485646562,
+                "northKPer1000Km": 8.060750271150363
+              },
+              "lowEastWindMps": -0.7716449225739874,
+              "lowNorthWindMps": 0.19168694691095428,
+              "lowSpecificHumidity": 0.007469632977434134
+            },
+            {
+              "sstK": 305.6365380633455,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 305.6365380633455,
+                "eastKPerDegree": -0.028224508848690415,
+                "northKPerDegree": 0.834757243368793,
+                "eastKPer1000Km": -0.255986373954922,
+                "northKPer1000Km": 7.507152246587155
+              },
+              "lowEastWindMps": -0.3697346753374314,
+              "lowNorthWindMps": 0.11071490831359775,
+              "lowSpecificHumidity": 0.006915345664760289
+            },
+            {
+              "sstK": 306.1373066195794,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 306.1373066195794,
+                "eastKPerDegree": -0.049953209835169085,
+                "northKPerDegree": 0.6958811233393232,
+                "eastKPer1000Km": -0.4530580539653075,
+                "northKPer1000Km": 6.258209293700504
+              },
+              "lowEastWindMps": 0.18329429164028702,
+              "lowNorthWindMps": 0.320998291467278,
+              "lowSpecificHumidity": 0.00752089338409768
+            }
+          ],
+          "landSkinK": [
+            311.75006693851617,
+            312.53959175243614,
+            309.5651593214589,
+            305.4873709308135,
+            301.9648879492601,
+            298.6831836920844,
+            299.4094490728324,
+            301.2351235623788,
+            304.0842364411401,
+            307.8951005209685,
+            311.64734979743565,
+            311.89442990060917
+          ],
+          "summerLowWind": {
+            "east": -2.244632574956779,
+            "north": 0.03636912104894802
+          },
+          "summerColumnWaterKgM2": 26.23963570516519,
+          "summerLandMinusOceanSkinK": 5.5768736044262255,
+          "summerDiagnosticMoistureConvergenceMmDay": 0.08781779992793605
+        }
+      ]
+    },
+    {
+      "id": "seasonal",
+      "budget": {
+        "year": {
+          "initial": {
+            "time": "2006-01-01T00:00:00",
+            "airMassKgM2": 9897.483212266472,
+            "dryAirMassKgM2": 9885.34517277955,
+            "airWaterMm": 12.138039486923773,
+            "landWaterMm": 226.35774259827906,
+            "oceanSensibleHeatJm2": 43552969429.1145,
+            "airSensibleHeatProxyJm2": 2434412960.8997445,
+            "minAirK": 169.75673264673074,
+            "maxAirK": 286.4370297123638,
+            "minHumidity": 0,
+            "maxHumidity": 0.008524252396909295,
+            "maxWindMps": 67.58755652633847,
+            "iceAreaFraction": 0.048815271448647675
+          },
+          "final": {
+            "time": "2007-01-01T00:00:00",
+            "airMassKgM2": 9897.350420323923,
+            "dryAirMassKgM2": 9885.34517277955,
+            "airWaterMm": 12.005247544374106,
+            "landWaterMm": 238.10304235368739,
+            "oceanSensibleHeatJm2": 43552969429.1145,
+            "airSensibleHeatProxyJm2": 2434547492.602043,
+            "minAirK": 181.1926002346724,
+            "maxAirK": 289.11142696670873,
+            "minHumidity": 0,
+            "maxHumidity": 0.008297239361205624,
+            "maxWindMps": 81.9836522839082,
+            "iceAreaFraction": 0.048814356639022796
+          },
+          "terms": {
+            "pressureModeWaterMm": -0.0010373975625946885,
+            "incomingSolarJm2": 10761678858.487572,
+            "oceanSurfaceInputJm2": 357748543.899256,
+            "pressureModeMassKgM2": -0.9513780377127574,
+            "evaporationMm": 710.3167391578745,
+            "snow_clipping_source": 55032.934921145614,
+            "snow_cap_outflow": 1.4194745718055009,
+            "pressureModeSensibleJm2": -240524.53928801417,
+            "landEvaporationMm": 106.90376066654409,
+            "landPrecipitationMm": 197.8053292139905,
+            "soil_clipping_source": 0,
+            "precipitationMm": 710.301710868669,
+            "river_runoff": 63.37549397098701,
+            "oceanHeatResidualJm2": 0.0000031371057502838084,
+            "prescribedSstExternalHeatJm2": -462618609.97716904,
+            "outgoingShortwaveJm2": 3380009415.3309784,
+            "deep_drainage": 14.361300249242383,
+            "oceanFreezingAdjustmentJm2": 104870066.07790202,
+            "outgoingLongwaveJm2": 6990422362.98732
+          },
+          "totalAirMassRelative": -0.000013416738346649915,
+          "dryAirMassRelative": 0,
+          "dryAirMassPassed": true,
+          "airWaterRawResidualMm": -0.14782023175519043,
+          "airWaterExcludingCurrentModeResidualMm": -0.14678283419259575,
+          "airWaterLimitMm": 1.4206184500265435,
+          "airWaterPassed": true,
+          "landRawResidualMm": -15.780774821051068,
+          "landLedgerResidualMm": -3.184119634624949e-12,
+          "landWaterPassed": true,
+          "oceanLedgerResidualJm2": 0.000011026859283447266
+        },
+        "full": {
+          "initial": {
+            "time": "2001-01-01T00:00:00",
+            "airMassKgM2": 9930.766760562276,
+            "dryAirMassKgM2": 9885.345172779551,
+            "airWaterMm": 45.42158778272519,
+            "landWaterMm": 45.050369189291864,
+            "oceanSensibleHeatJm2": 43566620605.89134,
+            "airSensibleHeatProxyJm2": 2525789736.909026,
+            "minAirK": 199.2738837630537,
+            "maxAirK": 307.21638020962695,
+            "minHumidity": 0.000024488767723210088,
+            "maxHumidity": 0.030264507040974713,
+            "maxWindMps": 35.299023335516914,
+            "iceAreaFraction": 0
+          },
+          "final": {
+            "time": "2007-01-01T00:00:00",
+            "airMassKgM2": 9897.350420323923,
+            "dryAirMassKgM2": 9885.34517277955,
+            "airWaterMm": 12.005247544374106,
+            "landWaterMm": 238.10304235368739,
+            "oceanSensibleHeatJm2": 43552969429.1145,
+            "airSensibleHeatProxyJm2": 2434547492.602043,
+            "minAirK": 181.1926002346724,
+            "maxAirK": 289.11142696670873,
+            "minHumidity": 0,
+            "maxHumidity": 0.008297239361205624,
+            "maxWindMps": 81.9836522839082,
+            "iceAreaFraction": 0.048814356639022796
+          },
+          "terms": {
+            "incomingSolarJm2": 64599557208.55232,
+            "outgoingLongwaveJm2": 42250616085.861755,
+            "snow_clipping_source": 350960.58579208585,
+            "pressureModeWaterMm": -0.22400828201152329,
+            "prescribedSstExternalHeatJm2": -2664678481.587379,
+            "snow_cap_outflow": 2.002308008945896,
+            "pressureModeSensibleJm2": -18899695.340857103,
+            "landEvaporationMm": 466.19699286105515,
+            "landPrecipitationMm": 1053.5309899247486,
+            "soil_clipping_source": 0,
+            "precipitationMm": 4174.111300650084,
+            "pressureModeMassKgM2": -74.69317416966902,
+            "river_runoff": 319.5634720381345,
+            "evaporationMm": 4141.9438141224155,
+            "oceanHeatResidualJm2": 0.0000031924773225000536,
+            "outgoingShortwaveJm2": 20291227890.886597,
+            "deep_drainage": 72.71554385220615,
+            "oceanFreezingAdjustmentJm2": 625199004.9661365,
+            "oceanSurfaceInputJm2": 2025828299.844385
+          },
+          "totalAirMassRelative": -0.0033649305279284114,
+          "dryAirMassRelative": -2.220446049250313e-16,
+          "dryAirMassPassed": true,
+          "airWaterRawResidualMm": -1.2488537106828517,
+          "airWaterExcludingCurrentModeResidualMm": -1.0248454286713284,
+          "airWaterLimitMm": 8.316055114772498,
+          "airWaterPassed": true,
+          "landRawResidualMm": -74.71785186116347,
+          "landLedgerResidualMm": -1.141842176366481e-11,
+          "landWaterPassed": true,
+          "oceanLedgerResidualJm2": 0.000017642974853515625
+        },
+        "mass": {
+          "targetDryKgM2": 9885.345172779551,
+          "waterCorrectionMm": -0.22400828201152329,
+          "sensibleCorrectionJm2": -18899695.340857103,
+          "totalMassCorrectionKgM2": -74.69317416966902,
+          "absoluteMassCorrectionKgM2": 748.6682684676465,
+          "maxRawDryRelative": 0.0002204015104545487,
+          "maxMemoryRawDryRelative": 0.0000058242740783587266,
+          "memoryWaterModeMm": -0.005689692533014091,
+          "memoryTotalMassModeKgM2": -1.842852214500541,
+          "maxMemoryDeltaLogPressure": 0.00000582425711722392,
+          "maxPostDryRelative": 1.5543122344752192e-15,
+          "corrections": 105169
+        }
+      },
+      "regions": [
+        {
+          "name": "Europe",
+          "bounds": {
+            "south": 45,
+            "north": 55,
+            "west": -5,
+            "east": 25
+          },
+          "fit": true,
+          "modelAnnualMm": 621.125618668193,
+          "observedAnnualMm": 792.093176749828,
+          "annualBiasMm": -170.96755808163493,
+          "monthlyMAEMm": 22.928755197038992,
+          "DJFMm": 164.62017362589512,
+          "JJAMm": 104.13947001196264,
+          "observedDJFMm": 171.09236660520048,
+          "observedJJAMm": 238.57202467551633,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.16766249351501025,
+          "observedSummerFraction": 0.3011918694394537,
+          "summerWinterRatio": 0.6326045448635177,
+          "observedSummerWinterRatio": 1.394404843472805,
+          "peakMonth": 3,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 1457535.871717837
+        },
+        {
+          "name": "East North America",
+          "bounds": {
+            "south": 35,
+            "north": 45,
+            "west": -95,
+            "east": -75
+          },
+          "fit": true,
+          "modelAnnualMm": 1316.2104704939181,
+          "observedAnnualMm": 1055.9918242302388,
+          "annualBiasMm": 260.2186462636794,
+          "monthlyMAEMm": 28.573503568025956,
+          "DJFMm": 255.9180738972192,
+          "JJAMm": 427.2286816343582,
+          "observedDJFMm": 203.37164444957259,
+          "observedJJAMm": 307.96969285901883,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.32458994303094807,
+          "observedSummerFraction": 0.2916402246613151,
+          "summerWinterRatio": 1.6693962842418864,
+          "observedSummerWinterRatio": 1.5143197258031813,
+          "peakMonth": 6,
+          "observedPeakMonth": 6,
+          "validLandAreaKm2": 1776104.2882470808
+        },
+        {
+          "name": "East Asia",
+          "bounds": {
+            "south": 30,
+            "north": 45,
+            "west": 110,
+            "east": 135
+          },
+          "fit": true,
+          "modelAnnualMm": 1257.1453265799987,
+          "observedAnnualMm": 693.9131228302147,
+          "annualBiasMm": 563.232203749784,
+          "monthlyMAEMm": 59.49242268518612,
+          "DJFMm": 217.84923450496905,
+          "JJAMm": 347.72485577081824,
+          "observedDJFMm": 44.99087555814697,
+          "observedJJAMm": 382.86409143675166,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.2765987737605376,
+          "observedSummerFraction": 0.5517464345899539,
+          "summerWinterRatio": 1.5961720341178742,
+          "observedSummerWinterRatio": 8.509816416929509,
+          "peakMonth": 5,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 1995598.7368180598
+        },
+        {
+          "name": "West Siberia",
+          "bounds": {
+            "south": 50,
+            "north": 60,
+            "west": 60,
+            "east": 90
+          },
+          "fit": true,
+          "modelAnnualMm": 196.94726668748896,
+          "observedAnnualMm": 451.3336911877694,
+          "annualBiasMm": -254.3864245002804,
+          "monthlyMAEMm": 21.198868708356695,
+          "DJFMm": 15.800845850650989,
+          "JJAMm": 95.20460875237217,
+          "observedDJFMm": 67.76172105003549,
+          "observedJJAMm": 180.1560091846704,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.4834015234313481,
+          "observedSummerFraction": 0.3991636625011442,
+          "summerWinterRatio": 6.025285586116251,
+          "observedSummerWinterRatio": 2.65866932529123,
+          "peakMonth": 7,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 2121168.281491064
+        },
+        {
+          "name": "India",
+          "bounds": {
+            "south": 18,
+            "north": 25,
+            "west": 74,
+            "east": 86
+          },
+          "fit": false,
+          "modelAnnualMm": 168.12378526185256,
+          "observedAnnualMm": 1138.0584591661475,
+          "annualBiasMm": -969.9346739042949,
+          "monthlyMAEMm": 85.80172242538585,
+          "DJFMm": 58.71266395252412,
+          "JJAMm": 42.968032497946595,
+          "observedDJFMm": 31.030961565542796,
+          "observedJJAMm": 772.5089682980226,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.2555737870820833,
+          "observedSummerFraction": 0.6787955065718135,
+          "summerWinterRatio": 0.7318358528696832,
+          "observedSummerWinterRatio": 24.894780223498685,
+          "peakMonth": 1,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 787998.1215941662
+        },
+        {
+          "name": "Himalaya foreland",
+          "bounds": {
+            "south": 26,
+            "north": 30,
+            "west": 76,
+            "east": 88
+          },
+          "fit": false,
+          "modelAnnualMm": 557.5222633975237,
+          "observedAnnualMm": 1120.4190368743978,
+          "annualBiasMm": -562.896773476874,
+          "monthlyMAEMm": 79.96358723407339,
+          "DJFMm": 170.16820188784288,
+          "JJAMm": 152.23316899998838,
+          "observedDJFMm": 52.17271790200613,
+          "observedJJAMm": 748.466240339592,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.273053076073203,
+          "observedSummerFraction": 0.6680234945200215,
+          "summerWinterRatio": 0.8946040876680627,
+          "observedSummerWinterRatio": 14.345931560349326,
+          "peakMonth": 2,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 523911.47445725085
+        },
+        {
+          "name": "Tibet",
+          "bounds": {
+            "south": 29,
+            "north": 35,
+            "west": 80,
+            "east": 95
+          },
+          "fit": false,
+          "modelAnnualMm": 1144.2926260206802,
+          "observedAnnualMm": 443.5370060622327,
+          "annualBiasMm": 700.7556199584476,
+          "monthlyMAEMm": 58.62463789092427,
+          "DJFMm": 269.17267041194765,
+          "JJAMm": 348.89696751427607,
+          "observedDJFMm": 15.758102939090104,
+          "observedJJAMm": 292.8287652729492,
+          "seasonDefinition": "Northern JJA summer",
+          "summerFraction": 0.3049018752550894,
+          "observedSummerFraction": 0.6602127021434202,
+          "summerWinterRatio": 1.2961827327429514,
+          "observedSummerWinterRatio": 18.582742250435988,
+          "peakMonth": 7,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 943266.6495742021
+        },
+        {
+          "name": "Australia southwest",
+          "bounds": {
+            "south": -35,
+            "north": -29,
+            "west": 113,
+            "east": 120
+          },
+          "fit": false,
+          "modelAnnualMm": 721.3492218516026,
+          "observedAnnualMm": 489.0437953244504,
+          "annualBiasMm": 232.30542652715218,
+          "monthlyMAEMm": 35.786669267727596,
+          "DJFMm": 238.25977520060445,
+          "JJAMm": 143.36528461866592,
+          "observedDJFMm": 51.302343928334146,
+          "observedJJAMm": 226.66976511958222,
+          "seasonDefinition": "Southern DJF summer",
+          "summerFraction": 0.33029740378595673,
+          "observedSummerFraction": 0.10490337351953971,
+          "summerWinterRatio": 1.6619070358235346,
+          "observedSummerWinterRatio": 0.22633077641064747,
+          "peakMonth": 3,
+          "observedPeakMonth": 7,
+          "validLandAreaKm2": 202792.97166197546
+        },
+        {
+          "name": "Australia north",
+          "bounds": {
+            "south": -18,
+            "north": -10,
+            "west": 125,
+            "east": 140
+          },
+          "fit": false,
+          "modelAnnualMm": 968.4954234055317,
+          "observedAnnualMm": 985.874970099378,
+          "annualBiasMm": -17.379546693846237,
+          "monthlyMAEMm": 100.89306740533895,
+          "DJFMm": 131.35896909085386,
+          "JJAMm": 312.810765369202,
+          "observedDJFMm": 660.3073838751569,
+          "observedJJAMm": 6.255096130783077,
+          "seasonDefinition": "Southern DJF summer",
+          "summerFraction": 0.13563199775271503,
+          "observedSummerFraction": 0.6697678751379567,
+          "summerWinterRatio": 0.4199311009511276,
+          "observedSummerWinterRatio": 105.56310727593772,
+          "peakMonth": 5,
+          "observedPeakMonth": 1,
+          "validLandAreaKm2": 539500.6012487026
+        },
+        {
+          "name": "Amazon",
+          "bounds": {
+            "south": -10,
+            "north": 2,
+            "west": -70,
+            "east": -50
+          },
+          "fit": false,
+          "modelAnnualMm": 922.5671411404201,
+          "observedAnnualMm": 2264.6589665098722,
+          "annualBiasMm": -1342.0918253694522,
+          "monthlyMAEMm": 111.84098544745434,
+          "DJFMm": 244.57169140917145,
+          "JJAMm": 214.93966165891266,
+          "observedDJFMm": 751.6276273605105,
+          "observedJJAMm": 327.0135119406864,
+          "seasonDefinition": "Equatorial: DJF/JJA only, no summer label",
+          "summerFraction": null,
+          "observedSummerFraction": null,
+          "summerWinterRatio": null,
+          "observedSummerWinterRatio": null,
+          "peakMonth": 12,
+          "observedPeakMonth": 3,
+          "validLandAreaKm2": 2854889.8806727803
+        },
+        {
+          "name": "Congo",
+          "bounds": {
+            "south": -5,
+            "north": 5,
+            "west": 15,
+            "east": 30
+          },
+          "fit": false,
+          "modelAnnualMm": 1236.155928688612,
+          "observedAnnualMm": 1385.3032343468403,
+          "annualBiasMm": -149.14730565822833,
+          "monthlyMAEMm": 26.62489334613704,
+          "DJFMm": 313.4085727055308,
+          "JJAMm": 285.3206833673895,
+          "observedDJFMm": 240.19796151887022,
+          "observedJJAMm": 281.35160064633726,
+          "seasonDefinition": "Equatorial: DJF/JJA only, no summer label",
+          "summerFraction": null,
+          "observedSummerFraction": null,
+          "summerWinterRatio": null,
+          "observedSummerWinterRatio": null,
+          "peakMonth": 10,
+          "observedPeakMonth": 10,
+          "validLandAreaKm2": 1852293.6624370685
+        }
+      ],
+      "monsoon": [
+        {
+          "name": "India",
+          "marineBox": {
+            "south": 5,
+            "north": 15,
+            "west": 60,
+            "east": 90
+          },
+          "oceanMonthly": [
+            {
+              "sstK": 300.8823789511159,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 300.8823789511159,
+                "eastKPerDegree": 0.010313332230463972,
+                "northKPerDegree": -0.1466605121887376,
+                "eastKPer1000Km": 0.09391429249248892,
+                "northKPer1000Km": -1.3189496734643906
+              },
+              "lowEastWindMps": -2.8619052436188497,
+              "lowNorthWindMps": -0.34745567620445716,
+              "lowSpecificHumidity": 0.005825465798943365
+            },
+            {
+              "sstK": 301.10044751997077,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.10044751997077,
+                "eastKPerDegree": 0.012157683482157754,
+                "northKPerDegree": -0.1588186067461954,
+                "eastKPer1000Km": 0.11070914977429158,
+                "northKPer1000Km": -1.4282900446876379
+              },
+              "lowEastWindMps": -2.469768688568722,
+              "lowNorthWindMps": -0.4468856425015588,
+              "lowSpecificHumidity": 0.005844920174989257
+            },
+            {
+              "sstK": 301.89280939353773,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.89280939353773,
+                "eastKPerDegree": 0.013831165287224535,
+                "northKPerDegree": -0.13006874152382158,
+                "eastKPer1000Km": 0.12594805182940647,
+                "northKPer1000Km": -1.1697362950703152
+              },
+              "lowEastWindMps": -1.5746903899875795,
+              "lowNorthWindMps": -0.39865160651258114,
+              "lowSpecificHumidity": 0.0060967802826322375
+            },
+            {
+              "sstK": 302.81087317550396,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.81087317550396,
+                "eastKPerDegree": 0.00918707425572206,
+                "northKPerDegree": -0.053961126939197426,
+                "eastKPer1000Km": 0.08365846842919762,
+                "northKPer1000Km": -0.4852840733614351
+              },
+              "lowEastWindMps": -1.3385328162047385,
+              "lowNorthWindMps": -0.1425481711348836,
+              "lowSpecificHumidity": 0.006421255412527898
+            },
+            {
+              "sstK": 302.98518260338096,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.98518260338096,
+                "eastKPerDegree": -0.006754583596859829,
+                "northKPerDegree": 0.022587714049066555,
+                "eastKPer1000Km": -0.06150795159169655,
+                "northKPer1000Km": 0.20313619272639608
+              },
+              "lowEastWindMps": -0.3448170088213253,
+              "lowNorthWindMps": -0.17467033751002584,
+              "lowSpecificHumidity": 0.00613746265884732
+            },
+            {
+              "sstK": 302.26102263754285,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 302.26102263754285,
+                "eastKPerDegree": 0.0063076214640834915,
+                "northKPerDegree": 0.012572306227011222,
+                "eastKPer1000Km": 0.05743786720649342,
+                "northKPer1000Km": 0.1130654662617779
+              },
+              "lowEastWindMps": -0.16470505982298808,
+              "lowNorthWindMps": 0.21980994587960584,
+              "lowSpecificHumidity": 0.0060209667626084235
+            },
+            {
+              "sstK": 301.5764741776647,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.5764741776647,
+                "eastKPerDegree": 0.02840385965380077,
+                "northKPerDegree": -0.039594368818441125,
+                "eastKPer1000Km": 0.25864854576905694,
+                "northKPer1000Km": -0.3560807135113898
+              },
+              "lowEastWindMps": 0.12820489389172338,
+              "lowNorthWindMps": -0.040669581055849995,
+              "lowSpecificHumidity": 0.005900089958706357
+            },
+            {
+              "sstK": 301.2908908870333,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.2908908870333,
+                "eastKPerDegree": 0.035934033493553716,
+                "northKPerDegree": -0.07286812147633136,
+                "eastKPer1000Km": 0.327219104023441,
+                "northKPer1000Km": -0.6553187602637546
+              },
+              "lowEastWindMps": 0.27841314564170594,
+              "lowNorthWindMps": -0.3028002611964801,
+              "lowSpecificHumidity": 0.005750770614148047
+            },
+            {
+              "sstK": 301.47342393673193,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.47342393673193,
+                "eastKPerDegree": 0.026872385575607668,
+                "northKPerDegree": -0.04771139192887064,
+                "eastKPer1000Km": 0.24470278107243942,
+                "northKPer1000Km": -0.429078856100899
+              },
+              "lowEastWindMps": -0.4537974731162797,
+              "lowNorthWindMps": -0.14662941995634926,
+              "lowSpecificHumidity": 0.005565546886709505
+            },
+            {
+              "sstK": 301.7162411960431,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.7162411960431,
+                "eastKPerDegree": 0.01402994364497535,
+                "northKPerDegree": -0.00443828750867408,
+                "eastKPer1000Km": 0.12775814854827722,
+                "northKPer1000Km": -0.03991447849829816
+              },
+              "lowEastWindMps": -1.4874709343951447,
+              "lowNorthWindMps": -0.2254795560604876,
+              "lowSpecificHumidity": 0.005594844929416206
+            },
+            {
+              "sstK": 301.66734080234744,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.66734080234744,
+                "eastKPerDegree": 0.005437708203651706,
+                "northKPerDegree": -0.038869021721212156,
+                "eastKPer1000Km": 0.04951634518454552,
+                "northKPer1000Km": -0.3495575103481054
+              },
+              "lowEastWindMps": -1.751641792398308,
+              "lowNorthWindMps": -0.36495740930718745,
+              "lowSpecificHumidity": 0.005840169142069971
+            },
+            {
+              "sstK": 301.2226874723813,
+              "sstGradient": {
+                "meanLatitudeDeg": 9.031249773803507,
+                "meanLongitudeDeg": 75.33856548805244,
+                "meanSstK": 301.2226874723813,
+                "eastKPerDegree": 0.006157681607295084,
+                "northKPerDegree": -0.09869393305907728,
+                "eastKPer1000Km": 0.056072499035271915,
+                "northKPer1000Km": -0.8875758637312509
+              },
+              "lowEastWindMps": -1.9663183980868009,
+              "lowNorthWindMps": -0.4374214047468154,
+              "lowSpecificHumidity": 0.005920921583701333
+            }
+          ],
+          "landSkinK": [
+            301.7574851530011,
+            304.0030372610966,
+            308.1737910663659,
+            313.52713352800646,
+            312.61543524019237,
+            310.25488509268683,
+            310.9526839211323,
+            312.5795964449406,
+            310.9418733606881,
+            307.2181537831299,
+            303.78737819754787,
+            301.30822867502536
+          ],
+          "summerLowWind": {
+            "east": 2.4985202120966745,
+            "north": 0.5093416568984033
+          },
+          "summerColumnWaterKgM2": 18.76518299464643,
+          "summerLandMinusOceanSkinK": 9.569872260836235,
+          "summerDiagnosticMoistureConvergenceMmDay": 0.3572936481557801
+        },
+        {
+          "name": "Australia north",
+          "marineBox": {
+            "south": -10,
+            "north": -2,
+            "west": 110,
+            "east": 140
+          },
+          "oceanMonthly": [
+            {
+              "sstK": 302.206334073366,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 302.206334073366,
+                "eastKPerDegree": 0.027949253831928554,
+                "northKPerDegree": -0.01098901843497165,
+                "eastKPer1000Km": 0.2534899077088127,
+                "northKPer1000Km": -0.0988266170640924
+              },
+              "lowEastWindMps": 0.5610119889333495,
+              "lowNorthWindMps": 0.16405370671647068,
+              "lowSpecificHumidity": 0.005871721952004615
+            },
+            {
+              "sstK": 302.0447473588135,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 302.0447473588135,
+                "eastKPerDegree": 0.02496421350839892,
+                "northKPerDegree": -0.006314945178447658,
+                "eastKPer1000Km": 0.22641664125709074,
+                "northKPer1000Km": -0.05679166639170293
+              },
+              "lowEastWindMps": -0.3375118430593485,
+              "lowNorthWindMps": 0.13865253959095658,
+              "lowSpecificHumidity": 0.00576878529126863
+            },
+            {
+              "sstK": 302.1781992678705,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 302.1781992678705,
+                "eastKPerDegree": 0.01225208631529073,
+                "northKPerDegree": 0.03272317994500524,
+                "eastKPer1000Km": 0.11112211610298824,
+                "northKPer1000Km": 0.2942866273890971
+              },
+              "lowEastWindMps": 0.19031454760153957,
+              "lowNorthWindMps": 0.13893078366064532,
+              "lowSpecificHumidity": 0.0061606611546057895
+            },
+            {
+              "sstK": 302.2547578175951,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 302.2547578175951,
+                "eastKPerDegree": 0.0022214992581682815,
+                "northKPerDegree": 0.10496767429686192,
+                "eastKPer1000Km": 0.02014821738407091,
+                "northKPer1000Km": 0.9439969741820813
+              },
+              "lowEastWindMps": -1.5277120884399813,
+              "lowNorthWindMps": 0.4116178668669299,
+              "lowSpecificHumidity": 0.00669751856618966
+            },
+            {
+              "sstK": 301.77153327891847,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 301.77153327891847,
+                "eastKPerDegree": -0.013882267232558466,
+                "northKPerDegree": 0.15509906846672744,
+                "eastKPer1000Km": -0.12590728399161347,
+                "northKPer1000Km": 1.3948394332999647
+              },
+              "lowEastWindMps": -1.1944010751714382,
+              "lowNorthWindMps": 0.33742396294372873,
+              "lowSpecificHumidity": 0.00647826570745654
+            },
+            {
+              "sstK": 300.9329165663591,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 300.9329165663591,
+                "eastKPerDegree": -0.037584457116312434,
+                "northKPerDegree": 0.1654546066266586,
+                "eastKPer1000Km": -0.34087781459182037,
+                "northKPer1000Km": 1.4879690253813844
+              },
+              "lowEastWindMps": -2.7540200914051214,
+              "lowNorthWindMps": 0.4271033154652622,
+              "lowSpecificHumidity": 0.006394465971424107
+            },
+            {
+              "sstK": 300.14303387236106,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 300.14303387236106,
+                "eastKPerDegree": -0.04891305624785646,
+                "northKPerDegree": 0.17912985469904674,
+                "eastKPer1000Km": -0.44362422655666095,
+                "northKPer1000Km": 1.6109534859593557
+              },
+              "lowEastWindMps": -2.068566232669915,
+              "lowNorthWindMps": 0.4496433646383427,
+              "lowSpecificHumidity": 0.006120315534453708
+            },
+            {
+              "sstK": 299.9087487690513,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 299.9087487690513,
+                "eastKPerDegree": -0.04581663426433214,
+                "northKPerDegree": 0.17955950321737915,
+                "eastKPer1000Km": -0.41554076760097125,
+                "northKPer1000Km": 1.614817407914229
+              },
+              "lowEastWindMps": -2.2732913582393057,
+              "lowNorthWindMps": 0.544358620331672,
+              "lowSpecificHumidity": 0.006080878245698146
+            },
+            {
+              "sstK": 300.42776061264493,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 300.42776061264493,
+                "eastKPerDegree": -0.029754495440675,
+                "northKPerDegree": 0.14944864062841515,
+                "eastKPer1000Km": -0.26986281453291117,
+                "northKPer1000Km": 1.3440239149231756
+              },
+              "lowEastWindMps": -1.6117422292027022,
+              "lowNorthWindMps": 0.32337951997897024,
+              "lowSpecificHumidity": 0.005867146308712205
+            },
+            {
+              "sstK": 301.4059662920448,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 301.4059662920448,
+                "eastKPerDegree": -0.012205902330704095,
+                "northKPerDegree": 0.11681979682639224,
+                "eastKPer1000Km": -0.11070324359709266,
+                "northKPer1000Km": 1.0505856728501088
+              },
+              "lowEastWindMps": -1.1686802320067395,
+              "lowNorthWindMps": 0.22369932278969928,
+              "lowSpecificHumidity": 0.005710691192763233
+            },
+            {
+              "sstK": 302.30739180431806,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 302.30739180431806,
+                "eastKPerDegree": 0.012621935069940896,
+                "northKPerDegree": 0.0853199566328082,
+                "eastKPer1000Km": 0.11447651430074579,
+                "northKPer1000Km": 0.7673008041593352
+              },
+              "lowEastWindMps": -0.22032488115740664,
+              "lowNorthWindMps": 0.23866670220290806,
+              "lowSpecificHumidity": 0.005956834395538752
+            },
+            {
+              "sstK": 302.48134065231096,
+              "sstGradient": {
+                "meanLatitudeDeg": -7.443662837651652,
+                "meanLongitudeDeg": 124.15904151209884,
+                "meanSstK": 302.48134065231096,
+                "eastKPerDegree": 0.028572669704677697,
+                "northKPerDegree": 0.025321356528114944,
+                "eastKPer1000Km": 0.2591440705354016,
+                "northKPer1000Km": 0.22772043016905064
+              },
+              "lowEastWindMps": 0.12304181371193183,
+              "lowNorthWindMps": 0.07401402537239946,
+              "lowSpecificHumidity": 0.006145105017271838
+            }
+          ],
+          "landSkinK": [
+            309.59862553626454,
+            308.033660005228,
+            303.5362633246945,
+            295.69407038723534,
+            292.1426697465628,
+            292.63818421447394,
+            297.7772108439912,
+            298.3264516850512,
+            301.23414474267014,
+            308.30331345461104,
+            307.38705381730847,
+            310.9094973302458
+          ],
+          "summerLowWind": {
+            "east": -1.50237767427826,
+            "north": -0.25252449162739093
+          },
+          "summerColumnWaterKgM2": 19.0176329003186,
+          "summerLandMinusOceanSkinK": 7.312482738504855,
+          "summerDiagnosticMoistureConvergenceMmDay": 0.2892271734838211
+        }
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "name": "Europe",
+      "seasonalMinusSlabAnnualMm": -70.90791254208216,
+      "seasonalMinusSlabMonthlyMAEMm": 10.23851097933356,
+      "seasonalMinusReferenceMonthlyMAEMm": 11.68419669628759,
+      "seasonalSummerFractionChange": -0.15784063800881623
+    },
+    {
+      "name": "East North America",
+      "seasonalMinusSlabAnnualMm": -846.8325092866428,
+      "seasonalMinusSlabMonthlyMAEMm": -63.680759394500924,
+      "seasonalMinusReferenceMonthlyMAEMm": -71.77848013166806,
+      "seasonalSummerFractionChange": 0.06884695825094944
+    },
+    {
+      "name": "East Asia",
+      "seasonalMinusSlabAnnualMm": -587.5886879298314,
+      "seasonalMinusSlabMonthlyMAEMm": -37.1239229986469,
+      "seasonalMinusReferenceMonthlyMAEMm": -31.98661918648566,
+      "seasonalSummerFractionChange": 0.01571922672187115
+    },
+    {
+      "name": "West Siberia",
+      "seasonalMinusSlabAnnualMm": 9.96011431010183,
+      "seasonalMinusSlabMonthlyMAEMm": -0.8300095258418203,
+      "seasonalMinusReferenceMonthlyMAEMm": 0.17877464659015274,
+      "seasonalSummerFractionChange": -0.02170751681591776
+    },
+    {
+      "name": "India",
+      "seasonalMinusSlabAnnualMm": -238.40017301628507,
+      "seasonalMinusSlabMonthlyMAEMm": 0.14682080192507385,
+      "seasonalMinusReferenceMonthlyMAEMm": 4.372186493918463,
+      "seasonalSummerFractionChange": 0.0560741328546685
+    },
+    {
+      "name": "Himalaya foreland",
+      "seasonalMinusSlabAnnualMm": -176.78034615734464,
+      "seasonalMinusSlabMonthlyMAEMm": 1.6059551299223216,
+      "seasonalMinusReferenceMonthlyMAEMm": -3.2054237795226186,
+      "seasonalSummerFractionChange": -0.03344367615400684
+    },
+    {
+      "name": "Tibet",
+      "seasonalMinusSlabAnnualMm": -56.84851321641395,
+      "seasonalMinusSlabMonthlyMAEMm": -4.509039873647545,
+      "seasonalMinusReferenceMonthlyMAEMm": -3.596431361257352,
+      "seasonalSummerFractionChange": -0.016919195342071647
+    },
+    {
+      "name": "Australia southwest",
+      "seasonalMinusSlabAnnualMm": -279.7497418042665,
+      "seasonalMinusSlabMonthlyMAEMm": -6.884594759890618,
+      "seasonalMinusReferenceMonthlyMAEMm": 2.061376900864765,
+      "seasonalSummerFractionChange": 0.1544768387668543
+    },
+    {
+      "name": "Australia north",
+      "seasonalMinusSlabAnnualMm": 675.9089868675389,
+      "seasonalMinusSlabMonthlyMAEMm": 24.773506925119136,
+      "seasonalMinusReferenceMonthlyMAEMm": 21.935282095911177,
+      "seasonalSummerFractionChange": -0.0873668516947147
+    },
+    {
+      "name": "Amazon",
+      "seasonalMinusSlabAnnualMm": 207.14599937432558,
+      "seasonalMinusSlabMonthlyMAEMm": -17.26216661452709,
+      "seasonalMinusReferenceMonthlyMAEMm": -15.182742203832191,
+      "seasonalSummerFractionChange": null
+    },
+    {
+      "name": "Congo",
+      "seasonalMinusSlabAnnualMm": 161.7445372703396,
+      "seasonalMinusSlabMonthlyMAEMm": -4.647088079733624,
+      "seasonalMinusReferenceMonthlyMAEMm": -4.598664048231058,
+      "seasonalSummerFractionChange": null
+    }
+  ]
+}

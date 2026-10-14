@@ -22,6 +22,16 @@ function fixture(coast=false,transport=false,refined=true,coastThreshold=4,condu
     rt.setTerrain(new Float64Array(g.count).fill(coast?.5:1),new Float64Array(g.count).fill(coast?.005:.3275),{directions,elevation});
     if(refined)rt.refinement='balanced';rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);return rt;
 }
+test('refined surface closures preserve stocks and sunlight separately on mixed coast patches',()=>{
+    const rt=fixture(true,false,true,3,true),r=rt.refinedSurface!,m=rt.model!,p=r.partition;
+    rt.configureSurfacePhysics({separateSurfaceAlbedo:true,liquidOceanEvaporation:true});
+    const k=p.land.findIndex((l,t)=>l>0&&p.sea[t]>0&&r.snow[t]>=30*l&&r.ice[t]===0);assert.ok(k>=0,'fixture must exercise snow beside open water in a mixed patch');
+    const parent=p.parent[k];
+    assert.equal((r as any).seaAlbedo[k],m.orbit.bondAlbedo);assert.ok((r as any).landAlbedo[k]>.6);
+    const restored=ThermalRuntime.fromSnapshot(rt.snapshot(),DEFAULT_PLANET,DEFAULT_ORBIT);assert.deepEqual(restored.model!.surfaceAlbedo,m.surfaceAlbedo);
+    const before=rt.environment!.enthalpy(),radiation=r.stepSurface(parent,m.stepS,300);r.phase(m.stepS);
+    assert.ok(Math.abs(rt.environment!.enthalpy()-before-radiation*m.stepS/m.grid.count)<.001);
+});
 test('refined conductive ice uses local thickness and records the ice surface heat balance',()=>{
     function growth(thickness:number) {
         const rt=fixture(true,false,true,4,true),r=rt.refinedSurface!,m=rt.model!,w=rt.water!,k=0;

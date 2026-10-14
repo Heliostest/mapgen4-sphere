@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "role": "control",
+      "url": "http://localhost:8001/build/earth-uplift-closure/before-preview.html",
+      "status": "拖动旋转 · 滚轮缩放",
+      "view": "270,440",
+      "relief": "12",
+      "frameRect": {
+        "height": 644,
+        "width": 1264.666748046875,
+        "x": 0,
+        "y": 76.11458587646484
+      },
+      "values": {
+        "#planet-time-days": "365.270833",
+        "#planet-camera": "space",
+        "#planet-layer": "surface",
+        "#water-mixing": "4000000",
+        "#thermal-emissivity": "0.58",
+        "#thermal-diffusion": "0.8",
+        "#water-efficiency": "0.5",
+        "weather": false
+      }
+    },
+    {
+      "role": "coldFront",
+      "url": "http://localhost:8001/build/earth-uplift-closure/cold-front-preview.html",
+      "status": "拖动旋转 · 滚轮缩放",
+      "view": "270,440",
+      "relief": "12",
+      "frameRect": {
+        "height": 644,
+        "width": 1264.666748046875,
+        "x": 0,
+        "y": 76.11458587646484
+      },
+      "values": {
+        "#planet-time-days": "365.270833",
+        "#planet-camera": "space",
+        "#planet-layer": "surface",
+        "#water-mixing": "4000000",
+        "#thermal-emissivity": "0.58",
+        "#thermal-diffusion": "0.8",
+        "#water-efficiency": "0.5",
+        "weather": false
+      }
+    },
+    {
+      "role": "eddyCold",
+      "url": "http://localhost:8001/build/earth-uplift-closure/closure-preview.html",
+      "status": "拖动旋转 · 滚轮缩放",
+      "view": "270,440",
+      "relief": "12",
+      "frameRect": {
+        "height": 644,
+        "width": 1264.666748046875,
+        "x": 0,
+        "y": 76.25
+      },
+      "values": {
+        "#planet-time-days": "365.270833",
+        "#planet-camera": "space",
+        "#planet-layer": "surface",
+        "#water-mixing": "4000000",
+        "#thermal-emissivity": "0.58",
+        "#thermal-diffusion": "0.8",
+        "#water-efficiency": "0.5",
+        "weather": false
+      }
+    }
+  ],
+  "visualInspection": "All six captures are real restored WebGL frames at the same one-year time, camera, relief and layer. Page framing differs slightly with the longer ablation banner; images verify morphology, and no pixel-difference climate claim is made.",
+  "runtimeErrors": {
+    "coldFront": [],
+    "eddyCold": []
+  }
+}

@@ -1,0 +1,20 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {verifyFrozenChain} from '../earth-speedy-transport-20261013/verify-frozen-chain.mjs';
+const folder='docs/evidence/earth-conservative-transport-20261013';
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const previous={path:'docs/evidence/earth-speedy-transport-20261013/manifest.json',sha256:'8b5c368764caa331c24867af9f191fbd2ba65cf6d401c14b2c52370adc1b9a78'};
+const latest=await verifyFrozenChain(previous.path,previous.sha256);
+const older=await verifyFrozenChain(latest.root.previousManifest.path,latest.root.previousManifest.sha256);
+const native=JSON.parse(await readFile('docs/evidence/earth-speedy-transport-20261013/native-source-baseline.json','utf8'));
+for(const b of native.bindings){const v=await readFile(b.path);assert.equal(hash(v),b.sha256,b.path);assert.equal(v.length,b.bytes,b.path);}
+const formal='scenes/earth-land-sea/earth-simulation.json';
+assert.equal(hash(await readFile(formal)),'afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6');
+const head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8',windowsHide:true}).trim();
+const result={checkedUTC:new Date().toISOString(),passed:true,previous,head,manifests:[...latest.manifests,...older.manifests],bindingsVerified:latest.bindingsVerified+older.bindingsVerified,nativeSourceFilesVerified:native.bindings.length,formalDefaultUnchanged:true,formalSHA256:hash(await readFile(formal)),note:'Read-only verification of all old evidence and native source. This writes only the new evidence directory.'};
+const name=process.argv[2]??'preservation-verification';
+assert(/^[a-z0-9-]+$/.test(name));
+await writeFile(`${folder}/${name}.json`,JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify(result));

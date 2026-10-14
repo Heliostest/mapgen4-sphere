@@ -1,0 +1,5 @@
+Test Summary:                                        | Pass  Total   Time
+consistent implicit matrix and linear wave stability | 1014   1014  16.0s
+{"matrixAndWave":[{"name":"isothermal","half":[0.0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1.0],"maxMatrixError":5.417888360170764e-14,"maxWaveError":2.2737367544323206e-13,"maxAmplification":1.0000000000000022},{"name":"stratified","half":[0.0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1.0],"maxMatrixError":1.4210854715202004e-14,"maxWaveError":2.9665159217984183e-13,"maxAmplification":1.0000000000000024},{"name":"isothermal","half":[0.0,0.02,0.07,0.18,0.4,0.62,0.78,0.9,1.0],"maxMatrixError":3.552713678800501e-14,"maxWaveError":3.836930773104541e-13,"maxAmplification":1.000000000000002},{"name":"stratified","half":[0.0,0.02,0.07,0.18,0.4,0.62,0.78,0.9,1.0],"maxMatrixError":2.842170943040401e-14,"maxWaveError":4.298783551348606e-13,"maxAmplification":1.0000000000000069}]}
+Test Summary:                                              | Pass  Total   Time
+native grid split, terrain, time levels and radius scaling |  120    120  37.4s

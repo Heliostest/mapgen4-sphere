@@ -1,0 +1,202 @@
+{
+  "verifiedUTC": "2026-10-13T12:50:34.726Z",
+  "passed": true,
+  "requiredRuns": [
+    "c2-modal-green-01",
+    "c2-fct-krylov-green-01",
+    "c2-final-coupled",
+    "c2-final-sphere",
+    "c2-final-pressure-space",
+    "c2-final-1800",
+    "c2-final-900",
+    "c2-final-450",
+    "c2-final-upwind-1800",
+    "c2-final-analysis"
+  ],
+  "archivedSourceBindings": 193,
+  "inputBindings": 106,
+  "statuses": [
+    {
+      "name": "c2-acoustic-red",
+      "state": "failed",
+      "code": 1,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-coupled-green-01",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-fct-green-01",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-fct-krylov-green-01",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-fct-native-1800-01",
+      "state": "failed",
+      "code": 4294967295,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-fct-native-450-01",
+      "state": "failed",
+      "code": 4294967295,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-fct-native-900-01",
+      "state": "failed",
+      "code": 4294967295,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-final-1800",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-final-450",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-final-900",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-final-analysis",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-final-coupled",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-final-pressure-space",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-final-sphere",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-final-upwind-1800",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-harness-invalid-case",
+      "state": "failed",
+      "code": 1,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-harness-zero-days",
+      "state": "failed",
+      "code": 1,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-modal-green-01",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-native-1800-01",
+      "state": "failed",
+      "code": 4294967295,
+      "sourceUnchanged": false,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-native-1800-02",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-native-450-01",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-native-900-01",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-sphere-fct-01",
+      "state": "passed",
+      "code": 0,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    },
+    {
+      "name": "c2-transport-red",
+      "state": "failed",
+      "code": 1,
+      "sourceUnchanged": true,
+      "inputUnchanged": true
+    }
+  ],
+  "acceptance": {
+    "fixedLinearPressureTimeAccuracy": true,
+    "sharedMassWaterConservation": true,
+    "globalTracerBounds": true,
+    "ownStateRestart": true,
+    "smoothRingSecondOrderEvidence": true,
+    "sphericalRotationAccuracyImproved": true,
+    "nativeHumidityAdjacentDifferenceDecreases": true,
+    "strongPolarPressureAccuracy": false,
+    "fullPhysicalCoupling": false,
+    "climate": false,
+    "formalDefaultPromoted": false
+  },
+  "note": "Development native runs with approximate c2 and interrupted FCT runs are preserved but excluded from final acceptance."
+}

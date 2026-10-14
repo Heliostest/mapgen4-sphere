@@ -1,0 +1,41 @@
+{
+  "createdUTC": "2026-10-13T04:20:54.950Z",
+  "formalSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "defaults": [
+    {
+      "file": "thermal.ts",
+      "name": "THERMAL",
+      "sha256": "200ac46a9f0859ce59007b176c62f99b023048f4258dba4e52852467e078ae6c",
+      "unchanged": true
+    },
+    {
+      "file": "water.ts",
+      "name": "WATER",
+      "sha256": "0a1607b40bd1dbda009459782ed2058c66dadea28c3cccc1dd5244cd37da83c6",
+      "unchanged": true
+    },
+    {
+      "file": "environment.ts",
+      "name": "ENVIRONMENT",
+      "sha256": "bd711fb48c64ef9149d5639b93abcbf8ffef9c104dbf9f097cc189d71d5a719f",
+      "unchanged": true
+    }
+  ],
+  "oldEvidenceBindingsVerified": 195,
+  "oldArchivesVerified": 11,
+  "results": [
+    {
+      "name": "viewer-typecheck",
+      "exitCode": 0
+    },
+    {
+      "name": "repository-typecheck",
+      "exitCode": 0
+    }
+  ],
+  "repositoryTests": {
+    "passed": 278,
+    "failed": 0,
+    "source": "Observed completed scripts/test.mjs execution earlier in this session (exit 0); not re-run by this script."
+  }
+}

@@ -1,0 +1,65 @@
+✔ comparison decodes independent full precision case data without clipping temperature (176.8759ms)
+✔ rejects wrong envelope identity and initial 2001 atmosphere/land inventory SHA (15.8876ms)
+✔ rejects missing, duplicate, reordered or misleading case identities (193.0032ms)
+✔ checks every case model, statistics year and acceptance state (159.4353ms)
+✔ rejects other sigma coordinates even when top-to-bottom order is valid (50.3587ms)
+✔ retains monthly, grid, field and physical surface validation with case context (401.1673ms)
+✔ out-of-range actual wind fails the comparison instead of clipping for byte encoding (47.8525ms)
+✔ replay defaults to seasonal January near-surface wind (63.0856ms)
+✔ switching cases preserves month, layer and field choice while selecting fresh case data (70.7271ms)
+✔ packed texture cache separates case identity at the same month and level (0.3486ms)
+✔ invalid case or selection cannot fall back silently to another dataset (70.3302ms)
+✔ existing renderer packing reports temperature saturation but preserves raw fields (2.6017ms)
+✖ probe follows the selected case and derives layer pressure from actual surface pressure (75.0275ms)
+✖ probe rejects invalid cell indices instead of returning undefined raw values (77.4183ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 12
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1522.8149
+
+✖ failing tests:
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:311:1
+✖ probe follows the selected case and derives layer pressure from actual surface pressure (75.0275ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'reference'
+  
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:318:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'reference',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:334:1
+✖ probe rejects invalid cell indices instead of returning undefined raw values (77.4183ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:336:51)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

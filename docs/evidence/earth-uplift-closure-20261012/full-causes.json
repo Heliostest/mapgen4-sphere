@@ -1,0 +1,2033 @@
+[
+  {
+    "label": "control",
+    "rows": [
+      {
+        "name": "Europe",
+        "transport": {
+          "orographicAdvection": 5.0016604258909086e-11,
+          "orographicDiffusion": 0.08319425836651324,
+          "frontAdvection": 0.4314556115378054,
+          "frontDiffusion": 228.15609633556093,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 143.52932466633376,
+          "final": 60.92378478207889,
+          "snowfall": 99.89526004413241,
+          "melt": 182.10242898264758,
+          "compaction": 0.3983709457395947
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 265.8440546672427,
+            "landK": 264.6429720004278,
+            "vaporKgM2": 3.057904102253493,
+            "windEastMps": 1.3544486691920132,
+            "windNorthMps": -0.5384589881386299,
+            "relativeHumidity": 0.5627492531864856,
+            "convergenceDay": -0.16171211934804527,
+            "oceanK": 271.8857847698163,
+            "rhFromMeanState": 0.5784737841757336
+          },
+          "JJA": {
+            "airK": 287.1885806811165,
+            "landK": 297.772069869389,
+            "vaporKgM2": 12.744982494434366,
+            "windEastMps": 5.533738109007586,
+            "windNorthMps": -2.220681464830013,
+            "relativeHumidity": 0.6619764310730071,
+            "convergenceDay": 0.06146425068102661,
+            "oceanK": 287.71326910336234,
+            "rhFromMeanState": 0.6740718737250461
+          }
+        },
+        "vapor": {
+          "initial": 1.7549017073332127,
+          "final": 2.7847765058668763,
+          "evaporation": 401.2359757060327,
+          "precipitation": 348.2667736202053,
+          "netTransport": -51.93932728729356
+        }
+      },
+      {
+        "name": "East North America",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0.003986750708769239,
+          "frontDiffusion": 143.76391828088651,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 7.389343285748932,
+          "final": 23.238398465710365,
+          "snowfall": 29.817177172191357,
+          "melt": 13.956882757463573,
+          "compaction": 0.011239234766360679
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 271.574833670804,
+            "landK": 273.2524212537681,
+            "vaporKgM2": 4.135299706879122,
+            "windEastMps": 5.423547521459242,
+            "windNorthMps": -2.0895610216649927,
+            "relativeHumidity": 0.5434221333762531,
+            "convergenceDay": -0.15338906500812471,
+            "oceanK": 274.68960156080874,
+            "rhFromMeanState": 0.5541079429547279
+          },
+          "JJA": {
+            "airK": 290.44254941608983,
+            "landK": 301.1405538790297,
+            "vaporKgM2": 14.380963945012974,
+            "windEastMps": 1.3057959731612456,
+            "windNorthMps": -0.5625604268845295,
+            "relativeHumidity": 0.6209854927057445,
+            "convergenceDay": 0.12221563860446763,
+            "oceanK": 278.912756479309,
+            "rhFromMeanState": 0.6258807587550473
+          }
+        },
+        "vapor": {
+          "initial": 2.987984802382729,
+          "final": 4.05984089367711,
+          "evaporation": 467.91471115834753,
+          "precipitation": 523.107724153603,
+          "netTransport": 56.26486908655051
+        }
+      },
+      {
+        "name": "East Asia",
+        "transport": {
+          "orographicAdvection": 20.130147429346135,
+          "orographicDiffusion": 237.1214144729985,
+          "frontAdvection": 0.2257863243389918,
+          "frontDiffusion": 107.42891554950127,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 35.53837319186755,
+          "final": 0,
+          "snowfall": 7.259831406560034,
+          "melt": 42.771295581359574,
+          "compaction": 0.02690901706795906
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 270.79965729632846,
+            "landK": 273.39163135567355,
+            "vaporKgM2": 3.746100228975952,
+            "windEastMps": 5.525792498493734,
+            "windNorthMps": -2.071789373563228,
+            "relativeHumidity": 0.5161262255960647,
+            "convergenceDay": -0.08206135650477378,
+            "oceanK": 275.4140205094101,
+            "rhFromMeanState": 0.5221806380849798
+          },
+          "JJA": {
+            "airK": 292.6180593089936,
+            "landK": 303.5170176902552,
+            "vaporKgM2": 15.96039112032907,
+            "windEastMps": 0.14048263107608336,
+            "windNorthMps": -0.09599161762776152,
+            "relativeHumidity": 0.6057979319998065,
+            "convergenceDay": 0.08875497169227191,
+            "oceanK": 286.87573522067385,
+            "rhFromMeanState": 0.6108924118353326
+          }
+        },
+        "vapor": {
+          "initial": 2.6569566949779015,
+          "final": 4.304584543629908,
+          "evaporation": 457.3667865298343,
+          "precipitation": 629.6395113224465,
+          "netTransport": 173.92035264126753
+        }
+      },
+      {
+        "name": "West Siberia",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0.22954481060844065,
+          "frontAdvection": 0.032999784660231186,
+          "frontDiffusion": 112.82281916037081,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 117.79003708876274,
+          "final": 23.236897020571348,
+          "snowfall": 64.56577161180752,
+          "melt": 158.76445374944177,
+          "compaction": 0.35445793055702984
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 259.50907998108545,
+            "landK": 257.26576698775517,
+            "vaporKgM2": 2.328520546935343,
+            "windEastMps": -1.9617325582860992,
+            "windNorthMps": -0.25637651713846943,
+            "relativeHumidity": 0.6398479872012183,
+            "convergenceDay": -0.09557606769710872,
+            "oceanK": 259.5642836020319,
+            "rhFromMeanState": 0.6510639815991579
+          },
+          "JJA": {
+            "airK": 288.5156156517446,
+            "landK": 299.6469860071493,
+            "vaporKgM2": 12.7084712135782,
+            "windEastMps": 4.669797467851873,
+            "windNorthMps": -1.981879719722958,
+            "relativeHumidity": 0.6158744614126942,
+            "convergenceDay": 0.010747665639472822,
+            "oceanK": 259.90317328476976,
+            "rhFromMeanState": 0.6214513360655084
+          }
+        },
+        "vapor": {
+          "initial": 1.5350054461640004,
+          "final": 2.2012526510877857,
+          "evaporation": 210.35801338079958,
+          "precipitation": 132.51814673858243,
+          "netTransport": -77.17361943729351
+        }
+      },
+      {
+        "name": "India",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 281.38600793658344,
+          "frontAdvection": 0.004859131221470542,
+          "frontDiffusion": 5.830355616431073,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 279.7145238111531,
+            "landK": 286.7276469549135,
+            "vaporKgM2": 5.834351682527763,
+            "windEastMps": -2.006017308586761,
+            "windNorthMps": -2.394574975484483,
+            "relativeHumidity": 0.4760033409303689,
+            "convergenceDay": 0.004659201781802237,
+            "oceanK": 287.36033064117015,
+            "rhFromMeanState": 0.47925123675823605
+          },
+          "JJA": {
+            "airK": 295.7892650434944,
+            "landK": 306.8952577269161,
+            "vaporKgM2": 16.563993588188882,
+            "windEastMps": -7.961804636824383,
+            "windNorthMps": -0.25285039747394267,
+            "relativeHumidity": 0.5210303067820771,
+            "convergenceDay": 0.17714661305554713,
+            "oceanK": 291.7811611692841,
+            "rhFromMeanState": 0.5242664960665807
+          }
+        },
+        "vapor": {
+          "initial": 6.973686184340674,
+          "final": 6.325428370606264,
+          "evaporation": 501.2182009823465,
+          "precipitation": 486.5503471239161,
+          "netTransport": -15.316111672165496
+        }
+      },
+      {
+        "name": "Himalaya foreland",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 3315.8216267807506,
+          "frontAdvection": 0,
+          "frontDiffusion": 3.705033769175648,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 276.06081932408927,
+            "landK": 279.1521864074974,
+            "vaporKgM2": 3.90829378003062,
+            "windEastMps": 1.8890443302099609,
+            "windNorthMps": -2.7600786467140734,
+            "relativeHumidity": 0.40125535475681134,
+            "convergenceDay": -0.11867315556259544,
+            "oceanK": 281.7709570932539,
+            "rhFromMeanState": 0.40364132965093874
+          },
+          "JJA": {
+            "airK": 296.56949873949117,
+            "landK": 304.4576795691172,
+            "vaporKgM2": 12.86315425683687,
+            "windEastMps": -7.29927251104258,
+            "windNorthMps": -0.5874076348552234,
+            "relativeHumidity": 0.38547526909382296,
+            "convergenceDay": -0.09960640193910052,
+            "oceanK": 281.7709570932542,
+            "rhFromMeanState": 0.3881774173120445
+          }
+        },
+        "vapor": {
+          "initial": 4.5488221865765155,
+          "final": 4.3812726310611865,
+          "evaporation": 795.6038471315461,
+          "precipitation": 3319.608408771657,
+          "netTransport": 2523.837012084587
+        }
+      },
+      {
+        "name": "Tibet",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 508.50728044861347,
+          "frontAdvection": 0,
+          "frontDiffusion": 0.20815502724930696,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 72.5683396291913,
+          "final": 0,
+          "snowfall": 0.01306871555118316,
+          "melt": 72.55623052118347,
+          "compaction": 0.02517782355903952
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 272.4105744189613,
+            "landK": 274.2662005304263,
+            "vaporKgM2": 2.948074145965761,
+            "windEastMps": 4.771903153392277,
+            "windNorthMps": -2.097302136149855,
+            "relativeHumidity": 0.3721361817999937,
+            "convergenceDay": -0.1293096151464751,
+            "oceanK": 262.3232714275094,
+            "rhFromMeanState": 0.3751869542054585
+          },
+          "JJA": {
+            "airK": 294.8031366950327,
+            "landK": 303.92200963880254,
+            "vaporKgM2": 11.434932591744124,
+            "windEastMps": -4.176655759326585,
+            "windNorthMps": -0.5859599961536467,
+            "relativeHumidity": 0.3798000077106309,
+            "convergenceDay": -0.07647843649859809,
+            "oceanK": 262.3232714275094,
+            "rhFromMeanState": 0.38275282081176343
+          }
+        },
+        "vapor": {
+          "initial": 1.5929356042582783,
+          "final": 3.2883032512775863,
+          "evaporation": 228.95030304780258,
+          "precipitation": 508.7282245883199,
+          "netTransport": 281.4732891875335
+        }
+      },
+      {
+        "name": "Australia southwest",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 64.40901174334543,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 288.27824101065835,
+            "landK": 300.1306467990795,
+            "vaporKgM2": 14.211145465062897,
+            "windEastMps": -5.6849148519061,
+            "windNorthMps": 1.7903227291700339,
+            "relativeHumidity": 0.6998780850283328,
+            "convergenceDay": -0.04003411599694438,
+            "oceanK": 295.40999910337376,
+            "rhFromMeanState": 0.7050498811540696
+          },
+          "JJA": {
+            "airK": 276.87816999475444,
+            "landK": 282.7969776741272,
+            "vaporKgM2": 6.0847602384217705,
+            "windEastMps": 4.649027532966332,
+            "windNorthMps": 2.27124824820094,
+            "relativeHumidity": 0.5906135571865394,
+            "convergenceDay": -0.09569627620462459,
+            "oceanK": 282.9742602623433,
+            "rhFromMeanState": 0.5972419700508813
+          }
+        },
+        "vapor": {
+          "initial": 15.936506624259087,
+          "final": 16.80362569562555,
+          "evaporation": 625.5749006988648,
+          "precipitation": 265.9321670692825,
+          "netTransport": -358.77561455821746
+        }
+      },
+      {
+        "name": "Australia north",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 42.172231430451205,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 293.743700797329,
+            "landK": 303.36351676491586,
+            "vaporKgM2": 17.915121384531798,
+            "windEastMps": -6.226324720714323,
+            "windNorthMps": -0.2158017064698083,
+            "relativeHumidity": 0.6384262994273945,
+            "convergenceDay": 0.06358330351103704,
+            "oceanK": 300.3768043868949,
+            "rhFromMeanState": 0.6404638604310839
+          },
+          "JJA": {
+            "airK": 285.3457361917878,
+            "landK": 292.33251894742807,
+            "vaporKgM2": 10.334264179107139,
+            "windEastMps": -5.75558838033928,
+            "windNorthMps": 1.9173999899303475,
+            "relativeHumidity": 0.6067903458447458,
+            "convergenceDay": -0.17331692098900497,
+            "oceanK": 292.7699459855202,
+            "rhFromMeanState": 0.6097514771346622
+          }
+        },
+        "vapor": {
+          "initial": 22.69541561103828,
+          "final": 19.963836494332366,
+          "evaporation": 819.9737361921065,
+          "precipitation": 960.5692607758449,
+          "netTransport": 137.86394546703337
+        }
+      },
+      {
+        "name": "Amazon",
+        "transport": {
+          "orographicAdvection": 4.559509571987549,
+          "orographicDiffusion": 9.811744249592515,
+          "frontAdvection": 0,
+          "frontDiffusion": 1.9798849809567232,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 293.736382282929,
+            "landK": 301.68723720609154,
+            "vaporKgM2": 17.47474230023364,
+            "windEastMps": -3.2248843608190305,
+            "windNorthMps": -0.49041148909742627,
+            "relativeHumidity": 0.6249039702439069,
+            "convergenceDay": 0.0858698391515717,
+            "oceanK": 301.0351658974826,
+            "rhFromMeanState": 0.624965631695438
+          },
+          "JJA": {
+            "airK": 290.83424739002305,
+            "landK": 298.42473015164484,
+            "vaporKgM2": 16.05926467410098,
+            "windEastMps": -6.484977758607571,
+            "windNorthMps": 1.3507169483622228,
+            "relativeHumidity": 0.6822316448474136,
+            "convergenceDay": 0.08779492000640243,
+            "oceanK": 300.9928549073926,
+            "rhFromMeanState": 0.6825324650424008
+          }
+        },
+        "vapor": {
+          "initial": 26.401423878334125,
+          "final": 17.945177631690164,
+          "evaporation": 1037.7972568676607,
+          "precipitation": 1454.3542842903694,
+          "netTransport": 408.10078117606565
+        }
+      },
+      {
+        "name": "Congo",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 1.3286776275090202,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 289.51907669871025,
+            "landK": 297.7170410309575,
+            "vaporKgM2": 15.351730638767519,
+            "windEastMps": -5.192779036627962,
+            "windNorthMps": -0.7105690420086099,
+            "relativeHumidity": 0.7070121985919329,
+            "convergenceDay": 0.06763477215245002,
+            "oceanK": 298.11000996502,
+            "rhFromMeanState": 0.7071408840103003
+          },
+          "JJA": {
+            "airK": 291.6170003808487,
+            "landK": 299.4555367744424,
+            "vaporKgM2": 16.717723658225328,
+            "windEastMps": -5.120249520603706,
+            "windNorthMps": 0.9005669492425152,
+            "relativeHumidity": 0.6795299455859386,
+            "convergenceDay": 0.0300622821851735,
+            "oceanK": 298.1100099650197,
+            "rhFromMeanState": 0.6793731112161612
+          }
+        },
+        "vapor": {
+          "initial": 19.241935682969903,
+          "final": 15.658370642909373,
+          "evaporation": 957.0068244220441,
+          "precipitation": 1260.4267217159597,
+          "netTransport": 299.8363322538504
+        }
+      },
+      {
+        "name": "Canada snow belt",
+        "transport": {
+          "orographicAdvection": 0.4341921556866153,
+          "orographicDiffusion": 8.117019286483675,
+          "frontAdvection": 0.5027132615419582,
+          "frontDiffusion": 330.8040142812138,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 140.93882594398096,
+          "final": 74.70044459537945,
+          "snowfall": 112.74299691475363,
+          "melt": 178.4365133801732,
+          "compaction": 0.5448648831817864
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 263.53325841225103,
+            "landK": 259.54068982740375,
+            "vaporKgM2": 2.755764053873735,
+            "windEastMps": -2.4064887897953118,
+            "windNorthMps": -0.07632082595528424,
+            "relativeHumidity": 0.5856267648447541,
+            "convergenceDay": -0.12496440812377532,
+            "oceanK": 258.11283527502366,
+            "rhFromMeanState": 0.6028319696159953
+          },
+          "JJA": {
+            "airK": 284.81618517807533,
+            "landK": 295.12025437732314,
+            "vaporKgM2": 11.058326190523541,
+            "windEastMps": 4.245851031607288,
+            "windNorthMps": -1.8406215473535683,
+            "relativeHumidity": 0.6609019998703842,
+            "convergenceDay": 0.04126863594256226,
+            "oceanK": 263.56755255168594,
+            "rhFromMeanState": 0.6722458766234071
+          }
+        },
+        "vapor": {
+          "initial": 1.1357932976573688,
+          "final": 2.321298191843109,
+          "evaporation": 281.5543632242421,
+          "precipitation": 360.4076597075803,
+          "netTransport": 80.03880137752395
+        }
+      },
+      {
+        "name": "Siberia snow belt",
+        "transport": {
+          "orographicAdvection": 0.010718443213366785,
+          "orographicDiffusion": 0.5377551142009805,
+          "frontAdvection": 0.06807611672540743,
+          "frontDiffusion": 145.13848378273383,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 135.83671355495275,
+          "final": 41.47296107344483,
+          "snowfall": 70.0075681575258,
+          "melt": 163.90769876172396,
+          "compaction": 0.46362187730975024
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 259.8196249086706,
+            "landK": 256.4189890964315,
+            "vaporKgM2": 2.3876199569660637,
+            "windEastMps": -3.1047991706877713,
+            "windNorthMps": -0.2066784768724831,
+            "relativeHumidity": 0.6426605660516092,
+            "convergenceDay": -0.08171736187015174,
+            "oceanK": 256.25452661329746,
+            "rhFromMeanState": 0.6543414923306168
+          },
+          "JJA": {
+            "airK": 287.27897329414355,
+            "landK": 297.6545539270613,
+            "vaporKgM2": 12.613298214165763,
+            "windEastMps": 4.104815696343536,
+            "windNorthMps": -1.6561190636732133,
+            "relativeHumidity": 0.6571930580234057,
+            "convergenceDay": -0.01937602426705007,
+            "oceanK": 258.2300319299541,
+            "rhFromMeanState": 0.6643976737998458
+          }
+        },
+        "vapor": {
+          "initial": 1.1466953611000459,
+          "final": 2.169779970253195,
+          "evaporation": 229.1560517517427,
+          "precipitation": 170.00605609489946,
+          "netTransport": -58.1269110476901
+        }
+      },
+      {
+        "name": "SW Australia offshore",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 164.79053682922648,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 286.8222092857504,
+            "landK": 297.9241877304972,
+            "vaporKgM2": 14.290066444255737,
+            "windEastMps": -5.3576283269030185,
+            "windNorthMps": 1.1988823438093632,
+            "relativeHumidity": 0.7647851320525809,
+            "convergenceDay": -0.10881869278751442,
+            "oceanK": 294.3587699333155,
+            "rhFromMeanState": 0.7731764762227291
+          },
+          "JJA": {
+            "airK": 276.2593716679465,
+            "landK": 297.5650185806942,
+            "vaporKgM2": 6.064209836778829,
+            "windEastMps": 4.654444746542249,
+            "windNorthMps": 1.9446038598197104,
+            "relativeHumidity": 0.6051767099648042,
+            "convergenceDay": -0.09096941988775431,
+            "oceanK": 282.30487927266375,
+            "rhFromMeanState": 0.6129758789013623
+          }
+        },
+        "vapor": {
+          "initial": 15.583862864781274,
+          "final": 17.06325272596367,
+          "evaporation": 848.9774220774855,
+          "precipitation": 171.64445356130884,
+          "netTransport": -675.8535786549934
+        }
+      }
+    ]
+  },
+  {
+    "label": "coldFront",
+    "rows": [
+      {
+        "name": "Europe",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0.0743077155993414,
+          "frontAdvection": 0.4336033159160768,
+          "frontDiffusion": 216.4138982418009,
+          "coldFrontAdvection": 21.944107394184147
+        },
+        "snow": {
+          "initial": 143.52932466633376,
+          "final": 60.08971075899004,
+          "snowfall": 99.46356995290878,
+          "melt": 182.5090114390997,
+          "compaction": 0.39417242115278434
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 265.8277705623773,
+            "landK": 264.58376896859954,
+            "vaporKgM2": 3.0538584867513068,
+            "windEastMps": 1.3504649985444996,
+            "windNorthMps": -0.5185089011201108,
+            "relativeHumidity": 0.5625745386576306,
+            "convergenceDay": -0.16237395357626735,
+            "oceanK": 271.88646254757253,
+            "rhFromMeanState": 0.5783047209234567
+          },
+          "JJA": {
+            "airK": 287.20704594518605,
+            "landK": 297.7745974661979,
+            "vaporKgM2": 12.714472633548757,
+            "windEastMps": 5.530324716368014,
+            "windNorthMps": -2.2257489354594533,
+            "relativeHumidity": 0.6594345234614496,
+            "convergenceDay": 0.06110916463805993,
+            "oceanK": 287.7090788272096,
+            "rhFromMeanState": 0.6716686402586296
+          }
+        },
+        "vapor": {
+          "initial": 1.7549017073332127,
+          "final": 2.7877138253737295,
+          "evaporation": 404.0641847259525,
+          "precipitation": 350.8239930547464,
+          "netTransport": -52.20737955316594
+        }
+      },
+      {
+        "name": "East North America",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0.003981876097861774,
+          "frontDiffusion": 135.44276403754498,
+          "coldFrontAdvection": 21.909826417204187
+        },
+        "snow": {
+          "initial": 7.389343285748932,
+          "final": 22.817918565410377,
+          "snowfall": 29.294932994820442,
+          "melt": 13.856228763028133,
+          "compaction": 0.01012895213086217
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 271.5840970640137,
+            "landK": 273.2555532788671,
+            "vaporKgM2": 4.1252432981969935,
+            "windEastMps": 5.425077015186995,
+            "windNorthMps": -2.092655673379741,
+            "relativeHumidity": 0.5417588095758314,
+            "convergenceDay": -0.15359794978263955,
+            "oceanK": 274.6907077943961,
+            "rhFromMeanState": 0.5524750553480805
+          },
+          "JJA": {
+            "airK": 290.4483709845357,
+            "landK": 301.1434677311844,
+            "vaporKgM2": 14.377621902407444,
+            "windEastMps": 1.3030177533555596,
+            "windNorthMps": -0.564307015854493,
+            "relativeHumidity": 0.6205669822726857,
+            "convergenceDay": 0.12207860339153002,
+            "oceanK": 278.9127774724997,
+            "rhFromMeanState": 0.6255024321761977
+          }
+        },
+        "vapor": {
+          "initial": 2.987984802382729,
+          "final": 4.03637312046723,
+          "evaporation": 471.3159515612707,
+          "precipitation": 529.6563182052694,
+          "netTransport": 59.38875496208392
+        }
+      },
+      {
+        "name": "East Asia",
+        "transport": {
+          "orographicAdvection": 20.13828481531831,
+          "orographicDiffusion": 236.78067513992684,
+          "frontAdvection": 0.22169363774518658,
+          "frontDiffusion": 104.99887097822617,
+          "coldFrontAdvection": 4.075003194726993
+        },
+        "snow": {
+          "initial": 35.53837319186755,
+          "final": 0,
+          "snowfall": 7.821162839226972,
+          "melt": 43.33254702386278,
+          "compaction": 0.026989007231758764
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 270.79182849445124,
+            "landK": 273.36194176888955,
+            "vaporKgM2": 3.738769012941533,
+            "windEastMps": 5.52315560701517,
+            "windNorthMps": -2.0828045039560426,
+            "relativeHumidity": 0.5152618224883289,
+            "convergenceDay": -0.08207070571320964,
+            "oceanK": 275.41225403793493,
+            "rhFromMeanState": 0.5213362168548558
+          },
+          "JJA": {
+            "airK": 292.60981331775184,
+            "landK": 303.5181152358439,
+            "vaporKgM2": 15.947447344864573,
+            "windEastMps": 0.13898591551852418,
+            "windNorthMps": -0.09371672851661865,
+            "relativeHumidity": 0.6055954504776133,
+            "convergenceDay": 0.08897564002576742,
+            "oceanK": 286.8707821978859,
+            "rhFromMeanState": 0.610696571236025
+          }
+        },
+        "vapor": {
+          "initial": 2.6569566949779015,
+          "final": 4.315291184345578,
+          "evaporation": 459.23671645346,
+          "precipitation": 629.7918529732004,
+          "netTransport": 172.21347100910936
+        }
+      },
+      {
+        "name": "West Siberia",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0.22240752072206635,
+          "frontAdvection": 0.032513653279134413,
+          "frontDiffusion": 108.55245392453773,
+          "coldFrontAdvection": 14.855487321194717
+        },
+        "snow": {
+          "initial": 117.79003708876274,
+          "final": 23.50575822426301,
+          "snowfall": 64.55385317492538,
+          "melt": 158.48442884038295,
+          "compaction": 0.35370319904202235
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 259.4929410704792,
+            "landK": 257.2260019061501,
+            "vaporKgM2": 2.325820806223115,
+            "windEastMps": -1.9615092633001279,
+            "windNorthMps": -0.2549168421611821,
+            "relativeHumidity": 0.6397100632855877,
+            "convergenceDay": -0.09590994830403424,
+            "oceanK": 259.5642836106105,
+            "rhFromMeanState": 0.6509540562057913
+          },
+          "JJA": {
+            "airK": 288.56705803339617,
+            "landK": 299.6929161280224,
+            "vaporKgM2": 12.629481027195554,
+            "windEastMps": 4.655712811023656,
+            "windNorthMps": -1.9955495937460257,
+            "relativeHumidity": 0.6099354489157612,
+            "convergenceDay": 0.01009240891625609,
+            "oceanK": 259.90782540093534,
+            "rhFromMeanState": 0.6155333638083494
+          }
+        },
+        "vapor": {
+          "initial": 1.5350054461640004,
+          "final": 2.1965516237327174,
+          "evaporation": 215.57277710999918,
+          "precipitation": 139.9936762170614,
+          "netTransport": -74.91755471536806
+        }
+      },
+      {
+        "name": "India",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 281.45282252156665,
+          "frontAdvection": 0.004893044429852236,
+          "frontDiffusion": 5.603696712701103,
+          "coldFrontAdvection": 0.42359403673525636
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 279.7150866109292,
+            "landK": 286.72842251384344,
+            "vaporKgM2": 5.834202251667275,
+            "windEastMps": -2.005227302445764,
+            "windNorthMps": -2.3932234268289916,
+            "relativeHumidity": 0.4759970776233882,
+            "convergenceDay": 0.005252666279301487,
+            "oceanK": 287.3600375244556,
+            "rhFromMeanState": 0.4792264534449839
+          },
+          "JJA": {
+            "airK": 295.77856823792786,
+            "landK": 306.8857316638582,
+            "vaporKgM2": 16.553307391479333,
+            "windEastMps": -7.960812599005595,
+            "windNorthMps": -0.2506203617410658,
+            "relativeHumidity": 0.5210326158981551,
+            "convergenceDay": 0.1771537012432499,
+            "oceanK": 291.7784903597933,
+            "rhFromMeanState": 0.5242633761138222
+          }
+        },
+        "vapor": {
+          "initial": 6.973686184340674,
+          "final": 6.333224802856612,
+          "evaporation": 501.678502403287,
+          "precipitation": 486.896502237973,
+          "netTransport": -15.422461546799957
+        }
+      },
+      {
+        "name": "Himalaya foreland",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 3315.116512269789,
+          "frontAdvection": 0,
+          "frontDiffusion": 3.6268164679838404,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 276.05901203646937,
+            "landK": 279.1510366110644,
+            "vaporKgM2": 3.908256620502063,
+            "windEastMps": 1.889092615441225,
+            "windNorthMps": -2.7599908743099193,
+            "relativeHumidity": 0.4013048103294692,
+            "convergenceDay": -0.11861086000879968,
+            "oceanK": 281.7709570932539,
+            "rhFromMeanState": 0.40368152203928487
+          },
+          "JJA": {
+            "airK": 296.5568921489693,
+            "landK": 304.4467967666276,
+            "vaporKgM2": 12.852284513675555,
+            "windEastMps": -7.29907693344329,
+            "windNorthMps": -0.5850270082789092,
+            "relativeHumidity": 0.38544415571109486,
+            "convergenceDay": -0.09952970669340601,
+            "oceanK": 281.7709570932542,
+            "rhFromMeanState": 0.38814334217461377
+          }
+        },
+        "vapor": {
+          "initial": 4.5488221865765155,
+          "final": 4.3824576640900545,
+          "evaporation": 795.597178302468,
+          "precipitation": 3318.8252967002813,
+          "netTransport": 2523.061753875321
+        }
+      },
+      {
+        "name": "Tibet",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 508.4390089077928,
+          "frontAdvection": 0,
+          "frontDiffusion": 0.20403653389788742,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 72.5683396291913,
+          "final": 0,
+          "snowfall": 0.013068706875245023,
+          "melt": 72.55626980419791,
+          "compaction": 0.025138531868598435
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 272.4066561992168,
+            "landK": 274.26324691926243,
+            "vaporKgM2": 2.947350519655454,
+            "windEastMps": 4.772229688881011,
+            "windNorthMps": -2.096561899312357,
+            "relativeHumidity": 0.3721261899675359,
+            "convergenceDay": -0.12927893771017326,
+            "oceanK": 262.3232714275094,
+            "rhFromMeanState": 0.37517845549715007
+          },
+          "JJA": {
+            "airK": 294.79039509924337,
+            "landK": 303.91433458268745,
+            "vaporKgM2": 11.42396304546042,
+            "windEastMps": -4.1768471706025085,
+            "windNorthMps": -0.58606105114993,
+            "relativeHumidity": 0.37972906210258933,
+            "convergenceDay": -0.0762487171481645,
+            "oceanK": 262.3232714275094,
+            "rhFromMeanState": 0.38267800427096166
+          }
+        },
+        "vapor": {
+          "initial": 1.5929356042582783,
+          "final": 3.2877088684531444,
+          "evaporation": 228.8597134559272,
+          "precipitation": 508.6558862590652,
+          "netTransport": 281.490946067333
+        }
+      },
+      {
+        "name": "Australia southwest",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 50.12057129858868,
+          "coldFrontAdvection": 32.68146176259863
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 288.30020226735024,
+            "landK": 300.17526146114795,
+            "vaporKgM2": 14.178736822386647,
+            "windEastMps": -5.689544869031628,
+            "windNorthMps": 1.8064682863676051,
+            "relativeHumidity": 0.6971871289056474,
+            "convergenceDay": -0.039192720250645484,
+            "oceanK": 295.40976007005315,
+            "rhFromMeanState": 0.70248820215113
+          },
+          "JJA": {
+            "airK": 276.8937204244618,
+            "landK": 282.75207460262214,
+            "vaporKgM2": 6.059607373405623,
+            "windEastMps": 4.645101864677189,
+            "windNorthMps": 2.270756946621128,
+            "relativeHumidity": 0.5875505697767016,
+            "convergenceDay": -0.09698852276229755,
+            "oceanK": 282.9742730583226,
+            "rhFromMeanState": 0.5941989442820041
+          }
+        },
+        "vapor": {
+          "initial": 15.936506624259087,
+          "final": 16.783734628457886,
+          "evaporation": 631.2827875241247,
+          "precipitation": 275.57786973501544,
+          "netTransport": -354.85768978491194
+        }
+      },
+      {
+        "name": "Australia north",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 39.47493355955206,
+          "coldFrontAdvection": 0.24274756265939543
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 293.73926503889834,
+            "landK": 303.3611731508508,
+            "vaporKgM2": 17.904297834246954,
+            "windEastMps": -6.223889290981323,
+            "windNorthMps": -0.22086541311488309,
+            "relativeHumidity": 0.6382116336609216,
+            "convergenceDay": 0.06447226468620536,
+            "oceanK": 300.37213112676375,
+            "rhFromMeanState": 0.6402519424301903
+          },
+          "JJA": {
+            "airK": 285.3442128761162,
+            "landK": 292.34852925666337,
+            "vaporKgM2": 10.316751459482985,
+            "windEastMps": -5.762900095176159,
+            "windNorthMps": 1.9374112774009489,
+            "relativeHumidity": 0.605846673658547,
+            "convergenceDay": -0.1703018592158981,
+            "oceanK": 292.76293493233146,
+            "rhFromMeanState": 0.60877859077819
+          }
+        },
+        "vapor": {
+          "initial": 22.69541561103828,
+          "final": 19.942332200798738,
+          "evaporation": 818.924038221656,
+          "precipitation": 959.1928970753055,
+          "netTransport": 137.51577544340762
+        }
+      },
+      {
+        "name": "Amazon",
+        "transport": {
+          "orographicAdvection": 4.506667957000028,
+          "orographicDiffusion": 9.78445260451314,
+          "frontAdvection": 0,
+          "frontDiffusion": 2.186533403688799,
+          "coldFrontAdvection": 0.9751360162680747
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 293.722323312708,
+            "landK": 301.67546949440725,
+            "vaporKgM2": 17.45812744809378,
+            "windEastMps": -3.225010319235168,
+            "windNorthMps": -0.49275841210520654,
+            "relativeHumidity": 0.6248335690388972,
+            "convergenceDay": 0.08601652819716475,
+            "oceanK": 301.0344599558977,
+            "rhFromMeanState": 0.6248941229094119
+          },
+          "JJA": {
+            "airK": 290.82294792690175,
+            "landK": 298.4047363149355,
+            "vaporKgM2": 16.032321595481996,
+            "windEastMps": -6.4904318043771285,
+            "windNorthMps": 1.3756198401247286,
+            "relativeHumidity": 0.6814888278216231,
+            "convergenceDay": 0.08990085868770792,
+            "oceanK": 300.9927601963863,
+            "rhFromMeanState": 0.6818064639721036
+          }
+        },
+        "vapor": {
+          "initial": 26.401423878334125,
+          "final": 17.90481952313776,
+          "evaporation": 1038.052540631107,
+          "precipitation": 1446.461227474846,
+          "netTransport": 399.91208248853974
+        }
+      },
+      {
+        "name": "Congo",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 1.167261840013398,
+          "coldFrontAdvection": 5.159687872261401
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 289.50477502076893,
+            "landK": 297.69876493050975,
+            "vaporKgM2": 15.323527040350383,
+            "windEastMps": -5.192627346592758,
+            "windNorthMps": -0.7197897295723061,
+            "relativeHumidity": 0.7062584592731562,
+            "convergenceDay": 0.06767753892993697,
+            "oceanK": 298.11000996502,
+            "rhFromMeanState": 0.7064045042071063
+          },
+          "JJA": {
+            "airK": 291.61514162850386,
+            "landK": 299.4498332832261,
+            "vaporKgM2": 16.688436594961942,
+            "windEastMps": -5.119501229474372,
+            "windNorthMps": 0.8962219017174151,
+            "relativeHumidity": 0.6783299376041291,
+            "convergenceDay": 0.03370641832879342,
+            "oceanK": 298.1100099650197,
+            "rhFromMeanState": 0.6781845561339432
+          }
+        },
+        "vapor": {
+          "initial": 19.241935682969903,
+          "final": 15.645954062531697,
+          "evaporation": 957.8099828892634,
+          "precipitation": 1252.7181407804383,
+          "netTransport": 291.31217627073505
+        }
+      },
+      {
+        "name": "Canada snow belt",
+        "transport": {
+          "orographicAdvection": 0.3893474832269389,
+          "orographicDiffusion": 7.2946027154126725,
+          "frontAdvection": 0.5007425979389727,
+          "frontDiffusion": 316.84126020115974,
+          "coldFrontAdvection": 23.21514088328894
+        },
+        "snow": {
+          "initial": 140.93882594398096,
+          "final": 74.60997817310978,
+          "snowfall": 112.3316938876488,
+          "melt": 178.1184396083905,
+          "compaction": 0.5421020501294265
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 263.53267149341553,
+            "landK": 259.52603620717815,
+            "vaporKgM2": 2.7529700558210863,
+            "windEastMps": -2.407308226429388,
+            "windNorthMps": -0.0739038920988862,
+            "relativeHumidity": 0.5851037558493252,
+            "convergenceDay": -0.12518604810742245,
+            "oceanK": 258.11314316124265,
+            "rhFromMeanState": 0.6022782660001825
+          },
+          "JJA": {
+            "airK": 284.8419806517694,
+            "landK": 295.11571883080586,
+            "vaporKgM2": 11.026888846978363,
+            "windEastMps": 4.251693120311547,
+            "windNorthMps": -1.8439729142840673,
+            "relativeHumidity": 0.657850806960919,
+            "convergenceDay": 0.04088650417835822,
+            "oceanK": 263.5660314989889,
+            "rhFromMeanState": 0.6692694564820172
+          }
+        },
+        "vapor": {
+          "initial": 1.1357932976573688,
+          "final": 2.318179306875353,
+          "evaporation": 283.43225071702784,
+          "precipitation": 364.96642919400733,
+          "netTransport": 82.71656448619666
+        }
+      },
+      {
+        "name": "Siberia snow belt",
+        "transport": {
+          "orographicAdvection": 0.00953598157761929,
+          "orographicDiffusion": 0.5067766728715299,
+          "frontAdvection": 0.0666702369614601,
+          "frontDiffusion": 138.90044777414516,
+          "coldFrontAdvection": 15.641947845157565
+        },
+        "snow": {
+          "initial": 135.83671355495275,
+          "final": 41.27079732535093,
+          "snowfall": 69.57409118628519,
+          "melt": 163.67897323060652,
+          "compaction": 0.46103418528053514
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 259.8030770750678,
+            "landK": 256.3768978397057,
+            "vaporKgM2": 2.384685621829773,
+            "windEastMps": -3.1032214570530203,
+            "windNorthMps": -0.20360226347563892,
+            "relativeHumidity": 0.6425639898880044,
+            "convergenceDay": -0.08194544491429022,
+            "oceanK": 256.25459112359937,
+            "rhFromMeanState": 0.6542317374740901
+          },
+          "JJA": {
+            "airK": 287.3209845399143,
+            "landK": 297.66737899696216,
+            "vaporKgM2": 12.550688397604837,
+            "windEastMps": 4.0994768636193415,
+            "windNorthMps": -1.6614463999798068,
+            "relativeHumidity": 0.6522479035119174,
+            "convergenceDay": -0.020075832903745417,
+            "oceanK": 258.23274437485713,
+            "rhFromMeanState": 0.6594439290238486
+          }
+        },
+        "vapor": {
+          "initial": 1.1466953611000459,
+          "final": 2.1660868353107587,
+          "evaporation": 234.1098336882908,
+          "precipitation": 177.32249350476164,
+          "netTransport": -55.76794870931794
+        }
+      },
+      {
+        "name": "SW Australia offshore",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 139.09582251561298,
+          "coldFrontAdvection": 33.5107321149551
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 286.8532718605983,
+            "landK": 297.9251426694735,
+            "vaporKgM2": 14.239999881724785,
+            "windEastMps": -5.368044098457469,
+            "windNorthMps": 1.2140431711532276,
+            "relativeHumidity": 0.7604789680697053,
+            "convergenceDay": -0.10979778131148897,
+            "oceanK": 294.35898916050644,
+            "rhFromMeanState": 0.7689578295819368
+          },
+          "JJA": {
+            "airK": 276.27827338498537,
+            "landK": 297.5639753475295,
+            "vaporKgM2": 6.036894509604596,
+            "windEastMps": 4.657276607857499,
+            "windNorthMps": 1.9407267997198798,
+            "relativeHumidity": 0.601749028747318,
+            "convergenceDay": -0.09108469304961057,
+            "oceanK": 282.3061576489811,
+            "rhFromMeanState": 0.6095419249866385
+          }
+        },
+        "vapor": {
+          "initial": 15.583862864781274,
+          "final": 17.016857532344297,
+          "evaporation": 852.5672318074415,
+          "precipitation": 178.70955694080797,
+          "netTransport": -672.424680199071
+        }
+      }
+    ]
+  },
+  {
+    "label": "eddyCold",
+    "rows": [
+      {
+        "name": "Europe",
+        "transport": {
+          "orographicAdvection": 0.000004985645704098276,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0.7151308848543576,
+          "frontDiffusion": 264.0072277881379,
+          "coldFrontAdvection": 28.989124373528107
+        },
+        "snow": {
+          "initial": 143.52932466633376,
+          "final": 74.34759027735316,
+          "snowfall": 117.87775158333311,
+          "melt": 186.63888348168575,
+          "compaction": 0.4206024906283379
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 265.69338944250245,
+            "landK": 263.86496057028666,
+            "vaporKgM2": 3.088133328501152,
+            "windEastMps": 1.3352763802916054,
+            "windNorthMps": -0.40267930637631866,
+            "relativeHumidity": 0.5718642031681361,
+            "convergenceDay": -0.17409100435082575,
+            "oceanK": 271.9166971898867,
+            "rhFromMeanState": 0.5893465148526608
+          },
+          "JJA": {
+            "airK": 287.4340468366932,
+            "landK": 297.8967782768916,
+            "vaporKgM2": 12.924602350029794,
+            "windEastMps": 5.544331336958444,
+            "windNorthMps": -2.208673520724199,
+            "relativeHumidity": 0.6616762064718366,
+            "convergenceDay": 0.05972444389004289,
+            "oceanK": 287.8771763669787,
+            "rhFromMeanState": 0.673635667340555
+          }
+        },
+        "vapor": {
+          "initial": 1.7549017073332127,
+          "final": 2.74047215053039,
+          "evaporation": 403.86382824287756,
+          "precipitation": 416.65630120301023,
+          "netTransport": 13.778043403329576
+        }
+      },
+      {
+        "name": "East North America",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0.004181421425929801,
+          "frontDiffusion": 129.45064478800765,
+          "coldFrontAdvection": 25.443761727270772
+        },
+        "snow": {
+          "initial": 7.389343285748932,
+          "final": 25.513886243430505,
+          "snowfall": 32.77727056049013,
+          "melt": 14.633510832640278,
+          "compaction": 0.019216770168277462
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 271.56131156090095,
+            "landK": 273.2000100820354,
+            "vaporKgM2": 4.193144617786999,
+            "windEastMps": 5.406608865049643,
+            "windNorthMps": -2.0922536176860462,
+            "relativeHumidity": 0.5506337761139214,
+            "convergenceDay": -0.15309772537684688,
+            "oceanK": 274.70029372672036,
+            "rhFromMeanState": 0.562127754867982
+          },
+          "JJA": {
+            "airK": 290.5111467086023,
+            "landK": 301.1792826876752,
+            "vaporKgM2": 14.441043023544228,
+            "windEastMps": 1.3158317942791298,
+            "windNorthMps": -0.5688403868124728,
+            "relativeHumidity": 0.620974486688874,
+            "convergenceDay": 0.12231522287555943,
+            "oceanK": 278.9178296307532,
+            "rhFromMeanState": 0.625936899446431
+          }
+        },
+        "vapor": {
+          "initial": 2.987984802382729,
+          "final": 4.080220426850863,
+          "evaporation": 464.85450017641267,
+          "precipitation": 541.5157006437582,
+          "netTransport": 77.75343609181456
+        }
+      },
+      {
+        "name": "East Asia",
+        "transport": {
+          "orographicAdvection": 29.825739737430077,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0.2714784941347357,
+          "frontDiffusion": 149.08317599854178,
+          "coldFrontAdvection": 8.062771935607735
+        },
+        "snow": {
+          "initial": 35.53837319186755,
+          "final": 4.700674017350556,
+          "snowfall": 16.04187637466302,
+          "melt": 46.84924090295529,
+          "compaction": 0.030334646224717543
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 270.3776612051428,
+            "landK": 272.82853623323234,
+            "vaporKgM2": 3.9884165046968136,
+            "windEastMps": 5.550081678945422,
+            "windNorthMps": -2.2136661449969712,
+            "relativeHumidity": 0.559711052591228,
+            "convergenceDay": -0.0732344359978903,
+            "oceanK": 275.4244718800775,
+            "rhFromMeanState": 0.569161074568479
+          },
+          "JJA": {
+            "airK": 292.5249832122531,
+            "landK": 302.7124683689145,
+            "vaporKgM2": 16.489956656669293,
+            "windEastMps": 0.2705165771711365,
+            "windNorthMps": -0.42622652048146775,
+            "relativeHumidity": 0.6286307169748099,
+            "convergenceDay": 0.0931602024833105,
+            "oceanK": 286.93194730055876,
+            "rhFromMeanState": 0.6338384254923307
+          }
+        },
+        "vapor": {
+          "initial": 2.6569566949779015,
+          "final": 4.26513314202904,
+          "evaporation": 489.78167928966695,
+          "precipitation": 675.8716160290109,
+          "netTransport": 187.6981131863933
+        }
+      },
+      {
+        "name": "West Siberia",
+        "transport": {
+          "orographicAdvection": 3.1901518735656684,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0.0636480773488158,
+          "frontDiffusion": 289.2338067949607,
+          "coldFrontAdvection": 21.316867086672953
+        },
+        "snow": {
+          "initial": 117.79003708876274,
+          "final": 73.22560255111249,
+          "snowfall": 132.19084648000398,
+          "melt": 176.28415357302694,
+          "compaction": 0.47112744462763423
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 259.0191022467598,
+            "landK": 255.2462791028475,
+            "vaporKgM2": 2.3660476729811446,
+            "windEastMps": -1.9179971114182341,
+            "windNorthMps": -0.11596779702612788,
+            "relativeHumidity": 0.6657063280901903,
+            "convergenceDay": -0.09883864946465919,
+            "oceanK": 259.56474040074977,
+            "rhFromMeanState": 0.6806726063485234
+          },
+          "JJA": {
+            "airK": 288.7507793426224,
+            "landK": 298.77449521645985,
+            "vaporKgM2": 13.936559738743926,
+            "windEastMps": 4.865964200330604,
+            "windNorthMps": -1.6990213341922686,
+            "relativeHumidity": 0.6652774186354065,
+            "convergenceDay": -0.005578147134513898,
+            "oceanK": 259.9480598993008,
+            "rhFromMeanState": 0.6708619757967322
+          }
+        },
+        "vapor": {
+          "initial": 1.5350054461640004,
+          "final": 2.1374462947548576,
+          "evaporation": 283.00148193689205,
+          "precipitation": 377.73733654991537,
+          "netTransport": 95.33829546161346
+        }
+      },
+      {
+        "name": "India",
+        "transport": {
+          "orographicAdvection": 0.742349604275232,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0.014600574794797289,
+          "frontDiffusion": 39.39643690234225,
+          "coldFrontAdvection": 14.009148061405776
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 278.82716226355905,
+            "landK": 284.3646263880902,
+            "vaporKgM2": 6.46770140349419,
+            "windEastMps": -1.735704781360565,
+            "windNorthMps": -2.032196526618246,
+            "relativeHumidity": 0.5569234226574352,
+            "convergenceDay": -0.11634878765171718,
+            "oceanK": 287.25008172590395,
+            "rhFromMeanState": 0.5618859668983239
+          },
+          "JJA": {
+            "airK": 294.58769770149433,
+            "landK": 304.47108161315106,
+            "vaporKgM2": 18.059911693231054,
+            "windEastMps": -7.526472382948224,
+            "windNorthMps": -0.10584213445300725,
+            "relativeHumidity": 0.6103724001320341,
+            "convergenceDay": 0.09757263157131248,
+            "oceanK": 291.72707857205086,
+            "rhFromMeanState": 0.6136242802337769
+          }
+        },
+        "vapor": {
+          "initial": 6.973686184340674,
+          "final": 6.971850268400533,
+          "evaporation": 722.1576134982913,
+          "precipitation": 702.2366172483934,
+          "netTransport": -19.92283216583804
+        }
+      },
+      {
+        "name": "Himalaya foreland",
+        "transport": {
+          "orographicAdvection": 10.020250007042764,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 90.23570155757794,
+          "coldFrontAdvection": 0
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 274.7191350753072,
+            "landK": 280.53965438971545,
+            "vaporKgM2": 4.80861908412724,
+            "windEastMps": 2.1864774791453394,
+            "windNorthMps": -2.4693780347994108,
+            "relativeHumidity": 0.5322313534961112,
+            "convergenceDay": 0.017512450605105864,
+            "oceanK": 281.7709570932539,
+            "rhFromMeanState": 0.5382597177922009
+          },
+          "JJA": {
+            "airK": 293.6067458145929,
+            "landK": 303.4053809854283,
+            "vaporKgM2": 17.27775081574551,
+            "windEastMps": -7.066355622190424,
+            "windNorthMps": -0.6770339979264013,
+            "relativeHumidity": 0.619307769185612,
+            "convergenceDay": 0.03863031952890716,
+            "oceanK": 281.7709570932542,
+            "rhFromMeanState": 0.6227440147749144
+          }
+        },
+        "vapor": {
+          "initial": 4.5488221865765155,
+          "final": 5.315674367138988,
+          "evaporation": 419.4123563745806,
+          "precipitation": 375.9622710451594,
+          "netTransport": -42.683233148858086
+        }
+      },
+      {
+        "name": "Tibet",
+        "transport": {
+          "orographicAdvection": 2.075650601608379,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 4.751306276022762,
+          "coldFrontAdvection": 11.928090205544017
+        },
+        "snow": {
+          "initial": 72.5683396291913,
+          "final": 0,
+          "snowfall": 4.568268446032998,
+          "melt": 77.10256330805234,
+          "compaction": 0.03404476717202093
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 271.3092321764977,
+            "landK": 273.5775076768594,
+            "vaporKgM2": 4.0687890789548495,
+            "windEastMps": 4.3181394610677915,
+            "windNorthMps": -2.805992140906083,
+            "relativeHumidity": 0.5487004281048482,
+            "convergenceDay": -0.1027161531263439,
+            "oceanK": 262.3232714275094,
+            "rhFromMeanState": 0.5567308196699128
+          },
+          "JJA": {
+            "airK": 292.48999560945725,
+            "landK": 301.38378536681483,
+            "vaporKgM2": 16.879011277423082,
+            "windEastMps": -4.4146976356175776,
+            "windNorthMps": -0.7308607495871629,
+            "relativeHumidity": 0.6468899539100107,
+            "convergenceDay": -0.02918959888606308,
+            "oceanK": 262.3232714275094,
+            "rhFromMeanState": 0.650489545775944
+          }
+        },
+        "vapor": {
+          "initial": 1.5929356042582783,
+          "final": 4.425815935303766,
+          "evaporation": 177.82422051526086,
+          "precipitation": 102.32819960954744,
+          "netTransport": -72.66314057466771
+        }
+      },
+      {
+        "name": "Australia southwest",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 50.703866791656665,
+          "coldFrontAdvection": 32.74223242433254
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 288.47389826455384,
+            "landK": 300.2788515186712,
+            "vaporKgM2": 14.342849155939215,
+            "windEastMps": -5.685009717153403,
+            "windNorthMps": 1.7916436557989417,
+            "relativeHumidity": 0.6978591695132578,
+            "convergenceDay": -0.04098463434470711,
+            "oceanK": 295.5295741525584,
+            "rhFromMeanState": 0.7032959565934473
+          },
+          "JJA": {
+            "airK": 276.8808849654858,
+            "landK": 282.74055830748813,
+            "vaporKgM2": 6.062905989572632,
+            "windEastMps": 4.644598727734847,
+            "windNorthMps": 2.2677771638554898,
+            "relativeHumidity": 0.5882430912307532,
+            "convergenceDay": -0.09724903671220704,
+            "oceanK": 282.9773739041717,
+            "rhFromMeanState": 0.5949836350349335
+          }
+        },
+        "vapor": {
+          "initial": 15.936506624259087,
+          "final": 17.003155857805105,
+          "evaporation": 631.7225948225446,
+          "precipitation": 292.06743345098783,
+          "netTransport": -338.5885121380081
+        }
+      },
+      {
+        "name": "Australia north",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 24.495760605603675,
+          "coldFrontAdvection": 0.33264919915928864
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 293.8496210192405,
+            "landK": 303.4630548762561,
+            "vaporKgM2": 18.00380724863139,
+            "windEastMps": -6.225413051093999,
+            "windNorthMps": -0.2188350384847872,
+            "relativeHumidity": 0.6374850777824735,
+            "convergenceDay": 0.06617205789158595,
+            "oceanK": 300.44608879711626,
+            "rhFromMeanState": 0.6395728864491118
+          },
+          "JJA": {
+            "airK": 285.2801738161927,
+            "landK": 292.370305357169,
+            "vaporKgM2": 10.4520177921528,
+            "windEastMps": -5.787223724639559,
+            "windNorthMps": 1.9831297870989268,
+            "relativeHumidity": 0.6159783450998984,
+            "convergenceDay": -0.16721285955019116,
+            "oceanK": 292.7537684304542,
+            "rhFromMeanState": 0.619046912510168
+          }
+        },
+        "vapor": {
+          "initial": 22.69541561103828,
+          "final": 20.0589631747061,
+          "evaporation": 813.8653628656884,
+          "precipitation": 955.4610671800035,
+          "netTransport": 138.95925187798625
+        }
+      },
+      {
+        "name": "Amazon",
+        "transport": {
+          "orographicAdvection": 10.222664001252312,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 2.569601888195767,
+          "coldFrontAdvection": 2.749749726675912
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 293.47511051914586,
+            "landK": 301.48476481302765,
+            "vaporKgM2": 17.340145310059683,
+            "windEastMps": -3.238752761498611,
+            "windNorthMps": -0.5294882081518986,
+            "relativeHumidity": 0.6299211893433708,
+            "convergenceDay": 0.07831161136439234,
+            "oceanK": 301.0311550513995,
+            "rhFromMeanState": 0.6299687925679354
+          },
+          "JJA": {
+            "airK": 290.5899969013593,
+            "landK": 298.25715874024945,
+            "vaporKgM2": 16.033095209519637,
+            "windEastMps": -6.52083755362765,
+            "windNorthMps": 1.2832483773225396,
+            "relativeHumidity": 0.6915553786894486,
+            "convergenceDay": 0.07808304245073441,
+            "oceanK": 300.9898497167762,
+            "rhFromMeanState": 0.6918574391752346
+          }
+        },
+        "vapor": {
+          "initial": 26.401423878334125,
+          "final": 17.71815703161703,
+          "evaporation": 1034.1177396326025,
+          "precipitation": 1462.7075566970375,
+          "netTransport": 419.9065502177205
+        }
+      },
+      {
+        "name": "Congo",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 1.0719788773726506,
+          "coldFrontAdvection": 5.388825024718663
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 289.54057209419034,
+            "landK": 297.7262857237636,
+            "vaporKgM2": 15.348535521654686,
+            "windEastMps": -5.193310418511766,
+            "windNorthMps": -0.7232151976869099,
+            "relativeHumidity": 0.7058744539149372,
+            "convergenceDay": 0.06703024248461725,
+            "oceanK": 298.11000996502,
+            "rhFromMeanState": 0.7060382638356691
+          },
+          "JJA": {
+            "airK": 291.7373290099827,
+            "landK": 299.5463328622468,
+            "vaporKgM2": 16.772362834118383,
+            "windEastMps": -5.1221176064108285,
+            "windNorthMps": 0.8944945937974053,
+            "relativeHumidity": 0.6767542956944036,
+            "convergenceDay": 0.03497713393889961,
+            "oceanK": 298.1100099650197,
+            "rhFromMeanState": 0.676607553951167
+          }
+        },
+        "vapor": {
+          "initial": 19.241935682969903,
+          "final": 15.635201921101755,
+          "evaporation": 958.9261004944684,
+          "precipitation": 1269.2181709445322,
+          "netTransport": 306.68533668819356
+        }
+      },
+      {
+        "name": "Canada snow belt",
+        "transport": {
+          "orographicAdvection": 0.7193300389677563,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0.6410693248345197,
+          "frontDiffusion": 364.4478423589286,
+          "coldFrontAdvection": 26.818770187899297
+        },
+        "snow": {
+          "initial": 140.93882594398096,
+          "final": 86.5625010420444,
+          "snowfall": 127.53198222375912,
+          "melt": 181.29551690456364,
+          "compaction": 0.6127902211321616
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 263.55740162169946,
+            "landK": 259.48050979068114,
+            "vaporKgM2": 2.8204181947472198,
+            "windEastMps": -2.4170393899063813,
+            "windNorthMps": -0.07641739400659246,
+            "relativeHumidity": 0.5969633452101593,
+            "convergenceDay": -0.126310426694803,
+            "oceanK": 258.1253621873544,
+            "rhFromMeanState": 0.6158507406801244
+          },
+          "JJA": {
+            "airK": 284.8919788649129,
+            "landK": 295.14961213926483,
+            "vaporKgM2": 11.195155500840194,
+            "windEastMps": 4.240120196871816,
+            "windNorthMps": -1.8274751726665541,
+            "relativeHumidity": 0.666055634490388,
+            "convergenceDay": 0.03645846919316457,
+            "oceanK": 263.5955390454623,
+            "rhFromMeanState": 0.6776619280869628
+          }
+        },
+        "vapor": {
+          "initial": 1.1357932976573688,
+          "final": 2.3398039117808973,
+          "evaporation": 284.1321671489145,
+          "precipitation": 415.26736860262434,
+          "netTransport": 132.33921206783342
+        }
+      },
+      {
+        "name": "Siberia snow belt",
+        "transport": {
+          "orographicAdvection": 1.4510990613709196,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0.09047248101819058,
+          "frontDiffusion": 252.20075020453896,
+          "coldFrontAdvection": 19.920522807612826
+        },
+        "snow": {
+          "initial": 135.83671355495275,
+          "final": 67.9924702564497,
+          "snowfall": 104.53458470305004,
+          "melt": 171.84031712562438,
+          "compaction": 0.5385108759288536
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 259.5019396738997,
+            "landK": 255.40484251533573,
+            "vaporKgM2": 2.42809797542256,
+            "windEastMps": -3.0673797460233256,
+            "windNorthMps": -0.1512103556363115,
+            "relativeHumidity": 0.663152215487051,
+            "convergenceDay": -0.0788354028933332,
+            "oceanK": 256.2636227310637,
+            "rhFromMeanState": 0.6777129426241736
+          },
+          "JJA": {
+            "airK": 287.6310325312995,
+            "landK": 297.61813765973415,
+            "vaporKgM2": 13.455276019441099,
+            "windEastMps": 4.244499538817696,
+            "windNorthMps": -1.5180646452182147,
+            "relativeHumidity": 0.6849928282436503,
+            "convergenceDay": -0.015333072352671258,
+            "oceanK": 258.28020965222316,
+            "rhFromMeanState": 0.6924762429663939
+          }
+        },
+        "vapor": {
+          "initial": 1.1466953611000459,
+          "final": 2.1432551198833516,
+          "evaporation": 259.3887748373905,
+          "precipitation": 320.75562224947913,
+          "netTransport": 62.36340717087132
+        }
+      },
+      {
+        "name": "SW Australia offshore",
+        "transport": {
+          "orographicAdvection": 0,
+          "orographicDiffusion": 0,
+          "frontAdvection": 0,
+          "frontDiffusion": 137.6138418473358,
+          "coldFrontAdvection": 33.811440992697854
+        },
+        "snow": {
+          "initial": 0,
+          "final": 0,
+          "snowfall": 0,
+          "melt": 0,
+          "compaction": 0
+        },
+        "seasons": {
+          "DJF": {
+            "airK": 287.00747687442566,
+            "landK": 297.9272668181661,
+            "vaporKgM2": 14.453772323352657,
+            "windEastMps": -5.3514216393161185,
+            "windNorthMps": 1.1941630394899352,
+            "relativeHumidity": 0.7647378198232092,
+            "convergenceDay": -0.11049799688089296,
+            "oceanK": 294.4842013462363,
+            "rhFromMeanState": 0.7735444030701978
+          },
+          "JJA": {
+            "airK": 276.2728820141601,
+            "landK": 297.56374673290594,
+            "vaporKgM2": 6.040060860000683,
+            "windEastMps": 4.6580530476933815,
+            "windNorthMps": 1.9396937789598694,
+            "relativeHumidity": 0.602198329979735,
+            "convergenceDay": -0.09114718122791313,
+            "oceanK": 282.31546467629806,
+            "rhFromMeanState": 0.6100840142155756
+          }
+        },
+        "vapor": {
+          "initial": 15.583862864781274,
+          "final": 17.33310530713697,
+          "evaporation": 849.1514072616919,
+          "precipitation": 179.44786647733514,
+          "netTransport": -667.9542983419982
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,767 @@
+{
+  "createdUTC": "2026-10-13T12:53:52.331Z",
+  "candidate": "c2",
+  "previousManifest": {
+    "path": "docs/evidence/earth-speedy-transport-20261013/manifest.json",
+    "sha256": "8b5c368764caa331c24867af9f191fbd2ba65cf6d401c14b2c52370adc1b9a78"
+  },
+  "c1Snapshot": {
+    "path": "docs/evidence/earth-conservative-accuracy-20261013/preservation-initial.json",
+    "sha256": "4157180daec2586d7a97014fe6f865720b9e26a02aa8d4a455fedb775cf6d0ef"
+  },
+  "acceptance": {
+    "fixedLinearPressureTimeAccuracy": true,
+    "sharedMassWaterConservation": true,
+    "globalTracerBounds": true,
+    "ownStateRestart": true,
+    "smoothRingSecondOrderEvidence": true,
+    "sphericalRotationAccuracyImproved": true,
+    "nativeHumidityAdjacentDifferenceDecreases": true,
+    "strongPolarPressureAccuracy": false,
+    "fullPhysicalCoupling": false,
+    "climate": false,
+    "formalDefaultPromoted": false
+  },
+  "bindings": [
+    {
+      "path": "build/earth-conservative-accuracy/c2-acoustic-red-status.json",
+      "bytes": 3169,
+      "sha256": "34d67c40a49f142594b468aa7606844ac6bbefb638d155d2be0c460ff6da6012"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-acoustic-red.log",
+      "bytes": 3341,
+      "sha256": "a4d3f76d89719dfb41e4e18d82e5ca190de752d3a86d4835418cdce98001b824"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-coupled-green-01-status.json",
+      "bytes": 3995,
+      "sha256": "ac8e537534ff8d0144935c939d5679a4f00a6c8d5028386c2608514151b6844f"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-coupled-green-01.log",
+      "bytes": 148,
+      "sha256": "4ece34206172f7d372f424b1c69768ab76c2aa4fe1cc98daa2ba9d8f1439d925"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-green-01-status.json",
+      "bytes": 3419,
+      "sha256": "c72476c9800bc09c7fbfcf790d252629c3124202698d4a89a7ba14be2e4a109b"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-green-01.log",
+      "bytes": 552,
+      "sha256": "403fa9b25d7f14cf73ef7fab1ea1a56be346d4a2949263657621d9c951ec2ceb"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-krylov-green-01-status.json",
+      "bytes": 3426,
+      "sha256": "453adcbe7b18d5d553164d9cb49e38e7d5d379a5603ad919a4b372e22ccb0652"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-krylov-green-01.log",
+      "bytes": 548,
+      "sha256": "86eced52a0cdf1859351a08689a66d4e89958ae70ec16c722ee95c12b2d8d763"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-native-1800-01-status.json",
+      "bytes": 4686,
+      "sha256": "918d0b22a78acd7e4a61ce24b2f9129010d504cd793be122924991e75b3874d9"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-native-1800-01.log",
+      "bytes": 206,
+      "sha256": "79ebb440e4bed95ac55d0c9e4d86660b957fa673a883d25acdbfa80cbd64fb52"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-native-450-01-status.json",
+      "bytes": 4669,
+      "sha256": "e872cf74fc6ba6c906f463289edabb7c67c9c243389c04824c1b915e7fae8979"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-native-450-01.log",
+      "bytes": 207,
+      "sha256": "df10192ed6f177cb9d2faaaab7d0744f6d8036ff848197aac8a0800d84e4486d"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-native-900-01-status.json",
+      "bytes": 4669,
+      "sha256": "9af04f930c78bc220c0b766bbc04627849f0cd330bddaa3a4a321af9e7ca0725"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-fct-native-900-01.log",
+      "bytes": 190,
+      "sha256": "dcaac360042ff7aa1ba85ce2596c4343758bba1444346998a6e565748adfbb1e"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800-constant-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "e16572de9ea0bdf7773bdd213d5617389e3b8863b914ced1ef74627cc94c7816"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800-constant-final.bin",
+      "bytes": 826830,
+      "sha256": "551d65abfd6873f3523871ee003b8735590786c454b2917b21c04bc0044294a8"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800-partial.json",
+      "bytes": 2161,
+      "sha256": "db294fc0a76f81fba98bad67f069e0a6f42dea3f6aedf2992a17583782556b68"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800-real-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "115e68626440b23f893010affa6703e419adb77b57dd51d183b89057e0557607"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800-real-final.bin",
+      "bytes": 826830,
+      "sha256": "a5b15f070f4d9538806f307688ada317a6c1c067ba49d5cf6112651452451ba1"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800-sharp-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "c333bd18403d235cb371e01ea20c34599521751d9fceef3480baa195b7c06179"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800-sharp-final.bin",
+      "bytes": 826830,
+      "sha256": "0ecaafd13936058f68b981358048b27989e2b6a4ad714911e232209e08e83379"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800-status.json",
+      "bytes": 4943,
+      "sha256": "9c7867b72d5b6e79e6cd7897dfc69a774944d40fb9e7d0e1ed84045eb96ee757"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800.json",
+      "bytes": 2593,
+      "sha256": "c75502810c34018f3dad9e2a8aab3167e5de30dcde6c296af2124155a41c682f"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-1800.log",
+      "bytes": 1830,
+      "sha256": "4213bd61fdf5aed6ca2e7ea3ef09522eaf54e93051628a45935403a418fedd2c"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-450-partial.json",
+      "bytes": 723,
+      "sha256": "a7e34c7539aed0beb2eec71b9e7e4f5007e162d0cacc70ddf5a1203cb6b06d05"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-450-real-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "63f948fc80091fc0e1441a684a0c716df1c84103f94b1e45f8b4d89f35123fbf"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-450-real-final.bin",
+      "bytes": 826830,
+      "sha256": "6186a906a56cca8ef38e2102e8b74239fe3d9c38319390d3ea085ae6d2adc4f9"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-450-status.json",
+      "bytes": 4926,
+      "sha256": "14eb7eb2120d807596aadbbd122f7b55878664746e390ba79235fb8f685beb58"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-450.json",
+      "bytes": 1154,
+      "sha256": "4c9e4e0f70f82b939f9aeb691aa40433249a42549fa70d6cc5a2c9842cf5d583"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-450.log",
+      "bytes": 2049,
+      "sha256": "614c03d58a6121a087c5f5cd568613c271f776d99de89ed840ae6c3921f2f206"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-900-partial.json",
+      "bytes": 720,
+      "sha256": "207d635b51fa559debafbd6a197a7bc3301f946ca4228630812e4323c32b3ec3"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-900-real-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "c42425a09310e82bcd8bc9e63a4b23910871fe83e10d0ce395cc572357bce11f"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-900-real-final.bin",
+      "bytes": 826830,
+      "sha256": "b612929db642947954d0aea3401cca060d7e39370d2532b6572e7b7ce3f30968"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-900-status.json",
+      "bytes": 4926,
+      "sha256": "e89f3a79efe97c38579c9f2d2da1087ce09cc8fd379c72358eb27cfba13395e5"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-900.json",
+      "bytes": 1151,
+      "sha256": "5dff77597a269ecb94cefb16d3549d400d4926a74827117e721fc759699c5db4"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-900.log",
+      "bytes": 1186,
+      "sha256": "3723c0541e94808bee5123bef2e9e8b67762aa9fa5bcf440bab680b7d2e72096"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-analysis-status.json",
+      "bytes": 3441,
+      "sha256": "02de15d291bd0d54f4ce6851ef838bba50be9661765168be9417b8c40a838e40"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-analysis.json",
+      "bytes": 8687,
+      "sha256": "474dcb0c9ed46e411354dcb3f6ec1dd1aef9357b89cc70215e9ce8fceee13495"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-analysis.log",
+      "bytes": 1197,
+      "sha256": "cb127c3e32769f893af0e4f086102325ff1898269e4dfbf1c9d96a90ade9e2f8"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-coupled-status.json",
+      "bytes": 4278,
+      "sha256": "df9220e1793d49dfb423000c04f3b43e5fe97ce966e408ca1e0589b17ce9ba44"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-coupled.log",
+      "bytes": 148,
+      "sha256": "c4ecb9011277a1c505e4f90bacba8c39bec3f07f5ec4f5b934bb2ef2c6e9b544"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-pressure-space-status.json",
+      "bytes": 4923,
+      "sha256": "67e1cf00984febebdb3f771cfa9c4a9e1c572c64044a94009c39f84ed0aabe14"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-pressure-space.json",
+      "bytes": 2024,
+      "sha256": "745477a6e72cde23cbfdaff72de5b62f450640d8795871c7764a380173434029"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-pressure-space.log",
+      "bytes": 1965,
+      "sha256": "7ae8d50b05329f69f73fd7028510f3a78d6449a639a231d4ec9ee1af66a3cfbd"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-sphere-status.json",
+      "bytes": 4049,
+      "sha256": "c36efc7985c14f12bacef1705de56c00c8283dc7e9713935e23f9819a61a1082"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-sphere.json",
+      "bytes": 1827,
+      "sha256": "7df87ce3c9fd7ca291dc713640b242df7d8e67c6ba47a07bfbd1fff8def2b151"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-sphere.log",
+      "bytes": 1842,
+      "sha256": "7c46fe292b7a97b75a7ebe2a4628693e31a1b5810e036dc10f33bf7de1d898f2"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-upwind-1800-partial.json",
+      "bytes": 622,
+      "sha256": "d8321fb9bdecc11016becf5f5863ea3b6e05c1eeb73afc0184bd507911dbddaa"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-upwind-1800-real-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "2370544af2167146967188f891f5b59044227652117e85444a85688fe3ac8059"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-upwind-1800-real-final.bin",
+      "bytes": 826830,
+      "sha256": "f3c941f05325d9e6fa5816b37e650dca35903c21831fafcab6189d0103da3745"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-upwind-1800-status.json",
+      "bytes": 4381,
+      "sha256": "0071f50fafa80ffe0c7abe76f116154b65369bfd80a6e55c8164dfb7ed9926a0"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-upwind-1800.json",
+      "bytes": 1055,
+      "sha256": "4dfb17ac695c1242390883d57cc8a0b101464b45f62b262c00841b3edf52cf7d"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-final-upwind-1800.log",
+      "bytes": 717,
+      "sha256": "4b384d67771f7d0424f618bd2577e583c65ac1def5e8bf96f889b5754326c165"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-harness-invalid-case-status.json",
+      "bytes": 4911,
+      "sha256": "ee4c73c3ec94f9952f23306fff8d61bc0ba249c0893e0f50b778f830655fe632"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-harness-invalid-case.log",
+      "bytes": 1530,
+      "sha256": "1ae5f69b07362d4357cab153dbc0c74d49b2445052121681a9b5f2d22e84134c"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-harness-zero-days-status.json",
+      "bytes": 4904,
+      "sha256": "1d17db7f917d0d2a4d266f10ff372e0527c2b478cdbc601973517702ec7a9874"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-harness-zero-days.log",
+      "bytes": 1544,
+      "sha256": "3053b804c84c8595f29d90d7f37fc70434572b7cfd7159a8f379989c0eff0272"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-modal-green-01-status.json",
+      "bytes": 3423,
+      "sha256": "d515e6ad0d607e0e57fb83d56408abd9cdd5537fa53fb2a23ebfaed69f5299db"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-modal-green-01.log",
+      "bytes": 466,
+      "sha256": "aaa0715c775180d50351a03f858802bbf3c5977526c8fce22aafa78d3a6c4a60"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-01-status.json",
+      "bytes": 4129,
+      "sha256": "c70814032d6bf9684f3699bdb4b1a2bd3bf132b6e628364010db490242fd0880"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-01.log",
+      "bytes": 329,
+      "sha256": "268c1e49ae24ca217208625a89ddc568c927c7ebaba9d1904cd811932f894e39"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02-constant-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "9f6969841f289a1c6c8afe5c7396edf429243f15f0119f9a8e16263086015670"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02-constant-final.bin",
+      "bytes": 826830,
+      "sha256": "fc1184ee1de29a984fd6ced699e70b75b57c1beaf74db0588cc8dd44477b1e12"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02-partial.json",
+      "bytes": 1809,
+      "sha256": "663c883406a98fcc10c67b2321c5f5e7b251295ffb798f27de02f9d87d06c2da"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02-real-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "f816b126a362af197d884788f9815fa98873d7aa6e93b977ad363aac53eea702"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02-real-final.bin",
+      "bytes": 826830,
+      "sha256": "5c80b7a6349fa3a60d111fbfd01e7d86f458ea388c8314a83e92e42410990abe"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02-sharp-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "43cfeb94da5faa176495dc9a7641d867ae95e5f64d8610f22c71244247376eb6"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02-sharp-final.bin",
+      "bytes": 826830,
+      "sha256": "70d05388b51d1dcc19ecb24a49fba2f9ada1355434cae23c203d79d2ac12e734"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02-status.json",
+      "bytes": 4119,
+      "sha256": "5757f3cb56d447db7b14cb105fa4bffa820abe1b2928af1828fabd160cb96545"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02.json",
+      "bytes": 2202,
+      "sha256": "33f041dfc4650e1af0b2fc4070002b85ab2c9ad82f24f2e1cd3f8d6e6ed6bab4"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-1800-02.log",
+      "bytes": 1886,
+      "sha256": "5d3da53a6a83371c965cc324df29162a070ae91747e94f45ec59eae7fa1babd5"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-450-01-partial.json",
+      "bytes": 619,
+      "sha256": "244503a1a94ece8c02ea5385453bbe7dd26cbb390867d85a4e5fba35d6938f3d"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-450-01-real-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "59bf2b3de180334068e0cb672d505087ccd7b51c2dca09734d8709c8f267ebee"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-450-01-real-final.bin",
+      "bytes": 826830,
+      "sha256": "544c069a1aac4195558ea37753b1f8d24bfc8847f788255cf12934bef2a40e84"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-450-01-status.json",
+      "bytes": 4102,
+      "sha256": "38ac6b58ffb8e0cbf08d06cdff797aff8bdae92e6f8a68fd2cb87418998cb3bc"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-450-01.json",
+      "bytes": 1010,
+      "sha256": "83cee9d92bde4bb079adc9ac8a26000f8683d1a6fdbd39d21b3f19fb1fff7572"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-450-01.log",
+      "bytes": 2043,
+      "sha256": "13d1edf0a9ff63e33caf065da887d3b53a2de1f537221cffb139312f3e11c874"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-900-01-partial.json",
+      "bytes": 618,
+      "sha256": "230dc051de81f28ca6b0931ed158f17bb85c75591b90fd2b708f52d0313b607f"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-900-01-real-checkpoint.bin",
+      "bytes": 826842,
+      "sha256": "051c0379f97d0f216a32007306a8374c15914902ed651e11f4f82ff597f051a9"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-900-01-real-final.bin",
+      "bytes": 826830,
+      "sha256": "1db9b5775bb63192559355775c9b8d993767f090374fd4fd98f2ca2210c806b3"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-900-01-status.json",
+      "bytes": 4102,
+      "sha256": "2584da7c3f5be36b68867e5b168975927cd01ed4565c582c28130a1ea8a6b6b1"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-900-01.json",
+      "bytes": 1010,
+      "sha256": "0e4d66aac75ae9ca88b59cb6267f92bdc8f0d479a75328d8e53a1e3d31926bc2"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-native-900-01.log",
+      "bytes": 1186,
+      "sha256": "7158a5ac81cdf5ba19409958bb0a7182e7e285d6627bdf834e64f724729e1012"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-sphere-fct-01-status.json",
+      "bytes": 3764,
+      "sha256": "9256799a3c03f878875e44a093a12e89a7d0a496c28fc9bb332177ff248d353e"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-sphere-fct-01.json",
+      "bytes": 1829,
+      "sha256": "67fba807176b8331b5d83ee5f8c4a551b2272cebbb1e6d56a79eb4ee1a00eb4f"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-sphere-fct-01.log",
+      "bytes": 1844,
+      "sha256": "32200c93128723d5a922258a9b03bbc3b96b52af1bf8b810955c97d1d6b6d3c3"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-summary.png",
+      "bytes": 154710,
+      "sha256": "7ee5a4b870e6cf43b7b90d70f61660e442783e7c14760e027964e4e9979af45c"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-transport-red-status.json",
+      "bytes": 3174,
+      "sha256": "f41c19db9ab9b8f5432e599ba3a2cb3413b8c5e75d09a8baecc08d53a65e4a8d"
+    },
+    {
+      "path": "build/earth-conservative-accuracy/c2-transport-red.log",
+      "bytes": 1419,
+      "sha256": "715b4bd4b38c4b93d1f5a9fde0cf22180d5f42b0f5bb6f8bf5701aee36e2c884"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/CURRENT-STATE.md",
+      "bytes": 2914,
+      "sha256": "ac651fa3f427342ac730ebddc4b44a2deb85fe644a3cf066e1d1c4b455c53181"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/analyze-final.jl",
+      "bytes": 4269,
+      "sha256": "37a4ecffa7772cf3735fff15974a90792c3d6b72bc516daaa6028d06d104a054"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/benchmark-pressure-space.jl",
+      "bytes": 3424,
+      "sha256": "07bc04422ec2ea73345ba63fd2d155a58ec986dbbf11b313ccc6809170a53351"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/benchmark-sphere-fct.jl",
+      "bytes": 3080,
+      "sha256": "47855b9a33d409c52ad2b685fb3648bb916960e17aa7652aae587f5e3249e557"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/code-review.md",
+      "bytes": 1798,
+      "sha256": "dab7a6c84af153bc853f4505be0f65fe008ab8d4d3a8118d82855dc3c8338f9b"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/design.md",
+      "bytes": 3050,
+      "sha256": "15d0abcf6fe913dde2327b2d8dbaf13368cb3de79f534accf958222b120319ab"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/development-runs.md",
+      "bytes": 2210,
+      "sha256": "bbde0bc76d0e76db95cf47f313a23073ee861ab0111095873b70623c69febba0"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/fct-core.jl",
+      "bytes": 1275,
+      "sha256": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/fct-transport.jl",
+      "bytes": 5383,
+      "sha256": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/harness-tests.json",
+      "bytes": 355,
+      "sha256": "562a529cd34aaf4e6ae1867beb83c75c0df972ea41c654b55bdb24254e257b31"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/modal-core.jl",
+      "bytes": 6385,
+      "sha256": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/native-fct-probe.jl",
+      "bytes": 7045,
+      "sha256": "fcfd62b055398da70155ba96db319bfdcc996597d82e9980fd374df12a52e8d4"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/native-fct-v2.jl",
+      "bytes": 7626,
+      "sha256": "52cdc9cfb22cda4b390e735feacef7bb55fe10b05b7dd3b284cc1f5c4e4ea24d"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/native-modal-probe.jl",
+      "bytes": 6932,
+      "sha256": "172dd3ded7fa3440fa75cc4f2dec18beec29619e876f4977da974edbb7be1931"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/native-modal-v2.jl",
+      "bytes": 7143,
+      "sha256": "923c1ca20ed2fbd1fbf5ba9a7691cd38d1085f401a1e8cf8312b604e005e9a12"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/plot-results.py",
+      "bytes": 2006,
+      "sha256": "6a5e89a77dd9caae7d689e2de6874d2a2c7e0ccf2e6c09f2c9295f213091acac"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/preservation-final.json",
+      "bytes": 50408,
+      "sha256": "d2a29d5dfd2f2eb12f61fcc22b3bcbd75ea0e47c447c70ecb7c1a68486d123ad"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/preservation-initial.json",
+      "bytes": 50408,
+      "sha256": "4157180daec2586d7a97014fe6f865720b9e26a02aa8d4a455fedb775cf6d0ef"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/protocol.md",
+      "bytes": 2361,
+      "sha256": "5fc6a6a769a1358db70083eb5234eface3e7589e8ea318004fc3e33edac55559"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/report.md",
+      "bytes": 6186,
+      "sha256": "3574c9682196fa2eed3c896411d2702c3ccc25609d28e914c7c617a07787e3ae"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/run-accuracy-v2.mjs",
+      "bytes": 3862,
+      "sha256": "c65d851bb3baeb3ae2e9ab260f0363d34b113d4ade5a5d0fab9bd69adde02c29"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/run-accuracy.mjs",
+      "bytes": 3792,
+      "sha256": "3dddb8d446bd0b22709c56ae368909924acb4f4dc79fbefa74a2e69894d1273d"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/seal-evidence.mjs",
+      "bytes": 1583,
+      "sha256": "b260345f023aa1a35b88962bba12381acdee37bcc69e4b953ac2fbdf65df6e5d"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/07bc04422ec2ea73345ba63fd2d155a58ec986dbbf11b313ccc6809170a53351/benchmark-pressure-space.jl",
+      "bytes": 3424,
+      "sha256": "07bc04422ec2ea73345ba63fd2d155a58ec986dbbf11b313ccc6809170a53351"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/15d0abcf6fe913dde2327b2d8dbaf13368cb3de79f534accf958222b120319ab/design.md",
+      "bytes": 3050,
+      "sha256": "15d0abcf6fe913dde2327b2d8dbaf13368cb3de79f534accf958222b120319ab"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/172dd3ded7fa3440fa75cc4f2dec18beec29619e876f4977da974edbb7be1931/native-modal-probe.jl",
+      "bytes": 6932,
+      "sha256": "172dd3ded7fa3440fa75cc4f2dec18beec29619e876f4977da974edbb7be1931"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/1cb8cd47f041b80cddcfd276ac3b17f43f8d1655b9eaa3dd327240081b945686/test-acoustic-red.jl",
+      "bytes": 584,
+      "sha256": "1cb8cd47f041b80cddcfd276ac3b17f43f8d1655b9eaa3dd327240081b945686"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62/modal-core.jl",
+      "bytes": 6385,
+      "sha256": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/2ca15cd6685b59890aac5b403732c485d7763bd22a0dbaa9f538d54809ed86d6/fct-core.jl",
+      "bytes": 1181,
+      "sha256": "2ca15cd6685b59890aac5b403732c485d7763bd22a0dbaa9f538d54809ed86d6"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/2d1961ec85595104ac2f0679de6b582cd9f5fc754758ac30c34c40696856580c/test-modal.jl",
+      "bytes": 4079,
+      "sha256": "2d1961ec85595104ac2f0679de6b582cd9f5fc754758ac30c34c40696856580c"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/2ee35f344019b2b9714ce073366a6909f2d7249c89f71056742d9e6e5dd757e2/test-fct.jl",
+      "bytes": 2643,
+      "sha256": "2ee35f344019b2b9714ce073366a6909f2d7249c89f71056742d9e6e5dd757e2"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/32d36164f2f2b1ab7ab6ea98c367d106580eb2e59e0e91469a73cbe57a3b1963/fct-transport.jl",
+      "bytes": 3228,
+      "sha256": "32d36164f2f2b1ab7ab6ea98c367d106580eb2e59e0e91469a73cbe57a3b1963"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/37a4ecffa7772cf3735fff15974a90792c3d6b72bc516daaa6028d06d104a054/analyze-final.jl",
+      "bytes": 4269,
+      "sha256": "37a4ecffa7772cf3735fff15974a90792c3d6b72bc516daaa6028d06d104a054"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/3dddb8d446bd0b22709c56ae368909924acb4f4dc79fbefa74a2e69894d1273d/run-accuracy.mjs",
+      "bytes": 3792,
+      "sha256": "3dddb8d446bd0b22709c56ae368909924acb4f4dc79fbefa74a2e69894d1273d"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d/conservative-core.jl",
+      "bytes": 12294,
+      "sha256": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/47855b9a33d409c52ad2b685fb3648bb916960e17aa7652aae587f5e3249e557/benchmark-sphere-fct.jl",
+      "bytes": 3080,
+      "sha256": "47855b9a33d409c52ad2b685fb3648bb916960e17aa7652aae587f5e3249e557"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/52cdc9cfb22cda4b390e735feacef7bb55fe10b05b7dd3b284cc1f5c4e4ea24d/native-fct-v2.jl",
+      "bytes": 7626,
+      "sha256": "52cdc9cfb22cda4b390e735feacef7bb55fe10b05b7dd3b284cc1f5c4e4ea24d"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/5fc6a6a769a1358db70083eb5234eface3e7589e8ea318004fc3e33edac55559/protocol.md",
+      "bytes": 2361,
+      "sha256": "5fc6a6a769a1358db70083eb5234eface3e7589e8ea318004fc3e33edac55559"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd/conservative-grid.jl",
+      "bytes": 7774,
+      "sha256": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/923c1ca20ed2fbd1fbf5ba9a7691cd38d1085f401a1e8cf8312b604e005e9a12/native-modal-v2.jl",
+      "bytes": 7143,
+      "sha256": "923c1ca20ed2fbd1fbf5ba9a7691cd38d1085f401a1e8cf8312b604e005e9a12"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b/fct-core.jl",
+      "bytes": 1275,
+      "sha256": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/a2e305c2400ea9573f331c682304a174b52c86049d77827bb3ee452474342524/test-transport-red.jl",
+      "bytes": 532,
+      "sha256": "a2e305c2400ea9573f331c682304a174b52c86049d77827bb3ee452474342524"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a/fct-transport.jl",
+      "bytes": 5383,
+      "sha256": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/c65d851bb3baeb3ae2e9ab260f0363d34b113d4ade5a5d0fab9bd69adde02c29/run-accuracy-v2.mjs",
+      "bytes": 3862,
+      "sha256": "c65d851bb3baeb3ae2e9ab260f0363d34b113d4ade5a5d0fab9bd69adde02c29"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/c854526dd3f781e392eda0b79c8fbf18d5b356e28432ff6f4e638202f6f07030/test-coupled.jl",
+      "bytes": 1492,
+      "sha256": "c854526dd3f781e392eda0b79c8fbf18d5b356e28432ff6f4e638202f6f07030"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/d2a99f8336811d8420ff4a991212fe618306c3eea03dc0eb855883ab5ec77045/native-modal-probe.jl",
+      "bytes": 6936,
+      "sha256": "d2a99f8336811d8420ff4a991212fe618306c3eea03dc0eb855883ab5ec77045"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/d8a395ea506d3c223de6c6fa5e73a9410f94f28f6f3a7263ea6a89e9cc0806ef/test-fct.jl",
+      "bytes": 2470,
+      "sha256": "d8a395ea506d3c223de6c6fa5e73a9410f94f28f6f3a7263ea6a89e9cc0806ef"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/f0830bc48bced6d9f1645216dad50b946bbb0927b4a3e4a0c19d48fe10bac12c/mimetic-gradient.jl",
+      "bytes": 5398,
+      "sha256": "f0830bc48bced6d9f1645216dad50b946bbb0927b4a3e4a0c19d48fe10bac12c"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/source-archives/fcfd62b055398da70155ba96db319bfdcc996597d82e9980fd374df12a52e8d4/native-fct-probe.jl",
+      "bytes": 7045,
+      "sha256": "fcfd62b055398da70155ba96db319bfdcc996597d82e9980fd374df12a52e8d4"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/test-acoustic-red.jl",
+      "bytes": 584,
+      "sha256": "1cb8cd47f041b80cddcfd276ac3b17f43f8d1655b9eaa3dd327240081b945686"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/test-coupled.jl",
+      "bytes": 1492,
+      "sha256": "c854526dd3f781e392eda0b79c8fbf18d5b356e28432ff6f4e638202f6f07030"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/test-fct.jl",
+      "bytes": 2643,
+      "sha256": "2ee35f344019b2b9714ce073366a6909f2d7249c89f71056742d9e6e5dd757e2"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/test-harness.mjs",
+      "bytes": 1470,
+      "sha256": "15d268b24558d9b88723be8930dae629b043ba66a140d7783352a78788979ec2"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/test-modal.jl",
+      "bytes": 4079,
+      "sha256": "2d1961ec85595104ac2f0679de6b582cd9f5fc754758ac30c34c40696856580c"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/test-transport-red.jl",
+      "bytes": 532,
+      "sha256": "a2e305c2400ea9573f331c682304a174b52c86049d77827bb3ee452474342524"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/verification.json",
+      "bytes": 4642,
+      "sha256": "23cba64f165bb8d0e8b5ca295f9c9ed5e14c41ec5ca8eff8a6387aa3498b5982"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/verify-preservation.mjs",
+      "bytes": 2591,
+      "sha256": "7212ac7fb78d54f7e3a9db64faae8db42759dded3d9884cddd46c8041a4e9152"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/verify-results.mjs",
+      "bytes": 3221,
+      "sha256": "14976a34cec5d30c03c38cfe5d0c1de2661a25df990992d95026dbdf6cc6dae0"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-10-13-conservative-accuracy.md",
+      "bytes": 1866,
+      "sha256": "b71ec68357df08e43b5083a9da13d19f568a7a5ef1daefc9bba0ce8e2073d5ed"
+    }
+  ]
+}

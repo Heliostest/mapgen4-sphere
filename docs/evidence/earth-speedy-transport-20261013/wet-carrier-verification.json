@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "checks": 140,
+  "mechanismOnly": true,
+  "coupledFixAccepted": false,
+  "nativeProjectedWaterDriftMm": [
+    0.003560263276042974,
+    0.01041705809646487,
+    0.032323597159276574
+  ],
+  "constantTracerNativePressureErrors": [
+    0.00010633667778377383,
+    0.00007994012649584908,
+    0.0001178781776501013
+  ],
+  "maxCarrierNativePressureDifferencePa": 827.2483374785515,
+  "rejectedGates": 9,
+  "verifiedBothRawMemories": true,
+  "note": "Successful verification of both mechanism conservation and explicit incompatibility; not a successful coupled moisture correction."
+}

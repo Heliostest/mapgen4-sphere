@@ -1,0 +1,192 @@
+{
+  "schema": "isolated-surface-evaporation-verification-v1",
+  "verifiedUTC": "2026-10-13T06:32:44.627Z",
+  "frozenImplementationSHA256": "8258dab6422c7ea2a245492e94c8c9eb06fad5244a0cbef851ee43094e048db0",
+  "julia": "1.12.7",
+  "speedyWeather": "0.23.0",
+  "threads": {
+    "julia": 1,
+    "blas": 1
+  },
+  "executions": {
+    "nativeRegression": {
+      "exitCode": 1,
+      "passed": 9,
+      "failed": 13,
+      "errored": 0,
+      "expectedFailure": true
+    },
+    "correctedRegression": {
+      "exitCode": 0,
+      "passed": 346,
+      "failed": 0,
+      "breakdown": {
+        "thermodynamic": 22,
+        "mixedWaterHeatAndSnow": 324
+      }
+    },
+    "snapshot": {
+      "exitCode": 0,
+      "modelSteps": 0,
+      "checkpoints": 4
+    }
+  },
+  "statusProvenance": "Exit codes from completed Julia tool calls; this script rechecks persisted outputs and bindings, not rerun Julia. Initial red test first 22 assertions unchanged; later mixed-test parser repair and added 54 expected-flux assertions affect only the second testset.",
+  "claims": {
+    "frozenIncludeUnchanged": true,
+    "positiveEvaporationUnchanged": true,
+    "instantaneousWaterHeatAccountingPass": true,
+    "timeIntegratedBudgetVerified": false,
+    "seasonalMonsoonFixed": false,
+    "soilAdsorptionImplemented": false,
+    "fullRepositoryTestsRun": false
+  },
+  "limitations": [
+    "Current checkpoint land state and stored availability/drag are explicitly distinguished from pre-update stored E.",
+    "Original availability does not represent a soil adsorption closure; no universal assertion that unsaturated soil cannot adsorb water.",
+    "CPU Float64 two-soil-layer/eight-atmosphere-layer fixed-state fixtures do not test runoff/clipping, variable heat capacity or long integration.",
+    "Mutable root report/comparison/candidate aggregates are intentionally not hash-bound; the five-case diagnostic snapshot is bound."
+  ],
+  "files": [
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-corrected.jl",
+      "sha256": "8258dab6422c7ea2a245492e94c8c9eb06fad5244a0cbef851ee43094e048db0",
+      "bytes": 2738
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-test.jl",
+      "sha256": "87e2449784dd9e91fe359b3527a909cb1bbe7470eafc1410940f7b45a752836f",
+      "bytes": 4988
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-snapshot.jl",
+      "sha256": "10c37957341765a56dd3d6bc5882838fa71e7badd9f219e656572595be98a448",
+      "bytes": 3649
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-report.md",
+      "sha256": "f21c3406798b1af38ca31806cf0ac2d2562df04b83a82ebfe235133fa2f1ac70",
+      "bytes": 6670
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-verify.mjs",
+      "sha256": "ef2046d2159a68bf413e63377a0a9f5be0c381d59101f560814ce9911c5e56ef",
+      "bytes": 5036
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/surface-evaporation-candidate-fields-snapshot.json",
+      "sha256": "300f734d06aeaf106944d5f002bcdcb339378615ea53efc3bef683044470f5fb",
+      "bytes": 3730224
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/circulation-followup.md",
+      "sha256": "3f36f9e9e8e5f61b81d9804d5c817e1fe4738e7fe5d2c00bf41ccce8301bc92e",
+      "bytes": 5102
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-LICENSE.txt",
+      "sha256": "6afd64935f7c7f3acf677a23e6b90077db9f2a9ef3e2a68fadf5c4fa48d5239b",
+      "bytes": 14000
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-red.log",
+      "sha256": "be5b116130c3fad9c44249ac25896f23b77e7ce05e7c9866704bb75f273e54a8",
+      "bytes": 26638
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-green.log",
+      "sha256": "97ea8155af4efcc89087c72520d1d852c29b2e9ef169570303893bc00e77b59a",
+      "bytes": 4954
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-green-final.log",
+      "sha256": "e4d30f053d0e06a239440802fc1f7df0666bd97c0e3f03a888ccfaa5049b8550",
+      "bytes": 5576
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-green-complete.log",
+      "sha256": "329850ed26a45ab89a6337c85ca1769f976350ac9fdb1a1653d7ee827386e0c0",
+      "bytes": 4168
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-green-snow.log",
+      "sha256": "286940be943866571205e48295ef70b8114a451791dbbba26cbbb2dd3220bc30",
+      "bytes": 4168
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-snapshot.json",
+      "sha256": "c2447a75ae2e66ee41e6a94a457ab70c8b5ab653d7f0c442b0512049c3465880",
+      "bytes": 9014
+    },
+    {
+      "path": "build/earth-speedy-transport/surface-evaporation-snapshot-complete.log",
+      "sha256": "2b7660ee2a228e0747ed485fa69539943d992dc1cf108c1ef1f971bb7b10a7d5",
+      "bytes": 18034
+    },
+    {
+      "path": "build/earth-speedy-transport/diagnostic-weights.json",
+      "sha256": "0b47110a91d768ed526eff0a62a0881f369faf68ff466e744521a9c78de721a4",
+      "bytes": 113310
+    },
+    {
+      "path": "build/earth-speedy-transport/diagnostic-july-start.jld2",
+      "sha256": "6241c2b3511e3873abad4d37e5314e29f26c40df124e12efb6ad355637e065ba",
+      "bytes": 9575453
+    },
+    {
+      "path": "build/earth-speedy-transport/baseline-sensitivity-v2-final.jld2",
+      "sha256": "44e71d3e39bac4574ec8d354ebbd12fba2d9c5bcc39ad2124022521dfe3501e7",
+      "bytes": 9575453
+    },
+    {
+      "path": "build/earth-speedy-transport/parcel-sensitivity-final.jld2",
+      "sha256": "e257e0c88c35462a52ff664c996d3c0d9331d0a621b758dccb574b0f2d376421",
+      "bytes": 9577535
+    },
+    {
+      "path": "build/earth-speedy-transport/combined-sensitivity-final.jld2",
+      "sha256": "68acb0dd472e86bd0e386bd4559dd82a8f6dacac9586d4c5c00fb604bae69d1a",
+      "bytes": 9578447
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/surface_fluxes/humidity.jl",
+      "sha256": "ebbeb2112929f558e2a8454981ea95469af6cfd123e0f687a7956c104f63e915",
+      "bytes": 11948
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/surface_fluxes/surface_condition.jl",
+      "sha256": "431a05ee5d18577680e6c85fff5764a784ac7cf54dc826da3dbf306eba272d79",
+      "bytes": 3361
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/surface_fluxes/heat.jl",
+      "sha256": "1f022e70277d781a7ac1adb91a451c196ea5deaf8b6971e6ea1a039894a20c28",
+      "bytes": 12217
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/vegetation.jl",
+      "sha256": "60f962c89b6a76e18201cd31bf2983a19a33698614fea037a91587e02cf7b9c8",
+      "bytes": 9355
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/geometry.jl",
+      "sha256": "50165b1353df85559110d2b11b70a5c5d7bd1863873508de5e2259da4d746ad6",
+      "bytes": 1067
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/thermodynamics.jl",
+      "sha256": "51de0b0947a3072ef5fa109e5d34157fd94ad6002f631156ba37b4b9b571fdc2",
+      "bytes": 1151
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/soil_moisture.jl",
+      "sha256": "80d3123ec2050dcffdeefefb60512292bd1b055fd88e8f0b3b84db53e8eb4fa7",
+      "bytes": 13845
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/soil_temperature.jl",
+      "sha256": "cb573a5782f1c032b40bcca91ef5d66fa011ab77508ea447b5ebcc17fd38c8e1",
+      "bytes": 12423
+    }
+  ]
+}

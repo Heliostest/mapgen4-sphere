@@ -1,0 +1,45 @@
+{
+  "startedUTC": "2026-10-13T03:59:43.563Z",
+  "completedUTC": "2026-10-13T04:43:42.328Z",
+  "script": "docs/evidence/earth-speedy-moisture-monsoon-20261013/run.jl",
+  "configuration": {
+    "SPEEDY_CASE": "coupled-slab",
+    "SPEEDY_MODE": "slab",
+    "SPEEDY_SMOKE": "0",
+    "MOISTURE_IMPLEMENTATION": null,
+    "MASS_IMPLEMENTATION": "fixed",
+    "MIXING_IMPLEMENTATION": null,
+    "AUDIT_STAGES": null
+  },
+  "sourceBefore": {
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/protocol.md": "b72e0cbb4d7104cf31115fd7a6b024b8a262e62f7a64a97f10a3c43f5e5647bd",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/run.jl": "1f2fce86ac707cd05cf7eef59787213e659f8d8ae467e8ace93fee780f4804be",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/physics-model.jl": "6e0a39d51da16944f67562c41bd939b034b3d8b5c4d2e96457daed5db24e2eb4",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/components.jl": "f214103d94ebf303f022fc257789ba2a3f1b0eb8a8ed58387c5be0189ca5ead9",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/water-preserving-mass.jl": "2fc0240aa3e4766294250da5d34665e1010bbe227e36aeec24d75f810fc9ca85",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation.jl": "9ea9a306d16dc6e3f7ea70dd1b3a753794ddc7dad19dd0ba7e69a9ef23330357",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/boundary-layer.jl": "ade63d52e8c9f3abc6e194cc2fce0f31248fe1a4cb14b3705d87571d56837add",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/vertical-diffusion.jl": "d08a77ae5177601a76a9442694532443fadb466663289259004fe6275ca56ce4",
+    "docs/evidence/earth-speedyweather-20261012/diagnostics.jl": "7a8c8e991a2fec5aa8bdde65e75f9946adafc0d9ba7d0572fa70e976e911209b"
+  },
+  "sourceAfter": {
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/protocol.md": "b72e0cbb4d7104cf31115fd7a6b024b8a262e62f7a64a97f10a3c43f5e5647bd",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/run.jl": "1f2fce86ac707cd05cf7eef59787213e659f8d8ae467e8ace93fee780f4804be",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/physics-model.jl": "6e0a39d51da16944f67562c41bd939b034b3d8b5c4d2e96457daed5db24e2eb4",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/components.jl": "f214103d94ebf303f022fc257789ba2a3f1b0eb8a8ed58387c5be0189ca5ead9",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/corrections.jl": "02054a2860d17ccfa4bb496e26d34557b524f5a711bcc122f1eb2004a9902652",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/water-preserving-mass.jl": "2fc0240aa3e4766294250da5d34665e1010bbe227e36aeec24d75f810fc9ca85",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation.jl": "9ea9a306d16dc6e3f7ea70dd1b3a753794ddc7dad19dd0ba7e69a9ef23330357",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/boundary-layer.jl": "ade63d52e8c9f3abc6e194cc2fce0f31248fe1a4cb14b3705d87571d56837add",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/vertical-diffusion.jl": "d08a77ae5177601a76a9442694532443fadb466663289259004fe6275ca56ce4",
+    "docs/evidence/earth-speedyweather-20261012/diagnostics.jl": "7a8c8e991a2fec5aa8bdde65e75f9946adafc0d9ba7d0572fa70e976e911209b"
+  },
+  "sourceUnchanged": true,
+  "args": [
+    "--startup-file=no",
+    "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/run.jl"
+  ],
+  "code": 0
+}

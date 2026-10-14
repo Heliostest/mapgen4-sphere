@@ -10,6 +10,47 @@ const mixed=Float64Array.from({length:n},(_,i)=>i%3?1:0);
 const model=(land=mixed,config={},radius=DEFAULT_PLANET.radiusM,height=field(0))=>new WaterModel(grid,radius,land,height,field(288.15),{...DEFAULT_WATER,...config});
 const near=(a:number,b:number,tol=1e-8)=>assert.ok(Math.abs(a-b)<tol,`${a} != ${b}`);
 
+test('opt-in ocean accumulation conserves repeated rain and evaporation across restore',()=>{
+    const config={moistureScheme:'transport',compensatedOceanTransfers:true,windMps:0,moistureDiffusivityM2s:0};
+    const original=model(field(0),config),temperature=field(280),sun=field(250);
+    for(let i=0;i<2500;i++)original.step(900,temperature,sun);
+    near(original.diagnostics().residualMm,0,1e-7);
+    const saved=original.checkpoint(),restored=model(field(0),config);restored.restore(saved);
+    for(let i=0;i<2500;i++){original.step(900,temperature,sun);restored.step(900,temperature,sun);}
+    near(original.diagnostics().residualMm,0,1e-7);
+    assert.deepEqual(restored.checkpoint(),original.checkpoint());
+    assert.ok(original.oceanGlobalKgM2>0&&original.atmosphereKgM2.every(v=>v>=0));
+});
+
+test('sub-ulp coastal returns conserve finite water and continue exactly after restore',()=>{
+    const config={moistureScheme:'transport',compensatedOceanTransfers:true};
+    const original=model(field(.5),config,DEFAULT_PLANET.radiusM,field(1));
+    original.surfaceKgM2.fill(1);original.oceanGlobalKgM2-=1;
+    for(let i=0;i<5000;i++)original.routeSurface(.001);
+    near(original.diagnostics().residualMm,0,1e-8);
+    const restored=model(field(.5),config,DEFAULT_PLANET.radiusM,field(1));restored.restore(original.checkpoint());
+    for(let i=0;i<5000;i++){original.routeSurface(.001);restored.routeSurface(.001);}
+    near(original.diagnostics().residualMm,0,1e-8);
+    assert.deepEqual(restored.checkpoint(),original.checkpoint());
+    assert.ok(original.surfaceKgM2.every(v=>v>=0));
+});
+
+test('default ocean accumulation keeps legacy numerical behavior and save shape',()=>{
+    const legacy=model(field(0)),explicit=model(field(0),{compensatedOceanTransfers:false});
+    for(let i=0;i<80;i++){legacy.step(900,field(280),field(250));explicit.step(900,field(280),field(250));}
+    assert.deepEqual(legacy.checkpoint(),explicit.checkpoint());
+    assert.equal('oceanCorrection' in legacy.checkpoint(),false);
+    assert.equal('compensatedOceanTransfers' in DEFAULT_WATER,false);
+});
+
+test('compensated transfers reject overdrafts and keep an exhausted ocean nonnegative',()=>{
+    const m=model(field(0),{compensatedOceanTransfers:true});
+    assert.throws(()=>m.addOceanWater(NaN),/Invalid ocean transfer/);
+    assert.throws(()=>m.addOceanWater(-2*m.oceanGlobalKgM2),/finite inventory/);
+    m.addOceanWater(-m.oceanGlobalKgM2);near(m.oceanGlobalKgM2,0);near(m.oceanCorrection,0);
+    assert.throws(()=>model(field(0),{compensatedOceanTransfers:'yes'}),/accumulation switch/);
+});
+
 test('water columns initialize with finite stores and physical area',()=>{
     const m=model();near(m.cellAreaM2*n,4*Math.PI*DEFAULT_PLANET.radiusM**2,.1);
     near(m.atmosphereKgM2[1],10);near(m.soilKgM2[1],75);near(m.soilKgM2[0],0);
