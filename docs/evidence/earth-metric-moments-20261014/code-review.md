@@ -1,0 +1,36 @@
+﻿# Independent C10 code and evidence review
+
+Completed: 2026-10-14. Base: a3a6934b6c9135ddfd912b86197f54026b615e05.
+Decision: ready for the one-time evidence seal. Unresolved actionable findings: **0**. No deferred minor findings.
+
+This was a fresh independent review of the C10 branch, conducted read-only against implementation and sealed ancestors. All reviewer scripts, attempted runs, logs, results, initial/final source snapshots, and checkpoint bytes remain under their original `build/c10-independent-review` paths. The archive preserves those paths through `review-source-bindings.json`; its hashes, rather than this date, identify the exact reviewed state. Seal execution and subsequent Git integration remain the implementer's next steps.
+
+## Mathematical and implementation assessment
+
+For the free edges, use relative coordinates z=(w-w0)/w0, S=C_free diag(w0_free), and b=target-C_fixed lower-C_free w0_free. Solving (S S^T+D)mu=b and setting w_free=w0_free(1+S^T mu) gives Cw-target=-Dmu. D is the declared ridge on low-order rows and penalty+ridge on cubic rows. This is the stated relative-weight objective with the measured low-order tolerance and declared regularization. The fixed-edge lower-bound contribution is included in the right-hand side, and the reported objective includes all edges. One-way pinning does not certify the global constrained optimum; the code, protocol, and report consistently say so.
+
+The first tangent pair, symmetric traceless quadratic pair, and Frobenius-weighted symmetric cubic tensor each transform orthogonally under a tangent-basis change. The radial row and trace-scaled ridge are invariant. The construction retains every original edge, distance, area, coordinate, ordering, and velocity degree of freedom. Positive conductances enter Geometry, transport, pressure work, energy, curl, vertical exchange, and checkpoint identity consistently. The imported C8 pressure core and C9 vector core remain exact sealed bytes.
+
+Spatial comparisons use identical physical edge samples and the original h (or original pressure-weighted H). Pressure and exact-kinetic gradients remain identical between candidates because their two-point gradient is unchanged. Held-out degrees/axes, rotating/mixed/sheared fields, and scalar operator proxies are reported without claiming universal improvement. Native stepping has no hidden rejection/retry loop or correction, and checkpoint tests rebuild the model and compare four further steps bitwise.
+
+## Independently executed checks
+
+- `independent-checks-v1.py`: five groups passed. Separate moment accumulation reproduces the 24-ring objective 9936.184097284813 and 112 pinned edges. Dense primal KKT solutions agree with the dual to relative errors 5.68e-13 without pinning and 2.01e-13 on the pinned free set. Independent local O(2) rotations/reflections at 1008 nodes change weights by only 1.22e-10 relatively. A 1e-290 conductance remains finite and bounded. Eleven malformed/overflow cases reject without input mutation.
+- `finite-output-probe-v1.py`: four additional extreme finite tetrahedral weight scales reject singular systems before returning a graph. Expected numerical warnings and complete outcomes are retained.
+- `independent-invariants-v1.jl`: seven assertions passed on the new 48-ring metric. Relative energy contractions are 5.03e-20 total neutral, 3.07e-18 rotation, 4.38e-19 weak curl, and 3.03e-18 combined layer/vertical exchange. The divergence/gradient adjoint residual is 9.96e-17. A rebuilt checkpoint preserves all bits; loading it with the old metric rejects.
+- `final-evidence-audit-v1.py`: seven groups passed. Every selected run's exact current source/input/output hashes agree; all historical attempts remain archived. Independent moment/objective recomputation passes at 24/48/96 rings, with low residuals 1.67e-11, 3.06e-11, and 3.52e-10. Full native traces, budgets, humidity bounds, literal steps, restarts, and temporal ordering satisfy the frozen gates. Project evidence records 278 tests, typecheck, and build; source-binding tests record 14 checks.
+- `document-output-audit-v2.py`: every numeric field in 72 potential, 36 primary, and 90 scalar CSV rows equals its unrounded raw JSON value. Plot provenance and the viewed figure agree. The inherited frozen check passes C1/C2/C3/native baseline bindings and confirms the application default is unchanged. C4-C9 manifest bindings also pass the independent evidence audit.
+
+The first CSV audit attempt used `globalError` as the CSV header instead of its documented `global` label and stopped with a KeyError. The v1 script/log are preserved; v2 corrects only that reviewer header mapping and passes. No implementation was modified by the reviewer.
+
+## Results and resolved review points
+
+All 72 potential-flow and 36 rotating/mixed/sheared field comparisons have no increase in global or polar force error. The finest benchmark worst polar error changes from 0.1234337 to 0.07499363, satisfying both frozen gates. Scalar worst-global error ratios are 0.96709227, 0.97944429, and 0.95991396 across the three grids. There are no scalar relative-L2 or polar-maximum regressions, but 42 Rayleigh-error increases: 24 at 48 rings and 18 at 96 rings. The largest ratio is 1.0080680946643972 at 48 rings, constant pref, axis 1, degree 3. The largest absolute increase is 6.358702049624803e-5 at 48 rings, constant pref, axis 1, degree 5. All 42 are enumerated in `final-evidence-audit-v1.json` and disclosed in the report. They do not violate the predeclared proxy gate.
+
+The initial spatial reporting omitted the separate pressure contribution required by criterion 2. This was reported immediately and resolved before the selected spatial run. A subsequent implementation-run harness failure exposed vector/matrix addition; both shared pressure additions now broadcast across layers, and spatial-v2 passes its full 54 assertions. Failed sources/status/logs remain retained. No metric parameter, physical equation, norm, or acceptance threshold changed. Final report wording identifies the 96-ring held-out table, the exercised checkpoint direction, all Rayleigh regressions, and the retained failed attempt.
+
+## Limits and final provenance
+
+This review supports this fixed graph family and recorded environment. It does not establish certified optimality, exact curl-grad/PV/angular-momentum compatibility, nonuniform-layer vertical order, integrated wave dispersion, general stability, thermodynamics, climate validity, or default promotion. The 225-second temporal reference is discrete, and the ratios approach second order rather than proving an asymptotic order over arbitrary timesteps. Runtime executables are not content-pinned; bitwise claims remain environment-specific.
+
+Final `review-source-bindings.json` binds the reviewed sources and documentation, every run input/output/status/log, and every reviewer artifact except that binding file itself. Exact source snapshots and original execution paths are retained. The inspected seal tool verifies these bindings, selected source closures, immutable ancestors/default, all acceptance gates and trace summaries, then creates the archive and manifest once. Git-byte seal verification must follow commit/merge as planned.

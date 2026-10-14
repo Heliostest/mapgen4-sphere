@@ -1,0 +1,139 @@
+test_cubic_defect_reduced (__main__.MetricTests.test_cubic_defect_reduced) ... FAIL
+test_deterministic (__main__.MetricTests.test_deterministic) ... ok
+test_exhaustion (__main__.MetricTests.test_exhaustion) ... FAIL
+test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) ... 
+  test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='area') ... FAIL
+  test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='conductance') ... FAIL
+  test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='distance') ... FAIL
+  test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='from') ... FAIL
+  test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='to') ... FAIL
+test_invalid_options (__main__.MetricTests.test_invalid_options) ... 
+  test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'penalty': 0}) ... FAIL
+  test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'penalty': nan}) ... FAIL
+  test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'floor': 0}) ... FAIL
+  test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'floor': 1}) ... FAIL
+  test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'maxiter': 0}) ... FAIL
+  test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'maxiter': 1.5}) ... FAIL
+test_positive_floor_and_fixed_geometry (__main__.MetricTests.test_positive_floor_and_fixed_geometry) ... ok
+
+======================================================================
+FAIL: test_cubic_defect_reduced (__main__.MetricTests.test_cubic_defect_reduced)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 18, in test_cubic_defect_reduced
+    def test_cubic_defect_reduced(self):self.assertLess(cubic_norm(self.new),.8*cubic_norm(graph))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: np.float64(20.27912564759681) not less than np.float64(16.223300518077448)
+
+======================================================================
+FAIL: test_exhaustion (__main__.MetricTests.test_exhaustion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 31, in test_exhaustion
+    with self.assertRaises(RuntimeError):metric.fit_metric(graph,maxiter=1)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='area')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 29, in test_invalid_geometry
+    with self.subTest(key=key),self.assertRaises(ValueError):metric.fit_metric(g)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='conductance')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 29, in test_invalid_geometry
+    with self.subTest(key=key),self.assertRaises(ValueError):metric.fit_metric(g)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='distance')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 29, in test_invalid_geometry
+    with self.subTest(key=key),self.assertRaises(ValueError):metric.fit_metric(g)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='from')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 29, in test_invalid_geometry
+    with self.subTest(key=key),self.assertRaises(ValueError):metric.fit_metric(g)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_geometry (__main__.MetricTests.test_invalid_geometry) (key='to')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 29, in test_invalid_geometry
+    with self.subTest(key=key),self.assertRaises(ValueError):metric.fit_metric(g)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'penalty': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 25, in test_invalid_options
+    with self.subTest(kw=kw),self.assertRaises(ValueError):metric.fit_metric(graph,**kw)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'penalty': nan})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 25, in test_invalid_options
+    with self.subTest(kw=kw),self.assertRaises(ValueError):metric.fit_metric(graph,**kw)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'floor': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 25, in test_invalid_options
+    with self.subTest(kw=kw),self.assertRaises(ValueError):metric.fit_metric(graph,**kw)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'floor': 1})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 25, in test_invalid_options
+    with self.subTest(kw=kw),self.assertRaises(ValueError):metric.fit_metric(graph,**kw)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'maxiter': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 25, in test_invalid_options
+    with self.subTest(kw=kw),self.assertRaises(ValueError):metric.fit_metric(graph,**kw)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_options (__main__.MetricTests.test_invalid_options) (kw={'maxiter': 1.5})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-metric-moments-20261014\test-metric.py", line 25, in test_invalid_options
+    with self.subTest(kw=kw),self.assertRaises(ValueError):metric.fit_metric(graph,**kw)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.182s
+
+FAILED (failures=13)

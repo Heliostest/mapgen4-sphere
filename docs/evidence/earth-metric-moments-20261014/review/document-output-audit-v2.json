@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "csvChecks": [
+    {
+      "csv": "potential-comparison.csv",
+      "rows": 72,
+      "unroundedExact": true
+    },
+    {
+      "csv": "primary-comparison.csv",
+      "rows": 36,
+      "unroundedExact": true
+    },
+    {
+      "csv": "pressure-proxy-comparison.csv",
+      "rows": 90,
+      "unroundedExact": true
+    }
+  ],
+  "plotProvenance": true,
+  "visualInspection": "Convergence figure viewed at full rendered resolution; labels, series, norms and axes consistent with report and source.",
+  "preservation": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  },
+  "inputHashes": {
+    "build/earth-metric-moments/potential-comparison.csv": "0e078075053e5ef973f906930a136d6781ff6a1740dd1643079135dfe29f9325",
+    "build/earth-metric-moments/primary-comparison.csv": "375aaa82c73f4a6c691ff7c0a915669ce69a26529bdf89e00ce9cbb9371bdf8a",
+    "build/earth-metric-moments/pressure-proxy-comparison.csv": "924cb5949c5f48b664dd267a7fd20be9817bade94a8a514ba6f7adb5df27e699",
+    "build/earth-metric-moments/convergence.png": "15c4591bfbc1a90f627f4a20f2822479823ae3ed4dab0dd7f11b12c3138c6076",
+    "build/earth-metric-moments/plot-provenance.json": "2281de381f4a2322d959a8e3e815ab9b839469ca2132a07ccbebf4d51d1d79bc"
+  }
+}

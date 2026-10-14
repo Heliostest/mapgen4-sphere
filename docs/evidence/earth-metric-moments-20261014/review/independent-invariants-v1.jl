@@ -1,0 +1,32 @@
+﻿include("../../docs/evidence/earth-metric-moments-20261014/common.jl")
+include("../../docs/evidence/earth-rotating-sigma-20261014/vector-core.jl")
+using .VectorInvariant
+function main()
+    graph,initial,geo=native_inputs();c=graph_core(graph,initial.pref,initial.ds;radius=Float64(geo.radiusM),c2=82671.64740772452)
+    pw=PressureWorkCore(c);m=VectorCore(pw,Float64.(graph.lat),Float64.(graph.lon),[2e-5,-1e-5,7e-5]);n=length(c.pref);ne=length(c.prefFace);nl=length(c.ds)
+    p=c.pref.*(1 .+.02sin.(1:n));v=reshape(.7sin.(1:ne*nl)+.2cos.((1:ne*nl)*.71),ne,nl);H=pw.h.*(pw.S*p/2)
+    tendency=neutral_tendency(m,p,v)
+    power(z)=sum(H.*v.*z.*transpose(c.ds))
+    scale(z)=sum(abs.(H.*v.*z.*transpose(c.ds)))
+    neutral=abs(power(tendency.total))/scale(tendency.total)
+    rotation=abs(power(tendency.rotation))/scale(tendency.rotation)
+    curl=abs(power(tendency.vorticity))/scale(tendency.vorticity)
+    exchange=abs(power(tendency.layerGradient+tendency.vertical))/(scale(tendency.layerGradient)+scale(tendency.vertical))
+    adjoint=norm(c.divergence-transpose(c.gradient)*spdiagm(0=>pw.h))/norm(c.divergence)
+    @test neutral<5e-14&&rotation<5e-14&&curl<5e-14&&exchange<5e-14&&adjoint<2e-14
+    @test maximum(abs,vec(sum(c.divergence;dims=1)))==0
+    @test all(pw.h.>0)&&all(mass(m,p).>0)
+    s=BarotropicState(p,mass(m,p).*.001,v,123.)
+    path="build/c10-independent-review/new-metric-review-checkpoint.bin";save_checkpoint(path,m,s)
+    rebuilt=VectorCore(PressureWorkCore(graph_core(graph,initial.pref,initial.ds;radius=c.g.radius,c2=c.c2)),Float64.(graph.lat),Float64.(graph.lon),copy(m.omega))
+    loaded=load_checkpoint(path,rebuilt)
+    @test all(reinterpret(UInt64,vec(getproperty(s,k)))==reinterpret(UInt64,vec(getproperty(loaded,k))) for k in (:p,:v,:W))
+    @test reinterpret(UInt64,s.time)==reinterpret(UInt64,loaded.time)
+    oldGraph=jsonfile(joinpath(C3,"c3-spatial-near-audit-v1-native-graph.json"))
+    old=VectorCore(PressureWorkCore(graph_core(oldGraph,initial.pref,initial.ds;radius=c.g.radius,c2=c.c2)),Float64.(graph.lat),Float64.(graph.lon),copy(m.omega))
+    @test identity_hash(m)==identity_hash(rebuilt)!=identity_hash(old)
+    @test_throws ArgumentError load_checkpoint(path,old)
+    result=(passed=true,graphRings=48,neutralEnergyContraction=neutral,rotationEnergyContraction=rotation,curlEnergyContraction=curl,layerVerticalExchangeContraction=exchange,adjointRelative=adjoint,checkpointRebuiltBits=true,oldMetricRejected=true,identity=identity_hash(m))
+    write("build/c10-independent-review/independent-invariants-v1.json",JSON3.write(result));println(JSON3.write(result))
+end
+@testset "Independent C10 metric algebra and checkpoint invariants" begin;main();end

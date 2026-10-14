@@ -1,0 +1,669 @@
+{
+  "startedUTC": "2026-10-14T14:37:17Z",
+  "selected": {
+    "metric": "c10-metric-v1",
+    "fit": [
+      "c10-fit-24-v1",
+      "c10-fit-48-v1",
+      "c10-fit-96-v1"
+    ],
+    "diagnosis": "c10-diagnosis-v1",
+    "spatial": "c10-spatial-v2",
+    "harmonic": "c10-harmonic-v1",
+    "native": [
+      "c10-native-1800-v1",
+      "c10-native-900-v1",
+      "c10-native-450-v1",
+      "c10-native-225-v1"
+    ],
+    "temporal": "c10-temporal-v1"
+  },
+  "sourceHashes": {
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-transport.jl": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a",
+    "docs/evidence/earth-conservative-accuracy-20261013/modal-core.jl": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-core.jl": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-grid.jl": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd",
+    "docs/evidence/earth-metric-moments-20261014/common.jl": "764db81336098b9d38da1aecbc093132f6dbd844d5c19f981bf2e2792e389f93",
+    "docs/evidence/earth-metric-moments-20261014/diagnosis.jl": "006589fc75a47ac18561906d458f369cf62f8dd0b6163ef910a142ffe663c56a",
+    "docs/evidence/earth-metric-moments-20261014/protocol.md": "9a42c2d25c3c87ddb46c62eda9b54f6df1269f0c4f50b9feddf68c90c78b162e",
+    "docs/evidence/earth-metric-moments-20261014/run.mjs": "860e6481387cb0420426593c57e06e90c13210edd71d31ba8c7a25b5a19a31e3",
+    "docs/evidence/earth-native-graph-wind-20261014/graph-wind.jl": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84",
+    "docs/evidence/earth-pressure-work-20261014/pressure-core.jl": "8231625a4a4ed0855150d0047a27a1c55b24324177fff4d47d8adce287168f80",
+    "docs/evidence/earth-rotating-sigma-20261014/vector-core.jl": "bc41701a6e4285506d69389f97d030b193429a8c6510a30bc4071f7ebf7d4c5f",
+    "docs/evidence/earth-metric-moments-20261014/fit-run.py": "6ab2a6534a809572cdf0e7656b224a83db31f7546d48afa2ca3531329ee17243",
+    "docs/evidence/earth-metric-moments-20261014/metric-fit.py": "e36c6c1bfc2e201ad90e876d0610b31b2943cff3eb0543dae4a8622855af9475",
+    "docs/evidence/earth-metric-moments-20261014/harmonic.jl": "e6bf268f269a08abec473fac22b26a56b2b6e4491a4e97b42c3e2a4382aa51b0",
+    "docs/evidence/earth-metric-moments-20261014/test-metric.py": "8e50d8a74f7f4d51a0a5acc0d5d2d6c81536d4e6dceda03823aaf01c1ac3f90c",
+    "docs/evidence/earth-metric-moments-20261014/native-run.jl": "63238b23def35230527ef5ef8954ab7707bd18da7615261798232e9cf9e8995c",
+    "docs/evidence/earth-metric-moments-20261014/spatial.jl": "5bfe5e5d79897f8e5ee1af2f60ff18f5e6813d75baa5f2b7063cf93e27e6058b",
+    "docs/evidence/earth-metric-moments-20261014/compare-time.jl": "e51ecb57a4868ccebf8a5c063856b478be57fb4173bdbd408ec5243feff2c0bc"
+  },
+  "inputHashes": {
+    "docs/evidence/earth-compatible-momentum-20261014/manifest.json": "c0d8e047bb577bb6b689a128639c8e4b9dcf6cf3fe6f4eee8ed74f589ceedfeb",
+    "docs/evidence/earth-covariant-momentum-20261014/manifest.json": "fa83192f5dd1dd2627734a6eaff9a6a2d546181ae24ac5d07fe45d93f834633c",
+    "docs/evidence/earth-native-graph-wind-20261014/manifest.json": "8c9869d799dc7b7da8bd955de8a9cacd1c843722de8926bb10ddc1bc94cd6536",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-24-graph.json": "f3ebc68994555f1e70207b1c8c7a77abb039ddcb2f49617f149b38cb2aa598c5",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-48-graph.json": "df056648db2f47595b5c64a8e2569c8d00afa966f29b0fafc3161bd77e3767f6",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-96-graph.json": "50cf8505cb10e8098216ad26dbf1603b5faf2d0a69dc53cd05f1ecaf63914cc9",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/inputs/candidate-c1-native-1800-import.bin": "3fa5ae87309d6be731b18d4b320392e48654bb4856736284de6e15d1a754341d",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/inputs/split-reference-seasonal-geometry.json": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+    "docs/evidence/earth-polar-pressure-20261014/manifest.json": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1-native-graph.json": "697caedf98a03c6e5690fbdff18fdf02731d849dc6b40575b3803f6a6cca7312",
+    "docs/evidence/earth-pressure-work-20261014/manifest.json": "4f4a9d86f8c382c633f8ae7a50b2dfc2fcb9f1eff8b65675794d8a6a6dbcbf94",
+    "docs/evidence/earth-rotating-graph-20261014/manifest.json": "bccc6cf74351355e7c3c799c4767684b2fa06a2de73b0a2d67ca057ed5e376e8",
+    "docs/evidence/earth-rotating-sigma-20261014/manifest.json": "b43de1e8915ed83c9d8627906d09bf7ea4b5d033e4f1cffcbd440d02bd2f4f72",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "build/earth-metric-moments/c10-fit-24-v1-graph.json": "7463593c32a1451d3712105769f6ab255f9d47e84fd67c72ff3dcc6e3c843174",
+    "build/earth-metric-moments/c10-fit-48-v1-graph.json": "67c258032c044c5c39b772930ad11bd14d2c2d219f7ee3324b31fa5f305bd89b",
+    "build/earth-metric-moments/c10-fit-96-v1-graph.json": "9f631a99011bca8c2477d18ec7074e464c193a1202111a6b262aea2c73011021",
+    "build/earth-metric-moments/c10-native-1800-v1-real-final.bin": "ed118af6fa46ec447ea60aaeea8b3c77df9cdc6e4438d779e7e043191ad1bae5",
+    "build/earth-metric-moments/c10-native-1800-v1.json": "8061618df570ff3eece237376e364ba592c83afbe5968196732af5031de0b545",
+    "build/earth-metric-moments/c10-native-225-v1-real-final.bin": "3e348570d63116fd2cb07862389daab8e663d8cde0dc120098e512b3a55afd0a",
+    "build/earth-metric-moments/c10-native-225-v1.json": "e26fc50124a555e7b8dac0dd60b7990e93fa9a8c9ab0192233b40ff1fded4511",
+    "build/earth-metric-moments/c10-native-450-v1-real-final.bin": "d8c7c73b8309a247dd371a52686fd7acfb896ad97007b856a74cc5178799795e",
+    "build/earth-metric-moments/c10-native-450-v1.json": "e5bbacdd92e135a345b9db48b496607ae6380c2343ec982bbc65e812c9593d5c",
+    "build/earth-metric-moments/c10-native-900-v1-real-final.bin": "14b6e653e52621f4199a3773501f754537724238e8e8e22ec875fb36568c865a",
+    "build/earth-metric-moments/c10-native-900-v1.json": "edc38c11ddbb83e4a07883dfb90514ed19f731835d18d218ff0bfc629f7cb705"
+  },
+  "outputHashes": {
+    "build/earth-metric-moments/c10-diagnosis-v1.json": "7a3c7bf3d16830064fec88eea5792a496d4b3e7a1a3a1e85f17c6d346bdc480a",
+    "build/earth-metric-moments/c10-fit-24-v1-graph.json": "7463593c32a1451d3712105769f6ab255f9d47e84fd67c72ff3dcc6e3c843174",
+    "build/earth-metric-moments/c10-fit-24-v1.json": "ed6bd6397fd93f52307f243076f7fa5f150dd813e2c90b11f8ac2e9d6d333c10",
+    "build/earth-metric-moments/c10-fit-48-v1-graph.json": "67c258032c044c5c39b772930ad11bd14d2c2d219f7ee3324b31fa5f305bd89b",
+    "build/earth-metric-moments/c10-fit-48-v1.json": "c1ab015a83261f48a268772072177910506a631cf901d8730cba3765e4baa1f8",
+    "build/earth-metric-moments/c10-fit-96-v1-graph.json": "9f631a99011bca8c2477d18ec7074e464c193a1202111a6b262aea2c73011021",
+    "build/earth-metric-moments/c10-fit-96-v1.json": "533486ab84b9361c056408a41646039bbcf91554a3d33e0bd05b04b3d35b00f0",
+    "build/earth-metric-moments/c10-harmonic-v1.json": "dda58471fbfddada48ee933998d260c4ade1408cff436ca530240e4a72681dda",
+    "build/earth-metric-moments/c10-metric-red-v1.json": "3b4483dae55079b9a64a191b8ec78bf8ccac7958d6b8bd6bf4f70374634c563a",
+    "build/earth-metric-moments/c10-metric-v1.json": "44936ab7b35e36b612a4eb0ada784593985f72074bca10b7f025e566f392dd1a",
+    "build/earth-metric-moments/c10-native-1800-v1-constant-checkpoint.bin": "cef48cab04d09b8bf879bfa6659317936a233b3898f2f54d3b1b456717d2f5f3",
+    "build/earth-metric-moments/c10-native-1800-v1-constant-final.bin": "c6db137e2493b6a73d9d0bdfbc7a09525020d44d79f8f831b6e378c7c14e1604",
+    "build/earth-metric-moments/c10-native-1800-v1-constant-trace.json": "ece94a66e3bd52ad0304470ad197720d1a0b685f3a745fc6c2b36b28dbe40459",
+    "build/earth-metric-moments/c10-native-1800-v1-partial.json": "87101576e929a815d5df3d5c275099246259c6d7748f2ec217a1662dab5f24f6",
+    "build/earth-metric-moments/c10-native-1800-v1-real-checkpoint.bin": "8820c2e0bba2948a8fe4e1d13ed418b1bc384ba801ded60487d4679804b8a7d4",
+    "build/earth-metric-moments/c10-native-1800-v1-real-final.bin": "ed118af6fa46ec447ea60aaeea8b3c77df9cdc6e4438d779e7e043191ad1bae5",
+    "build/earth-metric-moments/c10-native-1800-v1-real-trace.json": "c9ec64f11873f585ce4701954439d32fbb28059e697f2558bf2d41c5b261d854",
+    "build/earth-metric-moments/c10-native-1800-v1-sharp-checkpoint.bin": "475c1db3438ba1dcb64aa660226e9ce0c48e6eb1a292dacc4b60744884fb511b",
+    "build/earth-metric-moments/c10-native-1800-v1-sharp-final.bin": "481f7aad1555cad259a9d236a1c243f6d9f30b7f44cd1efcc9c520fc8b1ad6e7",
+    "build/earth-metric-moments/c10-native-1800-v1-sharp-trace.json": "a77da050ec87d827b1c60941f4cde6faa2d3bf757c907122c70c5f11a66f90fa",
+    "build/earth-metric-moments/c10-native-1800-v1.json": "8061618df570ff3eece237376e364ba592c83afbe5968196732af5031de0b545",
+    "build/earth-metric-moments/c10-native-225-v1-partial.json": "5419609222b2c94401f5ee18e03a3c01ec6d1371142a808bac9b07a76676d0dc",
+    "build/earth-metric-moments/c10-native-225-v1-real-final.bin": "3e348570d63116fd2cb07862389daab8e663d8cde0dc120098e512b3a55afd0a",
+    "build/earth-metric-moments/c10-native-225-v1-real-trace.json": "58be71bdacd5cd9892947069cbb34513530d854c79d0b7f946890d1d4529601c",
+    "build/earth-metric-moments/c10-native-225-v1.json": "e26fc50124a555e7b8dac0dd60b7990e93fa9a8c9ab0192233b40ff1fded4511",
+    "build/earth-metric-moments/c10-native-450-v1-partial.json": "b3b4ae81197ecd1b2ee06fa4acd6382dba8307ec219f1b446b70a7cfc60054ed",
+    "build/earth-metric-moments/c10-native-450-v1-real-final.bin": "d8c7c73b8309a247dd371a52686fd7acfb896ad97007b856a74cc5178799795e",
+    "build/earth-metric-moments/c10-native-450-v1-real-trace.json": "f876a57c9ebb7a57ac50bfb02184b204620d100975651699b441ffe11caf0846",
+    "build/earth-metric-moments/c10-native-450-v1.json": "e5bbacdd92e135a345b9db48b496607ae6380c2343ec982bbc65e812c9593d5c",
+    "build/earth-metric-moments/c10-native-900-v1-partial.json": "67d73a82764aca0cb3dfd455ae9798e95751a62c332541efee745c5dfae657f8",
+    "build/earth-metric-moments/c10-native-900-v1-real-final.bin": "14b6e653e52621f4199a3773501f754537724238e8e8e22ec875fb36568c865a",
+    "build/earth-metric-moments/c10-native-900-v1-real-trace.json": "bfe1477486f3666c3cb262b36dc1de0cbd08b0307be93ad02f6483211321f2bc",
+    "build/earth-metric-moments/c10-native-900-v1.json": "edc38c11ddbb83e4a07883dfb90514ed19f731835d18d218ff0bfc629f7cb705",
+    "build/earth-metric-moments/c10-spatial-v2.json": "fc0aa465d11c3471966657aa0f065c12f1fecda8be48f80dbe6eea157f99c110",
+    "build/earth-metric-moments/c10-temporal-v1.json": "ae7e1f1b19c12d7a6a52f2c8e74b47ca6495bc6424a4221cf57b9145345d95f3"
+  },
+  "statusHashes": {
+    "build/earth-metric-moments/c10-diagnosis-v1-status.json": "8d09c8f5886ef8e1bc7cbd6d1854951e4cb93b3755047c6db722f12f70bb9275",
+    "build/earth-metric-moments/c10-fit-24-v1-status.json": "ac37689eef0c12c524a57d4fe8478366d4cd73ef642e8264b4dd064ebfb6669c",
+    "build/earth-metric-moments/c10-fit-48-v1-status.json": "a9a49141529760f493414dc20dfe2dee8450859bd02ce40b9e139f0f14731213",
+    "build/earth-metric-moments/c10-fit-96-v1-status.json": "a25ba2ea5ee9edcdee9d8f796c495ecf75f6b4de5f0912aae678b42131bfd5bc",
+    "build/earth-metric-moments/c10-harmonic-v1-status.json": "8ed4f390b541c99a0725f204ba971aec70e06c69768f9431981432b40ed010fe",
+    "build/earth-metric-moments/c10-metric-red-v1-status.json": "94df4079e024c3e4e684fc1318bb777c20b765fa32a604e874d0d6a47d50a1f2",
+    "build/earth-metric-moments/c10-metric-v1-status.json": "c63ea71851d29df837dd0979e19ca8b8cc3a70774bacbd579cbd70545b3518a5",
+    "build/earth-metric-moments/c10-native-1800-v1-status.json": "25563423a027f3c54009785fd647b34bce6daf7c3aced26d2da5e81fde3f9dc5",
+    "build/earth-metric-moments/c10-native-225-v1-status.json": "542aa48eb7b32a8cdc9d652dba1783e3de5ea30037f39886db74811f65d384aa",
+    "build/earth-metric-moments/c10-native-450-v1-status.json": "f8373f6baea0853d14b0bec16ff35ec6eddc12555f27e514976b0e675541aa35",
+    "build/earth-metric-moments/c10-native-900-v1-status.json": "310930bbcb77f994e010e67f978b58d44ddbff4d8b540cbf09a6c7934d7032bb",
+    "build/earth-metric-moments/c10-spatial-v1-status.json": "24fb0dfec79100a036aa8741d44ded8f57f6d6988a76091931a20437120d1ad1",
+    "build/earth-metric-moments/c10-spatial-v2-status.json": "e3e24ff5d408c1d76612cb7f2da010ee7abd1e17a8d6cbe748a98b64b019b4ed",
+    "build/earth-metric-moments/c10-temporal-v1-status.json": "6b829f469ac7394fd7547932548ded1c2e88f9ff9e5001ea81bb71a341680cc7"
+  },
+  "historicalRuns": [
+    {
+      "name": "c10-diagnosis-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-fit-24-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-fit-48-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-fit-96-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-harmonic-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-metric-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c10-metric-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-native-1800-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-native-225-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-native-450-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-native-900-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-spatial-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c10-spatial-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-temporal-v1",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "checks": [
+    "all selected source/input/output hashes agree; every attempt retained",
+    "all graph fields unchanged except bounded conductance, all fit gates satisfied",
+    "all common-metric degree3 gates, held-out fields and separate force terms present",
+    "scalar harmonic worst-error proxy gate passed at every resolution",
+    "native matrix, literal trace gates and three rebuilt restarts passed",
+    "pressure/velocity/humidity adjacent and finest-reference differences all decrease",
+    "project tests/typecheck/build and exact ancestor manifest bindings passed"
+  ],
+  "independentFitChecks": [
+    {
+      "rings": 24,
+      "lowResidual": 1.6654407020144646e-11,
+      "cubicNorm": 12.041249740890127,
+      "objective": 9936.184097284813,
+      "minimumWeight": 2.9901517337642795e-07
+    },
+    {
+      "rings": 48,
+      "lowResidual": 3.057227734859502e-11,
+      "cubicNorm": 11.705768290241627,
+      "objective": 9481.825049007099,
+      "minimumWeight": 3.217681747587211e-07
+    },
+    {
+      "rings": 96,
+      "lowResidual": 3.5195001947541105e-10,
+      "cubicNorm": 12.309650147456365,
+      "objective": 10532.479424832036,
+      "minimumWeight": 3.2861041518517273e-07
+    }
+  ],
+  "potentialRegressions": [],
+  "primaryRegressions": [],
+  "harmonicWorstRatios": [
+    {
+      "rings": 24,
+      "ratio": 0.9670922687282225
+    },
+    {
+      "rings": 48,
+      "ratio": 0.9794442919468219
+    },
+    {
+      "rings": 96,
+      "ratio": 0.9599139554773315
+    }
+  ],
+  "harmonicRegressions": [
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 1,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.0013870886038294117,
+      "c10": 0.0013972231137020508,
+      "ratio": 1.007306317595473
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 1,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.0034635133308710264,
+      "c10": 0.0034914572842958957,
+      "ratio": 1.0080680946643972
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 1,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.006275478951354718,
+      "c10": 0.006321849184101835,
+      "ratio": 1.0073891145371632
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 1,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.009803752318758518,
+      "c10": 0.009867339339254766,
+      "ratio": 1.0064859880613855
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 2,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.0014145185630324297,
+      "c10": 0.0014217477365650044,
+      "ratio": 1.005110695413623
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 2,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.0035197159514710474,
+      "c10": 0.0035365333580447134,
+      "ratio": 1.0047780578903356
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 2,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.006306417637529482,
+      "c10": 0.006337155137094319,
+      "ratio": 1.0048740031712962
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 2,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.00977882904109495,
+      "c10": 0.009826856551847674,
+      "ratio": 1.004911376459379
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 3,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.001389505184345885,
+      "c10": 0.001398047141090375,
+      "ratio": 1.0061474810175042
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 3,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.0034826003225374436,
+      "c10": 0.0035022264999063912,
+      "ratio": 1.0056354951907454
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 3,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.006311869465771558,
+      "c10": 0.006342425476763225,
+      "ratio": 1.0048410397517515
+    },
+    {
+      "rings": 48,
+      "variable": false,
+      "axis": 3,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.009829460004118995,
+      "c10": 0.009877048785772335,
+      "ratio": 1.0048414441519065
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 1,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.0013870886102043123,
+      "c10": 0.0013972231166115012,
+      "ratio": 1.0073063150635317
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 1,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.003463513325328904,
+      "c10": 0.003491457269090281,
+      "ratio": 1.0080680918872236
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 1,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.006275479035952269,
+      "c10": 0.0063218492323589,
+      "ratio": 1.0073891086466826
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 1,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.009803752669966803,
+      "c10": 0.009867339617607662,
+      "ratio": 1.0064859803976547
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 2,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.001414518571899781,
+      "c10": 0.0014217477350800811,
+      "ratio": 1.005110688063
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 2,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.003519715916955546,
+      "c10": 0.003536533309393408,
+      "ratio": 1.0047780539210134
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 2,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.00630641760542372,
+      "c10": 0.006337155077880574,
+      "ratio": 1.0048739988976338
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 2,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.009778829230003727,
+      "c10": 0.009826856607618506,
+      "ratio": 1.0049113627495836
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 3,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.0013895051895920218,
+      "c10": 0.0013980471370453884,
+      "ratio": 1.0061474743076524
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 3,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.0034826003502308467,
+      "c10": 0.003502226514072393,
+      "ratio": 1.0056354912616503
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 3,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.006311869368041956,
+      "c10": 0.006342425387412476,
+      "ratio": 1.0048410411541833
+    },
+    {
+      "rings": 48,
+      "variable": true,
+      "axis": 3,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.009829459713353583,
+      "c10": 0.009877048537604849,
+      "ratio": 1.0048414486288209
+    },
+    {
+      "rings": 96,
+      "variable": false,
+      "axis": 1,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.0003976206480910127,
+      "c10": 0.0003977006666032734,
+      "ratio": 1.0002012433525393
+    },
+    {
+      "rings": 96,
+      "variable": false,
+      "axis": 1,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.0009867055295429417,
+      "c10": 0.0009879037814694014,
+      "ratio": 1.0012143966873428
+    },
+    {
+      "rings": 96,
+      "variable": false,
+      "axis": 1,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.0017814078646717357,
+      "c10": 0.0017850174995243107,
+      "ratio": 1.002026282090789
+    },
+    {
+      "rings": 96,
+      "variable": false,
+      "axis": 1,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.002790283051931075,
+      "c10": 0.002795040431599727,
+      "ratio": 1.0017049810288456
+    },
+    {
+      "rings": 96,
+      "variable": false,
+      "axis": 2,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.0003999820825978384,
+      "c10": 0.0004005014652129768,
+      "ratio": 1.0012985147028715
+    },
+    {
+      "rings": 96,
+      "variable": false,
+      "axis": 2,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.0009988555275679545,
+      "c10": 0.000999965438034156,
+      "ratio": 1.0011111821835776
+    },
+    {
+      "rings": 96,
+      "variable": false,
+      "axis": 2,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.0017923059341697911,
+      "c10": 0.00179405374338093,
+      "ratio": 1.0009751734778185
+    },
+    {
+      "rings": 96,
+      "variable": false,
+      "axis": 2,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.00278638648547036,
+      "c10": 0.0027883226646059356,
+      "ratio": 1.000694870989962
+    },
+    {
+      "rings": 96,
+      "variable": false,
+      "axis": 3,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.002853968550052044,
+      "c10": 0.0028548801591299355,
+      "ratio": 1.000319418053109
+    },
+    {
+      "rings": 96,
+      "variable": true,
+      "axis": 1,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.00039762064932169494,
+      "c10": 0.0003977006726574306,
+      "ratio": 1.0002012554827626
+    },
+    {
+      "rings": 96,
+      "variable": true,
+      "axis": 1,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.000986705540207078,
+      "c10": 0.000987903808224555,
+      "ratio": 1.0012144129820388
+    },
+    {
+      "rings": 96,
+      "variable": true,
+      "axis": 1,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.0017814078889679674,
+      "c10": 0.0017850175549869451,
+      "ratio": 1.00202629955853
+    },
+    {
+      "rings": 96,
+      "variable": true,
+      "axis": 1,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.002790283072938826,
+      "c10": 0.0027950404996243128,
+      "ratio": 1.0017049978662114
+    },
+    {
+      "rings": 96,
+      "variable": true,
+      "axis": 2,
+      "degree": 2,
+      "metric": "rayleigh",
+      "c9": 0.0003999820844181601,
+      "c10": 0.00040050147577219697,
+      "ratio": 1.0012985365451865
+    },
+    {
+      "rings": 96,
+      "variable": true,
+      "axis": 2,
+      "degree": 3,
+      "metric": "rayleigh",
+      "c9": 0.0009988555259539122,
+      "c10": 0.0009999654497787613,
+      "ratio": 1.0011111955593268
+    },
+    {
+      "rings": 96,
+      "variable": true,
+      "axis": 2,
+      "degree": 4,
+      "metric": "rayleigh",
+      "c9": 0.001792305904793401,
+      "c10": 0.0017940537332982176,
+      "ratio": 1.0009751842585255
+    },
+    {
+      "rings": 96,
+      "variable": true,
+      "axis": 2,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.0027863864223005574,
+      "c10": 0.0027883226265744687,
+      "ratio": 1.0006948800275566
+    },
+    {
+      "rings": 96,
+      "variable": true,
+      "axis": 3,
+      "degree": 5,
+      "metric": "rayleigh",
+      "c9": 0.002853968507878113,
+      "c10": 0.002854880120029657,
+      "ratio": 1.000319419134804
+    }
+  ],
+  "gitDiff": [
+    ".gitattributes"
+  ],
+  "completedUTC": "2026-10-14T14:37:22Z",
+  "passed": true
+}

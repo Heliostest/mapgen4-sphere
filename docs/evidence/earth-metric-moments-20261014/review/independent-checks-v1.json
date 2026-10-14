@@ -1,0 +1,123 @@
+{
+  "startedUTC": "2026-10-14T14:24:11Z",
+  "sourceBefore": {
+    "docs/evidence/earth-metric-moments-20261014/metric-fit.py": "e36c6c1bfc2e201ad90e876d0610b31b2943cff3eb0543dae4a8622855af9475",
+    "build/c10-independent-review/independent-checks-v1.py": "79c095a0c9af3c664d01db98252b923a06650340d54b4dcfaea3f0686f5f7864",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-24-graph.json": "f3ebc68994555f1e70207b1c8c7a77abb039ddcb2f49617f149b38cb2aa598c5",
+    "build/earth-metric-moments/c10-fit-24-v1-graph.json": "7463593c32a1451d3712105769f6ab255f9d47e84fd67c72ff3dcc6e3c843174",
+    "build/earth-metric-moments/c10-fit-24-v1.json": "ed6bd6397fd93f52307f243076f7fa5f150dd813e2c90b11f8ac2e9d6d333c10"
+  },
+  "checks": [
+    {
+      "name": "independent moment accumulation, floor, objective bookkeeping",
+      "passed": true,
+      "details": {
+        "independentLowResidual": 1.6655146107213102e-11,
+        "independentObjective": 9936.184097284813,
+        "cubicRatio": 0.5937755872781961,
+        "pinned": 112
+      }
+    },
+    {
+      "name": "dense primal KKT comparison with and without pinned weights",
+      "passed": true,
+      "details": {
+        "unconstrainedPrimalRelativeError": 5.67653361018493e-13,
+        "pinnedRestrictedPrimalRelativeError": 2.0126487528376572e-13,
+        "pinned": 7,
+        "reportedCertified": false
+      }
+    },
+    {
+      "name": "independent local O(2) basis covariance",
+      "passed": true,
+      "details": {
+        "independentLocalRotationsAndReflections": 1008,
+        "weightRelativeError": 1.2217442923663887e-10,
+        "pinned": 112
+      }
+    },
+    {
+      "name": "near-zero positive original conductance remains finite",
+      "passed": true,
+      "details": {
+        "edge": 274,
+        "originalWeight": 2.9910593654106e-07,
+        "tinyWeight": 1e-290,
+        "fittedTinyWeight": 1e-290,
+        "objective": 9936.183793989016
+      }
+    },
+    {
+      "name": "malformed and overflow inputs reject without graph mutation",
+      "passed": true,
+      "details": [
+        {
+          "case": "area <class 'list'>",
+          "exception": "ValueError",
+          "message": "finite graph vectors required"
+        },
+        {
+          "case": "area <class 'float'>",
+          "exception": "TypeError",
+          "message": "len() of unsized object"
+        },
+        {
+          "case": "area <class 'list'>",
+          "exception": "ValueError",
+          "message": "finite graph vectors required"
+        },
+        {
+          "case": "lat <class 'list'>",
+          "exception": "ValueError",
+          "message": "graph shape mismatch"
+        },
+        {
+          "case": "lon <class 'list'>",
+          "exception": "ValueError",
+          "message": "finite graph vectors required"
+        },
+        {
+          "case": "conductance <class 'list'>",
+          "exception": "ValueError",
+          "message": "positive metric and valid radians required"
+        },
+        {
+          "case": "from <class 'list'>",
+          "exception": "ValueError",
+          "message": "invalid edge indices"
+        },
+        {
+          "case": "distance <class 'list'>",
+          "exception": "ValueError",
+          "message": "positive metric and valid radians required"
+        },
+        {
+          "case": "self-loop",
+          "exception": "ValueError",
+          "message": "invalid edge indices"
+        },
+        {
+          "case": "unrepresentable floor",
+          "exception": "ValueError",
+          "message": "positive floor not representable"
+        },
+        {
+          "case": "moment overflow",
+          "exception": "ValueError",
+          "message": "moment scale overflow"
+        }
+      ]
+    }
+  ],
+  "sourceAfter": {
+    "docs/evidence/earth-metric-moments-20261014/metric-fit.py": "e36c6c1bfc2e201ad90e876d0610b31b2943cff3eb0543dae4a8622855af9475",
+    "build/c10-independent-review/independent-checks-v1.py": "79c095a0c9af3c664d01db98252b923a06650340d54b4dcfaea3f0686f5f7864",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-24-graph.json": "f3ebc68994555f1e70207b1c8c7a77abb039ddcb2f49617f149b38cb2aa598c5",
+    "build/earth-metric-moments/c10-fit-24-v1-graph.json": "7463593c32a1451d3712105769f6ab255f9d47e84fd67c72ff3dcc6e3c843174",
+    "build/earth-metric-moments/c10-fit-24-v1.json": "ed6bd6397fd93f52307f243076f7fa5f150dd813e2c90b11f8ac2e9d6d333c10"
+  },
+  "sourceUnchanged": true,
+  "completedUTC": "2026-10-14T14:24:32Z",
+  "passed": true
+}
