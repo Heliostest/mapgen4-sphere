@@ -1,0 +1,1317 @@
+{
+  "integration": {
+    "calls": 105169,
+    "start": "2001-01-01T00:00:00",
+    "end": "2007-01-01T00:00:00",
+    "warmupCalendarYears": 5,
+    "statisticsYear": 2006,
+    "secondsWall": 1413.085000038147,
+    "stepS": 1800,
+    "nativePoints": 3168,
+    "nlayers": 8
+  },
+  "budget": {
+    "statisticsYear": {
+      "initial": {
+        "time": "2006-01-01T00:00:00",
+        "airMassKgM2": 9935.953938677823,
+        "airWaterMm": 16.04174273009612,
+        "landWaterMm": 178.03103482541462,
+        "oceanSensibleHeatJm2": 43744207403.44559,
+        "airSensibleHeatProxyJm2": 2465134321.7362885,
+        "minHumidity": 0,
+        "maxHumidity": 0.010868168508971935,
+        "minAirK": 188.33922129618068,
+        "maxAirK": 292.96530550880817,
+        "maxWindMps": 86.38007216051015,
+        "iceAreaFraction": 0.08572556464000156
+      },
+      "final": {
+        "time": "2007-01-01T00:00:00",
+        "airMassKgM2": 9936.058140165285,
+        "airWaterMm": 16.694529457099783,
+        "landWaterMm": 181.41605665559834,
+        "oceanSensibleHeatJm2": 43759214293.79007,
+        "airSensibleHeatProxyJm2": 2475263123.498165,
+        "minHumidity": 0,
+        "maxHumidity": 0.010736123577391562,
+        "minAirK": 185.60181941809796,
+        "maxAirK": 294.1319451590224,
+        "maxWindMps": 82.92601797252004,
+        "iceAreaFraction": 0.08762504457188977
+      },
+      "evaporationMm": 798.0097466399002,
+      "precipitationMm": 797.0820115910501,
+      "landEvaporationMm": 101.71985077277168,
+      "landPrecipitationMm": 181.75668554639958,
+      "runoffMm": 64.01983425544174,
+      "oceanSurfaceInputJm2": -168439226.2182027,
+      "oceanFreezingAdjustmentJm2": 183446116.5626775,
+      "oceanHeatResidualJm2": -0.000002481442606949713,
+      "incomingSolarJm2": 10761678858.487572,
+      "outgoingShortwaveJm2": 3606047361.559269,
+      "outgoingLongwaveJm2": 7262241376.975517,
+      "airMassRelative": 0.000010487315873753355,
+      "airWaterResidualMm": -0.27494832184640927,
+      "landWaterResidualMm": -12.631978688002448,
+      "toaNetJm2": -106609880.04721451
+    },
+    "fullSpan": {
+      "initial": {
+        "time": "2001-01-01T00:00:00",
+        "airMassKgM2": 9930.766760562276,
+        "airWaterMm": 45.42158778272518,
+        "landWaterMm": 45.05036918929187,
+        "oceanSensibleHeatJm2": 43566620605.89134,
+        "airSensibleHeatProxyJm2": 2525789736.909026,
+        "minHumidity": 0.000024488767723210088,
+        "maxHumidity": 0.030264507040974713,
+        "minAirK": 199.2738837630537,
+        "maxAirK": 307.21638020962695,
+        "maxWindMps": 35.299023335516914,
+        "iceAreaFraction": 0
+      },
+      "final": {
+        "time": "2007-01-01T00:00:00",
+        "airMassKgM2": 9936.058140165285,
+        "airWaterMm": 16.694529457099783,
+        "landWaterMm": 181.41605665559834,
+        "oceanSensibleHeatJm2": 43759214293.79007,
+        "airSensibleHeatProxyJm2": 2475263123.498165,
+        "minHumidity": 0,
+        "maxHumidity": 0.010736123577391562,
+        "minAirK": 185.60181941809796,
+        "maxAirK": 294.1319451590224,
+        "maxWindMps": 82.92601797252004,
+        "iceAreaFraction": 0.08762504457188977
+      },
+      "evaporationMm": 4541.838594761625,
+      "precipitationMm": 4568.764924594817,
+      "landEvaporationMm": 452.2504240797105,
+      "landPrecipitationMm": 968.0054453681795,
+      "runoffMm": 316.133358645752,
+      "oceanSurfaceInputJm2": -838301268.3208759,
+      "oceanFreezingAdjustmentJm2": 1030894956.2196093,
+      "oceanHeatResidualJm2": -1.0151552487513982e-8,
+      "incomingSolarJm2": 64599557208.55232,
+      "outgoingShortwaveJm2": 21656594874.000973,
+      "outgoingLongwaveJm2": 43628878901.39657,
+      "airMassRelative": 0.0005328268934905664,
+      "airWaterResidualMm": -1.8007284924333362,
+      "landWaterResidualMm": -63.255975176410516,
+      "toaNetJm2": -685916566.8452225
+    },
+    "oceanHeatResidualMaxPerStepJm2": 2.367787601542659e-7,
+    "airMass": {
+      "limitRelative": 0.000001,
+      "observedRelative": 0.000010487315873753355,
+      "passed": false
+    },
+    "atmosphericWater": {
+      "limitMm": 1.5950917582309503,
+      "observedMm": -0.27494832184640927,
+      "passed": true
+    },
+    "oceanSurface": {
+      "maxStepResidualJm2": 2.367787601542659e-7,
+      "yearResidualJm2": -0.000002481442606949713,
+      "freezingAdjustmentMeanWm2": 5.817038196431935,
+      "finiteIceEnthalpyClosed": false
+    },
+    "landWater": {
+      "residualMm": -12.631978688002448,
+      "untrackedLowerDrainage": true,
+      "passed": false
+    },
+    "toaMean": {
+      "incomingWm2": 341.25059799871804,
+      "shortwaveUpWm2": 114.34701171864755,
+      "longwaveUpWm2": 230.28416339978176,
+      "netWm2": -3.380577119711267
+    },
+    "trends": {
+      "oceanMeanKChange": 0.1003338742942113,
+      "airWaterMmChange": 0.6527867270036616
+    },
+    "limitations": [
+      "Ocean water mass is not prognostic",
+      "Sea ice concentration has no finite ice thickness or mass",
+      "Surface pressure quadrature is a model air-mass proxy",
+      "Atmospheric heat proxy is not full moist total energy",
+      "Lower soil-layer clipping drains water without a separate native counter"
+    ]
+  },
+  "gpcc": {
+    "product": "GPCC v2022 normals 1991–2020 2.5° mm/month",
+    "url": "https://opendata.dwd.de/climate_environment/GPCC/gpcc_normals_v2022/normals_1991_2020_v2022_25.nc.gz",
+    "regions": [
+      {
+        "name": "Europe",
+        "bounds": {
+          "south": 45,
+          "north": 55,
+          "west": -5,
+          "east": 25
+        },
+        "fit": true,
+        "validLandAreaKm2": 1457535.871717837,
+        "observedMonthlyMm": [
+          57.32815441361302,
+          49.313966385039144,
+          51.63203258047567,
+          52.660605773101594,
+          73.52821582584234,
+          77.69529528562556,
+          85.1564071655483,
+          75.72032222434245,
+          69.68072825332062,
+          67.7831403729222,
+          67.14406266344879,
+          64.45024580654832
+        ],
+        "observedAnnualMm": 792.093176749828,
+        "monthlyMm": [
+          50.55962680691508,
+          38.32693123920371,
+          41.46726189067074,
+          70.96675917688607,
+          65.27242015076743,
+          73.22380020056941,
+          73.1456960962128,
+          72.57285620281806,
+          62.985377106100586,
+          54.06401541228959,
+          47.32820158592955,
+          43.85783568001712
+        ],
+        "modelAnnualMm": 693.7707815483802,
+        "annualBiasMm": -98.32239520144776,
+        "DJFMm": 132.7443937261359,
+        "JJAMm": 218.94235249960028,
+        "observedDJFMm": 171.09236660520048,
+        "observedJJAMm": 238.57202467551633,
+        "monthlyMAEMm": 11.244558500751403,
+        "oldReferenceAnnualMm": 389.02441270401164,
+        "nativeLandNormalizedAnnualMm": 693.3854387192991,
+        "nativeLandFractionOnReferenceSupport": 0.7749046108167443
+      },
+      {
+        "name": "East North America",
+        "bounds": {
+          "south": 35,
+          "north": 45,
+          "west": -95,
+          "east": -75
+        },
+        "fit": true,
+        "validLandAreaKm2": 1776104.2882470808,
+        "observedMonthlyMm": [
+          68.81678665734374,
+          60.775800689571014,
+          82.82330671708202,
+          98.31232851994811,
+          109.67282642131609,
+          110.05683340850372,
+          105.07558752239916,
+          92.83727192811595,
+          93.81709695750813,
+          81.43028756517803,
+          78.59464074061499,
+          73.77905710265784
+        ],
+        "observedAnnualMm": 1055.9918242302388,
+        "monthlyMm": [
+          142.14416054053862,
+          149.88787173659142,
+          231.41093078770848,
+          247.3000067788841,
+          308.53917232706624,
+          272.8702120482585,
+          149.57185387584462,
+          173.8073558249178,
+          125.22798345927997,
+          183.3386613645613,
+          110.92593293491032,
+          165.1914869480055
+        ],
+        "modelAnnualMm": 2260.215628626567,
+        "annualBiasMm": 1204.2238043963284,
+        "DJFMm": 457.22351922513553,
+        "JJAMm": 596.2494217490209,
+        "observedDJFMm": 203.37164444957259,
+        "observedJJAMm": 307.96969285901883,
+        "monthlyMAEMm": 100.35198369969402,
+        "oldReferenceAnnualMm": 565.1617187902549,
+        "nativeLandNormalizedAnnualMm": 2281.1755140854325,
+        "nativeLandFractionOnReferenceSupport": 0.8818230727680785
+      },
+      {
+        "name": "East Asia",
+        "bounds": {
+          "south": 30,
+          "north": 45,
+          "west": 110,
+          "east": 135
+        },
+        "fit": true,
+        "validLandAreaKm2": 1995598.7368180598,
+        "observedMonthlyMm": [
+          13.923603432666456,
+          17.545535193910705,
+          27.841747560181965,
+          41.663722504263035,
+          65.25548874790442,
+          100.84101833798664,
+          155.62547772188435,
+          126.39759537688062,
+          66.37383933046256,
+          38.35540058169447,
+          26.567957110809793,
+          13.521736931569812
+        ],
+        "observedAnnualMm": 693.9131228302147,
+        "monthlyMm": [
+          112.4036789431927,
+          140.56995795004497,
+          154.21286461709622,
+          159.03495507408553,
+          207.834275163387,
+          183.5711763304076,
+          162.06984955655352,
+          120.25725198015351,
+          148.43452229103747,
+          152.15506937241238,
+          113.59482429420405,
+          125.24251292424748
+        ],
+        "modelAnnualMm": 1779.3809384968224,
+        "annualBiasMm": 1085.4678156666077,
+        "DJFMm": 378.21614981748513,
+        "JJAMm": 465.89827786711464,
+        "observedDJFMm": 44.99087555814697,
+        "observedJJAMm": 382.86409143675166,
+        "monthlyMAEMm": 91.47904187167178,
+        "oldReferenceAnnualMm": 698.4742843743988,
+        "nativeLandNormalizedAnnualMm": 1774.7558506648538,
+        "nativeLandFractionOnReferenceSupport": 0.8816594829512441
+      },
+      {
+        "name": "West Siberia",
+        "bounds": {
+          "south": 50,
+          "north": 60,
+          "west": 60,
+          "east": 90
+        },
+        "fit": true,
+        "validLandAreaKm2": 2121168.281491064,
+        "observedMonthlyMm": [
+          21.43452457343709,
+          17.756674416189625,
+          21.371906842774486,
+          27.995608057545493,
+          41.35327260317411,
+          55.87130179847134,
+          67.73927887452919,
+          56.545428511669876,
+          40.47483467604169,
+          37.66998594269544,
+          34.55035283083224,
+          28.57052206040877
+        ],
+        "observedAnnualMm": 451.3336911877694,
+        "monthlyMm": [
+          8.363196007773162,
+          5.842167960874547,
+          8.722789645501532,
+          20.04905499840478,
+          26.70106329250313,
+          35.91209913291692,
+          30.088163975209568,
+          27.30018380366928,
+          17.24414553068484,
+          4.159688554171447,
+          8.553243109813273,
+          6.15676643504839
+        ],
+        "modelAnnualMm": 199.0925624465709,
+        "annualBiasMm": -252.24112874119848,
+        "DJFMm": 20.3621304036961,
+        "JJAMm": 93.30044691179577,
+        "observedDJFMm": 67.76172105003549,
+        "observedJJAMm": 180.1560091846704,
+        "monthlyMAEMm": 21.020094061766542,
+        "oldReferenceAnnualMm": 139.99230366558362,
+        "nativeLandNormalizedAnnualMm": 199.12571401212188,
+        "nativeLandFractionOnReferenceSupport": 0.9938892314282846
+      },
+      {
+        "name": "India",
+        "bounds": {
+          "south": 18,
+          "north": 25,
+          "west": 74,
+          "east": 86
+        },
+        "fit": false,
+        "validLandAreaKm2": 787998.1215941662,
+        "observedMonthlyMm": [
+          12.158634423932531,
+          11.72660846332105,
+          15.25961239260873,
+          17.046216784117238,
+          31.92443550269676,
+          171.66808702639133,
+          310.51859522047073,
+          290.32228605116063,
+          192.90035294901347,
+          62.66664988624698,
+          14.721261787898758,
+          7.145718678289215
+        ],
+        "observedAnnualMm": 1138.0584591661475,
+        "monthlyMm": [
+          44.193262505724064,
+          25.430843413596357,
+          28.070751766399134,
+          27.156501283969494,
+          28.56230376429426,
+          32.64577411701022,
+          32.28728988364559,
+          27.425412287961766,
+          32.367815547213624,
+          41.57138605749065,
+          43.05035762818723,
+          22.170342131536177
+        ],
+        "modelAnnualMm": 384.93204038702856,
+        "annualBiasMm": -753.1264187791189,
+        "DJFMm": 91.7944480508566,
+        "JJAMm": 92.35847628861757,
+        "observedDJFMm": 31.030961565542796,
+        "observedJJAMm": 772.5089682980226,
+        "monthlyMAEMm": 81.42953593146738,
+        "oldReferenceAnnualMm": 537.6244153993507,
+        "nativeLandNormalizedAnnualMm": 371.0805222037648,
+        "nativeLandFractionOnReferenceSupport": 0.8974056119566202
+      },
+      {
+        "name": "Himalaya foreland",
+        "bounds": {
+          "south": 26,
+          "north": 30,
+          "west": 76,
+          "east": 88
+        },
+        "fit": false,
+        "validLandAreaKm2": 523911.47445725085,
+        "observedMonthlyMm": [
+          19.244524374087337,
+          24.641625790208394,
+          23.22649434264764,
+          27.24206319844711,
+          57.56581113739279,
+          158.57757509783673,
+          303.60659072825035,
+          286.2820745135049,
+          169.32813953043157,
+          36.17022418922944,
+          6.247346234651092,
+          8.286567737710394
+        ],
+        "observedAnnualMm": 1120.4190368743978,
+        "monthlyMm": [
+          112.39813887798178,
+          95.20020570514235,
+          49.71249318686981,
+          79.91314905059056,
+          70.33239149003245,
+          71.89834888765391,
+          64.0002592883695,
+          45.373621492720346,
+          37.78005411565264,
+          35.929956084467605,
+          23.767809935883456,
+          34.17601254140731
+        ],
+        "modelAnnualMm": 720.4824406567716,
+        "annualBiasMm": -399.9365962176262,
+        "DJFMm": 241.77435712453143,
+        "JJAMm": 181.27222966874376,
+        "observedDJFMm": 52.17271790200613,
+        "observedJJAMm": 748.466240339592,
+        "monthlyMAEMm": 83.169011013596,
+        "oldReferenceAnnualMm": 3318.7433287377726,
+        "nativeLandNormalizedAnnualMm": 720.0524980921442,
+        "nativeLandFractionOnReferenceSupport": 0.9981231065353967
+      },
+      {
+        "name": "Tibet",
+        "bounds": {
+          "south": 29,
+          "north": 35,
+          "west": 80,
+          "east": 95
+        },
+        "fit": false,
+        "validLandAreaKm2": 943266.6495742021,
+        "observedMonthlyMm": [
+          5.692773383462125,
+          7.497175819869207,
+          10.017074438517616,
+          14.313406624331773,
+          32.0869660384147,
+          73.07503724297933,
+          111.23247162009977,
+          108.52125640987009,
+          60.34920065666156,
+          15.237488415379667,
+          2.9460016768880832,
+          2.568153735758774
+        ],
+        "observedAnnualMm": 443.5370060622327,
+        "monthlyMm": [
+          111.07128428024792,
+          110.8560097196701,
+          79.71084294802822,
+          99.11970202290964,
+          111.63740465541113,
+          129.23359906303136,
+          114.94142074885103,
+          107.18444837483092,
+          91.39911910321626,
+          81.22890077679456,
+          59.34973789021656,
+          91.78375143512618
+        ],
+        "modelAnnualMm": 1187.5162210183337,
+        "annualBiasMm": 743.979214956101,
+        "DJFMm": 313.7110454350442,
+        "JJAMm": 351.35946818671334,
+        "observedDJFMm": 15.758102939090104,
+        "observedJJAMm": 292.8287652729492,
+        "monthlyMAEMm": 62.22106925218162,
+        "oldReferenceAnnualMm": 508.6430454416908,
+        "nativeLandNormalizedAnnualMm": 1185.463430480211,
+        "nativeLandFractionOnReferenceSupport": 0.9878365885702337
+      },
+      {
+        "name": "Australia southwest",
+        "bounds": {
+          "south": -35,
+          "north": -29,
+          "west": 113,
+          "east": 120
+        },
+        "fit": false,
+        "validLandAreaKm2": 202792.97166197546,
+        "observedMonthlyMm": [
+          19.0570535688757,
+          17.022827835193276,
+          25.906213506167067,
+          28.988093294932625,
+          60.61308689534099,
+          75.58874411700707,
+          84.03068472434926,
+          67.05033627822591,
+          47.795114802590426,
+          25.45882544517792,
+          22.31035233232498,
+          15.22246252426517
+        ],
+        "observedAnnualMm": 489.0437953244504,
+        "monthlyMm": [
+          40.871439299908545,
+          46.538718886788985,
+          48.66316945969722,
+          97.03817046682481,
+          145.79240504058902,
+          99.31192900066837,
+          71.60492295001896,
+          49.386855844028865,
+          68.1951006342828,
+          64.01444145851299,
+          40.72960865089746,
+          61.422057617531685
+        ],
+        "modelAnnualMm": 833.5688193097498,
+        "annualBiasMm": 344.52502398529936,
+        "DJFMm": 148.8322158042292,
+        "JJAMm": 220.3037077947162,
+        "observedDJFMm": 51.302343928334146,
+        "observedJJAMm": 226.66976511958222,
+        "monthlyMAEMm": 33.72529236686283,
+        "oldReferenceAnnualMm": 495.2985000847329,
+        "nativeLandNormalizedAnnualMm": 943.3672906882733,
+        "nativeLandFractionOnReferenceSupport": 0.5240511876572793
+      },
+      {
+        "name": "Australia north",
+        "bounds": {
+          "south": -18,
+          "north": -10,
+          "west": 125,
+          "east": 140
+        },
+        "fit": false,
+        "validLandAreaKm2": 539500.6012487026,
+        "observedMonthlyMm": [
+          240.13390088487492,
+          237.2270167250083,
+          154.30019641210578,
+          45.956933729885,
+          10.147208049707135,
+          4.04399246143321,
+          1.320391415300539,
+          0.8907122540493277,
+          5.226912453099528,
+          30.004164015869954,
+          73.67707543277062,
+          182.9464662652737
+        ],
+        "observedAnnualMm": 985.874970099378,
+        "monthlyMm": [
+          25.523562755621285,
+          26.696178136349836,
+          40.60491730805632,
+          50.188184070575595,
+          75.23981521244217,
+          47.70880814266241,
+          31.90544506677545,
+          29.546998617381234,
+          19.20559738799313,
+          21.86830166268289,
+          20.949502257749216,
+          21.361632036665856
+        ],
+        "modelAnnualMm": 410.79894265495534,
+        "annualBiasMm": -575.0760274444226,
+        "DJFMm": 73.58137292863697,
+        "JJAMm": 109.1612518268191,
+        "observedDJFMm": 660.3073838751569,
+        "observedJJAMm": 6.255096130783077,
+        "monthlyMAEMm": 78.95778530942778,
+        "oldReferenceAnnualMm": 1421.1038207419479,
+        "nativeLandNormalizedAnnualMm": 354.9822724909364,
+        "nativeLandFractionOnReferenceSupport": 0.7759018723652393
+      },
+      {
+        "name": "Amazon",
+        "bounds": {
+          "south": -10,
+          "north": 2,
+          "west": -70,
+          "east": -50
+        },
+        "fit": false,
+        "validLandAreaKm2": 2854889.8806727803,
+        "observedMonthlyMm": [
+          264.40492894519,
+          268.44651187656285,
+          299.86793033157886,
+          273.75476489186616,
+          226.07205150307846,
+          138.58197759182997,
+          107.71823813570805,
+          80.71329621314838,
+          90.82041677645678,
+          127.6495785966278,
+          167.85308510906705,
+          218.7761865387576
+        ],
+        "observedAnnualMm": 2264.6589665098722,
+        "monthlyMm": [
+          64.33693014334816,
+          60.34959251625462,
+          61.21075844771954,
+          61.468522968498284,
+          59.95593306150581,
+          61.20608686293035,
+          68.56549591372924,
+          60.325648677489745,
+          72.02310875556346,
+          56.96281962620187,
+          48.440290108226534,
+          65.5290476129659
+        ],
+        "modelAnnualMm": 740.3742346944335,
+        "annualBiasMm": -1524.2847318154386,
+        "DJFMm": 190.2155702725687,
+        "JJAMm": 190.09723145414932,
+        "observedDJFMm": 751.6276273605105,
+        "observedJJAMm": 327.0135119406864,
+        "monthlyMAEMm": 127.02372765128653,
+        "oldReferenceAnnualMm": 1496.9658138772668,
+        "nativeLandNormalizedAnnualMm": 738.9021601327773,
+        "nativeLandFractionOnReferenceSupport": 0.978582726734963
+      },
+      {
+        "name": "Congo",
+        "bounds": {
+          "south": -5,
+          "north": 5,
+          "west": 15,
+          "east": 30
+        },
+        "fit": false,
+        "validLandAreaKm2": 1852293.6624370685,
+        "observedMonthlyMm": [
+          70.68190451816601,
+          79.26622491278344,
+          134.45965717670083,
+          143.05031716914976,
+          129.9778229241032,
+          80.94386398856702,
+          91.24453873710853,
+          109.16319792066172,
+          131.64717510561965,
+          168.2705022048578,
+          156.3481976012015,
+          90.24983208792077
+        ],
+        "observedAnnualMm": 1385.3032343468403,
+        "monthlyMm": [
+          77.69752504765462,
+          93.04653217075602,
+          104.69397341508021,
+          83.89968697929439,
+          102.94182883052137,
+          66.64426299528978,
+          67.41313008772423,
+          96.97255916991854,
+          86.36011565872988,
+          105.8847864577066,
+          77.38798887392593,
+          91.2296526730977
+        ],
+        "modelAnnualMm": 1054.1720423596994,
+        "annualBiasMm": -331.13119198714094,
+        "DJFMm": 261.97370989150835,
+        "JJAMm": 231.02995225293256,
+        "observedDJFMm": 240.19796151887022,
+        "observedJJAMm": 281.35160064633726,
+        "monthlyMAEMm": 31.223557394368097,
+        "oldReferenceAnnualMm": 1252.6591071707026,
+        "nativeLandNormalizedAnnualMm": 1052.8295416711176,
+        "nativeLandFractionOnReferenceSupport": 0.9920525972833708
+      }
+    ],
+    "temperateAnnualMAEMm": 660.0637860013956,
+    "method": "Fixed prior GPCC-valid geographic land weights, unchanged. Atmospheric total rain+snow is conservatively remapped from every forecast column. Separate native-land normalized precipitation and masked volume checks expose coast/mask sensitivity. Old reference is contextual, not a same-stock causal control."
+  },
+  "nsidc": {
+    "product": "NOAA/NSIDC G02202 v02r00; NASA Team monthly field (not the merged official CDR)",
+    "variable": "goddard_nt_seaice_conc_monthly",
+    "doi": "10.7265/N55M63M1",
+    "method": "G02202 v02r00 NASA Team monthly field, fixed 1981-2010 climatology. Terrain triangle subdivision centroid quadrature on the sphere, weights renormalized to actual model marine support; fixed land/lake/shelf mask; strict intersection of NSIDC valid concentration 0..100 percent pixels for all available years and months, pole hole excluded. Whole missing monthly fields excluded; no inferred ice. Remap monthly concentration before applying 15% coarse-cell extent threshold. This is a same-grid statistic, not G02135 native extent CSV or the merged CDR. March20 model calendar normalized to physical year.",
+    "commonMillionKm2": {
+      "north": 39.14592713864067,
+      "south": 47.216423824953466
+    },
+    "hemispheres": {
+      "north": {
+        "monthly": [
+          {
+            "month": 1,
+            "extentMillionKm2": 28.052479801471417,
+            "areaMillionKm2": 23.876781329329493,
+            "observed": {
+              "extentMillionKm2": 17.447709034419614,
+              "areaMillionKm2": 13.167794598594462
+            },
+            "concentrationMAE": 0.2773943605729493,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 2,
+            "extentMillionKm2": 29.357683063671537,
+            "areaMillionKm2": 25.48596806813303,
+            "observed": {
+              "extentMillionKm2": 18.48156194816776,
+              "areaMillionKm2": 14.03638388703092
+            },
+            "concentrationMAE": 0.30273205863542846,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 3,
+            "extentMillionKm2": 29.357683063671537,
+            "areaMillionKm2": 25.783584733520605,
+            "observed": {
+              "extentMillionKm2": 18.48156194816776,
+              "areaMillionKm2": 14.15021671142743
+            },
+            "concentrationMAE": 0.30732841769077907,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 4,
+            "extentMillionKm2": 28.914917597591234,
+            "areaMillionKm2": 25.46442757756452,
+            "observed": {
+              "extentMillionKm2": 17.447709034419614,
+              "areaMillionKm2": 13.389609362213658
+            },
+            "concentrationMAE": 0.3118640871943633,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 5,
+            "extentMillionKm2": 28.052479801471417,
+            "areaMillionKm2": 24.569569429692457,
+            "observed": {
+              "extentMillionKm2": 15.674448946738137,
+              "areaMillionKm2": 11.788484233868763
+            },
+            "concentrationMAE": 0.3275500610388689,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 6,
+            "extentMillionKm2": 26.863744287356916,
+            "areaMillionKm2": 22.077712475308772,
+            "observed": {
+              "extentMillionKm2": 14.02843970130404,
+              "areaMillionKm2": 9.54200329706872
+            },
+            "concentrationMAE": 0.32072150631517377,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 7,
+            "extentMillionKm2": 21.42173317781803,
+            "areaMillionKm2": 16.583282818459992,
+            "observed": {
+              "extentMillionKm2": 12.567818511588577,
+              "areaMillionKm2": 6.499799769757095
+            },
+            "concentrationMAE": 0.2584008209516944,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 8,
+            "extentMillionKm2": 15.354832495175469,
+            "areaMillionKm2": 11.978386683324604,
+            "observed": {
+              "extentMillionKm2": 9.203854808887874,
+              "areaMillionKm2": 4.623497918171271
+            },
+            "concentrationMAE": 0.1885465593725437,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 9,
+            "extentMillionKm2": 13.387382812654813,
+            "areaMillionKm2": 10.84771215944273,
+            "observed": {
+              "extentMillionKm2": 8.351492671826735,
+              "areaMillionKm2": 4.278156374029147
+            },
+            "concentrationMAE": 0.16916836794613546,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 10,
+            "extentMillionKm2": 13.725975721824023,
+            "areaMillionKm2": 12.274685259669393,
+            "observed": {
+              "extentMillionKm2": 11.018009362416526,
+              "areaMillionKm2": 6.468290259318029
+            },
+            "concentrationMAE": 0.15085083421246667,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 11,
+            "extentMillionKm2": 21.79126265978263,
+            "areaMillionKm2": 16.165764889724905,
+            "observed": {
+              "extentMillionKm2": 13.307528925816415,
+              "areaMillionKm2": 9.251517681997894
+            },
+            "concentrationMAE": 0.1777639330838326,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 12,
+            "extentMillionKm2": 25.030236442303394,
+            "areaMillionKm2": 20.78155742367926,
+            "observed": {
+              "extentMillionKm2": 15.331204340393532,
+              "areaMillionKm2": 11.47601749167261
+            },
+            "concentrationMAE": 0.23960060877008207,
+            "noNativeMarineReferenceMillionKm2": 0
+          }
+        ],
+        "extent": {
+          "min": 13.387382812654813,
+          "max": 29.357683063671537,
+          "minMonth": 9,
+          "maxMonth": 2
+        },
+        "observedExtent": {
+          "min": 8.351492671826735,
+          "max": 18.48156194816776,
+          "minMonth": 9,
+          "maxMonth": 2
+        },
+        "extentMAEMillionKm2": 9.16408930755382,
+        "concentrationMAE": 0.25266013464869314
+      },
+      "south": {
+        "monthly": [
+          {
+            "month": 1,
+            "extentMillionKm2": 29.05014195236823,
+            "areaMillionKm2": 14.9409310523959,
+            "observed": {
+              "extentMillionKm2": 6.59545271318289,
+              "areaMillionKm2": 3.4389069367093255
+            },
+            "concentrationMAE": 0.2490102243594539,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 2,
+            "extentMillionKm2": 11.873116238205357,
+            "areaMillionKm2": 5.67073536314947,
+            "observed": {
+              "extentMillionKm2": 4.442236063425625,
+              "areaMillionKm2": 2.0812012164004874
+            },
+            "concentrationMAE": 0.10470931112734443,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 3,
+            "extentMillionKm2": 5.540429681027718,
+            "areaMillionKm2": 2.8833553320312677,
+            "observed": {
+              "extentMillionKm2": 6.494984720487827,
+              "areaMillionKm2": 2.730356019607623
+            },
+            "concentrationMAE": 0.07500644924914238,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 4,
+            "extentMillionKm2": 8.437628789734235,
+            "areaMillionKm2": 3.8637247171915723,
+            "observed": {
+              "extentMillionKm2": 8.652248208036864,
+              "areaMillionKm2": 5.166936315497112
+            },
+            "concentrationMAE": 0.08474012097420895,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 5,
+            "extentMillionKm2": 15.326111466218727,
+            "areaMillionKm2": 8.581687066146406,
+            "observed": {
+              "extentMillionKm2": 15.390237658320387,
+              "areaMillionKm2": 8.084624458765632
+            },
+            "concentrationMAE": 0.09046084968234544,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 6,
+            "extentMillionKm2": 29.05014195236823,
+            "areaMillionKm2": 17.12439897328416,
+            "observed": {
+              "extentMillionKm2": 21.547723553747137,
+              "areaMillionKm2": 10.797873202938897
+            },
+            "concentrationMAE": 0.16838520161812875,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 7,
+            "extentMillionKm2": 30.107478430603553,
+            "areaMillionKm2": 24.473670243569664,
+            "observed": {
+              "extentMillionKm2": 23.759047019774954,
+              "areaMillionKm2": 13.050235065349787
+            },
+            "concentrationMAE": 0.25693910799566144,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 8,
+            "extentMillionKm2": 32.4521053157843,
+            "areaMillionKm2": 28.508654837240705,
+            "observed": {
+              "extentMillionKm2": 25.06525275764551,
+              "areaMillionKm2": 14.42888504628297
+            },
+            "concentrationMAE": 0.30107989648648154,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 9,
+            "extentMillionKm2": 32.4521053157843,
+            "areaMillionKm2": 29.570456693845056,
+            "observed": {
+              "extentMillionKm2": 24.519910736744894,
+              "areaMillionKm2": 14.867841969942413
+            },
+            "concentrationMAE": 0.31557061058244856,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 10,
+            "extentMillionKm2": 31.287242315665186,
+            "areaMillionKm2": 29.014936858063905,
+            "observed": {
+              "extentMillionKm2": 24.64457795193556,
+              "areaMillionKm2": 14.343765162208049
+            },
+            "concentrationMAE": 0.31434514889314236,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 11,
+            "extentMillionKm2": 29.232301420903866,
+            "areaMillionKm2": 27.90924774090583,
+            "observed": {
+              "extentMillionKm2": 22.8921526346806,
+              "areaMillionKm2": 11.963439778525421
+            },
+            "concentrationMAE": 0.33793328491893143,
+            "noNativeMarineReferenceMillionKm2": 0
+          },
+          {
+            "month": 12,
+            "extentMillionKm2": 29.05014195236823,
+            "areaMillionKm2": 24.22319274288512,
+            "observed": {
+              "extentMillionKm2": 14.526859820911305,
+              "areaMillionKm2": 7.286262974054815
+            },
+            "concentrationMAE": 0.35874615549291505,
+            "noNativeMarineReferenceMillionKm2": 0
+          }
+        ],
+        "extent": {
+          "min": 5.540429681027718,
+          "max": 32.4521053157843,
+          "minMonth": 3,
+          "maxMonth": 8
+        },
+        "observedExtent": {
+          "min": 4.442236063425625,
+          "max": 25.06525275764551,
+          "minMonth": 2,
+          "maxMonth": 8
+        },
+        "extentMAEMillionKm2": 7.316238524322265,
+        "concentrationMAE": 0.22141053011501702
+      }
+    },
+    "nativeIce": [
+      {
+        "month": 1,
+        "north": {
+          "extentMillionKm2": 26.345669938184262,
+          "areaMillionKm2": 24.088901035530053
+        },
+        "south": {
+          "extentMillionKm2": 26.68747984775271,
+          "areaMillionKm2": 15.867267861725546
+        }
+      },
+      {
+        "month": 2,
+        "north": {
+          "extentMillionKm2": 27.390134051288207,
+          "areaMillionKm2": 25.917202638891958
+        },
+        "south": {
+          "extentMillionKm2": 10.969487939876824,
+          "areaMillionKm2": 6.131177100973827
+        }
+      },
+      {
+        "month": 3,
+        "north": {
+          "extentMillionKm2": 27.146017423461718,
+          "areaMillionKm2": 26.205997116406753
+        },
+        "south": {
+          "extentMillionKm2": 5.112921452292728,
+          "areaMillionKm2": 3.1521309088743545
+        }
+      },
+      {
+        "month": 4,
+        "north": {
+          "extentMillionKm2": 26.7383098952084,
+          "areaMillionKm2": 25.77580372067189
+        },
+        "south": {
+          "extentMillionKm2": 6.368801210938803,
+          "areaMillionKm2": 4.330469238406823
+        }
+      },
+      {
+        "month": 5,
+        "north": {
+          "extentMillionKm2": 25.65420281985682,
+          "areaMillionKm2": 24.827883625759522
+        },
+        "south": {
+          "extentMillionKm2": 14.062432052625434,
+          "areaMillionKm2": 9.52548749732827
+        }
+      },
+      {
+        "month": 6,
+        "north": {
+          "extentMillionKm2": 25.089862026603488,
+          "areaMillionKm2": 22.227356632512496
+        },
+        "south": {
+          "extentMillionKm2": 24.650649106422744,
+          "areaMillionKm2": 18.3521446488784
+        }
+      },
+      {
+        "month": 7,
+        "north": {
+          "extentMillionKm2": 21.720124892818795,
+          "areaMillionKm2": 16.548038060336033
+        },
+        "south": {
+          "extentMillionKm2": 31.564824056778367,
+          "areaMillionKm2": 25.965127048874983
+        }
+      },
+      {
+        "month": 8,
+        "north": {
+          "extentMillionKm2": 15.001866870405804,
+          "areaMillionKm2": 12.100740130081807
+        },
+        "south": {
+          "extentMillionKm2": 33.62814181381147,
+          "areaMillionKm2": 30.418028277117063
+        }
+      },
+      {
+        "month": 9,
+        "north": {
+          "extentMillionKm2": 12.670138008097089,
+          "areaMillionKm2": 11.019339398165927
+        },
+        "south": {
+          "extentMillionKm2": 33.62814181381147,
+          "areaMillionKm2": 31.596850278447228
+        }
+      },
+      {
+        "month": 10,
+        "north": {
+          "extentMillionKm2": 14.584881645898221,
+          "areaMillionKm2": 12.441346087222467
+        },
+        "south": {
+          "extentMillionKm2": 32.0801082102882,
+          "areaMillionKm2": 30.827806064310042
+        }
+      },
+      {
+        "month": 11,
+        "north": {
+          "extentMillionKm2": 19.264161807485674,
+          "areaMillionKm2": 16.214395888504555
+        },
+        "south": {
+          "extentMillionKm2": 30.610445138384847,
+          "areaMillionKm2": 29.621261029166014
+        }
+      },
+      {
+        "month": 12,
+        "north": {
+          "extentMillionKm2": 23.86810995768615,
+          "areaMillionKm2": 20.736191974688218
+        },
+        "south": {
+          "extentMillionKm2": 30.26931772180814,
+          "areaMillionKm2": 25.732714072040206
+        }
+      }
+    ],
+    "caveat": "The fixed reference marine support is unchanged. Remapped concentrations are normalized by native marine coverage; zero native marine cells remain zero and their reference area is reported explicitly. Native and reference coast/shelf definitions differ. Extent threshold is applied after monthly concentration remap."
+  },
+  "remapping": {
+    "method": "Piecewise constant ring footprints reconstructed to Gaussian quadrature area; preserves integral, does not resolve subgrid features.",
+    "conservation": [
+      {
+        "month": 1,
+        "landRainGlobalMm": {
+          "native": 13.21379275656084,
+          "mapped": 13.213792756560842,
+          "error": 1.7763568394002505e-15
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.07833552638483396,
+          "mapped": 0.07833552638483383,
+          "error": -1.249000902703301e-16
+        }
+      },
+      {
+        "month": 2,
+        "landRainGlobalMm": {
+          "native": 12.421504845992123,
+          "mapped": 12.42150484599211,
+          "error": -1.2434497875801753e-14
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.06283201733276951,
+          "mapped": 0.06283201733276939,
+          "error": -1.249000902703301e-16
+        }
+      },
+      {
+        "month": 3,
+        "landRainGlobalMm": {
+          "native": 14.999784981152512,
+          "mapped": 14.999784981152512,
+          "error": 0
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.05755768072878728,
+          "mapped": 0.057557680728787274,
+          "error": -6.938893903907228e-18
+        }
+      },
+      {
+        "month": 4,
+        "landRainGlobalMm": {
+          "native": 14.79784114464253,
+          "mapped": 14.797841144642515,
+          "error": -1.5987211554602254e-14
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.05902444615747214,
+          "mapped": 0.059024446157471946,
+          "error": -1.942890293094024e-16
+        }
+      },
+      {
+        "month": 5,
+        "landRainGlobalMm": {
+          "native": 17.724144311163247,
+          "mapped": 17.724144311163222,
+          "error": -2.4868995751603507e-14
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.06735103700608977,
+          "mapped": 0.06735103700608966,
+          "error": -1.1102230246251565e-16
+        }
+      },
+      {
+        "month": 6,
+        "landRainGlobalMm": {
+          "native": 18.164235149109402,
+          "mapped": 18.164235149109437,
+          "error": 3.552713678800501e-14
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.07955759225780368,
+          "mapped": 0.07955759225780355,
+          "error": -1.249000902703301e-16
+        }
+      },
+      {
+        "month": 7,
+        "landRainGlobalMm": {
+          "native": 17.46696723334234,
+          "mapped": 17.466967233342366,
+          "error": 2.4868995751603507e-14
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.08334861071588227,
+          "mapped": 0.08334861071588213,
+          "error": -1.3877787807814457e-16
+        }
+      },
+      {
+        "month": 8,
+        "landRainGlobalMm": {
+          "native": 16.62189008473448,
+          "mapped": 16.62189008473446,
+          "error": -2.1316282072803006e-14
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.08335959618594814,
+          "mapped": 0.08335959618594808,
+          "error": -5.551115123125783e-17
+        }
+      },
+      {
+        "month": 9,
+        "landRainGlobalMm": {
+          "native": 14.635774478791399,
+          "mapped": 14.635774478791388,
+          "error": -1.0658141036401503e-14
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.08355059413773555,
+          "mapped": 0.0835505941377355,
+          "error": -5.551115123125783e-17
+        }
+      },
+      {
+        "month": 10,
+        "landRainGlobalMm": {
+          "native": 14.485514846845332,
+          "mapped": 14.485514846845328,
+          "error": -3.552713678800501e-15
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.08483075088434172,
+          "mapped": 0.08483075088434155,
+          "error": -1.6653345369377348e-16
+        }
+      },
+      {
+        "month": 11,
+        "landRainGlobalMm": {
+          "native": 12.841848391624609,
+          "mapped": 12.841848391624616,
+          "error": 7.105427357601002e-15
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.08986247708265634,
+          "mapped": 0.0898624770826562,
+          "error": -1.3877787807814457e-16
+        }
+      },
+      {
+        "month": 12,
+        "landRainGlobalMm": {
+          "native": 14.383387322449407,
+          "mapped": 14.383387322449373,
+          "error": -3.375077994860476e-14
+        },
+        "marineIceGlobalAreaFraction": {
+          "native": 0.0911039850957256,
+          "mapped": 0.09110398509572541,
+          "error": -1.942890293094024e-16
+        }
+      }
+    ]
+  },
+  "acceptance": {
+    "formalDefaultUnchanged": true,
+    "regionalClimateAccepted": false,
+    "allBudgetsClosed": false,
+    "fullEarthWaterBudgetAvailable": false,
+    "fullEarthEnergyBudgetAvailable": false
+  }
+}

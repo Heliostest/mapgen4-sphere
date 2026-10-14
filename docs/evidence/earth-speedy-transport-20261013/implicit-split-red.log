@@ -1,0 +1,2053 @@
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: [-57410.86625536425, -64874.2788685616, -70041.25683154438, -73485.90880686624, -76069.39778835763, -78078.77810729538, -80088.15842623313, -81523.43008261724] ≈ [-82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: [-28.260637528296648 -1.625 … -1.625 -1.625; -26.663270406975208 -14.70254519916184 … -3.875 -3.875; … ; -11.108958234578692 -11.108958234578692 … -8.302832690369616 -4.8125; -10.530066882928068 -10.530066882928068 … -10.530066882928068 -7.488167359958958] ≈ [-57.07531804074717 0.0 … 0.0 0.0; -57.07531804074717 -25.266960253799162 … 0.0 0.0; … ; -12.693118177629618 -12.693118177629618 … -6.183569228768635 0.0; -10.995279092546774 -10.995279092546774 … -10.995279092546774 -5.375324646718944]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.004261759010950324 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.5519237427855029 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.05574034692863711 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.10217157386790976 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.1690735461416746 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.2775792430136907 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: [-57410.86625536425, -64874.2788685616, -70041.25683154438, -73485.90880686624, -76069.39778835763, -78078.77810729538, -80088.15842623313, -81523.43008261724] ≈ [-82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: [-28.260637528296648 -1.625 … -1.625 -1.625; -26.663270406975208 -14.70254519916184 … -3.875 -3.875; … ; -11.108958234578692 -11.108958234578692 … -8.302832690369616 -4.8125; -10.530066882928068 -10.530066882928068 … -10.530066882928068 -7.488167359958958] ≈ [-57.07531804074717 0.0 … 0.0 0.0; -57.07531804074717 -25.266960253799162 … 0.0 0.0; … ; -12.693118177629618 -12.693118177629618 … -6.183569228768635 0.0; -10.995279092546774 -10.995279092546774 … -10.995279092546774 -5.375324646718944]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0021405790040874327 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.5518562001641415 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.037158186862796094 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.08150848822499851 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.20759188692526198 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.13534687633810466 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: [-57410.86625536425, -64874.2788685616, -70041.25683154438, -73485.90880686624, -76069.39778835763, -78078.77810729538, -80088.15842623313, -81523.43008261724] ≈ [-82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: [-28.260637528296648 -1.625 … -1.625 -1.625; -26.663270406975208 -14.70254519916184 … -3.875 -3.875; … ; -11.108958234578692 -11.108958234578692 … -8.302832690369616 -4.8125; -10.530066882928068 -10.530066882928068 … -10.530066882928068 -7.488167359958958] ≈ [-57.07531804074717 0.0 … 0.0 0.0; -57.07531804074717 -25.266960253799162 … 0.0 0.0; … ; -12.693118177629618 -12.693118177629618 … -6.183569228768635 0.0; -10.995279092546774 -10.995279092546774 … -10.995279092546774 -5.375324646718944]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.008523518021900649 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.5520599109852541 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.05087096768422311 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.1744897559265356 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.22879941916076252 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.6058891710219185 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: [-57410.86625536425, -64874.2788685616, -70041.25683154438, -73485.90880686624, -76069.39778835763, -78078.77810729538, -80088.15842623313, -81523.43008261724] ≈ [-82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: [-28.260637528296648 -1.625 … -1.625 -1.625; -26.663270406975208 -14.70254519916184 … -3.875 -3.875; … ; -11.108958234578692 -11.108958234578692 … -8.302832690369616 -4.8125; -10.530066882928068 -10.530066882928068 … -10.530066882928068 -7.488167359958958] ≈ [-57.07531804074717 0.0 … 0.0 0.0; -57.07531804074717 -25.266960253799162 … 0.0 0.0; … ; -12.693118177629618 -12.693118177629618 … -6.183569228768635 0.0; -10.995279092546774 -10.995279092546774 … -10.995279092546774 -5.375324646718944]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0042811580081748655 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.5519243611970444 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.05582041786116293 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.1024144509944631 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.16896539112768486 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.27907398744457107 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: [-57410.86625536425, -64874.2788685616, -70041.25683154438, -73485.90880686624, -76069.39778835763, -78078.77810729538, -80088.15842623313, -81523.43008261724] ≈ [-82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: [-26.895637528296646 -0.65 … -1.5599999999999998 -1.2999999999999998; -23.93532038819743 -24.12649521793962 … -2.136 -1.7799999999999998; … ; -1.7325038241072146 -4.331259560268037 … -8.051432957660428 -4.1499999999999995; -1.6610260222508568 -4.152565055627142 … -9.966156133505141 -6.452464539166806] ≈ [-57.07531804074717 0.0 … 0.0 0.0; -41.26214279557903 -41.08013549896731 … 0.0 0.0; … ; -1.963874915207447 -4.909687288018618 … -5.751156601455925 0.0; -1.7351249803107283 -4.337812450776821 … -10.41074988186437 -4.2616541805635215]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0032933696528141274 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.43941383963899083 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.05198722068856271 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.07213845673193629 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.1624013884707558 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.26535526435164536 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: [-57410.86625536425, -64874.2788685616, -70041.25683154438, -73485.90880686624, -76069.39778835763, -78078.77810729538, -80088.15842623313, -81523.43008261724] ≈ [-82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: [-26.895637528296646 -0.65 … -1.5599999999999998 -1.2999999999999998; -23.93532038819743 -24.12649521793962 … -2.136 -1.7799999999999998; … ; -1.7325038241072146 -4.331259560268037 … -8.051432957660428 -4.1499999999999995; -1.6610260222508568 -4.152565055627142 … -9.966156133505141 -6.452464539166806] ≈ [-57.07531804074717 0.0 … 0.0 0.0; -41.26214279557903 -41.08013549896731 … 0.0 0.0; … ; -1.963874915207447 -4.909687288018618 … -5.751156601455925 0.0; -1.7351249803107283 -4.337812450776821 … -10.41074988186437 -4.2616541805635215]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0016541803310320528 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.43936643339633313 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.036395394145095517 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0489344788401694 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.18707385374760221 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.11040890764039879 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: [-57410.86625536425, -64874.2788685616, -70041.25683154438, -73485.90880686624, -76069.39778835763, -78078.77810729538, -80088.15842623313, -81523.43008261724] ≈ [-82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: [-26.895637528296646 -0.65 … -1.5599999999999998 -1.2999999999999998; -23.93532038819743 -24.12649521793962 … -2.136 -1.7799999999999998; … ; -1.7325038241072146 -4.331259560268037 … -8.051432957660428 -4.1499999999999995; -1.6610260222508568 -4.152565055627142 … -9.966156133505141 -6.452464539166806] ≈ [-57.07531804074717 0.0 … 0.0 0.0; -41.26214279557903 -41.08013549896731 … 0.0 0.0; … ; -1.963874915207447 -4.909687288018618 … -5.751156601455925 0.0; -1.7351249803107283 -4.337812450776821 … -10.41074988186437 -4.2616541805635215]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.006586739305628256 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.43950941550816924 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.043992063522871494 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.1538334431323302 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.20202782615570025 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.5627001234412837 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: [-57410.86625536425, -64874.2788685616, -70041.25683154438, -73485.90880686624, -76069.39778835763, -78078.77810729538, -80088.15842623313, -81523.43008261724] ≈ [-82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452, -82671.64740772452]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: [-26.895637528296646 -0.65 … -1.5599999999999998 -1.2999999999999998; -23.93532038819743 -24.12649521793962 … -2.136 -1.7799999999999998; … ; -1.7325038241072146 -4.331259560268037 … -8.051432957660428 -4.1499999999999995; -1.6610260222508568 -4.152565055627142 … -9.966156133505141 -6.452464539166806] ≈ [-57.07531804074717 0.0 … 0.0 0.0; -41.26214279557903 -41.08013549896731 … 0.0 0.0; … ; -1.963874915207447 -4.909687288018618 … -5.751156601455925 0.0; -1.7351249803107283 -4.337812450776821 … -10.41074988186437 -4.2616541805635215]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.003308360662064105 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.43941427368943753 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.05203430271473569 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.07241337734191461 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.16255635723204861 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.2668954479167364 < 1.0e-11
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: Float32[-57410.863, -64874.277, -70041.26, -73485.91, -76069.4, -78078.77, -80088.16, -81523.43] ≈ Float32[-82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: Float32[-28.26064 -1.625 … -1.625 -1.625; -26.663269 -14.702545 … -3.875 -3.875; … ; -11.108957 -11.108957 … -8.302849 -4.8125; -10.530067 -10.530067 … -10.530067 -7.488144] ≈ Float32[-57.075317 0.0 … 0.0 0.0; -57.075317 -25.26696 … 0.0 0.0; … ; -12.693117 -12.693117 … -6.1835866 0.0; -10.995279 -10.995279 … -10.995279 -5.3753004]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.004261758644133806 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.5519236791275242 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0557403564453125 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.1021709545897315 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.16907366946787766 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.2775792120588475 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: Float32[-57410.863, -64874.277, -70041.26, -73485.91, -76069.4, -78078.77, -80088.16, -81523.43] ≈ Float32[-82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: Float32[-28.26064 -1.625 … -1.625 -1.625; -26.663269 -14.702545 … -3.875 -3.875; … ; -11.108957 -11.108957 … -8.302849 -4.8125; -10.530067 -10.530067 … -10.530067 -7.488144] ≈ Float32[-57.075317 0.0 … 0.0 0.0; -57.075317 -25.26696 … 0.0 0.0; … ; -12.693117 -12.693117 … -6.1835866 0.0; -10.995279 -10.995279 … -10.995279 -5.3753004]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0021405790466815233 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.5518561713195728 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.03715816140174866 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.08150844761856306 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.20759189128875732 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.135346747188473 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: Float32[-57410.863, -64874.277, -70041.26, -73485.91, -76069.4, -78078.77, -80088.16, -81523.43] ≈ Float32[-82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: Float32[-28.26064 -1.625 … -1.625 -1.625; -26.663269 -14.702545 … -3.875 -3.875; … ; -11.108957 -11.108957 … -8.302849 -4.8125; -10.530067 -10.530067 … -10.530067 -7.488144] ≈ Float32[-57.075317 0.0 … 0.0 0.0; -57.075317 -25.26696 … 0.0 0.0; … ; -12.693117 -12.693117 … -6.1835866 0.0; -10.995279 -10.995279 … -10.995279 -5.3753004]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.008523516356945038 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.5520598772887902 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.050871044397354126 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.17448935810865446 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.22879940661036305 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.6058889534555385 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: Float32[-57410.863, -64874.277, -70041.26, -73485.91, -76069.4, -78078.77, -80088.16, -81523.43] ≈ Float32[-82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: Float32[-28.26064 -1.625 … -1.625 -1.625; -26.663269 -14.702545 … -3.875 -3.875; … ; -11.108957 -11.108957 … -8.302849 -4.8125; -10.530067 -10.530067 … -10.530067 -7.488144] ≈ Float32[-57.075317 0.0 … 0.0 0.0; -57.075317 -25.26696 … 0.0 0.0; … ; -12.693117 -12.693117 … -6.1835866 0.0; -10.995279 -10.995279 … -10.995279 -5.3753004]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.004281158093363047 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.551924340754774 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.05582037568092346 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.10241440388437843 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.16896557515977242 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.27907371591767854 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: Float32[-57410.863, -64874.277, -70041.26, -73485.91, -76069.4, -78078.77, -80088.16, -81523.43] ≈ Float32[-82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: Float32[-26.89564 -0.65 … -1.5600001 -1.3000003; -23.935322 -24.1265 … -2.1360002 -1.7800004; … ; -1.7325037 -4.3312593 … -8.051439 -4.1500006; -1.6610261 -4.1525655 … -9.966157 -6.452446] ≈ Float32[-57.075317 0.0 … 0.0 0.0; -41.262142 -41.08014 … 0.0 0.0; … ; -1.9638746 -4.9096866 … -5.751164 0.0; -1.735125 -4.3378124 … -10.41075 -4.2616353]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0032933689653873444 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.4394138639125984 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.05198723077774048 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.07213847417973875 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.16240156359913227 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.2653553140649013 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: Float32[-57410.863, -64874.277, -70041.26, -73485.91, -76069.4, -78078.77, -80088.16, -81523.43] ≈ Float32[-82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: Float32[-26.89564 -0.65 … -1.5600001 -1.3000003; -23.935322 -24.1265 … -2.1360002 -1.7800004; … ; -1.7325037 -4.3312593 … -8.051439 -4.1500006; -1.6610261 -4.1525655 … -9.966157 -6.452446] ≈ Float32[-57.075317 0.0 … 0.0 0.0; -41.262142 -41.08014 … 0.0 0.0; … ; -1.9638746 -4.9096866 … -5.751164 0.0; -1.735125 -4.3378124 … -10.41075 -4.2616353]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0016541798831894994 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.43936644468715336 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.03639534115791321 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.04893442075454647 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.1870739459991455 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.11040887277871538 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: Float32[-57410.863, -64874.277, -70041.26, -73485.91, -76069.4, -78078.77, -80088.16, -81523.43] ≈ Float32[-82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: Float32[-26.89564 -0.65 … -1.5600001 -1.3000003; -23.935322 -24.1265 … -2.1360002 -1.7800004; … ; -1.7325037 -4.3312593 … -8.051439 -4.1500006; -1.6610261 -4.1525655 … -9.966157 -6.452446] ≈ Float32[-57.075317 0.0 … 0.0 0.0; -41.262142 -41.08014 … 0.0 0.0; … ; -1.9638746 -4.9096866 … -5.751164 0.0; -1.735125 -4.3378124 … -10.41075 -4.2616353]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.006586738396435976 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.4395094217119293 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.04399213194847107 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.15383339905503832 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.20202790200115822 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.5626985961433038 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36
+  Expression: c.U ≈ ideal.U
+   Evaluated: Float32[-57410.863, -64874.277, -70041.26, -73485.91, -76069.4, -78078.77, -80088.16, -81523.43] ≈ Float32[-82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64, -82671.64]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:36 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37
+  Expression: c.L ≈ ideal.L
+   Evaluated: Float32[-26.89564 -0.65 … -1.5600001 -1.3000003; -23.935322 -24.1265 … -2.1360002 -1.7800004; … ; -1.7325037 -4.3312593 … -8.051439 -4.1500006; -1.6610261 -4.1525655 … -9.966157 -6.452446] ≈ Float32[-57.075317 0.0 … 0.0 0.0; -41.262142 -41.08014 … 0.0 0.0; … ; -1.9638746 -4.9096866 … -5.751164 0.0; -1.735125 -4.3378124 … -10.41075 -4.2616353]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.0033083597663789988 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.4394142539351577 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.05203431844711304 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.07241335522444793 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.16255664177501977 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+split reference preserves dynamics and solves SI time levels: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75
+  Expression: relative < if NF == Float32
+        2.0e-5
+    else
+        1.0e-11
+    end
+   Evaluated: 0.2668956282075202 < 2.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:75 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:13
+Test Summary:                                                | Pass  Fail  Total   Time
+split reference preserves dynamics and solves SI time levels |  512   128    640  41.8s
+RNG of the outermost testset: Random.Xoshiro(0xa8b0c005f0b0e32d, 0x930a4f6f345cdf19, 0x7926d20b06f39296, 0xd8d262d1a7a4d88c, 0xad527c46460b493a)
+ERROR: LoadError: Some tests did not pass: 512 passed, 128 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-split-test.jl:110

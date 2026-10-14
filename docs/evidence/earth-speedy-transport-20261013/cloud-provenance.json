@@ -1,0 +1,16 @@
+{
+  "nativePath": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/clouds.jl",
+  "nativeSha256": "9fc96f97064a4745559e06d9a975c4636000ec8865f81549dd7b9cacc93bbc5f",
+  "nativeArchive": "cloud-native-source.jl",
+  "license": "EUPL-1.2",
+  "licenseArchive": "cloud-LICENSE-SpeedyWeather.txt",
+  "referenceCommit": "0ebfdbfcd62efd46dd1802284908645be4b230be",
+  "referencePhysics": "https://github.com/samhatfield/speedy.f90/blob/0ebfdbfcd62efd46dd1802284908645be4b230be/source/physics.f90#L134",
+  "referenceClouds": "https://github.com/samhatfield/speedy.f90/blob/0ebfdbfcd62efd46dd1802284908645be4b230be/source/shortwave_radiation.f90#L351",
+  "readDateUTC": "2026-10-13",
+  "changes": [
+    "rain_rate [m/s] multiplied by 86400 s/day and 1000 mm/m before the unchanged precipitation cap and square root",
+    "full mode uses G=(dry_static_energy_above-dry_static_energy_bottom)/(geopotential_above-geopotential_bottom), dimensionless; precip_only keeps native G for controlled attribution"
+  ],
+  "unchanged": ["native coefficients", "relative-humidity cloud diagnosis", "cloud-top selection", "land-ocean weighting", "land RH multiplier", "rain-only input", "radiative transfer", "state declarations"]
+}

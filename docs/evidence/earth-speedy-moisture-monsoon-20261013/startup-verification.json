@@ -1,0 +1,101 @@
+{
+  "rows": [
+    [
+      {
+        "mode": "slab",
+        "condensation": "native",
+        "preserveWater": false,
+        "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+        "residualMm": -0.10590167817167159,
+        "thresholdMm": 0.05,
+        "passed": false,
+        "pressureWaterChangeMm": -0.12559515760197063,
+        "largeScaleWaterLeakMm": -0.17702924181463617,
+        "maximumIntermediateResidualMm": -0.28770787727254865,
+        "maximumIntermediateTime": "2001-01-01T07:30:00",
+        "intermediateStepsAllPass": false,
+        "dryMassRelative": 2.220446049250313e-16
+      },
+      {
+        "mode": "seasonal",
+        "condensation": "native",
+        "preserveWater": false,
+        "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+        "residualMm": -0.105792646268382,
+        "thresholdMm": 0.05,
+        "passed": false,
+        "pressureWaterChangeMm": -0.12584765210513285,
+        "largeScaleWaterLeakMm": -0.17693275664012897,
+        "maximumIntermediateResidualMm": -0.28843614375075455,
+        "maximumIntermediateTime": "2001-01-01T07:30:00",
+        "intermediateStepsAllPass": false,
+        "dryMassRelative": -8.881784197001252e-16
+      }
+    ],
+    [
+      {
+        "mode": "slab",
+        "condensation": "fixed",
+        "preserveWater": false,
+        "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+        "residualMm": 0.07088224358411052,
+        "thresholdMm": 0.05,
+        "passed": false,
+        "pressureWaterChangeMm": -0.1255291643111269,
+        "largeScaleWaterLeakMm": 1.0929901393132678e-16,
+        "maximumIntermediateResidualMm": -0.1648047976323544,
+        "maximumIntermediateTime": "2001-01-01T04:30:00",
+        "intermediateStepsAllPass": false,
+        "dryMassRelative": 6.661338147750939e-16
+      },
+      {
+        "mode": "seasonal",
+        "condensation": "fixed",
+        "preserveWater": false,
+        "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+        "residualMm": 0.0710541092491061,
+        "thresholdMm": 0.05,
+        "passed": false,
+        "pressureWaterChangeMm": -0.12578404102791313,
+        "largeScaleWaterLeakMm": 4.164225726938954e-17,
+        "maximumIntermediateResidualMm": -0.16496860358001642,
+        "maximumIntermediateTime": "2001-01-01T04:30:00",
+        "intermediateStepsAllPass": false,
+        "dryMassRelative": -5.551115123125783e-16
+      }
+    ],
+    [
+      {
+        "mode": "slab",
+        "condensation": "fixed",
+        "preserveWater": true,
+        "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+        "residualMm": 0.008759395091997746,
+        "thresholdMm": 0.05,
+        "passed": true,
+        "pressureWaterChangeMm": 1.6342482922482304e-13,
+        "largeScaleWaterLeakMm": 1.6285267202147992e-16,
+        "maximumIntermediateResidualMm": -0.1964725888526897,
+        "maximumIntermediateTime": "2001-01-01T04:30:00",
+        "intermediateStepsAllPass": false,
+        "dryMassRelative": -3.3306690738754696e-16
+      },
+      {
+        "mode": "seasonal",
+        "condensation": "fixed",
+        "preserveWater": true,
+        "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+        "residualMm": 0.008579026385190147,
+        "thresholdMm": 0.05,
+        "passed": true,
+        "pressureWaterChangeMm": 9.237055564881302e-14,
+        "largeScaleWaterLeakMm": 5.679355911340084e-17,
+        "maximumIntermediateResidualMm": -0.19665465138969696,
+        "maximumIntermediateTime": "2001-01-01T04:30:00",
+        "intermediateStepsAllPass": false,
+        "dryMassRelative": 0
+      }
+    ]
+  ],
+  "scope": "Three-day endpoint criterion. Intermediate leapfrog stock/flux mismatch is retained and does not pass at every subdaily instant."
+}

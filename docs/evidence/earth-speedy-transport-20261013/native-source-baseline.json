@@ -1,0 +1,531 @@
+{
+  "createdUTC": "2026-10-13T06:06:55.562Z",
+  "note": "Source snapshot captured after the first five sensitivity runs, while two six-year runs were active; not a retroactive prelaunch hash for those runs.",
+  "bindings": [
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/SpeedyWeather.jl",
+      "bytes": 7907,
+      "sha256": "b93fea5d773e319ad620913d320c89deabb9a97047273e2e2af972346a2f05e2"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/adiabatic_conversion.jl",
+      "bytes": 2555,
+      "sha256": "39755331d129009b857df1d3d85602d869ea1baa4ff8a4ee79c0017ec62176a2"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/atmosphere.jl",
+      "bytes": 8568,
+      "sha256": "0b644ba630e44192d2b1bde232d83acc2a2b9ea172d7b7fa738deb25965d9955"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/coriolis.jl",
+      "bytes": 1878,
+      "sha256": "33e3283f8343986256a4ea0c72967f9e9d0ece718a178d4de1957240b24a967a"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/drag.jl",
+      "bytes": 8910,
+      "sha256": "8517d3fd98bacf7f79405bea824a20469dfa2e518f7da600e3026b6a8bb0a5e4"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/forcing.jl",
+      "bytes": 12625,
+      "sha256": "da17bc71c129f94190e488f649603d5807e343e10e0fca0331d9d46d52b542e0"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/geometry.jl",
+      "bytes": 5418,
+      "sha256": "4235b4cefbd688ddc39efef349a23ca0b48e301d739338b18c46d377af3ed07c"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/geopotential.jl",
+      "bytes": 8954,
+      "sha256": "9249f6b590b285da3d40d790618bb9cd26fa7e913393a8cae530a873c63962b7"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/hole_filling.jl",
+      "bytes": 530,
+      "sha256": "c74cabc36885096debfba101731f293b0f3eeea39db9521524efc7606afa8264"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/horizontal_diffusion.jl",
+      "bytes": 20011,
+      "sha256": "7416aaf3fd0f94985aaa6bfc85dd57cae1a0ebeed2277517ca69c2fae70c509f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/initial_conditions.jl",
+      "bytes": 33343,
+      "sha256": "3bb5e2fa9f829d02d3477f59174ec9d510120f1c4d7be5863e24c0ae9558a070"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/orography.jl",
+      "bytes": 9095,
+      "sha256": "e73f090e49b104cb4a1a7d3b1d7fcc0867be1d4ea560138df7442e31363a1cdc"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/particle_advection.jl",
+      "bytes": 19894,
+      "sha256": "824c80d5a166987c649d06bc3e9bcee66218dd6c1fc0be121c6b49e101b3a7ff"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/particles.jl",
+      "bytes": 6874,
+      "sha256": "41c09f867a47130fdec7b1e60239dcb307660f394b1440338ba49d460bdfe1e8"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/planet.jl",
+      "bytes": 1907,
+      "sha256": "6b8ed7658dae7b38230a38f67e0e99e30e52311e45e0800f2a0c64373ca90f27"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/random_process.jl",
+      "bytes": 5913,
+      "sha256": "cc05b5968f55833d0ebb7b0f7217a476acb65e2c5d11a4c6e96deea265f6e72c"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/scaling.jl",
+      "bytes": 5810,
+      "sha256": "283728e825b35c9038d9fe63a3b5868dc2efb0b17e944e76fe4b89b0ee5bc69f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/spectral_grid.jl",
+      "bytes": 16574,
+      "sha256": "2094b938ee5afabf7b50e317daf622474bd343e4a3076f874ad64ca71e2f9d46"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/tendencies.jl",
+      "bytes": 57610,
+      "sha256": "eaa625a4b8af54c3342e1382f46deb3bd6acfd354729df1d58b21b73825d91ce"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/tendencies_sequential.jl",
+      "bytes": 9588,
+      "sha256": "a36340c12c8dea4f489b5b0f37b2dad1dd050bb747823f1440af5c37a171cfcd"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/tracers.jl",
+      "bytes": 3224,
+      "sha256": "0039b1d434689af61edf428ed7f98431dda6f6c1b124d6ca277e449541739860"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/vertical_advection.jl",
+      "bytes": 8614,
+      "sha256": "5639375a49e9d911d1c1a6de389be005ff3dcb93a63b6671094f2ede6d5b943b"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/vertical_coordinates.jl",
+      "bytes": 15245,
+      "sha256": "41d6fcb8445047a4afed7fe5b29cae09846bca96f87f737da5c9c6a66de74947"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/virtual_temperature.jl",
+      "bytes": 3151,
+      "sha256": "0056d1308583c21860d1cf6a57c8ee845b59947d6f8bf4357644e2eaedc3dda2"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/input/README.md",
+      "bytes": 269,
+      "sha256": "5b0012d6e5d4716fc2237d89d2fba4f39f379019f45e09e4ba2c2f66b886e2ae"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/models/abstract_models.jl",
+      "bytes": 4603,
+      "sha256": "c8cd8eb68a3c7d992fff5407d0fe00d5d9f0eae18402b559a8b03892fd47a4da"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/models/barotropic.jl",
+      "bytes": 5564,
+      "sha256": "6ff173cf7542d638ff877c35a7e4d54f840880fb5c04c1461967580afdfa0d04"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/models/primitive_dry.jl",
+      "bytes": 12944,
+      "sha256": "25c6a0c53ca8bf9b3ca9348b263ceafcf2c33b9c646a55a0ef18f0aa8ed03d8c"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/models/primitive_wet.jl",
+      "bytes": 10058,
+      "sha256": "bc0702587e6e2e02f97f125d9cc82dc5baff74d3d9417779064bcb1ffcdca0e9"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/models/set.jl",
+      "bytes": 1068,
+      "sha256": "72299ed551dbc28cee8e6ea513fca193591c180cd8e36f5fe03f24814fc94fd4"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/models/shallow_water.jl",
+      "bytes": 6064,
+      "sha256": "11a3a51280e48d55e3c272a87bf0507d8d0118408006012011a092088870a0c0"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/models/simulation.jl",
+      "bytes": 4673,
+      "sha256": "9dd595db520e6dc53a1637667c27d18012afa09b1f0cf25b921c209d762c7f15"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/callbacks.jl",
+      "bytes": 5628,
+      "sha256": "d4db03abf8808f813a15b6f23f95f3167977f393f3d1491366b9b9b66b21c843"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/feedback.jl",
+      "bytes": 13079,
+      "sha256": "8bdfae7e2876e039ada68683ceddc9ed9dc6aedbb57c46e356b1618a17fde36f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/particle_tracker.jl",
+      "bytes": 6125,
+      "sha256": "3048b563904e01023104dd4296d9eddb4e408643a1291b6168bb1e2cfa532f4c"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/restart.jl",
+      "bytes": 4599,
+      "sha256": "c469090b4d0783439cfab5807a4ddb3a09fad4568bc7ad0a25104db2cd24d2af"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/schedule.jl",
+      "bytes": 3914,
+      "sha256": "88bc3e123da6dba15eb3a8375eaf20583d1a60391d532bdf0941653f17afc39c"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/boundaries.jl",
+      "bytes": 612,
+      "sha256": "f5463411145c6353d8ecdebf2873a97163286e2a20739d225b27817541c9ee8a"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/boundary_layer.jl",
+      "bytes": 8660,
+      "sha256": "56752bbbc90abf643d4823079255b91a05f441f4c7868b65143a7fba7ee3c3d7"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/dynamics.jl",
+      "bytes": 10127,
+      "sha256": "09400c47610ebd918e9302813a957cea3191e977162b2e9e16089b4dcdbe5ab3"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/land.jl",
+      "bytes": 4930,
+      "sha256": "38d63063626d3acb257f61d337acbb068326a861deaef2d7102d3c5a411fc7b1"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/ocean.jl",
+      "bytes": 1381,
+      "sha256": "f5555edd5f9d2f25de72ccc560e2db0e6fdc54f41f079482936a65af5f870baa"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/output_variables.jl",
+      "bytes": 6131,
+      "sha256": "8fab99431d7305f3920ace18079790f557f1e6145ba43be01d4909f0a0464f87"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/precipitation.jl",
+      "bytes": 8245,
+      "sha256": "56ba5b573a35e1753cebb9d3040db5e3526090c8bf03f12349b79b7ca81736c0"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/radiation.jl",
+      "bytes": 2095,
+      "sha256": "179eeb7ba9f21927a12bf933ca8cc53eb569a1b0b424ddd16fcd213836f46fa3"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/stochastic.jl",
+      "bytes": 554,
+      "sha256": "fbfff65fbf2830bec8a06cc7ff592c1bb11ca69bf24ad68d5fc83169fbdc69ca"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/surface_fluxes.jl",
+      "bytes": 2030,
+      "sha256": "92c4759965e5f2e5ca04383ce36e4d8959647123f7548af563ff9d871636f77b"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/variables/tracers.jl",
+      "bytes": 637,
+      "sha256": "115a535c4a76464c1a61b929ec9dc77ab51d5619dcf117abe1ed5ca22906ffa4"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/vertical_interpolation.jl",
+      "bytes": 8268,
+      "sha256": "07738fc3a2a971316769bb036ad4946a89722d1d4d743dfab993330db7f9dacf"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/writers/general.jl",
+      "bytes": 12607,
+      "sha256": "c54678cf501651382d1105db6d53f75812aeb308157e2f97e21bee07d00fffb5"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/writers/healpix_output.jl",
+      "bytes": 8751,
+      "sha256": "3cac8e065ed968f04cf01ff49d24dce2ae94e21f42ba7537ab75b717dba0267b"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/writers/netcdf_output.jl",
+      "bytes": 12384,
+      "sha256": "92e9a96e8829f8c8be254cab0bfaa38d2d4a9832ae2a04503658d54d42df3297"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/writers/output_layers.jl",
+      "bytes": 9143,
+      "sha256": "39bd6ed574bb5f11fbf8278914aa4b6006240eda1c382114f0a6dd91a11e596c"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/writers/output_writer_core.jl",
+      "bytes": 5629,
+      "sha256": "4ffba39a77d2090253904831574e6d151e9179c9223f677cf430353f55ae0c0a"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/writers/variables_output.jl",
+      "bytes": 10079,
+      "sha256": "83c87cba77f3a8850fccc8b7fb75d6f7ea71505b82869d745181c7edb10fc7a1"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/output/writers/zarr_output.jl",
+      "bytes": 7733,
+      "sha256": "28c7b3330bbb2a55b1ca98bd02a85119caa92bf2e823de397f5f27f00183a3f4"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/abstract_types.jl",
+      "bytes": 1798,
+      "sha256": "241bc9049fe0f0c005527f28588472758505aa6b1e6a637d4759bf743468483d"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/albedo.jl",
+      "bytes": 11880,
+      "sha256": "c5d1ebfd8e753a36a4e1fca8920bdde64ac27fb02a23a8c34be7b013a7197ee5"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/convection.jl",
+      "bytes": 25535,
+      "sha256": "cfc708f8a2c6b637f1b818f4eb42a9298a7c890416e8d7b35b44a629ed135974"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/entrainment.jl",
+      "bytes": 2646,
+      "sha256": "929067904cc592f52d7f37eec9491f62ed5eeeef74905368229eb5b030c33858"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/general.jl",
+      "bytes": 3178,
+      "sha256": "90b5e4b69ea38f50fe334bf30aef82ddf3a8abd1c2eb678f02da6d6e32871152"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/geometry.jl",
+      "bytes": 1067,
+      "sha256": "50165b1353df85559110d2b11b70a5c5d7bd1863873508de5e2259da4d746ad6"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/land.jl",
+      "bytes": 5475,
+      "sha256": "63b15d7520acc6656b972bc75412f20808383aa7777602f59710e56a2b1e7717"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/rivers.jl",
+      "bytes": 58,
+      "sha256": "821dc190a2e9d7c44b4ca9acd95a9418dda7558616d2cbe28953eb12718d1f07"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/snow.jl",
+      "bytes": 6445,
+      "sha256": "c7ce3f905e9e5a2b673bb55fdeda39bc419d39c6304351749e88c12c4f5fd013"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/soil_moisture.jl",
+      "bytes": 13845,
+      "sha256": "80d3123ec2050dcffdeefefb60512292bd1b055fd88e8f0b3b84db53e8eb4fa7"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/soil_temperature.jl",
+      "bytes": 12423,
+      "sha256": "cb573a5782f1c032b40bcca91ef5d66fa011ab77508ea447b5ebcc17fd38c8e1"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/thermodynamics.jl",
+      "bytes": 1151,
+      "sha256": "51de0b0947a3072ef5fa109e5d34157fd94ad6002f631156ba37b4b9b571fdc2"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/vegetation.jl",
+      "bytes": 9355,
+      "sha256": "60f962c89b6a76e18201cd31bf2983a19a33698614fea037a91587e02cf7b9c8"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land_sea_mask.jl",
+      "bytes": 7421,
+      "sha256": "ae1e120345702c55c06c7ff5f8a1add944119d525496949be0349f5e3416ccf9"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/large_scale_condensation.jl",
+      "bytes": 10602,
+      "sha256": "05747dd6ff702307ca145d69c2c5f66f469ed23ac99a3774aad843105c83bb71"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/ocean.jl",
+      "bytes": 14945,
+      "sha256": "8fc39bdc0b8f68300c5f1546ed3652eb5f672cc0db585c1a7ce02873e5f7b701"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/clouds.jl",
+      "bytes": 8061,
+      "sha256": "9fc96f97064a4745559e06d9a975c4636000ec8865f81549dd7b9cacc93bbc5f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/greenhouse_gases.jl",
+      "bytes": 3469,
+      "sha256": "91499e0fd11d4e41435565388f03d4354b8d150cf895783d83d45573b193be32"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/longwave_radiation.jl",
+      "bytes": 13022,
+      "sha256": "1899b317633a80abaf5a7024c88ee14753e835d3084b2adc7d3d8555ff5d5fbe"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/longwave_transmissivity.jl",
+      "bytes": 3322,
+      "sha256": "cd0e734214fcfe3fdace913fbfa67866421ca9c62e8362dc0d0a54cc8bf6856c"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/radiation.jl",
+      "bytes": 2947,
+      "sha256": "8676820bda17c8f9c1ae757792229ed3712c8103eff34c82f825ddeaae73478f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/shortwave_radiation.jl",
+      "bytes": 10200,
+      "sha256": "23cfd713f9133e6baaf4aa1d89214c0b285b9c86b98c09e33cee81f24d365334"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/shortwave_transmissivity.jl",
+      "bytes": 5818,
+      "sha256": "37d42e9846f4be270057330669d6764fedb4f1b4bbb847c1f80f565c8177bd23"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/zenith.jl",
+      "bytes": 13235,
+      "sha256": "d38d7b187f7a02b2e7798bec2ee25269e3b79cdeb4b22b94b586703e42b3881a"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/sea_ice.jl",
+      "bytes": 5531,
+      "sha256": "0dc5bba0d2efd64b5a76e5e3eb16814d3f0f75c125ed1a674d6a70da0d9109a8"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/stochastic_physics.jl",
+      "bytes": 3706,
+      "sha256": "be98da58ea5a68bd453c742547640de2d66e0ef1dda53cc026d6227fa00dcdf1"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/surface_fluxes/boundary_layer.jl",
+      "bytes": 9587,
+      "sha256": "d7f51ea2b3572c0640c39fa195547302961ca46efe1a36ea9f54b3c0d53dc495"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/surface_fluxes/heat.jl",
+      "bytes": 12217,
+      "sha256": "1f022e70277d781a7ac1adb91a451c196ea5deaf8b6971e6ea1a039894a20c28"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/surface_fluxes/humidity.jl",
+      "bytes": 11948,
+      "sha256": "ebbeb2112929f558e2a8454981ea95469af6cfd123e0f687a7956c104f63e915"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/surface_fluxes/momentum.jl",
+      "bytes": 3624,
+      "sha256": "37737f8838ff607cf93ef2ac7f21905dcf9f7d0b3bac1faa7ff412300a225b39"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/surface_fluxes/surface_condition.jl",
+      "bytes": 3361,
+      "sha256": "431a05ee5d18577680e6c85fff5764a784ac7cf54dc826da3dbf306eba272d79"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/surface_fluxes/surface_roughness.jl",
+      "bytes": 2019,
+      "sha256": "a8286fcc8d8ba4be09bae3a58bd0eed8de83d2675907e0cc4d3ecbbe394f07bd"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/tendencies.jl",
+      "bytes": 5473,
+      "sha256": "8ac78b3cb45e239499f6745266be9f8d84f466153351f8b0e9108f939fddfdc2"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/vertical_diffusion.jl",
+      "bytes": 12279,
+      "sha256": "7d05fe041250cdbb36f3cfce7e7a888cf11acf83dc6570e37509dbc30f50eda8"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/abstract_types.jl",
+      "bytes": 865,
+      "sha256": "ddf82132f2643efa2dce2924dbd9c6d6a0e2276d544ee40f372a86a31b57ccbf"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/clock.jl",
+      "bytes": 12528,
+      "sha256": "0c4efe7047e74ea97e649487934b5a158ae3dbe7ea2e9756dfcd3ec0cdfa7d4f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/implicit/implicit_primitive_equations.jl",
+      "bytes": 15760,
+      "sha256": "92fbcf88b62a0c84ec5d7f41b2c88a95e58af25febc893e020b3ee88729195cf"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/implicit/implicit_shallow_water.jl",
+      "bytes": 6870,
+      "sha256": "551320d6eba9d890565ae5c32d5a353e625831685974247226fd8a92fb49bb5f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/steppers/euler_forward.jl",
+      "bytes": 2226,
+      "sha256": "cef4f416bdf4f6461cbf36ca1e87f51c87ef61f17edf6ca893260b2322cbbbb0"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/steppers/general.jl",
+      "bytes": 8283,
+      "sha256": "6ceab56389140d50964a5cd653dad819e96d81179d14e03704a9fa6da668ce7f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/steppers/leapfrog.jl",
+      "bytes": 14166,
+      "sha256": "60f4fdbb0077ce40022a81a26f81f814d7a3792830c7b0ab971a620a464b0885"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/steppers/ncycle_lorenz.jl",
+      "bytes": 7968,
+      "sha256": "849ee94be8ea57c633264f2231326faff92dec77c863dbf54f8db011755010dc"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/steps.jl",
+      "bytes": 12429,
+      "sha256": "e05eae4aca37134a17d0e6f2528953dc50c1794ad7db3a9cdffa9316182fcd73"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/time_integration.jl",
+      "bytes": 8337,
+      "sha256": "aa712aea92afa43da10e85865a00cff73cf0caaec7ed114bf396490e9181cb92"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/transform.jl",
+      "bytes": 9418,
+      "sha256": "1c9f522668aa3b03278aedb7317e6e080351321bc1dcc794c20a40770666fcf7"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/variables/abstract_types.jl",
+      "bytes": 565,
+      "sha256": "4860f0f53d7c1b58a1c7a80f64780e9c762bbc91dfad92a5f750f15c9a639137"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/variables/dimensions.jl",
+      "bytes": 17709,
+      "sha256": "0ae027bfc62ca9a645a90e46cd730802b9b63c9363a69270334ec221a0ebd5f2"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/variables/set.jl",
+      "bytes": 13904,
+      "sha256": "9e1500bcbcf3e0db0ee1392a417b3a7b838338d553b2110b302381fce4dab4c7"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/variables/variables.jl",
+      "bytes": 35631,
+      "sha256": "13a7d744266484db2312b71bbbff97a1352c5c8d4fff2925cd358fcb543b9d8c"
+    }
+  ]
+}

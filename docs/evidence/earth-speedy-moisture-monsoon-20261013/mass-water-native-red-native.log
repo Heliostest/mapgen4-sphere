@@ -1,0 +1,29 @@
+dry-air correction preserves column water: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\mass-water-test.jl:13
+  Expression: all(isapprox.(nextp .* nextq, ps .* q; rtol = 3.0e-15, atol = 1.0e-12))
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\mass-water-test.jl:13 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\mass-water-test.jl:7
+dry-air correction preserves column water: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\mass-water-test.jl:13
+  Expression: all(isapprox.(nextp .* nextq, ps .* q; rtol = 3.0e-15, atol = 1.0e-12))
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\mass-water-test.jl:13 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\mass-water-test.jl:7
+Test Summary:                             | Pass  Fail  Total  Time
+dry-air correction preserves column water |   10     2     12  1.5s
+RNG of the outermost testset: Random.Xoshiro(0xe67a665339bd7d9f, 0x782b07cd4a6ce550, 0x5ba09081f9f94790, 0xbc058072fc62c01c, 0x3d44d369e195d423)
+ERROR: LoadError: Some tests did not pass: 10 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-moisture-monsoon-20261013\mass-water-test.jl:6

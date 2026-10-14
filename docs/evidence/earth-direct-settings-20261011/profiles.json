@@ -1,0 +1,158 @@
+{
+  "current": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    }
+  },
+  "evap065": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "water": {
+      "evaporationFraction": 0.65
+    }
+  },
+  "air065": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595,
+      "airRadiationFraction": 0.65
+    }
+  },
+  "heat11": {
+    "thermal": {
+      "diffusion": 1.1,
+      "emissivity": 0.595
+    }
+  },
+  "air035": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595,
+      "airRadiationFraction": 0.35
+    }
+  },
+  "evap080": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "water": {
+      "evaporationFraction": 0.8
+    }
+  },
+  "soil250": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "water": {
+      "soilCapacityKgM2": 250
+    }
+  },
+  "wind13": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "water": {
+      "windMps": 13
+    }
+  },
+  "wind08": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "water": {
+      "windMps": 8
+    }
+  },
+  "air055": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595,
+      "airRadiationFraction": 0.55
+    }
+  },
+  "wind16": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "water": {
+      "windMps": 16
+    }
+  },
+  "wind13evap060": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "water": {
+      "windMps": 13,
+      "evaporationFraction": 0.6
+    }
+  },
+  "warmAir": {
+    "thermal": {
+      "diffusion": 1.1,
+      "emissivity": 0.56,
+      "airRadiationFraction": 0.35
+    },
+    "water": {
+      "evaporationFraction": 0.65
+    }
+  },
+  "warmAir060": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.56,
+      "airRadiationFraction": 0.35
+    },
+    "water": {
+      "evaporationFraction": 0.6
+    }
+  },
+  "prescribedWind": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "environment": {
+      "dynamicCirculation": false
+    }
+  },
+  "prescribedEvap060": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "water": {
+      "evaporationFraction": 0.6
+    },
+    "environment": {
+      "dynamicCirculation": false
+    }
+  },
+  "direct058": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    }
+  },
+  "direct0575": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    }
+  },
+  "direct0575dt900": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.575
+    }
+  }
+}

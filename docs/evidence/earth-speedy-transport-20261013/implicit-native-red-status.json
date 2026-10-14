@@ -1,0 +1,26 @@
+{
+  "startedUTC": "2026-10-13T06:03:16.982Z",
+  "completedUTC": "2026-10-13T06:03:21.336Z",
+  "script": "docs/evidence/earth-speedy-transport-20261013/implicit-test.jl",
+  "args": [
+    "--startup-file=no",
+    "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-test.jl"
+  ],
+  "code": 1,
+  "before": {
+    "docs/evidence/earth-speedy-transport-20261013/implicit-test.jl": "c1216b6a5211f9118c049e73a1ce7b29c414d69438fda7210c04735268b1a596",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/implicit/implicit_primitive_equations.jl": "92fbcf88b62a0c84ec5d7f41b2c88a95e58af25febc893e020b3ee88729195cf",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/tendencies.jl": "eaa625a4b8af54c3342e1382f46deb3bd6acfd354729df1d58b21b73825d91ce",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/vertical_advection.jl": "5639375a49e9d911d1c1a6de389be005ff3dcb93a63b6671094f2ede6d5b943b",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/adiabatic_conversion.jl": "39755331d129009b857df1d3d85602d869ea1baa4ff8a4ee79c0017ec62176a2"
+  },
+  "after": {
+    "docs/evidence/earth-speedy-transport-20261013/implicit-test.jl": "c1216b6a5211f9118c049e73a1ce7b29c414d69438fda7210c04735268b1a596",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/implicit/implicit_primitive_equations.jl": "92fbcf88b62a0c84ec5d7f41b2c88a95e58af25febc893e020b3ee88729195cf",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/tendencies.jl": "eaa625a4b8af54c3342e1382f46deb3bd6acfd354729df1d58b21b73825d91ce",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/vertical_advection.jl": "5639375a49e9d911d1c1a6de389be005ff3dcb93a63b6671094f2ede6d5b943b",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/adiabatic_conversion.jl": "39755331d129009b857df1d3d85602d869ea1baa4ff8a4ee79c0017ec62176a2"
+  },
+  "sourceUnchanged": true
+}

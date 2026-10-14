@@ -1,0 +1,242 @@
+✖ comparison decodes independent full precision case data without clipping temperature (81.6474ms)
+✖ rejects wrong envelope identity and initial 2001 atmosphere/land inventory SHA (5.6385ms)
+✖ rejects missing, duplicate, reordered or misleading case identities (2.5054ms)
+✖ checks every case model, statistics year and acceptance state (2.1447ms)
+✖ rejects other sigma coordinates even when top-to-bottom order is valid (2.284ms)
+✖ retains monthly, grid, field and physical surface validation with case context (1.557ms)
+✖ out-of-range actual wind fails the comparison instead of clipping for byte encoding (1.6856ms)
+✖ replay defaults to seasonal January near-surface wind (2.0681ms)
+✖ switching cases preserves month, layer and field choice while selecting fresh case data (4.5588ms)
+✖ packed texture cache separates case identity at the same month and level (0.4168ms)
+✖ invalid case or selection cannot fall back silently to another dataset (3.5123ms)
+✔ existing renderer packing reports temperature saturation but preserves raw fields (4.1166ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 1
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 210.9869
+
+✖ failing tests:
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:75:1
+✖ comparison decodes independent full precision case data without clipping temperature (81.6474ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(air.temperatureK instanceof Float64Array)
+  
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:83:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:89:1
+✖ rejects wrong envelope identity and initial 2001 atmosphere/land inventory SHA (5.6385ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:98:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:102:1
+✖ rejects missing, duplicate, reordered or misleading case identities (2.5054ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:114:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:117:1
+✖ checks every case model, statistics year and acceptance state (2.1447ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:128:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:131:1
+✖ rejects other sigma coordinates even when top-to-bottom order is valid (2.284ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:134:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /slab.*sigmaFull/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:136:1
+✖ retains monthly, grid, field and physical surface validation with case context (1.557ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:149:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /seasonal/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:152:1
+✖ out-of-range actual wind fails the comparison instead of clipping for byte encoding (1.6856ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:156:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /slab.*windEastMps/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:159:1
+✖ replay defaults to seasonal January near-surface wind (2.0681ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   caseId: 'reference',
+  -   caseId: 'seasonal',
+      frameIndex: 0,
+      layer: 'wind',
+  +   levelIndex: 0
+  -   levelIndex: 7
+    }
+  
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:161:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { caseId: 'reference', frameIndex: 0, levelIndex: 0, layer: 'wind' },
+    expected: { caseId: 'seasonal', frameIndex: 0, levelIndex: 7, layer: 'wind' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:168:1
+✖ switching cases preserves month, layer and field choice while selecting fresh case data (4.5588ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   caseId: 'seasonal',
+  -   caseId: 'reference',
+      frameIndex: 6,
+      layer: 'temperature',
+      levelIndex: 3
+    }
+  
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:172:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { caseId: 'seasonal', frameIndex: 6, levelIndex: 3, layer: 'temperature' },
+    expected: { caseId: 'reference', frameIndex: 6, levelIndex: 3, layer: 'temperature' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:181:1
+✖ packed texture cache separates case identity at the same month and level (0.4168ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to: '4:7'
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:184:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '4:7',
+    expected: '4:7',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at build\earth-speedy-budgets-sst\comparison-contract.test.mjs:186:1
+✖ invalid case or selection cannot fall back silently to another dataset (3.5123ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedy-budgets-sst/comparison-contract.test.mjs:188:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

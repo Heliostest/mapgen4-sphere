@@ -1,0 +1,33 @@
+real native fields and conservative constraints: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-budgets-sst-20261012\probe.jl:61
+  Expression: abs(landResidual) < 1.0e-6
+   Evaluated: 669.6128678723827 < 1.0e-6
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-budgets-sst-20261012\probe.jl:20
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-budgets-sst-20261012\probe.jl:61 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+{"mode":"slab","initialSHA":"4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68","time":"2001-01-04T00:00:00","initialAir":{"totalKgM2":9930.766760562276,"waterKgM2":45.42158778272519,"dryKgM2":9885.345172779551},"finalAir":{"totalKgM2":9918.84090808859,"waterKgM2":33.49573530903763,"dryKgM2":9885.345172779553},"rawLandResidualMm":3.3029134982598407e-15,"landResidualMm":-669.6128678723827,"landCountersMm":{"soil_clipping_source":0.0,"river_runoff":0.010123667061520097,"snow_cap_outflow":0.0,"deep_drainage":0.0,"snow_clipping_source":669.6128678723827},"airWaterRawResidualMm":-0.23149683577364222,"airWaterExcludingModeCorrectionMm":-0.10590167817167159,"massMode":{"targetDryKgM2":9885.345172779551,"waterCorrectionMm":-0.12559515760197063,"sensibleCorrectionJm2":-7.752585012497474e6,"totalMassCorrectionKgM2":-30.434158689877762,"absoluteMassCorrectionKgM2":30.85980220345015,"maxRawDryRelative":0.00022031701427227546,"maxMemoryRawDryRelative":5.821997201005402e-6,"maxPostDryRelative":1.3322676295501878e-15,"corrections":145}}
+real native fields and conservative constraints: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-budgets-sst-20261012\probe.jl:61
+  Expression: abs(landResidual) < 1.0e-6
+   Evaluated: 669.8425084548531 < 1.0e-6
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-budgets-sst-20261012\probe.jl:20
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-budgets-sst-20261012\probe.jl:61 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+{"mode":"seasonal","initialSHA":"4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68","time":"2001-01-04T00:00:00","initialAir":{"totalKgM2":9930.766760562276,"waterKgM2":45.42158778272519,"dryKgM2":9885.345172779551},"finalAir":{"totalKgM2":9918.819798937453,"waterKgM2":33.47462615789556,"dryKgM2":9885.345172779558},"rawLandResidualMm":-1.0240072678691092e-14,"landResidualMm":-669.8425084548531,"landCountersMm":{"soil_clipping_source":0.0,"river_runoff":0.010121096357485345,"snow_cap_outflow":0.0,"deep_drainage":0.0,"snow_clipping_source":669.8425084548531},"airWaterRawResidualMm":-0.2320773166519281,"airWaterExcludingModeCorrectionMm":-0.10643699229585549,"massMode":{"targetDryKgM2":9885.345172779551,"waterCorrectionMm":-0.1256403243560726,"sensibleCorrectionJm2":-7.756352437400681e6,"totalMassCorrectionKgM2":-30.448630977293796,"absoluteMassCorrectionKgM2":30.890123006122366,"maxRawDryRelative":0.00022035196773950716,"maxMemoryRawDryRelative":5.822918354603246e-6,"maxPostDryRelative":1.3322676295501878e-15,"corrections":145}}
+Test Summary:                                   | Pass  Fail  Total     Time
+real native fields and conservative constraints |   10     2     12  4m25.5s
+RNG of the outermost testset: Random.Xoshiro(0x89e55b7e7661ac84, 0x19e033f826df578c, 0xe395e64b56438950, 0x8abefc2eaa6612d1, 0x14ac5c26431be56f)
+ERROR: LoadError: Some tests did not pass: 10 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-budgets-sst-20261012\probe.jl:19

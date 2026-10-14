@@ -1,0 +1,1159 @@
+{
+  "createdUTC": "2026-10-12T16:11:13.408Z",
+  "url": "http://localhost:8001/build/earth-speedy-budgets-sst/index.html",
+  "records": [
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 6,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 7,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 10238400,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 7,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 283.9073292262836,
+        "windEastMps": -1.7492778131647293,
+        "windNorthMps": 0.24556072848363017,
+        "windSpeedMps": 1.7664294322173726,
+        "pressurePa": 92967.98565239504,
+        "surfacePressurePa": 99165.85136255472,
+        "seaIceConcentration": 0,
+        "rainMmDay": 1.721668902919102
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 6,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 7,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 10238400,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 7,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 286.70894501309095,
+        "windEastMps": -5.505406970840168,
+        "windNorthMps": -0.7856799361551622,
+        "windSpeedMps": 5.561186822671245,
+        "pressurePa": 92911.5737151272,
+        "surfacePressurePa": 99105.67862946902,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.1697316944256793
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "reference",
+      "caseLabel": "原配置 · 50 m 混合层",
+      "caseDescription": "原始独立实验，预算未修正。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 6,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 7,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 10238400,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "reference",
+        "month": 7,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 285.9552842373168,
+        "windEastMps": -5.27938383443132,
+        "windNorthMps": -0.39979965990854044,
+        "windSpeedMps": 5.29450030119158,
+        "pressurePa": 93360.74168512643,
+        "surfacePressurePa": 99584.79113080152,
+        "seaIceConcentration": 0,
+        "rainMmDay": 2.237885591078708
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "reference",
+      "caseLabel": "原配置 · 50 m 混合层",
+      "caseDescription": "原始独立实验，预算未修正。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 1,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "reference",
+        "month": 1,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 286.5165881489725,
+        "windEastMps": -8.756388193979006,
+        "windNorthMps": -3.4475088007209265,
+        "windSpeedMps": 9.410613749097514,
+        "pressurePa": 93425.07855253691,
+        "surfacePressurePa": 99653.41712270604,
+        "seaIceConcentration": 0,
+        "rainMmDay": 4.481094534985815
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 1,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 1,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 287.3828098605219,
+        "windEastMps": -10.781790062396727,
+        "windNorthMps": -5.0862857936046435,
+        "windSpeedMps": 11.921296075671522,
+        "pressurePa": 93067.3100162936,
+        "surfacePressurePa": 99271.79735071318,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.3918120435766923
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 1,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 1,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 283.27739945866546,
+        "windEastMps": -3.37666280835088,
+        "windNorthMps": -0.33210476032790726,
+        "windSpeedMps": 3.3929552447877214,
+        "pressurePa": 93001.5969967485,
+        "surfacePressurePa": 99201.7034631984,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.059844886592229
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 0,
+      "layer": "temperature",
+      "month": 1,
+      "sigma": 0.0625,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 1,
+        "levelIndex": 0,
+        "sigma": 0.0625,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 227.2812635813781,
+        "windEastMps": -8.598124833558591,
+        "windNorthMps": 0.4676891960445589,
+        "windSpeedMps": 8.610835257833804,
+        "pressurePa": 6200.1064664499,
+        "surfacePressurePa": 99201.7034631984,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.059844886592229
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 1,
+      "layer": "temperature",
+      "month": 1,
+      "sigma": 0.1875,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 1,
+        "levelIndex": 1,
+        "sigma": 0.1875,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 219.72901993939777,
+        "windEastMps": -7.451782858160595,
+        "windNorthMps": 1.4292609661919904,
+        "windSpeedMps": 7.587611921721891,
+        "pressurePa": 18600.3193993497,
+        "surfacePressurePa": 99201.7034631984,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.059844886592229
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 2,
+      "layer": "temperature",
+      "month": 1,
+      "sigma": 0.3125,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 1,
+        "levelIndex": 2,
+        "sigma": 0.3125,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 225.6468122949749,
+        "windEastMps": -9.842536900606603,
+        "windNorthMps": 2.077596965739478,
+        "windSpeedMps": 10.059420549507438,
+        "pressurePa": 31000.5323322495,
+        "surfacePressurePa": 99201.7034631984,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.059844886592229
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 3,
+      "layer": "temperature",
+      "month": 1,
+      "sigma": 0.4375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 1,
+        "levelIndex": 3,
+        "sigma": 0.4375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 243.69225515206537,
+        "windEastMps": -6.586416417024908,
+        "windNorthMps": 0.32127184343097215,
+        "windSpeedMps": 6.594247251645691,
+        "pressurePa": 43400.7452651493,
+        "surfacePressurePa": 99201.7034631984,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.059844886592229
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 4,
+      "layer": "temperature",
+      "month": 1,
+      "sigma": 0.5625,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 1,
+        "levelIndex": 4,
+        "sigma": 0.5625,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 256.9180985711202,
+        "windEastMps": -5.210321266810947,
+        "windNorthMps": 0.169268833581172,
+        "windSpeedMps": 5.213070078313197,
+        "pressurePa": 55800.9581980491,
+        "surfacePressurePa": 99201.7034631984,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.059844886592229
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 5,
+      "layer": "temperature",
+      "month": 1,
+      "sigma": 0.6875,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 1,
+        "levelIndex": 5,
+        "sigma": 0.6875,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 266.83097665561957,
+        "windEastMps": -4.350139216923274,
+        "windNorthMps": 0.0026172973064819602,
+        "windSpeedMps": 4.350140004282509,
+        "pressurePa": 68201.1711309489,
+        "surfacePressurePa": 99201.7034631984,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.059844886592229
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 6,
+      "layer": "temperature",
+      "month": 1,
+      "sigma": 0.8125,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 1,
+        "levelIndex": 6,
+        "sigma": 0.8125,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 275.17026719863543,
+        "windEastMps": -3.8300434413175455,
+        "windNorthMps": -0.13132211177935024,
+        "windSpeedMps": 3.8322941248580773,
+        "pressurePa": 80601.3840638487,
+        "surfacePressurePa": 99201.7034631984,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.059844886592229
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": true,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 9,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 10,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 18187200,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 10,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 282.95424706798417,
+        "windEastMps": -2.8086506300851615,
+        "windNorthMps": -0.186451318855804,
+        "windSpeedMps": 2.81483258048873,
+        "pressurePa": 92946.60176303309,
+        "surfacePressurePa": 99143.04188056863,
+        "seaIceConcentration": 0,
+        "rainMmDay": 1.9472868956945422
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": true,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 9,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 10,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 18187200,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 10,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 286.4561930136752,
+        "windEastMps": -4.7312714214622975,
+        "windNorthMps": -0.4162115599982169,
+        "windSpeedMps": 4.749543275539451,
+        "pressurePa": 92914.06945549627,
+        "surfacePressurePa": 99108.34075252936,
+        "seaIceConcentration": 0,
+        "rainMmDay": 2.716748995042313
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 11,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 12,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 23457600,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 12,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 286.2433299608167,
+        "windEastMps": -8.196716113048168,
+        "windNorthMps": -3.326284687711496,
+        "windSpeedMps": 8.845921368721713,
+        "pressurePa": 92933.91486984736,
+        "surfacePressurePa": 99129.50919450384,
+        "seaIceConcentration": 0,
+        "rainMmDay": 6.61901928538639
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": true,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 1,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 1,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 287.3828098605219,
+        "windEastMps": -10.781790062396727,
+        "windNorthMps": -5.0862857936046435,
+        "windSpeedMps": 11.921296075671522,
+        "pressurePa": 93067.3100162936,
+        "surfacePressurePa": 99271.79735071318,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.3918120435766923
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    {
+      "ready": true,
+      "playing": false,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 1,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 1,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 287.3828098605219,
+        "windEastMps": -10.781790062396727,
+        "windNorthMps": -5.0862857936046435,
+        "windSpeedMps": 11.921296075671522,
+        "pressurePa": 93067.3100162936,
+        "surfacePressurePa": 99271.79735071318,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.3918120435766923
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    }
+  ],
+  "console": [],
+  "playback": {
+    "playStarted": {
+      "ready": true,
+      "playing": true,
+      "caseId": "seasonal",
+      "caseLabel": "修复后 · 规定季节海温",
+      "caseDescription": "相同修复；海温边界外部热量单独记账。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 9,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 10,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 18187200,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "seasonal",
+        "month": 10,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 282.95424706798417,
+        "windEastMps": -2.8086506300851615,
+        "windNorthMps": -0.186451318855804,
+        "windSpeedMps": 2.81483258048873,
+        "pressurePa": 92946.60176303309,
+        "surfacePressurePa": 99143.04188056863,
+        "seaIceConcentration": 0,
+        "rainMmDay": 1.9472868956945422
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    "playSwitched": {
+      "ready": true,
+      "playing": true,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 9,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 10,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 18187200,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 10,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 286.4561930136752,
+        "windEastMps": -4.7312714214622975,
+        "windNorthMps": -0.4162115599982169,
+        "windSpeedMps": 4.749543275539451,
+        "pressurePa": 92914.06945549627,
+        "surfacePressurePa": 99108.34075252936,
+        "seaIceConcentration": 0,
+        "rainMmDay": 2.716748995042313
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    "playEnded": {
+      "ready": true,
+      "playing": false,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 11,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 12,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 23457600,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 12,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 286.2433299608167,
+        "windEastMps": -8.196716113048168,
+        "windNorthMps": -3.326284687711496,
+        "windSpeedMps": 8.845921368721713,
+        "pressurePa": 92933.91486984736,
+        "surfacePressurePa": 99129.50919450384,
+        "seaIceConcentration": 0,
+        "rainMmDay": 6.61901928538639
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    "restartPlay": {
+      "ready": true,
+      "playing": true,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 1,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 1,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 287.3828098605219,
+        "windEastMps": -10.781790062396727,
+        "windNorthMps": -5.0862857936046435,
+        "windSpeedMps": 11.921296075671522,
+        "pressurePa": 93067.3100162936,
+        "surfacePressurePa": 99271.79735071318,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.3918120435766923
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    },
+    "manualPaused": {
+      "ready": true,
+      "playing": false,
+      "caseId": "slab",
+      "caseLabel": "修复后 · 自由海温",
+      "caseDescription": "排水记账和干空气质量约束，海温自由演化。",
+      "initialAtmLandSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "initialStockYear": 2001,
+      "statisticsYear": 2006,
+      "caseIds": [
+        "reference",
+        "slab",
+        "seasonal"
+      ],
+      "frameIndex": 0,
+      "levelIndex": 7,
+      "layer": "wind",
+      "month": 1,
+      "sigma": 0.9375,
+      "orientation": {
+        "x": 820,
+        "y": 420,
+        "zoom": 0.26
+      },
+      "temperatureSaturated": 0,
+      "presentedTimeS": 26136000,
+      "probeCell": 471,
+      "probe": {
+        "caseId": "slab",
+        "month": 1,
+        "levelIndex": 7,
+        "sigma": 0.9375,
+        "cell": 471,
+        "longitudeDeg": 116.25,
+        "latitudeDeg": 12.024699180565825,
+        "temperatureK": 287.3828098605219,
+        "windEastMps": -10.781790062396727,
+        "windNorthMps": -5.0862857936046435,
+        "windSpeedMps": 11.921296075671522,
+        "pressurePa": 93067.3100162936,
+        "surfacePressurePa": 99271.79735071318,
+        "seaIceConcentration": 0,
+        "rainMmDay": 3.3918120435766923
+      },
+      "acceptance": {
+        "formalDefaultUnchanged": true,
+        "regionalClimateAccepted": false
+      },
+      "source": "build/earth-speedy-budgets-sst/comparison-display.json"
+    }
+  }
+}

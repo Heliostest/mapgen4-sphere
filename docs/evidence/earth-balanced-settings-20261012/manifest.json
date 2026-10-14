@@ -1,0 +1,333 @@
+{
+  "generatedAt": "2026-10-12T00:42:07.702Z",
+  "selected": "mix4cool",
+  "threeTargetsPass": true,
+  "formalDefaultsUnchanged": true,
+  "defaultAccumulationUnchanged": true,
+  "allFinalFullArmsFreshlyIntegratedWithSameBundle": true,
+  "initialStockSha256": "952addee2268260c7acb5cee1f2fe576414c88539719b3b6559d624d5a89ceca",
+  "pairedScreenshotConditionsIdentical": true,
+  "formal": {
+    "path": "scenes/earth-land-sea/earth-simulation.json",
+    "bytes": 11364186,
+    "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+  },
+  "inputs": [
+    {
+      "path": "build/earth-lakes-freeze-temperate/lake-day0.json",
+      "bytes": 10819303,
+      "sha256": "24bfe8b9a4768000574aa3febf3ed2be692ed2a071346175a9f0463280c2854b"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/gpcc-grid.json",
+      "bytes": 1066816,
+      "sha256": "01ed704dd31cec9376d27fafd902cfeb5c77862f7d8b3cf2e9e6b5d4226dbbc4"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/nsidc-same-grid.json",
+      "bytes": 338265,
+      "sha256": "9d6b40b75acc3fa2424708c4d81065f7c7c30d7ab395f44f0d8815419be62fb2"
+    }
+  ],
+  "code": [
+    {
+      "path": "water.ts",
+      "bytes": 40595,
+      "sha256": "5f34b1d6f68b4217d343504e3d299f7acb63857f5559caac7f01775198f4c0ec"
+    },
+    {
+      "path": "runtime-state.ts",
+      "bytes": 16917,
+      "sha256": "e2e42a62600114bdbf8e30ba187293716b2b8ac707ac3a2bc311bdbddbae8677"
+    },
+    {
+      "path": "thermal-runtime.ts",
+      "bytes": 51881,
+      "sha256": "1ee7a5c63b0c0a011d45a9bc347205433ffd9c198a19f95fd7f6ed78d7eb0d0e"
+    },
+    {
+      "path": "terrain-water.ts",
+      "bytes": 16688,
+      "sha256": "a81c5b8d1570e2594e2e517eea2a084a638ddd5675540ab5d68a678ed92412d7"
+    },
+    {
+      "path": "refinement-surface.ts",
+      "bytes": 30731,
+      "sha256": "481b04f6bcc0c55acd776bc69935a58a7369f7f9d516262e215a508da5b02503"
+    },
+    {
+      "path": "environment.ts",
+      "bytes": 15159,
+      "sha256": "32707f28c677b42564ce0ad5056679eab5ecaff5125193f2917416b1fa112d1b"
+    },
+    {
+      "path": "water-panel.ts",
+      "bytes": 8015,
+      "sha256": "4941c1b7140f1900add9e37ca8944da9fdb3ebf133566d42b6562a8d2f7d70db"
+    },
+    {
+      "path": "tests/water.test.ts",
+      "bytes": 8847,
+      "sha256": "401ad6540d3a48e964304b4b938c74af3eac81fdcdd14d562f5575798b8dd0f0"
+    },
+    {
+      "path": "tests/simulation.test.ts",
+      "bytes": 17640,
+      "sha256": "04c5e681349fc8e95089905b4b3a490f94b40774ef56ea440c6400a63ee9d170"
+    },
+    {
+      "path": "build/_bundle.js",
+      "bytes": 344143,
+      "sha256": "6b773d7466caa35d550721450a409f9c75f219640a0c3b0488d2c42769e72af9"
+    },
+    {
+      "path": "build/_worker.js",
+      "bytes": 15607,
+      "sha256": "3add44407c9fca21b06ff9662ff0a680500852934b946439095f77b473cd18b3"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "build/earth-balanced-settings/full.mjs",
+      "bytes": 326606,
+      "sha256": "2b0a68b414eadb4424943da8033a740ff66cb284b7c906a34746f4fea0917dbf"
+    },
+    {
+      "path": "build/earth-balanced-settings/screen.mjs",
+      "bytes": 250677,
+      "sha256": "8b215f719cc0e1a49d006f54307ef66fe9e22cbf8ede2a7129d9b355d46daf77"
+    },
+    {
+      "path": "build/earth-balanced-settings/node-tests.log",
+      "bytes": 51402,
+      "sha256": "6d8d0b54e5d10fa794df9a856f5aa45c33e59524433f23b21f5686657b53eef5"
+    },
+    {
+      "path": "build/earth-balanced-settings/full-direct-day0.json",
+      "bytes": 10833035,
+      "sha256": "f41ed65797741421351e49f612cf108582321ad3d781d39ba41d3cc411e2b5cf"
+    },
+    {
+      "path": "build/earth-balanced-settings/full-direct-day365.json",
+      "bytes": 11812528,
+      "sha256": "510ecd530f2ea6d39dd8bf7b2b265d5e8deccd7e527db38a9e450e6435b36a93"
+    },
+    {
+      "path": "build/earth-balanced-settings/full-mild-day0.json",
+      "bytes": 10833035,
+      "sha256": "8f2ed87ef2dc16d4ce2223a34d62bdc78100d6ef87d957d3f85d73d70c4313b7"
+    },
+    {
+      "path": "build/earth-balanced-settings/full-mild-day365.json",
+      "bytes": 11785187,
+      "sha256": "f3134733b5a6f6c2a10934515500a8164aa17558ed6aaed75cea1014b3ca0d09"
+    },
+    {
+      "path": "build/earth-balanced-settings/full-mix4-day0.json",
+      "bytes": 10833035,
+      "sha256": "fe45db68c6c6d24a78eda65d156dfcd57ffe3c547d3f25163c9093ffde19d545"
+    },
+    {
+      "path": "build/earth-balanced-settings/full-mix4-day365.json",
+      "bytes": 11875505,
+      "sha256": "3f1b17df0f9cdc4cbb06bce839e806421f9e979ce4ee3e3d649c1b9b3b5d36cb"
+    },
+    {
+      "path": "build/earth-balanced-settings/full-mix4cool-day0.json",
+      "bytes": 10833034,
+      "sha256": "6f57886a35d5c89a915c6b675a552f98c84b05fefa1b2f0bf02a25cb41115004"
+    },
+    {
+      "path": "build/earth-balanced-settings/full-mix4cool-day365.json",
+      "bytes": 11883742,
+      "sha256": "3bbc7262a21d4e188e8c2695e1fd422a3c9df7306ea16bdfd92e101da26645ba"
+    },
+    {
+      "path": "build/earth-balanced-settings/before-preview.html",
+      "bytes": 7887,
+      "sha256": "7c897430e0c582515c1f922847f336b054b190260efc2a7b8588db1fa36e4cff"
+    },
+    {
+      "path": "build/earth-balanced-settings/balanced-preview.html",
+      "bytes": 7892,
+      "sha256": "b0e34042104ea9e6a1e2105f5e32573fc0a5e288493ab6a6cfed29e353adedf2"
+    },
+    {
+      "path": "build/earth-balanced-settings/alternate-preview.html",
+      "bytes": 7857,
+      "sha256": "f57ccfdcfd6ad6508c12edfa523f82ca94e532907f74efe289342863805d91a2"
+    },
+    {
+      "path": "build/earth-balanced-settings/initial-preview.html",
+      "bytes": 7868,
+      "sha256": "343cd0f03caa32e767b60705481106238826cb20a8fa05ab5a42220b8788f87a"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/acceptance.json",
+      "bytes": 48417,
+      "sha256": "7dd482251f026314db0719fb77917b41f5ff8d15167a26f3f1512e2c1f670c86"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/after-year1.jpg",
+      "bytes": 71567,
+      "sha256": "35dfb4e44ef43799e9d51408a718e72de62981202983c2e8c6ca24f895f998ae"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/analyze.mjs",
+      "bytes": 15419,
+      "sha256": "d7adbd3ceef65c52d77fb0971a85f47b0318cc889d45cefaa879276aea0a570b"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/before-year1.jpg",
+      "bytes": 71501,
+      "sha256": "df16f839f866f0c9c0270cddb1ca4f10b12dd3f01e6abb0c1420194fa07b3c4a"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/browser-checks.json",
+      "bytes": 1456,
+      "sha256": "33cdf98a3464531531f05d717176daa0189ba6908775f8dde78dbca382c1cf3d"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/full-direct.json",
+      "bytes": 25587,
+      "sha256": "7bbf1cc5d33dc436be5f541d01f471ca21669b9dc8d370146bb53448ad056128"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/full-mild.json",
+      "bytes": 25714,
+      "sha256": "f383a962bf2a046de4218d5073380e6812f63b78c739cff9aa1b5dcfb677e39a"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/full-mix4.json",
+      "bytes": 25624,
+      "sha256": "1333aeadc20f289d46ff5d65a76c4be7af07babd44ee5e47962127471527eec6"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/full-mix4cool.json",
+      "bytes": 25617,
+      "sha256": "216bb8ca563352f9809b05c00c9e8765cad75f6e51906f773e957a875ed7d11d"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/full.ts",
+      "bytes": 11396,
+      "sha256": "784a133c34e36e2d07b79e61452988b31bcc5b07c1ac27f6324561f0454b8d18"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/inspect.mjs",
+      "bytes": 1860,
+      "sha256": "4ed458c7eb1a489a181073a5ca3859c913e59416a7791df6c2750e620d935a9f"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/manifest.mjs",
+      "bytes": 3625,
+      "sha256": "2c6751765629ccce689998e0e0c567d949712abce34f77b70ff1466c02634aae"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/preview.mjs",
+      "bytes": 2331,
+      "sha256": "89cfc2dcca81d88122b837af273c1e48780416a58fb21646df189d5c0a96aadf"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/profiles.json",
+      "bytes": 2077,
+      "sha256": "8b5b092b75bef99657379976f67c3b878b55ff92b10042508aea2c811509ceaa"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/protocol.md",
+      "bytes": 2910,
+      "sha256": "dd56ca8a55a24f93ce1103a07af3ee1f5798fa0ce06fe2323e17b87295c81468"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/rejected-runs.json",
+      "bytes": 1776,
+      "sha256": "ad208c760941c42d934345267ad875ea2bc872c278bcd51808d1cae2c791186e"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/report.md",
+      "bytes": 7686,
+      "sha256": "c271ed888a163e06c66c561d534b2dfd9a4f5d5ded6f2e7296c4ed05d51272af"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-direct.json",
+      "bytes": 22664,
+      "sha256": "a724cac7b5ac623722eb107ee4cbc41afb9875e702a9f41c13b0ebb3722daed9"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-evap045.json",
+      "bytes": 22667,
+      "sha256": "dfdfdb549e7af88d76c6b4f95e4e9643d5633d04b6d888447a86a2f34be86321"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mild.json",
+      "bytes": 22829,
+      "sha256": "cf3e872235e88d40d31319b30552ce68e67174aff5d78c59592c199e85e65326"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix2evap048.json",
+      "bytes": 22710,
+      "sha256": "ba5f22a856df4efedc75cdff7475ac9b78450282dcf36e8382a0695bfe17893e"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix3.json",
+      "bytes": 22640,
+      "sha256": "646289552ef9dd425ab13e191252b8579dd7fdb3cf421c2fe3cbcf6c2f50edfd"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix3heat11.json",
+      "bytes": 22636,
+      "sha256": "5ad7ab28d2e37a8dfe4166d7a8d25fbe27b496a269e6eb257f23c9a0e803e940"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix3heat14.json",
+      "bytes": 22457,
+      "sha256": "ca088943cca62584e2acbc06f2ef9d80abe70e4c2c11904a5b7464f3890a2a8e"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix4.json",
+      "bytes": 22712,
+      "sha256": "3fe1fc0f0a516b6c4763b9a04a16f30a8f49472eb8cb059eacabb57f4dd9a0c9"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix4cool.json",
+      "bytes": 22701,
+      "sha256": "5b5d65cb8055bdee667d7f571f7fef3564b531383b677c921204b7981cb7c905"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix4cooldt900.json",
+      "bytes": 22714,
+      "sha256": "4e5329894a9b68d7b045372792a3f385f717431e50abf9c7f127c8347c57909c"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix4dt900.json",
+      "bytes": 22719,
+      "sha256": "1813d9b036eaeb8d4186eaa3833a76eefee32316a327a9f6123c82c262c7c489"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix6.json",
+      "bytes": 22625,
+      "sha256": "1653dfc6adbc95f53385ec32cad4dc84321aa437b853020572021e4dc301c55b"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-mix6cool.json",
+      "bytes": 22658,
+      "sha256": "0b5a8a085bedb85d44ae9c2f9287da9ef08a6324002a21cb944092c7b2af87e2"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen-ocean10.json",
+      "bytes": 22706,
+      "sha256": "62cb5fc0234b60223406fdb0e9778f278923011db3ba62168500e28cde36ea8a"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/screen.ts",
+      "bytes": 8123,
+      "sha256": "a03d88eab61533c78359707bdd89d96045028740f0e943001138991ac7a2488b"
+    },
+    {
+      "path": "docs/evidence/earth-balanced-settings-20261012/setup.mjs",
+      "bytes": 2145,
+      "sha256": "1225720fbe374e07156275a73dfb541f0cc51a19ee798118a20b87bbcb9081f4"
+    }
+  ]
+}

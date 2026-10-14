@@ -1,0 +1,44 @@
+native spherical shared carrier and native RAW conservation: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:85
+  Expression: native.totalKgM2 == (baseline.rows[step]).airKgM2
+   Evaluated: 9931.116430208738 == 9931.11643020874
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:85 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:61
+native spherical shared carrier and native RAW conservation: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:85
+  Expression: native.totalKgM2 == (baseline.rows[step]).airKgM2
+   Evaluated: 9931.807793233578 == 9931.807793233582
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:85 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:61
+native spherical shared carrier and native RAW conservation: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:85
+  Expression: native.totalKgM2 == (baseline.rows[step]).airKgM2
+   Evaluated: 9932.93089104484 == 9932.930891044838
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:85 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:61
+Test Summary:                                               | Pass  Fail  Total   Time
+native spherical shared carrier and native RAW conservation |   71     3     74  13.8s
+RNG of the outermost testset: Random.Xoshiro(0x6dafb1785e1bd0d3, 0xa4c1f725a36278ab, 0x793320b7ad3f1830, 0xa5533f5e16f705e0, 0x3f3bf6124b3fdce4)
+ERROR: LoadError: Some tests did not pass: 71 passed, 3 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-test.jl:120

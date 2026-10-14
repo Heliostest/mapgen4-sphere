@@ -1,0 +1,123 @@
+{"scope":"Scalar-projected derivative of frozen 2001 state, V3 native dynamics-only, no physics, no global mass or SST constraint; nominal 30 min, both startup spans and first full leapfrog span.","initialSHA":"2b1bbf5955da5d88ff770605b945b19fb2c8cf1ff172bc7fa2d80d20ad5fbdaa","projection":{"sourceSHA":"8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8","beforeStateSHA":"db7d98471b367442f69211dddcfc5952d444e45988c407d7122b122e2a3a7a6f","afterStateSHA":"c63a33815746b521924f9e2a7a3123c69f645d8b0a78db45982df829629f735b","beforeInventory":{"time":"2001-01-01T00:00:00","previous":{"totalKgM2":9930.766760562276,"waterKgM2":45.42158778272519,"dryKgM2":9885.345172779551,"sensibleHeatProxyJm2":2.525789736909026e9},"current":{"totalKgM2":9930.766760562276,"waterKgM2":45.42158778272519,"dryKgM2":9885.345172779551,"sensibleHeatProxyJm2":2.525789736909026e9}},"afterInventory":{"time":"2001-01-01T00:00:00","previous":{"totalKgM2":9930.76681577402,"waterKgM2":45.421586024923684,"dryKgM2":9885.345229749097,"sensibleHeatProxyJm2":2.5257897505154066e9},"current":{"totalKgM2":9930.766815774025,"waterKgM2":45.42158602492369,"dryKgM2":9885.3452297491,"sensibleHeatProxyJm2":2.5257897505154066e9}},"rows":[{"field":"temperature","step":1,"beforeSHA":"ba186948f4fa5c085b03c515dbd3e6f25da31b81a8a2f2ea3ef8d15c2c76aace","afterSHA":"6841d1e1fb872a39fdf097578b953661b01d18a0c6ef0f9cb4f1023b7ebfd20e","validSHA":"ffa374d2b25e5545c55e0b3ee98198de2a6f5ed4f429039535dc373d960615cc","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":0.0014082203064313974},{"field":"temperature","step":2,"beforeSHA":"ba186948f4fa5c085b03c515dbd3e6f25da31b81a8a2f2ea3ef8d15c2c76aace","afterSHA":"6841d1e1fb872a39fdf097578b953661b01d18a0c6ef0f9cb4f1023b7ebfd20e","validSHA":"ffa374d2b25e5545c55e0b3ee98198de2a6f5ed4f429039535dc373d960615cc","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":0.0014082203064313974},{"field":"humidity","step":1,"beforeSHA":"d05396231d6f211cd2335e0b93516b064c65e3a78b5791e3e63955b9fc575a79","afterSHA":"0a5eafa8f77e6e0352e4080f2ada80e43944cc49d826a206ea4723e37cd8087d","validSHA":"0766c7fe4d8eef85262791acc88edda1721af04bef0da2d7c5f00c4460fbe1ba","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":5.012155557002016e-6},{"field":"humidity","step":2,"beforeSHA":"d05396231d6f211cd2335e0b93516b064c65e3a78b5791e3e63955b9fc575a79","afterSHA":"0a5eafa8f77e6e0352e4080f2ada80e43944cc49d826a206ea4723e37cd8087d","validSHA":"0766c7fe4d8eef85262791acc88edda1721af04bef0da2d7c5f00c4460fbe1ba","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":5.012155557002016e-6},{"field":"pressure","step":1,"beforeSHA":"3608dd429ffacdcc8ecfef570eb7170cf2d5a3afe7e76839c353494deb3b8806","afterSHA":"bae32a29dee5ca4ebedd6c5af1aac9dc92dda80091cdc86600d76f10ddac268c","validSHA":"a1d13d148d796108c1b14283c91c21f70ab1619888709cee563e1c758cbb23be","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":3.2822845340660426e-5},{"field":"pressure","step":2,"beforeSHA":"3608dd429ffacdcc8ecfef570eb7170cf2d5a3afe7e76839c353494deb3b8806","afterSHA":"bae32a29dee5ca4ebedd6c5af1aac9dc92dda80091cdc86600d76f10ddac268c","validSHA":"a1d13d148d796108c1b14283c91c21f70ab1619888709cee563e1c758cbb23be","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":3.2822845340660426e-5},{"field":"vorticity","step":1,"beforeSHA":"027fb28115c3844582978ca75d5e258fd682269a23260e206ab312fbbd1af6ca","afterSHA":"9b26571fee6ca074f004c14b55fa9392ae043def71e52f4accd6581f4d7937d0","validSHA":"1681a6862f5374a8859b7ef3356bd42a8e13d64b70fb148ad8772e6236fe05a7","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":0.026160054151343277},{"field":"vorticity","step":2,"beforeSHA":"027fb28115c3844582978ca75d5e258fd682269a23260e206ab312fbbd1af6ca","afterSHA":"9b26571fee6ca074f004c14b55fa9392ae043def71e52f4accd6581f4d7937d0","validSHA":"1681a6862f5374a8859b7ef3356bd42a8e13d64b70fb148ad8772e6236fe05a7","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":0.026160054151343277},{"field":"divergence","step":1,"beforeSHA":"1e3a245423784b239161f607059567c84aceede9fb423e0058b7eb81c683bc93","afterSHA":"6af053058d76415cd19c2b4ad624d15940a1890407438abc7fc501fe99b25a9b","validSHA":"55b785a0cac9996e108bead83bb99a923e874dd49fd496e6ab3ee6baa7057a5c","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":0.03862065681036475},{"field":"divergence","step":2,"beforeSHA":"1e3a245423784b239161f607059567c84aceede9fb423e0058b7eb81c683bc93","afterSHA":"6af053058d76415cd19c2b4ad624d15940a1890407438abc7fc501fe99b25a9b","validSHA":"55b785a0cac9996e108bead83bb99a923e874dd49fd496e6ab3ee6baa7057a5c","validCoefficientsBitwiseUnchanged":true,"removedAuxiliaryMax":0.03862065681036475}],"history":[{"field":"temperature","action":"subtract_proven_stationary_auxiliary_only","maxGridChange":0.0014377913014129717,"beforeSHA":"8b0e4307ddd185aa5b2388c760b3663de77151e25b2cbea42e005a59e036c87b","afterSHA":"5b4d090d3b93553ee0f9047fdcd533d4afaafd73b30873ae18b1914e0f2cac66","oldReconstructionMismatch":null},{"field":"humidity","action":"subtract_verified_native_reconstruction_difference","maxGridChange":2.430896310570002e-5,"beforeSHA":"2a2e2a98a80e8dc64f00719344f68a0f9417422bbfefad9ac43cdec9c3c4f363","afterSHA":"1f575b442abba68dea8e04f02ecf38d2612bd536ffc00e0df83843080e833ac6","oldReconstructionMismatch":0.0},{"field":"pressure","action":"subtract_proven_stationary_auxiliary_only","maxGridChange":0.00013829742077753338,"beforeSHA":"9eed1f4cfb49ebc38ab7492b8b11c0a15c8dbfdce5b6105254ccc0a986409750","afterSHA":"1d61805c80f7aaf1212818259d24a73806e383e0be4b2431592d01da8f6c51d8","oldReconstructionMismatch":null},{"field":"vorticity","action":"subtract_proven_stationary_auxiliary_only","maxGridChange":0.22403512086493826,"beforeSHA":"2aa722710bfd2f13f4ae2e53af5771a4a58da88d460625ca5e9716e8cecb57c9","afterSHA":"e4c1efcb080dcdd26950a33c80a1be834a5d4ea7bfe3a2b35603f4dcc0b4a4e9","oldReconstructionMismatch":null},{"field":"divergence","action":"subtract_proven_stationary_auxiliary_only","maxGridChange":0.19502961482603648,"beforeSHA":"f907dc145f1ecf8e3a498533120398c8230d08c03e299dee5cf578bfd0f804e8","afterSHA":"3fc4cfbaf292c04f31992831ded567187f3dab163f741af2c20ed34a54fa7dc0","oldReconstructionMismatch":null}],"currentReconstruction":[{"field":"temperature","preexistingStoredGridMismatch":0.0,"maxGridChange":0.0014377913014129717,"beforeSHA":"8b0e4307ddd185aa5b2388c760b3663de77151e25b2cbea42e005a59e036c87b","afterSHA":"e714e622b34f63f9ffa68ec6cd5ab2b08a56b433d9880858361e90d559c39178"},{"field":"humidity","preexistingStoredGridMismatch":0.0,"maxGridChange":2.430896310570002e-5,"beforeSHA":"2a2e2a98a80e8dc64f00719344f68a0f9417422bbfefad9ac43cdec9c3c4f363","afterSHA":"1f575b442abba68dea8e04f02ecf38d2612bd536ffc00e0df83843080e833ac6"},{"field":"pressure","preexistingStoredGridMismatch":0.0,"maxGridChange":0.00013829742077575702,"beforeSHA":"9eed1f4cfb49ebc38ab7492b8b11c0a15c8dbfdce5b6105254ccc0a986409750","afterSHA":"063d4d2df0848eaf3e27374444fcb49b178f556cb9b36f3da061ca1502c455e1"},{"field":"vorticity","preexistingStoredGridMismatch":0.0,"maxGridChange":0.22403512086494004,"beforeSHA":"2aa722710bfd2f13f4ae2e53af5771a4a58da88d460625ca5e9716e8cecb57c9","afterSHA":"c292658772502beaf21f216da608d83532ce322889bbf468b8f39351024fb023"},{"field":"divergence","preexistingStoredGridMismatch":0.0,"maxGridChange":0.1950296148260371,"beforeSHA":"f907dc145f1ecf8e3a498533120398c8230d08c03e299dee5cf578bfd0f804e8","afterSHA":"b6b079aa594e5e31aee60150ced537369137e0332885a7e4f96720c5c417e16d"},{"field":"u","preexistingStoredGridMismatch":0.0,"maxGridChange":0.0,"beforeSHA":"7a217f88c0e8522d63d7bc7b23b29079c742f552169394e9663d5abae363752b","afterSHA":"7a217f88c0e8522d63d7bc7b23b29079c742f552169394e9663d5abae363752b"},{"field":"v","preexistingStoredGridMismatch":0.0,"maxGridChange":0.0,"beforeSHA":"8cab3a3e33f5562c112e34c9fc42b5df6e6cc40cf0c02d308ddb046f253eda7c","afterSHA":"8cab3a3e33f5562c112e34c9fc42b5df6e6cc40cf0c02d308ddb046f253eda7c"}],"stationaryHistoryEvidence":"readonly-scalar-auxiliary.json stationary auxiliary provenance","deferredHistoryFields":[],"historyLimitation":"All historical scalar changes have verified provenance; old u/v retained","massConstraintApplied":false,"clockLandOceanReset":false},"initial":{"airKgM2":9930.766815774025,"rawWaterMm":45.42158602492369,"gridWaterMm":45.42158602492369,"rawMinQ":1.9944686881696857e-5,"clipWaterMm":0.0},"rows":[{"step":1,"counter":0,"span":900.0,"time":"2001-01-01T00:15:00","airKgM2":9931.11643020874,"rawWaterMm":45.425146288199734,"gridWaterMm":45.42514628819973,"rawMinQ":2.0856793445380956e-5,"clipWaterMm":0.0,"airResidualKgM2":0.3496144347154768,"rawWaterResidualMm":0.003560263276042974,"gridWaterResidualMm":0.003560263276035869},{"step":2,"counter":1,"span":1800.0,"time":"2001-01-01T00:30:00","airKgM2":9931.807793233582,"rawWaterMm":45.432003083020156,"gridWaterMm":45.432003083020156,"rawMinQ":2.0461557806910064e-5,"clipWaterMm":0.0,"airResidualKgM2":1.0409774595573253,"rawWaterResidualMm":0.01041705809646487,"gridWaterResidualMm":0.01041705809646487},{"step":3,"counter":2,"span":3600.0,"time":"2001-01-01T01:00:00","airKgM2":9932.930891044838,"rawWaterMm":45.45390962208297,"gridWaterMm":45.453909622082975,"rawMinQ":1.8296418445248428e-5,"clipWaterMm":0.0,"airResidualKgM2":2.164075270813555,"rawWaterResidualMm":0.032323597159276574,"gridWaterResidualMm":0.03232359715928368}]}
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:44
+  Expression: abs(r.airResidualKgM2) < 1.0e-9
+   Evaluated: 0.3496144347154768 < 1.0e-9
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:44 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:43
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:45
+  Expression: abs(r.rawWaterResidualMm) < 1.0e-10
+   Evaluated: 0.003560263276042974 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:45 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:43
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:46
+  Expression: abs(r.gridWaterResidualMm) < 1.0e-10
+   Evaluated: 0.003560263276035869 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:46 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:43
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:44
+  Expression: abs(r.airResidualKgM2) < 1.0e-9
+   Evaluated: 1.0409774595573253 < 1.0e-9
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:44 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:43
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:45
+  Expression: abs(r.rawWaterResidualMm) < 1.0e-10
+   Evaluated: 0.01041705809646487 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:45 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:43
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:46
+  Expression: abs(r.gridWaterResidualMm) < 1.0e-10
+   Evaluated: 0.01041705809646487 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:46 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:43
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:44
+  Expression: abs(r.airResidualKgM2) < 1.0e-9
+   Evaluated: 2.164075270813555 < 1.0e-9
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:44 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:43
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:45
+  Expression: abs(r.rawWaterResidualMm) < 1.0e-10
+   Evaluated: 0.032323597159276574 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:45 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:43
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:46
+  Expression: abs(r.gridWaterResidualMm) < 1.0e-10
+   Evaluated: 0.03232359715928368 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:46 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:43
+Test Summary:                                               | Fail  Total  Time
+closed native air and water inventory at every startup span |    9      9  1.4s
+RNG of the outermost testset: Random.Xoshiro(0x933553745eb229c9, 0x54574528e5e4086f, 0x0c5fab8980e051eb, 0x673817c47b7a54c6, 0xa0a222fdf5182e17)
+ERROR: LoadError: Some tests did not pass: 0 passed, 9 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-projected-native-red.jl:50

@@ -49,9 +49,10 @@ try {
             gl.uniform1i(atlas.u_coast,coast?1:0);gl.drawArrays(gl.TRIANGLES,0,3);
         });
     }
-    function frame(layer:'surface'|'original',ice:number,biome=0,color=[80,120,160],outlined=false){
+    function frame(layer:'surface'|'original',ice:number,biome=0,color=[80,120,160],outlined=false,timeS=0,cloud=false){
         const pixels=Uint8Array.from(Array.from({length:12},()=>[...color,Math.round(ice*255)]).flat());
-        r.updatePlanet({...makePlanetView(DEFAULT_PLANET,DEFAULT_ORBIT,0,layer,'surface'),surface:{width:4,height:3,timeS:0,pixels}});
+        r.updatePlanet({...makePlanetView({...DEFAULT_PLANET,obliquityRad:0},DEFAULT_ORBIT,timeS,layer,'surface'),surface:{width:4,height:3,timeS:0,pixels},
+            weather:cloud?{width:4,height:3,timeS:0,pixels:new Uint8Array(48).fill(255)}:null});
         r.fbo_drape.clear(0,0,0,0);r.drawDrape({...params,biome_colors:biome,
             outline_strength:outlined?3:0,outline_depth:outlined?1:0});
         // Include off-center radial outline taps, which vanish at globe center.
@@ -66,6 +67,16 @@ try {
     }
     const checks:{name:string;pass:boolean;detail:unknown}[]=[];
     const check=(name:string,pass:boolean,detail:unknown)=>checks.push({name,pass,detail});
+    geometry(.1);elevation(.65,0);
+    const center=(pixels:Uint8Array)=>Array.from(pixels.subarray(4*(320*640+320),4*(320*640+320)+3));
+    for(const cloud of [false,true]) {
+        const noon=center(frame('surface',0,0,[80,120,160],false,0,cloud));
+        const midnight=center(frame('surface',0,0,[80,120,160],false,43200,cloud));
+        check(`surface and clouds ${cloud}: midnight is shaded while geography stays fixed`,
+            noon.every((v,i)=>v>midnight[i]*4)&&midnight.every(v=>v>0),{noon,midnight});
+    }
+    const editingNoon=frame('original',0),editingNight=frame('original',0,0,[80,120,160],false,43200);
+    check('terrain editing remains independent of the physical sun',difference(editingNoon,editingNight).max===0,null);
     geometry(-.2);
     for(const [layer,ice] of [['original',0],['surface',0],['surface',.45],['surface',1]] as const){
         elevation(.2,0);const flat=frame(layer,ice);

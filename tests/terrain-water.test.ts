@@ -9,6 +9,22 @@ import {DEFAULT_ORBIT} from '../astronomy.ts';
 import {triangleStorageDepth,lakeSurfaceLevel,terrainWaterView} from '../terrain-water-view.ts';
 import {WaterModel,DEFAULT_WATER} from '../water.ts';
 import {channelNetwork,channelDischarge,riverChannelField} from '../river-channels.ts';
+import {LakeStorage} from '../lake-storage.ts';
+
+test('observed lake levels use the same sloping bed for storage, hydraulic head and shore',()=>{
+    const network:RoutingNetwork={cell:new Int32Array([0,1]),areaM2:new Float64Array([100,100]),bedM:new Float64Array([-10,-20]),inlandLakeId:new Int32Array([1,1]),
+        bedPatches:[[{vertices:[[0,0,-30],[0,0,-10],[0,0,10]],weight:1}],[{vertices:[[0,0,-40],[0,0,-20],[0,0,0]],weight:1}]],
+        neighbors:[[{to:1,sillM:-25,distanceM:10,side:0}],[{to:0,sillM:-25,distanceM:10,side:1}]]};
+    const water={grid:{count:2},cellAreaM2:100,surfaceKgM2:new Float64Array(2),dischargeM3S:new Float64Array(2),oceanGlobalKgM2:100000};
+    const route=new TerrainWater(network,water),total=water.oceanGlobalKgM2;
+    route.initializeLakeLevels(water,[{lakeId:1,levelM:-15}]);
+    for(let t=0;t<2;t++){const depth=new LakeStorage(network.bedPatches![t]).depth(-15);assert.ok(Math.abs(route.volumeM3[t]-100*depth)<1e-8);assert.ok(Math.abs(route.headM[t]+15)<1e-7);}
+    const before=route.checkpoint();route.route(water,1800,1);assert.ok(route.fluxM3S.every(v=>v<1e-6),'A level lake must not drain internally because centroid heights differ');
+    assert.ok(Math.abs(water.oceanGlobalKgM2+(water.surfaceKgM2[0]+water.surfaceKgM2[1])/2-total)<1e-8);
+    const restored=new TerrainWater(network,water);restored.restore(route.checkpoint(),water);assert.deepEqual(restored.headM,route.headM);
+    route.initializeLakeLevels(water,[{lakeId:1,levelM:-15}]);assert.ok(Math.abs(route.volumeM3[0]-before.volumeM3[0])<1e-5,'Repeated explicit initialization replaces rather than adds water');
+    const saved=route.checkpoint(),ocean=water.oceanGlobalKgM2;assert.throws(()=>route.initializeLakeLevels(water,[{lakeId:1,levelM:1e8}]),/inventory/);assert.deepEqual(route.checkpoint(),saved);assert.equal(water.oceanGlobalKgM2,ocean);
+});
 
 test('channel tributaries accumulate area-weighted runoff through a dry downstream cell',()=>{
     const {mesh}=makeSphereMesh(4,35,12345),side=(from:number,to:number)=>{

@@ -1,0 +1,124 @@
+{
+  "createdUTC": "2026-10-13T04:54:13.582Z",
+  "status": "PASS",
+  "evidenceIntegrityPassed": true,
+  "manifestSHA256": "d2ebb76691bd0f6e386ce5a4ec56b55fe4892212a221d9a01aad193d05c18676",
+  "bindings": 366,
+  "archives": 21,
+  "realIntegrationsVerified": 3,
+  "physicalNextStepExact": true,
+  "diagnosticRestartVerified": false,
+  "formalDefaultsUnchanged": true,
+  "browserVerified": true,
+  "regionalClimateAccepted": false,
+  "startupAtmosphericWater": [
+    {
+      "mode": "slab",
+      "residualMm": -0.006368569838722138,
+      "limitMm": 0.05,
+      "passed": true,
+      "maximumIntermediateResidualMm": -0.21977751355909048,
+      "maximumIntermediateTime": "2001-01-01T04:30:00",
+      "intermediateStepsAllPass": false
+    },
+    {
+      "mode": "seasonal",
+      "residualMm": -0.0060827600022062,
+      "limitMm": 0.05,
+      "passed": true,
+      "maximumIntermediateResidualMm": -0.22016438124668225,
+      "maximumIntermediateTime": "2001-01-01T04:30:00",
+      "intermediateStepsAllPass": false
+    }
+  ],
+  "atmosphericWater": [
+    {
+      "id": "before-seasonal",
+      "yearResidualMm": -0.14678283419259575,
+      "yearPassed": true,
+      "fullResidualMm": -1.0248454286713284,
+      "fullPassed": true
+    },
+    {
+      "id": "water-seasonal",
+      "yearResidualMm": -0.1032799004878342,
+      "yearPassed": true,
+      "fullResidualMm": -0.4930554378633438,
+      "fullPassed": true
+    },
+    {
+      "id": "coupled-slab",
+      "yearResidualMm": -0.186039128629373,
+      "yearPassed": true,
+      "fullResidualMm": -1.0020993128390092,
+      "fullPassed": true
+    },
+    {
+      "id": "coupled-seasonal",
+      "yearResidualMm": -0.15448200133219459,
+      "yearPassed": true,
+      "fullResidualMm": -0.8108965745618839,
+      "fullPassed": true
+    }
+  ],
+  "monsoonScreens": [
+    {
+      "id": "water-seasonal",
+      "regions": [
+        {
+          "name": "India",
+          "peakWithinOneMonth": false,
+          "summerMajority": false,
+          "annualWithin25Percent": false,
+          "monthlyMAEImproves": true
+        },
+        {
+          "name": "Australia north",
+          "peakWithinOneMonth": false,
+          "summerMajority": false,
+          "annualWithin25Percent": true,
+          "monthlyMAEImproves": true
+        }
+      ]
+    },
+    {
+      "id": "coupled-slab",
+      "regions": [
+        {
+          "name": "India",
+          "peakWithinOneMonth": false,
+          "summerMajority": false,
+          "annualWithin25Percent": false,
+          "monthlyMAEImproves": true
+        },
+        {
+          "name": "Australia north",
+          "peakWithinOneMonth": false,
+          "summerMajority": false,
+          "annualWithin25Percent": true,
+          "monthlyMAEImproves": true
+        }
+      ]
+    },
+    {
+      "id": "coupled-seasonal",
+      "regions": [
+        {
+          "name": "India",
+          "peakWithinOneMonth": false,
+          "summerMajority": false,
+          "annualWithin25Percent": false,
+          "monthlyMAEImproves": false
+        },
+        {
+          "name": "Australia north",
+          "peakWithinOneMonth": false,
+          "summerMajority": false,
+          "annualWithin25Percent": false,
+          "monthlyMAEImproves": false
+        }
+      ]
+    }
+  ],
+  "note": "PASS verifies evidence and implementation checks; each physical/climate gate is reported separately."
+}

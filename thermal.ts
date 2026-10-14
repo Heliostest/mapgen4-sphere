@@ -104,6 +104,8 @@ export class ThermalModel {
     private exchangeCorrection=0;
     private radiationCorrection=0;
     readonly albedo:Float64Array;
+    /** Optional independent surface reflectivity; albedo remains the area mean. */
+    surfaceAlbedo:{land:Float64Array;ocean:Float64Array}|null=null;
     constructor(planet:PlanetConfig,orbit:OrbitConfig,config:ThermalConfig,land:ArrayLike<number>,readonly epochS=0,readonly grid=makeThermalGrid(),reference?:ThermalInitial,initialEnergyJm2?:number) {
         const derived=deriveOrbit(planet,orbit);
         finiteInRange(epochS,'thermal epoch',0);
@@ -230,7 +232,8 @@ export class ThermalModel {
                     const fraction=ocean?1-this.land[i]:this.land[i],surface=ocean?this.oceanTemperatureK:this.landTemperatureK,capacity=ocean?this.oceanCapacity:this.landCapacity;
                     if(fraction===0)continue;
                     if(ocean&&this.oceanSurfaceSolver){radiation+=this.oceanSurfaceSolver.stepOceanSurface(i,this.stepS);continue;}
-                    const net=fraction*(this.absorbedWm2[i]-(1-airFraction)*config.emissivity*SIGMA*(surface[i]/(ocean?1:this.radiationScale[i]))**4);
+                    const albedo=this.surfaceAlbedo?(ocean?this.surfaceAlbedo.ocean[i]:this.surfaceAlbedo.land[i]):this.albedo[i];
+                    const net=fraction*((1-albedo)*q[Math.floor(i/grid.width)]*normalizer-(1-airFraction)*config.emissivity*SIGMA*(surface[i]/(ocean?1:this.radiationScale[i]))**4);
                     radiation+=net;surface[i]+=this.stepS*net/capacity[i];
                     // Exact two-reservoir relaxation: finite exchange never
                     // crosses equilibrium, including tiny coastal fractions.

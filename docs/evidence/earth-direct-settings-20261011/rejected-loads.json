@@ -1,0 +1,13 @@
+{
+  "wind08": {
+    "windMps": 8,
+    "status": "rejected-before-integration",
+    "reason": "Invalid windEastMps",
+    "explanation": "The existing initial applied winds exceed the proposed bound. Preserving all initial wind fields is incompatible with this bound, so no clipped/reinitialized state was included as a same-state result."
+  },
+  "wind13FirstAttempt": {
+    "status": "rejected-before-integration",
+    "reason": "Saved wind does not match circulation memory",
+    "resolution": "Rebased stored offsets from the new seasonal template while keeping every applied initial wind unchanged. The corrected wind13 and wind16 runs then completed a physical year with strict continuation."
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "date": "2026-10-12",
+  "formalDefaultUnchanged": true,
+  "regionalClimateAccepted": false,
+  "fullStockSha256": "952addee2268260c7acb5cee1f2fe576414c88539719b3b6559d624d5a89ceca",
+  "verification": {
+    "tests": 269,
+    "typecheck": true,
+    "build": true,
+    "fullAnnualArms": 3,
+    "dailyAuditsPerArm": 366,
+    "jsonRestoreNextStepExact": true,
+    "coarseHalfStepComparison": true
+  },
+  "files": [
+    {
+      "file": "scenes/earth-land-sea/earth-simulation.json",
+      "bytes": 11364186,
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+    },
+    {
+      "file": "build/earth-lakes-freeze-temperate/lake-day0.json",
+      "bytes": 10819303,
+      "sha256": "24bfe8b9a4768000574aa3febf3ed2be692ed2a071346175a9f0463280c2854b"
+    },
+    {
+      "file": "docs/evidence/earth-moisture-structural-20261011/gpcc-grid.json",
+      "bytes": 1066816,
+      "sha256": "01ed704dd31cec9376d27fafd902cfeb5c77862f7d8b3cf2e9e6b5d4226dbbc4"
+    },
+    {
+      "file": "docs/evidence/earth-seaice-causal-20261011/nsidc-same-grid.json",
+      "bytes": 338265,
+      "sha256": "9d6b40b75acc3fa2424708c4d81065f7c7c30d7ab395f44f0d8815419be62fb2"
+    },
+    {
+      "file": "water.ts",
+      "bytes": 43764,
+      "sha256": "57da5518dc5804bd6c79fe131cba92b460c9d443b639685d350a250a8ec0a024"
+    },
+    {
+      "file": "runtime-state.ts",
+      "bytes": 17452,
+      "sha256": "797b3507251f325c36d51c93b4a66eacfc08b0715ebc15b42e166d4351daa2e5"
+    },
+    {
+      "file": "water-panel.ts",
+      "bytes": 8102,
+      "sha256": "5afac681e68d07e44d5219359f38b039cd8f334371069fbbfb9875496be5dd56"
+    },
+    {
+      "file": "circulation.ts",
+      "bytes": 6380,
+      "sha256": "42ad6555ff02d686b7510b23f3fe4b49144ec499f2cd0d49aea8b230e0e40698"
+    },
+    {
+      "file": "climate.ts",
+      "bytes": 8385,
+      "sha256": "2bd07a05d8fe0598f3d608e3096600b43cab47cd9f29f4a5107e85c6e8e21da9"
+    },
+    {
+      "file": "thermal.ts",
+      "bytes": 17944,
+      "sha256": "3ba51ac23d17f97a784c6291f4e41eecc2ff9b31865a160180179859bd3e3793"
+    },
+    {
+      "file": "thermal-runtime.ts",
+      "bytes": 51881,
+      "sha256": "1ee7a5c63b0c0a011d45a9bc347205433ffd9c198a19f95fd7f6ed78d7eb0d0e"
+    },
+    {
+      "file": "environment.ts",
+      "bytes": 15159,
+      "sha256": "32707f28c677b42564ce0ad5056679eab5ecaff5125193f2917416b1fa112d1b"
+    },
+    {
+      "file": "refinement-surface.ts",
+      "bytes": 30731,
+      "sha256": "481b04f6bcc0c55acd776bc69935a58a7369f7f9d516262e215a508da5b02503"
+    },
+    {
+      "file": "terrain-water.ts",
+      "bytes": 16688,
+      "sha256": "a81c5b8d1570e2594e2e517eea2a084a638ddd5675540ab5d68a678ed92412d7"
+    },
+    {
+      "file": "glacier.ts",
+      "bytes": 7740,
+      "sha256": "99746618e1bbdc9d4c354b562a9c33a036c3b703f1ab84dac9d04ca8db383cb1"
+    },
+    {
+      "file": "tests/moisture.test.ts",
+      "bytes": 20591,
+      "sha256": "065948693e1faa2fbc6ec2a17e548997f52b9c12c9279816a2b2e98cf5a7ba23"
+    },
+    {
+      "file": "tests/simulation.test.ts",
+      "bytes": 19027,
+      "sha256": "fdf07f16dc51fa0bf382c62ab21a479008717267d2dc97a528bdac0556490889"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/analyze.mjs",
+      "bytes": 3351,
+      "sha256": "ca8faad45789d784688143f85c5a90725e891dfb479ded0d69f773042b4d3693"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/before-americas-year1.jpg",
+      "bytes": 70078,
+      "sha256": "5eb4fc8ec90fe9eacca5fe12b3f65d88a349b71d576be9483f2521432abe5e52"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/before-asia-year1.jpg",
+      "bytes": 62064,
+      "sha256": "6053593633f23419e19522c3deeba09abdaecf768786e9da0bd48a50a7688690"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/browser-verification.json",
+      "bytes": 2345,
+      "sha256": "2ae458a0e95f73703b311c13cde9fe370a0c7c3be4afd3d420048b356d34db86"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/causes.ts",
+      "bytes": 2907,
+      "sha256": "93d7c9b39a723e2786d8a32beec4f26f620bd6c6a3be499c5d878fa1f9020e2f"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/closure-americas-year1.jpg",
+      "bytes": 70700,
+      "sha256": "9e8cc893d08b2bfb6cc705966879d2c433ffcf93b133aa123ffe679e520e73f9"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/closure-asia-year1.jpg",
+      "bytes": 63115,
+      "sha256": "10317a94b82ec2609470369a5d84236cbd90aeb6e87487e9941726f836e03d3a"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/cold-front-americas-year1.jpg",
+      "bytes": 70197,
+      "sha256": "4c553659472ae52dc064285a672195c0ab85911a6095ea43fe0a265d8e2418b5"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/cold-front-asia-year1.jpg",
+      "bytes": 62288,
+      "sha256": "d0b2d05883141098632dfe1d3af177fdb867cee1d2206987154bf3e62cda18f6"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/comparison.json",
+      "bytes": 252890,
+      "sha256": "6b1a7542a1243e336317265e514993183924395f4697768a1518e8753856fcb1"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/full-causes.json",
+      "bytes": 69704,
+      "sha256": "be5c9f8bd864c97ca34744e06fee0aacfe409b616e234e3bee8da95943c8d204"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/full-coldFront.json",
+      "bytes": 5024376,
+      "sha256": "ebd08e358e1b9638fb4d92e680982a3b6d1886976fd3a82ec2ac8e5940c8718d"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/full-control.json",
+      "bytes": 4880921,
+      "sha256": "1da1a7c0661a9378a59f5784c30b05a3d04963cadfe7fe9eeb639c488d06b0ed"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/full-eddyCold.json",
+      "bytes": 5009320,
+      "sha256": "47a8fa135b3889da63b3ede1997c40e19c3dc20522370b0fed3668db8f510cc0"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/full.ts",
+      "bytes": 14423,
+      "sha256": "a90f3bd04f498c827e904dbaabeaeb524bf6cb98aab5065dd941b8092d14a4b6"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/inspect.mjs",
+      "bytes": 1059,
+      "sha256": "53981961ebd6ac4f5f2b4c520f956148774c4f65f6b46acfa8063ad4dacb4b57"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/manifest.mjs",
+      "bytes": 2582,
+      "sha256": "8ca7dc07d4d9ca2e65e6e83e9eb390711f9cce84ffdf0c20720371cab3f9af80"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/preview.mjs",
+      "bytes": 2083,
+      "sha256": "f29a7ab3125575288b253af305820db029e064927fb0f5359b06f2bddcee7787"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/profiles.json",
+      "bytes": 2189,
+      "sha256": "8917e9904e0343ec0bbadf09c1dc50436e57ee0499781dc23f8af1f791549185"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/protocol.md",
+      "bytes": 5500,
+      "sha256": "ea059ac44caa2a9791a974b20eda6f32ebf77b41deb495d7c295c34c934fb088"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/report.md",
+      "bytes": 9413,
+      "sha256": "1c19e3487309be208fa3a369c9fc7f05e8a92cab0a1532da7dec33c1f3a79b6b"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/report.mjs",
+      "bytes": 10445,
+      "sha256": "d08c1b4b4c3da89513d40dd1ac127ae23873d3cfe2e544bb19330fa589d81dc4"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/restore.ts",
+      "bytes": 4032,
+      "sha256": "85bf35134c14f837bdd30e1bd1d63b4499b3d23b5aa5ebf186cf00b8eec4d15d"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-advective.json",
+      "bytes": 3155265,
+      "sha256": "5a1d41752a41a692881585f4ca17623338731899f3e91806176fee7e62c22a13"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-buoyant.json",
+      "bytes": 3254301,
+      "sha256": "f4c905883e61066446b560e4b86811f8080a711f5b932b048f104e63412fd90c"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-causes.json",
+      "bytes": 171810,
+      "sha256": "f9dcd4ad70429c04774828338cf26f0c55a008681a69c04af3efd9042cd83405"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-coldFront.json",
+      "bytes": 3632098,
+      "sha256": "3f1049dd3f8f6fdb3c7c00e6f7c997b6095ff7c351631396cc918d7791117ffb"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-coldFront900.json",
+      "bytes": 5016451,
+      "sha256": "70cb0ba8b5586126bcf09d96558cc9298f715f3b1b53886c3a4585e7c6b79648"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-consistent.json",
+      "bytes": 3265989,
+      "sha256": "79a63f9700b68d3eb61808081bc1d7781aa8e8842bc078f8157c06ce6cecac3f"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-control.json",
+      "bytes": 3266640,
+      "sha256": "1c35e468100859da86d077f7c7ad013fe7ecb971e175fe3293322c08f6e4d1ab"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-eddyCold.json",
+      "bytes": 3618335,
+      "sha256": "4fa050ce3f46459aa2f7b46a6e91bd97bfe193996a1008f20b68cf483a64a486"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-eddyCold900.json",
+      "bytes": 5002175,
+      "sha256": "4c8743475181b6d85b1fb96b90ef99253bad6600ee5ff3b5b54f6b51a50bdf9d"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-eddyFront.json",
+      "bytes": 3242354,
+      "sha256": "8991ff6966ba495be1f726cfc71892aedab1a574565ab3cb8e9a0fff367fcdba"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen-mix1.json",
+      "bytes": 3503476,
+      "sha256": "085dfb8e55f9b6fce6b89e8d5914c20f43dea358f719a778b8df7720b88c876c"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/screen.ts",
+      "bytes": 11150,
+      "sha256": "d2bdbf35bb48fae6247d6a262ddfe42cba1f500744e2899224b4baaf4becd2ef"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/serialized-restore.json",
+      "bytes": 735,
+      "sha256": "87a568a1127fc9b2b985b1d3396449cef5f9975dab7e6414efc43a217ca1d8eb"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/setup.mjs",
+      "bytes": 530,
+      "sha256": "f1ab6987846c7da89b61b925b95335c6e5b8f78662460c9b249139222521f8f4"
+    },
+    {
+      "file": "docs/evidence/earth-uplift-closure-20261012/test-output.txt",
+      "bytes": 52588,
+      "sha256": "6dd12491bae8a4bc5d6ba3fa84bb4cb01bbe267708c67bca92437c1e6708bd81"
+    },
+    {
+      "file": "build/earth-uplift-closure/full-coldFront-day0.json",
+      "bytes": 10833063,
+      "sha256": "becdf2063c5c3223b22cd52443d8e7c4b2b3f2509cc6fbc7400ff607337af6e8"
+    },
+    {
+      "file": "build/earth-uplift-closure/full-coldFront-day365.json",
+      "bytes": 11904353,
+      "sha256": "8e30fe161047f247bf3f773406c3f1335efde84469c9efe89f0e7ba9910b08e1"
+    },
+    {
+      "file": "build/earth-uplift-closure/full-control-day0.json",
+      "bytes": 10833034,
+      "sha256": "6f57886a35d5c89a915c6b675a552f98c84b05fefa1b2f0bf02a25cb41115004"
+    },
+    {
+      "file": "build/earth-uplift-closure/full-control-day365.json",
+      "bytes": 11883742,
+      "sha256": "3bbc7262a21d4e188e8c2695e1fd422a3c9df7306ea16bdfd92e101da26645ba"
+    },
+    {
+      "file": "build/earth-uplift-closure/full-eddyCold-day0.json",
+      "bytes": 10833091,
+      "sha256": "3af6b223a4e47f4053d873e28e8ad06d75a4feea52c1338021a796ff469e9659"
+    },
+    {
+      "file": "build/earth-uplift-closure/full-eddyCold-day365.json",
+      "bytes": 12080677,
+      "sha256": "0959ee48692484b304fbb733eef475514593be0e09f8acad8667ddccae4005bf"
+    },
+    {
+      "file": "build/earth-uplift-closure/screen.mjs",
+      "bytes": 257422,
+      "sha256": "15ae06b6c1beeba9777304289918084d0e6d48eac1868f715dac1cd8d239abee"
+    },
+    {
+      "file": "build/earth-uplift-closure/full.mjs",
+      "bytes": 333514,
+      "sha256": "e23c27ddeddb7e9fe033f3f82f87a2a871c2713c08b39c00401f5f38a054bf62"
+    },
+    {
+      "file": "build/earth-uplift-closure/restore.mjs",
+      "bytes": 316139,
+      "sha256": "dd8fdbc2123ac4b9268445d547eeb032aecce528c4c012e7c86104f0ae1e4074"
+    },
+    {
+      "file": "build/earth-uplift-closure/test-output.txt",
+      "bytes": 52588,
+      "sha256": "6dd12491bae8a4bc5d6ba3fa84bb4cb01bbe267708c67bca92437c1e6708bd81"
+    },
+    {
+      "file": "build/earth-uplift-closure/before-preview.html",
+      "bytes": 7863,
+      "sha256": "99a568f3873cc9012752648b17b289cc7f75c214a681cc9727ff80103c27d56a"
+    },
+    {
+      "file": "build/earth-uplift-closure/cold-front-preview.html",
+      "bytes": 7877,
+      "sha256": "6fd7c6e9a917c905bea9b24a4e63c23778045ee847a81d41c66030f6cd2a90fd"
+    },
+    {
+      "file": "build/earth-uplift-closure/closure-preview.html",
+      "bytes": 7889,
+      "sha256": "75a40cbd973820a324a86ee4ae5a4851ea46007bb3e605ac0846d33a591460c8"
+    },
+    {
+      "file": "build/earth-uplift-closure/initial-preview.html",
+      "bytes": 7868,
+      "sha256": "0b9cd25d52e5d4e47945e7871212c61409d5763e620b2531b2fdb9bd0b0711f5"
+    }
+  ]
+}

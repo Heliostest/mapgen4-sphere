@@ -1,0 +1,96 @@
+{
+  "control": {},
+  "heat11": {
+    "thermal": {
+      "diffusion": 1.1
+    }
+  },
+  "heat20": {
+    "thermal": {
+      "diffusion": 2
+    }
+  },
+  "radiation056": {
+    "thermal": {
+      "emissivity": 0.56
+    }
+  },
+  "radiation052": {
+    "thermal": {
+      "emissivity": 0.52
+    }
+  },
+  "mix3": {
+    "water": {
+      "moistureDiffusivityM2s": 3000000
+    }
+  },
+  "mix6": {
+    "water": {
+      "moistureDiffusivityM2s": 6000000
+    }
+  },
+  "ocean10": {
+    "environment": {
+      "oceanStrengthMps": 1
+    }
+  },
+  "evap035": {
+    "water": {
+      "evaporationFraction": 0.35
+    }
+  },
+  "balanced": {
+    "thermal": {
+      "diffusion": 1.1,
+      "emissivity": 0.58
+    }
+  },
+  "balancedMix": {
+    "thermal": {
+      "diffusion": 1.1,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 1500000
+    }
+  },
+  "heat085": {
+    "thermal": {
+      "diffusion": 0.85
+    }
+  },
+  "balanced085": {
+    "thermal": {
+      "diffusion": 0.85,
+      "emissivity": 0.58
+    }
+  },
+  "moderate": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    }
+  },
+  "moderateMix": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    },
+    "water": {
+      "moistureDiffusivityM2s": 1500000
+    }
+  },
+  "tuned": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    }
+  },
+  "tuned900": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.595
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "startedUTC": "2026-10-13T03:36:51.358Z",
+  "completedUTC": "2026-10-13T03:37:47.615Z",
+  "script": "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation-test.jl",
+  "configuration": {
+    "SPEEDY_CASE": "condensation-regression",
+    "SPEEDY_MODE": null,
+    "SPEEDY_SMOKE": null,
+    "MOISTURE_IMPLEMENTATION": "fixed",
+    "MASS_IMPLEMENTATION": null,
+    "MIXING_IMPLEMENTATION": null,
+    "AUDIT_STAGES": null
+  },
+  "sourceBefore": {
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/protocol.md": "b72e0cbb4d7104cf31115fd7a6b024b8a262e62f7a64a97f10a3c43f5e5647bd",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation-test.jl": "f090b6135c580a65ba696a087fd9ddc1dc2642148976602cf31cee7e2987646f",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation.jl": "9ea9a306d16dc6e3f7ea70dd1b3a753794ddc7dad19dd0ba7e69a9ef23330357"
+  },
+  "sourceAfter": {
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/protocol.md": "b72e0cbb4d7104cf31115fd7a6b024b8a262e62f7a64a97f10a3c43f5e5647bd",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation-test.jl": "f090b6135c580a65ba696a087fd9ddc1dc2642148976602cf31cee7e2987646f",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation.jl": "9ea9a306d16dc6e3f7ea70dd1b3a753794ddc7dad19dd0ba7e69a9ef23330357"
+  },
+  "sourceUnchanged": true,
+  "args": [
+    "--startup-file=no",
+    "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+    "docs/evidence/earth-speedy-moisture-monsoon-20261013/condensation-test.jl"
+  ],
+  "code": 0
+}

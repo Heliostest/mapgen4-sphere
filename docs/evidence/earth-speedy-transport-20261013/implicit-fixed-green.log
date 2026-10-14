@@ -1,0 +1,512 @@
+Test Summary:                                        | Pass  Total   Time
+consistent implicit matrix and linear wave stability | 1014   1014  15.3s
+{"matrixAndWave":[{"name":"isothermal","half":[0.0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1.0],"maxMatrixError":5.417888360170764e-14,"maxWaveError":2.2737367544323206e-13,"maxAmplification":1.0000000000000022},{"name":"stratified","half":[0.0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1.0],"maxMatrixError":1.4210854715202004e-14,"maxWaveError":2.9665159217984183e-13,"maxAmplification":1.0000000000000024},{"name":"isothermal","half":[0.0,0.02,0.07,0.18,0.4,0.62,0.78,0.9,1.0],"maxMatrixError":3.552713678800501e-14,"maxWaveError":3.836930773104541e-13,"maxAmplification":1.000000000000002},{"name":"stratified","half":[0.0,0.02,0.07,0.18,0.4,0.62,0.78,0.9,1.0],"maxMatrixError":2.842170943040401e-14,"maxWaveError":4.298783551348606e-13,"maxAmplification":1.0000000000000069}]}
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 3600.0 == 900.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 7200.0 == 1800.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 14400.0 == 3600.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 3600.0 == 900.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 7200.0 == 1800.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 14400.0 == 3600.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 3600.0 == 900.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 7200.0 == 1800.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 14400.0 == 3600.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 3600.0 == 900.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 7200.0 == 1800.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 14400.0 == 3600.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 3600.0 == 900.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 7200.0 == 1800.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 14400.0 == 3600.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 3600.0 == 900.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 7200.0 == 1800.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 14400.0 == 3600.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 3600.0 == 900.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 7200.0 == 1800.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 14400.0 == 3600.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 3600.0 == 900.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 7200.0 == 1800.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+native grid split, terrain, time levels and radius scaling: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141
+  Expression: c.Δt[] == if counter == 0
+        900.0
+    else
+        if counter == 1
+            1800.0
+        else
+            3600.0
+        end
+    end
+   Evaluated: 14400.0 == 3600.0
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:141 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] fixed_main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:125
+Test Summary:                                              | Pass  Fail  Total   Time
+native grid split, terrain, time levels and radius scaling |   48    24     72  33.0s
+RNG of the outermost testset: Random.Xoshiro(0xf9d058bd24170779, 0x35f0b98c79b8eca8, 0xf1890d8580fbfe4b, 0xffa935ce847aa759, 0x50f041a3b5885857)
+ERROR: LoadError: Some tests did not pass: 48 passed, 24 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\implicit-test.jl:187

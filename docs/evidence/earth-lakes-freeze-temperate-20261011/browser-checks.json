@@ -1,0 +1,413 @@
+{
+  "generatedAtUtc": "2026-10-11T10:30:43.817Z",
+  "browser": "Codex in-app browser, actual WebGL2",
+  "checks": [
+    {
+      "name": "live-controller",
+      "url": "http://localhost:8001/tests/live-planet.html?surface-closure-check=2",
+      "result": {
+        "status": "PASS",
+        "checks": [
+          "Startup waits for accepted terrain",
+          "Thermal, water and cloud cover start enabled",
+          "All coupled environment systems start enabled",
+          "Startup shows natural terrain from space",
+          "Startup plays automatically after terrain is ready",
+          "Startup produces surface, cloud and terrain-water render data",
+          "Playback keeps the visible planet fixed",
+          "Playback moves sunlight across the fixed planet",
+          "Playback advances real coupled state",
+          "Pause freezes coupled history",
+          "Surface closures require separate thermal reservoirs",
+          "Surface physics controls enable both explicit saved experimental switches",
+          "Changing surface closures through the real controls preserves water, heat and elapsed time",
+          "Later terrain changes cannot restart a paused world",
+          "Restored terrain settings remain paused with their own modes",
+          "Live planet button enables and resumes all systems",
+          "Hiding an already running planet pauses without surprise restart"
+        ],
+        "failures": []
+      }
+    },
+    {
+      "name": "surface-lighting",
+      "url": "http://localhost:8001/tests/gpu-surface-lighting.html",
+      "result": {
+        "status": "PASS",
+        "checks": 23,
+        "failed": [],
+        "results": [
+          {
+            "name": "surface and clouds false: midnight is shaded while geography stays fixed",
+            "pass": true,
+            "detail": {
+              "noon": [
+                94,
+                141,
+                189
+              ],
+              "midnight": [
+                17,
+                25,
+                34
+              ]
+            }
+          },
+          {
+            "name": "surface and clouds true: midnight is shaded while geography stays fixed",
+            "pass": true,
+            "detail": {
+              "noon": [
+                189,
+                208,
+                227
+              ],
+              "midnight": [
+                34,
+                37,
+                41
+              ]
+            }
+          },
+          {
+            "name": "terrain editing remains independent of the physical sun",
+            "pass": true,
+            "detail": null
+          },
+          {
+            "name": "original, sea ice 0: seabed does not shade the sea surface",
+            "pass": true,
+            "detail": {
+              "max": 0,
+              "changed": 0
+            }
+          },
+          {
+            "name": "original, sea ice 0: surface remains visible",
+            "pass": true,
+            "detail": null
+          },
+          {
+            "name": "surface, sea ice 0: seabed does not shade the sea surface",
+            "pass": true,
+            "detail": {
+              "max": 0,
+              "changed": 0
+            }
+          },
+          {
+            "name": "surface, sea ice 0: surface remains visible",
+            "pass": true,
+            "detail": null
+          },
+          {
+            "name": "surface, sea ice 0.45: seabed does not shade the sea surface",
+            "pass": true,
+            "detail": {
+              "max": 0,
+              "changed": 0
+            }
+          },
+          {
+            "name": "surface, sea ice 0.45: surface remains visible",
+            "pass": true,
+            "detail": null
+          },
+          {
+            "name": "surface, sea ice 1: seabed does not shade the sea surface",
+            "pass": true,
+            "detail": {
+              "max": 0,
+              "changed": 0
+            }
+          },
+          {
+            "name": "surface, sea ice 1: surface remains visible",
+            "pass": true,
+            "detail": null
+          },
+          {
+            "name": "sea-ice edge uses fine terrain coastline for its normal",
+            "pass": true,
+            "detail": {
+              "max": 0,
+              "changed": 0
+            }
+          },
+          {
+            "name": "exactly zero elevation is a sea surface",
+            "pass": true,
+            "detail": {
+              "max": 0,
+              "changed": 0
+            }
+          },
+          {
+            "name": "original terrain retains bathymetric color",
+            "pass": true,
+            "detail": {
+              "max": 104,
+              "changed": 1228800
+            }
+          },
+          {
+            "name": "surface, sea ice 1: ridge outlines use the sea surface",
+            "pass": true,
+            "detail": {
+              "max": 0,
+              "changed": 0
+            }
+          },
+          {
+            "name": "surface, sea ice 0.45: ridge outlines use the sea surface",
+            "pass": true,
+            "detail": {
+              "max": 0,
+              "changed": 0
+            }
+          },
+          {
+            "name": "original, sea ice 0: ridge outlines use the sea surface",
+            "pass": true,
+            "detail": {
+              "max": 0,
+              "changed": 0
+            }
+          },
+          {
+            "name": "original, land color 80,120,160: land/snow retain slope lighting",
+            "pass": true,
+            "detail": {
+              "max": 194,
+              "changed": 1184802
+            }
+          },
+          {
+            "name": "surface, land color 80,120,160: land/snow retain slope lighting",
+            "pass": true,
+            "detail": {
+              "max": 147,
+              "changed": 1210051
+            }
+          },
+          {
+            "name": "surface, land color 190,200,205: land/snow retain slope lighting",
+            "pass": true,
+            "detail": {
+              "max": 188,
+              "changed": 1218447
+            }
+          },
+          {
+            "name": "coastal land retains its terrain slope lighting",
+            "pass": true,
+            "detail": {
+              "max": 66,
+              "changed": 8838
+            }
+          },
+          {
+            "name": "lighting does not mutate physical DEM",
+            "pass": true,
+            "detail": null
+          },
+          {
+            "name": "WebGL reports no error",
+            "pass": true,
+            "detail": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "endorheic-lake",
+      "url": "http://localhost:8001/tests/endorheic-render.html",
+      "result": {
+        "status": "PASS",
+        "fixture": "controlled finite negative inland bed; no observed water levels or rainfall claim",
+        "figures": [
+          {
+            "label": "零库存：负高程干床",
+            "blue": 0,
+            "volumeM3": 0,
+            "riverTriangles": 0
+          },
+          {
+            "label": "少量蓄水：湖岸在盆底",
+            "blue": 522067,
+            "volumeM3": 4119165684493343,
+            "riverTriangles": 0
+          },
+          {
+            "label": "更多蓄水：湖岸扩大",
+            "blue": 1594040,
+            "volumeM3": 52076269903057064,
+            "riverTriangles": 0
+          },
+          {
+            "label": "排干：恢复干床",
+            "blue": 0,
+            "volumeM3": 0,
+            "riverTriangles": 0
+          }
+        ],
+        "checks": [
+          {
+            "name": "渲染不会改写细粗网格与外洋库存",
+            "pass": true,
+            "detail": {
+              "triangles": 476
+            }
+          },
+          {
+            "name": "渲染不会改写细粗网格与外洋库存",
+            "pass": true,
+            "detail": {
+              "triangles": 476
+            }
+          },
+          {
+            "name": "渲染不会改写细粗网格与外洋库存",
+            "pass": true,
+            "detail": {
+              "triangles": 476
+            }
+          },
+          {
+            "name": "渲染不会改写细粗网格与外洋库存",
+            "pass": true,
+            "detail": {
+              "triangles": 476
+            }
+          },
+          {
+            "name": "零库存与排干无蓝色湖水",
+            "pass": true,
+            "detail": [
+              {
+                "label": "零库存：负高程干床",
+                "blue": 0
+              },
+              {
+                "label": "少量蓄水：湖岸在盆底",
+                "blue": 522067
+              },
+              {
+                "label": "更多蓄水：湖岸扩大",
+                "blue": 1594040
+              },
+              {
+                "label": "排干：恢复干床",
+                "blue": 0
+              }
+            ]
+          },
+          {
+            "name": "蓄水增加使实际 GPU 湖面扩大",
+            "pass": true,
+            "detail": [
+              {
+                "blue": 0,
+                "volumeM3": 0
+              },
+              {
+                "blue": 522067,
+                "volumeM3": 4119165684493343
+              },
+              {
+                "blue": 1594040,
+                "volumeM3": 52076269903057064
+              },
+              {
+                "blue": 0,
+                "volumeM3": 0
+              }
+            ]
+          },
+          {
+            "name": "显示门槛为 0 也不画零流量",
+            "pass": true,
+            "detail": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "负高程湖盆保留有限床与有效格子",
+            "pass": true,
+            "detail": {
+              "minimumBedM": -2307.826116681099
+            }
+          },
+          {
+            "name": "实际 GPU 高程通道保留负床",
+            "pass": true,
+            "detail": {
+              "negativePixels": 1983475,
+              "minimumShaderElevation": -0.230712890625,
+              "format": 6403,
+              "type": 5131
+            }
+          },
+          {
+            "name": "渲染不会改写细粗网格与外洋库存",
+            "pass": true,
+            "detail": {
+              "triangles": 476
+            }
+          },
+          {
+            "name": "渲染不会改写细粗网格与外洋库存",
+            "pass": true,
+            "detail": {
+              "triangles": 476
+            }
+          },
+          {
+            "name": "干负床坡面响应相反光照",
+            "pass": true,
+            "detail": {
+              "changedNegativePixels": 984702
+            }
+          },
+          {
+            "name": "拾取负床与 GPU 半径一致，切换分类后重新构建",
+            "pass": true,
+            "detail": {
+              "inlandPickingError": 0.000020417735015598737,
+              "marinePickingError": 0.000023144450096879154,
+              "restoredPickingError": 0.000020417735015598737
+            }
+          },
+          {
+            "name": "渲染不会改写细粗网格与外洋库存",
+            "pass": true,
+            "detail": {
+              "triangles": 476
+            }
+          },
+          {
+            "name": "双图层实际 GPU 上传容量足够",
+            "pass": true,
+            "detail": {
+              "referenceTriangles": 561,
+              "physicalTriangles": 561,
+              "riverTriangles": 1122,
+              "uploadBytes": 94248,
+              "bufferBytes": 239904
+            }
+          },
+          {
+            "name": "WebGL 无错误",
+            "pass": true,
+            "detail": {
+              "error": 0
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

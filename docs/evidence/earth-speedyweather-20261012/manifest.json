@@ -1,0 +1,702 @@
+{
+  "createdUTC": "2026-10-12T12:22:12.237Z",
+  "launch": {
+    "createdUTC": "2026-10-12T11:43:55.189",
+    "files": {
+      "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedyweather-20261012\\julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+      "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedyweather-20261012\\run.jl": "ccd7e4d0103c7f90130ee41a473e6f7696e6dc69cd96262eedf6bdf998c87179",
+      "scenes/earth-land-sea/earth-simulation.json": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+      "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedyweather-20261012\\checkpoint.jl": "d32a3064ed025b8454bacd8d37e3d601fe6c026da7056e5c34c24249fca6d3f1",
+      "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedyweather-20261012\\julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+      "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedyweather-20261012\\diagnostics.jl": "7a8c8e991a2fec5aa8bdde65e75f9946adafc0d9ba7d0572fa70e976e911209b",
+      "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-speedyweather-20261012\\protocol.md": "2f0310e9fdbc4005d257289efb0d501bf3d63d52dc373f3f61c2558fd75fca96"
+    },
+    "julia": "1.12.7",
+    "speedy": "0.23.0",
+    "threads": 2,
+    "blasThreads": 1
+  },
+  "software": {
+    "julia": "1.12.7",
+    "SpeedyWeather": "0.23.0",
+    "registeredGitTreeSha1": "a310694f09c0fcca98c67671b5fce53c621c72bd",
+    "T32Api": "truncation=32; includes degree zero; maximum degree 31"
+  },
+  "formalDefaultBindings": [
+    {
+      "file": "thermal.ts",
+      "name": "DEFAULT_THERMAL",
+      "sha256": "200ac46a9f0859ce59007b176c62f99b023048f4258dba4e52852467e078ae6c",
+      "exactlyMatchesHEAD": true
+    },
+    {
+      "file": "water.ts",
+      "name": "DEFAULT_WATER",
+      "sha256": "0a1607b40bd1dbda009459782ed2058c66dadea28c3cccc1dd5244cd37da83c6",
+      "exactlyMatchesHEAD": true
+    },
+    {
+      "file": "environment.ts",
+      "name": "DEFAULT_ENVIRONMENT",
+      "sha256": "bd711fb48c64ef9149d5639b93abcbf8ffef9c104dbf9f097cc189d71d5a719f",
+      "exactlyMatchesHEAD": true
+    }
+  ],
+  "bindings": [
+    {
+      "path": "scenes/earth-land-sea/earth-simulation.json",
+      "bytes": 11364186,
+      "sha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+    },
+    {
+      "path": "build/earth-seasonal-pressure/full-control.json",
+      "bytes": 6244382,
+      "sha256": "186e0f3a0140a936c89bf23984125bad2467a5eb3c826dca88cb0e798731fa5f"
+    },
+    {
+      "path": "build/earth-seasonal-pressure/full-control-day0.json",
+      "bytes": 10833063,
+      "sha256": "becdf2063c5c3223b22cd52443d8e7c4b2b3f2509cc6fbc7400ff607337af6e8"
+    },
+    {
+      "path": "docs/evidence/earth-moisture-structural-20261011/gpcc-grid.json",
+      "bytes": 1066816,
+      "sha256": "01ed704dd31cec9376d27fafd902cfeb5c77862f7d8b3cf2e9e6b5d4226dbbc4"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/nsidc-same-grid.json",
+      "bytes": 338265,
+      "sha256": "9d6b40b75acc3fa2424708c4d81065f7c7c30d7ab395f44f0d8815419be62fb2"
+    },
+    {
+      "path": "docs/evidence/earth-seaice-causal-20261011/nsidc-inputs.json",
+      "bytes": 399038,
+      "sha256": "f897a7a90bce2b2b20886110b6887378785c2935c24e5c6e9f9d2665679232d6"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/069c68617ce4163dca4c076582b4c31cb52d3b84/land-sea_mask.nc",
+      "bytes": 91667,
+      "sha256": "4be8a8aa725804aa69ff08e79de341d1f74545d97163380342d91958c1b9babe"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/70cd1588d89b925ea206267e4fffa045e72bebc0/orography.nc",
+      "bytes": 2601852,
+      "sha256": "f362a5042a5947d5ded79b9684f9e89682627a7f6f8ac2737c514425d27f930b"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/a3600cf8a624129a6194bdd789da548967a46b2e/vegetation.nc",
+      "bytes": 19967,
+      "sha256": "e76bdfb6c93d63d7ccab501ed70d55f3f8c8f42892400bfee939c971c907670c"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/ad8ffe0ca625b95d5b20ffab31dbdd3ae4734530/sea_surface_temperature.nc",
+      "bytes": 48975,
+      "sha256": "e0fc49e0d6e865e5ae2eb2076be40fecc38742673e308678705f9bec83500084"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/e346428f503ddb147b4c41301aefc43d659b4fe1/land_surface_temperature.nc",
+      "bytes": 47098,
+      "sha256": "3844d2b9ffd1d2935a248ef036b3b0aa8236e8c4d6eee28cf223a3b968f78e34"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/artifacts/f907c82f9cc65e1965cf16fbae6de3788a1badaa/soil_moisture.nc",
+      "bytes": 93239,
+      "sha256": "79a6eeb31a8154c7dbf3f57a376afdcd0f7f9d6f5c223e222fcec24c43485368"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/Project.toml",
+      "bytes": 3655,
+      "sha256": "14e573d854c2ac43bc549be8dcce580c4a61262c2e9f33bea603ed55d2c9ba62"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/models/primitive_wet.jl",
+      "bytes": 10058,
+      "sha256": "bc0702587e6e2e02f97f125d9cc82dc5baff74d3d9417779064bcb1ffcdca0e9"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/time_integration.jl",
+      "bytes": 8337,
+      "sha256": "aa712aea92afa43da10e85865a00cff73cf0caaec7ed114bf396490e9181cb92"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/transform.jl",
+      "bytes": 9418,
+      "sha256": "1c9f522668aa3b03278aedb7317e6e080351321bc1dcc794c20a40770666fcf7"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/steppers/leapfrog.jl",
+      "bytes": 14166,
+      "sha256": "60f4fdbb0077ce40022a81a26f81f814d7a3792830c7b0ab971a620a464b0885"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/hole_filling.jl",
+      "bytes": 530,
+      "sha256": "c74cabc36885096debfba101731f293b0f3eeea39db9521524efc7606afa8264"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/horizontal_diffusion.jl",
+      "bytes": 20011,
+      "sha256": "7416aaf3fd0f94985aaa6bfc85dd57cae1a0ebeed2277517ca69c2fae70c509f"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/ocean.jl",
+      "bytes": 14945,
+      "sha256": "8fc39bdc0b8f68300c5f1546ed3652eb5f672cc0db585c1a7ce02873e5f7b701"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/sea_ice.jl",
+      "bytes": 5531,
+      "sha256": "0dc5bba0d2efd64b5a76e5e3eb16814d3f0f75c125ed1a674d6a70da0d9109a8"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/land/soil_moisture.jl",
+      "bytes": 13845,
+      "sha256": "80d3123ec2050dcffdeefefb60512292bd1b055fd88e8f0b3b84db53e8eb4fa7"
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/RingGrids/UqS6H/Artifacts.toml",
+      "bytes": 499,
+      "sha256": "0b81954121e7242306a536970011973099882891fb4b8fa36fc9241b5c05a3e8"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/analyze.mjs",
+      "bytes": 10674,
+      "sha256": "d25ab2039c3c10454405447a0e9921082ed673f2fe2407bf7e3b0fa447455a45"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/bootstrap.jl",
+      "bytes": 271,
+      "sha256": "1d22d7b74ba7a30238f64e8ce524452d5be0178144c52a9c981df57a846a988b"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/build-viewer.mjs",
+      "bytes": 1881,
+      "sha256": "8cdeefcb04d43857b77854f98d0c6171ca96cb248c685c76b865644e2a112a97"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/check-evidence.mjs",
+      "bytes": 3311,
+      "sha256": "f3bd49c43127db5e6f1f758c9f7f952c1c8796ca15331541833d74f19367aa2c"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/check-generated.ts",
+      "bytes": 1222,
+      "sha256": "f5c38fb39e7afe9a3beb562d86dd9df03e6b2bff5aa94e0cb1c302bd7d0fe16e"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/checkpoint.jl",
+      "bytes": 1592,
+      "sha256": "d32a3064ed025b8454bacd8d37e3d601fe6c026da7056e5c34c24249fca6d3f1"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/checkpoint_test.jl",
+      "bytes": 2110,
+      "sha256": "2baa6e1e6f5a9e97f93b1a6ff17da04fd01908b606cc1910ca11315de41260a3"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/diagnostics.jl",
+      "bytes": 1235,
+      "sha256": "7a8c8e991a2fec5aa8bdde65e75f9946adafc0d9ba7d0572fa70e976e911209b"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/diagnostics_test.jl",
+      "bytes": 892,
+      "sha256": "c1c00fb86987ebf31199c799c874c4f23bb880fae330890f2ec85ac066354504"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/display-contract.test.ts",
+      "bytes": 6168,
+      "sha256": "9953a92e74a0a4f79b5e2593482aa021b61230ee2d0b53204599335853c2688b"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/display-contract.ts",
+      "bytes": 6450,
+      "sha256": "d77cb78df37352cc9bd80654e35115ef429ff681a373a90c27291124762b87db"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/manifest.mjs",
+      "bytes": 4860,
+      "sha256": "234ed7346fb5fcd2f096a746990b10a7b45d2255adcd587545516b471a58615e"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/plot.py",
+      "bytes": 4618,
+      "sha256": "d0c062c2cbba3dfc37b65d146327dafa72b18965f8eb78f8876afac074108856"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/preview.ts",
+      "bytes": 11877,
+      "sha256": "b928728f4e83531870948ea5fc5604bbe3b01bcd2fb80b5e0731ebcc9d172cb9"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/probe.jl",
+      "bytes": 1668,
+      "sha256": "613e12340eb998d2b42e9e83ee2701dcc05af5700659f8745e1a071fbe88cec1"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/protocol.md",
+      "bytes": 4081,
+      "sha256": "2f0310e9fdbc4005d257289efb0d501bf3d63d52dc373f3f61c2558fd75fca96"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/remap.mjs",
+      "bytes": 3410,
+      "sha256": "a28ea96740a8bc22606913a342cf7d50b6e0ab1718cad993866fd2a875edd3bd"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/remap.test.mjs",
+      "bytes": 1879,
+      "sha256": "fae1cf4ce590ad9cb67bd41b9ea2c5e790179701a7e3f10bf7aebb15ac8b6dc9"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/report.md",
+      "bytes": 9356,
+      "sha256": "7de7db8c9e0d00e968e389eb3b88fbf86a1d9dfc251ba980a3836084ff10093d"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/report.mjs",
+      "bytes": 10309,
+      "sha256": "5f8aa5b809eab72125938477a45745a9b2076ddc8f4db0b808770ddda33bde5b"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/restore-audited.jl",
+      "bytes": 550,
+      "sha256": "37f866854c765f0485fea1c150b84f9d2b61b1c2a0cbd16108f4e95586ac352d"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/review.md",
+      "bytes": 2157,
+      "sha256": "8033e6b6778f06fac950a38cc418a7b7aea5b31833c24e589f884dfb1cab5a07"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/run-julia.mjs",
+      "bytes": 1263,
+      "sha256": "a0e2ca5b00f61c865f225a814ddd04a625cc7e1940cfa8c1bcc259607287b61a"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/run.jl",
+      "bytes": 13846,
+      "sha256": "ccd7e4d0103c7f90130ee41a473e6f7696e6dc69cd96262eedf6bdf998c87179"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/verify-bundle.mjs",
+      "bytes": 1185,
+      "sha256": "ff3f608f446311a5aa06e6a82b67b66c7a8d21aff276b182b3dddbe7e6f001f5"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/verify.mjs",
+      "bytes": 1811,
+      "sha256": "09159e48abd8f73e18f852b43e18a673543e3e53df506856fefb240cc0b2d2e4"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/viewer.css",
+      "bytes": 5249,
+      "sha256": "7cc1a2e91c84ed2948b2aa62a6d19e8844c0a1c883527efc869684037f46c7f0"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/viewer.html",
+      "bytes": 4152,
+      "sha256": "54abfff0f93108a8a9defc5016e77ff478e15eb896905c03894f80c991515656"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/VIEWER.md",
+      "bytes": 3811,
+      "sha256": "ec0435a90952313b58d7da16670095b51cc9a5018b26a52548af8bcf15084cf6"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/acceptance.json",
+      "bytes": 42868,
+      "sha256": "77a12c7387b1dcacb9f7df39a75878354ed12694d7f4f53a685f9ff0d8e629a0"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/budget-audit.png",
+      "bytes": 155506,
+      "sha256": "365a02689b77adf2e9d7cee7eca66651d7d0eb292dead3ef0577c400832047fb"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/checkpoint_test-native-status.json",
+      "bytes": 403,
+      "sha256": "5f831c1c550d34d666be80256a39e64373eb55bd17981b74b067006ca969a66a"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/code-verification.json",
+      "bytes": 622,
+      "sha256": "d97d12837b8c38bb54e0b0ba8b633e51179daa4c1646ce8a7f3624c615c5b2ff"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/diagnostics_test-native-status.json",
+      "bytes": 405,
+      "sha256": "d9aca6cc1090f9551c126134bd4af923e94d378f0c2b65951be22a2e1ad63e60"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/february-temperature.jpg",
+      "bytes": 61276,
+      "sha256": "3ba97a662a09d3e62382da1f35ce16a6eed7c52a68af49031c4a24e4f35f2f3d"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/generated-data-verification.json",
+      "bytes": 373,
+      "sha256": "45459234fa02c796adb40b1495c260e1659a51406bc80cc4e0c3288bd694f294"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/january-low-wind.jpg",
+      "bytes": 93695,
+      "sha256": "25615d9c71c63e5e5e683865d43af69dd0d45e6cecb9f6c86ec4f69a561fd15c"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/july-low-wind.jpg",
+      "bytes": 94003,
+      "sha256": "7e177dc2845a30095440d43165f83c1b82c132cfad6d7682207bcad30d9e0a91"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/july-upper-wind.jpg",
+      "bytes": 94334,
+      "sha256": "50ee14602e09a345a446bdbf249679a2f6976bcda7c3a5cd73fb81a40417dd41"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/observation-comparison.png",
+      "bytes": 298885,
+      "sha256": "cd0a5756f44a7d4c7547a3ed4fc3ed9c1477221edf8ba22a7fdd69a0013d3a55"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/observation-comparison.svg",
+      "bytes": 158470,
+      "sha256": "64264ff3201ae96f04881ab122683a3789f6d87cd39d69fdc759d870d2358c22"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/restart-first-failed.json",
+      "bytes": 1620,
+      "sha256": "6ef3065a7e40bcb3a7131ab72fe4e32551bcff00621922d440ca57fdd6fae1a6"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/viewer-bundle-verification.json",
+      "bytes": 188,
+      "sha256": "529e67df903f51f8f19e9e229e762e16e86321e01dc16d273ef2cc125bf01164"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/webgl-verification.json",
+      "bytes": 3190,
+      "sha256": "6d40b019246e9444d53718590a7a7be58916625e5482432ca078123c0e3e6e6f"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/zonal-circulation.png",
+      "bytes": 275143,
+      "sha256": "fa72b8d1a13668e2e9d2c826d62b32ed1307a3b88bcdfc711669651be4818b86"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/zonal-circulation.svg",
+      "bytes": 182438,
+      "sha256": "59e28b78cd4f25e1caa6d1e55633f87a1dcf16bbc7f7fd8a880abbb9cb89da08"
+    },
+    {
+      "path": "config.js",
+      "bytes": 682,
+      "sha256": "a433230caaf102eea16814b365e4f3df7d5dba556268907fcac56502feecca0a"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/util.js",
+      "bytes": 3606,
+      "sha256": "97801e98a1cc91a330fe1b0e56bd5254d6a1305eb7cd2cb8e25c8b69212dcfa9"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/orient2d.js",
+      "bytes": 5281,
+      "sha256": "ba1af2b1ea71924fa2e0a3e50b8972d3a83ab9a9f406dd73e851c9763a8eb741"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/orient3d.js",
+      "bytes": 14054,
+      "sha256": "c4f1939938354b1129f55b3832196d633ed307799699992447b2d3d4fd75d8f8"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/incircle.js",
+      "bytes": 26758,
+      "sha256": "784e4c897b00289869c9a9e51e0281ac550853e399a8df664afaf29494fe85b5"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/esm/insphere.js",
+      "bytes": 23964,
+      "sha256": "5729d8c87b8f9c056fd7239b39898bdbf0c4f204290a356acc13d29c82ff5e9e"
+    },
+    {
+      "path": "node_modules/.pnpm/robust-predicates@3.0.2/node_modules/robust-predicates/index.js",
+      "bytes": 233,
+      "sha256": "1e26fb2e616a0fa84dadb3a15633d9743671884d82f1abb124e20292fd0ab86d"
+    },
+    {
+      "path": "node_modules/.pnpm/delaunator@5.1.0/node_modules/delaunator/index.js",
+      "bytes": 19472,
+      "sha256": "1a941d291859ebe1f6755dfbc2024686103c5ab2f31659177c01088ab88c2ca3"
+    },
+    {
+      "path": "node_modules/.pnpm/hash-int@1.0.0/node_modules/hash-int/hashint.js",
+      "bytes": 331,
+      "sha256": "c8c0a9d4fe917c379b5bf39153e2ebd8b4079d7ad25d319d468a48aec23340de"
+    },
+    {
+      "path": "node_modules/.pnpm/@redblobgames+prng@https+++_416aa289375707ae1ec9f251aa57e488/node_modules/@redblobgames/prng/index.js",
+      "bytes": 576,
+      "sha256": "9eff784b4e9bf10e941374c432209591dab7fb6f36dd01079bd5100857b581b4"
+    },
+    {
+      "path": "dual-mesh/index.ts",
+      "bytes": 10974,
+      "sha256": "7d0a858bef75cd14126b696f4210a60fd0db3c89046603dc69a24eb56f875b4a"
+    },
+    {
+      "path": "sphere.ts",
+      "bytes": 2610,
+      "sha256": "43546831059ecec49c5240a5e08ce6b8b8de55d3ecf707d6b747c0b7dc211bd6"
+    },
+    {
+      "path": "sphere-mesh.ts",
+      "bytes": 3715,
+      "sha256": "756b91db98ae063e98e23a33e906d400850549e232de05e501051e2dd8a65cb1"
+    },
+    {
+      "path": "mesh.ts",
+      "bytes": 368,
+      "sha256": "c8f439b7226f101c1037a93da0cb19acbdd9288d5240b9c7796311d0f5d7bc0e"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/common.js",
+      "bytes": 1366,
+      "sha256": "7d825b979e1f3f30d9cf4945fc6917f3076879f20be2524af8b077e80c27babf"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/mat2.js",
+      "bytes": 10014,
+      "sha256": "d77e165b600bec9ffa03ddcc4666c43e097a74e290cc55471b2d49e54395f179"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/mat2d.js",
+      "bytes": 11176,
+      "sha256": "33a5f6cb7a0930413a603ff7f8de85b52a8f86a90e888879abe08e30677233ce"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/mat3.js",
+      "bytes": 18909,
+      "sha256": "a025ef02dc2584a4371bd73fb6ab4da82373a063361f93db793be869bd1aefec"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/mat4.js",
+      "bytes": 50779,
+      "sha256": "83bad9e6391ffa4401c6e7b4d8375338bc7fcb8c9263256f267f5f050d4cd4c2"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/vec3.js",
+      "bytes": 19232,
+      "sha256": "63eddc5433fa60fbcc241171b7bbf8305b29b203acea29576d8d7239b4f51667"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/vec4.js",
+      "bytes": 15368,
+      "sha256": "11562bccc50e673427238bb5f498802256b8d946098b9fc58efd76677ce18087"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/quat.js",
+      "bytes": 18213,
+      "sha256": "f83fe7c4136ea8006fe53ad9e092a1a7ab674e8c7299a9fa17685e76f2c8d4b7"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/quat2.js",
+      "bytes": 22130,
+      "sha256": "fb9294db615f862226d1665ca20195481faf2f2d2f7b14f1537b04664ff54aa6"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/vec2.js",
+      "bytes": 14244,
+      "sha256": "58c71a9bd30e1faba0530cf2f96cb6c90161283ed368d05936340ea65e13dad6"
+    },
+    {
+      "path": "node_modules/.pnpm/gl-matrix@3.4.3/node_modules/gl-matrix/esm/index.js",
+      "bytes": 436,
+      "sha256": "2f3fd5db07a7a4d61751561c0fcba157d5e8d93147abfa083176978cf1af208c"
+    },
+    {
+      "path": "surface-grid.ts",
+      "bytes": 6179,
+      "sha256": "5af822cc3ce30a09db820841d15a017dd2850f72ab0c51ade2a14162d6f7e02c"
+    },
+    {
+      "path": "colormap.ts",
+      "bytes": 1728,
+      "sha256": "4a2fc0b683f5fe07ecce4f2e7309247d9100ef96c78e66c1927711e4b70310c5"
+    },
+    {
+      "path": "geometry.ts",
+      "bytes": 5947,
+      "sha256": "266d1868d4a3d8f3632a9c88b8259d73334c19e2143bf63412468427a45eaa39"
+    },
+    {
+      "path": "sphere-view.ts",
+      "bytes": 3900,
+      "sha256": "07542f7c18a900748e5a1158cb0f44e37b1dc7534630e32ba774dcadd8e3d187"
+    },
+    {
+      "path": "planet.ts",
+      "bytes": 2632,
+      "sha256": "15d7f4c11ccd79c0799063b0182ea73af4f589c224383e565d4273d7d8b5fc3f"
+    },
+    {
+      "path": "astronomy.ts",
+      "bytes": 3345,
+      "sha256": "8a944e91c2182252b646fea1cbe1daae5d9be1f9199b958185b98ecae654fc1a"
+    },
+    {
+      "path": "planet-render.ts",
+      "bytes": 6749,
+      "sha256": "a6759b8f1da35e1e514bf93c7606653492dc2cde6f320013db90aae1f685c6a0"
+    },
+    {
+      "path": "terrain-preview.ts",
+      "bytes": 1689,
+      "sha256": "325b197850cee488923034ba3f6c3b465521f68cfd2049181cc14b33775e7011"
+    },
+    {
+      "path": "render.ts",
+      "bytes": 50023,
+      "sha256": "d3ff738ac1fc9a935f520e67702009023913e400443a747dbbda83ece9056330"
+    },
+    {
+      "path": "terrain-parameters.ts",
+      "bytes": 1978,
+      "sha256": "a216ef130eb3df77ddcb8a4a964ed9a7c60744ae35915f898f52a5d1fe73eee6"
+    },
+    {
+      "path": "terrain-document.ts",
+      "bytes": 6976,
+      "sha256": "92031087931b57f72b650f2d0a811bcbcfd7a857304df881692d62f43be2ea39"
+    },
+    {
+      "path": "terrain-preparation.ts",
+      "bytes": 1807,
+      "sha256": "b48da26e72cc1420d48fe96c80968d9ebe420a3f0b9fb0e7bc7bd4bff8561093"
+    },
+    {
+      "path": "worker.ts",
+      "bytes": 3777,
+      "sha256": "427d7f4ded288475f09300527e443609a32406b408d18085003d8bd5b325f03a"
+    },
+    {
+      "path": "map.ts",
+      "bytes": 16612,
+      "sha256": "2cac147ccf33d45d6c2c14d3b6bfe998707a8299357e42b620411d15aa23b40c"
+    },
+    {
+      "path": "build/_worker.js",
+      "bytes": 15607,
+      "sha256": "3add44407c9fca21b06ff9662ff0a680500852934b946439095f77b473cd18b3"
+    },
+    {
+      "path": "build/earth-speedyweather/runtime/runtime-source.json",
+      "bytes": 216,
+      "sha256": "219401b9a207e7c8c9892bd11c4d2dd8373c58572a68d1c962372653b27f50bf"
+    },
+    {
+      "path": "build/earth-speedyweather/annual-launch.json",
+      "bytes": 1239,
+      "sha256": "2061fd1a067cadb3687f25cca59cd04b089a40556b702618a205feed28fce792"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml",
+      "bytes": 207,
+      "sha256": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c"
+    },
+    {
+      "path": "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml",
+      "bytes": 49760,
+      "sha256": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083"
+    },
+    {
+      "path": "build/earth-speedyweather/annual-geometry.json",
+      "bytes": 244040,
+      "sha256": "25cd1f70bbe9a8954969b15d544d0bcfa2716a8fb9c21203d0133f6b890ffcaf"
+    },
+    {
+      "path": "build/earth-speedyweather/annual-initial-inventory.json",
+      "bytes": 397,
+      "sha256": "9a83aa54ddd6b8b231850259effac48ba7d3ebf152e0ccecdef2495df255c1cd"
+    },
+    {
+      "path": "build/earth-speedyweather/annual-statistics-start-inventory.json",
+      "bytes": 397,
+      "sha256": "b0550363804325f9db07369edec69a967ea7d282f22042451e123cfa4c989d3e"
+    },
+    {
+      "path": "build/earth-speedyweather/annual-statistics.json",
+      "bytes": 35244458,
+      "sha256": "cd4fb1544f135578695e9bd13fcb055feff60f00dcb53ff37ca87d1bbe4e3a59"
+    },
+    {
+      "path": "build/earth-speedyweather/restart-verification.json",
+      "bytes": 150,
+      "sha256": "b92af8c271fa81915d33c45f7a184d029a1d3da1b902dbfdd78af27f60d63aaa"
+    },
+    {
+      "path": "build/earth-speedyweather/display.json",
+      "bytes": 6895571,
+      "sha256": "37b8db91d185d46bc1a7453d71cb04576d09018933fb53d909f8fd529d000b9f"
+    },
+    {
+      "path": "build/earth-speedyweather/zonal-circulation.json",
+      "bytes": 16077,
+      "sha256": "1e9a23152b9c0d08f445f78266d132c4bf1c8ddd35a1e2a512e83f6d91692291"
+    },
+    {
+      "path": "build/earth-speedyweather/preview.js",
+      "bytes": 169704,
+      "sha256": "02f03c1434871e29b94d7d3bd4cd3377fc64e29a03aa40fa29fefb7420636617"
+    },
+    {
+      "path": "build/earth-speedyweather/index.html",
+      "bytes": 9351,
+      "sha256": "683fbd93ebaf19837851021082a0bc14f4cfe3f4a2a73f4803fff7f102446cc5"
+    }
+  ],
+  "archives": [
+    {
+      "file": "raw/annual-statistics.json.gz",
+      "bytes": 15700781,
+      "sha256": "6ff2a36660cd982c554d1374eba2ef9fec7e1c4f69b55e5eed493b8dc79e4411",
+      "rawSha256": "cd4fb1544f135578695e9bd13fcb055feff60f00dcb53ff37ca87d1bbe4e3a59"
+    },
+    {
+      "file": "raw/annual-geometry.json.gz",
+      "bytes": 39089,
+      "sha256": "92f3ae66c39e29204f759f7bfb22e0d5f6f06a3cc1f8a7a25d9fdd44a12faab1",
+      "rawSha256": "25cd1f70bbe9a8954969b15d544d0bcfa2716a8fb9c21203d0133f6b890ffcaf"
+    },
+    {
+      "file": "raw/annual-initial.jld2.gz",
+      "bytes": 1984783,
+      "sha256": "78c30458bb92a975b6755226e27fbe2d0bbbeed425f0fd713d9c6fee0c850387",
+      "rawSha256": "8e88991dde3af2877bd248cb1e30b0e7235fa6ee792fa705db5b65da0d237be8"
+    },
+    {
+      "file": "raw/annual-statistics-start.jld2.gz",
+      "bytes": 5348029,
+      "sha256": "4622cfd7005bb4edaba5cdd29531d375098a6426e6eee3f3c9b974a33c7b8fb9",
+      "rawSha256": "b7d42ff2e63bce94715bda9a65a95415881b5d172fbab679bda803ba5d0490d5"
+    },
+    {
+      "file": "raw/annual-final.jld2.gz",
+      "bytes": 5353957,
+      "sha256": "9d16aa7e2543f929ebd04611bebc725534ae7d42b2b85c05164f6bf1c2d729a7",
+      "rawSha256": "7e6e1a208ca979bbab3c61857f29941eb0613f350d9f1ffcb7a334871bbe612b"
+    },
+    {
+      "file": "raw/display.json.gz",
+      "bytes": 3232472,
+      "sha256": "5fc35583cdfabf26dbc087f3d8b92ea8aa74a179df5f9d9108a5038a294314c2",
+      "rawSha256": "37b8db91d185d46bc1a7453d71cb04576d09018933fb53d909f8fd529d000b9f"
+    }
+  ],
+  "limits": [
+    "Independent native inventories; no old/new same-stock causal claim.",
+    "Atmospheric mass/water, land water and slab surface heat are scoped diagnostics; full Earth finite water and ice latent energy unavailable.",
+    "Replay terrain detail is independent of T32 resolution."
+  ],
+  "cwd": "D:\\ws\\app\\mapgen4\\mapgen4-sphere",
+  "pathsAreWorkspaceRelative": true
+}

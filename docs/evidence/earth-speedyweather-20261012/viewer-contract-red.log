@@ -1,0 +1,232 @@
+✖ valid monthly fields retain unquantized values in independent Float64 arrays (14.6827ms)
+✖ rejects wrong model, date range, dataset identity and unsupported acceptance state (4.1373ms)
+✖ rejects grid shape, north-first convention and field length mismatches (0.8769ms)
+✖ rejects non-finite fields and physically invalid surface values (1.8098ms)
+✖ rejects invalid sigma coordinate and top-to-bottom ordering (1.4122ms)
+✖ rejects instantaneous frames, duplicate or unordered months, and missing labels (1.3034ms)
+✖ temperature colors saturate explicitly while signed winds retain flow orientation (2.0688ms)
+✖ winds outside byte encoding range are rejected without silent velocity clipping (0.8342ms)
+✖ inspector maps equal-area cells north-first and wraps the longitude seam (0.2745ms)
+✖ malformed JSON and missing document members are rejected (0.1881ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 0
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 111.439
+
+✖ failing tests:
+
+test at build\earth-speedyweather\display-contract.test.mjs:39:1
+✖ valid monthly fields retain unquantized values in independent Float64 arrays (14.6827ms)
+  AssertionError [ERR_ASSERTION]: decoder must return validated monthly frames
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:43:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at build\earth-speedyweather\display-contract.test.mjs:50:1
+✖ rejects wrong model, date range, dataset identity and unsupported acceptance state (4.1373ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:66:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedyweather\display-contract.test.mjs:69:1
+✖ rejects grid shape, north-first convention and field length mismatches (0.8769ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:83:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedyweather\display-contract.test.mjs:86:1
+✖ rejects non-finite fields and physically invalid surface values (1.8098ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:99:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedyweather\display-contract.test.mjs:102:1
+✖ rejects invalid sigma coordinate and top-to-bottom ordering (1.4122ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:106:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedyweather\display-contract.test.mjs:109:1
+✖ rejects instantaneous frames, duplicate or unordered months, and missing labels (1.3034ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:119:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedyweather\display-contract.test.mjs:122:1
+✖ temperature colors saturate explicitly while signed winds retain flow orientation (2.0688ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   0,
+  -   1,
+  -   255,
+  -   255,
+  -   0,
+  -   115,
+  -   141,
+  -   255,
+  -   146,
+  -   128,
+  -   128,
+  -   255,
+  -   255,
+  -   141,
+  -   115,
+  -   255,
+  -   255,
+  -   255,
+  -   1,
+  -   255
+  - ]
+  
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:128:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [
+        0,   1, 255, 255,   0, 115,
+      141, 255, 146, 128, 128, 255,
+      255, 141, 115, 255, 255, 255,
+        1, 255
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at build\earth-speedyweather\display-contract.test.mjs:154:1
+✖ winds outside byte encoding range are rejected without silent velocity clipping (0.8342ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:158:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /wind|风|velocity/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at build\earth-speedyweather\display-contract.test.mjs:165:1
+✖ inspector maps equal-area cells north-first and wraps the longitude seam (0.2745ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  -1 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:166:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: -1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at build\earth-speedyweather\display-contract.test.mjs:174:1
+✖ malformed JSON and missing document members are rejected (0.1881ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///D:/ws/app/mapgen4/mapgen4-sphere/build/earth-speedyweather/display-contract.test.mjs:175:62)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

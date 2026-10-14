@@ -1,0 +1,186 @@
+{
+  "schema": "isolated-convection-verification-v1",
+  "verifiedUTC": "2026-10-13T05:47:10.093Z",
+  "frozenImplementationSHA256": "1013b8b2b122dec190066a1d2d5fb0fc5e5eff105fb6285796e1f4116168458f",
+  "julia": "1.12.7",
+  "speedyWeather": "0.23.0",
+  "threads": {
+    "julia": 1,
+    "blas": 1
+  },
+  "executions": {
+    "nativeRegression": {
+      "exitCode": 1,
+      "passed": 2,
+      "failed": 2,
+      "errored": 0,
+      "expectedFailure": true
+    },
+    "correctedRegression": {
+      "exitCode": 0,
+      "passed": 1497,
+      "failed": 0,
+      "breakdown": {
+        "parcel": 1408,
+        "wrapperBudgetAndInterval": 85,
+        "regression": 4
+      }
+    },
+    "convergenceAndThroughput": {
+      "exitCode": 0,
+      "chosenMaxLogPressureStep": 0.1,
+      "chosen": {
+        "maxstep": 0.1,
+        "n": 8,
+        "temperatureK": 253.8849346388727,
+        "humidity": 0.0026978518848866343,
+        "temperatureErrorK": 0.001611524736517822,
+        "humidityError": 3.654884078883522e-7
+      }
+    },
+    "julySnapshot": {
+      "exitCode": 0,
+      "clock": "2006-07-01T00:00:00",
+      "columns": 3168,
+      "modelSteps": 0
+    }
+  },
+  "statusProvenance": "Execution exit codes recorded from completed Julia tool calls; assertions here recheck persisted outputs and bindings, not rerun Julia.",
+  "claims": {
+    "installedAuditSourcesUnchanged": true,
+    "frozenIncludeUnchanged": true,
+    "isolatedWaterAndEnthalpyConstraintsPass": true,
+    "coupledTimeIntegrationBudgetVerified": false,
+    "seasonalMonsoonFixed": false,
+    "fullRepositoryTestsRun": false
+  },
+  "limitations": [
+    "Pressure-coordinate dilute cp/Lv integration replaces old environmental-geopotential Euler lapse rate.",
+    "Float32 root temperature tolerance does not imply a uniform 0.4 J/kg enthalpy bound.",
+    "Interval invariance tests are not Leapfrog stability or checkpoint restart tests.",
+    "Snapshot is a same-input instantaneous first-guess counterfactual, not a seasonal frequency or rainfall prediction.",
+    "Benchmark uses monthly-mean fixture and warmed helper timings; concurrent host load varies."
+  ],
+  "files": [
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-corrected.jl",
+      "sha256": "1013b8b2b122dec190066a1d2d5fb0fc5e5eff105fb6285796e1f4116168458f",
+      "bytes": 6859
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-test.jl",
+      "sha256": "fdde5822ea3d04b1bdde62ca18a47e83b7a05e78344ce20a1c464b040e3a779e",
+      "bytes": 7804
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-audit.jl",
+      "sha256": "076f2a6814c76df716698e988a787809dcdacc9d703efe7a8c391812b43981be",
+      "bytes": 6680
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-bench.jl",
+      "sha256": "90188a4450c25240f0ac7440ca94b84fcafda7afa19f46b4f72ae41d75154b2b",
+      "bytes": 2881
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-july-snapshot.jl",
+      "sha256": "69fc04339a14407ddf6f567d529d5d1d648f6805ae4816064a6f4b10d12ce1e6",
+      "bytes": 2463
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-report.md",
+      "sha256": "2285589453cb98a04a4a4668a10a14531a3227778343c50af22b1719c2b40c96",
+      "bytes": 8869
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-LICENSE.txt",
+      "sha256": "6afd64935f7c7f3acf677a23e6b90077db9f2a9ef3e2a68fadf5c4fa48d5239b",
+      "bytes": 14000
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/convection-verify.mjs",
+      "sha256": "ab169cc060ae404f1345625392ea291344b6d3bdfd70b4f30f1fb1ce960de354",
+      "bytes": 4833
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/review-parcel.md",
+      "sha256": "ff6043077ee399124343dd992727fb4235326c9bdabfc2f05f20f2158d567f38",
+      "bytes": 7146
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-audit.json",
+      "sha256": "03638f2eaab829668da8dd4d6f4495e343a182430fbd65247b9cfb657f2834a7",
+      "bytes": 53098
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-red.log",
+      "sha256": "5ce515db62ff462933ea3186d36b4390ccd90dfa5939d70b5a0b512624bafd1c",
+      "bytes": 5530
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-green.log",
+      "sha256": "46ffa8f1fa887fd0978998316fe389f8ade9b730a30dc8ad5b0c95ddd9c287c8",
+      "bytes": 3264
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-bench.json",
+      "sha256": "ede746f8f8cc013dbcd2e618175554ae710140056b89b19d5fd8df5da600edd1",
+      "bytes": 2924
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-bench.log",
+      "sha256": "52320311fae954540cf85245d0afb6c69a607cf6c64fc98061c957b3b74a27f9",
+      "bytes": 5854
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-july-snapshot.json",
+      "sha256": "9f6dcbfe5eeaf7cbaf1d6984e71b92bf9aacc289a944d3e82d6abff5c2c13d91",
+      "bytes": 345373
+    },
+    {
+      "path": "build/earth-speedy-transport/convection-july-snapshot.log",
+      "sha256": "87dea13f53fcf42391125644306b32f355b30691aa0239e6f2eecd1f1ec87d9b",
+      "bytes": 21660
+    },
+    {
+      "path": "build/earth-speedy-transport/diagnostic-july-start.jld2",
+      "sha256": "6241c2b3511e3873abad4d37e5314e29f26c40df124e12efb6ad355637e065ba",
+      "bytes": 9575453
+    },
+    {
+      "path": "build/earth-speedy-transport/diagnostic-weights.json",
+      "sha256": "0b47110a91d768ed526eff0a62a0881f369faf68ff466e744521a9c78de721a4",
+      "bytes": 113310
+    },
+    {
+      "path": "build/earth-speedy-moisture-monsoon/coupled-seasonal-statistics.json",
+      "sha256": "4e06e996754751a416c8daea147de331762d3d85f4e01ef3bb313de71e8314e0",
+      "bytes": 55335803
+    },
+    {
+      "path": "build/earth-speedy-moisture-monsoon/coupled-seasonal-geometry.json",
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+      "bytes": 244030
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/radiation/radiation.jl",
+      "sha256": "8676820bda17c8f9c1ae757792229ed3712c8103eff34c82f825ddeaae73478f",
+      "bytes": 2947
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/entrainment.jl",
+      "sha256": "929067904cc592f52d7f37eec9491f62ed5eeeef74905368229eb5b030c33858",
+      "bytes": 2646
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/parameterizations/convection.jl",
+      "sha256": "cfc708f8a2c6b637f1b818f4eb42a9298a7c890416e8d7b35b44a629ed135974",
+      "bytes": 25535
+    },
+    {
+      "path": "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/atmosphere.jl",
+      "sha256": "0b644ba630e44192d2b1bde232d83acc2a2b9ea172d7b7fa738deb25965d9955",
+      "bytes": 8568
+    }
+  ]
+}

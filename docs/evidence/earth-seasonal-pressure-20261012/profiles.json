@@ -1,0 +1,286 @@
+{
+  "control": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    }
+  },
+  "signed": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "signed-pressure"
+    }
+  },
+  "dragOnly": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "full-drag"
+    }
+  },
+  "pressure": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "thermal-pressure"
+    }
+  },
+  "pressureNoOro": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true,
+      "upliftScheme": "eddy-front"
+    },
+    "environment": {
+      "circulationScheme": "thermal-pressure"
+    }
+  },
+  "balanced": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure"
+    }
+  },
+  "balancedNoOro": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true,
+      "upliftScheme": "eddy-front"
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure"
+    }
+  },
+  "balancedMix1": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 1000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure"
+    }
+  },
+  "boundary": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "boundary-pressure"
+    }
+  },
+  "boundaryNoOro": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true,
+      "upliftScheme": "eddy-front"
+    },
+    "environment": {
+      "circulationScheme": "boundary-pressure"
+    }
+  },
+  "boundaryMix1": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 1000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "boundary-pressure"
+    }
+  },
+  "stress500": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure",
+      "boundaryLayerDepthM": 500
+    }
+  },
+  "stress1000": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure",
+      "boundaryLayerDepthM": 1000
+    }
+  },
+  "stress2000": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure",
+      "boundaryLayerDepthM": 2000
+    }
+  },
+  "boundaryStress": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "boundary-pressure",
+      "boundaryLayerDepthM": 1000
+    }
+  },
+  "layer500": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure",
+      "boundaryLayerDepthM": 500,
+      "pressureLayerDepthM": 500
+    }
+  },
+  "layer1000": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure",
+      "boundaryLayerDepthM": 1000,
+      "pressureLayerDepthM": 1000
+    }
+  },
+  "boundaryLayer500": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "boundary-pressure",
+      "boundaryLayerDepthM": 1000,
+      "pressureLayerDepthM": 500
+    }
+  },
+  "shallowPressure": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure",
+      "pressureLayerDepthM": 500
+    }
+  },
+  "balanced900": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure"
+    }
+  },
+  "boundaryMix1900": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 1000000,
+      "coldFrontDisplacement": true
+    },
+    "environment": {
+      "circulationScheme": "boundary-pressure"
+    }
+  }
+}

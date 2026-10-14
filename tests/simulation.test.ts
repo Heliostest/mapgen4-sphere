@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {ThermalRuntime} from '../thermal-runtime.ts';
+import {circulationWinds} from '../climate.ts';
 import {makeThermalGrid} from '../thermal.ts';
 import {DEFAULT_PLANET} from '../planet.ts';
 import {DEFAULT_ORBIT} from '../astronomy.ts';
@@ -9,6 +10,7 @@ import {defaultTerrainParameters} from '../terrain-parameters.ts';
 import {captureEnvironment} from '../environment-comparison.ts';
 import {WaterModel,DEFAULT_WATER} from '../water.ts';
 import {decodeRuntimeState} from '../runtime-state.ts';
+import {DEFAULT_ENVIRONMENT} from '../environment.ts';
 
 const planet={...DEFAULT_PLANET},orbit={...DEFAULT_ORBIT};
 function runtime(water=true,separate=false) {
@@ -20,6 +22,73 @@ function runtime(water=true,separate=false) {
 function advance(rt:ThermalRuntime,batches:number) {
     for(let j=0;j<batches;j++)rt.sync(planet,orbit,rt.model!.timeS+rt.maxAdvanceS,rt.model!.timeS);
 }
+
+test('optional uplift closures roundtrip without new stocks and preserve exact continuation',()=>{
+    const initial=runtime(true,true).snapshot();
+    const switches={upliftScheme:'eddy-front' as const,consistentLiftTemperature:true,buoyantConvection:false,coldFrontDisplacement:true};
+    Object.assign(initial.waterConfig,{moistureScheme:'transport',...switches});
+    const a=ThermalRuntime.fromSnapshot(initial,planet,orbit);advance(a,1);
+    const saved=JSON.parse(JSON.stringify(a.snapshot(),(_,v)=>ArrayBuffer.isView(v)?Array.from(v as Float64Array):v));
+    const b=ThermalRuntime.fromSnapshot(saved,planet,orbit);
+    for(const [key,value] of Object.entries(switches))assert.equal((b.waterConfig as any)[key],value);
+    assert.ok(Object.values(b.water!.transportRain).every(a=>a.every(v=>v===0)),'Causal rates are invalidated on restoration');
+    advance(a,1);advance(b,1);assert.deepEqual(a.snapshot(),b.snapshot());
+    for(const key of ['consistentLiftTemperature','buoyantConvection','coldFrontDisplacement']){const bad=structuredClone(saved);bad.waterConfig[key]='yes';assert.throws(()=>decodeRuntimeState(bad),/switch/);}
+    const bad=structuredClone(saved);bad.waterConfig.upliftScheme='other';assert.throws(()=>decodeRuntimeState(bad),/uplift/);
+    for(const key of Object.keys(switches))assert.equal(key in DEFAULT_WATER,false,'Formal defaults are opt-out');
+});
+
+test('pressure-driven winds retain reversed offsets and exact JSON continuation without changing stocks',()=>{
+    const initial=runtime(true,true).snapshot();initial.environmentConfig.dynamicCirculation=true;initial.environmentConfig.circulationScheme='thermal-pressure';initial.waterConfig.moistureScheme='transport';
+    initial.environmentConfig.boundaryLayerDepthM=1000;
+    initial.environmentConfig.pressureLayerDepthM=500;
+    const g=makeThermalGrid(8,4),base=circulationWinds(g,planet,orbit,initial.state!.epochS,initial.state!.land,initial.waterConfig.windMps);
+    initial.state!.circulation={atmosphere:{eastMps:new Float64Array(32),northMps:new Float64Array(32)},ocean:{circulationMps:new Float64Array(8*3)}};
+    initial.state!.water!.windEastMps.set(base.eastMps);initial.state!.water!.windNorthMps.set(base.northMps);
+    const a=ThermalRuntime.fromSnapshot(initial,planet,orbit);const before=a.water!.checkpoint();
+    const applied=base.eastMps.map(v=>v>=0?-10:10),offset=applied.map((v,k)=>v-base.eastMps[k]);
+    assert.ok(offset.some(v=>Math.abs(v)>15),'A real reversal exceeds the old departure-only envelope');
+    a.environment!.atmosphere!.restore({eastMps:offset,northMps:new Float64Array(32)});a.water!.setWinds(applied,base.northMps);
+    assert.deepEqual(a.water!.atmosphereKgM2,before.atmosphereKgM2);assert.ok(Math.abs(a.water!.diagnostics().residualMm)<1e-7);
+    const saved=JSON.parse(JSON.stringify(a.snapshot(),(_,v)=>ArrayBuffer.isView(v)?Array.from(v as Float64Array):v));
+    const b=ThermalRuntime.fromSnapshot(saved,planet,orbit);advance(a,1);advance(b,1);assert.deepEqual(a.snapshot(),b.snapshot());
+    assert.equal(b.environmentConfig.pressureLayerDepthM,500);
+    const invalid=structuredClone(saved);invalid.environmentConfig.circulationScheme='regional-monsoon';assert.throws(()=>decodeRuntimeState(invalid),/circulation scheme/);
+    invalid.environmentConfig.circulationScheme='thermal-pressure';invalid.config.separateReservoirs=false;assert.throws(()=>decodeRuntimeState(invalid),/Pressure circulation/);
+    invalid.config.separateReservoirs=true;invalid.environmentConfig.boundaryLayerDepthM=0;assert.throws(()=>decodeRuntimeState(invalid),/boundary-layer depth/);
+    invalid.environmentConfig.boundaryLayerDepthM=1000;invalid.environmentConfig.pressureLayerDepthM=50;assert.throws(()=>decodeRuntimeState(invalid),/pressure-layer depth/);
+    for(const key of ['circulationScheme','boundaryLayerDepthM','pressureLayerDepthM'])assert.equal(key in DEFAULT_ENVIRONMENT,false);
+});
+
+test('disabling dynamic circulation keeps experimental settings inactive and saveable',()=>{
+    const initial=runtime(true,true).snapshot();initial.waterConfig.moistureScheme='transport';initial.environmentConfig.circulationScheme='balanced-pressure';initial.environmentConfig.boundaryLayerDepthM=1000;
+    const parsed=decodeRuntimeState(initial);assert.equal(parsed.environmentConfig.dynamicCirculation,false);
+    const rt=ThermalRuntime.fromSnapshot(parsed,planet,orbit);assert.equal(rt.environment!.atmosphere,null);
+    assert.equal(rt.snapshot().environmentConfig.circulationScheme,'balanced-pressure');
+});
+
+test('compensated ocean transfers preserve stocks and exact JSON continuation',()=>{
+    const initial=runtime(true,true).snapshot();initial.waterConfig.compensatedOceanTransfers=true;
+    const a=ThermalRuntime.fromSnapshot(initial,planet,orbit);advance(a,2);
+    const saved=JSON.parse(JSON.stringify(a.snapshot(),(_,v)=>ArrayBuffer.isView(v)?Array.from(v as Float64Array):v));
+    assert.equal(typeof saved.state.water.oceanCorrection,'number');
+    const b=ThermalRuntime.fromSnapshot(saved,planet,orbit);advance(a,2);advance(b,2);
+    assert.deepEqual(b.snapshot(),a.snapshot());assert.ok(Math.abs(a.water!.diagnostics().residualMm)<1e-7);
+    const bad=structuredClone(saved);bad.state.water.oceanCorrection=1;assert.throws(()=>decodeRuntimeState(bad),/ocean compensation/);
+    bad.state.water.oceanCorrection=0;bad.waterConfig.compensatedOceanTransfers=false;assert.throws(()=>decodeRuntimeState(bad),/accumulation switch/);
+    delete bad.state.water.oceanCorrection;bad.waterConfig.compensatedOceanTransfers='yes';assert.throws(()=>decodeRuntimeState(bad),/switch/);
+    assert.equal('oceanCorrection' in initial.state!.water!,false);
+});
+test('surface closure switches preserve existing stocks, clocks and exact saved continuation',()=>{
+    const rt=runtime(true,true);advance(rt,1);const old=rt.snapshot(),water=rt.water!.checkpoint(),thermal=rt.model!.checkpoint();
+    rt.configureSurfacePhysics({separateSurfaceAlbedo:true,liquidOceanEvaporation:true});
+    assert.deepEqual(rt.water!.checkpoint(),water);assert.deepEqual(rt.model!.temperatureK,thermal.temperatureK);assert.deepEqual(rt.model!.landTemperatureK,thermal.landTemperatureK);assert.deepEqual(rt.model!.oceanTemperatureK,thermal.oceanTemperatureK);
+    assert.equal(rt.snapshot().state!.lastTarget,old.state!.lastTarget);assert.equal(rt.snapshot().state!.initialEnthalpy,old.state!.initialEnthalpy);
+    const saved=rt.snapshot(),restored=ThermalRuntime.fromSnapshot(saved,planet,orbit);advance(rt,1);advance(restored,1);assert.deepEqual(restored.snapshot(),rt.snapshot());
+    assert.ok(Math.abs(rt.water!.diagnostics().residualMm)<1e-7);assert.ok(Math.abs(rt.environment!.diagnostics().energyResidualJm2)<.001);
+    const bad=structuredClone(saved);(bad.waterConfig as any).liquidOceanEvaporation=1;assert.throws(()=>decodeRuntimeState(bad),/switch/);
+    const mixed=runtime().snapshot();mixed.environmentConfig.separateSurfaceAlbedo=true;assert.throws(()=>decodeRuntimeState(mixed),/separate thermal/);
+});
 test('conductive sea ice roundtrips with exact continuation and rejects incompatible reservoirs',()=>{
     const initial=runtime(true,true).snapshot();initial.environmentConfig.conductiveSeaIce=true;
     const a=ThermalRuntime.fromSnapshot(initial,planet,orbit);advance(a,2);

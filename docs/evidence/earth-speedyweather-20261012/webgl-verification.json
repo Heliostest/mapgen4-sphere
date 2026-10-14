@@ -1,0 +1,162 @@
+{
+  "createdUTC": "2026-10-12T12:20:23.055Z",
+  "url": "http://localhost:8001/build/earth-speedyweather/index.html",
+  "webglRendered": true,
+  "january": {
+    "ready": true,
+    "playing": false,
+    "frameIndex": 0,
+    "levelIndex": 7,
+    "layer": "wind",
+    "month": 1,
+    "sigma": 0.9375,
+    "orientation": {
+      "x": 820,
+      "y": 420,
+      "zoom": 0.26
+    },
+    "temperatureSaturated": 0,
+    "presentedTimeS": 26136000,
+    "probeCell": null
+  },
+  "july": {
+    "ready": true,
+    "playing": false,
+    "frameIndex": 6,
+    "levelIndex": 7,
+    "layer": "wind",
+    "month": 7,
+    "sigma": 0.9375,
+    "orientation": {
+      "x": 820,
+      "y": 420,
+      "zoom": 0.26
+    },
+    "temperatureSaturated": 0,
+    "presentedTimeS": 10238400,
+    "probeCell": null
+  },
+  "upper": {
+    "ready": true,
+    "playing": false,
+    "frameIndex": 6,
+    "levelIndex": 1,
+    "layer": "wind",
+    "month": 7,
+    "sigma": 0.1875,
+    "orientation": {
+      "x": 820,
+      "y": 420,
+      "zoom": 0.26
+    },
+    "temperatureSaturated": 0,
+    "presentedTimeS": 10238400,
+    "probeCell": 422
+  },
+  "temperature": {
+    "ready": true,
+    "playing": false,
+    "frameIndex": 1,
+    "levelIndex": 2,
+    "layer": "temperature",
+    "month": 2,
+    "sigma": 0.3125,
+    "orientation": {
+      "x": 820,
+      "y": 420,
+      "zoom": 0.26
+    },
+    "temperatureSaturated": 45,
+    "presentedTimeS": 28684800,
+    "probeCell": 422
+  },
+  "playStart": {
+    "ready": true,
+    "playing": true,
+    "frameIndex": 0,
+    "levelIndex": 7,
+    "layer": "wind",
+    "month": 1,
+    "sigma": 0.9375,
+    "orientation": {
+      "x": 820,
+      "y": 420,
+      "zoom": 0.26
+    },
+    "temperatureSaturated": 0,
+    "presentedTimeS": 26136000,
+    "probeCell": 422
+  },
+  "playEnd": {
+    "ready": true,
+    "playing": false,
+    "frameIndex": 11,
+    "levelIndex": 7,
+    "layer": "wind",
+    "month": 12,
+    "sigma": 0.9375,
+    "orientation": {
+      "x": 820,
+      "y": 420,
+      "zoom": 0.26
+    },
+    "temperatureSaturated": 0,
+    "presentedTimeS": 23457600,
+    "probeCell": 422
+  },
+  "manualMoved": {
+    "ready": true,
+    "playing": false,
+    "frameIndex": 11,
+    "levelIndex": 7,
+    "layer": "wind",
+    "month": 12,
+    "sigma": 0.9375,
+    "orientation": {
+      "x": 810,
+      "y": 420,
+      "zoom": 0.26
+    },
+    "temperatureSaturated": 0,
+    "presentedTimeS": 23457600,
+    "probeCell": 422
+  },
+  "final": {
+    "ready": true,
+    "playing": false,
+    "frameIndex": 6,
+    "levelIndex": 1,
+    "layer": "wind",
+    "month": 7,
+    "sigma": 0.1875,
+    "orientation": {
+      "x": 820,
+      "y": 420,
+      "zoom": 0.26
+    },
+    "temperatureSaturated": 0,
+    "presentedTimeS": 10238400,
+    "probeCell": 422
+  },
+  "warnings": [],
+  "probe": {
+    "cell": 422,
+    "month": 7,
+    "level": 7,
+    "visible": {
+      "temperatureC": "12.45",
+      "eastMps": "-4.756",
+      "northMps": "0.498",
+      "speedMps": "4.782",
+      "surfaceHpa": "989.50",
+      "levelHpa": "927.65",
+      "rainMmDay": "2.425"
+    }
+  },
+  "screenshots": [
+    "january-low-wind.jpg",
+    "july-low-wind.jpg",
+    "july-upper-wind.jpg",
+    "february-temperature.jpg"
+  ]
+}

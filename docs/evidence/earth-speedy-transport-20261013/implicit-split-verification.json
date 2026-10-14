@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "checks": 1940,
+  "results": [
+    {
+      "name": "thermal",
+      "sourceSHA": "224ce07c9552709f31c2e74521e3624ae5894c2a7319ca404faed59c11124d31",
+      "minK": 186.63848526895646,
+      "maxK": 303.9332403243174,
+      "maxNominalC": 0.12612299053883613,
+      "maxDiagnosedRectangularMm": 0.01984229865219662,
+      "maxRawSpectralDiscreteMm": 0.0006961842359964332
+    },
+    {
+      "name": "all",
+      "sourceSHA": "224ce07c9552709f31c2e74521e3624ae5894c2a7319ca404faed59c11124d31",
+      "minK": 192.78226416441203,
+      "maxK": 304.7661227608494,
+      "maxNominalC": 0.10898752180262512,
+      "maxDiagnosedRectangularMm": 0.003508141368712303,
+      "maxRawSpectralDiscreteMm": 0.0017372418414080826
+    }
+  ],
+  "note": "Raw spectral p*q ledger and clipped grid water are separate inventories. No claim of nonlinear wet-mass conservation or long-term stability."
+}

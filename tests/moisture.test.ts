@@ -9,6 +9,91 @@ import {DEFAULT_ORBIT} from '../astronomy.ts';
 import {DEFAULT_ENVIRONMENT} from '../environment.ts';
 const grid=makeThermalGrid(16,8),n=grid.count,field=(x:number)=>new Float64Array(n).fill(x);
 const config={...DEFAULT_WATER,evaporationFraction:0,moistureDiffusivityM2s:0,moistureScheme:'transport' as const};
+
+test('actual face attribution distinguishes diffusion-only, advection-only and mixed transfers',()=>{
+ for(const upliftScheme of [undefined,'advective','eddy-front'] as const)for(const [speed,diffusivity] of [[0,1e6],[5,0],[5,1e6]]){
+  const t=field(288),w=new WaterModel(grid,DEFAULT_PLANET.radiusM,field(0),field(0),t,{...config,upliftScheme,moistureDiffusivityM2s:diffusivity});
+  w.atmosphereKgM2.fill(0);w.atmosphereKgM2[4*16+8]=.5*moistureCapacity(288);w.setWinds(field(speed),field(0));
+  const before=w.atmosphereKgM2.slice(),total=w.diagnostics().totalMm,dt=900;w.step(dt,t,field(0));
+  assert.equal(w.faceAdvectiveVaporKgM2.some(v=>v!==0),speed>0,'Only actual coherent flow contributes to the advective diagnostic');
+  assert.equal(w.faceDiffusiveVaporKgM2.some(v=>v!==0),diffusivity>0,'Only actual eddy exchange contributes to the diffusive diagnostic');
+  const incidence=field(0);
+  grid.edges.forEach((e,k)=>{
+   assert.ok(Math.abs(w.faceAdvectiveVaporKgM2[k]+w.faceDiffusiveVaporKgM2[k]-w.faceVaporTransportKgM2[k])<1e-12);
+   incidence[e.a]-=w.faceVaporTransportKgM2[k];incidence[e.b]+=w.faceVaporTransportKgM2[k];
+  });
+  for(let i=0;i<n;i++)assert.ok(Math.abs(w.atmosphereKgM2[i]-before[i]-incidence[i]+dt*w.precipitationKgM2S[i])<1e-10,'Attributed physical transfers must close the actual finite column');
+  assert.ok(Math.abs(w.diagnostics().totalMm-total)<1e-7);
+ }
+});
+
+test('cold inflow displaces a bounded warm resident parcel even when the donor is dry',()=>{
+ const t=Float64Array.from({length:n},(_,i)=>i%16<8?280:282);
+ const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,field(0),field(0),t,{...config,coldFrontDisplacement:true});
+ for(let i=0;i<n;i++)w.atmosphereKgM2[i]=i%16<8?0:.8*moistureCapacity(t[i]);
+ w.setWinds(field(10),field(0));const before=w.atmosphereKgM2.slice(),total=w.diagnostics().totalMm,dt=1800,k=4*16+8;
+ const fraction=dt*10/(DEFAULT_PLANET.radiusM*Math.sqrt(1-grid.sinLat[4]**2)*2*Math.PI/16);
+ w.step(dt,t,field(0));
+ assert.ok(w.precipitationComponents.front[k]>0,'A dry cold wedge lifts finite warm resident water');
+ assert.ok(w.precipitationKgM2S[k]*dt<=fraction*before[k]+1e-10,'Only the actually displaced warm fraction can rain');
+ assert.ok(Math.abs(w.diagnostics().totalMm-total)<1e-7);
+ const incidence=field(0);grid.edges.forEach((e,k)=>{incidence[e.a]-=w.faceVaporTransportKgM2[k];incidence[e.b]+=w.faceVaporTransportKgM2[k];});
+ for(let k=0;k<grid.edges.length;k++)assert.ok(Math.abs(w.faceAdvectiveVaporKgM2[k]+w.faceDiffusiveVaporKgM2[k]-w.faceVaporTransportKgM2[k])<1e-12,'Face attribution must add to the independently accumulated physical flux');
+ for(let i=0;i<n;i++){
+  assert.ok(Math.abs(incidence[i]-w.vaporTransportKgM2[i])<1e-10);assert.ok(Math.abs(w.atmosphereKgM2[i]-before[i]-incidence[i]+dt*w.precipitationKgM2S[i])<1e-10);
+  const sources=w.transportRain.frontAdvection[i]+w.transportRain.frontDiffusion[i]+w.transportRain.coldFrontAdvection[i];
+  assert.ok(Math.abs(sources-w.precipitationComponents.front[i])<1e-15,'Cold-front water is assigned once, to the local frontal ledger');
+ }
+});
+
+test('a stationary cold wedge cannot repeatedly lift its entire warm neighbor',()=>{
+ const t=Float64Array.from({length:n},(_,i)=>i%16<8?280:282);
+ const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,field(0),field(0),t,{...config,windMps:0,coldFrontDisplacement:true});
+ for(let i=0;i<n;i++)w.atmosphereKgM2[i]=i%16<8?0:.8*moistureCapacity(t[i]);
+ w.setWinds(field(0),field(0));w.step(1800,t,field(0));
+ assert.ok(w.precipitationKgM2S.every(v=>v===0));
+});
+
+test('opt-in scalar diffusion is not a mechanical upslope airflow',()=>{
+ const h=field(0);for(let j=0;j<8;j++)h[j*16+8]=4000;
+ const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,field(1),h,field(288),{...config,windMps:0,moistureDiffusivityM2s:4e6,upliftScheme:'advective'});
+ w.atmosphereKgM2.fill(.8*moistureCapacity(288));w.setWinds(field(0),field(0));const before=w.diagnostics().totalMm;
+ w.step(1800,field(288),field(0));
+ assert.equal(w.precipitationComponents.orographic.reduce((a,b)=>a+b,0),0,'No coherent wind crosses the slope');
+ assert.ok(Math.abs(w.diagnostics().totalMm-before)<1e-7);
+ assert.ok(w.atmosphereKgM2.every(v=>v>=0));
+});
+
+test('opt-in advective mountain ascent retains finite windward rain and rain shadow',()=>{
+ const h=field(0);for(let j=0;j<8;j++)h[j*16+8]=4000;
+ const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,field(1),h,field(288),{...config,upliftScheme:'advective'});
+ w.atmosphereKgM2.fill(.8*moistureCapacity(288));w.setWinds(field(10),field(0));const before=w.diagnostics().totalMm;
+ for(let j=0;j<8;j++)w.step(1800,field(288),field(0));
+ assert.ok(w.precipitationComponents.orographic.some(v=>v>0));
+ assert.ok(w.atmosphereKgM2[4*16+9]<w.atmosphereKgM2[4*16+6]);
+ assert.ok(Math.abs(w.diagnostics().totalMm-before)<1e-7);
+});
+
+test('mixed coastal air lapse uses the same area-weighted emission law when explicitly enabled',()=>{
+ const run=(mountain:boolean)=>{
+  const h=field(0),l=field(.5),t=field(300),k=2*16+8;
+  if(mountain){h[k]=4000;const scale=Math.exp(-.0065*h[k]/288.15);t[k]*=(l[k]/scale**4+1-l[k])**(-.25);}
+  const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,l,h,t,{...config,windMps:0,moistureDiffusivityM2s:1e6,upliftScheme:'advective',consistentLiftTemperature:true});
+  w.atmosphereKgM2.fill(0);w.atmosphereKgM2[k]=1;w.setWinds(field(0),field(0));w.step(1800,t,field(0));return w;
+ };
+ const a=run(false),b=run(true);for(let i=0;i<n;i++)assert.ok(Math.abs(a.vaporTransportKgM2[i]-b.vaporTransportKgM2[i])<1e-12);
+});
+
+test('relative buoyancy ablation can lift moist cold air but not air over a colder surface',()=>{
+ const run=(surface:number,enabled:boolean)=>{
+  const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,field(1),field(0),field(285),{...config,windMps:0,buoyantConvection:enabled});
+  w.atmosphereKgM2.fill(.9*moistureCapacity(285));w.setWinds(field(0),field(0));
+  w.step(1800,field(285),field(250),{heatJm2:field(0),landEvaporation:field(0),iceCover:field(0),landTemperatureK:field(surface),oceanTemperatureK:field(285)});return w;
+ };
+ assert.ok(run(289,true).precipitationComponents.convection.some(v=>v>0));
+ assert.ok(run(289,false).precipitationKgM2S.every(v=>v===0));
+ assert.ok(run(280,true).precipitationKgM2S.every(v=>v===0));
+});
 test('terrain lapse alone cannot amplify horizontal eddy moisture exchange',()=>{
  const run=(mountain:boolean)=>{
   const h=field(0),t=field(300);if(mountain){h[2*16+8]=4000;t[2*16+8]*=Math.exp(-.0065*4000/288.15);}
@@ -52,6 +137,7 @@ test('restore invalidates unsaved precipitation attribution until the next actua
  w.atmosphereKgM2.fill(20);w.step(1800,field(280),field(0));const saved=w.checkpoint();
  assert.equal(w.precipitationComponentsValid,true);
  w.restore(saved);assert.equal(w.precipitationComponentsValid,false);
+ assert.ok(w.faceAdvectiveVaporKgM2.every(v=>v===0)&&w.faceDiffusiveVaporKgM2.every(v=>v===0)&&w.faceVaporTransportKgM2.every(v=>v===0));
  assert.ok(Object.values(w.precipitationComponents).every(a=>a.every(v=>v===0)),'Attribution for another step must not survive restore');
  w.step(1800,field(280),field(0));assert.equal(w.precipitationComponentsValid,true);
 });

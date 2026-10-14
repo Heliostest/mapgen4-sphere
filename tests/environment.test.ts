@@ -9,6 +9,29 @@ import {EnvironmentModel,DEFAULT_ENVIRONMENT} from '../environment.ts';
 import {OceanTransport} from '../ocean.ts';
 import {VegetationModel} from '../vegetation.ts';
 import {generateSurfaceReference} from '../surface.ts';
+
+test('separate surface albedo keeps land snow from reflecting adjacent open-water sunlight',()=>{
+    const land=new Float64Array(n).fill(.5),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,separateReservoirs:true},land,0,g);
+    const w=new WaterModel(g,DEFAULT_PLANET.radiusM,land,new Float64Array(n),m.temperatureK,DEFAULT_WATER);
+    w.seedFrozen(new Float64Array(n).fill(30*.5),new Float64Array(n));
+    const e=new EnvironmentModel(m,w,{...DEFAULT_ENVIRONMENT,vegetation:false,separateSurfaceAlbedo:true});
+    assert.equal(m.surfaceAlbedo!.land[0],.65);assert.equal(m.surfaceAlbedo!.ocean[0],DEFAULT_ORBIT.bondAlbedo);
+    assert.ok(Math.abs(m.albedo[0]-(.65+DEFAULT_ORBIT.bondAlbedo)/2)<1e-12);
+    m.temperatureK.fill(273.15);m.landTemperatureK.fill(273.15);m.oceanTemperatureK.fill(273.15);
+    const start=e.enthalpy();m.advanceTo(m.stepS);e.step(m.stepS);
+    assert.ok(Math.abs(e.enthalpy()-start-m.radiationJm2)<1e-4);assert.ok(Math.abs(w.diagnostics().residualMm)<1e-7);
+});
+
+test('open seawater at its freezing boundary evaporates and spends latent heat',()=>{
+    const land=new Float64Array(n),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,separateReservoirs:true},land,0,g);
+    m.temperatureK.fill(270);m.oceanTemperatureK.fill(271.35);
+    const w=new WaterModel(g,DEFAULT_PLANET.radiusM,land,new Float64Array(n),m.temperatureK,{...DEFAULT_WATER,liquidOceanEvaporation:true,windMps:0,moistureDiffusivityM2s:0});
+    w.atmosphereKgM2.fill(0);const total=w.diagnostics().totalMm;w.oceanGlobalKgM2+=w.initialTotalMm-total;
+    const e=new EnvironmentModel(m,w,{...DEFAULT_ENVIRONMENT,vegetation:false});
+    const before=e.enthalpy();w.step(1800,m.temperatureK,new Float64Array(n).fill(100),e);m.applyHeat(e.heatJm2);m.applyLandHeat(e.landHeatJm2);m.applyOceanHeat(e.oceanHeatJm2);
+    assert.ok(w.evaporationKgM2S[0]>0,'Liquid seawater remains available below freshwater freezing');assert.ok(m.oceanTemperatureK[0]<271.35);
+    assert.ok(Math.abs(e.enthalpy()-before)<1e-4);assert.ok(Math.abs(w.diagnostics().residualMm)<1e-7);
+});
 import {captureEnvironment,comparisonCSV} from '../environment-comparison.ts';
 import {seaIceSurfaceExchange} from '../sea-ice-thermodynamics.ts';
 

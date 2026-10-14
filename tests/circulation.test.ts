@@ -17,6 +17,61 @@ function modernSetup(){
  const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,land,new Float64Array(n),m.temperatureK,{...DEFAULT_WATER,moistureScheme:'transport'});w.atmosphereKgM2.fill(0);
  return {m,w,a:new AtmosphericCirculation(m,w)};
 }
+
+test('signed-pressure experiment responds to both cold and warm land relative to the sea',()=>{
+ const run=(contrast:number)=>{
+  const s=modernSetup();s.w.land.fill(0);s.w.land[1]=1;
+  s.m.temperatureK.fill(330);s.m.landTemperatureK.fill(300);s.m.oceanTemperatureK.fill(300);s.m.landTemperatureK[1]+=contrast;
+  s.a=new AtmosphericCirculation(s.m,s.w,'signed-pressure');s.a.step(1800,900);return s.a;
+ };
+ const hot=run(10),cold=run(-10),flat=run(0);
+ assert.ok(hot.eastMps[0]-flat.eastMps[0]>0,'Warm land supports a thermal low even when the overlying air is warmer');
+ assert.ok(cold.eastMps[0]-flat.eastMps[0]<0,'Cold land supports a thermal high rather than disappearing at a zero clamp');
+ near(hot.eastMps[0]-flat.eastMps[0],-(cold.eastMps[0]-flat.eastMps[0]),1e-11);
+});
+
+test('thermal-pressure experiment dissipates actual unforced wind without a prescribed zonal reset',()=>{
+ const s=modernSetup();s.w.land.fill(0);s.w.setWinds(new Float64Array(n).fill(8),new Float64Array(n));
+ s.a=new AtmosphericCirculation(s.m,s.w,'thermal-pressure');
+ const saved=s.a.checkpoint();s.a.step(0,0);assert.deepEqual(s.a.checkpoint(),saved);
+ s.a.step(1800,900);
+ for(let i=0;i<n;i++)near(Math.hypot(s.w.windEastMps[i],s.w.windNorthMps[i]),8*Math.exp(-1800/(.25*86400)),1e-11);
+ s.a.validateWinds(900);
+});
+
+test('thermal-pressure terrain correction does not turn an unchanged sea-level state into a pressure anomaly',()=>{
+ const flat=modernSetup(),hill=modernSetup();
+ for(const s of [flat,hill]){s.w.land.fill(0);s.w.land[1]=1;s.w.setWinds(new Float64Array(n),new Float64Array(n));s.a=new AtmosphericCirculation(s.m,s.w,'thermal-pressure');}
+ hill.w.heightM[1]=4000;const scale=Math.exp(-.0065*4000/288.15);hill.m.radiationScale[1]=scale;hill.m.landTemperatureK[1]=300*scale;
+ for(const s of [flat,hill])s.a.step(1800,900);
+ for(let k=0;k<n;k++){near(hill.w.windEastMps[k],flat.w.windEastMps[k],1e-11);near(hill.w.windNorthMps[k],flat.w.windNorthMps[k],1e-11);}
+});
+
+test('balanced-pressure retains the marine background equilibrium while friction acts on full land wind',()=>{
+ for(const scheme of ['balanced-pressure','boundary-pressure'] as const){
+  const s=modernSetup();s.w.land.fill(0);s.a=new AtmosphericCirculation(s.m,s.w,scheme);
+  const background=circulationWinds(grid,s.m.planet,s.m.orbit,900,s.w.land,s.w.config.windMps);
+  s.w.setWinds(background.eastMps,new Float64Array(n));s.a.step(1800,900);
+  for(let i=0;i<n;i++){near(s.w.windEastMps[i],background.eastMps[i],1e-11);near(s.w.windNorthMps[i],0,1e-11);}
+  s.w.land.fill(1);s.w.setWinds(background.eastMps,new Float64Array(n));s.a.step(1800,900);
+  assert.ok(s.w.windEastMps.some((v,i)=>Math.abs(v)<Math.abs(background.eastMps[i])-.01),'Full land friction slows the background flow as well as departures');s.a.validateWinds(900);
+ }
+});
+
+test('boundary-layer stress dissipates unforced actual wind with the quadratic drag law',()=>{
+ const s=modernSetup();s.w.land.fill(0);s.w.setWinds(new Float64Array(n).fill(8),new Float64Array(n));
+ s.a=new AtmosphericCirculation(s.m,s.w,'thermal-pressure',1000);s.a.step(1800,900);
+ for(let i=0;i<n;i++)near(Math.hypot(s.w.windEastMps[i],s.w.windNorthMps[i]),8/(1+.0013*8*1800/1000),1e-11);
+ s.a.validateWinds(900);
+});
+
+test('hydrostatic thermal pressure response scales with heated layer depth',()=>{
+ const run=(depth:number,contrast:number)=>{
+  const s=modernSetup();s.w.land.fill(0);s.w.land[1]=1;s.w.setWinds(new Float64Array(n),new Float64Array(n));s.m.landTemperatureK[1]+=contrast;
+  s.a=new AtmosphericCirculation(s.m,s.w,'signed-pressure',undefined,depth);s.a.step(1800,900);return s.w.windEastMps[0];
+ };
+ const shallow=run(500,10)-run(500,0),deep=run(1000,10)-run(1000,0);assert.ok(shallow>0);near(deep,2*shallow,1e-11);
+});
 test('transport mountains with the same sea-level thermal state do not create a spurious dry pressure barrier',()=>{
  const {m,w,a}=modernSetup(),flat=modernSetup();w.land.fill(1);flat.w.land.fill(1);w.heightM[1]=4000;
  const scale=Math.exp(-.0065*4000/288.15);m.radiationScale[1]=scale;m.landTemperatureK[1]=300*scale;

@@ -1,0 +1,123 @@
+{"scope":"Frozen 2001 initial state, V3 native dynamics-only, no physics, no global mass or SST constraint; nominal 30 min, both startup spans and first full leapfrog span.","initialSHA":"4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68","initial":{"airKgM2":9930.766760562274,"rawWaterMm":45.42158778272519,"gridWaterMm":45.42158778272519,"rawMinQ":2.4488767723210088e-5,"clipWaterMm":0.0},"rows":[{"step":1,"counter":0,"span":900.0,"time":"2001-01-01T00:15:00","airKgM2":9931.116348258965,"rawWaterMm":45.42514809325346,"gridWaterMm":45.42514809325346,"rawMinQ":2.54149704493297e-5,"clipWaterMm":0.0,"airResidualKgM2":0.34958769669174217,"rawWaterResidualMm":0.0035603105282717706,"gridWaterResidualMm":0.0035603105282717706},{"step":2,"counter":1,"span":1800.0,"time":"2001-01-01T00:30:00","airKgM2":9931.807626814376,"rawWaterMm":45.43200400168112,"gridWaterMm":45.43200400168113,"rawMinQ":2.527358059758528e-5,"clipWaterMm":0.0,"airResidualKgM2":1.0408662521022052,"rawWaterResidualMm":0.01041621895593181,"gridWaterResidualMm":0.010416218955938916},{"step":3,"counter":2,"span":3600.0,"time":"2001-01-01T01:00:00","airKgM2":9932.930556126335,"rawWaterMm":45.45390885221453,"gridWaterMm":45.45390885221455,"rawMinQ":2.400240278063e-5,"clipWaterMm":0.0,"airResidualKgM2":2.1637955640617292,"rawWaterResidualMm":0.03232106948934188,"gridWaterResidualMm":0.0323210694893632}]}
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:37
+  Expression: abs(r.airResidualKgM2) < 1.0e-9
+   Evaluated: 0.34958769669174217 < 1.0e-9
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:36
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:38
+  Expression: abs(r.rawWaterResidualMm) < 1.0e-10
+   Evaluated: 0.0035603105282717706 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:38 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:36
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:39
+  Expression: abs(r.gridWaterResidualMm) < 1.0e-10
+   Evaluated: 0.0035603105282717706 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:39 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:36
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:37
+  Expression: abs(r.airResidualKgM2) < 1.0e-9
+   Evaluated: 1.0408662521022052 < 1.0e-9
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:36
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:38
+  Expression: abs(r.rawWaterResidualMm) < 1.0e-10
+   Evaluated: 0.01041621895593181 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:38 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:36
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:39
+  Expression: abs(r.gridWaterResidualMm) < 1.0e-10
+   Evaluated: 0.010416218955938916 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:39 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:36
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:37
+  Expression: abs(r.airResidualKgM2) < 1.0e-9
+   Evaluated: 2.1637955640617292 < 1.0e-9
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:37 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:36
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:38
+  Expression: abs(r.rawWaterResidualMm) < 1.0e-10
+   Evaluated: 0.03232106948934188 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:38 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:36
+closed native air and water inventory at every startup span: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:39
+  Expression: abs(r.gridWaterResidualMm) < 1.0e-10
+   Evaluated: 0.0323210694893632 < 1.0e-10
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:39 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:36
+Test Summary:                                               | Fail  Total  Time
+closed native air and water inventory at every startup span |    9      9  1.5s
+RNG of the outermost testset: Random.Xoshiro(0x8b638383fba15538, 0x0b7309a8f0ceae75, 0xd94823e358f014a0, 0x5216ce1fad781469, 0x2ac4f6cd49065696)
+ERROR: LoadError: Some tests did not pass: 0 passed, 9 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-speedy-transport-20261013\wet-carrier-native-red.jl:43

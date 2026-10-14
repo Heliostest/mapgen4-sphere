@@ -1,0 +1,46 @@
+{
+  "createdUTC": "2026-10-12T16:20:48.813Z",
+  "status": "PASS",
+  "evidenceIntegrityPassed": true,
+  "manifestSHA256": "9efb55d09caa657f288552c6dd8a06215cd944fa5baf3995a356543ec8466e28",
+  "bindings": 195,
+  "archives": 11,
+  "realIntegrationsVerified": true,
+  "exactNextStepVerified": true,
+  "initialStockVerified": true,
+  "formalDefaultsUnchanged": true,
+  "browserVerified": true,
+  "regionalClimateAccepted": false,
+  "atmosphericWater": [
+    {
+      "id": "reference",
+      "yearPassed": true,
+      "fullPassed": true
+    },
+    {
+      "id": "slab",
+      "yearPassed": true,
+      "fullPassed": true
+    },
+    {
+      "id": "seasonal",
+      "yearPassed": true,
+      "fullPassed": true
+    }
+  ],
+  "startupAtmosphericWater": [
+    {
+      "id": "slab",
+      "remainingResidualMm": -0.10590167817167159,
+      "limitMm": 0.05,
+      "passed": false
+    },
+    {
+      "id": "seasonal",
+      "remainingResidualMm": -0.105792646268382,
+      "limitMm": 0.05,
+      "passed": false
+    }
+  ],
+  "note": "Evidence/implementation checks passed; startup atmospheric water, regional climate and full coupled Earth budgets are separate and remain unaccepted."
+}

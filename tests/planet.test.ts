@@ -121,16 +121,42 @@ test('painting pauses at the presented frame rather than a queued future rotatio
     clock.seek(20,100000);clock.pauseAt(9,100000);close(clock.timeS,20);
 });
 
-test('space view rotates the planet separately from camera while surface view stays fixed',()=>{
+test('time and spin phase move sunlight without moving the visible terrain in either view',()=>{
     const p={...earth,obliquityRad:0};
     const phase={...orbit,spinPhaseRad:Math.PI/2};
     const camera={x:500,y:500,rotate_deg:0,tilt_deg:0,zoom:100/350};
     const space=makePlanetView(p,phase,0,'day-night','space');
     const projected=vec3.transformMat4(vec3.create(),[0,0,300],sphereProjection(camera,space.model).projection);
-    close(projected[0],6/7,1e-6); close(projected[1],0,1e-6);
+    close(projected[0],0,1e-6); close(projected[1],0,1e-6);
     const surface=makePlanetView(p,phase,0,'day-night','surface');
     assert.equal(surface.model,null);
     assert.deepEqual(space.sunDirection,surface.sunDirection);
+    for(const mode of ['space','surface'] as const) {
+        const initial=makePlanetView(earth,orbit,0,'surface',mode);
+        const later=makePlanetView(earth,orbit,21600,'surface',mode);
+        assert.deepEqual(sphereProjection(camera,later.model).projection,sphereProjection(camera,initial.model).projection);
+        assert.ok(later.sunDirection[0]<-.99,'After six hours the body-relative sun is west');
+        close(later.sunDirection[1],.00171068,1e-6);
+        // Navigation still changes which fixed surface point is presented.
+        assert.notDeepEqual(sphereProjection({...camera,x:750},later.model).projection,sphereProjection(camera,later.model).projection);
+    }
+});
+
+test('summer and winter change polar daylight without changing the globe pose',()=>{
+    const year=deriveOrbit(earth,orbit).yearS;
+    for(const mode of ['space','surface'] as const) {
+        const spring=makePlanetView(earth,orbit,0,'surface',mode);
+        const summer=makePlanetView(earth,orbit,year/4,'surface',mode);
+        const winter=makePlanetView(earth,orbit,3*year/4,'surface',mode);
+        assert.deepEqual(summer.model,spring.model);
+        assert.deepEqual(winter.model,spring.model);
+        close(summer.sunDirection[1],.39777699,1e-7);
+        close(winter.sunDirection[1],-.39777699,1e-7);
+        assert.ok(incidentFlux([0,1,0],summer.sunDirection,1000)>397);
+        assert.equal(incidentFlux([0,1,0],winter.sunDirection,1000),0);
+        assert.equal(incidentFlux([0,-1,0],summer.sunDirection,1000),0);
+        assert.ok(incidentFlux([0,-1,0],winter.sunDirection,1000)>397);
+    }
 });
 
 test('rotated terrain hit retains original barycentric data for physical elevation probing',()=>{

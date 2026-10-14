@@ -1,0 +1,162 @@
+{
+  "passed": true,
+  "checks": 7145,
+  "cases": [
+    {
+      "nominalDtSeconds": 1800,
+      "nSteps": 145,
+      "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "rectangular": {
+        "maxAbsMm": 0.14616840095470796,
+        "signedAtMaxMm": -0.14616840095470796,
+        "timeAtMax": "2001-01-01T07:30:00",
+        "hoursAtMax": 7.5,
+        "stepAtMax": 16,
+        "finalMm": -0.012138399583905723,
+        "stepsOverOriginalPointZeroFive": 17,
+        "everyStepPassesOriginalPointZeroFive": false
+      },
+      "discrete": {
+        "maxAbsMm": 0.06318242443020472,
+        "signedAtMaxMm": 0.06318242443020472,
+        "timeAtMax": "2001-01-01T03:00:00",
+        "hoursAtMax": 3,
+        "stepAtMax": 7,
+        "finalMm": 0.023774831537911822,
+        "stepsOverOriginalPointZeroFive": 5,
+        "everyStepPassesOriginalPointZeroFive": false
+      },
+      "commonThirtyMinuteMaxDiscreteMm": 0.06318242443020472,
+      "commonThirtyMinuteMaxRectangularMm": 0.14616840095470796,
+      "failureFirstTime": "2001-01-01T02:00:00",
+      "failureLastTime": "2001-01-01T04:00:00",
+      "finalWaterMm": 35.87443603922575,
+      "finalWaterCorrectionMm": -6.394884621840902e-14,
+      "minTemperatureK": 179.7202751936144,
+      "maxTemperatureK": 309.67862585073334
+    },
+    {
+      "nominalDtSeconds": 900,
+      "nSteps": 289,
+      "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "rectangular": {
+        "maxAbsMm": 0.06963049101378704,
+        "signedAtMaxMm": -0.06963049101378704,
+        "timeAtMax": "2001-01-01T08:15:00",
+        "hoursAtMax": 8.25,
+        "stepAtMax": 34,
+        "finalMm": 0.017767876013243367,
+        "stepsOverOriginalPointZeroFive": 15,
+        "everyStepPassesOriginalPointZeroFive": false
+      },
+      "discrete": {
+        "maxAbsMm": 0.05175589257824509,
+        "signedAtMaxMm": 0.05175589257824509,
+        "timeAtMax": "2001-01-01T03:15:00",
+        "hoursAtMax": 3.25,
+        "stepAtMax": 14,
+        "finalMm": 0.03314238827564253,
+        "stepsOverOriginalPointZeroFive": 4,
+        "everyStepPassesOriginalPointZeroFive": false
+      },
+      "commonThirtyMinuteMaxDiscreteMm": 0.0517553914467237,
+      "commonThirtyMinuteMaxRectangularMm": 0.06891162295826003,
+      "failureFirstTime": "2001-01-01T02:45:00",
+      "failureLastTime": "2001-01-01T03:30:00",
+      "finalWaterMm": 35.74345708664903,
+      "finalWaterCorrectionMm": 2.913225216616411e-13,
+      "minTemperatureK": 175.61387092253545,
+      "maxTemperatureK": 309.57091925742554
+    },
+    {
+      "nominalDtSeconds": 450,
+      "nSteps": 577,
+      "initialSHA": "4c665c83b08918fad6f8b67968fae472539c8796515afc93a22099d682b44a68",
+      "rectangular": {
+        "maxAbsMm": 0.030500158310502457,
+        "signedAtMaxMm": 0.030500158310502457,
+        "timeAtMax": "2001-01-03T23:52:30",
+        "hoursAtMax": 71.875,
+        "stepAtMax": 576,
+        "finalMm": 0.030078730997809444,
+        "stepsOverOriginalPointZeroFive": 0,
+        "everyStepPassesOriginalPointZeroFive": true
+      },
+      "discrete": {
+        "maxAbsMm": 0.042104894547158545,
+        "signedAtMaxMm": 0.042104894547158545,
+        "timeAtMax": "2001-01-01T03:15:00",
+        "hoursAtMax": 3.25,
+        "stepAtMax": 27,
+        "finalMm": 0.0380554147835408,
+        "stepsOverOriginalPointZeroFive": 0,
+        "everyStepPassesOriginalPointZeroFive": true
+      },
+      "commonThirtyMinuteMaxDiscreteMm": 0.04190441974242298,
+      "commonThirtyMinuteMaxRectangularMm": 0.030078730997809444,
+      "failureFirstTime": null,
+      "failureLastTime": null,
+      "finalWaterMm": 35.65379240777737,
+      "finalWaterCorrectionMm": -1.6342482922482304e-13,
+      "minTemperatureK": 172.3929916965394,
+      "maxTemperatureK": 309.67112036084507
+    }
+  ],
+  "maxDiscreteReductionRatios": [
+    1.2207774087691539,
+    1.2292132098864939
+  ],
+  "rootAuditComparison": {
+    "path": "build/earth-speedy-transport/audit-all-corrections.json",
+    "maxDiscreteDifferenceMm": 0,
+    "initialSHAMatches": true
+  },
+  "observedOrders": [
+    0.2878001695800702,
+    0.2977351762212963
+  ],
+  "monotoneAllStepMaximum": true,
+  "monotoneCommonTimeMaximum": true,
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence.jl",
+      "bytes": 5600,
+      "sha256": "b6578e5a2a52e7dc506027372198d95c8a3cd683c44a51db990eba7e52b358fc"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-native.log",
+      "bytes": 2853,
+      "sha256": "7453bc0f1fb9ea1a052ac4be5f0697c2a9bf26480c5e456ecb85ab6585f6e380"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/timestep-convergence-native-status.json",
+      "bytes": 7216,
+      "sha256": "9f405461c616fa02ce449257b56a86b54ec3ae696a70facae1a61f3f771adf1b"
+    },
+    {
+      "path": "build/earth-speedy-transport/timestep-convergence-summary.json",
+      "bytes": 39992,
+      "sha256": "47a69e7e75ed948d2d1265fbd932f8d42dc8b1c8b8035fe72953ee71c3c42001"
+    },
+    {
+      "path": "build/earth-speedy-transport/audit-all-corrections.json",
+      "bytes": 501568,
+      "sha256": "87a2442da58b4a1b4048a2bfb1f95487647c38fe2cf084b7298387e5772f4891"
+    },
+    {
+      "path": "build/earth-speedy-transport/timestep-convergence-1800s.json",
+      "bytes": 82873,
+      "sha256": "efca2dcc478ebc003b593c93cde1e5ee988327b74d93b8e0cafb84bc736f0ba6"
+    },
+    {
+      "path": "build/earth-speedy-transport/timestep-convergence-900s.json",
+      "bytes": 162012,
+      "sha256": "ff31a0b8e57f71a658f4fd3904b11279a131aa7b39df53f3cbdc848494a5bdd5"
+    },
+    {
+      "path": "build/earth-speedy-transport/timestep-convergence-450s.json",
+      "bytes": 321077,
+      "sha256": "d913ff75ae866ea048ccc47d3b2088c72294ce5ae642a80fa39b52209c094a62"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <base href="../../">
+  <title>地球大气月平均 · SpeedyWeather</title>
+  <link rel="stylesheet" href="build/earth-speedyweather/viewer.css">
+</head>
+<body>
+  <header class="masthead">
+    <div><p class="eyebrow">SPEEDYWEATHER · 独立实验</p><h1>地球大气月平均</h1></div>
+    <p class="scope">实际积分结果 · 2006 年 1—12 月<br><span>只读回放 · 正式地球场景保持原样</span></p>
+    <a class="scene-link" href="scenes/earth-land-sea/index.html">打开地球场景 ↗</a>
+  </header>
+  <main>
+    <section class="world" aria-label="月平均大气地球">
+      <div class="world-heading"><h2 id="frame-heading">等待月平均数据</h2><span id="level-heading">8 层大气</span></div>
+      <div class="canvas-wrap">
+        <canvas id="mapgen4" width="2048" height="2048" tabindex="0" aria-label="地球：拖动旋转，滚轮缩放，单击查看月平均格点；方向键旋转，加减键缩放"></canvas>
+        <div id="loading" role="status">正在读取地理底图和月平均数据…</div>
+      </div>
+      <p class="navigation-hint">拖动旋转 · 滚轮缩放 · 单击查看格点 <span>回放期间视角保持固定</span></p>
+    </section>
+    <aside aria-label="回放控制与图例">
+      <section class="control-section">
+        <div class="section-title"><h2>月平均回放</h2><span class="readonly">只读</span></div>
+        <p class="note">逐月查看已计算的平均值。播放只切换月份。</p>
+        <label for="month">月份</label>
+        <select id="month" disabled><option>正在读取…</option></select>
+        <div class="playback"><button id="previous" type="button" disabled aria-label="上一个月">←</button><button id="play" type="button" disabled aria-pressed="false">播放回放</button><button id="next" type="button" disabled aria-label="下一个月">→</button></div>
+        <div id="month-track" aria-hidden="true"></div>
+        <p id="status" class="note" role="status" aria-live="polite">正在准备…</p>
+      </section>
+      <section class="control-section">
+        <h2>大气层与图层</h2>
+        <label for="level">大气层（从顶端向地表）</label>
+        <select id="level" disabled><option>正在读取…</option></select>
+        <p class="coordinate-note"><span class="sigma">σ = p / p<sub>地表</sub></span><br>sigma 越大，越接近地表。实际气压随格点变化。</p>
+        <label for="layer">显示图层</label>
+        <select id="layer" disabled><option value="wind" selected>月平均风场</option><option value="temperature">月平均气温</option></select>
+        <div id="legend" class="legend" aria-label="图层图例"></div>
+      </section>
+      <section class="control-section inspector">
+        <h2>月平均格点</h2><p id="probe-location" class="note">单击地球查看所选层和对应地表的数值。</p>
+        <dl id="probe-fields" hidden>
+          <div><dt>气温</dt><dd id="probe-temperature"></dd></div>
+          <div><dt>风速</dt><dd id="probe-speed"></dd></div>
+          <div><dt>东向风</dt><dd id="probe-east"></dd></div>
+          <div><dt>北向风</dt><dd id="probe-north"></dd></div>
+          <div><dt>该层气压</dt><dd id="probe-pressure"></dd></div>
+          <div><dt>地表气压</dt><dd id="probe-surface-pressure"></dd></div>
+          <div><dt>海冰覆盖率</dt><dd id="probe-ice"></dd></div>
+          <div><dt>降水</dt><dd id="probe-rain"></dd></div>
+        </dl>
+        <p id="probe-note" class="note" hidden>显示所选格点的原始月平均值；图中颜色与箭头仅用于浏览。</p>
+      </section>
+      <section class="model-note"><p>SpeedyWeather 0.23.0 · T32 · 8 层湿大气</p><p>独立实验模型，区域气候验收尚未通过。地形和参考河流来自现有地球底图，河流不代表本模型的水文结果。</p></section>
+    </aside>
+  </main>
+  <script type="module" src="build/earth-speedyweather/preview.js"></script>
+</body>
+</html>

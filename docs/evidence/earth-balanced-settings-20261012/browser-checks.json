@@ -1,0 +1,53 @@
+{
+  "capturedAt": "2026-10-12T00:38:49.963Z",
+  "comparisons": [
+    {
+      "name": "direct",
+      "url": "http://localhost:8001/build/earth-balanced-settings/before-preview.html",
+      "values": {
+        "timeDays": "365.270833",
+        "emissivity": "0.575",
+        "diffusion": "0.8",
+        "evaporation": "0.5",
+        "mixing": "1000000",
+        "camera": "space",
+        "layer": "surface",
+        "clouds": false,
+        "view": "270,440",
+        "relief": "12",
+        "frameGeometry": {
+          "height": 644,
+          "width": 1264.666748046875,
+          "x": 0,
+          "y": 76.25
+        },
+        "restoration": "完整模拟已恢复，并暂停在存档时刻；点击播放继续。"
+      },
+      "errors": []
+    },
+    {
+      "name": "mix4cool",
+      "url": "http://localhost:8001/build/earth-balanced-settings/balanced-preview.html",
+      "values": {
+        "timeDays": "365.270833",
+        "emissivity": "0.58",
+        "diffusion": "0.8",
+        "evaporation": "0.5",
+        "mixing": "4000000",
+        "camera": "space",
+        "layer": "surface",
+        "clouds": false,
+        "view": "270,440",
+        "relief": "12",
+        "frameGeometry": {
+          "height": 644,
+          "width": 1264.666748046875,
+          "x": 0,
+          "y": 76.25
+        },
+        "restoration": "完整模拟已恢复，并暂停在存档时刻；点击播放继续。"
+      },
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "scope": "Independent mathematical review and new split-reference validation; excludes mutable climate aggregates and pending integrations. Source/report/diagnostic outputs frozen at completion of this independent review.",
+  "tests": {
+    "originalCandidate": {
+      "blockAndRAW": 2796,
+      "wetField": 1074,
+      "exitCode": 0
+    },
+    "revisedCandidate": {
+      "blockAndRAW": 2796,
+      "startup": 16,
+      "wetField": 1074,
+      "measuredAmplification": 36,
+      "includedLegacyKernelMap": 4,
+      "exitCode": 0
+    },
+    "directDynamicReferenceInvariance": {
+      "status": "FAILED on original archived auxiliary-input state",
+      "explanation": "Retained; quantified in review and independently decomposed by readonly-reference-review."
+    }
+  },
+  "files": [
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-instability-review.md",
+      "sha256": "5b48ec7e7228f06891b1cd7b8d784a227278f0707a1bee6deff66d1fd83e7e12"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-corrected.jl",
+      "sha256": "1af4513f14c7f66a42a3253f7288df18e84d7d1c4757edff0aadfa43949275d2"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-reference.jl",
+      "sha256": "224ce07c9552709f31c2e74521e3624ae5894c2a7319ca404faed59c11124d31"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/implicit-split-reference-v2.jl",
+      "sha256": "22f9ef9c91190285d6aafc543abce8c6e706d11662a907a3eab4dd6cd02bfcfd"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-stability.jl",
+      "sha256": "f990b07dc1d84ba0d4dcfc92db72cc003fff1f717a95e78c2deea67ed24a4b0b"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-stability.json",
+      "sha256": "4016b33647a546978eef892fb56e4e9f955424490665f3ceed6bd0aeb34c957e"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-columns.jl",
+      "sha256": "4c5b4700ee44feb4715b9452d0cd4f19e26ddede1932930732c7ecf9456d739d"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-columns.json",
+      "sha256": "8674808f66797d1422529e071ea0dba073cf7a9965e91477c1167e2ffdd097fe"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-candidates.jl",
+      "sha256": "735b80ccb6549169b250f733e31d8ddba114e463ff0800c862b90b4c1ec036d6"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-candidates.json",
+      "sha256": "522d75bfe9880b56ab48ff492f0a7cf1890a0f25b4ab46a22bd807bcca546344"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-window-stability.jl",
+      "sha256": "0305c1494fd8e3d70f94312cf12aac3ee30c1ad98eb2986f20a5d3822bb61451"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-window-stability.json",
+      "sha256": "dab7e8e317faa1fc3ccee389946c11998414e704d663a103b9b4137e04e10a58"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-implicit-reference-invariance.jl",
+      "sha256": "78adb82807bbe0878a3f95ab5b61a775d8f2aca9aae90d417385ec7f215af352"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-implicit-reference-invariance.json",
+      "sha256": "d1268b8f8f0e89556a9cc38598b9f05e68cd47fe91f0a6fd6b7e444121bba8ca"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-reference-test.jl",
+      "sha256": "2654151df91205044f046c09720838bfd736c10433a6de9e7f1ea9b568bdb58a"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-test.json",
+      "sha256": "2fff438630993f6baa1bc3ac3c1ad31b49ec86fea9528ccec8b318324594687b"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-reference-grid-test.jl",
+      "sha256": "79f34450c5ea021dc885c22e9a554ef17fce8fafa4fe99d07171d692c520eb7c"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-grid-test.json",
+      "sha256": "2990f5486f485cb0256dd3cb7490d7ea66b7afdbc60ee9c418400debb6c51042"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-reference-test-v2.jl",
+      "sha256": "91d4e79bff58c68fba840f6d1ca2872924c3418c018f1404a3f119e876c11487"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-test-v2.json",
+      "sha256": "f2d091dd6a68db420ecb470429a121e9d5f724a9a51fd8c661bf5632d04d6d89"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-reference-grid-test-v2.jl",
+      "sha256": "71ce3cc84f64a0cc11e1b22399e615d156cda6bbcdd9fd5b670bc307bcbfdae0"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-grid-test-v2.json",
+      "sha256": "f5bafdae4bd38c60500402efac641d9edbbfcafc4d6748a6b485fe33a3772ccb"
+    },
+    {
+      "path": "docs/evidence/earth-speedy-transport-20261013/physics-split-amplification-v2.jl",
+      "sha256": "cb56a0ce10e830a9db915d126a1649ab6fe0566acc45db3076c01f56c55df6ea"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-amplification-v2.json",
+      "sha256": "6fa307bed022f7f7ab34f0649165a5b77943350fe1646c38553558cf90df8f6c"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-test.log",
+      "sha256": "2cc6588b272100c1b290f955645ed95ae2124203804c042930f7c562bfbc50ce"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-grid-test.log",
+      "sha256": "a6ccde6e1307c0f44980192403fe8a85153b3414aa3c50dc0d33229b1f660f5a"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-test-v2-final.log",
+      "sha256": "c42b135ab60d888a676d5b777f0d3eef808b89bab09304855cebb2d82fe1b463"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-reference-grid-test-v2.log",
+      "sha256": "4bbea8a8c9976a330324de3f0924d597a5215f9b007c8a2e80ae39876835111b"
+    },
+    {
+      "path": "build/earth-speedy-transport/physics-split-amplification-v2.log",
+      "sha256": "683f1462e153ecdf524506284f0ecac8acea3f717610ecb926dc1fc0c259da6b"
+    }
+  ]
+}

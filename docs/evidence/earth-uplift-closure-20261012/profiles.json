@@ -1,0 +1,114 @@
+{
+  "control": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000
+    }
+  },
+  "advective": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "upliftScheme": "advective"
+    }
+  },
+  "eddyFront": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "upliftScheme": "eddy-front"
+    }
+  },
+  "consistent": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "consistentLiftTemperature": true
+    }
+  },
+  "buoyant": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "buoyantConvection": true
+    }
+  },
+  "combined": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "upliftScheme": "eddy-front",
+      "consistentLiftTemperature": true,
+      "buoyantConvection": true
+    }
+  },
+  "coldFront": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    }
+  },
+  "eddyCold": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "upliftScheme": "eddy-front",
+      "coldFrontDisplacement": true
+    }
+  },
+  "mix1": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 1000000
+    }
+  },
+  "coldFront900": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "coldFrontDisplacement": true
+    }
+  },
+  "eddyCold900": {
+    "thermal": {
+      "diffusion": 0.8,
+      "emissivity": 0.58
+    },
+    "water": {
+      "moistureDiffusivityM2s": 4000000,
+      "upliftScheme": "eddy-front",
+      "coldFrontDisplacement": true
+    }
+  }
+}

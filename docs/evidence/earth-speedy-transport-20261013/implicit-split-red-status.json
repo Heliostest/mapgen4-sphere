@@ -1,0 +1,28 @@
+{
+  "startedUTC": "2026-10-13T07:18:36.626Z",
+  "completedUTC": "2026-10-13T07:19:27.957Z",
+  "script": "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl",
+  "args": [
+    "--startup-file=no",
+    "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl"
+  ],
+  "code": 1,
+  "before": {
+    "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl": "ace46127dff87263b6cd770dc0fe3525f326f68b98c185de4a137b23f7b02561",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-corrected.jl": "1af4513f14c7f66a42a3253f7288df18e84d7d1c4757edff0aadfa43949275d2",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/implicit/implicit_primitive_equations.jl": "92fbcf88b62a0c84ec5d7f41b2c88a95e58af25febc893e020b3ee88729195cf",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/tendencies.jl": "eaa625a4b8af54c3342e1382f46deb3bd6acfd354729df1d58b21b73825d91ce",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/vertical_advection.jl": "5639375a49e9d911d1c1a6de389be005ff3dcb93a63b6671094f2ede6d5b943b",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/adiabatic_conversion.jl": "39755331d129009b857df1d3d85602d869ea1baa4ff8a4ee79c0017ec62176a2"
+  },
+  "after": {
+    "docs/evidence/earth-speedy-transport-20261013/implicit-split-test.jl": "ace46127dff87263b6cd770dc0fe3525f326f68b98c185de4a137b23f7b02561",
+    "docs/evidence/earth-speedy-transport-20261013/implicit-corrected.jl": "1af4513f14c7f66a42a3253f7288df18e84d7d1c4757edff0aadfa43949275d2",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/time_stepping/implicit/implicit_primitive_equations.jl": "92fbcf88b62a0c84ec5d7f41b2c88a95e58af25febc893e020b3ee88729195cf",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/tendencies.jl": "eaa625a4b8af54c3342e1382f46deb3bd6acfd354729df1d58b21b73825d91ce",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/vertical_advection.jl": "5639375a49e9d911d1c1a6de389be005ff3dcb93a63b6671094f2ede6d5b943b",
+    "build/earth-speedyweather/depot/packages/SpeedyWeather/qRu16/src/dynamics/adiabatic_conversion.jl": "39755331d129009b857df1d3d85602d869ea1baa4ff8a4ee79c0017ec62176a2"
+  },
+  "sourceUnchanged": true
+}

@@ -1,0 +1,9 @@
+{
+  "description": "Explicit historical nominal lake initial condition for the candidate only; not a 2026 water-level observation or automatic replenishment.",
+  "levels": [{"lakeId": 1, "name": "Caspian Sea", "levelM": -28}],
+  "datum": "Nominal metres below mean sea level. ETOPO's geoid reference and the historical Caspian datum are treated as equivalent only at this scene's coarse spatial resolution.",
+  "source": "https://www.e3s-conferences.org/articles/e3sconf/pdf/2021/64/e3sconf_suse2021_01064.pdf",
+  "sourceObservation": "Article figure reports the 3 August 2017 water level as -28.0 m; used as a historical initial condition, not the current shoreline.",
+  "classification": "Lake ID 1 is the Natural Earth interior component already identified in drainage-source.json. No name or coordinate rule is added to the solver.",
+  "inventory": "Compute volume from the authored ETOPO bed and the same exact triangular storage integral used for hydraulic head. Transfer the finite amount from oceanGlobalKgM2 into surfaceKgM2 and the routed lake partition; preserve total water and the existing enthalpy origin. No reset or forcing after initialization."
+}
