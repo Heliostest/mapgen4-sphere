@@ -1,0 +1,19 @@
+C7 complete split dynamics and shared water: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-coupled.jl:14
+  Expression: a.p == b.p && (a.W == b.W && a.time == b.time)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-coupled.jl:14
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-coupled.jl:74
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-coupled.jl:74 [inlined]
+Test Summary:                               | Pass  Fail  Total   Time
+C7 complete split dynamics and shared water |    1     1      2  15.3s
+RNG of the outermost testset: Xoshiro(0x39a3e53e416d0140, 0x1a592045f01e023b, 0x4fda5459be7c312e, 0x4941668768b23f50, 0x18bcb984a713b907)
+ERROR: LoadError: Some tests did not pass: 1 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-coupled.jl:74

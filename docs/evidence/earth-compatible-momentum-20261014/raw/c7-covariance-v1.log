@@ -1,0 +1,19 @@
+C7 frame and edge orientation: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-covariance.jl:18
+  Expression: CompatibleTransport(m.rotation, lat, lon .+ 0.1)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-covariance.jl:18
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-covariance.jl:21
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-covariance.jl:21 [inlined]
+Test Summary:                 | Pass  Fail  Total  Time
+C7 frame and edge orientation |    4     1      5  9.4s
+RNG of the outermost testset: Xoshiro(0x3ecda215e26aff46, 0x540d89592e4d3fa9, 0x391db420080c1efd, 0xfa4c633592e2ac1f, 0x30a1793899c20e0b)
+ERROR: LoadError: Some tests did not pass: 4 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-covariance.jl:21

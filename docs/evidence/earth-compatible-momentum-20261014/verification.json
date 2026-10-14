@@ -1,0 +1,174 @@
+{
+  "passed": true,
+  "createdUTC": "2026-10-14T10:29:07.718Z",
+  "previous": {
+    "path": "docs/evidence/earth-covariant-momentum-20261014/manifest.json",
+    "sha256": "fa83192f5dd1dd2627734a6eaff9a6a2d546181ae24ac5d07fe45d93f834633c"
+  },
+  "preservation": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  },
+  "selected": {
+    "transport": "c7-transport-v1",
+    "analytic": "c7-analytic-v1",
+    "covariance": "c7-covariance-v2",
+    "coupled": "c7-coupled-v2",
+    "nearRest": "c7-near-rest-v1",
+    "native": [
+      "c7-native-1800-v2",
+      "c7-native-900-v1",
+      "c7-native-450-v1",
+      "c7-native-225-v1"
+    ],
+    "temporal": "c7-temporal-v1"
+  },
+  "runs": [
+    {
+      "name": "c7-analytic-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-coupled-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c7-coupled-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-coupled-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-covariance-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c7-covariance-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-native-1800-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-native-1800-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-native-225-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-native-450-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-native-900-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-near-rest-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c7-near-rest-red-v2",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c7-near-rest-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-temporal-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c7-transport-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c7-transport-v1",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "project": {
+    "passed": true,
+    "tests": 278,
+    "rows": [
+      {
+        "label": "test",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/test.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-compatible-momentum/project-final-test.log",
+        "sha256": "ac2dd4ff40a9875dc5347aa9aeb9f414e51da53a2f054823f4492e13c40bf76c"
+      },
+      {
+        "label": "typecheck",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit"
+        ],
+        "code": 0,
+        "log": "build/earth-compatible-momentum/project-final-typecheck.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "build",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/build.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-compatible-momentum/project-final-build.log",
+        "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+      }
+    ]
+  },
+  "acceptance": {
+    "incrementalAdjointCoupling": true,
+    "transportSubstepPreservesUnresolvedEdgeComponent": true,
+    "referenceEnergyIdentity": true,
+    "sharedAirWaterMomentumTransfers": true,
+    "firstOrderSplitNonlinearCoupling": true,
+    "sampledSpatialRefinement": true,
+    "independentFullNonlinearTimeComparison": true,
+    "nativeSixHourTemporalRefinement": true,
+    "zeroMatchesFrozenC5": true,
+    "nearRestRegression": true,
+    "literalBitRebuiltRestart": true,
+    "independentCodeReviewCompleted": true,
+    "fullPhysicalMomentum": false,
+    "exactAngularMomentumOrPV": false,
+    "fullThermodynamics": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  }
+}
