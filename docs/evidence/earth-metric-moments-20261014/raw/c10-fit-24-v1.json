@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "rings": 24,
+  "cells": 1008,
+  "edges": 12612,
+  "report": {
+    "passed": true,
+    "penalty": 0.01,
+    "floor": 0.01,
+    "iterations": 4,
+    "history": [
+      {
+        "iteration": 1,
+        "free": 12612,
+        "belowFloor": 80,
+        "lowMax": 1.9549193210413596e-11,
+        "cubicNorm": 7.177360055417143
+      },
+      {
+        "iteration": 2,
+        "free": 12532,
+        "belowFloor": 16,
+        "lowMax": 1.7364063949177298e-11,
+        "cubicNorm": 12.029265588893887
+      },
+      {
+        "iteration": 3,
+        "free": 12516,
+        "belowFloor": 16,
+        "lowMax": 1.482979104100446e-11,
+        "cubicNorm": 12.040873475584617
+      },
+      {
+        "iteration": 4,
+        "free": 12500,
+        "belowFloor": 0,
+        "lowMax": 1.6653292568731548e-11,
+        "cubicNorm": 12.041249740890128
+      }
+    ],
+    "originalCubicNorm": 20.27912564759681,
+    "finalCubicNorm": 12.041249740890128,
+    "lowOrderResidual": 1.6653292568731548e-11,
+    "minimumRatio": 0.009999999999999998,
+    "maximumRatio": 8.81145482388516,
+    "pinned": 112,
+    "ridge": 6.535266860247517e-15,
+    "seconds": 7.64393900000141,
+    "objective": 9936.184097284813,
+    "optimalityCertified": false
+  }
+}

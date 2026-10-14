@@ -1,0 +1,304 @@
+{
+  "passed": true,
+  "createdUTC": "2026-10-14T14:43:24.099Z",
+  "previous": {
+    "path": "docs/evidence/earth-rotating-sigma-20261014/manifest.json",
+    "sha256": "b43de1e8915ed83c9d8627906d09bf7ea4b5d033e4f1cffcbd440d02bd2f4f72"
+  },
+  "preservation": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  },
+  "selected": {
+    "metric": "c10-metric-v1",
+    "fit": [
+      "c10-fit-24-v1",
+      "c10-fit-48-v1",
+      "c10-fit-96-v1"
+    ],
+    "diagnosis": "c10-diagnosis-v1",
+    "spatial": "c10-spatial-v2",
+    "harmonic": "c10-harmonic-v1",
+    "native": [
+      "c10-native-1800-v1",
+      "c10-native-900-v1",
+      "c10-native-450-v1",
+      "c10-native-225-v1"
+    ],
+    "temporal": "c10-temporal-v1"
+  },
+  "juliaAssertions": 141,
+  "pythonTestGroups": 7,
+  "graphs": [
+    {
+      "rings": 24,
+      "cells": 1008,
+      "edges": 12612,
+      "report": {
+        "passed": true,
+        "penalty": 0.01,
+        "floor": 0.01,
+        "iterations": 4,
+        "history": [
+          {
+            "iteration": 1,
+            "free": 12612,
+            "belowFloor": 80,
+            "lowMax": 1.9549193210413596e-11,
+            "cubicNorm": 7.177360055417143
+          },
+          {
+            "iteration": 2,
+            "free": 12532,
+            "belowFloor": 16,
+            "lowMax": 1.7364063949177298e-11,
+            "cubicNorm": 12.029265588893887
+          },
+          {
+            "iteration": 3,
+            "free": 12516,
+            "belowFloor": 16,
+            "lowMax": 1.482979104100446e-11,
+            "cubicNorm": 12.040873475584617
+          },
+          {
+            "iteration": 4,
+            "free": 12500,
+            "belowFloor": 0,
+            "lowMax": 1.6653292568731548e-11,
+            "cubicNorm": 12.041249740890128
+          }
+        ],
+        "originalCubicNorm": 20.27912564759681,
+        "finalCubicNorm": 12.041249740890128,
+        "lowOrderResidual": 1.6653292568731548e-11,
+        "minimumRatio": 0.009999999999999998,
+        "maximumRatio": 8.81145482388516,
+        "pinned": 112,
+        "ridge": 6.535266860247517e-15,
+        "seconds": 7.64393900000141,
+        "objective": 9936.184097284813,
+        "optimalityCertified": false
+      }
+    },
+    {
+      "rings": 48,
+      "cells": 3168,
+      "edges": 39580,
+      "report": {
+        "passed": true,
+        "penalty": 0.01,
+        "floor": 0.01,
+        "iterations": 3,
+        "history": [
+          {
+            "iteration": 1,
+            "free": 39580,
+            "belowFloor": 80,
+            "lowMax": 3.115628997912769e-11,
+            "cubicNorm": 6.743366665434947
+          },
+          {
+            "iteration": 2,
+            "free": 39500,
+            "belowFloor": 16,
+            "lowMax": 2.6861504501217155e-11,
+            "cubicNorm": 11.690212488400649
+          },
+          {
+            "iteration": 3,
+            "free": 39484,
+            "belowFloor": 0,
+            "lowMax": 3.057350852114825e-11,
+            "cubicNorm": 11.705768290241629
+          }
+        ],
+        "originalCubicNorm": 20.103669595811507,
+        "finalCubicNorm": 11.705768290241629,
+        "lowOrderResidual": 3.057350852114825e-11,
+        "minimumRatio": 0.009999999999999998,
+        "maximumRatio": 8.612858331503672,
+        "pinned": 96,
+        "ridge": 6.979904485454291e-15,
+        "seconds": 53.00252029998228,
+        "objective": 9481.825049007104,
+        "optimalityCertified": false
+      }
+    },
+    {
+      "rings": 96,
+      "cells": 10944,
+      "edges": 132948,
+      "report": {
+        "passed": true,
+        "penalty": 0.01,
+        "floor": 0.01,
+        "iterations": 3,
+        "history": [
+          {
+            "iteration": 1,
+            "free": 132948,
+            "belowFloor": 80,
+            "lowMax": 4.438967825585137e-10,
+            "cubicNorm": 8.000290136674602
+          },
+          {
+            "iteration": 2,
+            "free": 132868,
+            "belowFloor": 16,
+            "lowMax": 2.9734881709111115e-10,
+            "cubicNorm": 12.293982432766517
+          },
+          {
+            "iteration": 3,
+            "free": 132852,
+            "belowFloor": 0,
+            "lowMax": 3.5194957947567627e-10,
+            "cubicNorm": 12.309650147456361
+          }
+        ],
+        "originalCubicNorm": 21.076047516122888,
+        "finalCubicNorm": 12.309650147456361,
+        "lowOrderResidual": 3.5194957947567627e-10,
+        "minimumRatio": 0.009999999999999998,
+        "maximumRatio": 8.940431989711183,
+        "pinned": 96,
+        "ridge": 7.097293491133335e-15,
+        "seconds": 1152.5117452999984,
+        "objective": 10532.479424832036,
+        "optimalityCertified": false
+      }
+    }
+  ],
+  "runs": [
+    {
+      "name": "c10-diagnosis-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-fit-24-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-fit-48-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-fit-96-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-harmonic-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-metric-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c10-metric-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-native-1800-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-native-225-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-native-450-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-native-900-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-spatial-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c10-spatial-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c10-temporal-v1",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "project": {
+    "passed": true,
+    "tests": 278,
+    "rows": [
+      {
+        "label": "test",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/test.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-metric-moments/project-final-test.log",
+        "sha256": "8acca5f044b684e854e39f87ae533cee1f30c80bfb636d5ee6ecf6ccf2266f76"
+      },
+      {
+        "label": "typecheck",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit"
+        ],
+        "code": 0,
+        "log": "build/earth-metric-moments/project-final-typecheck.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "build",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/build.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-metric-moments/project-final-build.log",
+        "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+      }
+    ]
+  },
+  "acceptance": {
+    "positiveMetricFloor": true,
+    "allOriginalEdgesRetained": true,
+    "frozenC9Dynamics": true,
+    "commonMetricDegree3PolarImprovement": true,
+    "heldOutFieldsReported": true,
+    "pressureOperatorProxyGate": true,
+    "nativeSixHourTemporalRefinement": true,
+    "literalBitRebuiltRestart": true,
+    "crossMetricCheckpointRejected": true,
+    "independentReviewCompleted": true,
+    "exactCurlGrad": false,
+    "fullThermodynamics": false,
+    "nonuniformVerticalOrder": false,
+    "optimalMetricCertified": false,
+    "formalDefaultPromoted": false
+  }
+}
