@@ -1,0 +1,632 @@
+{
+  "candidate": "c11-pressure-wave-validation",
+  "createdUTC": "2026-10-14T17:37:44.550Z",
+  "previous": {
+    "path": "docs/evidence/earth-metric-moments-20261014/manifest.json",
+    "sha256": "22c04edfa46f742bec47ada6eb1cdf70dc8cd9e839198238be1f7ca2f883de8f"
+  },
+  "acceptance": {
+    "integratedLinearPressureWaves": true,
+    "commonSamplesAndAreaNorm": true,
+    "modalTemporalReference": true,
+    "actualNonlinearSmallAmplitudeLimit": true,
+    "allRegressionsReported": true,
+    "frozenC9C10": true,
+    "internalGravityWaves": false,
+    "rotatingWaveAccuracy": false,
+    "arbitraryWavepacketGroupVelocity": false,
+    "formalDefaultPromoted": false
+  },
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/CURRENT-STATE.md",
+      "bytes": 1812,
+      "sha256": "66468b89f057164cf85561d471362aa76f95a1615a815345535a840110ef184d"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/README.md",
+      "bytes": 1468,
+      "sha256": "297b4cd4cef67e844bb82456d5fea836ff6b9657753caf6ffc1ecf3e7599e435"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/code-review.md",
+      "bytes": 7146,
+      "sha256": "4cd3ad65dac4315f1dee15c2c3479f0ba57c166f63082e30be7c6dcdebe6c899"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/common.jl",
+      "bytes": 2327,
+      "sha256": "a5090f3534fbaaf4c6ef1463aa221a97543caba5a7de379c1b39f41bdec4a9ba"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/nonlinear.jl",
+      "bytes": 2533,
+      "sha256": "a42afbc806ce12110260b778138a35474d8cb7e0c20b8320f0669f90d0b8fbea"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/plan.md",
+      "bytes": 3429,
+      "sha256": "7474202ec4d40d583512490784d4055d45bbb677be0751d329642a9e140d4441"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/plot.py",
+      "bytes": 2780,
+      "sha256": "f87abfb1a0ceb0abd3cc5c7a726cecadfc167c99d9858f65758d26ec9d70d6d4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/project-checks.mjs",
+      "bytes": 1193,
+      "sha256": "8cea70395244b05f3d06d7c5e4cfbf1cf563c6e3625c229758b0d94dcdd71ab0"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/protocol.md",
+      "bytes": 5519,
+      "sha256": "7e9662ce819d799db696826a0a56720bb531a59d84008a453d4d84a02ea2f4b7"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-24-c10-false-0.0001-final.bin",
+      "bytes": 444071,
+      "sha256": "7988c4535d7b05825f6325483ba1b774c3fc6c80123f04c1dadc8fdfbcdc9266"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-24-c10-false-0.001-final.bin",
+      "bytes": 444071,
+      "sha256": "ceee9663a44e77cf3af703785c8df4a87910590af1791c8083a0634ba212e137"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-24-c10-true-0.0001-final.bin",
+      "bytes": 444071,
+      "sha256": "4bb8093b5e00358e0c2059a0ca793add553a20725ebe58abdfa55eebf8d0ca3a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-24-c10-true-0.001-final.bin",
+      "bytes": 444071,
+      "sha256": "279f2c2e461d782839c23540a2c28582f17f17d736b41f4799b65282d6cc9bfb"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-24-c9-false-0.0001-final.bin",
+      "bytes": 444071,
+      "sha256": "f049470acdd3df4e388e80b89ab9c463373eb5b0ff596d1422c0ef5f2a368735"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-24-c9-false-0.001-final.bin",
+      "bytes": 444071,
+      "sha256": "11b1f20b0eaa7f587e859efad0ee362459c9fe712447eb8e66d98ffbacd58360"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-24-c9-true-0.0001-final.bin",
+      "bytes": 444071,
+      "sha256": "1603d8a412ba4bc25766fe5ce5feb0dcc65ef4cdce8110c70f6afc9b297449bb"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-24-c9-true-0.001-final.bin",
+      "bytes": 444071,
+      "sha256": "cee78682a499dfd9df70d8c88592726515bf80db25e768903cb1c725753b47bc"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-48-c10-false-0.0001-final.bin",
+      "bytes": 1393447,
+      "sha256": "db46972837335123d82b06d22e7c4250980f2fcdbaff93d63771cb4120f48ddc"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-48-c10-false-0.001-final.bin",
+      "bytes": 1393447,
+      "sha256": "d00bda352bf6f52ab892bd1230a3805bb239d4e4d2a7b018b226a84d4caf96bc"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1-status.json",
+      "bytes": 11404,
+      "sha256": "488dfaf5d864e1951509ffdfc095745edae557ad56acfad8b9aa877e5eaab5f5"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1.json",
+      "bytes": 540680,
+      "sha256": "c3132b362819425f72a1506daeb182235196b06e272adf8586ab98202115ad36"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-nonlinear-v1.log",
+      "bytes": 1937,
+      "sha256": "07947d44c41fa7578e0ef459bafb467b03d5a4c4e59290b757dd5910adc6c606"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-reference-v1-status.json",
+      "bytes": 9927,
+      "sha256": "f5aa36fc5569c724f52ec26eaa30296bb8e9e411fe95ed5bb49f90b805ce8965"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-reference-v1.json",
+      "bytes": 1508,
+      "sha256": "7d9aca50784139ad1ae8d90ccfb9c7a35df5dd591e90b29f5ea20a729f582102"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-reference-v1.log",
+      "bytes": 1089,
+      "sha256": "9547c0eb341b0ef57b67207c2b5f324bcd355eec572fa38f8c3ba06d67735bd3"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-source-v1.json",
+      "bytes": 333,
+      "sha256": "9258798dca1996d599dadf94cebb919374b31dc20616789cfb4f665c5fb8dee2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-wave-red-v1-status.json",
+      "bytes": 9534,
+      "sha256": "1a932d4215a7c83410580920820961e12143acb94c026b1c6731b90f50d84b88"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-wave-red-v1.log",
+      "bytes": 2100,
+      "sha256": "c569beceff940c70d881010c05af4e121bfe85e1bb15dbc1ee91a9943e32d398"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-wave-red-v2-status.json",
+      "bytes": 9534,
+      "sha256": "b39c9bcbfc0e47773e55e7b844a472c5f545e63da387f87497a1406e9d7e7c2c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-wave-red-v2.log",
+      "bytes": 8153,
+      "sha256": "ca6719d13fec90c569b149c77d596d295b4ebc5cd757f005ad51ce58464d90b2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-wave-v1-status.json",
+      "bytes": 9530,
+      "sha256": "461ea8df5a2a31cafcfe0041a673b80b94a0e71adb534ca427454efeae5a09ab"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-wave-v1.log",
+      "bytes": 1278,
+      "sha256": "cc0fd421b6151fe270562597414e5f27c549c29e78a32711082cdff3298dc20f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-wave-v2-status.json",
+      "bytes": 9651,
+      "sha256": "b2fa1204f962c83fb49266f00f133962f7b627cf1c3409a782697977f02406da"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-wave-v2.json",
+      "bytes": 56,
+      "sha256": "e5d3b1dc6154fd2b7db5f44495eeb552c0cf906f4d5ef65f47b782cb7abbad0f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-wave-v2.log",
+      "bytes": 80,
+      "sha256": "bcd2bb4098d0de0d88f284889e5ab789ce6c78f0b681405add36473f902752a7"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-waves-v1-24-c10-endpoints.bin",
+      "bytes": 3923754,
+      "sha256": "dd46b7c1fb8735aa617eb671d9a851a5f264ce789829c7c2d59796bc1d899cc8"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-waves-v1-24-c9-endpoints.bin",
+      "bytes": 3923754,
+      "sha256": "84d7498c932cc6a56e6dff86010539635962ade66b9e6720389a580ad7b7c5d9"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-waves-v1-48-c10-endpoints.bin",
+      "bytes": 12312618,
+      "sha256": "70a886104b89347cf9d6232f887b2040986e6ea9df04c6e678a45d64969a84fd"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-waves-v1-48-c9-endpoints.bin",
+      "bytes": 12312618,
+      "sha256": "2455ab7222118f485d017cf2e7993b8cbc36d247aab5f29690b1e92d95ecb98a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-waves-v1-96-c10-endpoints.bin",
+      "bytes": 41442090,
+      "sha256": "aaffdaa06ca2fa03c64c2627b344b9cf05d6dbabc44a710b3db52d0b12b24013"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-waves-v1-96-c9-endpoints.bin",
+      "bytes": 41442090,
+      "sha256": "92bcb994a11d69cbe7f5a0b33d6e244075633f2d5d2558849ad2fb0aa1be3848"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-waves-v1-status.json",
+      "bytes": 10716,
+      "sha256": "ee7ca5052af4a6fc177b3c328d5de3c916df1c54bcff7e378aa41254b429d24a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-waves-v1.json",
+      "bytes": 17514362,
+      "sha256": "d2077456fdebadd9f9d4ed7079ca6909a4f175f82676c3fb91b5d6adce92b5e5"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/c11-waves-v1.log",
+      "bytes": 329,
+      "sha256": "fe4a7e617409973d5d39cd9a49986d848438e3dfc518d20c84b05d59ed66d6d0"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/plot-provenance.json",
+      "bytes": 736,
+      "sha256": "5fb4316030a35f94845729ab9790ce937971b66b320b14eaca6385b2b3bc709d"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/pressure-waves.png",
+      "bytes": 176291,
+      "sha256": "dffbed3b0edb2072b9b79754a56bbe79ac450ca59a6035a3732b7c2aef6d962e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/project-checks.json",
+      "bytes": 1013,
+      "sha256": "fcd85380883a4096763059a5c7f4ac10478ce8e2ce633c1d40038e91b8eae051"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/project-final-build.log",
+      "bytes": 58,
+      "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/project-final-test.log",
+      "bytes": 27426,
+      "sha256": "b413c7422974a42209a70c68d95b25114ee1d876fe10e61631ff6b1b56b9a456"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/project-final-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/summary-provenance.json",
+      "bytes": 1091,
+      "sha256": "716772a2073f38ba022407778d181cda541bd5b24e94af757fea20855277c977"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/summary.json",
+      "bytes": 4729,
+      "sha256": "884971e512e9aea5e473232df5f6c59b323470733f8ad26175db8d3685f94f23"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/wave-comparison.csv",
+      "bytes": 20839,
+      "sha256": "09db663ef5815b33cd2aa8e7a594c27d00c6f5268e01b16426ae77a0fca99af1"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/raw/wave-regressions.csv",
+      "bytes": 23710,
+      "sha256": "edeaf3162f93b929fa07362b9d17bf83b6d4e8b9e1e40982f8f3aee240b3ecae"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/reference.jl",
+      "bytes": 2039,
+      "sha256": "8e67439290bbd1842992b9f58639de1a22af8eb7148ad8c21df172d932b52910"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/report.md",
+      "bytes": 10364,
+      "sha256": "528bbba8d4e11ae3f8f223ad839222e174245301911ba544954a595915c4aedf"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review-source-bindings.json",
+      "bytes": 21585,
+      "sha256": "0a8859d1f20e7b0cb3dec9cc87103a53ae3e1a503bac6ba95f9c36eaebcadce6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/before.json",
+      "bytes": 15807,
+      "sha256": "8aa0313895bbfbf0402d8a25807644447af6a25ed757dff6c76ac0f0c73a0b03"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/code-review.md",
+      "bytes": 7146,
+      "sha256": "4cd3ad65dac4315f1dee15c2c3479f0ba57c166f63082e30be7c6dcdebe6c899"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/endpoints-audit.jl",
+      "bytes": 5169,
+      "sha256": "55f2266a06c51210cf486443a1fe28598b4b7b13d38b645804aa41a6f9cb6735"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/endpoints-v1-status.json",
+      "bytes": 22103,
+      "sha256": "93e276d2f8eab4f32bfe2b4224af6cee8dc7a6c3410b7cc8e1b234da9028d8c8"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/endpoints-v1.json",
+      "bytes": 45692,
+      "sha256": "63f644759024478e5ec7a3fa3e1422b73ab5cb8996ba98fe59d066c27592869c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/endpoints-v1.log",
+      "bytes": 632,
+      "sha256": "52d09a19f171999eaf2474d6c49355607805c99b7a702609fcec9d4f65b28bec"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/evidence-audit.mjs",
+      "bytes": 9330,
+      "sha256": "713dccaf2b07575dffb9a2b982e5478de8f7c6d0c2bd641df0aa8d93ee0f09ab"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/evidence-v1-status.json",
+      "bytes": 21937,
+      "sha256": "a352e84e9b779d20a7d09f113ec3675f07da7297c283585ca93505c2fc9c0f0e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/evidence-v1.json",
+      "bytes": 2275,
+      "sha256": "7f3162320c315ef85102699c35429bd51940688d1caefbc710b3c4f377c142d3"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/evidence-v1.log",
+      "bytes": 2275,
+      "sha256": "7f3162320c315ef85102699c35429bd51940688d1caefbc710b3c4f377c142d3"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/finalize.mjs",
+      "bytes": 2600,
+      "sha256": "05b9d85e3e26de5597b893046f29a3903079c67a0bc40f4feec98565aa6e3d3a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/frozen-after.json",
+      "bytes": 17855,
+      "sha256": "52a033a51119996141bb8d74905786e816bd91aaf56026b4e5136abbc54cbac6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/frozen-before.json",
+      "bytes": 17855,
+      "sha256": "8d14a2943e4edbe6dcf9a30d576c079163b114e8ca1c84ab55aed39c63e79331"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/inventory.mjs",
+      "bytes": 1386,
+      "sha256": "a4cf2e2db6e2bd636efdfd74ae900201608f81654cda244de21394aa0884624a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/numerical-audit.jl",
+      "bytes": 4917,
+      "sha256": "44d03b8023cb3352830b3ee459bf0e14fca455a782b914a97ed01f92d738dcea"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/numerical-v1-status.json",
+      "bytes": 22103,
+      "sha256": "15bdd17a52d120209e9e4f086779e3dfbb5f14be57fa677e35b739106b9a1d98"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/numerical-v1.json",
+      "bytes": 670,
+      "sha256": "27216cbe9d4674f1affdf7afa7004357c20db6467442ddf8b3d980742919fd13"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/numerical-v1.log",
+      "bytes": 783,
+      "sha256": "46edc848b1b19f8654ea268db86e0338ad6d4b13e0aa11b78620e62edc18599d"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/review-source-bindings.json",
+      "bytes": 21585,
+      "sha256": "0a8859d1f20e7b0cb3dec9cc87103a53ae3e1a503bac6ba95f9c36eaebcadce6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/run-audit.mjs",
+      "bytes": 2737,
+      "sha256": "0f9242328a9e667daafafb70380e4f498ef352abdd4d882d7c7d14d61e411fe9"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/tooling-audit.mjs",
+      "bytes": 1706,
+      "sha256": "58ddaa22cfcdea0db9ccb5140651baef34e99a40cbb76b91c09743c789c1fa41"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/tooling-v1-generated.mjs",
+      "bytes": 7777,
+      "sha256": "fad6dba0bfc0a3ff69015b14b23ac7f9926668cf26d5dcd51cc70e989ddae296"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/tooling-v1-status.json",
+      "bytes": 22059,
+      "sha256": "e4a8f27e67dc8bf5bcefbd424317a28c16da95b90351a1f96064d8822a11c077"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/tooling-v1.json",
+      "bytes": 1143,
+      "sha256": "31ccd945d25e0b06914ebb5e50c2df75114e59dfea60777c6c56b019e6fe04ab"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/review/tooling-v1.log",
+      "bytes": 1143,
+      "sha256": "31ccd945d25e0b06914ebb5e50c2df75114e59dfea60777c6c56b019e6fe04ab"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/run.mjs",
+      "bytes": 7013,
+      "sha256": "1f47bccd951207723e9957d1f06273182bf00b8e2c548fc55731ced3cdc97e95"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/seal.mjs",
+      "bytes": 9190,
+      "sha256": "df6aa8e9212083b28a07f0a24fa6f78c2a5ee433441e9bd92ada99cf43cf3190"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/selected-runs.json",
+      "bytes": 125,
+      "sha256": "264e4af8a057a44a614c290d6a8a48ffd4a375ed865658e31b245d705f93e8ce"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/166357aaf1eb666aa768d88a240c45d7172f8ba13c90655c9e2559f3562c5023/wave-core.jl",
+      "bytes": 53,
+      "sha256": "166357aaf1eb666aa768d88a240c45d7172f8ba13c90655c9e2559f3562c5023"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/1f47bccd951207723e9957d1f06273182bf00b8e2c548fc55731ced3cdc97e95/run.mjs",
+      "bytes": 7013,
+      "sha256": "1f47bccd951207723e9957d1f06273182bf00b8e2c548fc55731ced3cdc97e95"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62/modal-core.jl",
+      "bytes": 6385,
+      "sha256": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d/conservative-core.jl",
+      "bytes": 12294,
+      "sha256": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84/graph-wind.jl",
+      "bytes": 3839,
+      "sha256": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/529c35b35273f776192cb24278ed702cbd84eda87ee1e1ed14d1418f4dd7d59e/test-wave.jl",
+      "bytes": 1454,
+      "sha256": "529c35b35273f776192cb24278ed702cbd84eda87ee1e1ed14d1418f4dd7d59e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd/conservative-grid.jl",
+      "bytes": 7774,
+      "sha256": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/74615316a8912d95146d200b5c5c7b4cd30b58457667fbddf57e7be30e420b30/waves.jl",
+      "bytes": 2799,
+      "sha256": "74615316a8912d95146d200b5c5c7b4cd30b58457667fbddf57e7be30e420b30"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/7e9662ce819d799db696826a0a56720bb531a59d84008a453d4d84a02ea2f4b7/protocol.md",
+      "bytes": 5519,
+      "sha256": "7e9662ce819d799db696826a0a56720bb531a59d84008a453d4d84a02ea2f4b7"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/8231625a4a4ed0855150d0047a27a1c55b24324177fff4d47d8adce287168f80/pressure-core.jl",
+      "bytes": 8001,
+      "sha256": "8231625a4a4ed0855150d0047a27a1c55b24324177fff4d47d8adce287168f80"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/8372e77fca52c2327f308da7c3af6c7196836964aa1a669787e7e9f16aca2145/test-wave.jl",
+      "bytes": 424,
+      "sha256": "8372e77fca52c2327f308da7c3af6c7196836964aa1a669787e7e9f16aca2145"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/8e67439290bbd1842992b9f58639de1a22af8eb7148ad8c21df172d932b52910/reference.jl",
+      "bytes": 2039,
+      "sha256": "8e67439290bbd1842992b9f58639de1a22af8eb7148ad8c21df172d932b52910"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/96439da1040838db32eb0d480b86071b70d6b54b838e336c03f7190ee18a4e06/test-wave.jl",
+      "bytes": 1398,
+      "sha256": "96439da1040838db32eb0d480b86071b70d6b54b838e336c03f7190ee18a4e06"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/a42afbc806ce12110260b778138a35474d8cb7e0c20b8320f0669f90d0b8fbea/nonlinear.jl",
+      "bytes": 2533,
+      "sha256": "a42afbc806ce12110260b778138a35474d8cb7e0c20b8320f0669f90d0b8fbea"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/a5090f3534fbaaf4c6ef1463aa221a97543caba5a7de379c1b39f41bdec4a9ba/common.jl",
+      "bytes": 2327,
+      "sha256": "a5090f3534fbaaf4c6ef1463aa221a97543caba5a7de379c1b39f41bdec4a9ba"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/bc41701a6e4285506d69389f97d030b193429a8c6510a30bc4071f7ebf7d4c5f/vector-core.jl",
+      "bytes": 6723,
+      "sha256": "bc41701a6e4285506d69389f97d030b193429a8c6510a30bc4071f7ebf7d4c5f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a/fct-transport.jl",
+      "bytes": 5383,
+      "sha256": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/c49c91948876e71200d81d34a35a2e3046185f54643d2dfbe58c85e65cd511b8/wave-cases.jl",
+      "bytes": 1581,
+      "sha256": "c49c91948876e71200d81d34a35a2e3046185f54643d2dfbe58c85e65cd511b8"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/source-archives/fa5014214b3f19a23b0128f76e304bbf8e8e4f8c19983fb53c154eeec3d21efb/wave-core.jl",
+      "bytes": 1122,
+      "sha256": "fa5014214b3f19a23b0128f76e304bbf8e8e4f8c19983fb53c154eeec3d21efb"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/summarize.mjs",
+      "bytes": 3656,
+      "sha256": "8bb6e31f9a8caddba8c907240fa9eabdf56af564a8d3777b97a9f9546bf32915"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/test-source.mjs",
+      "bytes": 1793,
+      "sha256": "edb06870f8f088b746b869a592db12c5f9af9340856f8aedb328e4bd0bf4388b"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/test-wave.jl",
+      "bytes": 1454,
+      "sha256": "529c35b35273f776192cb24278ed702cbd84eda87ee1e1ed14d1418f4dd7d59e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/tooling/README.md",
+      "bytes": 837,
+      "sha256": "bbe1632de0fe8cbe9749a4205ffff92bc69e8e23a00244c1491bdac326829fb4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/tooling/preseal-generated-v2.mjs",
+      "bytes": 7690,
+      "sha256": "ace8b9a649b6c80ed0944ac7c42d609230598cf9e8e7e4fe22edc2de3dec4486"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/tooling/preseal-generated.mjs",
+      "bytes": 7618,
+      "sha256": "ac6c754cc1f8a80e68b81e5cbc401ef8e8ee2f746c6042e1462a4b016dc6b77f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/tooling/preseal-v2.json",
+      "bytes": 172,
+      "sha256": "949b94a304eae935eac8191126f8953dce8aa4ce006961c5fb4362e6261a3059"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/tooling/preseal-v2.log",
+      "bytes": 52,
+      "sha256": "6001009d7005098ae634bb588856790f6f3ef1e23bbf2d3f8b68a3a09dce985b"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/tooling/preseal-v2.mjs",
+      "bytes": 1098,
+      "sha256": "c8a46d1031bf0ef2f445873440f5a7de6cb11d3449f9da891dfcb38230c85029"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/tooling/preseal.json",
+      "bytes": 21645,
+      "sha256": "eef7d871bc2b5f9e6ae02d88e46065bc3d491f95392473046157d3c97ed4b0ff"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/tooling/preseal.log",
+      "bytes": 20972,
+      "sha256": "4c6ec5fd06b2982c80c91b07a21e74bf4076e0b359d31eaf84b1001574c7fa60"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/tooling/preseal.mjs",
+      "bytes": 1086,
+      "sha256": "d533d2293dc92463e23f6b8d00828d086c9b5d47e1c588103a22e0fd63cb89a4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/verification.json",
+      "bytes": 4392,
+      "sha256": "0d74424cffcf164757de468e26974b14b6a9f983491d3f4e9e7eec3ccb1400ad"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/verify-seal.mjs",
+      "bytes": 1311,
+      "sha256": "091212fa7f2ec1e26794af69d503fae6c592656c6308e4ed768cf2c0fa92a3a6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/verify-source.mjs",
+      "bytes": 1157,
+      "sha256": "46e5c79e644c94d4c8386d54a7a8df63c2be065d9e8fc1c2fff92c69431af033"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/wave-cases.jl",
+      "bytes": 1581,
+      "sha256": "c49c91948876e71200d81d34a35a2e3046185f54643d2dfbe58c85e65cd511b8"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/wave-core.jl",
+      "bytes": 1122,
+      "sha256": "fa5014214b3f19a23b0128f76e304bbf8e8e4f8c19983fb53c154eeec3d21efb"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-waves-20261015/waves.jl",
+      "bytes": 2799,
+      "sha256": "74615316a8912d95146d200b5c5c7b4cd30b58457667fbddf57e7be30e420b30"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:8
+  Expression: ≈(r1, [49 / 51, -49 / 51], rtol = 1.0e-14)
+   Evaluated: [1.0, -1.0] ≈ [0.9607843137254902, -0.9607843137254902] (rtol=1.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:8 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:9
+  Expression: ≈(v1, [20 / 51], rtol = 1.0e-14)
+   Evaluated: [0.0] ≈ [0.39215686274509803] (rtol=1.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:9 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:14
+  Expression: wave_step(c, r, v, bad)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:14 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:14
+  Expression: wave_step(c, r, v, bad)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:14 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:14
+  Expression: wave_step(c, r, v, bad)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:14 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16
+  Expression: wave_step(c, rr, vv, dt)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16
+  Expression: wave_step(c, rr, vv, dt)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16
+  Expression: wave_step(c, rr, vv, dt)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16
+  Expression: wave_step(c, rr, vv, dt)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16
+  Expression: wave_step(c, rr, vv, dt)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:16 [inlined]
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+C11 wave diagnostic: Error During Test at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:3
+  Got exception outside of a @test
+  UndefVarError: `wave_energy` not defined in `Main`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] macro expansion
+     @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:18 [inlined]
+   [2] macro expansion
+     @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+   [3] top-level scope
+     @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+   [4] include(mod::Module, _path::String)
+     @ Base .\Base.jl:306
+   [5] exec_options(opts::Base.JLOptions)
+     @ Base .\client.jl:317
+   [6] _start()
+     @ Base .\client.jl:550
+Test Summary:       | Pass  Fail  Error  Total  Time
+C11 wave diagnostic |    4    10      1     15  2.2s
+RNG of the outermost testset: Xoshiro(0xa4b8ccef820ff980, 0xd774533bc16da0cc, 0x9d24db60a1ec7426, 0x554507ceeaa25ce0, 0x91b1462e5a67aac2)
+ERROR: LoadError: Some tests did not pass: 4 passed, 10 failed, 1 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:3

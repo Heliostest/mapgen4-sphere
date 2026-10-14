@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "createdUTC": "2026-10-14T17:37:44.404Z",
+  "previous": {
+    "path": "docs/evidence/earth-metric-moments-20261014/manifest.json",
+    "sha256": "22c04edfa46f742bec47ada6eb1cdf70dc8cd9e839198238be1f7ca2f883de8f"
+  },
+  "preserved": [
+    {
+      "path": "docs/evidence/earth-metric-moments-20261014/manifest.json",
+      "sha256": "22c04edfa46f742bec47ada6eb1cdf70dc8cd9e839198238be1f7ca2f883de8f"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/manifest.json",
+      "sha256": "b43de1e8915ed83c9d8627906d09bf7ea4b5d033e4f1cffcbd440d02bd2f4f72"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/manifest.json",
+      "sha256": "4f4a9d86f8c382c633f8ae7a50b2dfc2fcb9f1eff8b65675794d8a6a6dbcbf94"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/manifest.json",
+      "sha256": "c0d8e047bb577bb6b689a128639c8e4b9dcf6cf3fe6f4eee8ed74f589ceedfeb"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/manifest.json",
+      "sha256": "fa83192f5dd1dd2627734a6eaff9a6a2d546181ae24ac5d07fe45d93f834633c"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/manifest.json",
+      "sha256": "bccc6cf74351355e7c3c799c4767684b2fa06a2de73b0a2d67ca057ed5e376e8"
+    },
+    {
+      "path": "docs/evidence/earth-native-graph-wind-20261014/manifest.json",
+      "sha256": "8c9869d799dc7b7da8bd955de8a9cacd1c843722de8926bb10ddc1bc94cd6536"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/manifest.json",
+      "sha256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e"
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/manifest.json",
+      "sha256": "9c2624a29cff97d7cd74dd118ac39cc4e71141852561ebaf2b00aa8150f64cd2",
+      "bindings": 148
+    }
+  ],
+  "preservation": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  },
+  "selected": {
+    "unit": "c11-wave-v2",
+    "waves": "c11-waves-v1",
+    "reference": "c11-reference-v1",
+    "nonlinear": "c11-nonlinear-v1"
+  },
+  "juliaAssertions": 284,
+  "attempts": [
+    {
+      "name": "c11-nonlinear-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c11-reference-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c11-wave-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c11-wave-red-v2",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c11-wave-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c11-wave-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c11-waves-v1",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "project": {
+    "passed": true,
+    "tests": 278,
+    "rows": [
+      {
+        "label": "test",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/test.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-pressure-waves/project-final-test.log",
+        "sha256": "b413c7422974a42209a70c68d95b25114ee1d876fe10e61631ff6b1b56b9a456"
+      },
+      {
+        "label": "typecheck",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit"
+        ],
+        "code": 0,
+        "log": "build/earth-pressure-waves/project-final-typecheck.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "build",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/build.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-pressure-waves/project-final-build.log",
+        "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+      }
+    ]
+  },
+  "acceptance": {
+    "integratedLinearPressureWaves": true,
+    "commonSamplesAndAreaNorm": true,
+    "modalTemporalReference": true,
+    "actualNonlinearSmallAmplitudeLimit": true,
+    "allRegressionsReported": true,
+    "frozenC9C10": true,
+    "internalGravityWaves": false,
+    "rotatingWaveAccuracy": false,
+    "arbitraryWavepacketGroupVelocity": false,
+    "formalDefaultPromoted": false
+  }
+}

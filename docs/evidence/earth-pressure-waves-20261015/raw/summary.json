@@ -1,0 +1,180 @@
+{
+  "passed": true,
+  "cases": 216,
+  "pairs": 108,
+  "grid": [
+    {
+      "rings": 24,
+      "c9_finalPhaseError": 0.226094597884698,
+      "c9_maxAmplitudeError": 0.018434666979853853,
+      "c9_maxPressureError": 0.22605645188418713,
+      "c9_maxLeakage": 0.015403992840915821,
+      "c10_finalPhaseError": 0.2258848423470745,
+      "c10_maxAmplitudeError": 0.01842493348775054,
+      "c10_maxPressureError": 0.22583130016587177,
+      "c10_maxLeakage": 0.01558890161552195
+    },
+    {
+      "rings": 48,
+      "c9_finalPhaseError": 0.06321746274978857,
+      "c9_maxAmplitudeError": 0.005026129652279998,
+      "c9_maxPressureError": 0.06327947156408023,
+      "c9_maxLeakage": 0.0030250480504286944,
+      "c10_finalPhaseError": 0.06359215139319652,
+      "c10_maxAmplitudeError": 0.0050531288130597485,
+      "c10_maxPressureError": 0.06363549178312933,
+      "c10_maxLeakage": 0.0026205896747076717
+    },
+    {
+      "rings": 96,
+      "c9_finalPhaseError": 0.018523481604580283,
+      "c9_maxAmplitudeError": 0.0014230757357678314,
+      "c9_maxPressureError": 0.01854726720970196,
+      "c9_maxLeakage": 0.0010292906806152367,
+      "c10_finalPhaseError": 0.01851154515213871,
+      "c10_maxAmplitudeError": 0.0014226381222669504,
+      "c10_maxPressureError": 0.01853311485196647,
+      "c10_maxLeakage": 0.0009970450161315345
+    }
+  ],
+  "refinement": [
+    {
+      "model": "c9",
+      "variable": false,
+      "pressureRatio": 4.010592269715762,
+      "velocityRatio": 3.9825506563126574
+    },
+    {
+      "model": "c9",
+      "variable": true,
+      "pressureRatio": 4.010622436425011,
+      "velocityRatio": 3.9824707830644774
+    },
+    {
+      "model": "c10",
+      "variable": false,
+      "pressureRatio": 3.9982546927228158,
+      "velocityRatio": 3.9993545658313874
+    },
+    {
+      "model": "c10",
+      "variable": true,
+      "pressureRatio": 3.9982529389225867,
+      "velocityRatio": 3.9993501469102744
+    }
+  ],
+  "amplitude": [
+    {
+      "rings": 24,
+      "model": "c9",
+      "variable": false,
+      "pressureRatio": 10.000001238446798,
+      "velocityRatio": 9.999990915881236
+    },
+    {
+      "rings": 24,
+      "model": "c9",
+      "variable": true,
+      "pressureRatio": 9.999990441618577,
+      "velocityRatio": 9.999979121866998
+    },
+    {
+      "rings": 24,
+      "model": "c10",
+      "variable": false,
+      "pressureRatio": 10.000001313367997,
+      "velocityRatio": 9.999990859112726
+    },
+    {
+      "rings": 24,
+      "model": "c10",
+      "variable": true,
+      "pressureRatio": 9.999992384868253,
+      "velocityRatio": 9.999980724827438
+    },
+    {
+      "rings": 48,
+      "model": "c10",
+      "variable": false,
+      "pressureRatio": 10.000003123474444,
+      "velocityRatio": 9.999991196042167
+    }
+  ],
+  "maxLinearEnergyDrift": 2.098321516541546e-14,
+  "maxLinearMeanDrift": 5.715231749389821e-16,
+  "maxNonlinearEnergyDrift": 6.999956170261612e-13,
+  "regressions": [
+    {
+      "metric": "finalPhaseError",
+      "count": 63,
+      "fineCount": 21,
+      "materialCount": 63,
+      "worst": {
+        "rings": 48,
+        "degree": 5,
+        "axis": 1,
+        "kind": "standing",
+        "nper": 256,
+        "metric": "finalPhaseError",
+        "before": 0.06207370912051324,
+        "after": 0.06246920213685314,
+        "increase": 0.0003954930163398984,
+        "ratio": 1.0063713450016667
+      }
+    },
+    {
+      "metric": "maxAmplitudeError",
+      "count": 39,
+      "fineCount": 13,
+      "materialCount": 39,
+      "worst": {
+        "rings": 48,
+        "degree": 5,
+        "axis": 1,
+        "kind": "standing",
+        "nper": 64,
+        "metric": "maxAmplitudeError",
+        "before": 0.004914098933326394,
+        "after": 0.004945874439396092,
+        "increase": 0.00003177550606969781,
+        "ratio": 1.0064661917679767
+      }
+    },
+    {
+      "metric": "maxPressureError",
+      "count": 63,
+      "fineCount": 21,
+      "materialCount": 63,
+      "worst": {
+        "rings": 48,
+        "degree": 5,
+        "axis": 2,
+        "kind": "traveling",
+        "nper": 64,
+        "metric": "maxPressureError",
+        "before": 0.07252462767019867,
+        "after": 0.07288194121214535,
+        "increase": 0.00035731354194667997,
+        "ratio": 1.0049267890566986
+      }
+    },
+    {
+      "metric": "maxLeakage",
+      "count": 33,
+      "fineCount": 11,
+      "materialCount": 33,
+      "worst": {
+        "rings": 24,
+        "degree": 5,
+        "axis": 2,
+        "kind": "standing",
+        "nper": 256,
+        "metric": "maxLeakage",
+        "before": 0.010839061240496325,
+        "after": 0.01241868346044949,
+        "increase": 0.001579622219953166,
+        "ratio": 1.1457342277993103
+      }
+    }
+  ]
+}
