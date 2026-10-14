@@ -1,0 +1,15 @@
+ERROR: LoadError: ParseError:
+# Error @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\native-run.jl:47:421
+    hn(z)=sqrt(sum(H.*z.^2 .*transpose(c.ds)))
+    importInfo=(inputSHA256=inputHash,graphSHA256=bytes2hex(sha256(read(joinpath(C3,"c3-spatial-near-audit-v1-native-graph.json"))))),cells=length(c.pref),layers=length(c.ds),edges=length(c.prefFace),hodgeResidual=split.relativeResidual,solenoidalNormFraction=hn(split.solenoidal)/hn(j),divergentNormFraction=hn(split.divergent)/hn(j),orthogonality=abs(sum(H.*split.divergent.*split.solenoidal.*transpose(c.ds)))/hn(j)^2)
+#                                                                                                                                                                                                                                                                                                                                                                                                                                   └ ── Expected `end`
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\native-run.jl:47
+ [2] include(mod::Module, _path::String)
+   @ Base .\Base.jl:306
+ [3] exec_options(opts::Base.JLOptions)
+   @ Base .\client.jl:317
+ [4] _start()
+   @ Base .\client.jl:550
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\native-run.jl:47

@@ -1,0 +1,166 @@
+{
+  "createdUTC": "2026-10-14T06:11:37.535Z",
+  "passed": true,
+  "previous": {
+    "path": "docs/evidence/earth-polar-pressure-20261014/manifest.json",
+    "sha256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e"
+  },
+  "frozen": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  },
+  "selected": {
+    "graphs": "c4-graphs-v1",
+    "import": "c4-import-v4",
+    "covariance": "c4-covariance-v1",
+    "analytic": "c4-analytic-v1",
+    "rotation": "c4-rotation-v1",
+    "native": [
+      "c4-native-1800-v3",
+      "c4-native-900-v1",
+      "c4-native-450-v1",
+      "c4-native-225-v1"
+    ],
+    "temporal": "c4-temporal-v2",
+    "bindingTest": "c4-binding-v2"
+  },
+  "bindings": {
+    "sources": 245,
+    "inputs": 190,
+    "outputs": 30
+  },
+  "runs": [
+    {
+      "name": "c4-analytic-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-covariance-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-graphs-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-import-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c4-import-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c4-import-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-import-v3",
+      "state": "failed",
+      "code": 1,
+      "phase": "preparation-no-process",
+      "error": "Error: ENOENT: no such file or directory, open 'D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-native-graph-wind-20261014\\included.jl'"
+    },
+    {
+      "name": "c4-import-v4",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-inspect-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-native-1800-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c4-native-1800-v2",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c4-native-1800-v3",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-native-225-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-native-450-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-native-900-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-rotation-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c4-temporal-v1",
+      "state": "failed",
+      "code": 1,
+      "phase": "preparation-no-process",
+      "error": "Error: ENOENT: no such file or directory, open 'D:\\ws\\app\\mapgen4\\mapgen4-sphere\\docs\\evidence\\earth-native-graph-wind-20261014\\included.jl'"
+    },
+    {
+      "name": "c4-temporal-v2",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "portableInputs": [
+    {
+      "path": "build/earth-conservative-transport/candidate-c1-native-1800-import.bin",
+      "copy": "docs/evidence/earth-native-graph-wind-20261014/raw/inputs/candidate-c1-native-1800-import.bin",
+      "sha256": "3fa5ae87309d6be731b18d4b320392e48654bb4856736284de6e15d1a754341d"
+    },
+    {
+      "path": "build/earth-conservative-transport/candidate-c1-native-1800.json",
+      "copy": "docs/evidence/earth-native-graph-wind-20261014/raw/inputs/candidate-c1-native-1800.json",
+      "sha256": "54c3a78b6a0ebc59f1fd00a9c0483887fab544615dc34f5c5e6426cf3d23ee7e"
+    },
+    {
+      "path": "build/earth-speedy-transport/split-reference-seasonal-geometry.json",
+      "copy": "docs/evidence/earth-native-graph-wind-20261014/raw/inputs/split-reference-seasonal-geometry.json",
+      "sha256": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d"
+    }
+  ],
+  "acceptance": {
+    "nativeGraphWindImport": true,
+    "explicitGaussianWeakDivergence": true,
+    "completeMappedGraphCycleRetained": true,
+    "sampledAnalyticVectorRefinement": true,
+    "nativeOneDayTemporalRefinement": true,
+    "sharedAirWaterDryBudgets": true,
+    "globalHumidityRange": true,
+    "rebuiltCoreFourStepRestart": true,
+    "sampledImportedWindRotationRefinement": true,
+    "nativeSpectralDivergenceExact": false,
+    "continuumVorticityExact": false,
+    "fullPhysicalCoupling": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  }
+}

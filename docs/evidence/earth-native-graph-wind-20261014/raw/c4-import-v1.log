@@ -1,0 +1,20 @@
+C4 import contract: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\test-import.jl:35
+  Expression: abs(lhs - rhs) < 2.0e-13 * max(abs(lhs), abs(rhs), 1.0e-12)
+   Evaluated: 5.971582278142817e-19 < 4.4746773831833705e-25
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\test-import.jl:35
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\test-import.jl:52
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\test-import.jl:52 [inlined]
+Test Summary:      | Pass  Fail  Total   Time
+C4 import contract |   16     1     17  16.7s
+RNG of the outermost testset: Random.Xoshiro(0xc8af51a3ae33fefd, 0x3c96e3ff3c23fb8a, 0x1904fabb1ddac978, 0x64c95f0f6f27721c, 0xbd0e7cb501f9ffb7)
+ERROR: LoadError: Some tests did not pass: 16 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\test-import.jl:52
