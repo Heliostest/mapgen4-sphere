@@ -1,0 +1,50 @@
+C6 nonlinear shared momentum/water step: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:20
+  Expression: ≈(s.p, expectedP, rtol = 2.0e-14)
+   Evaluated: [1.0, 1.1, 0.9, 1.05] ≈ [1.0027240970367415, 1.1008224734285739, 0.898585040494571, 1.0478683890401137] (rtol=2.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:20
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:52
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:52 [inlined]
+C6 nonlinear shared momentum/water step: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:21
+  Expression: s.velocity != before.velocity
+   Evaluated: [0.5 0.2; -0.2 0.3; … ; -0.3 -0.1; 0.2 0.3] != [0.5 0.2; -0.2 0.3; … ; -0.3 -0.1; 0.2 0.3]
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:21
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:52
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:52 [inlined]
+C6 nonlinear shared momentum/water step: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:22
+  Expression: s.time == dt
+   Evaluated: 0.0 == 0.2
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:22
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:52
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:52 [inlined]
+Test Summary:                           | Pass  Fail  Total  Time
+C6 nonlinear shared momentum/water step |    1     3      4  9.1s
+RNG of the outermost testset: Xoshiro(0xb397ab071d9ededd, 0xd752f90bb1507173, 0x2dc79e238179e2f6, 0xbb03fb106866c0ec, 0x3b928a4e93c0e878)
+ERROR: LoadError: Some tests did not pass: 1 passed, 3 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-advection.jl:52

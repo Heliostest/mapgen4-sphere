@@ -1,0 +1,147 @@
+{
+  "passed": true,
+  "createdUTC": "2026-10-14T07:18:59.348Z",
+  "previous": {
+    "path": "docs/evidence/earth-native-graph-wind-20261014/manifest.json",
+    "sha256": "8c9869d799dc7b7da8bd955de8a9cacd1c843722de8926bb10ddc1bc94cd6536"
+  },
+  "preservation": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  },
+  "selected": {
+    "operator": "c5-operator-v1",
+    "analytic": "c5-analytic-v1",
+    "coupled": "c5-coupled-v1",
+    "covariance": "c5-covariance-v1",
+    "native": [
+      "c5-native-1800-v1",
+      "c5-native-900-v1",
+      "c5-native-450-v1",
+      "c5-native-225-v1"
+    ],
+    "temporal": "c5-temporal-v2"
+  },
+  "runs": [
+    {
+      "name": "c5-analytic-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c5-coupled-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c5-coupled-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c5-covariance-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c5-native-1800-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c5-native-225-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c5-native-450-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c5-native-900-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c5-operator-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c5-operator-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c5-temporal-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c5-temporal-v2",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "project": {
+    "passed": true,
+    "tests": 278,
+    "rows": [
+      {
+        "label": "test",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/test.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-rotating-graph/project-final-test.log",
+        "sha256": "a534ae1ab7c58eedf795f90e3607d63100be4d14832a0380139b773662f8a3f6"
+      },
+      {
+        "label": "typecheck",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit"
+        ],
+        "code": 0,
+        "log": "build/earth-rotating-graph/project-final-typecheck.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "build",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/build.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-rotating-graph/project-final-build.log",
+        "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+      }
+    ]
+  },
+  "acceptance": {
+    "metricAdjointReconstruction": true,
+    "energyNeutralCoriolis": true,
+    "sampledSpatialRefinement": true,
+    "frameCovariance": true,
+    "atomicRotatingAcousticWater": true,
+    "independentFullLinearTimeConvergence": true,
+    "nativeOneDayTemporalRefinement": true,
+    "sharedBudgetsAndHumidityRange": true,
+    "rebuiltFourStepRestart": true,
+    "independentCodeReviewCompleted": false,
+    "nonlinearMomentumAdvection": false,
+    "exactGeostrophicTimeBalance": false,
+    "fullThermodynamics": false,
+    "fullPhysicalCoupling": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  }
+}
