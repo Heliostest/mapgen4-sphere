@@ -1,0 +1,485 @@
+{
+  "createdUTC": "2026-10-14T03:33:11.325Z",
+  "candidate": "c3-experimental-graph",
+  "previous": {
+    "path": "docs/evidence/earth-conservative-accuracy-20261013/manifest.json",
+    "sha256": "9c2624a29cff97d7cd74dd118ac39cc4e71141852561ebaf2b00aa8150f64cd2",
+    "bindings": 148
+  },
+  "acceptance": {
+    "sampledSpatialRefinement": true,
+    "manufacturedSharedFluxBudgets": true,
+    "sampledWaveNonRegression": true,
+    "fullPhysicalCoupling": false,
+    "nativeWindImport": false,
+    "climate": false,
+    "formalDefaultPromoted": false
+  },
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/CURRENT-STATE.md",
+      "bytes": 1420,
+      "sha256": "17a82b9ba821cc26f49b1756b7f2b32111f1fbd6bee90a8879a685f6aefab267"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/audit-graph.py",
+      "bytes": 4783,
+      "sha256": "c35ded4febd45e8fff397cd616cdbc7a8d3fe762e1ad902c4b8757b73f3cfa8b"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/baseline.jl",
+      "bytes": 2327,
+      "sha256": "3465b63c792f871aba5e4155e361628f45a93f83b9a960ca0e75f3bfcc52c95a"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/code-review.md",
+      "bytes": 1157,
+      "sha256": "5468a5ec641fb3fde345702853b6cd3e6fe7a61308c1748e0f2d1c9be92df6f2"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/coupled-graph-v2.jl",
+      "bytes": 6365,
+      "sha256": "63dd2ae4621ba2fab444467cd9dff7bd46c059649975dcd7ad2f8efefacc8840"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/coupled-graph.jl",
+      "bytes": 5805,
+      "sha256": "b24055e9b0f48467039811f174e1a14739c3a87027169b1f6f331b4ed3edad31"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/fit-graph-v2.py",
+      "bytes": 6249,
+      "sha256": "db95499d39ad4ca6017f46637ac4021ee83a39bd03c499664ec1f236aa2ca73d"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/fit-graph-v3.py",
+      "bytes": 6332,
+      "sha256": "0d76d3b6744d5f35afc3457e329b7a2eed15aafccf3a33069397b7a927135ea1"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/fit-graph-v4.py",
+      "bytes": 6661,
+      "sha256": "9cbfa688fb1474c3db4a410a15f8279bc8ebcdc41c4a66da35cd29cb2334ed6e"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/fit-graph.py",
+      "bytes": 5636,
+      "sha256": "b1c70a1a01a7d18b86b2fb00a1119df2f5a1281f491b44e84c3475a1f33d8957"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/protocol.md",
+      "bytes": 2112,
+      "sha256": "11351425d1d5c8f42155e9e303578351e48e19b66bf8a6e351b77aadbb6197f2"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-baseline-v1-status.json",
+      "bytes": 3009,
+      "sha256": "64c95a699a0b5c1f0aff00d530db0da7c11e27c56abee563d82fb1e8eafbcf11"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-baseline-v1.json",
+      "bytes": 2436211,
+      "sha256": "d327518efaeccc04ba57f27c239caaced0e6a4ad5b1b210bffab59422f620af2"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-baseline-v1.log",
+      "bytes": 50929,
+      "sha256": "dc978eee29c71031710111558d9b461bf18234cb182f45954617081f40c96cb8"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-near-v1-constant-restart.bin",
+      "bytes": 1051514,
+      "sha256": "e610f0d8e287b616c5a6a669c617e7da80810780c71c7873e2dfc6db40f2ca28"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-near-v1-sharp-restart.bin",
+      "bytes": 1051514,
+      "sha256": "9e0de673fcf176d16ea3496ddb39f0762378ec91260b621a708b917d82867a4f"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-near-v1-status.json",
+      "bytes": 7616,
+      "sha256": "60d9f0c23b8e923b3fc3929dff1c14b9207684ff1543d10f600603bea0d4425c"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-near-v1.json",
+      "bytes": 1634,
+      "sha256": "6e5d05ff554cbbb142dffc39854bc1d14b57eb963ba4fd0f967482b219b9e02c"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-near-v1.log",
+      "bytes": 1431,
+      "sha256": "c230610f07c6e3443aef2b469e58d9ba9863c1ef38f741e1559d34dd3e7ee157"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-v1-constant-restart.bin",
+      "bytes": 1013066,
+      "sha256": "22a7933580fa56b400f7e25922e785a0664397f247be28610f09f37fa0450b65"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-v1-sharp-restart.bin",
+      "bytes": 1013066,
+      "sha256": "d6acd09f27cccc5eac3a42070d471a335e9bb3c892914bead4fcbfd2693bf918"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-v1-status.json",
+      "bytes": 6728,
+      "sha256": "fc6b1410f9e4af4cffafe985351d32d1a09019fe2f0a2da06d27a37a22c9d5f9"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-v1.json",
+      "bytes": 1456,
+      "sha256": "161a8199379f051548ac75bcd2574c176dceb3837228e8cc97fbf5af1b3194df"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-coupled-v1.log",
+      "bytes": 1351,
+      "sha256": "ea410671cca52caa62b510b16d5ef16d66fbdbfa7dd78eb8aac189558c3b8571"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-24-96-v1-status.json",
+      "bytes": 3500,
+      "sha256": "af475e00723d2e7d3666a1cd7f59efbb478c1e892addf4eebaf42eb18cb0ed78"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-24-96-v1.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-24-v1-12-graph.npz",
+      "bytes": 41616,
+      "sha256": "58acb067e0d68989682e3ba54576395f285a1d7cbc76c9635e1f5d307a11db7d"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-24-v1-24-graph.npz",
+      "bytes": 111456,
+      "sha256": "888d3a2a1ff9538c60045ec42fc3bb688f6915a58e896d9db41206345885c5f2"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-24-v1-48-graph.npz",
+      "bytes": 344660,
+      "sha256": "ce1dd61af70ecce71add72bec2ed19c48383040126bff0983c58b0352358f963"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-24-v1-status.json",
+      "bytes": 3580,
+      "sha256": "6a5f15d081d36323c9d9eec426b19be1f1582924cf1475bdd1ff21901d75cda4"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-24-v1.json",
+      "bytes": 7612,
+      "sha256": "ef6072aefa8dccba33770195816ea52d8e6008768fccffeedff6d1c0af5d210b"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-24-v1.log",
+      "bytes": 5086,
+      "sha256": "00146bbedabb2d16ae0f82194071e0022eed276a9d7b1f55f7a4b95d232f38b7"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-24-v1-24-graph.npz",
+      "bytes": 110956,
+      "sha256": "c2d9e46fb1cc8c6a6d0d660eb50bf0992dda18a68b83cee6c95e0f569d333729"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-24-v1-status.json",
+      "bytes": 3857,
+      "sha256": "d85d1a1e144e18996b113ef0db792005993487b9986f0ac5a67b2ea7d5039546"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-24-v1.json",
+      "bytes": 3240,
+      "sha256": "a5615233f7266f04c83f2291308def27acc709120229f620c83e4d44f37bebf7"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-24-v1.log",
+      "bytes": 2427,
+      "sha256": "93ca2306629ae77b5a66e220dd061d8897f7c8a3a23e1160e82ddcb3138b3612"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-refinement-v1-24-graph.npz",
+      "bytes": 110956,
+      "sha256": "c2d9e46fb1cc8c6a6d0d660eb50bf0992dda18a68b83cee6c95e0f569d333729"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-refinement-v1-48-graph.npz",
+      "bytes": 335817,
+      "sha256": "3db968aa5597e1585bf533f2c2397821470954b8f7485fc5bc6898da605f4048"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-refinement-v1-96-graph.npz",
+      "bytes": 1184351,
+      "sha256": "82abfe92c9dbec1834519427e939df3b7d549bec9249d7f460e46ef94f7a35d2"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-refinement-v1-status.json",
+      "bytes": 3871,
+      "sha256": "c26154c10905d7b50b49f225c7396969a01b94b35b76d3b6ff5c2cb58f7dd0e5"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-refinement-v1.json",
+      "bytes": 7662,
+      "sha256": "9f3fe48531b0d15f0af4f4a444129c26e4c078e2e8342e4ab5946f9cc2cc7d34"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-active-refinement-v1.log",
+      "bytes": 6788,
+      "sha256": "c1106e1c2cc75afcf5fdb56d870e30676d74107bced440f03eb7a838ba350323"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-direct-refinement-v1-24-graph.npz",
+      "bytes": 110941,
+      "sha256": "23c55ebfb3ef90fd876525c252c104d27297b1b5e31edeee1cc58ab8fd5d9ed8"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-direct-refinement-v1-48-graph.npz",
+      "bytes": 335625,
+      "sha256": "5fe76f782cececa7ed6debe07d13cd982c64c49f94625537c2f37d8167ad09b8"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-direct-refinement-v1-96-graph.npz",
+      "bytes": 1172188,
+      "sha256": "4e84811b9496630b3d7dc378c6f38f8826ddea129158c13469c212efec6913fc"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-direct-refinement-v1-status.json",
+      "bytes": 4141,
+      "sha256": "8d12203b7e5bf57009b28706077ed86f89c9e4575ff42f87b3cde3c4a56e5db4"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-direct-refinement-v1.json",
+      "bytes": 7662,
+      "sha256": "8b0841d726d8423e98410e62318a438b0ac0b28a2d8b2eb7377cfd1a3f47b392"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-direct-refinement-v1.log",
+      "bytes": 6118,
+      "sha256": "edc5732e5c3c360c1bfcf6a6543a398faa6c7309ebe94b5af90fca2f4d3b34c6"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-48-v1-48-graph.npz",
+      "bytes": 339232,
+      "sha256": "61f72799f39296c80ed15b76f183884a42847d4b4e36067bf1e2450c48e637a2"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-48-v1-status.json",
+      "bytes": 6355,
+      "sha256": "781d45b3971ca7fd40d20d40f679b14892b60b10b9fdf12c96654349a7d11410"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-48-v1.json",
+      "bytes": 3726,
+      "sha256": "023d7bd10c3395ebac1b4df0ddfdfd5485c109ea794bb78f59621830e856be3f"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-48-v1.log",
+      "bytes": 2738,
+      "sha256": "0fb0446d2da3cce6c6fba372635700dd4baf9a8c25438796b899bda25630fdd2"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-48-v1-48-graph.npz",
+      "bytes": 329199,
+      "sha256": "21fc72bd30a29656690d2f3c535221ca28613a09866e3e1c8a01d7782d77842c"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-48-v1-status.json",
+      "bytes": 6393,
+      "sha256": "7259280ca713043ddddd47148e183591001d8305903064edab56ff19bf5a4e39"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-48-v1.json",
+      "bytes": 3733,
+      "sha256": "7d639896f8669e9927748d71c3b646e00c089f45b9d4f1470d25f115fa40a96c"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-48-v1.log",
+      "bytes": 2746,
+      "sha256": "caf105ae87219fecd9d5c68197e2f5b2c6989f2864d347a6d0084ee509275b6b"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-24-graph.npz",
+      "bytes": 105477,
+      "sha256": "db81089254088f4d36f19e0a0f125c1927428c3c2d060faf0a9bb885b881c2c2"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-48-graph.npz",
+      "bytes": 329199,
+      "sha256": "21fc72bd30a29656690d2f3c535221ca28613a09866e3e1c8a01d7782d77842c"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-96-graph.npz",
+      "bytes": 1136783,
+      "sha256": "bcedb90d1a68d2e34827d1f30ee36236bc9121c7c107d03769ca8c12dc3ab46b"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-status.json",
+      "bytes": 6991,
+      "sha256": "3eb73d1f0e50542e8dc79db68e449093f35b4ff0ff1df1b9d905b3fda29bce8d"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1.json",
+      "bytes": 9097,
+      "sha256": "e8268c2ef4f042a9cb2aec1511f57dc1ce5e4d7d47f54f81f7691ca87a6dc29f"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1.log",
+      "bytes": 7170,
+      "sha256": "cd9bebc0eafab986c5b51070f3950388d33cb7edcbfb37755164a82365488915"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-audit-v1-native-graph.json",
+      "bytes": 2221174,
+      "sha256": "cd742bf40899f91f6d87d6aec4193d190ece2ab53a90fa3106b4dea29990fe59"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-audit-v1-status.json",
+      "bytes": 7139,
+      "sha256": "0016e3d99d6c300b38a14697d00c1b719b9e8a6fcfb16d8247f3180f3a5c2b81"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-audit-v1.json",
+      "bytes": 56083,
+      "sha256": "ed2b00e26c64983145ae29a8e36902124e7085d3099645448fe959bba4322841"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-audit-v1.log",
+      "bytes": 352,
+      "sha256": "fb710f1eb7c1e53cf7b0f91af2bc2b42c9f169f0aff88a6deea54d8d02a6937b"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1-native-graph.json",
+      "bytes": 2338106,
+      "sha256": "697caedf98a03c6e5690fbdff18fdf02731d849dc6b40575b3803f6a6cca7312"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1-status.json",
+      "bytes": 7996,
+      "sha256": "f9fba8a053358c34e3312119e6155cf7f6929cc681d4313564947e37c079fca0"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1.json",
+      "bytes": 56214,
+      "sha256": "f6d015334c53130c106ecdd2de0f7e43fd0b71fc55a892c3768ae31575940cf8"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1.log",
+      "bytes": 352,
+      "sha256": "b1e762280d6e84e6a4412748009b4adeedf68525a13d2d8bf0d347eae359623e"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/report.md",
+      "bytes": 6801,
+      "sha256": "9a5a76eb5a24b03ef642eb45bd407244d3f853377821ce47154106a907db5fa1"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/run-probe.mjs",
+      "bytes": 4268,
+      "sha256": "a2c3edf40bf0282bb1a09294acf18e603508f4755fce657769c36f742f17a0ef"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/seal-evidence.mjs",
+      "bytes": 4155,
+      "sha256": "965b3bf375bad71006aa424b93dad2df68d045b1e9bda436d52603a57bce7bd0"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/0d76d3b6744d5f35afc3457e329b7a2eed15aafccf3a33069397b7a927135ea1/fit-graph-v3.py",
+      "bytes": 6332,
+      "sha256": "0d76d3b6744d5f35afc3457e329b7a2eed15aafccf3a33069397b7a927135ea1"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/11351425d1d5c8f42155e9e303578351e48e19b66bf8a6e351b77aadbb6197f2/protocol.md",
+      "bytes": 2112,
+      "sha256": "11351425d1d5c8f42155e9e303578351e48e19b66bf8a6e351b77aadbb6197f2"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62/modal-core.jl",
+      "bytes": 6385,
+      "sha256": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/3465b63c792f871aba5e4155e361628f45a93f83b9a960ca0e75f3bfcc52c95a/baseline.jl",
+      "bytes": 2327,
+      "sha256": "3465b63c792f871aba5e4155e361628f45a93f83b9a960ca0e75f3bfcc52c95a"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d/conservative-core.jl",
+      "bytes": 12294,
+      "sha256": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/40163060e3e868086ea5601beefd4f4e9412b7b171a7122bde4e201ed3ccbb44/audit-graph.py",
+      "bytes": 4770,
+      "sha256": "40163060e3e868086ea5601beefd4f4e9412b7b171a7122bde4e201ed3ccbb44"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/63dd2ae4621ba2fab444467cd9dff7bd46c059649975dcd7ad2f8efefacc8840/coupled-graph-v2.jl",
+      "bytes": 6365,
+      "sha256": "63dd2ae4621ba2fab444467cd9dff7bd46c059649975dcd7ad2f8efefacc8840"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd/conservative-grid.jl",
+      "bytes": 7774,
+      "sha256": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/965b3bf375bad71006aa424b93dad2df68d045b1e9bda436d52603a57bce7bd0/seal-evidence.mjs",
+      "bytes": 4155,
+      "sha256": "965b3bf375bad71006aa424b93dad2df68d045b1e9bda436d52603a57bce7bd0"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/9a57b5758f9b2854df15a62db385954f81893388283015ce29053c4de63e2519/run-probe.mjs",
+      "bytes": 4023,
+      "sha256": "9a57b5758f9b2854df15a62db385954f81893388283015ce29053c4de63e2519"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b/fct-core.jl",
+      "bytes": 1275,
+      "sha256": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/9cbfa688fb1474c3db4a410a15f8279bc8ebcdc41c4a66da35cd29cb2334ed6e/fit-graph-v4.py",
+      "bytes": 6661,
+      "sha256": "9cbfa688fb1474c3db4a410a15f8279bc8ebcdc41c4a66da35cd29cb2334ed6e"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/a2c3edf40bf0282bb1a09294acf18e603508f4755fce657769c36f742f17a0ef/run-probe.mjs",
+      "bytes": 4268,
+      "sha256": "a2c3edf40bf0282bb1a09294acf18e603508f4755fce657769c36f742f17a0ef"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/b1c70a1a01a7d18b86b2fb00a1119df2f5a1281f491b44e84c3475a1f33d8957/fit-graph.py",
+      "bytes": 5636,
+      "sha256": "b1c70a1a01a7d18b86b2fb00a1119df2f5a1281f491b44e84c3475a1f33d8957"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/b24055e9b0f48467039811f174e1a14739c3a87027169b1f6f331b4ed3edad31/coupled-graph.jl",
+      "bytes": 5805,
+      "sha256": "b24055e9b0f48467039811f174e1a14739c3a87027169b1f6f331b4ed3edad31"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/c35ded4febd45e8fff397cd616cdbc7a8d3fe762e1ad902c4b8757b73f3cfa8b/audit-graph.py",
+      "bytes": 4783,
+      "sha256": "c35ded4febd45e8fff397cd616cdbc7a8d3fe762e1ad902c4b8757b73f3cfa8b"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a/fct-transport.jl",
+      "bytes": 5383,
+      "sha256": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/db95499d39ad4ca6017f46637ac4021ee83a39bd03c499664ec1f236aa2ca73d/fit-graph-v2.py",
+      "bytes": 6249,
+      "sha256": "db95499d39ad4ca6017f46637ac4021ee83a39bd03c499664ec1f236aa2ca73d"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/source-archives/f0830bc48bced6d9f1645216dad50b946bbb0927b4a3e4a0c19d48fe10bac12c/mimetic-gradient.jl",
+      "bytes": 5398,
+      "sha256": "f0830bc48bced6d9f1645216dad50b946bbb0927b4a3e4a0c19d48fe10bac12c"
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/verification.json",
+      "bytes": 2013,
+      "sha256": "ab7bed3ac702e8b227959a161372b5cc931f3df687d969851294e3cd980e1541"
+    }
+  ]
+}

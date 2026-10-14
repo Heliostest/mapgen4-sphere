@@ -1,0 +1,53 @@
+{
+  "name": "c3-fit-direct-refinement-v1",
+  "script": "docs/evidence/earth-polar-pressure-20261014/fit-graph-v3.py",
+  "startedUTC": "2026-10-14T03:07:45.119Z",
+  "state": "passed",
+  "configuration": {
+    "POLAR_INPUT_FILES": "build/earth-polar-pressure/c3-baseline-v1.json",
+    "POLAR_RINGS": "24,48,96"
+  },
+  "sourceBefore": {
+    "docs/evidence/earth-conservative-transport-20261013/conservative-grid.jl": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd",
+    "docs/evidence/earth-conservative-transport-20261013/mimetic-gradient.jl": "f0830bc48bced6d9f1645216dad50b946bbb0927b4a3e4a0c19d48fe10bac12c",
+    "docs/evidence/earth-polar-pressure-20261014/baseline.jl": "3465b63c792f871aba5e4155e361628f45a93f83b9a960ca0e75f3bfcc52c95a",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v2.py": "db95499d39ad4ca6017f46637ac4021ee83a39bd03c499664ec1f236aa2ca73d",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v3.py": "0d76d3b6744d5f35afc3457e329b7a2eed15aafccf3a33069397b7a927135ea1",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph.py": "b1c70a1a01a7d18b86b2fb00a1119df2f5a1281f491b44e84c3475a1f33d8957",
+    "docs/evidence/earth-polar-pressure-20261014/protocol.md": "11351425d1d5c8f42155e9e303578351e48e19b66bf8a6e351b77aadbb6197f2",
+    "docs/evidence/earth-polar-pressure-20261014/run-probe.mjs": "9a57b5758f9b2854df15a62db385954f81893388283015ce29053c4de63e2519"
+  },
+  "inputBefore": {
+    "build/earth-speedy-transport/split-reference-seasonal-geometry.json": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+    "build/earth-polar-pressure/c3-baseline-v1.json": "d327518efaeccc04ba57f27c239caaced0e6a4ad5b1b210bffab59422f620af2"
+  },
+  "executable": "C:/Users/helio/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+  "args": [
+    "-u",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v3.py",
+    "build/earth-polar-pressure/c3-baseline-v1.json"
+  ],
+  "code": 0,
+  "sourceAfter": {
+    "docs/evidence/earth-conservative-transport-20261013/conservative-grid.jl": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd",
+    "docs/evidence/earth-conservative-transport-20261013/mimetic-gradient.jl": "f0830bc48bced6d9f1645216dad50b946bbb0927b4a3e4a0c19d48fe10bac12c",
+    "docs/evidence/earth-polar-pressure-20261014/baseline.jl": "3465b63c792f871aba5e4155e361628f45a93f83b9a960ca0e75f3bfcc52c95a",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v2.py": "db95499d39ad4ca6017f46637ac4021ee83a39bd03c499664ec1f236aa2ca73d",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v3.py": "0d76d3b6744d5f35afc3457e329b7a2eed15aafccf3a33069397b7a927135ea1",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph.py": "b1c70a1a01a7d18b86b2fb00a1119df2f5a1281f491b44e84c3475a1f33d8957",
+    "docs/evidence/earth-polar-pressure-20261014/protocol.md": "11351425d1d5c8f42155e9e303578351e48e19b66bf8a6e351b77aadbb6197f2",
+    "docs/evidence/earth-polar-pressure-20261014/run-probe.mjs": "9a57b5758f9b2854df15a62db385954f81893388283015ce29053c4de63e2519"
+  },
+  "inputAfter": {
+    "build/earth-speedy-transport/split-reference-seasonal-geometry.json": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+    "build/earth-polar-pressure/c3-baseline-v1.json": "d327518efaeccc04ba57f27c239caaced0e6a4ad5b1b210bffab59422f620af2"
+  },
+  "sourceUnchanged": true,
+  "inputUnchanged": true,
+  "resultSha256": "8b0841d726d8423e98410e62318a438b0ac0b28a2d8b2eb7377cfd1a3f47b392",
+  "completedUTC": "2026-10-14T03:11:59.866Z"
+}

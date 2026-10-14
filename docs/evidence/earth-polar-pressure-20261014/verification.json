@@ -1,0 +1,93 @@
+{
+  "createdUTC": "2026-10-14T03:33:11.229Z",
+  "passed": true,
+  "meaning": "Evidence hashes verified; numerical acceptance is listed separately",
+  "previous": {
+    "path": "docs/evidence/earth-conservative-accuracy-20261013/manifest.json",
+    "sha256": "9c2624a29cff97d7cd74dd118ac39cc4e71141852561ebaf2b00aa8150f64cd2",
+    "bindings": 148
+  },
+  "sourceBindings": 147,
+  "inputBindings": 59,
+  "outputBindings": 18,
+  "runs": [
+    {
+      "name": "c3-baseline-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-coupled-near-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-coupled-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-fit-24-96-v1",
+      "state": "failed",
+      "code": 4294967295
+    },
+    {
+      "name": "c3-fit-24-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-fit-active-24-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-fit-active-refinement-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-fit-direct-refinement-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-fit-near-48-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-fit-near-k24-48-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-fit-near-k24-refinement-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-spatial-audit-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c3-spatial-near-audit-v1",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "selected": {
+    "spatialName": "c3-spatial-near-audit-v1",
+    "coupledName": "c3-coupled-near-v1"
+  },
+  "acceptance": {
+    "sampledSpatialRefinement": true,
+    "manufacturedSharedFluxBudgets": true,
+    "sampledWaveNonRegression": true,
+    "fullPhysicalCoupling": false,
+    "nativeWindImport": false,
+    "climate": false,
+    "formalDefaultPromoted": false
+  }
+}
