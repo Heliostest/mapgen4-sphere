@@ -1,0 +1,294 @@
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:11
+  Expression: isfinite(s.value) && isfinite(s.derivative)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:11
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:12
+  Expression: isapprox(s.value, Float64(exact); rtol = 2.0e-14, atol = 5.0e-14)
+   Evaluated: isapprox(NaN, -1.0; rtol = 2.0e-14, atol = 5.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:13
+  Expression: isapprox(s.derivative, Float64(deriv); rtol = 2.0e-12, atol = 1.0e-310)
+   Evaluated: isapprox(Inf, 45.051701859880914; rtol = 2.0e-12, atol = 1.0e-310)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:13
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:14
+  Expression: isapprox(s.value, (secant(b, a, r)).value; rtol = 2.0e-14, atol = 5.0e-14)
+   Evaluated: isapprox(NaN, -1.0; rtol = 2.0e-14, atol = 5.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:14
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:11
+  Expression: isfinite(s.value) && isfinite(s.derivative)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:11
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:12
+  Expression: isapprox(s.value, Float64(exact); rtol = 2.0e-14, atol = 5.0e-14)
+   Evaluated: isapprox(NaN, 689.7755278982137; rtol = 2.0e-14, atol = 5.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:13
+  Expression: isapprox(s.derivative, Float64(deriv); rtol = 2.0e-12, atol = 1.0e-310)
+   Evaluated: isapprox(NaN, 1.0e-300; rtol = 2.0e-12, atol = 1.0e-310)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:13
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:14
+  Expression: isapprox(s.value, (secant(b, a, r)).value; rtol = 2.0e-14, atol = 5.0e-14)
+   Evaluated: isapprox(NaN, NaN; rtol = 2.0e-14, atol = 5.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:14
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:11
+  Expression: isfinite(s.value) && isfinite(s.derivative)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:11
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:12
+  Expression: isapprox(s.value, Float64(exact); rtol = 2.0e-14, atol = 5.0e-14)
+   Evaluated: isapprox(NaN, 689.7755278982137; rtol = 2.0e-14, atol = 5.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:13
+  Expression: isapprox(s.derivative, Float64(deriv); rtol = 2.0e-12, atol = 1.0e-310)
+   Evaluated: isapprox(Inf, 1.3805510557964273e-297; rtol = 2.0e-12, atol = 1.0e-310)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:13
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:14
+  Expression: isapprox(s.value, (secant(b, a, r)).value; rtol = 2.0e-14, atol = 5.0e-14)
+   Evaluated: isapprox(NaN, NaN; rtol = 2.0e-14, atol = 5.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:14
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:11
+  Expression: isfinite(s.value) && isfinite(s.derivative)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:11
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:12
+  Expression: isapprox(s.value, Float64(exact); rtol = 2.0e-14, atol = 5.0e-14)
+   Evaluated: isapprox(Inf, 736.8272408909739; rtol = 2.0e-14, atol = 5.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:19
+  Expression: isfinite((energies(m, p, v)).total)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:19
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:20
+  Expression: isapprox((energies(m, p, v)).potential, expected; rtol = 2.0e-14)
+   Evaluated: isapprox(NaN, 35.76302353106779; rtol = 2.0e-14)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:20
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+C8 positive extreme pressure regression: Error During Test at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+  Got exception outside of a @test
+  NaN not allowed to be written in JSON spec
+  Stacktrace:
+    [1] error(s::String)
+      @ Base .\error.jl:44
+    [2] #write#93
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:283 [inlined]
+    [3] write
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:282 [inlined]
+    [4] #_#80
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:123 [inlined]
+    [5] WriteClosure
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:113 [inlined]
+    [6] foreachfield
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\StructTypes\PaLwj\src\StructTypes.jl:679 [inlined]
+    [7] #write#81
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:134 [inlined]
+    [8] write(::StructTypes.UnorderedStruct, buf::Vector{UInt8}, pos::Int64, len::Int64, x::@NamedTuple{a::Float64, b::Float64, reference::Float64, value::Float64, derivative::Float64})
+      @ JSON3 D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:131
+    [9] write(::StructTypes.ArrayType, buf::Vector{UInt8}, pos::Int64, len::Int64, x::Vector{Any}; kw::@Kwargs{})
+      @ JSON3 D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:187
+   [10] write
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:181 [inlined]
+   [11] #_#80
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:123 [inlined]
+   [12] WriteClosure
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:113 [inlined]
+   [13] foreachfield
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\StructTypes\PaLwj\src\StructTypes.jl:679 [inlined]
+   [14] #write#81
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:134 [inlined]
+   [15] write
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:131 [inlined]
+   [16] write(obj::@NamedTuple{passed::Bool, rows::Vector{Any}, tinyPressureEnergy::Float64}; kw::@Kwargs{})
+      @ JSON3 D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:40
+   [17] write
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\depot\packages\JSON3\rT1w2\src\write.jl:37 [inlined]
+   [18] write_result
+      @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\common.jl:24 [inlined]
+   [19] main()
+      @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:22
+   [20] top-level scope
+      @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24
+   [21] macro expansion
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+   [22] macro expansion
+      @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24 [inlined]
+   [23] include(mod::Module, _path::String)
+      @ Base .\Base.jl:306
+   [24] exec_options(opts::Base.JLOptions)
+      @ Base .\client.jl:317
+   [25] _start()
+      @ Base .\client.jl:550
+Test Summary:                           | Pass  Fail  Error  Total  Time
+C8 positive extreme pressure regression |   10    16      1     27  4.6s
+RNG of the outermost testset: Xoshiro(0xe7b6d738f804bb39, 0x01fa9ea5d84935e5, 0x1a8b3b48458dba05, 0x4066f8ae15781abe, 0x352fa85672edba33)
+ERROR: LoadError: Some tests did not pass: 10 passed, 16 failed, 1 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-extremes.jl:24

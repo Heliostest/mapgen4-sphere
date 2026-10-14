@@ -1,0 +1,1032 @@
+{
+  "candidate": "c8-barotropic-pressure-work",
+  "createdUTC": "2026-10-14T12:18:42.260Z",
+  "previous": {
+    "path": "docs/evidence/earth-compatible-momentum-20261014/manifest.json",
+    "sha256": "c0d8e047bb577bb6b689a128639c8e4b9dcf6cf3fe6f4eee8ed74f589ceedfeb"
+  },
+  "acceptance": {
+    "pressureDependentKineticMetric": true,
+    "barotropicDiscreteEnergyChainRule": true,
+    "fullEdgeImportWithoutProjection": true,
+    "symmetricSecondOrderPressureVelocityODE": true,
+    "sharedAirWaterTransfers": true,
+    "positivePressureExtremesRegression": true,
+    "branchBoundaryAccuracyRegression": true,
+    "lateBudgetAtomicRollback": true,
+    "nativeSixHourTemporalRefinement": true,
+    "completeNonlinearIterationReplay": true,
+    "literalBitRebuiltRestart": true,
+    "independentCodeReviewCompleted": true,
+    "scalarAndWeakSpatialRefinement": true,
+    "forceRefinementObserved": true,
+    "coriolisIncluded": false,
+    "vorticalMomentumTransport": false,
+    "verticalMomentumAdvection": false,
+    "fullThermodynamics": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  },
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/CURRENT-STATE.md",
+      "bytes": 1833,
+      "sha256": "96a0d68fe46c9f53cb45f4597c9139e224f13991cb7931a910b3c812a90b0681"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/README.md",
+      "bytes": 2621,
+      "sha256": "c0888e94e4ecc05abf57b666bf1a8fb0bfcd5f2c8a2c78f69afb51edee43b110"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/analytic.jl",
+      "bytes": 3285,
+      "sha256": "863285854daacc46238ffda5550d802d5dca0c954fc5c9a1a67bca816fde6c81"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/code-review.md",
+      "bytes": 4279,
+      "sha256": "d45f398732828345586ee770f427d3fe0eedf606802ebfd558c58b6cc86ac5f6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/common.jl",
+      "bytes": 2055,
+      "sha256": "a680efa6af5f1000552c3e2172b79556e7df0e008527a07ed067db38518d8906"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/compare-time.jl",
+      "bytes": 2058,
+      "sha256": "933b5b91739d9c3adb38548ba2c159b5b7075ccd84dba7ef9ccf051b4b0c38f2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/diagnose-native.jl",
+      "bytes": 1614,
+      "sha256": "698cd6e7a50ba4e376b0c954108844d1b42f14d8c28cb60e862f6839e75409be"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/iteration-trace.jl",
+      "bytes": 2490,
+      "sha256": "8ef343ea27457bf18943d39cd3f65d1f7ea961257e18c846ff0d89ecd273c188"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/native-run.jl",
+      "bytes": 5545,
+      "sha256": "d5825b234b447d36c39e7c5f95808d8893bfbfa51fa7d55092850f12b23bcdb3"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/plan.md",
+      "bytes": 3754,
+      "sha256": "406a032d2498304b71abb6bb0318eb60161185aaef5345ec178d65958ea1fc68"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/plot.py",
+      "bytes": 2692,
+      "sha256": "b4e29652195878484ad0ceabcb73dad8533dd1f95adc085b751ea8ca98d8fdb9"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/pressure-core.jl",
+      "bytes": 8001,
+      "sha256": "8231625a4a4ed0855150d0047a27a1c55b24324177fff4d47d8adce287168f80"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/project-checks.mjs",
+      "bytes": 1176,
+      "sha256": "263dd68ba69e8679d972cab2fa7903ca90c7166c2c936ecb2f12d0f6e7e773f6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/protocol.md",
+      "bytes": 6268,
+      "sha256": "3223114bcd92ed8716083d2b4f7455ca1f85ae644fd1f80fd6602ac8095efc47"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-analytic-v1-status.json",
+      "bytes": 7426,
+      "sha256": "c24a7bf9ec08d02e6352c557591b0bb6241db2b4705f76489c9775780fd49c65"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-analytic-v1.json",
+      "bytes": 8851,
+      "sha256": "4506391ae2393cb2874e2173972256f741f89dfcda4e499bf9dfaa6efd7f1be2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-analytic-v1.log",
+      "bytes": 509,
+      "sha256": "36e8c7b59ebe5bc7b2ec153154ae5ac060cf8b8eaa606c03f07846ece8f561b9"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-analytic-v2-status.json",
+      "bytes": 7426,
+      "sha256": "e1b33d48b4e8435508a92726f98f862bcb4807372fffa0b963fc1e29d2c29b47"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-analytic-v2.json",
+      "bytes": 8851,
+      "sha256": "4506391ae2393cb2874e2173972256f741f89dfcda4e499bf9dfaa6efd7f1be2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-analytic-v2.log",
+      "bytes": 509,
+      "sha256": "99893b570674d21fd12addcaf8ce3916fc58dfa350b04cac35a1d547eecf586d"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-boundary-red-v1-status.json",
+      "bytes": 7482,
+      "sha256": "8c7de4d180ed7bfb86a1dd7465a14745381aa6f2df98a94317154780b3ca3189"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-boundary-red-v1.json",
+      "bytes": 1810,
+      "sha256": "e68771a6b95c7e58c82d63ee97239b2024eb7d135380214bc42aac7a61c7641f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-boundary-red-v1.log",
+      "bytes": 29233,
+      "sha256": "c9c96a8813fc4a99a876444d55f1a5b548b0acadceb6fa7ad61ef2e604b94a6b"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-boundary-v1-status.json",
+      "bytes": 7474,
+      "sha256": "053ca4ba9b6c6a6265eb09a1840cab58cd3a00669adbc0fd5e38ea325f7195c6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-boundary-v1.json",
+      "bytes": 1812,
+      "sha256": "799561999cec5ccc6c8126c9ccc2d79843a70638917b03e02e87f1b6d4bacf25"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-boundary-v1.log",
+      "bytes": 144,
+      "sha256": "f939bfffcbcb1414a015dc83e9ce261e56247ab0481c1a38b6b998708f154ce6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-red-v1-status.json",
+      "bytes": 7317,
+      "sha256": "4849524a1dd24e85ca721474f157cabbfd9b1d1a3b5f8f61c40033e9b9b58318"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-red-v1.log",
+      "bytes": 1129,
+      "sha256": "ce70a654dd3eab8e6e6391f2a84c1ea5c40980af9315b195199a9c64a5b90b39"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-red-v2-status.json",
+      "bytes": 7442,
+      "sha256": "23320908e7c1295f7582050d581c06acee9291c38d3cbe5a5ee16129b2c8d5f5"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-red-v2.json",
+      "bytes": 1957,
+      "sha256": "df80028891fae0bb11b68f1944b6ee93c8f007c59b4b0ed3ddcf79c5277cb15c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-red-v2.log",
+      "bytes": 62389,
+      "sha256": "b48772c6315aae5e1a81da4db55a52ad988135c6c37e27b5744f55d0f36ce1f8"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-v1-status.json",
+      "bytes": 7434,
+      "sha256": "11d4e4ae7a326bb6826dc425300bb2771c94a63d6b619df9a5c231e268143497"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-v1.json",
+      "bytes": 1667,
+      "sha256": "b42f59ac5a2aa086af640543c6ece87e4568ad85579884b882c4b2d7f4108438"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-v1.log",
+      "bytes": 146,
+      "sha256": "5074b56ffd7e8ae59d9383019d5f675aebf1af3aa5a014ef7e0b5551147b90f7"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-v2-status.json",
+      "bytes": 7434,
+      "sha256": "98feca9839831af5f9dece5a1f22c9dca6ceefc2c53828a33fbb3c773ee717c3"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-v2.json",
+      "bytes": 1685,
+      "sha256": "16c7786f8ded4264c4d14c76e9ab8c80b04b11a608e9a9d01acb59aa2b862302"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-v2.log",
+      "bytes": 146,
+      "sha256": "73210f4f97babee0f5f96a1fa19aee674797d1d404c8e2a3619a2c9aafb2be21"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-v3-status.json",
+      "bytes": 7434,
+      "sha256": "f640170c18808db2e90c03a86195c68cd26a57a32a3b2470384ed4c0525dead2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-v3.json",
+      "bytes": 1665,
+      "sha256": "a6d68b2058d4ed81cb7175ee7c56799575df588ba4d68abf3a02650b1d7113e4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-energy-v3.log",
+      "bytes": 146,
+      "sha256": "0b433a9413b59709385e5dd3a060240ef429e8d431c4aef6cd9f3dc4010249b8"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-red-v1-status.json",
+      "bytes": 7327,
+      "sha256": "9e9b307a5c63562cca9fd71138a6ed248353dd8f8a22ca937297d109c21dce9a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-red-v1.log",
+      "bytes": 20048,
+      "sha256": "fef9ce6f1fdb08c0855fc421547ac94efe2e4ef8696f4fd849d07a4cc6e461aa"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-red-v2-status.json",
+      "bytes": 7454,
+      "sha256": "0ef80f4e653e2e1a199d70bf558511bfa1bf9b7357107648277fb4d3d745750c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-red-v2.json",
+      "bytes": 446,
+      "sha256": "9abb415234d8290e3d032f51296057288c2b22145e45a5700db7425c3cb514d9"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-red-v2.log",
+      "bytes": 16277,
+      "sha256": "68ecb28401f4a9e8d743b672725fcffee54bbcaacca74754f1448a841234832f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-v1-status.json",
+      "bytes": 7446,
+      "sha256": "42809adb2232f30f09b20807aebfefe53d98daa1cfb3d5eacc130adeda017727"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-v1.json",
+      "bytes": 535,
+      "sha256": "17329d7d59ad23b12b2bb72b2dddf09276e5c40526540b9a440bf135c0d48c6c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-v1.log",
+      "bytes": 120,
+      "sha256": "03230498f97fa07c77f90251152b9ce6c3b8865a3cb52d0b1bbb3a46f2739692"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-v2-status.json",
+      "bytes": 7446,
+      "sha256": "8ac9f212755879df9de4ce41250d29d3c9b708675316ccf88c9269732384cd4e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-v2.json",
+      "bytes": 535,
+      "sha256": "17329d7d59ad23b12b2bb72b2dddf09276e5c40526540b9a440bf135c0d48c6c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-extremes-v2.log",
+      "bytes": 120,
+      "sha256": "bc852581fde83d4af820f57fa2589b26528e2dd8f2f6cdc15091ca9ffc50a0e6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-1800-v1-status.json",
+      "bytes": 8840,
+      "sha256": "366ebf22d8ade222aacb98e0d154467bba0117a1ba2640e88040b774594f4257"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-1800-v1.json",
+      "bytes": 2965,
+      "sha256": "226e8f652496a4a5837fe35fff8baa4698e457b12a97a0c83746d0e8050553ed"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-1800-v1.log",
+      "bytes": 265,
+      "sha256": "e15220e3649c2f5a81b8f6033aae560bfcb9f37b6a884c936dd76e807aec3be0"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-225-v1-status.json",
+      "bytes": 8161,
+      "sha256": "fd0241b696e950d04d8a51cb89a2379919e142a2693ebf3e5e0a2aa32f1391c3"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-225-v1.json",
+      "bytes": 21913,
+      "sha256": "9543baa2e851706870c776015fc1fe33b256e4c1fe7f69a0a4107ae57bf1a570"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-225-v1.log",
+      "bytes": 461,
+      "sha256": "6e4bb421bce50574118b63dc4020357e87c3cd0cfcfea0e0b8b82536756cc734"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-450-v1-status.json",
+      "bytes": 8161,
+      "sha256": "b05102269121483cedd132c3a5b0fdafab86327ef305c291fdf6c00805ae010d"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-450-v1.json",
+      "bytes": 11080,
+      "sha256": "b7ca614560a3a095f887845f0b45f3026b1ebb3289fbb2ad5a7f041b0de93636"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-450-v1.log",
+      "bytes": 329,
+      "sha256": "bbcc42f7e6ca3c37b1952b20d803cf86d9d13ca7d961a3b11faa8d814b86a35c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-900-v1-status.json",
+      "bytes": 8161,
+      "sha256": "7e6094162f1eb20ad33dc9b663f0c4cd84c9732db49e6398ef70b643f24d7753"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-900-v1.json",
+      "bytes": 5718,
+      "sha256": "520979d65f059c7fb2c43a293275c1eec61c986b93f95995fca43998c79afa32"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-iterations-900-v1.log",
+      "bytes": 263,
+      "sha256": "2699f05850c2a91abf577ad0ee08991db426f4fd65d415b2fa9037074b3e8038"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v1-status.json",
+      "bytes": 7314,
+      "sha256": "d82d7892808cf2919b8ff299acdb9e67fd49e353b60da0952aecff39ba912da9"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v1.log",
+      "bytes": 2406,
+      "sha256": "153918101f6b0dc396f456bc24886b04dfffd638808d42656f752afb3af13723"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2-constant-checkpoint.bin",
+      "bytes": 2761440,
+      "sha256": "40c71941a3070f8630eb04c58aa3e1c52b45774621a11819462e0be092c48d5e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2-constant-final.bin",
+      "bytes": 2761428,
+      "sha256": "c3c41e8fcc6ee6b2626065bef8225262a254616425e8591adaf0aca560e871d4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2-partial.json",
+      "bytes": 2132,
+      "sha256": "1f3191d04e4436f20d70b8d9ebeca768fd2fba84682fc9a65336ae599c41aa1c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2-real-checkpoint.bin",
+      "bytes": 2761440,
+      "sha256": "d4fc3e240127ee99b8da4df8e2cc4199b6576b1b53ff092726e814fe23dccf10"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2-real-final.bin",
+      "bytes": 2761428,
+      "sha256": "ef9b4b425726349b4e2a606b79fcb612bbbe97d4f0da078ac32d9c8078ed9ff4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2-sharp-checkpoint.bin",
+      "bytes": 2761440,
+      "sha256": "97432a08d5389e63b0f66837001da44f7a69349c64e403e741b5e310ab3fa7ab"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2-sharp-final.bin",
+      "bytes": 2761428,
+      "sha256": "80ce38b766f8d434b133ac5cd170664d9de15b79f56ac222bdd3536c94e27cf1"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2-status.json",
+      "bytes": 8401,
+      "sha256": "7ed4cd82334fe162d97a74cfe256eddc1a20ba7bc435c9849e61c71f07a5bd25"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2.json",
+      "bytes": 2483,
+      "sha256": "53d019f364297b3d433f58aea47afa98f4c616f9c3712cfc6b45d0063fe84497"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-1800-v2.log",
+      "bytes": 1108,
+      "sha256": "d44be290797826d4a45c09383701e0a8a4e951128d8fabf12772a41d3f7987cf"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-225-v1-partial.json",
+      "bytes": 746,
+      "sha256": "befad10e918341639ce157b8028f4ebca5a1123823622d179578a1aaab0f6f68"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-225-v1-real-final.bin",
+      "bytes": 2761428,
+      "sha256": "600fa6ed31685683769015b056c4ccec11d2cf1c2eea491e06e59416ed508665"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-225-v1-status.json",
+      "bytes": 7775,
+      "sha256": "9ac73e873a4d06834390c80ef79fc2909d64b65e1efce035907baeeb210ad5f6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-225-v1.json",
+      "bytes": 1096,
+      "sha256": "6fe507fb2514ad3c29cada74c7925847b8a381b90ab4b00e924032418ca399c8"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-225-v1.log",
+      "bytes": 952,
+      "sha256": "8dd2ee1cc1030f06d791f718701e7792ea622a9d439142ca7a919034fe057382"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-450-v1-partial.json",
+      "bytes": 746,
+      "sha256": "2e9eee9e084a2fe3abbd1c00b7c5d1713494ccb6be9813ac12737932b0f1cc18"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-450-v1-real-final.bin",
+      "bytes": 2761428,
+      "sha256": "056e19374c788bb4fd2080a78b4aa2207ad4d96fc1003cfbd84c5564a9ca6748"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-450-v1-status.json",
+      "bytes": 7775,
+      "sha256": "a9704d30a341fe7c062ae4ca3ae1d5481d50054f82816abbdb1ededf09e5c8da"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-450-v1.json",
+      "bytes": 1096,
+      "sha256": "525636bbbe2afb32fd7ed571f3f7031ace260f91bda290f0e10eb850aa83c0cd"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-450-v1.log",
+      "bytes": 647,
+      "sha256": "b898235fef3fd379e8ce12579621499761df47c1c0ee6bb5d68c9f0d1ce81ed2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-900-v1-partial.json",
+      "bytes": 746,
+      "sha256": "70c53cf6253737228705ad68f0f3459aa089aedadce590b7d2817624d2e561f0"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-900-v1-real-final.bin",
+      "bytes": 2761428,
+      "sha256": "b16cbcba590a5569315c81473ebd14ed79778ca57b51cb1cfded7952f4366db4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-900-v1-status.json",
+      "bytes": 7775,
+      "sha256": "cc97644e962cf22460d74f649a0469057a44b056e776562524b41f3339dd9c24"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-900-v1.json",
+      "bytes": 1096,
+      "sha256": "87a8e22da08e131dc50b4dd690509bf9698c24fdfc4802529aaef22bc91c165d"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-native-900-v1.log",
+      "bytes": 497,
+      "sha256": "9dff6cea369f3973365d10a8e093968c8b493b13665152662986252057c04cd0"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-newton-diagnostic-v1-status.json",
+      "bytes": 7472,
+      "sha256": "5c0c317254fd24bf518ffcedeb21499b57e54e904503dd1c256f7375eae6280f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-newton-diagnostic-v1.json",
+      "bytes": 5026,
+      "sha256": "6c4487257782404e5811583605af6532a5860b346d5d236913fff61280790a9e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-newton-diagnostic-v1.log",
+      "bytes": 4891,
+      "sha256": "37a451b4754d36b5fd344367d12dc354b2042a2a12abbfb012ebec295251d75a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-source-v1.json",
+      "bytes": 330,
+      "sha256": "ec2b4d9babb546cba108c11e581be445a20c4010df9c5ddae91348c089d2cc06"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-red-v1-status.json",
+      "bytes": 7336,
+      "sha256": "64aad519ad38388a9eba78595232fc2cd448419dee6be96cdc068367c8f86989"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-red-v1.log",
+      "bytes": 739,
+      "sha256": "7a6980670b75fd5ec4d9f38261fe9fa3b59570dfd2162e0dd1dcf2db1c0cfd64"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-red-v2-status.json",
+      "bytes": 7336,
+      "sha256": "e372ff62f15ea16c0bad5cb2661f290c9d46bb2df6fbf3b2d966f3be3fe616a6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-red-v2.log",
+      "bytes": 3384,
+      "sha256": "3a5d51c5a461bd396cde3657d1b4ac30972a0aa672b81527fca6e3036956defc"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v1-checkpoint.bin",
+      "bytes": 764,
+      "sha256": "487e518083636b6c5239e3215c115b99e9b00684fbf83437f932e6431cae038d"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v1-status.json",
+      "bytes": 7549,
+      "sha256": "001a67c9b6196f6fb0ba3545aaacbc7a76b8ca8a3416a46730946794283a3429"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v1.json",
+      "bytes": 1478,
+      "sha256": "e4dc766e593c5aa9c3c98293cb3dfa1f3b68bbaa8c24a717630b0105c132fc6f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v1.log",
+      "bytes": 144,
+      "sha256": "5ec10a06a0f8a2c1c63493048963cf2f2d8b9129a3dbdbbb10be607f92714848"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v2-checkpoint.bin",
+      "bytes": 764,
+      "sha256": "88743f8ec9c270ee4b583d70b985050946b4de2627a7b4a55236ef85f94ccde6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v2-status.json",
+      "bytes": 7549,
+      "sha256": "0e95ea587b9a6e6a450fb4916f59b937c0a0e5d2679273cfb82ee9634c221530"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v2.json",
+      "bytes": 1483,
+      "sha256": "e0851aaf81fb9b9dac94cb01444904f71f9588621090621fe7d5102ab9dd25e4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v2.log",
+      "bytes": 144,
+      "sha256": "bdf3c392c19eae506bdb29980a1e4d356cdb6856598d4895305bdcbcf55f3a08"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v3-checkpoint.bin",
+      "bytes": 764,
+      "sha256": "88743f8ec9c270ee4b583d70b985050946b4de2627a7b4a55236ef85f94ccde6"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v3-status.json",
+      "bytes": 7549,
+      "sha256": "7306a54da2fbb29ee60eddc298b2993593a9ca01d47f3eef57214d8fb8c98247"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v3.json",
+      "bytes": 1483,
+      "sha256": "e0851aaf81fb9b9dac94cb01444904f71f9588621090621fe7d5102ab9dd25e4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-step-v3.log",
+      "bytes": 144,
+      "sha256": "f2d1257dc563511aaed6bb9043a4f5726496d1509c81f4d5f42f0831fc3b4a56"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-temporal-v1-status.json",
+      "bytes": 10143,
+      "sha256": "6beab34631c7718945eb7c64483f1551cce13b70d162899ddf4580c3fce2df60"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-temporal-v1.json",
+      "bytes": 986,
+      "sha256": "9df0e106acf1d931b0f5865a8ff191cdfd6ad82ae1749565cfbd4fd3ffef3d1c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-temporal-v1.log",
+      "bytes": 128,
+      "sha256": "9d497a0f0797687e98315cd2e8971756a8b2e0685d6b8cf85edf899e209b06ca"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-water-red-v1-status.json",
+      "bytes": 7472,
+      "sha256": "d39fb6ad24665436ca8c822307067fccb12a7ed67b83324642334bae20a812b5"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-water-red-v1.json",
+      "bytes": 51,
+      "sha256": "c0b79d482530225ee208ff2d78c51aa9191a57279f54dad79fb8d626c4cfa07e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-water-red-v1.log",
+      "bytes": 4170,
+      "sha256": "58d9e08041de7159d953ea47695b82f615ce74d9d0a1473b338786fd188b4a9f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-water-v1-status.json",
+      "bytes": 7464,
+      "sha256": "b3e554a495d7eac308ee6957f65046418c1546d3bf4d5a9cc35efc3db088355b"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-water-v1.json",
+      "bytes": 51,
+      "sha256": "c0b79d482530225ee208ff2d78c51aa9191a57279f54dad79fb8d626c4cfa07e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/c8-water-v1.log",
+      "bytes": 124,
+      "sha256": "118fd79e871bee88e85163a2bc50682563f03872741193758286c4f3b5988b1a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/convergence.png",
+      "bytes": 207923,
+      "sha256": "c3d97f5b092c079858d6afcbc8f2cb7fb905964cef89f04131978116448d7e47"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/plot-provenance.json",
+      "bytes": 1030,
+      "sha256": "60c4201beeaeb82f4f497b82d71f0fd565ee8554c0446faea17c8fd432e8f686"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/project-checks.json",
+      "bytes": 1010,
+      "sha256": "1faec8a46f9ac94afd57ea2748b5f15e4f8cc755f44a7fa8f96c8b20d4a307ba"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/project-final-build.log",
+      "bytes": 58,
+      "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/project-final-test.log",
+      "bytes": 27410,
+      "sha256": "544c90f4e8441a43335751a69fa9824e0ac68304fd9e92dbbdd797d6c9c7e158"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/raw/project-final-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/report.md",
+      "bytes": 10208,
+      "sha256": "afa7f8d8b541aec100f7455a40ab0e00dbfc9ff1273edd5d7408db53ea0d7c8c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review-source-bindings.json",
+      "bytes": 28915,
+      "sha256": "0edcc8851d5a56c48739a78a2c0508212942256f24bd613d9c82f5bb71ddd194"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/core-review-bindings.json",
+      "bytes": 5360,
+      "sha256": "3172eb3a59db66c458edb5fb7008bcbad615d2889dc161e25b995ff1de8f6658"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/core-review.md",
+      "bytes": 4216,
+      "sha256": "fd0499ed80675692f0e508942918d6a460e399874a6040b21cdf256509b6f01e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/design-probes.jl",
+      "bytes": 716,
+      "sha256": "0685ac0da627f5f4598e2912823637cc99224b7179bf62c17e7b1a0ba2b2b4dd"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/final-review.md",
+      "bytes": 3545,
+      "sha256": "99aa3e8d86a7bb1a2025516f15e76472219a5fa9598aa20553fd9319f1e96514"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/finalize-review.mjs",
+      "bytes": 4148,
+      "sha256": "3946d6a0925e1d8baea12243e424cb6f916f129acccae9d57ef74bc5ed7cda9f"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/independent-checkpoint.bin",
+      "bytes": 564,
+      "sha256": "87a1b1586def945fbf454ca54b79163a54fef63edbb7e8374e3be468e29e0a90"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/independent-review-draft-v1.jl",
+      "bytes": 10342,
+      "sha256": "07b0edbed7ef23bcac222871cf4fd2e486fb2ea4b03b9dbd3a9fbbcbe579ab94"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/independent-review-draft-v1.log",
+      "bytes": 2186,
+      "sha256": "555de09c6047f409d265bab9394acabefbad028d54d89bb4f2f2a0e8659a3b04"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/independent-review-draft-v2.jl",
+      "bytes": 10343,
+      "sha256": "37071caf00d6a47e227d33c2abcd5d3985f02e7e3cf2b78313377d81a24d7fba"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/independent-review-draft-v2.log",
+      "bytes": 14040,
+      "sha256": "9851fd9d1972880d041059ed9ab6ccd29aa253ed03ac52e68c2c2345a4ed16d0"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/independent-review-results.json",
+      "bytes": 2512,
+      "sha256": "6fa21b46ef27a4ecefb4856e62b21937e76d5e1c00ac29e6dbafbde4b5aaba98"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/independent-review.jl",
+      "bytes": 10407,
+      "sha256": "d7c2e465ca2293b4ac17caeab4f7a9db48eaea80d658060a47c4e0d3df9eb738"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/independent-review.log",
+      "bytes": 5994,
+      "sha256": "4458fe1cb1c97caf8a34ffe5861a6bc0abddf709eeba89ebd6989535e2faf3f5"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/native-metrics-results.json",
+      "bytes": 4696,
+      "sha256": "f131d27bebc2f4fe126e1801f6abb55712271d57b794d280bbab944ec71a84ee"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/native-metrics-review.jl",
+      "bytes": 6453,
+      "sha256": "0810e257c2b165697253c22139376c56c8887acefab9b4bbb3c7c44b9754ecef"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/native-metrics-review.log",
+      "bytes": 6108,
+      "sha256": "efd3345c15abf83d3cbba73752f9e8ed3fda4423e7cc4b76da11e2a6a410c022"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/native-provenance-review.md",
+      "bytes": 4044,
+      "sha256": "cece686c7d2d5dadece508283cba59ece52fc7233c871f9a293e6ae76fa7e1c3"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/native-restart-draft-v1.jl",
+      "bytes": 1908,
+      "sha256": "f799968e3f5d29a4c7690f8048b096c2021cb4c4f5c1f89fda352976d0ebe7e5"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/native-restart-draft-v1.log",
+      "bytes": 2284,
+      "sha256": "997723394e0c3e80b0285b4b8eb22c0af937fdd515bdb06ffd4ee140291273d9"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/native-restart-results.json",
+      "bytes": 2742,
+      "sha256": "0554856af8d3a2bbcb9886d776ed8ace7358a07e2054f3b247b523c9d124cbba"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/native-restart-review.jl",
+      "bytes": 1913,
+      "sha256": "5c24ba41067ff0302560f731b7047d1a054a5d986a669e6bc62f483a6b1061a4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/native-restart-review.log",
+      "bytes": 5556,
+      "sha256": "6c87aa8fc8a9993dce076a46100ca1a97420f25311515fd25a4ca829d6e1d429"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/provenance-audit-draft-v1.mjs",
+      "bytes": 5566,
+      "sha256": "dbfcbfaf7b56759aed0b7a11769afbaa7ed291cd42b8f9f18109978818515c04"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/provenance-audit-results.json",
+      "bytes": 8621,
+      "sha256": "cbcf11fd03be336537c49c5de3440edea99f8e5ce0ae1d6312f44ef56651215a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/provenance-audit.mjs",
+      "bytes": 8039,
+      "sha256": "82e9c52eaca76cffa0684f29ef5919fe50b19f5c2fac44f0b3ab03264d48314b"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/review-source-bindings.json",
+      "bytes": 28915,
+      "sha256": "0edcc8851d5a56c48739a78a2c0508212942256f24bd613d9c82f5bb71ddd194"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/secant-boundary-postfix.log",
+      "bytes": 2984,
+      "sha256": "a3ec15043132abf33ab5fab11458adda49feb50ffcdb9fbb47fb935749819430"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/secant-boundary-prefix-results.json",
+      "bytes": 12989,
+      "sha256": "5c0a868d75e9bc3adb8593dee508c16b6831e97e9325a89dc5f8202190187ed4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/secant-boundary-probes.jl",
+      "bytes": 898,
+      "sha256": "686c16dbfcbb9936870c57d4b7619dd74a241e8e6078fc2a76b44e41da5d359b"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/secant-boundary-results.json",
+      "bytes": 12780,
+      "sha256": "43c5fb1677e6bb5756322b233ddcf8451433a2b653b0f6bd442c73eb58270ed8"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/source-after.json",
+      "bytes": 499,
+      "sha256": "40217465e09aa62f477582ad637c4e036c9edf5838999c10147d557894917292"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/source-before.json",
+      "bytes": 499,
+      "sha256": "40217465e09aa62f477582ad637c4e036c9edf5838999c10147d557894917292"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/review/spatial-force-probes.jl",
+      "bytes": 1231,
+      "sha256": "615d6506e82b082e56e76e1d8e8e2d2db2908b5a38d5882e613060b5e2981bc4"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/run.mjs",
+      "bytes": 5629,
+      "sha256": "a90f0a84770289e1bd3c1d4fc066f39dd30ab413c1b388f6beed47ac2ddf7381"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/seal.mjs",
+      "bytes": 10103,
+      "sha256": "6f89f253f789637914d1bc43e06f13ddd10f65d1f9a0cdf4dba6550b259187ae"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/selected-runs.json",
+      "bytes": 419,
+      "sha256": "5b4918585e0a0c61b06f416cde8225524ef829de90933690edfdeb0aeacee04e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/052764bab767d0207d9839978a408e62b62c8a52b8a3ffd212d35106412fb114/pressure-core.jl",
+      "bytes": 1280,
+      "sha256": "052764bab767d0207d9839978a408e62b62c8a52b8a3ffd212d35106412fb114"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/0838d56165775119d812d85d14311a7280e2112f58f29282928260fe05cf26ce/pressure-core.jl",
+      "bytes": 1281,
+      "sha256": "0838d56165775119d812d85d14311a7280e2112f58f29282928260fe05cf26ce"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62/modal-core.jl",
+      "bytes": 6385,
+      "sha256": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/3223114bcd92ed8716083d2b4f7455ca1f85ae644fd1f80fd6602ac8095efc47/protocol.md",
+      "bytes": 6268,
+      "sha256": "3223114bcd92ed8716083d2b4f7455ca1f85ae644fd1f80fd6602ac8095efc47"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/36d9afae59b9904eeb250d7f5fbb2f012c060d5192bf62ace18e492398fd08f9/pressure-core.jl",
+      "bytes": 1989,
+      "sha256": "36d9afae59b9904eeb250d7f5fbb2f012c060d5192bf62ace18e492398fd08f9"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d/conservative-core.jl",
+      "bytes": 12294,
+      "sha256": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84/graph-wind.jl",
+      "bytes": 3839,
+      "sha256": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/48417d4701fc0207720e88fb736f9cd51a82e9b55d598ee2b12d880f51a75949/test-energy.jl",
+      "bytes": 2325,
+      "sha256": "48417d4701fc0207720e88fb736f9cd51a82e9b55d598ee2b12d880f51a75949"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/4c2068e1228ac4f53d542276defc8fbdbb49ba30be8682d9e2ae4d9e3d9ebe46/pressure-core.jl",
+      "bytes": 7491,
+      "sha256": "4c2068e1228ac4f53d542276defc8fbdbb49ba30be8682d9e2ae4d9e3d9ebe46"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/4ce22f04c5b5c13ac8edcd74b370f611f3cfbc012fcf46b9f26f41e91c6064ae/pressure-core.jl",
+      "bytes": 1842,
+      "sha256": "4ce22f04c5b5c13ac8edcd74b370f611f3cfbc012fcf46b9f26f41e91c6064ae"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/54ab9345449f4c60804b67c44ff49842210bc1cbd145bb836f35635a5277c3f1/test-step.jl",
+      "bytes": 4334,
+      "sha256": "54ab9345449f4c60804b67c44ff49842210bc1cbd145bb836f35635a5277c3f1"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/5e92735f482fcfbf77be90326287b6932404a7a7946c31041ef322ab8c8a4cd9/protocol.md",
+      "bytes": 6196,
+      "sha256": "5e92735f482fcfbf77be90326287b6932404a7a7946c31041ef322ab8c8a4cd9"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/698cd6e7a50ba4e376b0c954108844d1b42f14d8c28cb60e862f6839e75409be/diagnose-native.jl",
+      "bytes": 1614,
+      "sha256": "698cd6e7a50ba4e376b0c954108844d1b42f14d8c28cb60e862f6839e75409be"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd/conservative-grid.jl",
+      "bytes": 7774,
+      "sha256": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/7891cb7e08e5ca293ed6cf99bf3fb4db2cd668345e89c0df67e9bb24d4d0a5f2/test-extremes.jl",
+      "bytes": 1477,
+      "sha256": "7891cb7e08e5ca293ed6cf99bf3fb4db2cd668345e89c0df67e9bb24d4d0a5f2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/8231625a4a4ed0855150d0047a27a1c55b24324177fff4d47d8adce287168f80/pressure-core.jl",
+      "bytes": 8001,
+      "sha256": "8231625a4a4ed0855150d0047a27a1c55b24324177fff4d47d8adce287168f80"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/85eaf37082d99aa08d7fcef6b15088d3ab5bb0c051e121eced11e12dd469c74a/pressure-core.jl",
+      "bytes": 7742,
+      "sha256": "85eaf37082d99aa08d7fcef6b15088d3ab5bb0c051e121eced11e12dd469c74a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/863285854daacc46238ffda5550d802d5dca0c954fc5c9a1a67bca816fde6c81/analytic.jl",
+      "bytes": 3285,
+      "sha256": "863285854daacc46238ffda5550d802d5dca0c954fc5c9a1a67bca816fde6c81"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/8ef343ea27457bf18943d39cd3f65d1f7ea961257e18c846ff0d89ecd273c188/iteration-trace.jl",
+      "bytes": 2490,
+      "sha256": "8ef343ea27457bf18943d39cd3f65d1f7ea961257e18c846ff0d89ecd273c188"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/933b5b91739d9c3adb38548ba2c159b5b7075ccd84dba7ef9ccf051b4b0c38f2/compare-time.jl",
+      "bytes": 2058,
+      "sha256": "933b5b91739d9c3adb38548ba2c159b5b7075ccd84dba7ef9ccf051b4b0c38f2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/96eae48ff28a9a0899e5699beeacd74f0f0afcdabf7de8a3534612e206a8e44e/test-secant-boundary.jl",
+      "bytes": 788,
+      "sha256": "96eae48ff28a9a0899e5699beeacd74f0f0afcdabf7de8a3534612e206a8e44e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/a680efa6af5f1000552c3e2172b79556e7df0e008527a07ed067db38518d8906/common.jl",
+      "bytes": 2055,
+      "sha256": "a680efa6af5f1000552c3e2172b79556e7df0e008527a07ed067db38518d8906"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/a90f0a84770289e1bd3c1d4fc066f39dd30ab413c1b388f6beed47ac2ddf7381/run.mjs",
+      "bytes": 5629,
+      "sha256": "a90f0a84770289e1bd3c1d4fc066f39dd30ab413c1b388f6beed47ac2ddf7381"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/b86cb9dffa4e6ac7186c725ca5866e614fd927830e9267dccba0cbd723702355/test-step.jl",
+      "bytes": 4330,
+      "sha256": "b86cb9dffa4e6ac7186c725ca5866e614fd927830e9267dccba0cbd723702355"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a/fct-transport.jl",
+      "bytes": 5383,
+      "sha256": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/d5825b234b447d36c39e7c5f95808d8893bfbfa51fa7d55092850f12b23bcdb3/native-run.jl",
+      "bytes": 5545,
+      "sha256": "d5825b234b447d36c39e7c5f95808d8893bfbfa51fa7d55092850f12b23bcdb3"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/e3119bc53f25ea7952bb17908184f1ae9b5f194f4e69eaf4b153b65118d7cf69/test-water-rollback.jl",
+      "bytes": 1502,
+      "sha256": "e3119bc53f25ea7952bb17908184f1ae9b5f194f4e69eaf4b153b65118d7cf69"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/source-archives/f2e4c563bdb61526a863259ad36d6ead9b27cbb2efcea52ca04c1a981582e38c/test-extremes.jl",
+      "bytes": 1359,
+      "sha256": "f2e4c563bdb61526a863259ad36d6ead9b27cbb2efcea52ca04c1a981582e38c"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/test-energy.jl",
+      "bytes": 2325,
+      "sha256": "48417d4701fc0207720e88fb736f9cd51a82e9b55d598ee2b12d880f51a75949"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/test-extremes.jl",
+      "bytes": 1477,
+      "sha256": "7891cb7e08e5ca293ed6cf99bf3fb4db2cd668345e89c0df67e9bb24d4d0a5f2"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/test-secant-boundary.jl",
+      "bytes": 788,
+      "sha256": "96eae48ff28a9a0899e5699beeacd74f0f0afcdabf7de8a3534612e206a8e44e"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/test-source.mjs",
+      "bytes": 1670,
+      "sha256": "0876815f017eddba196e199190d0e991392df2c6baa1cee6dafb0f5fd511b90b"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/test-step.jl",
+      "bytes": 4334,
+      "sha256": "54ab9345449f4c60804b67c44ff49842210bc1cbd145bb836f35635a5277c3f1"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/test-water-rollback.jl",
+      "bytes": 1502,
+      "sha256": "e3119bc53f25ea7952bb17908184f1ae9b5f194f4e69eaf4b153b65118d7cf69"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/verification.json",
+      "bytes": 5684,
+      "sha256": "0213a1fb86c8ee3eea621a1e72e50ba8be293031ec43c8b7392e288815f35855"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/verify-seal.mjs",
+      "bytes": 1293,
+      "sha256": "d3a9ac5c4e66b9db2a4264c697e4955a4912e6cb92216f99975b1dbabcfa15d8"
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/verify-source.mjs",
+      "bytes": 1095,
+      "sha256": "1e3385d987e16f58427da318a5ea3fbd5edd9416ee32710326f26b4f73b8e695"
+    }
+  ]
+}

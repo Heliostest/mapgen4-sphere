@@ -1,0 +1,50 @@
+C8 nonlinear pressure work and atomic shared water: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:32
+  Expression: norm((result.p - p) + (dt * (c.divergence * (d.flux * c.ds))) ./ c.g.area) < 2.0e-13
+   Evaluated: 0.009011403142159735 < 2.0e-13
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:32
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:84
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:84 [inlined]
+C8 nonlinear pressure work and atomic shared water: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:33
+  Expression: norm((result.v - v) .- dt * (c.gradient * d.mu)) < 2.0e-13
+   Evaluated: 0.020879779886684796 < 2.0e-13
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:33
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:84
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:84 [inlined]
+C8 nonlinear pressure work and atomic shared water: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:34
+  Expression: norm(result.p - p) > 0.0001
+   Evaluated: 0.0 > 0.0001
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:34
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:84
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:84 [inlined]
+Test Summary:                                      | Fail  Total  Time
+C8 nonlinear pressure work and atomic shared water |    3      3  6.5s
+RNG of the outermost testset: Xoshiro(0x136060e19c3dddea, 0x31f72b88fac93561, 0xb30c645e951f0d07, 0xf1f001769543da4a, 0xc613e3938b0fb736)
+ERROR: LoadError: Some tests did not pass: 0 passed, 3 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-step.jl:84

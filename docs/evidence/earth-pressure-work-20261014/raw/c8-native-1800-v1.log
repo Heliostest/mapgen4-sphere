@@ -1,0 +1,33 @@
+{"cells":3168,"edges":39580,"dt":1800.0,"importRoundtrip":4.418585793538603e-17}
+{"case":"real","step":1,"steps":12,"seconds":3.3989999294281006,"localMax":2.0494396185315813e-15,"energyBalance":2.98825420872341e-16,"iterations":5}
+C8 native pressure work six hours: Error During Test at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\native-run.jl:60
+  Got exception outside of a @test
+  StepRejected: pressure-work Newton iteration did not converge
+  Stacktrace:
+    [1] pressure_step(m::PressureWorkCore, p0::Vector{Float64}, v0::Matrix{Float64}, dt::Float64; maxiter::Int64)
+      @ Main.PressureWork D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\pressure-core.jl:93
+    [2] pressure_step
+      @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\pressure-core.jl:80 [inlined]
+    [3] step!(m::PressureWorkCore, s::BarotropicState, dt::Float64; maxiter::Int64)
+      @ Main.PressureWork D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\pressure-core.jl:125
+    [4] step!
+      @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\pressure-core.jl:122 [inlined]
+    [5] main()
+      @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\native-run.jl:25
+    [6] top-level scope
+      @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\native-run.jl:60
+    [7] macro expansion
+      @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+    [8] macro expansion
+      @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\native-run.jl:60 [inlined]
+    [9] include(mod::Module, _path::String)
+      @ Base .\Base.jl:306
+   [10] exec_options(opts::Base.JLOptions)
+      @ Base .\client.jl:317
+   [11] _start()
+      @ Base .\client.jl:550
+Test Summary:                     | Pass  Error  Total   Time
+C8 native pressure work six hours |    1      1      2  22.8s
+RNG of the outermost testset: Xoshiro(0xc4198f71ce2afe61, 0x75fe86d3adc56963, 0x2626a1c8774e8848, 0x4ab5807ebb0dcaeb, 0xefccd04e4964705f)
+ERROR: LoadError: Some tests did not pass: 1 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\native-run.jl:60

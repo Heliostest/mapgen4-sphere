@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "tests": 278,
+  "rows": [
+    {
+      "label": "test",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/test.mjs"
+      ],
+      "code": 0,
+      "log": "build/earth-pressure-work/project-final-test.log",
+      "sha256": "544c90f4e8441a43335751a69fa9824e0ac68304fd9e92dbbdd797d6c9c7e158"
+    },
+    {
+      "label": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "code": 0,
+      "log": "build/earth-pressure-work/project-final-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/build.mjs"
+      ],
+      "code": 0,
+      "log": "build/earth-pressure-work/project-final-build.log",
+      "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+    }
+  ]
+}
