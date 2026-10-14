@@ -1,0 +1,784 @@
+{
+  "candidate": "c7-compatible-momentum",
+  "createdUTC": "2026-10-14T10:29:07.868Z",
+  "previous": {
+    "path": "docs/evidence/earth-covariant-momentum-20261014/manifest.json",
+    "sha256": "fa83192f5dd1dd2627734a6eaff9a6a2d546181ae24ac5d07fe45d93f834633c"
+  },
+  "acceptance": {
+    "incrementalAdjointCoupling": true,
+    "transportSubstepPreservesUnresolvedEdgeComponent": true,
+    "referenceEnergyIdentity": true,
+    "sharedAirWaterMomentumTransfers": true,
+    "firstOrderSplitNonlinearCoupling": true,
+    "sampledSpatialRefinement": true,
+    "independentFullNonlinearTimeComparison": true,
+    "nativeSixHourTemporalRefinement": true,
+    "zeroMatchesFrozenC5": true,
+    "nearRestRegression": true,
+    "literalBitRebuiltRestart": true,
+    "independentCodeReviewCompleted": true,
+    "fullPhysicalMomentum": false,
+    "exactAngularMomentumOrPV": false,
+    "fullThermodynamics": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  },
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/CURRENT-STATE.md",
+      "bytes": 2059,
+      "sha256": "7e5f38685a89527640205833933ac8a99ef629fa30ea9335429ec82712e87185"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/README.md",
+      "bytes": 2519,
+      "sha256": "8aa1b6d6f8800d8d495c7471679324b8cc768250bc018b6481c2214a72ec1bf0"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/analytic.jl",
+      "bytes": 2584,
+      "sha256": "4b68530d14ab9c3cf7e52b01fed87eabd0b9ffd6315ed045d4e586300ac5582d"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/code-review.md",
+      "bytes": 3961,
+      "sha256": "56eed3e0186c047f5485414a748020ca78b8f3e65614a09d124ccb2a5bde81be"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/common.jl",
+      "bytes": 2420,
+      "sha256": "29b47b6e2712274e98887e4fe2b25fbcf2cd70985d10d0cdba3363515a9b22b4"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/compare-time.jl",
+      "bytes": 1972,
+      "sha256": "fc1d2a1cd997716b014e635260628eaa866af3e9bbfe72a1f416205b6d4a85ce"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/coupled-core.jl",
+      "bytes": 4223,
+      "sha256": "2ccf6abf7aca30a5081f40d571877a8b7d0868b2c08e5c75137f45a636b49315"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/dense-reference.jl",
+      "bytes": 1013,
+      "sha256": "18c967b2306dab98f5708d258fe68aba81aebb6977d4a8919af264f369fb2e70"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/native-run.jl",
+      "bytes": 6469,
+      "sha256": "e021238e2b2e97d181ed5c2a448635af9cf2f1725fc7d68d39d5f42a0dc2ec46"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/plan.md",
+      "bytes": 2265,
+      "sha256": "8d7855867d1d69bda8579d4a7eb91fdb346ed8d3b37c4439b7763fffd84a1310"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/plot.py",
+      "bytes": 2676,
+      "sha256": "e7d98a0a4fc8c2d53b2fa5f4f0f146ef3213ed85c10c2bace4c6ccf5a43afae0"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/project-checks.mjs",
+      "bytes": 1182,
+      "sha256": "ae8b8f499102f752ab626a5cdc67b1c95242dfddde147983325fdfd57d065b0e"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/protocol.md",
+      "bytes": 4819,
+      "sha256": "cc788bb3f2fb2874e76b9873558ac66c87a71131420fa2d8d19b91639612f66f"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-analytic-v1-status.json",
+      "bytes": 8318,
+      "sha256": "4c22a57c979b1a3dff55672905480daff260a22d977ea9b3595b24d65ec69db3"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-analytic-v1.json",
+      "bytes": 4437,
+      "sha256": "c2b4072a31d9bc6673845cc8405ae02cc08bb81880616f6365dcfa5967ac046d"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-analytic-v1.log",
+      "bytes": 340,
+      "sha256": "b15ba8a0c6388e4d57d5382fff6da4b33ce1199efc753668359c232052fb5f14"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-red-v1-status.json",
+      "bytes": 8804,
+      "sha256": "a8f203aa839392c4e0333cc4d08dbd252a9b3148c93fa55fd35b57c526068316"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-red-v1.log",
+      "bytes": 1438,
+      "sha256": "8160a8d195689f242aa51d75ce886faafa1466cb0ae4da7cfad8f32c6ad390b3"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-v1-checkpoint.bin",
+      "bytes": 590,
+      "sha256": "df310993bce44b0cfb03063708d9e7b00b9b994093954d78f50f4b004aa41dd3"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-v1-status.json",
+      "bytes": 9034,
+      "sha256": "e0f748b4151ea3b9059b8b58c25b49eb9ae3e1e5f64afc7da0417b88f4b2badb"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-v1.json",
+      "bytes": 325,
+      "sha256": "0a3d8f118a739181425e320060449bdc5c5f6c35ec03d2a87aba8e5cfb7e3c32"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-v1.log",
+      "bytes": 130,
+      "sha256": "255761c4a0959ced712708f329bdc32a4a4e3d420e53c2f973db60a7d3352466"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-v2-checkpoint.bin",
+      "bytes": 590,
+      "sha256": "1fc491a341c641c66d22bbec15db16044cef803a4b64e6219fce224224bfad9b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-v2-status.json",
+      "bytes": 9034,
+      "sha256": "75d78e350a298e0a39408530868c5aa136f628736addfc5dc6b58dad264598a6"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-v2.json",
+      "bytes": 325,
+      "sha256": "0a3d8f118a739181425e320060449bdc5c5f6c35ec03d2a87aba8e5cfb7e3c32"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-coupled-v2.log",
+      "bytes": 130,
+      "sha256": "93230383ecd6066c1908a7f1eb1c6956e954b269548b8370b26ccd85eb4e9fe0"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-covariance-v1-status.json",
+      "bytes": 8350,
+      "sha256": "fa9faa15738394785ff20128b3229d3e02fa6fa276ba59c7f9b6c0e203b3e5b5"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-covariance-v1.json",
+      "bytes": 104,
+      "sha256": "39355accf08fa56468117cb14f8069f4dd37dc27ad35930efa4b34a0f838ae9f"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-covariance-v1.log",
+      "bytes": 1299,
+      "sha256": "77677c7e16303d4462507c9bfaa1dcd23e02a745e3b4f4b1550e8e6cf7ac975b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-covariance-v2-status.json",
+      "bytes": 8350,
+      "sha256": "e533f9d58a14fc665c49a83180b548e7542102c467240700345b47e36056d803"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-covariance-v2.json",
+      "bytes": 104,
+      "sha256": "39355accf08fa56468117cb14f8069f4dd37dc27ad35930efa4b34a0f838ae9f"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-covariance-v2.log",
+      "bytes": 100,
+      "sha256": "3a04d902e8879ec04f4a1a7d0bd3d1940f10ff0482f512fb1002c7b9f10c6478"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1-c5-baseline.bin",
+      "bytes": 2761299,
+      "sha256": "e061cc8fabc9ff9a21533a55bfc06cfa8844ce9ef3873f6ef9b81244f6b38f3b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1-constant-checkpoint.bin",
+      "bytes": 2761434,
+      "sha256": "915056f2f6b111c941998246b73bad12006ad0816ffd0f6ff8988e5a45279e0a"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1-constant-final.bin",
+      "bytes": 2761422,
+      "sha256": "1ca991b689b392ee647394d61279d4a0e2a6fbee482e3ec82ceaa2d3092bdfb2"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1-partial.json",
+      "bytes": 2054,
+      "sha256": "c008bee66babf2712762da8595efd6a34981456e10c6f3aa619a43ca8e19e90e"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1-real-checkpoint.bin",
+      "bytes": 2761434,
+      "sha256": "7342a0d3e1ba07d13c8d76d3e78303a3f246d5cd26f9488e12ac6b34a315edd7"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1-real-final.bin",
+      "bytes": 2761422,
+      "sha256": "6ba42abc2f713b996040e4d8578a97caf7907e6c2ac9acba676312c03226c07f"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1-sharp-checkpoint.bin",
+      "bytes": 2761434,
+      "sha256": "c7e6668fde2ecbaac919f2d338af79223ded2dd4b540458699871ad694278e52"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1-sharp-final.bin",
+      "bytes": 2761422,
+      "sha256": "fe5e907bbb54493ee4b1e64793ec6c3e85d722e368fc03bf1919ca08900e21e5"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1-status.json",
+      "bytes": 9756,
+      "sha256": "1a6184aebf7b679d7e255c121db2e0ac23986ff1377e0eeea536b1df30695fe9"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1.json",
+      "bytes": 2471,
+      "sha256": "44a6e1115ec98875b39c65e048066e2b9aa42346cc78d247bbd7d567ffd8e4b0"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v1.log",
+      "bytes": 1041,
+      "sha256": "fed1502f9d4f1636bb081f45a06204cade835d775f5c708de0394fd2a4c11354"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2-c5-baseline.bin",
+      "bytes": 2761299,
+      "sha256": "e061cc8fabc9ff9a21533a55bfc06cfa8844ce9ef3873f6ef9b81244f6b38f3b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2-constant-checkpoint.bin",
+      "bytes": 2761434,
+      "sha256": "48c51515d0440658c9c4b8559a13c99b2dbb586401cfe3c74179eadba3fd2e51"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2-constant-final.bin",
+      "bytes": 2761422,
+      "sha256": "8817e21f939be0fd5f3bf2ea260fe71f0bcf1427ee538d8adadcada27b543534"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2-partial.json",
+      "bytes": 2055,
+      "sha256": "d4dc51c85165c30fd4d61a398fffb14f0bdd40b7b8dff09e8d39c2e72127f93a"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2-real-checkpoint.bin",
+      "bytes": 2761434,
+      "sha256": "d0cada760baefe584bb11ebf405f26c870690809495d9b0a1748a0387004e846"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2-real-final.bin",
+      "bytes": 2761422,
+      "sha256": "3ae124bc2cb1e0f2d191180c3dbad8f8f5439e97e0b3b89dba8484af2acbc6fd"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2-sharp-checkpoint.bin",
+      "bytes": 2761434,
+      "sha256": "52c69f6cb902f47861e2cabe545184b642a7a5deb12a11fec61926e3e9dca2de"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2-sharp-final.bin",
+      "bytes": 2761422,
+      "sha256": "8cd2f4e788daef7f29692ec0ab6438c4911025dc5fc7abb1a574cad9735644d9"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2-status.json",
+      "bytes": 9756,
+      "sha256": "8fa57d250f1b4e732a37591c383d24ced4dfe0cd1601c86569b5971c111f3ce1"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2.json",
+      "bytes": 2472,
+      "sha256": "03f7db171656e9009744add84a4fc5d11b5f3c1edd196646092779451a032850"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-1800-v2.log",
+      "bytes": 1044,
+      "sha256": "1191d0efb91ec720449b50b05feb60b592b371ed5cfe822562c79e1f6d8fca41"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-225-v1-partial.json",
+      "bytes": 730,
+      "sha256": "540c311eb38e872311f56ac3cb54f967e600e0112a2c38a6ee32d9688e68b47e"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-225-v1-real-final.bin",
+      "bytes": 2761422,
+      "sha256": "b496735119ddb661e1f62886e3315682e37928c8b32371adc014b9e5b6e94a99"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-225-v1-status.json",
+      "bytes": 8962,
+      "sha256": "7ae292c6007eb6a8380b4e1be269b591d54291041ac97ab8b330f9b32eb1da60"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-225-v1.json",
+      "bytes": 1072,
+      "sha256": "7db89fb508314932f61943c8563c3535180b4384e0f0b897fb7d91667895c08c"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-225-v1.log",
+      "bytes": 903,
+      "sha256": "3e69ac3f410fe740b9f4018f4a6411f76f1940fc65aa4daef9eed657ce977822"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-450-v1-partial.json",
+      "bytes": 747,
+      "sha256": "f77e6682dec28a6f3d772d086dbfebbb978a0b4a2b1d3c2ded0d4369ba970d38"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-450-v1-real-final.bin",
+      "bytes": 2761422,
+      "sha256": "9ddef2eed8c041771bfd634b7e6656f74140ad4de4d2204efbdfad4629feac25"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-450-v1-status.json",
+      "bytes": 8962,
+      "sha256": "f664e6b5d6bc61de377fb77925ec9beb35f59283da1a58f62f8265418e9ee1fe"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-450-v1.json",
+      "bytes": 1089,
+      "sha256": "d2bb5a78e1c3638df48cdd0bcde0c3eb8d70abce3f5e91afd6a058a8d88d83d7"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-450-v1.log",
+      "bytes": 626,
+      "sha256": "fe617b8116f6c893a22aa74888757b4b1277cf207fec0d94961de99fcb89b968"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-900-v1-partial.json",
+      "bytes": 727,
+      "sha256": "acb61aad73cad5d3d978a03c08edbf13f190318e58f990df49184de9a49d364a"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-900-v1-real-final.bin",
+      "bytes": 2761422,
+      "sha256": "bae86826658dffe28fb655c8e6eefd5a05bb04d058d9eb5ca7f68aa91baf5c3e"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-900-v1-status.json",
+      "bytes": 8962,
+      "sha256": "1a93cfb8b47c9ce1a2fc12d8e6dbd3e38fa66aa4076f2195abf8740ca6c04b93"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-900-v1.json",
+      "bytes": 1069,
+      "sha256": "c9cd50182129ef2ed89ad4392db3587522ffda47889d61c3e7db873524ee7fae"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-native-900-v1.log",
+      "bytes": 491,
+      "sha256": "a9fd0c38298cc865d8f55b9fad7ccc166700f4f63635fe72c236cb2bd51c7d1f"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-near-rest-red-v1-status.json",
+      "bytes": 8632,
+      "sha256": "e05a8f4ac5ea983d29d2bf8c8914620092ee050fcc44278e1ac07bfd0df90bd1"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-near-rest-red-v1.json",
+      "bytes": 1520,
+      "sha256": "b3bb33e752ff225ad256e0e0f8f779155d0147d639593125fd64cf7d84add730"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-near-rest-red-v1.log",
+      "bytes": 14718,
+      "sha256": "90c424634612fdec4e223f4e43691a1ed95f0521e8ccbef1edf4c08455042f3b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-near-rest-red-v2-status.json",
+      "bytes": 8632,
+      "sha256": "4cb6cea8ffa1860a77890c7ac735a2815617e6a39d89be698d518b2f33ffe4df"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-near-rest-red-v2.json",
+      "bytes": 1520,
+      "sha256": "b3bb33e752ff225ad256e0e0f8f779155d0147d639593125fd64cf7d84add730"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-near-rest-red-v2.log",
+      "bytes": 14449,
+      "sha256": "dad9e0ae64e8b38aa063b6e28e032287048f93d7253286f8ee41c3b2190dac57"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-near-rest-v1-status.json",
+      "bytes": 8624,
+      "sha256": "4db7f0250806f013d1d425b7dd57e576496176c56813f026673c2721ba0206ce"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-near-rest-v1.json",
+      "bytes": 969,
+      "sha256": "49885e1efa9190eeb5aaac764637a09e0d9463283e8cd59767aafdcdb514bde2"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-near-rest-v1.log",
+      "bytes": 134,
+      "sha256": "4050421e4be7d4c3fd7b27b8900ee5aa1b2f91fb3059bf43b5dfc406538bf1fb"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-source-v1.json",
+      "bytes": 342,
+      "sha256": "40be0117fe1ca7fbe96c1b54d3c3ca8a41efef633c5ec372e0ef83233ef490e5"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-temporal-v1-status.json",
+      "bytes": 11180,
+      "sha256": "40de42cf14234230d69240e99a05df8da427f4cdba38c1d24662941a5169395d"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-temporal-v1.json",
+      "bytes": 994,
+      "sha256": "1ec2f520f4f2c138e7fee65138dcfd0bf84c3a1b752c390d10fb9bfc122201cb"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-temporal-v1.log",
+      "bytes": 116,
+      "sha256": "cafd6b61b3c4873a7c4822ab3bf5646bb49e98bb9f45bdba2a086f532167a559"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-transport-red-v1-status.json",
+      "bytes": 8638,
+      "sha256": "8b2a912cc72319444ac5f08917bd72cd6a3c442bfd7e88df1ffcd0f74c7241cd"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-transport-red-v1.json",
+      "bytes": 153,
+      "sha256": "0e078775691a249ff4a1fe27e7f004ae2c0e172afd18a849a5f490163c9ee86c"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-transport-red-v1.log",
+      "bytes": 8626,
+      "sha256": "c64bb01abe87ebba76839a636121ffec6e4e7ee0da15b1463275f5561dfc063e"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-transport-v1-status.json",
+      "bytes": 8630,
+      "sha256": "c80a07d2301efe0b973058de148f7ce360c5f65dc15266bde3e84a21572fee7a"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-transport-v1.json",
+      "bytes": 173,
+      "sha256": "bfb131296f032e4851a8a7ac5ce4d5a7d3d74de5b51e8ed585b596a8c6551210"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/c7-transport-v1.log",
+      "bytes": 100,
+      "sha256": "fa8001992bc7e907998f8223a248bee093028e97ae63fd514464b7b774cdb4b9"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/convergence.png",
+      "bytes": 189183,
+      "sha256": "11a41f635dca249ceb5200428a7c8fed2986bbbbdcf35bf515a83b38f0181b11"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/plot-provenance.json",
+      "bytes": 1072,
+      "sha256": "32ba25298ab08d2ab668d3b938083c36a90553b69fd49e21f7e3ec808e017659"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/project-checks.json",
+      "bytes": 1028,
+      "sha256": "8731bbf3c3aa1357b285e22c6786187ed6fa805094222d771ac3d1fceaf54e83"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/project-final-build.log",
+      "bytes": 58,
+      "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/project-final-test.log",
+      "bytes": 27422,
+      "sha256": "ac2dd4ff40a9875dc5347aa9aeb9f414e51da53a2f054823f4492e13c40bf76c"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/raw/project-final-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/report.md",
+      "bytes": 8307,
+      "sha256": "9e7f55a5c8219ef96e012830b2b09601c17d00140796f531896a962e7440620b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review-source-bindings.json",
+      "bytes": 10682,
+      "sha256": "dc6594c7abf20c71a7975af88e1bdd55826b5ae76407411d3a971e63a7a877ce"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/freeze-review-v1.mjs",
+      "bytes": 3383,
+      "sha256": "7b185e237f4263ccd190f32f6b15a2334d3c55dc600cf1cfd4362a6106cac41d"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/kernel-scope-v1.jl",
+      "bytes": 1149,
+      "sha256": "432259e28d78af04667ac3b0c2dbb9e779e113dc67c2518c7e929bd88ca42f25"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/kernel-scope-v1.json",
+      "bytes": 169,
+      "sha256": "f751560cfbd10ccbcdedf1cb7a703fb718ce267aa0dcc799aeee42c3af288f3b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/native-audit-v1.jl",
+      "bytes": 4345,
+      "sha256": "02f357bb4f99ecd092332d0fc99591b39b5e96e98bede781d64b31a7582c9c91"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/native-audit-v1.json",
+      "bytes": 3782,
+      "sha256": "56dc1fa4f9811591ea8e950e5a7ce879eb8d6a433bb36575408cd8dc76b82788"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/ode-v1.jl",
+      "bytes": 2637,
+      "sha256": "e871e1b33500b5c7ff3a1e004dbe4e965ec5b73458506fa2d6efa78530969461"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/ode-v1.json",
+      "bytes": 501,
+      "sha256": "75ffb3606ea8e546cce238bbbc200f47fb6dd634865f42c8932109f59b6cc595"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/ode-v2.jl",
+      "bytes": 2841,
+      "sha256": "1a33d89a12160410a98e7ef8fc1d59f4c5c29b67449447829ee34f744077ec16"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/ode-v2.json",
+      "bytes": 501,
+      "sha256": "fc6e75a6961db3153469ba5438bdbcb20f9eaaef75bf87967caef82a0850a890"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/probes-v1.jl",
+      "bytes": 5491,
+      "sha256": "d8bb5b5152aa12f90640cf8c6218a10a364aa7857a9d0058ed5e10ef4efefc0e"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/probes-v1.json",
+      "bytes": 4041,
+      "sha256": "a38f766e7e8601bd59dd60b5faa9b8d3d01f372a2df563abad813b954d815373"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/probes-v2.jl",
+      "bytes": 7379,
+      "sha256": "ce0556c6389614be201b5c0ec093578e98b6e0a9e3bd2eb0017eebc73a1d27f7"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/probes-v2.json",
+      "bytes": 4318,
+      "sha256": "251303c10f4f9f3837a46162fa3168c64d3a4653beea6e6adc87761e7ab990e5"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/provenance-v1.json",
+      "bytes": 1756,
+      "sha256": "8e6ffb8f0f5a36158e3c200e6a53c7e282559b95417cd0b46b10fc34e2f05fd7"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/provenance-v1.mjs",
+      "bytes": 4435,
+      "sha256": "aea0543a000b6d248c72c8878fd5bf4dd74d99f7966f96b7f0f41b5e65b0abdf"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/review/reference-v1.jl",
+      "bytes": 1720,
+      "sha256": "45bf8782aee420fe21ce8f20f1051ffbfbe01e0c3fdd4d754905d1bca03b78d6"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/run.mjs",
+      "bytes": 5291,
+      "sha256": "f51e713c072d0940750841b1fd5f03368ab20a7a45785000a83a277e0265bb6b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/seal.mjs",
+      "bytes": 8009,
+      "sha256": "acf6a146238fe30ab1994049e06555ad023dd32dac8e91e6f84a0d0b3187e0d1"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/selected-runs.json",
+      "bytes": 295,
+      "sha256": "431f37fed56aa93294b8d70f565e89e7dad8274d68cb3f26567840b87c0ed7bb"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/078740e8634fe65787b2174ad4535dff50b34bb969201d55d84e5a6bc66cb661/coupled-core.jl",
+      "bytes": 747,
+      "sha256": "078740e8634fe65787b2174ad4535dff50b34bb969201d55d84e5a6bc66cb661"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/11f3dffa667f483a66c841dcc47cc15a50118150c54759549d2b5fdd5e42f9d3/coupled-core.jl",
+      "bytes": 3440,
+      "sha256": "11f3dffa667f483a66c841dcc47cc15a50118150c54759549d2b5fdd5e42f9d3"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/13c4dba79cdd693514ebd1a82efe4dddfed15d1be8284ec57da333ea49d05351/test-transport.jl",
+      "bytes": 1697,
+      "sha256": "13c4dba79cdd693514ebd1a82efe4dddfed15d1be8284ec57da333ea49d05351"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/18c967b2306dab98f5708d258fe68aba81aebb6977d4a8919af264f369fb2e70/dense-reference.jl",
+      "bytes": 1013,
+      "sha256": "18c967b2306dab98f5708d258fe68aba81aebb6977d4a8919af264f369fb2e70"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/1e6ac564947c1945047679f53d54cfa2b686c9a678ce8310ec9dfaf7c9e4d6a5/rotation-core.jl",
+      "bytes": 2159,
+      "sha256": "1e6ac564947c1945047679f53d54cfa2b686c9a678ce8310ec9dfaf7c9e4d6a5"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62/modal-core.jl",
+      "bytes": 6385,
+      "sha256": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/29b47b6e2712274e98887e4fe2b25fbcf2cd70985d10d0cdba3363515a9b22b4/common.jl",
+      "bytes": 2420,
+      "sha256": "29b47b6e2712274e98887e4fe2b25fbcf2cd70985d10d0cdba3363515a9b22b4"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/2ccf6abf7aca30a5081f40d571877a8b7d0868b2c08e5c75137f45a636b49315/coupled-core.jl",
+      "bytes": 4223,
+      "sha256": "2ccf6abf7aca30a5081f40d571877a8b7d0868b2c08e5c75137f45a636b49315"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/3b0adaccc0c0dbb36f023b5f59d267e113d31084901b0eda94c5ac52d190c122/coupled-core.jl",
+      "bytes": 1341,
+      "sha256": "3b0adaccc0c0dbb36f023b5f59d267e113d31084901b0eda94c5ac52d190c122"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d/conservative-core.jl",
+      "bytes": 12294,
+      "sha256": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/3fc9550f3f193014a1187b624eda94d82dbb68b4e702d20e845b735878a158cc/test-covariance.jl",
+      "bytes": 1320,
+      "sha256": "3fc9550f3f193014a1187b624eda94d82dbb68b4e702d20e845b735878a158cc"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84/graph-wind.jl",
+      "bytes": 3839,
+      "sha256": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/4b68530d14ab9c3cf7e52b01fed87eabd0b9ffd6315ed045d4e586300ac5582d/analytic.jl",
+      "bytes": 2584,
+      "sha256": "4b68530d14ab9c3cf7e52b01fed87eabd0b9ffd6315ed045d4e586300ac5582d"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/5ab106fb686d45f1f07a377a0e912dd0734a45fe0e8389bb7175cdcca1e40069/test-coupled.jl",
+      "bytes": 4131,
+      "sha256": "5ab106fb686d45f1f07a377a0e912dd0734a45fe0e8389bb7175cdcca1e40069"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/5e6537d49e60e38c3d7d2916f84f38b4d7476ca7615616b4d5173663ae80a1ce/transport-core.jl",
+      "bytes": 757,
+      "sha256": "5e6537d49e60e38c3d7d2916f84f38b4d7476ca7615616b4d5173663ae80a1ce"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/622b51ce159ae1e9607fabbddd9cce64816fa95bafe7cccdc9c1fd3ee7d7be7e/transport-core.jl",
+      "bytes": 3697,
+      "sha256": "622b51ce159ae1e9607fabbddd9cce64816fa95bafe7cccdc9c1fd3ee7d7be7e"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd/conservative-grid.jl",
+      "bytes": 7774,
+      "sha256": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b/fct-core.jl",
+      "bytes": 1275,
+      "sha256": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/a60bd777f59c1b03a3387325e84081cdefdb4d8e714ce1efbd084e50b2673839/momentum.jl",
+      "bytes": 4766,
+      "sha256": "a60bd777f59c1b03a3387325e84081cdefdb4d8e714ce1efbd084e50b2673839"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/ae6f893fafeadd0a6bcfb69969b528bf24caccbaf87cf55dde525f3c72f5d6e0/test-covariance.jl",
+      "bytes": 1307,
+      "sha256": "ae6f893fafeadd0a6bcfb69969b528bf24caccbaf87cf55dde525f3c72f5d6e0"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/b6b9717d13a6d71da2e36b2cac25a76a1bdd35b72b14db12207fe48f40a6e6d7/test-near-rest.jl",
+      "bytes": 1285,
+      "sha256": "b6b9717d13a6d71da2e36b2cac25a76a1bdd35b72b14db12207fe48f40a6e6d7"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a/fct-transport.jl",
+      "bytes": 5383,
+      "sha256": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/cc788bb3f2fb2874e76b9873558ac66c87a71131420fa2d8d19b91639612f66f/protocol.md",
+      "bytes": 4819,
+      "sha256": "cc788bb3f2fb2874e76b9873558ac66c87a71131420fa2d8d19b91639612f66f"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/db2f50a8268b78bc0df4ac015465015a6d3e9c744d5dfebdbcba7b221d42164a/test-near-rest.jl",
+      "bytes": 1142,
+      "sha256": "db2f50a8268b78bc0df4ac015465015a6d3e9c744d5dfebdbcba7b221d42164a"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/e021238e2b2e97d181ed5c2a448635af9cf2f1725fc7d68d39d5f42a0dc2ec46/native-run.jl",
+      "bytes": 6469,
+      "sha256": "e021238e2b2e97d181ed5c2a448635af9cf2f1725fc7d68d39d5f42a0dc2ec46"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/f51e713c072d0940750841b1fd5f03368ab20a7a45785000a83a277e0265bb6b/run.mjs",
+      "bytes": 5291,
+      "sha256": "f51e713c072d0940750841b1fd5f03368ab20a7a45785000a83a277e0265bb6b"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/source-archives/fc1d2a1cd997716b014e635260628eaa866af3e9bbfe72a1f416205b6d4a85ce/compare-time.jl",
+      "bytes": 1972,
+      "sha256": "fc1d2a1cd997716b014e635260628eaa866af3e9bbfe72a1f416205b6d4a85ce"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/test-coupled.jl",
+      "bytes": 4131,
+      "sha256": "5ab106fb686d45f1f07a377a0e912dd0734a45fe0e8389bb7175cdcca1e40069"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/test-covariance.jl",
+      "bytes": 1320,
+      "sha256": "3fc9550f3f193014a1187b624eda94d82dbb68b4e702d20e845b735878a158cc"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/test-near-rest.jl",
+      "bytes": 1285,
+      "sha256": "b6b9717d13a6d71da2e36b2cac25a76a1bdd35b72b14db12207fe48f40a6e6d7"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/test-source.mjs",
+      "bytes": 1682,
+      "sha256": "3057b93550894e2ff6e0b362bf864ed2edb34a705999f4089c796b795d6b96d5"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/test-transport.jl",
+      "bytes": 1697,
+      "sha256": "13c4dba79cdd693514ebd1a82efe4dddfed15d1be8284ec57da333ea49d05351"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/transport-core.jl",
+      "bytes": 3697,
+      "sha256": "622b51ce159ae1e9607fabbddd9cce64816fa95bafe7cccdc9c1fd3ee7d7be7e"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/verification.json",
+      "bytes": 4194,
+      "sha256": "1fd6cf351db194d2f5ce149cf1be3dd08b610ff17959fb0cae9f47523fa6dd20"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/verify-seal.mjs",
+      "bytes": 1299,
+      "sha256": "9394b8a1a2f59bf5392fc2fdbe24bd1a809ea7dc5b7f69d189e8c6398252fbd3"
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/verify-source.mjs",
+      "bytes": 1107,
+      "sha256": "4f2345b09d42121eec4152474c5d75238eda673b834e50ed0bd4f061adfda29b"
+    }
+  ]
+}

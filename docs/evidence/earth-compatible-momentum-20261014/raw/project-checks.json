@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "tests": 278,
+  "rows": [
+    {
+      "label": "test",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/test.mjs"
+      ],
+      "code": 0,
+      "log": "build/earth-compatible-momentum/project-final-test.log",
+      "sha256": "ac2dd4ff40a9875dc5347aa9aeb9f414e51da53a2f054823f4492e13c40bf76c"
+    },
+    {
+      "label": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "code": 0,
+      "log": "build/earth-compatible-momentum/project-final-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/build.mjs"
+      ],
+      "code": 0,
+      "log": "build/earth-compatible-momentum/project-final-build.log",
+      "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+    }
+  ]
+}

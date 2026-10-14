@@ -1,0 +1,136 @@
+C7 compatible edge transport: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:9
+  Expression: norm(vec(r.j) - expected) / norm(expected) < 5.0e-12
+   Evaluated: 0.006480187789899506 < 5.0e-12
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:9
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29 [inlined]
+C7 compatible edge transport: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:10
+  Expression: norm(vec(split_tendency(m, j, F)) - d.L * v) / norm(d.L * v) < 5.0e-12
+   Evaluated: 1.0 < 5.0e-12
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:10
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29 [inlined]
+C7 compatible edge transport: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:11
+  Expression: abs((kn - ko) + loss) / ko < 5.0e-12
+   Evaluated: 0.004485153057542253 < 5.0e-12
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:11
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29 [inlined]
+C7 compatible edge transport: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:12
+  Expression: ≈(r.loss, loss, rtol = 5.0e-12)
+   Evaluated: 0.0 ≈ 0.05193539517749076 (rtol=5.0e-12)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29 [inlined]
+C7 compatible edge transport: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:13
+  Expression: kn < ko
+   Evaluated: 11.579403090861298 < 11.579403090861298
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:13
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29 [inlined]
+C7 compatible edge transport: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:23
+  Expression: transport_step(m, j, fill(NaN, length(F)))
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:23
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29 [inlined]
+C7 compatible edge transport: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:24
+  Expression: transport_step(m, j, F; maxiter = 0)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:24
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29 [inlined]
+C7 compatible edge transport: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:25
+  Expression: transport_step(m, j, F; maxiter = 1)
+    Expected: StepRejected
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:25
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29 [inlined]
+C7 compatible edge transport: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:26
+  Expression: transport_step(m, j, 1.0e8F)
+    Expected: StepRejected
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:26
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29 [inlined]
+Test Summary:                | Pass  Fail  Total   Time
+C7 compatible edge transport |    6     9     15  10.3s
+RNG of the outermost testset: Xoshiro(0xa31166a8d7a13b25, 0x46559adc6d530744, 0x49d956265531dece, 0xc757f33e9eb41584, 0x5ab88cb420804193)
+ERROR: LoadError: Some tests did not pass: 6 passed, 9 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-transport.jl:29

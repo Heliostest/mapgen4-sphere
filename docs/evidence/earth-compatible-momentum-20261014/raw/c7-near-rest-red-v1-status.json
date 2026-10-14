@@ -1,0 +1,83 @@
+{
+  "name": "c7-near-rest-red-v1",
+  "script": "docs/evidence/earth-compatible-momentum-20261014/test-near-rest.jl",
+  "extra": [],
+  "startedUTC": "2026-10-14T10:10:35.337Z",
+  "parameters": {},
+  "sourceBefore": {
+    "docs/evidence/earth-compatible-momentum-20261014/common.jl": "29b47b6e2712274e98887e4fe2b25fbcf2cd70985d10d0cdba3363515a9b22b4",
+    "docs/evidence/earth-compatible-momentum-20261014/coupled-core.jl": "11f3dffa667f483a66c841dcc47cc15a50118150c54759549d2b5fdd5e42f9d3",
+    "docs/evidence/earth-compatible-momentum-20261014/protocol.md": "cc788bb3f2fb2874e76b9873558ac66c87a71131420fa2d8d19b91639612f66f",
+    "docs/evidence/earth-compatible-momentum-20261014/run.mjs": "f51e713c072d0940750841b1fd5f03368ab20a7a45785000a83a277e0265bb6b",
+    "docs/evidence/earth-compatible-momentum-20261014/test-near-rest.jl": "db2f50a8268b78bc0df4ac015465015a6d3e9c744d5dfebdbcba7b221d42164a",
+    "docs/evidence/earth-compatible-momentum-20261014/transport-core.jl": "622b51ce159ae1e9607fabbddd9cce64816fa95bafe7cccdc9c1fd3ee7d7be7e",
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-core.jl": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b",
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-transport.jl": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a",
+    "docs/evidence/earth-conservative-accuracy-20261013/modal-core.jl": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-core.jl": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-grid.jl": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd",
+    "docs/evidence/earth-covariant-momentum-20261014/momentum.jl": "a60bd777f59c1b03a3387325e84081cdefdb4d8e714ce1efbd084e50b2673839",
+    "docs/evidence/earth-native-graph-wind-20261014/graph-wind.jl": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84",
+    "docs/evidence/earth-rotating-graph-20261014/coupled-core.jl": "3b0adaccc0c0dbb36f023b5f59d267e113d31084901b0eda94c5ac52d190c122",
+    "docs/evidence/earth-rotating-graph-20261014/rotation-core.jl": "1e6ac564947c1945047679f53d54cfa2b686c9a678ce8310ec9dfaf7c9e4d6a5"
+  },
+  "inputBefore": {
+    "docs/evidence/earth-covariant-momentum-20261014/manifest.json": "fa83192f5dd1dd2627734a6eaff9a6a2d546181ae24ac5d07fe45d93f834633c",
+    "docs/evidence/earth-native-graph-wind-20261014/manifest.json": "8c9869d799dc7b7da8bd955de8a9cacd1c843722de8926bb10ddc1bc94cd6536",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-24-graph.json": "f3ebc68994555f1e70207b1c8c7a77abb039ddcb2f49617f149b38cb2aa598c5",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-48-graph.json": "df056648db2f47595b5c64a8e2569c8d00afa966f29b0fafc3161bd77e3767f6",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-96-graph.json": "50cf8505cb10e8098216ad26dbf1603b5faf2d0a69dc53cd05f1ecaf63914cc9",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/inputs/candidate-c1-native-1800-import.bin": "3fa5ae87309d6be731b18d4b320392e48654bb4856736284de6e15d1a754341d",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/inputs/split-reference-seasonal-geometry.json": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+    "docs/evidence/earth-polar-pressure-20261014/manifest.json": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1-native-graph.json": "697caedf98a03c6e5690fbdff18fdf02731d849dc6b40575b3803f6a6cca7312",
+    "docs/evidence/earth-rotating-graph-20261014/manifest.json": "bccc6cf74351355e7c3c799c4767684b2fa06a2de73b0a2d67ca057ed5e376e8",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c"
+  },
+  "executable": "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\build\\earth-speedyweather\\runtime\\julia-1.12.7\\bin\\julia.exe",
+  "args": [
+    "--startup-file=no",
+    "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+    "docs/evidence/earth-compatible-momentum-20261014/test-near-rest.jl"
+  ],
+  "state": "failed",
+  "code": 1,
+  "sourceAfter": {
+    "docs/evidence/earth-compatible-momentum-20261014/common.jl": "29b47b6e2712274e98887e4fe2b25fbcf2cd70985d10d0cdba3363515a9b22b4",
+    "docs/evidence/earth-compatible-momentum-20261014/coupled-core.jl": "11f3dffa667f483a66c841dcc47cc15a50118150c54759549d2b5fdd5e42f9d3",
+    "docs/evidence/earth-compatible-momentum-20261014/protocol.md": "cc788bb3f2fb2874e76b9873558ac66c87a71131420fa2d8d19b91639612f66f",
+    "docs/evidence/earth-compatible-momentum-20261014/run.mjs": "f51e713c072d0940750841b1fd5f03368ab20a7a45785000a83a277e0265bb6b",
+    "docs/evidence/earth-compatible-momentum-20261014/test-near-rest.jl": "db2f50a8268b78bc0df4ac015465015a6d3e9c744d5dfebdbcba7b221d42164a",
+    "docs/evidence/earth-compatible-momentum-20261014/transport-core.jl": "622b51ce159ae1e9607fabbddd9cce64816fa95bafe7cccdc9c1fd3ee7d7be7e",
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-core.jl": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b",
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-transport.jl": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a",
+    "docs/evidence/earth-conservative-accuracy-20261013/modal-core.jl": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-core.jl": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-grid.jl": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd",
+    "docs/evidence/earth-covariant-momentum-20261014/momentum.jl": "a60bd777f59c1b03a3387325e84081cdefdb4d8e714ce1efbd084e50b2673839",
+    "docs/evidence/earth-native-graph-wind-20261014/graph-wind.jl": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84",
+    "docs/evidence/earth-rotating-graph-20261014/coupled-core.jl": "3b0adaccc0c0dbb36f023b5f59d267e113d31084901b0eda94c5ac52d190c122",
+    "docs/evidence/earth-rotating-graph-20261014/rotation-core.jl": "1e6ac564947c1945047679f53d54cfa2b686c9a678ce8310ec9dfaf7c9e4d6a5"
+  },
+  "inputAfter": {
+    "docs/evidence/earth-covariant-momentum-20261014/manifest.json": "fa83192f5dd1dd2627734a6eaff9a6a2d546181ae24ac5d07fe45d93f834633c",
+    "docs/evidence/earth-native-graph-wind-20261014/manifest.json": "8c9869d799dc7b7da8bd955de8a9cacd1c843722de8926bb10ddc1bc94cd6536",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-24-graph.json": "f3ebc68994555f1e70207b1c8c7a77abb039ddcb2f49617f149b38cb2aa598c5",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-48-graph.json": "df056648db2f47595b5c64a8e2569c8d00afa966f29b0fafc3161bd77e3767f6",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/c4-graphs-v1-96-graph.json": "50cf8505cb10e8098216ad26dbf1603b5faf2d0a69dc53cd05f1ecaf63914cc9",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/inputs/candidate-c1-native-1800-import.bin": "3fa5ae87309d6be731b18d4b320392e48654bb4856736284de6e15d1a754341d",
+    "docs/evidence/earth-native-graph-wind-20261014/raw/inputs/split-reference-seasonal-geometry.json": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+    "docs/evidence/earth-polar-pressure-20261014/manifest.json": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1-native-graph.json": "697caedf98a03c6e5690fbdff18fdf02731d849dc6b40575b3803f6a6cca7312",
+    "docs/evidence/earth-rotating-graph-20261014/manifest.json": "bccc6cf74351355e7c3c799c4767684b2fa06a2de73b0a2d67ca057ed5e376e8",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c"
+  },
+  "sourceUnchanged": true,
+  "inputUnchanged": true,
+  "outputHashes": {
+    "build/earth-compatible-momentum/c7-near-rest-red-v1.json": "b3bb33e752ff225ad256e0e0f8f779155d0147d639593125fd64cf7d84add730"
+  },
+  "completedUTC": "2026-10-14T10:10:59.635Z"
+}

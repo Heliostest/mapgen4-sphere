@@ -1,0 +1,200 @@
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+C7 rest and vanishing perturbation regression: Error During Test at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+  Test threw exception
+  Expression: abs((energy(m, s) - energy(m, before)) + ledger.loss) <= ledger.completeEnergyAllowance
+  FieldError: type NamedTuple has no field `completeEnergyAllowance`, available fields: `localAirRelativeResidual`, `localWaterRelativeResidual`, `localDryRelativeResidual`, `equationRelative`, `energyRelative`, `loss`, `completeEnergyRelative`, `iterations`, `qmin`, `qmax`, `positivityChecks`, `minimumCertifiedRatio`, `bottomResidual`, `dt`
+  Stacktrace:
+   [1] getproperty
+     @ .\Base_compiler.jl:54 [inlined]
+   [2] macro expansion
+     @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:677 [inlined]
+   [3] main()
+     @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+C7 rest and vanishing perturbation regression: Error During Test at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+  Test threw exception
+  Expression: abs((energy(m, s) - energy(m, before)) + ledger.loss) <= ledger.completeEnergyAllowance
+  FieldError: type NamedTuple has no field `completeEnergyAllowance`, available fields: `localAirRelativeResidual`, `localWaterRelativeResidual`, `localDryRelativeResidual`, `equationRelative`, `energyRelative`, `loss`, `completeEnergyRelative`, `iterations`, `qmin`, `qmax`, `positivityChecks`, `minimumCertifiedRatio`, `bottomResidual`, `dt`
+  Stacktrace:
+   [1] getproperty
+     @ .\Base_compiler.jl:54 [inlined]
+   [2] macro expansion
+     @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:677 [inlined]
+   [3] main()
+     @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+C7 rest and vanishing perturbation regression: Error During Test at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+  Test threw exception
+  Expression: abs((energy(m, s) - energy(m, before)) + ledger.loss) <= ledger.completeEnergyAllowance
+  FieldError: type NamedTuple has no field `completeEnergyAllowance`, available fields: `localAirRelativeResidual`, `localWaterRelativeResidual`, `localDryRelativeResidual`, `equationRelative`, `energyRelative`, `loss`, `completeEnergyRelative`, `iterations`, `qmin`, `qmax`, `positivityChecks`, `minimumCertifiedRatio`, `bottomResidual`, `dt`
+  Stacktrace:
+   [1] getproperty
+     @ .\Base_compiler.jl:54 [inlined]
+   [2] macro expansion
+     @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:677 [inlined]
+   [3] main()
+     @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+C7 rest and vanishing perturbation regression: Error During Test at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+  Test threw exception
+  Expression: abs((energy(m, s) - energy(m, before)) + ledger.loss) <= ledger.completeEnergyAllowance
+  FieldError: type NamedTuple has no field `completeEnergyAllowance`, available fields: `localAirRelativeResidual`, `localWaterRelativeResidual`, `localDryRelativeResidual`, `equationRelative`, `energyRelative`, `loss`, `completeEnergyRelative`, `iterations`, `qmin`, `qmax`, `positivityChecks`, `minimumCertifiedRatio`, `bottomResidual`, `dt`
+  Stacktrace:
+   [1] getproperty
+     @ .\Base_compiler.jl:54 [inlined]
+   [2] macro expansion
+     @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:677 [inlined]
+   [3] main()
+     @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+C7 rest and vanishing perturbation regression: Error During Test at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+  Test threw exception
+  Expression: abs((energy(m, s) - energy(m, before)) + ledger.loss) <= ledger.completeEnergyAllowance
+  FieldError: type NamedTuple has no field `completeEnergyAllowance`, available fields: `localAirRelativeResidual`, `localWaterRelativeResidual`, `localDryRelativeResidual`, `equationRelative`, `energyRelative`, `loss`, `completeEnergyRelative`, `iterations`, `qmin`, `qmax`, `positivityChecks`, `minimumCertifiedRatio`, `bottomResidual`, `dt`
+  Stacktrace:
+   [1] getproperty
+     @ .\Base_compiler.jl:54 [inlined]
+   [2] macro expansion
+     @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:677 [inlined]
+   [3] main()
+     @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:16
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+C7 rest and vanishing perturbation regression: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+  Expression: passed
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22 [inlined]
+Test Summary:                                 | Pass  Fail  Error  Total   Time
+C7 rest and vanishing perturbation regression |   15    10      5     30  22.6s
+RNG of the outermost testset: Xoshiro(0x9b5b330769d7caa9, 0x98b1e4a4d1492fea, 0x3cf400e020e6ed20, 0xd2483c693235701a, 0x562e8c36e1ac0cbd)
+ERROR: LoadError: Some tests did not pass: 15 passed, 10 failed, 5 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-compatible-momentum-20261014\test-near-rest.jl:22
