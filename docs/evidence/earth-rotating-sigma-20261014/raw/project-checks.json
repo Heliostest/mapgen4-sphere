@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "tests": 278,
+  "rows": [
+    {
+      "label": "test",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/test.mjs"
+      ],
+      "code": 0,
+      "log": "build/earth-rotating-sigma/project-final-test.log",
+      "sha256": "fb128354426f4a59582523052c1c7acf28cc1e8c09effcd498e64ce4695b83a7"
+    },
+    {
+      "label": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "code": 0,
+      "log": "build/earth-rotating-sigma/project-final-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/build.mjs"
+      ],
+      "code": 0,
+      "log": "build/earth-rotating-sigma/project-final-build.log",
+      "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+    }
+  ]
+}

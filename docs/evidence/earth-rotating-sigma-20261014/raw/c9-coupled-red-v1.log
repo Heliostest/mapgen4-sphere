@@ -1,0 +1,65 @@
+C9 coupled rotating sigma dynamics: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:12
+  Expression: norm(a.v - v) > 1.0e-6
+   Evaluated: 0.0 > 1.0e-6
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:12
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:70
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:70 [inlined]
+C9 coupled rotating sigma dynamics: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:13
+  Expression: s.time == 0.04
+   Evaluated: 0.0 == 0.04
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:13
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:70
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:70 [inlined]
+C9 coupled rotating sigma dynamics: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:14
+  Expression: norm(s.p - p) > 1.0e-6
+   Evaluated: 0.0 > 1.0e-6
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:14
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:70
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:70 [inlined]
+C9 coupled rotating sigma dynamics: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:15
+  Expression: norm(s.v - v) > 1.0e-6
+   Evaluated: 0.0 > 1.0e-6
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:15
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:70
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:70 [inlined]
+Test Summary:                      | Fail  Total  Time
+C9 coupled rotating sigma dynamics |    4      4  8.5s
+RNG of the outermost testset: Xoshiro(0x83612bca0c7f6043, 0xb0b44ab1869b23e2, 0xfefaf425364b397c, 0x53986e986ed9ef14, 0xd98fd6c3b7be74e1)
+ERROR: LoadError: Some tests did not pass: 0 passed, 4 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-sigma-20261014\test-coupled.jl:70

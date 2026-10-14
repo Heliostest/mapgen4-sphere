@@ -1,0 +1,674 @@
+{
+  "candidate": "c9-rotating-barotropic-sigma",
+  "createdUTC": "2026-10-14T13:57:07.404Z",
+  "previous": {
+    "path": "docs/evidence/earth-pressure-work-20261014/manifest.json",
+    "sha256": "4f4a9d86f8c382c633f8ae7a50b2dfc2fcb9f1eff8b65675794d8a6a6dbcbf94"
+  },
+  "acceptance": {
+    "actualPressureKineticMetric": true,
+    "energyNeutralAbsoluteVorticity": true,
+    "pairedLayerGradientVerticalWork": true,
+    "fullEdgeState": true,
+    "symmetricSecondOrderPressureVelocityODE": true,
+    "sharedAirWaterTransfers": true,
+    "lateFailureAtomicRollback": true,
+    "nativeSixHourTemporalRefinement": true,
+    "completeOriginalIterationRecords": true,
+    "literalBitRebuiltRestart": true,
+    "independentCodeReviewCompleted": true,
+    "sampledFullForceRefinement": true,
+    "uniformLayerVerticalRefinement": true,
+    "unequalLayerEnergyAlgebra": true,
+    "cartesianCovariance": true,
+    "degree3PairedPolarAudit": true,
+    "exactCurlGrad": false,
+    "prognosticVerticalVelocity": false,
+    "fullThermodynamics": false,
+    "exactPVAngularMomentum": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  },
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/CURRENT-STATE.md",
+      "bytes": 1996,
+      "sha256": "d3702034e8867ea03848c6ea471ce0a064f0213332e9f3a960bb98f4e0650df3"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/README.md",
+      "bytes": 2077,
+      "sha256": "29f54fa06d7aca2671ac491a49963165eb22cb865d08061059bd88f2c9347752"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/analytic.jl",
+      "bytes": 5172,
+      "sha256": "8e0f5b2dca5604a8bc511211e3895477b9612d5bc814326b4f94565c0afee4e8"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/code-review.md",
+      "bytes": 7511,
+      "sha256": "68293d690dee9074b00629020c77a63093477767d5142d9b68a51657c7f0fe6b"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/common.jl",
+      "bytes": 2136,
+      "sha256": "e6dd8ff0d3a0c9179cfd683dcda7f1ab2c9fbb79366a9f59b9686d799834b43f"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/compare-time.jl",
+      "bytes": 2053,
+      "sha256": "6965d5a9d498b5fa63fdb875dd23e36f7b13426a4f8a74306906c7203df14be2"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/dense-reference.jl",
+      "bytes": 3034,
+      "sha256": "37435e11b7405e6aefee6f1394b4e5d9460189c77d538f048add43968959ef78"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/gradient3-audit.jl",
+      "bytes": 1971,
+      "sha256": "e972a9f7e61123b9e447d826258a8f722f8cb6d6b4e7252a5ee5feafb2268b28"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/native-run.jl",
+      "bytes": 6454,
+      "sha256": "02b04766ad311a0144c01c6b8625f589554217aae86fbe6cef423604dcb75fdb"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/plan.md",
+      "bytes": 3208,
+      "sha256": "e17d5fbf91b3e92de104dadd9520091f2654fad1d6ed9f247baa84eee999a4d8"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/plot.py",
+      "bytes": 3398,
+      "sha256": "5f405643e0ff171cea24f113966786969819e421f166c57a941a3b3a4e3d9c6e"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/project-checks.mjs",
+      "bytes": 1177,
+      "sha256": "73c9d213f3042a3dc6c784361666ac3162f402ad2c654074b8114cab3884a841"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/protocol.md",
+      "bytes": 7474,
+      "sha256": "f9132744aa0340dc0e3f1a115a59d380a5d02a61969f3f6e9c3692cec9200c61"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-analytic-v1-status.json",
+      "bytes": 7969,
+      "sha256": "3777a37b6a0c2fb45f951d481aa851ac31f6853b03ee9be065be1ccaeb5e6592"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-analytic-v1.json",
+      "bytes": 7142,
+      "sha256": "7f16e2e52a20cc514a1eacd057cfa14809e38c0be1f6568d39f800b8931cc902"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-analytic-v1.log",
+      "bytes": 372,
+      "sha256": "52909ccc486dee6876e2a32017441cff545748bf62ea3aa5fdc91c4f59f74b04"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-coupled-red-v1-status.json",
+      "bytes": 8296,
+      "sha256": "1f216222ed3838bdbb851fa258f5510064aea572eaba61973875e12cb3b5d505"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-coupled-red-v1.json",
+      "bytes": 62,
+      "sha256": "fab7d7620506354c0309872baa2454a8d532d57c36da5fd4f2ceda8b9532388a"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-coupled-red-v1.log",
+      "bytes": 4129,
+      "sha256": "c51b7a377e32ff2f6af69b9bd97ec4d97a19f96cf7acdb9673ec4f61baa23141"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-coupled-v1-checkpoint.bin",
+      "bytes": 764,
+      "sha256": "288d771c0132bae78674b5c90f5b3d556e2a098632431732af341b9d8c9413c8"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-coupled-v1-status.json",
+      "bytes": 8390,
+      "sha256": "9afeec4b0887a0b3b21c24c4ad006b27bc1d65d785f0bccd96e4881021c23b28"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-coupled-v1.json",
+      "bytes": 1441,
+      "sha256": "9766a28172e26081baddba86fc6356e445208c1a322ca14ccb4d50b1a30a040c"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-coupled-v1.log",
+      "bytes": 112,
+      "sha256": "d61eeee73a2e3b800705c1580ce6a9765ed6853869aece8736974f4f3bf99171"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-gradient3-v1-status.json",
+      "bytes": 7999,
+      "sha256": "98a7dda91a7687954f3136a9db4498b462d3977f560d9218a9224a178de3b000"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-gradient3-v1.json",
+      "bytes": 2497,
+      "sha256": "67182f408c838c2d25d0a5e0370d1eddbdb40e6017d7fde3c1af259475f308dd"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-gradient3-v1.log",
+      "bytes": 118,
+      "sha256": "c11623371e78eac6ac2ddc2f1eee4dac8d02d4a9cbbbfd260d605019b4eb053b"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-constant-checkpoint.bin",
+      "bytes": 2761440,
+      "sha256": "89478a42ad231d78c5c3ecc7be244f58c02e29f43a0ccd55873c0eda00db304d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-constant-final.bin",
+      "bytes": 2761428,
+      "sha256": "0881321fb56a061c741a99d965a2a9a5eb47b8e55eceb3418ddbdf67d44c984a"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-constant-trace.json",
+      "bytes": 7927,
+      "sha256": "7a1c6d7766bbd05e4def8c5fe95edffa80522a5a69d02a61ed2c63dac907866e"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-partial.json",
+      "bytes": 2676,
+      "sha256": "9d9cf7bb58cb02f47acde63f0f9540a1f07bb60a349e0134638de33f7acebf15"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-real-checkpoint.bin",
+      "bytes": 2761440,
+      "sha256": "b0f079e4c947c786a3ae6f18a2ea82c2afd2011cb218d98d8e3bbbe79c77752c"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-real-final.bin",
+      "bytes": 2761428,
+      "sha256": "9eda44073d75d8018a8a2d55595f80c14906b7311b298ea9280c86f8dde792ee"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-real-trace.json",
+      "bytes": 7944,
+      "sha256": "4cecb75098bd754037ff669f98f44415243450569982200e6ffef7699be5ee2e"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-sharp-checkpoint.bin",
+      "bytes": 2761440,
+      "sha256": "37ae29f928149e0d068fce0fa2086c33147eb9403f5dc7424b8fd067b903c2f9"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-sharp-final.bin",
+      "bytes": 2761428,
+      "sha256": "8e2ac0ba5febef15187157f5255b366335e50a992b8246dfe5e3674c2562c150"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-sharp-trace.json",
+      "bytes": 7950,
+      "sha256": "e357af93c9cc0c5d53f4fe8b1c38e7e20c80dbe54a5cc18024de99841f6e6363"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1-status.json",
+      "bytes": 9364,
+      "sha256": "69423c9bba07b6f25177414558f29f5202388f14b3261fd3e9fd595ce6ca2127"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1.json",
+      "bytes": 3260,
+      "sha256": "69580cebb8a4c7b0cbbe1a043489622f997ae230211eba6cf9c13ad6f17d028f"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-1800-v1.log",
+      "bytes": 1070,
+      "sha256": "0ef605ccebc5ba4f6b2116e5a7a0d96859daba9ba51d937a7d84793593a3af02"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-225-v1-partial.json",
+      "bytes": 900,
+      "sha256": "5681f4464f2652d747ad77e059e1bff17f67967064fde0e4e2492423d04db4bb"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-225-v1-real-final.bin",
+      "bytes": 2761428,
+      "sha256": "b3833335fa6ed45c1588692ba651724191d078564d629e04603309fc795b2b85"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-225-v1-real-trace.json",
+      "bytes": 63610,
+      "sha256": "41c0ecfe8b79c2aac2422cdbb789c80eecdaf1078c4c5d8d1e98caab7060a564"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-225-v1-status.json",
+      "bytes": 8455,
+      "sha256": "25a13f4aa15044a98bad021ea1d3429698452d87e177258d16f4c2417c364b75"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-225-v1.json",
+      "bytes": 1483,
+      "sha256": "735fc070e0ac3adc53b746001b5f3c144880c40ec51af9e51b4fbd923f403da0"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-225-v1.log",
+      "bytes": 892,
+      "sha256": "a6229a9ee21961593894b8ad90031467f62948b8904a0e0348c80d8dbdcd1f4c"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-450-v1-partial.json",
+      "bytes": 922,
+      "sha256": "3bf18f08f2342c6059549ea4f09373773e7f62f0a5560a4256b25dda355b001d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-450-v1-real-final.bin",
+      "bytes": 2761428,
+      "sha256": "a024de63751d45d278c4aa70b9c4582864c00a6257e7ee9d52186bd7e4baab21"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-450-v1-real-trace.json",
+      "bytes": 31783,
+      "sha256": "8360736cac8df64b08cf26774f011ffc160e40c3464cfbcf3723e633bd06f9fd"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-450-v1-status.json",
+      "bytes": 8455,
+      "sha256": "37b05ed5216197e76707cbca2f7eb05cdbe178dbb03fdb1490c656437606e8a8"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-450-v1.json",
+      "bytes": 1505,
+      "sha256": "cbd92ce97430137bc8f05ec1ce8df0a61e3b6bd15b7fe358fea970918f4eb1ef"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-450-v1.log",
+      "bytes": 566,
+      "sha256": "d03d68fa2a247fa0048b5dd815185c63c688b8b80515d1b2cd198d5c87454b07"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-900-v1-partial.json",
+      "bytes": 896,
+      "sha256": "48b81f1f53f921220e13f9405a28b64d2fbce4844b39f19d14a1ef9fa60bd8d6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-900-v1-real-final.bin",
+      "bytes": 2761428,
+      "sha256": "40c7259d66ef310e9879ce693552c303c718927dd9e3ab852882648db4e61832"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-900-v1-real-trace.json",
+      "bytes": 15864,
+      "sha256": "1c19be1846e6e2ad135d074e36209d876bd581db5aba6c1ef46b6f95db4e71f3"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-900-v1-status.json",
+      "bytes": 8455,
+      "sha256": "8d07ed9f6baaf5265cab80aed55660ccba441ea35242debcf58aa03000ed51cc"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-900-v1.json",
+      "bytes": 1479,
+      "sha256": "37d99e965a53c348b021822718eb49a88ca25a5f1a0840e56cb0a319d51b18a8"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-native-900-v1.log",
+      "bytes": 410,
+      "sha256": "8f0149b5a992d513c57f4f86d9c37aafd042918efb67071687edc3aac803598f"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-rollback-v1-status.json",
+      "bytes": 7989,
+      "sha256": "4163fa09eaf4e788ff080fd2071e4fcc2dbe2d368a1161927e946165610bc271"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-rollback-v1.json",
+      "bytes": 80,
+      "sha256": "da179b1ac745e6922253920246251b99fffba8d67942f0dd8f2259703c5ec805"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-rollback-v1.log",
+      "bytes": 128,
+      "sha256": "104868d4a072b27d5b8d5727e076b7d91f6a7354a166339dc1d3113418c3fbbc"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-source-v1.json",
+      "bytes": 332,
+      "sha256": "64a4533f7541ba7372553dff9f55495813b4664b76c6ff864a9d04d987570f0c"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-temporal-v1-status.json",
+      "bytes": 10710,
+      "sha256": "04b8be2a2ff387456a69ea76042867231bfbdc5b48a9d781137d9ac5ac86e709"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-temporal-v1.json",
+      "bytes": 985,
+      "sha256": "42a5da8719e89c834ee259d2073069bc48979527156086a02d65c2367fb971d1"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-temporal-v1.log",
+      "bytes": 116,
+      "sha256": "484b14174c9d17abe36efbc53f5cb11d22888e10c9ae6863f2c25222a63a5ec1"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-vector-red-v1-status.json",
+      "bytes": 8261,
+      "sha256": "4bf1697a1aa3bcbf34f174ef72b4fa7e1b7cd9bb93a2d018323e065e63316ac1"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-vector-red-v1.json",
+      "bytes": 1009,
+      "sha256": "6c06bb8fa85a8b7fd3d3d26a96330084e7b076ffb361061e04e4c3417df5541d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-vector-red-v1.log",
+      "bytes": 70754,
+      "sha256": "48f715583b54bb981658b4010a6c9dfd2b39561c88d52e3e787503809089e224"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-vector-v1-status.json",
+      "bytes": 8253,
+      "sha256": "c327436333f9831e13f7dfaec699b57224fa27032246e86408946e3c62a575c4"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-vector-v1.json",
+      "bytes": 1397,
+      "sha256": "245737dbe70473c02abd1416cb4cba84d41576b6d748a9c1e7fd8931921b80ee"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-vector-v1.log",
+      "bytes": 130,
+      "sha256": "da137f7cba6bfd88fceb2c9dccee41acae5a63e042c200b95aff6d34371f4dff"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-vector-v2-status.json",
+      "bytes": 8253,
+      "sha256": "f8d418017e6886dd0e1cf6ebb3dc3f39b02ca2b8cc1fe67c20c1468345d4825a"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-vector-v2.json",
+      "bytes": 1397,
+      "sha256": "245737dbe70473c02abd1416cb4cba84d41576b6d748a9c1e7fd8931921b80ee"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/c9-vector-v2.log",
+      "bytes": 130,
+      "sha256": "d571977a56f3e70e4d8be78d72bc5a28f75f1936b137a5481a068986d3a029c5"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/convergence.png",
+      "bytes": 239214,
+      "sha256": "d6f7c5181fea1bc8acbc4796b393519f350603fea3b24e864d646cbf4b7df671"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/plot-provenance.json",
+      "bytes": 1300,
+      "sha256": "1de83bb9577dca9cc27ad980a6cbcef19e6d693cbaa1c5fc6683ec260bfd1383"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/project-checks.json",
+      "bytes": 1013,
+      "sha256": "b22bd27bbe2271046259f14eaca0d498c612cc4090d1b3eeee81c5e7402b95ff"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/project-final-build.log",
+      "bytes": 58,
+      "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/project-final-test.log",
+      "bytes": 27425,
+      "sha256": "fb128354426f4a59582523052c1c7acf28cc1e8c09effcd498e64ce4695b83a7"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/raw/project-final-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/report.md",
+      "bytes": 9805,
+      "sha256": "777a915021a8d1af01d253372a582e708fdae80dad6e9edbf85eaaca8d256def"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review-source-bindings.json",
+      "bytes": 18377,
+      "sha256": "7a76c7d65f366f24e6834354a0c9f700399868c9895afaf09d91bd69bb0189d6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/audit-results.json",
+      "bytes": 6818,
+      "sha256": "9cf1aaeae891c519e01f74a93bb6344e2700604da2da19cebcf96921890ef876"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/audit.mjs",
+      "bytes": 6040,
+      "sha256": "27b623a4b5505b0354401d6755fda18c0fb64f3179940b44bf00a4de7fca7ffe"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/bind-final.mjs",
+      "bytes": 4129,
+      "sha256": "0fa858d6878dce5663765d2cde1b8529b113c1b7af37a50e10559a695fc0feb2"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/checkpoint.bin",
+      "bytes": 1428,
+      "sha256": "75ebee00f1d2b37e3b37fb54782f3ea5c1dc962c81b5551dcffa7968a89412bc"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/code-review.md",
+      "bytes": 7511,
+      "sha256": "68293d690dee9074b00629020c77a63093477767d5142d9b68a51657c7f0fe6b"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/late-results.json",
+      "bytes": 1846,
+      "sha256": "71d781e4b93c6927a5e886a8f78828dec874220ce1d9680b75ef888283b96db1"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/late-status.json",
+      "bytes": 3197,
+      "sha256": "4d6ecc82fedc1b08b2a1fe67868b13ac692d2dcbd4cabc49459290358614f7ff"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/late.log",
+      "bytes": 138,
+      "sha256": "53bd1dc944765895b9b2ca4676cb4651977bc47b0f0a6a39b21a3e528bd62c5c"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/latefail.jl",
+      "bytes": 2767,
+      "sha256": "805607f45dff108324d78d20b4be2bd733bed7f8abd9e9b97caf8ee5fe7da8d8"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/results.json",
+      "bytes": 2070,
+      "sha256": "52b6786ec5f9c18d9d23fb7471a6bca30103470f0165b099c84ea1394abb06ee"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/review-source-bindings.json",
+      "bytes": 18377,
+      "sha256": "7a76c7d65f366f24e6834354a0c9f700399868c9895afaf09d91bd69bb0189d6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/review.jl",
+      "bytes": 8566,
+      "sha256": "6b90acd5d571583c76054cb1b9fa9cf9dcdaf541aca97aec5961131b6c5ceffd"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/run-late.mjs",
+      "bytes": 1929,
+      "sha256": "5d34d9a75f5938fb750833755fdb55bcd5afde0d4023bf0d9d11e7b1c6b73a36"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/run.mjs",
+      "bytes": 2027,
+      "sha256": "7652feb1ad8c2fa429e7f727aaf33f685a49d5e8c0fe16a4982ec005e2a6dcab"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/v1-status.json",
+      "bytes": 3292,
+      "sha256": "2223d7f786b3f8cd96b99a72040cc9965ccd8af25833de01566f157dbc06dd68"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/review/v1.log",
+      "bytes": 360,
+      "sha256": "12f300337608977a88eb8274c51c016bb33a610f712f1d505c8acbf6b7e14a20"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/run.mjs",
+      "bytes": 5978,
+      "sha256": "dee454ac43ca6e5835701e5f1d61233aa9130bf51da4cb6ef01184e5e82ff72d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/seal.mjs",
+      "bytes": 11078,
+      "sha256": "fcc268dfb35f48dd4be9d3466fa626707318df0ae7919f11d8b9f9a4ab1998a1"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/selected-runs.json",
+      "bytes": 286,
+      "sha256": "5f90a2e79eec6c85427e5d10adfd59bc20cad0968e7c2b74438f9765da3135ed"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/02b04766ad311a0144c01c6b8625f589554217aae86fbe6cef423604dcb75fdb/native-run.jl",
+      "bytes": 6454,
+      "sha256": "02b04766ad311a0144c01c6b8625f589554217aae86fbe6cef423604dcb75fdb"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62/modal-core.jl",
+      "bytes": 6385,
+      "sha256": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/37435e11b7405e6aefee6f1394b4e5d9460189c77d538f048add43968959ef78/dense-reference.jl",
+      "bytes": 3034,
+      "sha256": "37435e11b7405e6aefee6f1394b4e5d9460189c77d538f048add43968959ef78"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/3ddf30aedcb57561acea2c409352673682d8ce1040e74db1ae2a631a3eb55720/test-coupled.jl",
+      "bytes": 4209,
+      "sha256": "3ddf30aedcb57561acea2c409352673682d8ce1040e74db1ae2a631a3eb55720"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d/conservative-core.jl",
+      "bytes": 12294,
+      "sha256": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84/graph-wind.jl",
+      "bytes": 3839,
+      "sha256": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/5c9420bf70946240793fcefe5958216080f33dff4b049919973ed47a74997119/test-rollback.jl",
+      "bytes": 2287,
+      "sha256": "5c9420bf70946240793fcefe5958216080f33dff4b049919973ed47a74997119"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/629ec38febeaa4c1a3e357dd276a4f3dc8130bd6d7f96ac515be61c1f904b00d/test-vector.jl",
+      "bytes": 1609,
+      "sha256": "629ec38febeaa4c1a3e357dd276a4f3dc8130bd6d7f96ac515be61c1f904b00d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/6965d5a9d498b5fa63fdb875dd23e36f7b13426a4f8a74306906c7203df14be2/compare-time.jl",
+      "bytes": 2053,
+      "sha256": "6965d5a9d498b5fa63fdb875dd23e36f7b13426a4f8a74306906c7203df14be2"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/6df77f3047fc798181f1b789f1dfe0587e465c20fb966d1ef6a7d1ef82011698/vector-core.jl",
+      "bytes": 2529,
+      "sha256": "6df77f3047fc798181f1b789f1dfe0587e465c20fb966d1ef6a7d1ef82011698"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd/conservative-grid.jl",
+      "bytes": 7774,
+      "sha256": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/8231625a4a4ed0855150d0047a27a1c55b24324177fff4d47d8adce287168f80/pressure-core.jl",
+      "bytes": 8001,
+      "sha256": "8231625a4a4ed0855150d0047a27a1c55b24324177fff4d47d8adce287168f80"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/8e0f5b2dca5604a8bc511211e3895477b9612d5bc814326b4f94565c0afee4e8/analytic.jl",
+      "bytes": 5172,
+      "sha256": "8e0f5b2dca5604a8bc511211e3895477b9612d5bc814326b4f94565c0afee4e8"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/a63a52b21eca31bd4066b1a4c05dbec86631353731e3e32ec6a5e9eb79b08684/vector-core.jl",
+      "bytes": 879,
+      "sha256": "a63a52b21eca31bd4066b1a4c05dbec86631353731e3e32ec6a5e9eb79b08684"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/bc41701a6e4285506d69389f97d030b193429a8c6510a30bc4071f7ebf7d4c5f/vector-core.jl",
+      "bytes": 6723,
+      "sha256": "bc41701a6e4285506d69389f97d030b193429a8c6510a30bc4071f7ebf7d4c5f"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a/fct-transport.jl",
+      "bytes": 5383,
+      "sha256": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/dee454ac43ca6e5835701e5f1d61233aa9130bf51da4cb6ef01184e5e82ff72d/run.mjs",
+      "bytes": 5978,
+      "sha256": "dee454ac43ca6e5835701e5f1d61233aa9130bf51da4cb6ef01184e5e82ff72d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/e6dd8ff0d3a0c9179cfd683dcda7f1ab2c9fbb79366a9f59b9686d799834b43f/common.jl",
+      "bytes": 2136,
+      "sha256": "e6dd8ff0d3a0c9179cfd683dcda7f1ab2c9fbb79366a9f59b9686d799834b43f"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/e972a9f7e61123b9e447d826258a8f722f8cb6d6b4e7252a5ee5feafb2268b28/gradient3-audit.jl",
+      "bytes": 1971,
+      "sha256": "e972a9f7e61123b9e447d826258a8f722f8cb6d6b4e7252a5ee5feafb2268b28"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/source-archives/f9132744aa0340dc0e3f1a115a59d380a5d02a61969f3f6e9c3692cec9200c61/protocol.md",
+      "bytes": 7474,
+      "sha256": "f9132744aa0340dc0e3f1a115a59d380a5d02a61969f3f6e9c3692cec9200c61"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/test-coupled.jl",
+      "bytes": 4209,
+      "sha256": "3ddf30aedcb57561acea2c409352673682d8ce1040e74db1ae2a631a3eb55720"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/test-rollback.jl",
+      "bytes": 2287,
+      "sha256": "5c9420bf70946240793fcefe5958216080f33dff4b049919973ed47a74997119"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/test-source.mjs",
+      "bytes": 1672,
+      "sha256": "b99ed26599b4dff533c91376f30424e85dc1d559c04a466e42a86f5d3f29e095"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/test-vector.jl",
+      "bytes": 1609,
+      "sha256": "629ec38febeaa4c1a3e357dd276a4f3dc8130bd6d7f96ac515be61c1f904b00d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/vector-core.jl",
+      "bytes": 6723,
+      "sha256": "bc41701a6e4285506d69389f97d030b193429a8c6510a30bc4071f7ebf7d4c5f"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/verification.json",
+      "bytes": 3998,
+      "sha256": "9c9ef2011bb5eade28f7b3559c1f1999c236057d780ad0eea6b38a365b2216e6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/verify-seal.mjs",
+      "bytes": 1294,
+      "sha256": "855707f75d1706e583430cbb5255d144890abd46e1fd24bf48f48f82b805087d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/verify-source.mjs",
+      "bytes": 1097,
+      "sha256": "834613ac2561e47170f48882cb28dcf7205cb606fa1db088dacbe4b35a4864ac"
+    }
+  ]
+}
