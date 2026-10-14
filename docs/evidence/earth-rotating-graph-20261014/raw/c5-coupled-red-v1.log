@@ -1,0 +1,48 @@
+C5 atomic rotating acoustic and shared water: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:31
+  Expression: all((>)(3.5), ratios)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:31
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:58
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:58 [inlined]
+C5 atomic rotating acoustic and shared water: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:54
+  Expression: identity_hash(m) != identity_hash(zero)
+   Evaluated: "4115b0e5618e151baab3ffc35b72d612928a32345f2aeabc532286eb94a6b7ec" != "4115b0e5618e151baab3ffc35b72d612928a32345f2aeabc532286eb94a6b7ec"
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:54
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:58
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:58 [inlined]
+C5 atomic rotating acoustic and shared water: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:55
+  Expression: load_checkpoint(checkpoint, zero)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:55
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:58
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:58 [inlined]
+Test Summary:                                | Pass  Fail  Total   Time
+C5 atomic rotating acoustic and shared water |   19     3     22  24.1s
+RNG of the outermost testset: Xoshiro(0xd7c8958c73d87351, 0xb49ca778ea2b41b9, 0x584ac7e1848754ce, 0x2129996dffc21d11, 0x9737a560c74dabf9)
+ERROR: LoadError: Some tests did not pass: 19 passed, 3 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-coupled.jl:58

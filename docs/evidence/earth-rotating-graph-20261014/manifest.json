@@ -1,0 +1,538 @@
+{
+  "candidate": "c5-rotating-graph",
+  "createdUTC": "2026-10-14T07:18:59.409Z",
+  "previous": {
+    "path": "docs/evidence/earth-native-graph-wind-20261014/manifest.json",
+    "sha256": "8c9869d799dc7b7da8bd955de8a9cacd1c843722de8926bb10ddc1bc94cd6536"
+  },
+  "acceptance": {
+    "metricAdjointReconstruction": true,
+    "energyNeutralCoriolis": true,
+    "sampledSpatialRefinement": true,
+    "frameCovariance": true,
+    "atomicRotatingAcousticWater": true,
+    "independentFullLinearTimeConvergence": true,
+    "nativeOneDayTemporalRefinement": true,
+    "sharedBudgetsAndHumidityRange": true,
+    "rebuiltFourStepRestart": true,
+    "independentCodeReviewCompleted": false,
+    "nonlinearMomentumAdvection": false,
+    "exactGeostrophicTimeBalance": false,
+    "fullThermodynamics": false,
+    "fullPhysicalCoupling": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  },
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/CURRENT-STATE.md",
+      "bytes": 1503,
+      "sha256": "d6531b37ff9d8a130d5104471803a3e12303387f2a2acc46b3d2e93d32e1cf59"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/README.md",
+      "bytes": 2430,
+      "sha256": "901637cfddc1d9de46d89b28a03cdf98a553606aa8c041b4fe0c0fdbeb2e1bb5"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/analytic.jl",
+      "bytes": 3514,
+      "sha256": "9bd9974f179f0383b185a295ba5b7625f43bfabd6f7f6199369b29d8a62845f2"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/code-review.md",
+      "bytes": 2695,
+      "sha256": "66a1ace6b408e8316dd3e8c5daae50d43724d93113f8a2c5f244f1fcce639371"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/common.jl",
+      "bytes": 2175,
+      "sha256": "3272d59d594fb2e041f06859406f49d09caebe56e5c23beebeaea13331c7b5dd"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/compare-time.jl",
+      "bytes": 1958,
+      "sha256": "d4339e9801fb7ba1e80d180e44281bbaa25b513e581d62617d92c975fb2566e9"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/coupled-core.jl",
+      "bytes": 1341,
+      "sha256": "3b0adaccc0c0dbb36f023b5f59d267e113d31084901b0eda94c5ac52d190c122"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/ledger.md",
+      "bytes": 1713,
+      "sha256": "3b78102a382354f1c782827deb17c676d627058c5826d47ea318062123ebcfa2"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/native-run.jl",
+      "bytes": 5189,
+      "sha256": "5eb76db2a465968de616eb9301ef9ac02bc651b7c2f9bdcdc3c5c614521f2d3a"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/plot.py",
+      "bytes": 2351,
+      "sha256": "d4a0239faacd88ad0892095f4e5136bb864854f6eb2af2979adfad7b6923d9ea"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/project-checks.mjs",
+      "bytes": 1177,
+      "sha256": "a707155746f29ff832952b967b804e8b58c939448207e32da145899746673c58"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/protocol.md",
+      "bytes": 3919,
+      "sha256": "f40d2c55bc7a9d350c4edf966d460659a7dd519bd47ad71398752bdc62f26927"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-analytic-v1-status.json",
+      "bytes": 6899,
+      "sha256": "a4302cf3618a781b4e7f6a5920afefd703a4c0854649b4f16a4b828a2ba7bb85"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-analytic-v1.json",
+      "bytes": 7791,
+      "sha256": "e869b0e2f0c9146842250e7e2d068b26fb201be5441f55e9eac3b63f01abf697"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-analytic-v1.log",
+      "bytes": 423,
+      "sha256": "2e10319d215b869a48cea6ec9b8d3825d8476e4bafe05fd907807f7e53c9edb6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-coupled-red-v1-checkpoint.bin",
+      "bytes": 590,
+      "sha256": "12891b58d47a3d7c7ee98717ea167a25113c0a7c2132d797f73f46ef7ddff781"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-coupled-red-v1-status.json",
+      "bytes": 7326,
+      "sha256": "c2d9eed0fdb31fdb0dfbbda3766214399f3a50c2a01e257e9360e04adcc84ef8"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-coupled-red-v1.json",
+      "bytes": 238,
+      "sha256": "ff7dc05938fe7bab897a276c44afb4d529327559df574892a706ac61b433df7a"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-coupled-red-v1.log",
+      "bytes": 3267,
+      "sha256": "73632c2b82d623efb2028c1f12be33c7f167e2fe250316c381bdbc587c0c0f74"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-coupled-v1-checkpoint.bin",
+      "bytes": 590,
+      "sha256": "9e47e4004f2f194d62fbafdbfa2087dbf5e206ea7fb8015f3af7192f2293279f"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-coupled-v1-status.json",
+      "bytes": 7314,
+      "sha256": "892dd539932d577402ee88adf7ec309ceda9dc695bd79c66fd9d9b2c8e6d39d4"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-coupled-v1.json",
+      "bytes": 237,
+      "sha256": "a86a169c9ce1a4317f43de1585474f81c4eb42a192fb6aeafebf14834f421d7e"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-coupled-v1.log",
+      "bytes": 132,
+      "sha256": "1cf1891f71e47db9423f478b88c27f4a0f0e2ae8dcea477efa656eebec9f77dd"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-covariance-v1-status.json",
+      "bytes": 7201,
+      "sha256": "a86113efd053690d8afdc5f8cdab12c001acdc61ed3d384053dc4a2dd0c57fb1"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-covariance-v1.json",
+      "bytes": 59,
+      "sha256": "36fd0aaeedb867f3d146db10979840e50dad9f6b04258024032dd44e5bd6d8d1"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-covariance-v1.log",
+      "bytes": 124,
+      "sha256": "b5c950d999ca1cb24c403419cc4a9d8887338f03fd3a53f4eb410779f4169a08"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1-constant-checkpoint.bin",
+      "bytes": 2761434,
+      "sha256": "f646c7772b5b298529ac988b171d71e7fdfd505619d5973dde9845c70fa05681"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1-constant-final.bin",
+      "bytes": 2761422,
+      "sha256": "6bded099c689a7d8328242e70e2165d5aae5c502a062b0d0073767e578572ba6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1-partial.json",
+      "bytes": 1398,
+      "sha256": "25451b936143583b6da22f1d52f03a714a9aa7f310fc2b087be7364399afc017"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1-real-checkpoint.bin",
+      "bytes": 2761434,
+      "sha256": "a646339d86d7074f537096f7f0dd8b5ed2929e01be4d01f2292b4f7fe5aeda8b"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1-real-final.bin",
+      "bytes": 2761422,
+      "sha256": "072e9af72dcf0527581f74a80a0240250352efbaec3738bac9b048c5b7bda7c9"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1-sharp-checkpoint.bin",
+      "bytes": 2761434,
+      "sha256": "10fa0c4391d9c76f186687d6641d213ffed6ff40490fc5d18c315b35f262c55c"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1-sharp-final.bin",
+      "bytes": 2761422,
+      "sha256": "a8058f1d8e074897c99ff204ecdeef08dfef08ba277f24ed823fcb86712d05a2"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1-status.json",
+      "bytes": 8151,
+      "sha256": "d9a600424750582f75747ab93a69092ac0a69be1d9cd8d19394d2044a643164b"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1.json",
+      "bytes": 1739,
+      "sha256": "16f1c4b07d032c39a7a4260278fb08fad45f483733634a9d57b9990a05eec0ca"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-1800-v1.log",
+      "bytes": 1414,
+      "sha256": "f1899bbedd17b2f784320e28499389e6d47ccad72e7afab94dd5b5540bbeec71"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-225-v1-partial.json",
+      "bytes": 502,
+      "sha256": "6cf12df994bffcbe787bd797fc1dba845efd47001c65bfb40d8c0d7375baa80b"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-225-v1-real-final.bin",
+      "bytes": 2761422,
+      "sha256": "c27ab7afe0607158be2f05901d1b2161a693892eb5414e43b2f8f8a9c2cf50c0"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-225-v1-status.json",
+      "bytes": 7523,
+      "sha256": "5c2c3e82766ee42867cd0a4ce34e20845e8e48e8fc5bed1b5feb0a5303f2c2d9"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-225-v1.json",
+      "bytes": 842,
+      "sha256": "ffa6977523164a58a5554de882e6463efef4febaf04d4658cc9aec9d4f4f3630"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-225-v1.log",
+      "bytes": 2528,
+      "sha256": "3343d46b74a56dc1fde92a339cb07cd7db7f1bb071d539f127807edec1458a38"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-450-v1-partial.json",
+      "bytes": 502,
+      "sha256": "e3b7a6bea369ed1dd10af43379ef82faa8ac690896d5b51e06610cce0d538fb9"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-450-v1-real-final.bin",
+      "bytes": 2761422,
+      "sha256": "cd521b36c1ed27d63b1d78bf63cd4dc2ebe258d36772e5c72038034069ee6f74"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-450-v1-status.json",
+      "bytes": 7523,
+      "sha256": "48965500709eb9424532e888e87f57d58b990a1d6035ab78f9fa66b96f59feba"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-450-v1.json",
+      "bytes": 842,
+      "sha256": "5a86536d6bb83d105a3f8c28de952fb528e36c293de85601e5ad321bec857657"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-450-v1.log",
+      "bytes": 1454,
+      "sha256": "21bb7005b76831866c18dbff9a7bdc4809814f22fa8d06747359ef78c1c1c911"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-900-v1-partial.json",
+      "bytes": 480,
+      "sha256": "f76f863648648ec0d5e89882dce24ff9c59a8816a5c349f620bfa988c8a2da19"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-900-v1-real-final.bin",
+      "bytes": 2761422,
+      "sha256": "a8f15ef9b3ac1736e37064c112116bc4158724b489fed534cb8bf2599f8617bc"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-900-v1-status.json",
+      "bytes": 7523,
+      "sha256": "67e5eb980d7971d95575ba4002463dcc38726795466acace9bfa4813ed3dd3ca"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-900-v1.json",
+      "bytes": 820,
+      "sha256": "a0b98fa79707eab3de988fd2dfd43738677c672e28219d033ffbf5f2336d9065"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-native-900-v1.log",
+      "bytes": 908,
+      "sha256": "fad671ec002347572cb86995336a9ee55d334b2a792d6c59340c1ed702ceb228"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-operator-red-v1-status.json",
+      "bytes": 6927,
+      "sha256": "421a2e1f9d4777e25b7e9089bed5ec2dc09334d049a93a403b6dbd13cb461e1c"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-operator-red-v1.json",
+      "bytes": 94,
+      "sha256": "352e07b1b3ca57a272a1d37ad04b1e6f726e66adbe5cde76a74bcea64e8f3b71"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-operator-red-v1.log",
+      "bytes": 9011,
+      "sha256": "81845e7a64b61f1c07c14bd2df7cc76e98125aab7aae914c43524f98e24d94f6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-operator-v1-status.json",
+      "bytes": 6919,
+      "sha256": "01e654d4b53fac7ea960b275199deded2158a188f507524c8795bad6812384ba"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-operator-v1.json",
+      "bytes": 96,
+      "sha256": "99902da4c99b599636d08a536f43ad7e16841362a72f03d1fa46667b7eb9b08b"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-operator-v1.log",
+      "bytes": 108,
+      "sha256": "4b564d6b42371fdda1ac8cf02d528daced9604f43629a32776f20804d2d0e4ff"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-source-v1.json",
+      "bytes": 332,
+      "sha256": "de1e3da52d532ca259e1a0913e2b266395393d41232705c418d417707248f52c"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-temporal-v1-status.json",
+      "bytes": 9321,
+      "sha256": "ed58e2dd102bf131e169ab8c5a573e50f4b7312e78b53d9d050994abdf3317ba"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-temporal-v1.log",
+      "bytes": 1479,
+      "sha256": "eac89b97fc07f76da69d167fbdfb626ca7b3cdf41035538286fe7aacd336c1b3"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-temporal-v2-status.json",
+      "bytes": 9641,
+      "sha256": "443b59ab2f7fad6652dc567bb799e30f3abe5bebc3cc50cc958e0c5cee865fcd"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-temporal-v2.json",
+      "bytes": 976,
+      "sha256": "6443f94781b27e63995bc36454c8188fc0b223d2d45f90a76febd24beb1282d9"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/c5-temporal-v2.log",
+      "bytes": 116,
+      "sha256": "ae3576eef1cc4b457fcb303b13052f511a0cc0b6481dd3bf68117d1e7676ca21"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/convergence.png",
+      "bytes": 250483,
+      "sha256": "ea0bcf4f3911ec73af0332c2df9b88d45482f6eb7901fd5008e89b0254a49578"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/project-build.log",
+      "bytes": 254,
+      "sha256": "85ff2e367ce3b45e2f8b602e66b797d85c5b47867d46b3892a7974901f3d34ec"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/project-checks.json",
+      "bytes": 1013,
+      "sha256": "e3cef03d922cce05123e2488c361434eaca3f56a369c9a55a3436bf8ee0e2a31"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/project-final-build.log",
+      "bytes": 58,
+      "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/project-final-test.log",
+      "bytes": 27443,
+      "sha256": "a534ae1ab7c58eedf795f90e3607d63100be4d14832a0380139b773662f8a3f6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/project-final-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/project-test.log",
+      "bytes": 54444,
+      "sha256": "ce0c59126fd0b6e3dc1c6a445c109379fbf2aadee21d6ef9e2e2a000c5408001"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/raw/project-typecheck.log",
+      "bytes": 124,
+      "sha256": "37ce53af52bf8045685e41a8f381c21976bf681429b812a2eebf082b51a6170f"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/report.md",
+      "bytes": 6379,
+      "sha256": "efa24582c3d1fefcbcd3d238a366ced859a31b94038ad3358cd64e1e4ca7c0bf"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/rotation-core.jl",
+      "bytes": 2159,
+      "sha256": "1e6ac564947c1945047679f53d54cfa2b686c9a678ce8310ec9dfaf7c9e4d6a5"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/run.mjs",
+      "bytes": 4437,
+      "sha256": "e8e619f85d0ab074571194e36da3f50e61c0d551aee00d1bf635321e57311533"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/seal.mjs",
+      "bytes": 6366,
+      "sha256": "3f7dbfbb37f14cbc129ee8819d49fd3ee9b07c09a26774b5d5f5cbc4c8b10c74"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/selected-runs.json",
+      "bytes": 260,
+      "sha256": "8817cb7f22c437d85e07534b4db1cd3c51a239fae21174222b400b5ef6eae0ce"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/1e6ac564947c1945047679f53d54cfa2b686c9a678ce8310ec9dfaf7c9e4d6a5/rotation-core.jl",
+      "bytes": 2159,
+      "sha256": "1e6ac564947c1945047679f53d54cfa2b686c9a678ce8310ec9dfaf7c9e4d6a5"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62/modal-core.jl",
+      "bytes": 6385,
+      "sha256": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/3272d59d594fb2e041f06859406f49d09caebe56e5c23beebeaea13331c7b5dd/common.jl",
+      "bytes": 2175,
+      "sha256": "3272d59d594fb2e041f06859406f49d09caebe56e5c23beebeaea13331c7b5dd"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/35e6e30650b5c707e15f3321397be85908225cd6b1538c5929c21946e6a6581b/rotation-core.jl",
+      "bytes": 389,
+      "sha256": "35e6e30650b5c707e15f3321397be85908225cd6b1538c5929c21946e6a6581b"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/3b0adaccc0c0dbb36f023b5f59d267e113d31084901b0eda94c5ac52d190c122/coupled-core.jl",
+      "bytes": 1341,
+      "sha256": "3b0adaccc0c0dbb36f023b5f59d267e113d31084901b0eda94c5ac52d190c122"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d/conservative-core.jl",
+      "bytes": 12294,
+      "sha256": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84/graph-wind.jl",
+      "bytes": 3839,
+      "sha256": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/5d3d6bd4355eab380787d4f25cee22cc7f38d58007e06cfcc6497a9088596d64/coupled-core.jl",
+      "bytes": 444,
+      "sha256": "5d3d6bd4355eab380787d4f25cee22cc7f38d58007e06cfcc6497a9088596d64"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/5eb76db2a465968de616eb9301ef9ac02bc651b7c2f9bdcdc3c5c614521f2d3a/native-run.jl",
+      "bytes": 5189,
+      "sha256": "5eb76db2a465968de616eb9301ef9ac02bc651b7c2f9bdcdc3c5c614521f2d3a"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd/conservative-grid.jl",
+      "bytes": 7774,
+      "sha256": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/9bd9974f179f0383b185a295ba5b7625f43bfabd6f7f6199369b29d8a62845f2/analytic.jl",
+      "bytes": 3514,
+      "sha256": "9bd9974f179f0383b185a295ba5b7625f43bfabd6f7f6199369b29d8a62845f2"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b/fct-core.jl",
+      "bytes": 1275,
+      "sha256": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/bd9b66be586e90897375d74700cf72f0976cfe442d44476e565d7215594f8db6/test-covariance.jl",
+      "bytes": 1694,
+      "sha256": "bd9b66be586e90897375d74700cf72f0976cfe442d44476e565d7215594f8db6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/c328cf48e09f03b7fdb9c44f82c1bcfc3d542b8260c2e64075dedacf901d88ff/test-coupled.jl",
+      "bytes": 3309,
+      "sha256": "c328cf48e09f03b7fdb9c44f82c1bcfc3d542b8260c2e64075dedacf901d88ff"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a/fct-transport.jl",
+      "bytes": 5383,
+      "sha256": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/cbee30037ec75c4960eb9c199736318085d125139d5911cffcecde2b03b32588/test-operator.jl",
+      "bytes": 2253,
+      "sha256": "cbee30037ec75c4960eb9c199736318085d125139d5911cffcecde2b03b32588"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/d4339e9801fb7ba1e80d180e44281bbaa25b513e581d62617d92c975fb2566e9/compare-time.jl",
+      "bytes": 1958,
+      "sha256": "d4339e9801fb7ba1e80d180e44281bbaa25b513e581d62617d92c975fb2566e9"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/e8e619f85d0ab074571194e36da3f50e61c0d551aee00d1bf635321e57311533/run.mjs",
+      "bytes": 4437,
+      "sha256": "e8e619f85d0ab074571194e36da3f50e61c0d551aee00d1bf635321e57311533"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/source-archives/f40d2c55bc7a9d350c4edf966d460659a7dd519bd47ad71398752bdc62f26927/protocol.md",
+      "bytes": 3919,
+      "sha256": "f40d2c55bc7a9d350c4edf966d460659a7dd519bd47ad71398752bdc62f26927"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/test-coupled.jl",
+      "bytes": 3309,
+      "sha256": "c328cf48e09f03b7fdb9c44f82c1bcfc3d542b8260c2e64075dedacf901d88ff"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/test-covariance.jl",
+      "bytes": 1694,
+      "sha256": "bd9b66be586e90897375d74700cf72f0976cfe442d44476e565d7215594f8db6"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/test-operator.jl",
+      "bytes": 2253,
+      "sha256": "cbee30037ec75c4960eb9c199736318085d125139d5911cffcecde2b03b32588"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/test-source.mjs",
+      "bytes": 1672,
+      "sha256": "0c2056b28338ee72e123602463cf902ba77f2f05c3cb6c46aa219811def7e820"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/verification.json",
+      "bytes": 3628,
+      "sha256": "30e8bdc5172f6d685275b3db9cfc1a71d097573302e5dbe52e754db0f6c791e5"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/verify-seal.mjs",
+      "bytes": 1294,
+      "sha256": "a09f8cafa11785cb65436ba0e69aeca6007bd71e3d8c7391ed29182ad0eff621"
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/verify-source.mjs",
+      "bytes": 1097,
+      "sha256": "223b947a2dbf0267781e0f9c343df8fe43b9b5911eca167d9d28983ed11c3484"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+C5 independent Coriolis operator: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:16
+  Expression: norm(coriolis_tendency(m, j)) > 1.0e-5
+   Evaluated: 0.0 > 1.0e-5
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:16
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40 [inlined]
+C5 independent Coriolis operator: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:17
+  Expression: ≈(reconstruct(m, j), R * j, rtol = 2.0e-13)
+   Evaluated: [0.0 0.0; 0.0 0.0; … ; 0.0 0.0; 0.0 0.0] ≈ [0.09246126898327289 -0.8013954232223954; -0.2322741539719253 -0.2681660227957648; … ; -0.2400235529178723 0.03964410827988063; -0.10388573913121758 0.0703352550305275] (rtol=2.0e-13)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:17
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40 [inlined]
+C5 independent Coriolis operator: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:18
+  Expression: ≈(coriolis_tendency(m, j), C * j, rtol = 2.0e-13)
+   Evaluated: [0.0 0.0; 0.0 0.0; … ; 0.0 0.0; 0.0 0.0] ≈ [-0.0009272725466251231 -0.022885979400960696; 0.0012312154211098427 -0.0017486576684955207; … ; 0.0004363473852186112 -0.0003456611312148268; -0.001975583492833003 -0.0018087250058359523] (rtol=2.0e-13)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:18
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40 [inlined]
+C5 independent Coriolis operator: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:21
+  Expression: ≈(actual, expected, rtol = 2.0e-13)
+   Evaluated: [-1.2883894109452971 -0.16032719790615577; 0.055469151118758483 -0.9056091943514406; … ; -0.7422330489871428 -0.6970308337283544; 1.7849054599527043 1.2431738091924558] ≈ [-1.2890629959852347 -0.1770399206005442; 0.05636717432662889 -0.9068707232523423; … ; -0.7419144825547916 -0.6972830058357918; 1.7834622899714732 1.241854560492038] (rtol=2.0e-13)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:21
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40 [inlined]
+C5 independent Coriolis operator: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:33
+  Expression: RotationMap(c, lat, lon, [0.0, NaN, 1.0])
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:33
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40 [inlined]
+C5 independent Coriolis operator: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:34
+  Expression: RotationMap(c, lat, lon, [0.0, 1.0])
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:34
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40 [inlined]
+C5 independent Coriolis operator: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:35
+  Expression: reconstruct(m, zeros(ne - 1, 2))
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:35
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40 [inlined]
+C5 independent Coriolis operator: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:36
+  Expression: coriolis_step(m, j, Inf)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:36
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40 [inlined]
+C5 independent Coriolis operator: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:37
+  Expression: coriolis_step(m, bad, h)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:37
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40 [inlined]
+Test Summary:                    | Pass  Fail  Total  Time
+C5 independent Coriolis operator |   10     9     19  8.4s
+RNG of the outermost testset: Xoshiro(0x967746adee17605d, 0x5aa7d21518af9b15, 0x38db285174f66ca3, 0x3a44ad39b2033415, 0x5a9743185f0cbd5e)
+ERROR: LoadError: Some tests did not pass: 10 passed, 9 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-rotating-graph-20261014\test-operator.jl:40
