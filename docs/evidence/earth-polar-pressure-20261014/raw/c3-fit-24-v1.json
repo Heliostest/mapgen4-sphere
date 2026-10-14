@@ -1,0 +1,261 @@
+{
+  "scope": "Local symmetric graph candidate; no native momentum import or coupled claim",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "neighbours": 24,
+  "cases": [
+    {
+      "rings": 12,
+      "cells": 360,
+      "fit": {
+        "method": "nonnegative bounded least squares",
+        "iterations": 53,
+        "status": 1,
+        "seconds": 14.588353500002995,
+        "unboundedMinimum": -0.008235875348404514,
+        "minimumWeight": 1.4763496172932151e-08,
+        "maximumWeight": 0.23461201774108603,
+        "momentMax": 1.2052110733018484e-09,
+        "momentRMS": 3.1083109301673586e-10,
+        "components": 1,
+        "edges": 4656,
+        "maxAngularSeparation": 0.5543328365352319
+      },
+      "constantResidual": 6.661338147750939e-16,
+      "symmetryResidual": 0.0,
+      "metrics": [
+        {
+          "field": "tilted-l1",
+          "relativeL2": 1.3068292297974013e-09,
+          "polarMax": 2.4592210490226307e-09,
+          "maxError": 3.2288201001762218e-09
+        },
+        {
+          "field": "tilted-l2",
+          "relativeL2": 0.04609060655762014,
+          "polarMax": 0.10649936150631367,
+          "maxError": 0.27873709444078454
+        },
+        {
+          "field": "tilted-l3",
+          "relativeL2": 0.10583215283178855,
+          "polarMax": 0.3120093081201869,
+          "maxError": 1.3196702919437477
+        },
+        {
+          "field": "tilted-l4",
+          "relativeL2": 0.17991997076710037,
+          "polarMax": 1.7158330550960068,
+          "maxError": 3.682147737453345
+        },
+        {
+          "field": "polar-l1",
+          "relativeL2": 2.0553796798771664e-09,
+          "polarMax": 8.633038728333986e-10,
+          "maxError": 5.1213019380824676e-09
+        },
+        {
+          "field": "polar-l2",
+          "relativeL2": 0.04599294212226829,
+          "polarMax": 0.23860308800059826,
+          "maxError": 0.26933718675871265
+        },
+        {
+          "field": "polar-l3",
+          "relativeL2": 0.11108130143161372,
+          "polarMax": 1.0836788608484103,
+          "maxError": 1.0836788608484103
+        },
+        {
+          "field": "polar-l4",
+          "relativeL2": 0.18615490217979097,
+          "polarMax": 2.8539221127295153,
+          "maxError": 2.8539221127295153
+        }
+      ]
+    },
+    {
+      "rings": 24,
+      "cells": 1008,
+      "fit": {
+        "method": "nonnegative bounded least squares",
+        "iterations": 60,
+        "status": 0,
+        "seconds": 35.68875990000379,
+        "unboundedMinimum": -0.0131538470203325,
+        "minimumWeight": 1.98813488846522e-06,
+        "maximumWeight": 0.33067310687173285,
+        "momentMax": 0.016036381143412153,
+        "momentRMS": 0.0025551238744308006,
+        "components": 1,
+        "edges": 12836,
+        "maxAngularSeparation": 0.3320385425346148
+      },
+      "constantResidual": 5.551115123125783e-16,
+      "symmetryResidual": 0.0,
+      "metrics": [
+        {
+          "field": "tilted-l1",
+          "relativeL2": 0.019546054007994206,
+          "polarMax": 0.13577848481085208,
+          "maxError": 0.13577848481085208
+        },
+        {
+          "field": "tilted-l2",
+          "relativeL2": 0.02094136823220086,
+          "polarMax": 0.19582899593926806,
+          "maxError": 0.19582899593926806
+        },
+        {
+          "field": "tilted-l3",
+          "relativeL2": 0.04435189193541833,
+          "polarMax": 0.27907610456627374,
+          "maxError": 0.567335930982825
+        },
+        {
+          "field": "tilted-l4",
+          "relativeL2": 0.07553504668177316,
+          "polarMax": 0.622724362355501,
+          "maxError": 1.5799009777653517
+        },
+        {
+          "field": "polar-l1",
+          "relativeL2": 0.013117359882766032,
+          "polarMax": 0.04442703811585691,
+          "maxError": 0.04442703811585691
+        },
+        {
+          "field": "polar-l2",
+          "relativeL2": 0.01734989821654382,
+          "polarMax": 0.03221984268066169,
+          "maxError": 0.118647744791196
+        },
+        {
+          "field": "polar-l3",
+          "relativeL2": 0.03961546370622988,
+          "polarMax": 0.293458685677944,
+          "maxError": 0.35579035101994716
+        },
+        {
+          "field": "polar-l4",
+          "relativeL2": 0.0713583203152506,
+          "polarMax": 0.9678441730784435,
+          "maxError": 0.9678441730784435
+        }
+      ]
+    },
+    {
+      "rings": 48,
+      "cells": 3168,
+      "fit": {
+        "method": "nonnegative bounded least squares",
+        "iterations": 60,
+        "status": 0,
+        "seconds": 122.14824929999304,
+        "unboundedMinimum": -0.015023283135314484,
+        "minimumWeight": 1.8154351396034088e-06,
+        "maximumWeight": 0.1950489235878625,
+        "momentMax": 0.020195699563960348,
+        "momentRMS": 0.0027327241256665078,
+        "components": 1,
+        "edges": 39708,
+        "maxAngularSeparation": 0.19709384552981102
+      },
+      "constantResidual": 6.661338147750939e-16,
+      "symmetryResidual": 0.0,
+      "metrics": [
+        {
+          "field": "tilted-l1",
+          "relativeL2": 0.03995589253284606,
+          "polarMax": 0.30106608194271356,
+          "maxError": 0.30106608194271356
+        },
+        {
+          "field": "tilted-l2",
+          "relativeL2": 0.026228537397975354,
+          "polarMax": 0.6243814149771141,
+          "maxError": 0.6243814149771141
+        },
+        {
+          "field": "tilted-l3",
+          "relativeL2": 0.021904168392853644,
+          "polarMax": 0.7072235152546196,
+          "maxError": 0.7072235152546196
+        },
+        {
+          "field": "tilted-l4",
+          "relativeL2": 0.027815410316295308,
+          "polarMax": 0.6341193356610368,
+          "maxError": 0.6341193356610368
+        },
+        {
+          "field": "polar-l1",
+          "relativeL2": 0.03498382385376958,
+          "polarMax": 0.06086534709308977,
+          "maxError": 0.19099432653704607
+        },
+        {
+          "field": "polar-l2",
+          "relativeL2": 0.02181493183368288,
+          "polarMax": 0.14875249676808266,
+          "maxError": 0.1954872841071129
+        },
+        {
+          "field": "polar-l3",
+          "relativeL2": 0.021773514944362502,
+          "polarMax": 0.21003437963274685,
+          "maxError": 0.30418091905056954
+        },
+        {
+          "field": "polar-l4",
+          "relativeL2": 0.02702718400006962,
+          "polarMax": 0.26304048337049046,
+          "maxError": 0.5200268128666076
+        }
+      ]
+    }
+  ],
+  "refinement": [
+    {
+      "field": "tilted-l1",
+      "l2Decreases": false,
+      "polarDecreases": false
+    },
+    {
+      "field": "tilted-l2",
+      "l2Decreases": false,
+      "polarDecreases": false
+    },
+    {
+      "field": "tilted-l3",
+      "l2Decreases": true,
+      "polarDecreases": false
+    },
+    {
+      "field": "tilted-l4",
+      "l2Decreases": true,
+      "polarDecreases": false
+    },
+    {
+      "field": "polar-l1",
+      "l2Decreases": false,
+      "polarDecreases": false
+    },
+    {
+      "field": "polar-l2",
+      "l2Decreases": false,
+      "polarDecreases": false
+    },
+    {
+      "field": "polar-l3",
+      "l2Decreases": true,
+      "polarDecreases": true
+    },
+    {
+      "field": "polar-l4",
+      "l2Decreases": true,
+      "polarDecreases": true
+    }
+  ],
+  "spatialCandidateAccepted": false
+}

@@ -1,0 +1,72 @@
+{
+  "name": "c3-fit-near-k24-48-v1",
+  "script": "docs/evidence/earth-polar-pressure-20261014/fit-graph-v4.py",
+  "startedUTC": "2026-10-14T03:20:49.301Z",
+  "state": "passed",
+  "configuration": {
+    "POLAR_INPUT_FILES": "build/earth-polar-pressure/c3-baseline-v1.json",
+    "POLAR_KERNEL": "24",
+    "POLAR_RINGS": "48"
+  },
+  "sourceBefore": {
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-core.jl": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b",
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-transport.jl": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a",
+    "docs/evidence/earth-conservative-accuracy-20261013/modal-core.jl": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-core.jl": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-grid.jl": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd",
+    "docs/evidence/earth-conservative-transport-20261013/mimetic-gradient.jl": "f0830bc48bced6d9f1645216dad50b946bbb0927b4a3e4a0c19d48fe10bac12c",
+    "docs/evidence/earth-polar-pressure-20261014/audit-graph.py": "40163060e3e868086ea5601beefd4f4e9412b7b171a7122bde4e201ed3ccbb44",
+    "docs/evidence/earth-polar-pressure-20261014/baseline.jl": "3465b63c792f871aba5e4155e361628f45a93f83b9a960ca0e75f3bfcc52c95a",
+    "docs/evidence/earth-polar-pressure-20261014/coupled-graph.jl": "b24055e9b0f48467039811f174e1a14739c3a87027169b1f6f331b4ed3edad31",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v2.py": "db95499d39ad4ca6017f46637ac4021ee83a39bd03c499664ec1f236aa2ca73d",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v3.py": "0d76d3b6744d5f35afc3457e329b7a2eed15aafccf3a33069397b7a927135ea1",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v4.py": "9cbfa688fb1474c3db4a410a15f8279bc8ebcdc41c4a66da35cd29cb2334ed6e",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph.py": "b1c70a1a01a7d18b86b2fb00a1119df2f5a1281f491b44e84c3475a1f33d8957",
+    "docs/evidence/earth-polar-pressure-20261014/protocol.md": "11351425d1d5c8f42155e9e303578351e48e19b66bf8a6e351b77aadbb6197f2",
+    "docs/evidence/earth-polar-pressure-20261014/run-probe.mjs": "a2c3edf40bf0282bb1a09294acf18e603508f4755fce657769c36f742f17a0ef"
+  },
+  "inputBefore": {
+    "build/earth-speedy-transport/split-reference-seasonal-geometry.json": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+    "build/earth-polar-pressure/c3-baseline-v1.json": "d327518efaeccc04ba57f27c239caaced0e6a4ad5b1b210bffab59422f620af2"
+  },
+  "executable": "C:/Users/helio/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+  "args": [
+    "-u",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v4.py",
+    "build/earth-polar-pressure/c3-baseline-v1.json"
+  ],
+  "code": 0,
+  "sourceAfter": {
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-core.jl": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b",
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-transport.jl": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a",
+    "docs/evidence/earth-conservative-accuracy-20261013/modal-core.jl": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-core.jl": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-grid.jl": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd",
+    "docs/evidence/earth-conservative-transport-20261013/mimetic-gradient.jl": "f0830bc48bced6d9f1645216dad50b946bbb0927b4a3e4a0c19d48fe10bac12c",
+    "docs/evidence/earth-polar-pressure-20261014/audit-graph.py": "40163060e3e868086ea5601beefd4f4e9412b7b171a7122bde4e201ed3ccbb44",
+    "docs/evidence/earth-polar-pressure-20261014/baseline.jl": "3465b63c792f871aba5e4155e361628f45a93f83b9a960ca0e75f3bfcc52c95a",
+    "docs/evidence/earth-polar-pressure-20261014/coupled-graph.jl": "b24055e9b0f48467039811f174e1a14739c3a87027169b1f6f331b4ed3edad31",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v2.py": "db95499d39ad4ca6017f46637ac4021ee83a39bd03c499664ec1f236aa2ca73d",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v3.py": "0d76d3b6744d5f35afc3457e329b7a2eed15aafccf3a33069397b7a927135ea1",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph-v4.py": "9cbfa688fb1474c3db4a410a15f8279bc8ebcdc41c4a66da35cd29cb2334ed6e",
+    "docs/evidence/earth-polar-pressure-20261014/fit-graph.py": "b1c70a1a01a7d18b86b2fb00a1119df2f5a1281f491b44e84c3475a1f33d8957",
+    "docs/evidence/earth-polar-pressure-20261014/protocol.md": "11351425d1d5c8f42155e9e303578351e48e19b66bf8a6e351b77aadbb6197f2",
+    "docs/evidence/earth-polar-pressure-20261014/run-probe.mjs": "a2c3edf40bf0282bb1a09294acf18e603508f4755fce657769c36f742f17a0ef"
+  },
+  "inputAfter": {
+    "build/earth-speedy-transport/split-reference-seasonal-geometry.json": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+    "build/earth-polar-pressure/c3-baseline-v1.json": "d327518efaeccc04ba57f27c239caaced0e6a4ad5b1b210bffab59422f620af2"
+  },
+  "sourceUnchanged": true,
+  "inputUnchanged": true,
+  "resultSha256": "7d639896f8669e9927748d71c3b646e00c089f45b9d4f1470d25f115fa40a96c",
+  "outputHashes": {
+    "build/earth-polar-pressure/c3-fit-near-k24-48-v1-48-graph.npz": "21fc72bd30a29656690d2f3c535221ca28613a09866e3e1c8a01d7782d77842c",
+    "build/earth-polar-pressure/c3-fit-near-k24-48-v1.json": "7d639896f8669e9927748d71c3b646e00c089f45b9d4f1470d25f115fa40a96c"
+  },
+  "completedUTC": "2026-10-14T03:21:04.282Z"
+}
