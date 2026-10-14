@@ -1,0 +1,254 @@
+{
+  "passed": true,
+  "createdUTC": "2026-10-14T12:18:42.155Z",
+  "previous": {
+    "path": "docs/evidence/earth-compatible-momentum-20261014/manifest.json",
+    "sha256": "c0d8e047bb577bb6b689a128639c8e4b9dcf6cf3fe6f4eee8ed74f589ceedfeb"
+  },
+  "preservation": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  },
+  "selected": {
+    "energy": "c8-energy-v3",
+    "extremes": "c8-extremes-v2",
+    "boundary": "c8-boundary-v1",
+    "water": "c8-water-v1",
+    "step": "c8-step-v3",
+    "analytic": "c8-analytic-v2",
+    "native": [
+      "c8-native-1800-v2",
+      "c8-native-900-v1",
+      "c8-native-450-v1",
+      "c8-native-225-v1"
+    ],
+    "temporal": "c8-temporal-v1",
+    "iterations": [
+      "c8-iterations-1800-v1",
+      "c8-iterations-900-v1",
+      "c8-iterations-450-v1",
+      "c8-iterations-225-v1"
+    ]
+  },
+  "runs": [
+    {
+      "name": "c8-analytic-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-analytic-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-boundary-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c8-boundary-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-energy-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c8-energy-red-v2",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c8-energy-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-energy-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-energy-v3",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-extremes-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c8-extremes-red-v2",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c8-extremes-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-extremes-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-iterations-1800-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-iterations-225-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-iterations-450-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-iterations-900-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-native-1800-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c8-native-1800-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-native-225-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-native-450-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-native-900-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-newton-diagnostic-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-step-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c8-step-red-v2",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c8-step-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-step-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-step-v3",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-temporal-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c8-water-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c8-water-v1",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "project": {
+    "passed": true,
+    "tests": 278,
+    "rows": [
+      {
+        "label": "test",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/test.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-pressure-work/project-final-test.log",
+        "sha256": "544c90f4e8441a43335751a69fa9824e0ac68304fd9e92dbbdd797d6c9c7e158"
+      },
+      {
+        "label": "typecheck",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit"
+        ],
+        "code": 0,
+        "log": "build/earth-pressure-work/project-final-typecheck.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "build",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/build.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-pressure-work/project-final-build.log",
+        "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+      }
+    ]
+  },
+  "acceptance": {
+    "pressureDependentKineticMetric": true,
+    "barotropicDiscreteEnergyChainRule": true,
+    "fullEdgeImportWithoutProjection": true,
+    "symmetricSecondOrderPressureVelocityODE": true,
+    "sharedAirWaterTransfers": true,
+    "positivePressureExtremesRegression": true,
+    "branchBoundaryAccuracyRegression": true,
+    "lateBudgetAtomicRollback": true,
+    "nativeSixHourTemporalRefinement": true,
+    "completeNonlinearIterationReplay": true,
+    "literalBitRebuiltRestart": true,
+    "independentCodeReviewCompleted": true,
+    "scalarAndWeakSpatialRefinement": true,
+    "forceRefinementObserved": true,
+    "coriolisIncluded": false,
+    "vorticalMomentumTransport": false,
+    "verticalMomentumAdvection": false,
+    "fullThermodynamics": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  }
+}

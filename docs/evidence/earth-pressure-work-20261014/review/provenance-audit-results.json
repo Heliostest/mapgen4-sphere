@@ -1,0 +1,381 @@
+{
+  "passed": true,
+  "complete": true,
+  "preserved": [
+    {
+      "candidate": "C1",
+      "boundFiles": 222,
+      "snapshotSHA256": "4157180daec2586d7a97014fe6f865720b9e26a02aa8d4a455fedb775cf6d0ef"
+    },
+    {
+      "candidate": "earth-conservative-accuracy-20261013",
+      "boundFiles": 148,
+      "manifestSHA256": "9c2624a29cff97d7cd74dd118ac39cc4e71141852561ebaf2b00aa8150f64cd2"
+    },
+    {
+      "candidate": "earth-polar-pressure-20261014",
+      "boundFiles": 93,
+      "manifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e"
+    },
+    {
+      "candidate": "earth-native-graph-wind-20261014",
+      "boundFiles": 133,
+      "manifestSHA256": "8c9869d799dc7b7da8bd955de8a9cacd1c843722de8926bb10ddc1bc94cd6536"
+    },
+    {
+      "candidate": "earth-rotating-graph-20261014",
+      "boundFiles": 102,
+      "manifestSHA256": "bccc6cf74351355e7c3c799c4767684b2fa06a2de73b0a2d67ca057ed5e376e8"
+    },
+    {
+      "candidate": "earth-covariant-momentum-20261014",
+      "boundFiles": 110,
+      "manifestSHA256": "fa83192f5dd1dd2627734a6eaff9a6a2d546181ae24ac5d07fe45d93f834633c"
+    },
+    {
+      "candidate": "earth-compatible-momentum-20261014",
+      "boundFiles": 151,
+      "manifestSHA256": "c0d8e047bb577bb6b689a128639c8e4b9dcf6cf3fe6f4eee8ed74f589ceedfeb"
+    }
+  ],
+  "formalDefaultUnchanged": true,
+  "trackedDiff": [
+    ".gitattributes"
+  ],
+  "selectedAssertions": 365,
+  "selectedExpectedAssertions": 365,
+  "selectedRuns": 15,
+  "attempts": 31,
+  "rows": [
+    {
+      "name": "c8-analytic-v1",
+      "state": "passed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-analytic-v2",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 37,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-boundary-red-v1",
+      "state": "failed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-boundary-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 48,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-energy-red-v1",
+      "state": "failed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 0
+    },
+    {
+      "name": "c8-energy-red-v2",
+      "state": "failed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-energy-v1",
+      "state": "passed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-energy-v2",
+      "state": "passed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-energy-v3",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 76,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-extremes-red-v1",
+      "state": "failed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 0
+    },
+    {
+      "name": "c8-extremes-red-v2",
+      "state": "failed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-extremes-v1",
+      "state": "passed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-extremes-v2",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 26,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-iterations-1800-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 22,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-iterations-225-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 10,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-iterations-450-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 10,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-iterations-900-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 10,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-native-1800-v1",
+      "state": "failed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 0
+    },
+    {
+      "name": "c8-native-1800-v2",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 26,
+      "archivedSources": 10,
+      "outputs": 8
+    },
+    {
+      "name": "c8-native-225-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 10,
+      "archivedSources": 10,
+      "outputs": 3
+    },
+    {
+      "name": "c8-native-450-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 10,
+      "archivedSources": 10,
+      "outputs": 3
+    },
+    {
+      "name": "c8-native-900-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 10,
+      "archivedSources": 10,
+      "outputs": 3
+    },
+    {
+      "name": "c8-newton-diagnostic-v1",
+      "state": "passed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-step-red-v1",
+      "state": "failed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 0
+    },
+    {
+      "name": "c8-step-red-v2",
+      "state": "failed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 0
+    },
+    {
+      "name": "c8-step-v1",
+      "state": "passed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 2
+    },
+    {
+      "name": "c8-step-v2",
+      "state": "passed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 2
+    },
+    {
+      "name": "c8-step-v3",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 52,
+      "archivedSources": 10,
+      "outputs": 2
+    },
+    {
+      "name": "c8-temporal-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 9,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-water-red-v1",
+      "state": "failed",
+      "selected": false,
+      "currentClosure": null,
+      "assertions": null,
+      "archivedSources": 10,
+      "outputs": 1
+    },
+    {
+      "name": "c8-water-v1",
+      "state": "passed",
+      "selected": true,
+      "currentClosure": 10,
+      "assertions": 9,
+      "archivedSources": 10,
+      "outputs": 1
+    }
+  ],
+  "iterationRows": [
+    {
+      "name": "c8-iterations-1800-v1",
+      "nativeName": "c8-native-1800-v2",
+      "steps": 12,
+      "total": 36,
+      "min": 3,
+      "max": 3,
+      "matchedCases": [
+        "real",
+        "constant",
+        "sharp"
+      ]
+    },
+    {
+      "name": "c8-iterations-900-v1",
+      "nativeName": "c8-native-900-v1",
+      "steps": 24,
+      "total": 72,
+      "min": 3,
+      "max": 3,
+      "matchedCases": [
+        "real"
+      ]
+    },
+    {
+      "name": "c8-iterations-450-v1",
+      "nativeName": "c8-native-450-v1",
+      "steps": 48,
+      "total": 101,
+      "min": 2,
+      "max": 3,
+      "matchedCases": [
+        "real"
+      ]
+    },
+    {
+      "name": "c8-iterations-225-v1",
+      "nativeName": "c8-native-225-v1",
+      "steps": 96,
+      "total": 192,
+      "min": 2,
+      "max": 2,
+      "matchedCases": [
+        "real"
+      ]
+    }
+  ],
+  "projectTests": 278,
+  "sourceChecks": 7,
+  "plotBindings": true
+}

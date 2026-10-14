@@ -1,0 +1,61 @@
+C8 late water failure and budget rollback: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:24
+  Expression: step!(m, s, 0.1)
+    Expected: StepRejected
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:24
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:30
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:30 [inlined]
+C8 late water failure and budget rollback: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:25
+  Expression: bits(s.p, first.p) && (bits(s.v, first.v) && (bits(s.W, first.W) && reinterpret(UInt64, s.time) == reinterpret(UInt64, first.time)))
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:25
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:30
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:30 [inlined]
+C8 late water failure and budget rollback: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:24
+  Expression: step!(m, s, 0.1)
+    Expected: StepRejected
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:24
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:30
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:30 [inlined]
+C8 late water failure and budget rollback: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:25
+  Expression: bits(s.p, first.p) && (bits(s.v, first.v) && (bits(s.W, first.W) && reinterpret(UInt64, s.time) == reinterpret(UInt64, first.time)))
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:25
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:30
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:30 [inlined]
+Test Summary:                             | Pass  Fail  Total   Time
+C8 late water failure and budget rollback |    5     4      9  14.4s
+RNG of the outermost testset: Xoshiro(0xc99f28e6ed25f02b, 0xd098029bf534c3d2, 0xcc8c198b47bcde74, 0x251775e5b2e90a7e, 0x3dc7e9bb17d3dd57)
+ERROR: LoadError: Some tests did not pass: 5 passed, 4 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-work-20261014\test-water-rollback.jl:30
