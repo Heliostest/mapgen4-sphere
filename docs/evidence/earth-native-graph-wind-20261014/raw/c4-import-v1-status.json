@@ -1,0 +1,74 @@
+{
+  "name": "c4-import-v1",
+  "script": "docs/evidence/earth-native-graph-wind-20261014/test-import.jl",
+  "startedUTC": "2026-10-14T05:33:52.578Z",
+  "state": "failed",
+  "configuration": {},
+  "sourceBefore": {
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-core.jl": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b",
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-transport.jl": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a",
+    "docs/evidence/earth-conservative-accuracy-20261013/modal-core.jl": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-core.jl": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-grid.jl": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd",
+    "docs/evidence/earth-native-graph-wind-20261014/common.jl": "203b99f23dce15de2c176a90572b8da522d6a35b797b37172822bb03d084946d",
+    "docs/evidence/earth-native-graph-wind-20261014/export-graphs.py": "d6bb963bc91ee1c8f5a9ca3cdb99a7ebd7144945ac128e27a5f2ca126cdd72fb",
+    "docs/evidence/earth-native-graph-wind-20261014/graph-wind.jl": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84",
+    "docs/evidence/earth-native-graph-wind-20261014/inspect-native.jl": "4e43a5b0fce74327d39188efd03f8724df9b5c7ff216cc308edb3f0bc03b5a89",
+    "docs/evidence/earth-native-graph-wind-20261014/protocol.md": "fdb2303a2b16a4b6b2a3465a4d3c2532dcca94c0a76a6abc11b16136b09b8c9e",
+    "docs/evidence/earth-native-graph-wind-20261014/run.mjs": "d60257dd1cdd9ab9cebaa495259c9c8cfd1d1e08f192654c0f3e2590792635ec",
+    "docs/evidence/earth-native-graph-wind-20261014/test-import.jl": "c9797ffe5adf2d7a9397d59409b0f021cf656d86bf2843988e5720a392f39110"
+  },
+  "inputBefore": {
+    "build/earth-conservative-transport/candidate-c1-native-1800-import.bin": "3fa5ae87309d6be731b18d4b320392e48654bb4856736284de6e15d1a754341d",
+    "build/earth-conservative-transport/candidate-c1-native-1800.json": "54c3a78b6a0ebc59f1fd00a9c0483887fab544615dc34f5c5e6426cf3d23ee7e",
+    "build/earth-speedy-transport/split-reference-seasonal-geometry.json": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+    "docs/evidence/earth-polar-pressure-20261014/manifest.json": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-24-graph.npz": "db81089254088f4d36f19e0a0f125c1927428c3c2d060faf0a9bb885b881c2c2",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-48-graph.npz": "21fc72bd30a29656690d2f3c535221ca28613a09866e3e1c8a01d7782d77842c",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-96-graph.npz": "bcedb90d1a68d2e34827d1f30ee36236bc9121c7c107d03769ca8c12dc3ab46b",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1-native-graph.json": "697caedf98a03c6e5690fbdff18fdf02731d849dc6b40575b3803f6a6cca7312",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1.json": "f6d015334c53130c106ecdd2de0f7e43fd0b71fc55a892c3768ae31575940cf8",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c"
+  },
+  "executable": "D:\\ws\\app\\mapgen4\\mapgen4-sphere\\build\\earth-speedyweather\\runtime\\julia-1.12.7\\bin\\julia.exe",
+  "args": [
+    "--startup-file=no",
+    "--project=docs/evidence/earth-speedyweather-20261012/julia-env",
+    "docs/evidence/earth-native-graph-wind-20261014/test-import.jl"
+  ],
+  "code": 1,
+  "sourceAfter": {
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-core.jl": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b",
+    "docs/evidence/earth-conservative-accuracy-20261013/fct-transport.jl": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a",
+    "docs/evidence/earth-conservative-accuracy-20261013/modal-core.jl": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-core.jl": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d",
+    "docs/evidence/earth-conservative-transport-20261013/conservative-grid.jl": "6f725590c7b805e7fdb9d935d0bd703bc9b79d5f20c1acd442766b87d4f36dcd",
+    "docs/evidence/earth-native-graph-wind-20261014/common.jl": "203b99f23dce15de2c176a90572b8da522d6a35b797b37172822bb03d084946d",
+    "docs/evidence/earth-native-graph-wind-20261014/export-graphs.py": "d6bb963bc91ee1c8f5a9ca3cdb99a7ebd7144945ac128e27a5f2ca126cdd72fb",
+    "docs/evidence/earth-native-graph-wind-20261014/graph-wind.jl": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84",
+    "docs/evidence/earth-native-graph-wind-20261014/inspect-native.jl": "4e43a5b0fce74327d39188efd03f8724df9b5c7ff216cc308edb3f0bc03b5a89",
+    "docs/evidence/earth-native-graph-wind-20261014/protocol.md": "fdb2303a2b16a4b6b2a3465a4d3c2532dcca94c0a76a6abc11b16136b09b8c9e",
+    "docs/evidence/earth-native-graph-wind-20261014/run.mjs": "d60257dd1cdd9ab9cebaa495259c9c8cfd1d1e08f192654c0f3e2590792635ec",
+    "docs/evidence/earth-native-graph-wind-20261014/test-import.jl": "c9797ffe5adf2d7a9397d59409b0f021cf656d86bf2843988e5720a392f39110"
+  },
+  "inputAfter": {
+    "build/earth-conservative-transport/candidate-c1-native-1800-import.bin": "3fa5ae87309d6be731b18d4b320392e48654bb4856736284de6e15d1a754341d",
+    "build/earth-conservative-transport/candidate-c1-native-1800.json": "54c3a78b6a0ebc59f1fd00a9c0483887fab544615dc34f5c5e6426cf3d23ee7e",
+    "build/earth-speedy-transport/split-reference-seasonal-geometry.json": "1bb8fe64e22c1f018ddb0aaf1c7980dcc1188186fe0f456c80ffa05895d6b60d",
+    "docs/evidence/earth-polar-pressure-20261014/manifest.json": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-24-graph.npz": "db81089254088f4d36f19e0a0f125c1927428c3c2d060faf0a9bb885b881c2c2",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-48-graph.npz": "21fc72bd30a29656690d2f3c535221ca28613a09866e3e1c8a01d7782d77842c",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-fit-near-k24-refinement-v1-96-graph.npz": "bcedb90d1a68d2e34827d1f30ee36236bc9121c7c107d03769ca8c12dc3ab46b",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1-native-graph.json": "697caedf98a03c6e5690fbdff18fdf02731d849dc6b40575b3803f6a6cca7312",
+    "docs/evidence/earth-polar-pressure-20261014/raw/c3-spatial-near-audit-v1.json": "f6d015334c53130c106ecdd2de0f7e43fd0b71fc55a892c3768ae31575940cf8",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Manifest.toml": "d399fb7d3efa7bf24d851e8a8951c9f707e0c57d963e16661a280d71c6419083",
+    "docs/evidence/earth-speedyweather-20261012/julia-env/Project.toml": "b731da482c95d9234b793f95334e777cc9422009d78c79af038f8eb17230418c"
+  },
+  "sourceUnchanged": true,
+  "inputUnchanged": true,
+  "outputHashes": {
+    "build/earth-native-graph-wind/c4-import-v1.json": "9b6cc545c445ef54f1f533ca3e816783d271fff964b556d1a1b2646c058755d8"
+  },
+  "completedUTC": "2026-10-14T05:34:10.833Z"
+}

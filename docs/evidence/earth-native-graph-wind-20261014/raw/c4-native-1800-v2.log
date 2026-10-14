@@ -1,0 +1,25 @@
+C4 native temporal and shared budgets: Error During Test at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\native-run.jl:111
+  Got exception outside of a @test
+  UndefVarError: `split` not defined in local scope
+  Suggestion: check for an assignment to a local variable that shadows a global of the same name.
+  Hint: a global variable of this name also exists in Base.
+  Stacktrace:
+   [1] main()
+     @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\native-run.jl:32
+   [2] top-level scope
+     @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\native-run.jl:111
+   [3] macro expansion
+     @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+   [4] macro expansion
+     @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\native-run.jl:111 [inlined]
+   [5] include(mod::Module, _path::String)
+     @ Base .\Base.jl:306
+   [6] exec_options(opts::Base.JLOptions)
+     @ Base .\client.jl:317
+   [7] _start()
+     @ Base .\client.jl:550
+Test Summary:                         | Error  Total  Time
+C4 native temporal and shared budgets |     1      1  1.2s
+RNG of the outermost testset: Random.Xoshiro(0x10c1cd9c6e99156d, 0xe558bdaf230c45bb, 0xdbe02beb9551bb33, 0x86fcc684b879187d, 0xbd164fe4cda63a08)
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-native-graph-wind-20261014\native-run.jl:111
