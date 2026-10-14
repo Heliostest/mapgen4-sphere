@@ -1,0 +1,31 @@
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:8
+  Expression: ≈(r1, [49 / 51, -49 / 51], rtol = 1.0e-14)
+   Evaluated: [1.0, -1.0] ≈ [0.9607843137254902, -0.9607843137254902] (rtol=1.0e-14)
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:8 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+C11 wave diagnostic: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:9
+  Expression: ≈(v1, [20 / 51], rtol = 1.0e-14)
+   Evaluated: [0.0] ≈ [0.39215686274509803] (rtol=1.0e-14)
+
+Stacktrace:
+ [1] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:5
+ [2] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:9 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+Test Summary:       | Fail  Total  Time
+C11 wave diagnostic |    2      2  2.8s
+RNG of the outermost testset: Xoshiro(0xd1d7b28a19fb3417, 0xbe26e90a54ee2155, 0x99a7412207fd2e7e, 0x76a36d334202d982, 0x4b08afba0ecb731a)
+ERROR: LoadError: Some tests did not pass: 0 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-pressure-waves-20261015\test-wave.jl:3

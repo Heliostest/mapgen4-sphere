@@ -1,0 +1,10 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+const path='docs/evidence/earth-pressure-waves-20261015/seal.mjs',source=await readFile(path,'utf8');
+const partial=source.slice(0,source.indexOf('const review=')).replace("'./verify-source.mjs'","'../../docs/evidence/earth-pressure-waves-20261015/verify-source.mjs'");
+await writeFile('build/c11-integration/preseal-generated-v2.mjs',partial+'\nconsole.log(JSON.stringify({passed:true,juliaAssertions,preserved:preserved.length}));\n',{flag:'wx'});
+const result=spawnSync(process.execPath,['build/c11-integration/preseal-generated-v2.mjs'],{encoding:'utf8',windowsHide:true,maxBuffer:4*1024*1024});
+const log=(result.stdout??'')+(result.stderr??'');await writeFile('build/c11-integration/preseal-v2.log',log,{flag:'wx'});
+await writeFile('build/c11-integration/preseal-v2.json',JSON.stringify({sealSHA256:createHash('sha256').update(source).digest('hex'),code:result.status,log},null,2)+'\n',{flag:'wx'});
+console.log(log);process.exitCode=result.status??1;

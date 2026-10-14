@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "checks": 407287,
+  "traceSamples": 64728,
+  "pairs": 108,
+  "regressions": 198,
+  "regressionCounts": {
+    "finalPhaseError": 63,
+    "maxAmplitudeError": 39,
+    "maxPressureError": 63,
+    "maxLeakage": 33
+  },
+  "nonlinearSteps": 768,
+  "maxNormalizedPressureSolverFloor": 1.1094098729957924e-12,
+  "minNonlinearDiscrepancy": 0.00013045150093462848,
+  "attempts": [
+    {
+      "name": "c11-nonlinear-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c11-reference-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c11-wave-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c11-wave-red-v2",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c11-wave-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c11-wave-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c11-waves-v1",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "preserved": [
+    {
+      "path": "docs/evidence/earth-metric-moments-20261014/manifest.json",
+      "bindings": 217
+    },
+    {
+      "path": "docs/evidence/earth-rotating-sigma-20261014/manifest.json",
+      "bindings": 128
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/manifest.json",
+      "bindings": 200
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/manifest.json",
+      "bindings": 151
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/manifest.json",
+      "bindings": 110
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/manifest.json",
+      "bindings": 102
+    },
+    {
+      "path": "docs/evidence/earth-native-graph-wind-20261014/manifest.json",
+      "bindings": 133
+    },
+    {
+      "path": "docs/evidence/earth-polar-pressure-20261014/manifest.json",
+      "bindings": 93
+    },
+    {
+      "path": "docs/evidence/earth-conservative-accuracy-20261013/manifest.json",
+      "bindings": 148
+    }
+  ],
+  "frozen": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  }
+}

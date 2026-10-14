@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "juliaAssertions": 284,
+  "ancestors": 9,
+  "cases": 216,
+  "attempts": [
+    {
+      "name": "c11-nonlinear-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c11-reference-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c11-wave-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c11-wave-red-v2",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c11-wave-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c11-wave-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c11-waves-v1",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "sourceHashes": {
+    "docs/evidence/earth-pressure-waves-20261015/seal.mjs": "df6aa8e9212083b28a07f0a24fa6f78c2a5ee433441e9bd92ada99cf43cf3190",
+    "docs/evidence/earth-pressure-waves-20261015/verify-source.mjs": "46e5c79e644c94d4c8386d54a7a8df63c2be065d9e8fc1c2fff92c69431af033"
+  },
+  "method": "Execute exact current sealer prefix through all numerical/source/plot/project gates; stop before review receipt and filesystem mutations."
+}
