@@ -1,0 +1,246 @@
+{
+  "passed": true,
+  "sourceHashes": {
+    "build/c9-independent-review/audit.mjs": "27b623a4b5505b0354401d6755fda18c0fb64f3179940b44bf00a4de7fca7ffe"
+  },
+  "preservation": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  },
+  "frozen": [
+    {
+      "path": "docs/evidence/earth-native-graph-wind-20261014/manifest.json",
+      "sha256": "8c9869d799dc7b7da8bd955de8a9cacd1c843722de8926bb10ddc1bc94cd6536",
+      "bindings": 133
+    },
+    {
+      "path": "docs/evidence/earth-rotating-graph-20261014/manifest.json",
+      "sha256": "bccc6cf74351355e7c3c799c4767684b2fa06a2de73b0a2d67ca057ed5e376e8",
+      "bindings": 102
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/manifest.json",
+      "sha256": "fa83192f5dd1dd2627734a6eaff9a6a2d546181ae24ac5d07fe45d93f834633c",
+      "bindings": 110
+    },
+    {
+      "path": "docs/evidence/earth-compatible-momentum-20261014/manifest.json",
+      "sha256": "c0d8e047bb577bb6b689a128639c8e4b9dcf6cf3fe6f4eee8ed74f589ceedfeb",
+      "bindings": 151
+    },
+    {
+      "path": "docs/evidence/earth-pressure-work-20261014/manifest.json",
+      "sha256": "4f4a9d86f8c382c633f8ae7a50b2dfc2fcb9f1eff8b65675794d8a6a6dbcbf94",
+      "bindings": 200
+    }
+  ],
+  "selected": {
+    "vector": "c9-vector-v2",
+    "coupled": "c9-coupled-v1",
+    "rollback": "c9-rollback-v1",
+    "analytic": "c9-analytic-v1",
+    "gradient3": "c9-gradient3-v1",
+    "native": [
+      "c9-native-1800-v1",
+      "c9-native-900-v1",
+      "c9-native-450-v1",
+      "c9-native-225-v1"
+    ],
+    "temporal": "c9-temporal-v1"
+  },
+  "records": [
+    {
+      "name": "c9-analytic-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "52909ccc486dee6876e2a32017441cff545748bf62ea3aa5fdc91c4f59f74b04"
+    },
+    {
+      "name": "c9-coupled-red-v1",
+      "state": "failed",
+      "code": 1,
+      "logSHA256": "c51b7a377e32ff2f6af69b9bd97ec4d97a19f96cf7acdb9673ec4f61baa23141"
+    },
+    {
+      "name": "c9-coupled-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "d61eeee73a2e3b800705c1580ce6a9765ed6853869aece8736974f4f3bf99171"
+    },
+    {
+      "name": "c9-gradient3-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "c11623371e78eac6ac2ddc2f1eee4dac8d02d4a9cbbbfd260d605019b4eb053b"
+    },
+    {
+      "name": "c9-native-1800-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "0ef605ccebc5ba4f6b2116e5a7a0d96859daba9ba51d937a7d84793593a3af02"
+    },
+    {
+      "name": "c9-native-225-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "a6229a9ee21961593894b8ad90031467f62948b8904a0e0348c80d8dbdcd1f4c"
+    },
+    {
+      "name": "c9-native-450-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "d03d68fa2a247fa0048b5dd815185c63c688b8b80515d1b2cd198d5c87454b07"
+    },
+    {
+      "name": "c9-native-900-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "8f0149b5a992d513c57f4f86d9c37aafd042918efb67071687edc3aac803598f"
+    },
+    {
+      "name": "c9-rollback-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "104868d4a072b27d5b8d5727e076b7d91f6a7354a166339dc1d3113418c3fbbc"
+    },
+    {
+      "name": "c9-temporal-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "484b14174c9d17abe36efbc53f5cb11d22888e10c9ae6863f2c25222a63a5ec1"
+    },
+    {
+      "name": "c9-vector-red-v1",
+      "state": "failed",
+      "code": 1,
+      "logSHA256": "48f715583b54bb981658b4010a6c9dfd2b39561c88d52e3e787503809089e224"
+    },
+    {
+      "name": "c9-vector-v1",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "da137f7cba6bfd88fceb2c9dccee41acae5a63e042c200b95aff6d34371f4dff"
+    },
+    {
+      "name": "c9-vector-v2",
+      "state": "passed",
+      "code": 0,
+      "logSHA256": "d571977a56f3e70e4d8be78d72bc5a28f75f1936b137a5481a068986d3a029c5"
+    }
+  ],
+  "boundSources": 148,
+  "boundInputs": 190,
+  "boundOutputs": 33,
+  "native": [
+    {
+      "name": "c9-native-1800-v1",
+      "case": "real",
+      "steps": 12,
+      "energyDrift": 8.96476262617023e-16,
+      "localBudget": 2.2258498320279154e-15,
+      "neutralIterations": 305
+    },
+    {
+      "name": "c9-native-1800-v1",
+      "case": "constant",
+      "steps": 12,
+      "energyDrift": 8.96476262617023e-16,
+      "localBudget": 2.2263589551126844e-15,
+      "neutralIterations": 305
+    },
+    {
+      "name": "c9-native-1800-v1",
+      "case": "sharp",
+      "steps": 12,
+      "energyDrift": 8.96476262617023e-16,
+      "localBudget": 2.2300609073643018e-15,
+      "neutralIterations": 305
+    },
+    {
+      "name": "c9-native-900-v1",
+      "case": "real",
+      "steps": 24,
+      "energyDrift": 5.97650841744682e-16,
+      "localBudget": 2.257561151393168e-15,
+      "neutralIterations": 480
+    },
+    {
+      "name": "c9-native-450-v1",
+      "case": "real",
+      "steps": 48,
+      "energyDrift": 3.1376669191595805e-15,
+      "localBudget": 5.896511642951413e-15,
+      "neutralIterations": 836
+    },
+    {
+      "name": "c9-native-225-v1",
+      "case": "real",
+      "steps": 96,
+      "energyDrift": 8.96476262617023e-16,
+      "localBudget": 2.180751520078022e-15,
+      "neutralIterations": 1344
+    }
+  ],
+  "temporal": {
+    "passed": true,
+    "names": [
+      "c9-native-1800-v1",
+      "c9-native-900-v1",
+      "c9-native-450-v1",
+      "c9-native-225-v1"
+    ],
+    "adjacent": [
+      {
+        "pressurePa": 83.13479307155129,
+        "velocityMps": 0.19460426175211262,
+        "humidityKgKg": 7.529402507365829e-7
+      },
+      {
+        "pressurePa": 28.678157756266323,
+        "velocityMps": 0.0650013238822389,
+        "humidityKgKg": 2.0460869788964526e-7
+      },
+      {
+        "pressurePa": 7.78825665530793,
+        "velocityMps": 0.017846467382278405,
+        "humidityKgKg": 5.233348798247192e-8
+      }
+    ],
+    "reference": [
+      {
+        "pressurePa": 103.02186961994758,
+        "velocityMps": 0.24614238018160856,
+        "humidityKgKg": 9.948491727345032e-7
+      },
+      {
+        "pressurePa": 35.802154797504045,
+        "velocityMps": 0.08150618485052537,
+        "humidityKgKg": 2.563761097178049e-7
+      },
+      {
+        "pressurePa": 7.78825665530793,
+        "velocityMps": 0.017846467382278405,
+        "humidityKgKg": 5.233348798247192e-8
+      }
+    ],
+    "ratios": [
+      {
+        "pressure": 2.8988888957968686,
+        "velocity": 2.9938507422506,
+        "humidity": 3.6799034376470043
+      },
+      {
+        "pressure": 3.6822307000785983,
+        "velocity": 3.6422515722515154,
+        "humidity": 3.9097087883417005
+      }
+    ],
+    "referenceIsDiscrete": true,
+    "formalOrder": 2
+  }
+}
