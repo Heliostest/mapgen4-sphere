@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "createdUTC": "2026-10-14T09:44:16.906Z",
+  "previous": {
+    "path": "docs/evidence/earth-rotating-graph-20261014/manifest.json",
+    "sha256": "bccc6cf74351355e7c3c799c4767684b2fa06a2de73b0a2d67ca057ed5e376e8"
+  },
+  "preservation": {
+    "passed": true,
+    "c3ManifestSHA256": "cb95e9a55efac60795367edebe119e601bc984d941c2f7b76f595f483070eb8e",
+    "c3Count": 93,
+    "c2Count": 148,
+    "c1Count": 222,
+    "nativeCount": 105,
+    "formalDefaultUnchanged": true
+  },
+  "selected": {
+    "kernel": "c6-momentum-v1",
+    "analytic": "c6-analytic-v1",
+    "advection": "c6-advection-v1",
+    "covariance": "c6-covariance-v2",
+    "native": [
+      "c6-native-1800-v1",
+      "c6-native-900-v1",
+      "c6-native-450-v1",
+      "c6-native-225-v1"
+    ],
+    "temporal": "c6-temporal-v1"
+  },
+  "runs": [
+    {
+      "name": "c6-advection-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c6-advection-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c6-analytic-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c6-covariance-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c6-covariance-v2",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c6-momentum-red-v1",
+      "state": "failed",
+      "code": 1
+    },
+    {
+      "name": "c6-momentum-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c6-native-1800-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c6-native-225-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c6-native-450-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c6-native-900-v1",
+      "state": "passed",
+      "code": 0
+    },
+    {
+      "name": "c6-temporal-v1",
+      "state": "passed",
+      "code": 0
+    }
+  ],
+  "project": {
+    "passed": true,
+    "tests": 278,
+    "rows": [
+      {
+        "label": "test",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/test.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-covariant-momentum/project-final-test.log",
+        "sha256": "93c6b64248d8c64ba5aa080f3e24c05e5a7acb3267ea3a8afcfbe90ff490110a"
+      },
+      {
+        "label": "typecheck",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit"
+        ],
+        "code": 0,
+        "log": "build/earth-covariant-momentum/project-final-typecheck.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "build",
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "scripts/build.mjs"
+        ],
+        "code": 0,
+        "log": "build/earth-covariant-momentum/project-final-build.log",
+        "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+      }
+    ]
+  },
+  "acceptance": {
+    "covariantSignedMomentum": true,
+    "dissipativeEnergyIdentity": true,
+    "sampledSpatialRefinement": true,
+    "frameCovariance": true,
+    "atomicNonlinearPressurelessAdvection": true,
+    "sharedHorizontalVerticalWaterMomentum": true,
+    "nativeSixHourTemporalRefinement": true,
+    "sharedBudgetsAndHumidityRange": true,
+    "rebuiltFourStepRestart": true,
+    "independentCodeReviewCompleted": true,
+    "c5IndependentReviewAddendum": true,
+    "c5EdgeFeedback": false,
+    "exactGlobalAngularMomentum": false,
+    "secondOrderMomentumAdvection": false,
+    "fullThermodynamics": false,
+    "fullPhysicalCoupling": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  }
+}

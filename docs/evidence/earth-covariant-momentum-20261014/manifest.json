@@ -1,0 +1,580 @@
+{
+  "candidate": "c6-covariant-momentum",
+  "createdUTC": "2026-10-14T09:44:16.960Z",
+  "previous": {
+    "path": "docs/evidence/earth-rotating-graph-20261014/manifest.json",
+    "sha256": "bccc6cf74351355e7c3c799c4767684b2fa06a2de73b0a2d67ca057ed5e376e8"
+  },
+  "acceptance": {
+    "covariantSignedMomentum": true,
+    "dissipativeEnergyIdentity": true,
+    "sampledSpatialRefinement": true,
+    "frameCovariance": true,
+    "atomicNonlinearPressurelessAdvection": true,
+    "sharedHorizontalVerticalWaterMomentum": true,
+    "nativeSixHourTemporalRefinement": true,
+    "sharedBudgetsAndHumidityRange": true,
+    "rebuiltFourStepRestart": true,
+    "independentCodeReviewCompleted": true,
+    "c5IndependentReviewAddendum": true,
+    "c5EdgeFeedback": false,
+    "exactGlobalAngularMomentum": false,
+    "secondOrderMomentumAdvection": false,
+    "fullThermodynamics": false,
+    "fullPhysicalCoupling": false,
+    "longClimateValidation": false,
+    "formalDefaultPromoted": false
+  },
+  "bindings": [
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/CURRENT-STATE.md",
+      "bytes": 1943,
+      "sha256": "b2b507ddcf13750f36e4d2531e84a90b3fe1961f78e93b2ddaa1e73caa63847e"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/README.md",
+      "bytes": 2508,
+      "sha256": "996bbbc6b373a661657916fd61d01e00ed289b15baef21a2a1b3855990729815"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/advection-core.jl",
+      "bytes": 4026,
+      "sha256": "594b49ced8d5cbc30ea1dfbc49a9103b13616b4719f616c00f5d7f74546a7759"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/analytic.jl",
+      "bytes": 2809,
+      "sha256": "e3faa22ba4614204ff6dc6904e8b5657f967a05f4ff75043993bcb24d4edac75"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/c5-review-addendum.md",
+      "bytes": 1764,
+      "sha256": "5b4b14164df88849dabb01bd6e8d95a37624f7d97d9a6ced2b3351964b93204c"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/code-review.md",
+      "bytes": 2703,
+      "sha256": "cbacf8b1cc37bac78832ecec5a85bd095446da163fa0f21f9957c49b59639c0a"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/common.jl",
+      "bytes": 1708,
+      "sha256": "32cafca490935d37e3ef9268b5e9edd9af423e449dd7f9cd112b96d23575246d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/compare-time.jl",
+      "bytes": 1919,
+      "sha256": "b7ab888934e528c4478fafdb85a0e76e8edbb9fccb83fd9c13799b3f9b13752b"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/momentum.jl",
+      "bytes": 4766,
+      "sha256": "a60bd777f59c1b03a3387325e84081cdefdb4d8e714ce1efbd084e50b2673839"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/native-run.jl",
+      "bytes": 5176,
+      "sha256": "944267207488ae31b3907e6ec612c305586dff9663e0698b2319a82af8995770"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/plan.md",
+      "bytes": 1312,
+      "sha256": "f22abc6c56a99ddf09c7a3c096e1b01e3746ac076210fe333d4930fd8d5b96af"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/plot.py",
+      "bytes": 2673,
+      "sha256": "a20bff44ccbfc1d31161c21ddb48002b7293ea1ce4ac3f4a10221a288f521192"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/project-checks.mjs",
+      "bytes": 1181,
+      "sha256": "bff0251a99b1fd64ad3e75bf4d9be30b46cc3bf156ef9139570910eb0bd93b7c"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/protocol.md",
+      "bytes": 4166,
+      "sha256": "c2ded991208b9a1316ca5c34ee44577d4ad33ff5b8bfb99b66856c171e7d7c93"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-advection-red-v1-status.json",
+      "bytes": 7396,
+      "sha256": "6a2483908bc024caa8d06f3e035855a21038aafbd0397490e7ac33a6810c9154"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-advection-red-v1.log",
+      "bytes": 3530,
+      "sha256": "dc798ee6e65fd72c05f27af57f7bec0feb1f16e7a643ea39260ee9d118b547eb"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-advection-v1-checkpoint.bin",
+      "bytes": 441,
+      "sha256": "2bb75ff3531cf5c2dc04475ec72820f9e8806a26ef07e06e24b5ac8d38b97653"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-advection-v1-status.json",
+      "bytes": 7628,
+      "sha256": "e3391e7ad386f7a441c3ae76bd76e6a99c10411a3f49c741168ca27c20d628ec"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-advection-v1.json",
+      "bytes": 90,
+      "sha256": "5e8491fb0ec78a9af5d54ecbfa84e437eb5dc316a79c980d24c6379e3885abd9"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-advection-v1.log",
+      "bytes": 122,
+      "sha256": "28fb2590bee6694a58b52ea64e4e8de19efb0afab9cb3c67dd8c3ddff745de10"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-analytic-v1-status.json",
+      "bytes": 7183,
+      "sha256": "d8bbc9996a1fcc95d5cdf47aff356cf3c71614b3be3d6c2c8126dfd15eb72b0c"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-analytic-v1.json",
+      "bytes": 5768,
+      "sha256": "474c6b423497793ae38b48d03896629909c8951160176ecb1ff0b40a19343286"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-analytic-v1.log",
+      "bytes": 344,
+      "sha256": "6478fc684c9dc4b960f8ce2c59cff0a9cec17cf5fb1f6c990d85f905f68cfffb"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-covariance-v1-status.json",
+      "bytes": 7085,
+      "sha256": "73302d4dcd8437d597ea0acd60171069da293e8b0402de07cbde4617d867dece"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-covariance-v1.log",
+      "bytes": 851,
+      "sha256": "a87fa7a343c4866bd5639039e0150e87ca3cdc1bcaa71b47ee42e742a979480d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-covariance-v2-status.json",
+      "bytes": 7215,
+      "sha256": "2c895898306da87dd191e8789586ed0554e5938998651b8c09a6e5a445801a73"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-covariance-v2.json",
+      "bytes": 241,
+      "sha256": "229357e60dc413d40d0accdfcf8f08565df2a89430ccfdb1ef4762b0f5f6b30e"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-covariance-v2.log",
+      "bytes": 128,
+      "sha256": "d552039e05bf74860ea23c31655e9b0fc762b32b3a96d755987b438c21d54bc4"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-momentum-red-v1-status.json",
+      "bytes": 6945,
+      "sha256": "708ff23941a72197f6dea6fb160258fc9ad01f36e2cd147fd6fb971936cd364a"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-momentum-red-v1.json",
+      "bytes": 139,
+      "sha256": "538b586ff6d2b35d8c200442a0b793a05aca452488a542b02a93c8eea129570d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-momentum-red-v1.log",
+      "bytes": 10020,
+      "sha256": "bd3bfd58a17e5f70095f9edbe7c6c45dba28f1fad0ca6e766b280c7d9721c4c0"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-momentum-v1-status.json",
+      "bytes": 7203,
+      "sha256": "68ae22ca2ee95b6c16d753e8f3661154060daf8bab57270a0825540188a912a3"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-momentum-v1.json",
+      "bytes": 141,
+      "sha256": "6eed9bf4ce074bd0d7a26e59a7ba3d596d9f5868d5bdcadc38cbbb0ce021a0c0"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-momentum-v1.log",
+      "bytes": 120,
+      "sha256": "68132e99e388f68cbb8a85f792bd32d89dcb91c60c5d0ec5a9a514d44ad69669"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1-constant-checkpoint.bin",
+      "bytes": 633829,
+      "sha256": "ab19894d17cd8552c4076b35771c0ae10b7e66f77d3177ee8aa6809779a2b5c9"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1-constant-final.bin",
+      "bytes": 633817,
+      "sha256": "b1ad86106b911937d0b44f0d2853afd83970ff311ae768878cd3202e2efb22f3"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1-partial.json",
+      "bytes": 1989,
+      "sha256": "3ad1eff047851dbd5b9efc83d93b20d4eba071609bea20fb59ce1ea96c7a05db"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1-real-checkpoint.bin",
+      "bytes": 633829,
+      "sha256": "11f28decb85c670447820db17d5aceef8644c290b8f4642926160a7054650dc4"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1-real-final.bin",
+      "bytes": 633817,
+      "sha256": "aa128ca73107222560d8de145cd1a291070d0d72767e398016ce365740bbb855"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1-sharp-checkpoint.bin",
+      "bytes": 633829,
+      "sha256": "5d1a6126f964bd2f21be5c403b9bfd05eacf7cc24cf832db90d1b2680bf1b5df"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1-sharp-final.bin",
+      "bytes": 633817,
+      "sha256": "528045a38dc47c41ec56787c26a118dea95934e205b4377fefad16731e6da38a"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1-status.json",
+      "bytes": 8475,
+      "sha256": "c5b79c3561896c8ba8d3164bf89439cfd3e8aa0ccbd1759cf5538f06c3b6b564"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1.json",
+      "bytes": 2213,
+      "sha256": "7cc88a96156a184f92702a66aeffd0fb549b10853bc346466698285c35959f9c"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-1800-v1.log",
+      "bytes": 950,
+      "sha256": "981bec124eae509798c69ab38f32c923b1a5585f96b7c666ee71c5270bc7e3c8"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-225-v1-partial.json",
+      "bytes": 686,
+      "sha256": "df4d10526d96cf45a7b41127b62f0d974bbab275faa0cfef6f6b120d7596b33d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-225-v1-real-final.bin",
+      "bytes": 633817,
+      "sha256": "425e03c7f6911a7dd8566f013f020fe54919f4d39fbcc58d189ca5e07ce8f4c8"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-225-v1-status.json",
+      "bytes": 7827,
+      "sha256": "ca0e03e87acb3d934d12b3864339028e8081b1d955ff815f0bfcaee87d6aba7f"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-225-v1.json",
+      "bytes": 909,
+      "sha256": "8c30ab341c9b69277fccfa7c08b1b40ad563bb512ef4cfe928a5c39e46615f11"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-225-v1.log",
+      "bytes": 808,
+      "sha256": "c152031439caf02c31603a0e57b70d366688994fb50177cca6d2cc7f9b815175"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-450-v1-partial.json",
+      "bytes": 693,
+      "sha256": "9ddd162bb18acd54b498a4649bd7a52bfe361bd51fd9da6683c67365c814b658"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-450-v1-real-final.bin",
+      "bytes": 633817,
+      "sha256": "843bf79c36607846c57f295c74dff744f4ef9e59be1351941fc33343b5eed9a4"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-450-v1-status.json",
+      "bytes": 7827,
+      "sha256": "652d01a0cc6e9cc70489901c2c8c0304e263d881b780c54c41a26228a44a662b"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-450-v1.json",
+      "bytes": 916,
+      "sha256": "a55f9aa915fe32662553b399893b18faafb2b02ab12574f6832d2f1abd327b23"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-450-v1.log",
+      "bytes": 542,
+      "sha256": "1dfb22fda10c6988b36d1899b1486ee77c896b12df7508fb197fa483c8255b43"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-900-v1-partial.json",
+      "bytes": 688,
+      "sha256": "d3f7525be961c143b3b592e92cd8386d01dc02de915ea1849143fd389d40e8ed"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-900-v1-real-final.bin",
+      "bytes": 633817,
+      "sha256": "125c1bc1e588132e50271227a1d03f488ad7e71add6c100673d48ea400c02e1f"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-900-v1-status.json",
+      "bytes": 7827,
+      "sha256": "dd9ff2165bae3217d5121fa6a81e71e97070dc7df0d58bcaef7ec602eac960fb"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-900-v1.json",
+      "bytes": 911,
+      "sha256": "4fda63cc4251ec2e04f0d0e48844de41cf52e2b1afdfe3167d1d81f24f6504cc"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-native-900-v1.log",
+      "bytes": 408,
+      "sha256": "834872b4895bbb1c2b64964a85eec68ba1536f91756299f78581658e4f2c3705"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-source-v1.json",
+      "bytes": 340,
+      "sha256": "67c1b90e56a506739090927bd4e2d0b6e50f39812c67b816acb987d88aa3d238"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-temporal-v1-status.json",
+      "bytes": 10303,
+      "sha256": "b7a89458543f085c3db899fde0b9e387536c0deca9c97736110aee92495e3070"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-temporal-v1.json",
+      "bytes": 993,
+      "sha256": "2bb6d085cbe76748405ccafca83b4ab2e53a09cb0f3105f38f09fee3b42202fe"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/c6-temporal-v1.log",
+      "bytes": 106,
+      "sha256": "f4f3b8447d8038cca172f6b8c1aa6a1e18b2858508c5bd5b4ee9d19ec442f743"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/convergence.png",
+      "bytes": 177631,
+      "sha256": "84637781a673ee4c99dd7934889c1e18bec5a7f100f02dc5b8b910ccbcb86c22"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/plot-provenance.json",
+      "bytes": 1065,
+      "sha256": "d8d6b3e31030ccf12d7a492b0828ce35b88f4eb946782ff2b4fdc7cf7714a83d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/project-checks.json",
+      "bytes": 1025,
+      "sha256": "caddc5c2949336abc613885d6aca6d5e25553c413da1447f1232607c0de025fb"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/project-final-build.log",
+      "bytes": 58,
+      "sha256": "2af9cf778ae9db34e04e167c6777ef0f40ebf7fe00c99358e29dbdf983669fbe"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/project-final-test.log",
+      "bytes": 27423,
+      "sha256": "93c6b64248d8c64ba5aa080f3e24c05e5a7acb3267ea3a8afcfbe90ff490110a"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/raw/project-final-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/report.md",
+      "bytes": 7296,
+      "sha256": "5bbffdb0fbc9ca88a5b837758d330dd843df71d370e8cc285232c342db823d44"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/review-source-bindings.json",
+      "bytes": 4223,
+      "sha256": "dc759564b54db4ff552c178d0d44feba3bb8abced3a288a324aaefccbb166b2b"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/review/finalize-review.mjs",
+      "bytes": 2370,
+      "sha256": "5a109d885ee86e98ee644a38578bc62e0fc3abf83dc1159eb3c5b888b865b723"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/review/native-audit.jl",
+      "bytes": 1656,
+      "sha256": "0dd0b143640d279152eb8374cf774149d4193f072487dcffd47466f242116400"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/review/native-audit.json",
+      "bytes": 1463,
+      "sha256": "d519996201a2d7d31ca0260a56c92a404b9e8c570a80e085295cabac55c36961"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/review/probes.jl",
+      "bytes": 3503,
+      "sha256": "1c1b3227485de6a3fee71f120ba90bc0f5281b94b27126cc8cb0878925316fb3"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/review/probes.json",
+      "bytes": 1345,
+      "sha256": "c7d5fd242af6c1b82ed7f6a442ccae730d73a5df8808e26b5bdf7b8413b9a487"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/review/provenance-audit.json",
+      "bytes": 1099,
+      "sha256": "1e40d2f00b50b65431fc0f4253f297b38eaad75a6fbb4df3f50de2c380ce60c0"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/review/provenance-audit.mjs",
+      "bytes": 2610,
+      "sha256": "036c40cef5e63f83a6721200a95e36f96563ca1105b83d418bb694027702cfc8"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/review/review-source-bindings.json",
+      "bytes": 4223,
+      "sha256": "dc759564b54db4ff552c178d0d44feba3bb8abced3a288a324aaefccbb166b2b"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/run.mjs",
+      "bytes": 4937,
+      "sha256": "2e7b3e2c3bcf6775c327e6ee038978854219b485dc64ecf502b54c7f9f451989"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/seal.mjs",
+      "bytes": 7636,
+      "sha256": "c141c042c569dc29fecdbe817756224605b10074907b2178d06192d099d6732f"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/selected-runs.json",
+      "bytes": 262,
+      "sha256": "44f2771d44273ab23a957448e4e7019e5fa378c7501c3331cfa25121d33ad095"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/1e6ac564947c1945047679f53d54cfa2b686c9a678ce8310ec9dfaf7c9e4d6a5/rotation-core.jl",
+      "bytes": 2159,
+      "sha256": "1e6ac564947c1945047679f53d54cfa2b686c9a678ce8310ec9dfaf7c9e4d6a5"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62/modal-core.jl",
+      "bytes": 6385,
+      "sha256": "2430d1f78d282e29028e995d394101c4e666e94c7cd5f4ee101de64023caac62"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/29a0ce5d5a2fc56f767f370adc14e674aae13884d7ea8e65570f82b5c4b0c261/momentum.jl",
+      "bytes": 501,
+      "sha256": "29a0ce5d5a2fc56f767f370adc14e674aae13884d7ea8e65570f82b5c4b0c261"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/2e7b3e2c3bcf6775c327e6ee038978854219b485dc64ecf502b54c7f9f451989/run.mjs",
+      "bytes": 4937,
+      "sha256": "2e7b3e2c3bcf6775c327e6ee038978854219b485dc64ecf502b54c7f9f451989"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/32cafca490935d37e3ef9268b5e9edd9af423e449dd7f9cd112b96d23575246d/common.jl",
+      "bytes": 1708,
+      "sha256": "32cafca490935d37e3ef9268b5e9edd9af423e449dd7f9cd112b96d23575246d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/3c7356acfe3fc2b8ba06bcbd670fe7f4ea28510b9aed49939fd18e0e7a358fc8/run.mjs",
+      "bytes": 4445,
+      "sha256": "3c7356acfe3fc2b8ba06bcbd670fe7f4ea28510b9aed49939fd18e0e7a358fc8"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d/conservative-core.jl",
+      "bytes": 12294,
+      "sha256": "3fb46467306d9deae796f771e3e87c60304380d870c8b449009981200069869d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84/graph-wind.jl",
+      "bytes": 3839,
+      "sha256": "447542ce6c88f80d88f7857adf50451c5efd7107c0e3971cf42171cefb1e7f84"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/594b49ced8d5cbc30ea1dfbc49a9103b13616b4719f616c00f5d7f74546a7759/advection-core.jl",
+      "bytes": 4026,
+      "sha256": "594b49ced8d5cbc30ea1dfbc49a9103b13616b4719f616c00f5d7f74546a7759"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/616383e1ed357b7f02b1e6aa7248cd122ddf0a81d37d77d4aec8655c376fa78d/test-covariance.jl",
+      "bytes": 1995,
+      "sha256": "616383e1ed357b7f02b1e6aa7248cd122ddf0a81d37d77d4aec8655c376fa78d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/64447cfef9dd69e4652532b1ed897b39a0aa6fca5eabfb4aafa5e80de332a2f2/test-advection.jl",
+      "bytes": 2816,
+      "sha256": "64447cfef9dd69e4652532b1ed897b39a0aa6fca5eabfb4aafa5e80de332a2f2"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/761b0ab627918252e0cab458abf18795f82814b125b06ef13f535c7e5ee310f2/test-covariance.jl",
+      "bytes": 1993,
+      "sha256": "761b0ab627918252e0cab458abf18795f82814b125b06ef13f535c7e5ee310f2"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/944267207488ae31b3907e6ec612c305586dff9663e0698b2319a82af8995770/native-run.jl",
+      "bytes": 5176,
+      "sha256": "944267207488ae31b3907e6ec612c305586dff9663e0698b2319a82af8995770"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b/fct-core.jl",
+      "bytes": 1275,
+      "sha256": "9bfc60ed586ff1fea2bdbd79ae13a40d11c5e7a90db477b44a08aa85450a0a6b"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/a60bd777f59c1b03a3387325e84081cdefdb4d8e714ce1efbd084e50b2673839/momentum.jl",
+      "bytes": 4766,
+      "sha256": "a60bd777f59c1b03a3387325e84081cdefdb4d8e714ce1efbd084e50b2673839"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/b7ab888934e528c4478fafdb85a0e76e8edbb9fccb83fd9c13799b3f9b13752b/compare-time.jl",
+      "bytes": 1919,
+      "sha256": "b7ab888934e528c4478fafdb85a0e76e8edbb9fccb83fd9c13799b3f9b13752b"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/c2ded991208b9a1316ca5c34ee44577d4ad33ff5b8bfb99b66856c171e7d7c93/protocol.md",
+      "bytes": 4166,
+      "sha256": "c2ded991208b9a1316ca5c34ee44577d4ad33ff5b8bfb99b66856c171e7d7c93"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a/fct-transport.jl",
+      "bytes": 5383,
+      "sha256": "c3bd14f824cfbf44c82a2116dbdab4a1c8e548832684758424cee170ba17844a"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/e3faa22ba4614204ff6dc6904e8b5657f967a05f4ff75043993bcb24d4edac75/analytic.jl",
+      "bytes": 2809,
+      "sha256": "e3faa22ba4614204ff6dc6904e8b5657f967a05f4ff75043993bcb24d4edac75"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/ee482f32e05a44e59e0aef10e798fad6865385fcbfeef1e131dba0aa54ec6ae9/advection-core.jl",
+      "bytes": 837,
+      "sha256": "ee482f32e05a44e59e0aef10e798fad6865385fcbfeef1e131dba0aa54ec6ae9"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/source-archives/f8af089a2b705de46bf8a98af4ed2234a24ac0ee139045323ff635c67546e1fe/test-momentum.jl",
+      "bytes": 2767,
+      "sha256": "f8af089a2b705de46bf8a98af4ed2234a24ac0ee139045323ff635c67546e1fe"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/test-advection.jl",
+      "bytes": 2816,
+      "sha256": "64447cfef9dd69e4652532b1ed897b39a0aa6fca5eabfb4aafa5e80de332a2f2"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/test-covariance.jl",
+      "bytes": 1995,
+      "sha256": "616383e1ed357b7f02b1e6aa7248cd122ddf0a81d37d77d4aec8655c376fa78d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/test-momentum.jl",
+      "bytes": 2767,
+      "sha256": "f8af089a2b705de46bf8a98af4ed2234a24ac0ee139045323ff635c67546e1fe"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/test-source.mjs",
+      "bytes": 1680,
+      "sha256": "c4c8a333cdcc88c420a385f18c666392b928c0bca916eae9b874d371f50ae650"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/verification.json",
+      "bytes": 3726,
+      "sha256": "4b055158aae110064e299d3e48fff64d3439d144da4e9e874c42f1e15e864e0d"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/verify-seal.mjs",
+      "bytes": 1298,
+      "sha256": "fc5678d5166787b28b44f3a2389e78cd94dbe81cd166aa41a754b65fa14105a5"
+    },
+    {
+      "path": "docs/evidence/earth-covariant-momentum-20261014/verify-source.mjs",
+      "bytes": 1105,
+      "sha256": "73386d4476c3abacaddb9155baaa8260c7e09c90385aa58fd3a8beeab8a9d55c"
+    }
+  ]
+}

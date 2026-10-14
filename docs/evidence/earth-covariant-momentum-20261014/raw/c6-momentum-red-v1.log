@@ -1,0 +1,150 @@
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:7
+  Expression: ≈(r.velocity, [10.0 -2.0; 10 / 3 -2 / 3], rtol = 2.0e-13)
+   Evaluated: [10.0 -2.0; 0.0 0.0] ≈ [10.0 -2.0; 3.3333333333333335 -0.6666666666666666] (rtol=2.0e-13)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:7
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:8
+  Expression: ≈(sum(mn .* r.velocity; dims = 1), sum(mo .* u; dims = 1), rtol = 2.0e-13)
+   Evaluated: [15.0 -3.0] ≈ [20.0 -4.0] (rtol=2.0e-13)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:8
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:9
+  Expression: ≈(r.temporalLoss + r.spatialLoss, 52 / 3, rtol = 2.0e-12)
+   Evaluated: 0.0 ≈ 17.333333333333332 (rtol=2.0e-12)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:9
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:29
+  Expression: ≈(r.velocity, expected, rtol = 2.0e-12)
+   Evaluated: [-1.701657762948492 1.968472992079387; 0.4928300056116959 0.2880859854392157; … ; -0.8999553926328979 0.25085208307442225; 1.2154702081122337 -2.286224250863923] ≈ [-1.6052767352667001 1.8620575813874076; 0.4482839053421021 0.3189533316233558; … ; -0.894039224813557 0.2458923979400627; 1.1596528939837232 -2.193558682733197] (rtol=2.0e-12)
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:29
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:33
+  Expression: abs((kn - ko) + temporal + spatial) / ko < 5.0e-12
+   Evaluated: 0.07528485204378571 < 5.0e-12
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:680 [inlined]
+ [2] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:33
+ [3] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:41
+  Expression: transport_momentum(g, mo, mn, F, fill(NaN, n, 2))
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:41
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:42
+  Expression: transport_momentum(g, mo, -mn, F, u)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:42
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:43
+  Expression: transport_momentum(g, mo, mn .+ 0.01, F, u)
+    Expected: StepRejected
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:43
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:44
+  Expression: transport_momentum(g, mo, mn, F, u; maxiter = 1)
+    Expected: StepRejected
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:44
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+C6 signed covariant momentum and energy: Test Failed at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:45
+  Expression: ConnectionGeometry([0.0, 0.0], [0.0, pi], [1], [2])
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] main()
+   @ Main D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:45
+ [2] top-level scope
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
+ [3] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\build\earth-speedyweather\runtime\julia-1.12.7\share\julia\stdlib\v1.12\Test\src\Test.jl:1777 [inlined]
+ [4] macro expansion
+   @ D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48 [inlined]
+Test Summary:                           | Pass  Fail  Total  Time
+C6 signed covariant momentum and energy |    6    10     16  5.3s
+RNG of the outermost testset: Xoshiro(0x552ad6bb7704c88d, 0x468824987a29f7a9, 0xf881f676228c4829, 0x0cef80badbd8e150, 0x5dd999ef952e4185)
+ERROR: LoadError: Some tests did not pass: 6 passed, 10 failed, 0 errored, 0 broken.
+in expression starting at D:\ws\app\mapgen4\mapgen4-sphere\docs\evidence\earth-covariant-momentum-20261014\test-momentum.jl:48
