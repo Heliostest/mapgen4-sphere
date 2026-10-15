@@ -31,6 +31,8 @@ const labels={
   'Heat transport at Earth radius (W/m²/K)':'地球半径下的热输送（W/m²/K）','Reset temperature & water':'重置温度与水循环',
   'Water cycle':'水循环','Enable water cycle':'启用水循环','Mean precipitation':'平均降水','Mean land snowfall':'平均陆地降雪',
   'Experimental shared moisture solver':'实验：共享水汽求解器',
+  'Buoyancy-driven convection (experimental)':'浮力驱动对流（实验）',
+  'Warm surfaces can lift moist air even without sunlight. Dry air and colder surfaces still limit convection. Requires the shared moisture solver and separate thermal reservoirs. Switching preserves the current state. This is a simplified closure, not a validated monsoon model.':'温暖地表在无日照时也可抬升湿空气；干燥空气和较冷地表仍会抑制对流。需启用共享水汽求解器及独立储热层。切换保留当前状态。这是简化参数化，尚未通过季风气候验证。',
   'Wind-driven ocean evaporation (experimental)':'风驱动海面蒸发（实验）',
   'Ocean exchange coefficient':'海面水汽交换系数',
   'Open-ocean evaporation responds to wind, humidity and sea temperature, including darkness and cold liquid seawater. It spends ocean heat and water; ice blocks it. Requires separate thermal reservoirs. Switching preserves the current state. Regional rainfall and temperature are not calibrated.':'未结冰海面的蒸发取决于风速、湿度和海温，夜间及低温时也可蒸发。蒸发消耗海洋热量和水量，冰盖阻挡蒸发。需要独立热储层；切换保留当前状态。区域降水和温度尚未校准。',

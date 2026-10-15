@@ -1,0 +1,566 @@
+{
+  "regions": [
+    {
+      "name": "East Asia",
+      "bounds": {
+        "south": 30,
+        "north": 45,
+        "west": 110,
+        "east": 135
+      },
+      "modelCells": 15,
+      "observed": {
+        "annualMm": 693.9131228302148,
+        "peakMonth": 7,
+        "peakMm": 155.62547772188435,
+        "jjaMm": 382.8640914367516,
+        "jjaPercent": 55.17464345899537,
+        "maySepPercent": 74.14378004795331
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 6.411192244305527,
+          "peakMonth": 12,
+          "peakMm": 3.980892738133892,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -99.0760814238306,
+          "monthlyMaeMm": 57.29182754882578,
+          "annualComponentsMm": {
+            "saturation": 6.411192244305529,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "bulk": {
+          "annualMm": 9.764913553719932,
+          "peakMonth": 12,
+          "peakMm": 5.443593778879652,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -98.59277577661416,
+          "monthlyMaeMm": 57.01235077304124,
+          "annualComponentsMm": {
+            "saturation": 9.764913553719925,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport": {
+          "annualMm": 645.2039429436805,
+          "peakMonth": 7,
+          "peakMm": 171.3767609275627,
+          "jjaMm": 417.9259981573258,
+          "jjaPercent": 64.77424738766767,
+          "maySepPercent": 81.55432125724643,
+          "annualBiasPercent": -7.019492539335115,
+          "monthlyMaeMm": 16.035579936317816,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 309.4693419166958,
+            "front": 155.21305298074085,
+            "convergence": 82.90585308351962,
+            "orographic": 97.61569496272435
+          }
+        },
+        "transport-bulk": {
+          "annualMm": 1104.7382966604243,
+          "peakMonth": 7,
+          "peakMm": 262.26032957329926,
+          "jjaMm": 693.2956369719361,
+          "jjaPercent": 62.756549588960446,
+          "maySepPercent": 81.08300608539012,
+          "annualBiasPercent": 59.20412229049737,
+          "monthlyMaeMm": 35.73017638209362,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 519.2536223337664,
+            "front": 253.93511699978708,
+            "convergence": 223.38451472078572,
+            "orographic": 108.16504260608478
+          }
+        }
+      }
+    },
+    {
+      "name": "South China",
+      "bounds": {
+        "south": 20,
+        "north": 27,
+        "west": 105,
+        "east": 120
+      },
+      "modelCells": 4,
+      "observed": {
+        "annualMm": 1583.502297210763,
+        "peakMonth": 6,
+        "peakMm": 280.7349447013412,
+        "jjaMm": 711.1600632280139,
+        "jjaPercent": 44.910579825534604,
+        "maySepPercent": 66.8731784212478
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 131.95852476756357,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "bulk": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 131.95852476756357,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport": {
+          "annualMm": 1060.3245018366993,
+          "peakMonth": 8,
+          "peakMm": 213.81650259887317,
+          "jjaMm": 587.5517912365704,
+          "jjaPercent": 55.41245064306354,
+          "maySepPercent": 81.53199605251737,
+          "annualBiasPercent": -33.03928237398882,
+          "monthlyMaeMm": 50.28211354016901,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 595.2719701595519,
+            "front": 104.24675063277542,
+            "convergence": 125.13892654301966,
+            "orographic": 235.66685450135262
+          }
+        },
+        "transport-bulk": {
+          "annualMm": 2028.3247666759873,
+          "peakMonth": 5,
+          "peakMm": 292.3679595942771,
+          "jjaMm": 629.500889819046,
+          "jjaPercent": 31.035507733343426,
+          "maySepPercent": 57.65323897403556,
+          "annualBiasPercent": 28.091052993655307,
+          "monthlyMaeMm": 52.51715986324455,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 975.5419715294292,
+            "front": 206.1554893938797,
+            "convergence": 597.2735183144167,
+            "orographic": 249.3537874382621
+          }
+        }
+      }
+    },
+    {
+      "name": "Yangtze",
+      "bounds": {
+        "south": 27,
+        "north": 33,
+        "west": 110,
+        "east": 122
+      },
+      "modelCells": 6,
+      "observed": {
+        "annualMm": 1390.0649450023823,
+        "peakMonth": 6,
+        "peakMm": 233.3592923553139,
+        "jjaMm": 572.110093983274,
+        "jjaPercent": 41.15707658409396,
+        "maySepPercent": 59.66847122297089
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 115.8387454168652,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "bulk": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 115.8387454168652,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport": {
+          "annualMm": 976.1444314654186,
+          "peakMonth": 7,
+          "peakMm": 220.0583274836518,
+          "jjaMm": 596.508244331204,
+          "jjaPercent": 61.108604946473655,
+          "maySepPercent": 82.5063950804108,
+          "annualBiasPercent": -29.777062936887045,
+          "monthlyMaeMm": 46.359648862048,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 427.8080930412785,
+            "front": 122.69624426231128,
+            "convergence": 158.55854920007783,
+            "orographic": 267.08154496175115
+          }
+        },
+        "transport-bulk": {
+          "annualMm": 2055.7990265640656,
+          "peakMonth": 7,
+          "peakMm": 362.68143414611774,
+          "jjaMm": 1034.1343357905062,
+          "jjaPercent": 50.30327976752153,
+          "maySepPercent": 74.8362424598295,
+          "annualBiasPercent": 47.89230056877252,
+          "monthlyMaeMm": 75.66906168981694,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 875.6682588372664,
+            "front": 305.9293481899178,
+            "convergence": 599.803498317257,
+            "orographic": 274.3979212196245
+          }
+        }
+      }
+    },
+    {
+      "name": "North China",
+      "bounds": {
+        "south": 34,
+        "north": 41,
+        "west": 110,
+        "east": 120
+      },
+      "modelCells": 4,
+      "observed": {
+        "annualMm": 579.9903988149629,
+        "peakMonth": 7,
+        "peakMm": 148.70993726681485,
+        "jjaMm": 349.1295307382819,
+        "jjaPercent": 60.19574314533892,
+        "maySepPercent": 79.38047399067197
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 48.33253323458024,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "bulk": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 48.33253323458024,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport": {
+          "annualMm": 534.4539080419119,
+          "peakMonth": 7,
+          "peakMm": 141.1361858738626,
+          "jjaMm": 343.23693278703126,
+          "jjaPercent": 64.22198951534557,
+          "maySepPercent": 81.39066294192922,
+          "annualBiasPercent": -7.851249066552002,
+          "monthlyMaeMm": 21.970930962819622,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 252.67065600089077,
+            "front": 118.04533689455931,
+            "convergence": 72.69622976966899,
+            "orographic": 91.04168537679278
+          }
+        },
+        "transport-bulk": {
+          "annualMm": 881.9910013031171,
+          "peakMonth": 7,
+          "peakMm": 202.05221132030124,
+          "jjaMm": 553.8190681117574,
+          "jjaPercent": 62.791918204778185,
+          "maySepPercent": 80.70820499651767,
+          "annualBiasPercent": 52.06993134803648,
+          "monthlyMaeMm": 27.982916876391045,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 413.45401873924675,
+            "front": 187.2111001335606,
+            "convergence": 181.82127350242354,
+            "orographic": 99.50460892788634
+          }
+        }
+      }
+    },
+    {
+      "name": "Northeast China",
+      "bounds": {
+        "south": 41,
+        "north": 49,
+        "west": 119,
+        "east": 133
+      },
+      "modelCells": 9,
+      "observed": {
+        "annualMm": 549.573818376296,
+        "peakMonth": 7,
+        "peakMm": 138.74193843485253,
+        "jjaMm": 346.1399095431501,
+        "jjaPercent": 62.983333261000865,
+        "maySepPercent": 82.41010911453583
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 19.667329596549145,
+          "peakMonth": 12,
+          "peakMm": 9.24728799446014,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 1.8059227931953015,
+          "annualBiasPercent": -96.42134888181975,
+          "monthlyMaeMm": 44.37750709539845,
+          "annualComponentsMm": {
+            "saturation": 19.667329596549138,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "bulk": {
+          "annualMm": 32.31637018786255,
+          "peakMonth": 12,
+          "peakMm": 14.580336221437454,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 2.7455191394204723,
+          "annualBiasPercent": -94.1197398589073,
+          "monthlyMaeMm": 44.21226175061855,
+          "annualComponentsMm": {
+            "saturation": 32.31637018786254,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport": {
+          "annualMm": 386.1069169533062,
+          "peakMonth": 7,
+          "peakMm": 152.57316499852405,
+          "jjaMm": 306.7263568627347,
+          "jjaPercent": 79.44078269383311,
+          "maySepPercent": 89.27353114731739,
+          "annualBiasPercent": -29.744302941131593,
+          "monthlyMaeMm": 16.115007082464285,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 222.4546542688162,
+            "front": 89.51073182494594,
+            "convergence": 71.1147517145369,
+            "orographic": 3.026779145007196
+          }
+        },
+        "transport-bulk": {
+          "annualMm": 550.8745084419064,
+          "peakMonth": 7,
+          "peakMm": 190.45170508972546,
+          "jjaMm": 408.4872877419988,
+          "jjaPercent": 74.15251232034032,
+          "maySepPercent": 87.27013382703096,
+          "annualBiasPercent": 0.2366724945983112,
+          "monthlyMaeMm": 14.240937865639184,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 280.3836137199577,
+            "front": 154.38106492126275,
+            "convergence": 116.100881764716,
+            "orographic": 0.008948035970056566
+          }
+        }
+      }
+    },
+    {
+      "name": "Korea Japan",
+      "bounds": {
+        "south": 30,
+        "north": 45,
+        "west": 125,
+        "east": 145
+      },
+      "modelCells": 10,
+      "observed": {
+        "annualMm": 1067.584503145411,
+        "peakMonth": 7,
+        "peakMm": 182.98038845952271,
+        "jjaMm": 468.8324691338285,
+        "jjaPercent": 43.91525614623603,
+        "maySepPercent": 63.51959883937804
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 3.986100414277574,
+          "peakMonth": 12,
+          "peakMm": 3.4812684678270784,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -99.62662436532814,
+          "monthlyMaeMm": 88.63320022759444,
+          "annualComponentsMm": {
+            "saturation": 3.9861004142775824,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "bulk": {
+          "annualMm": 10.898630839549517,
+          "peakMonth": 12,
+          "peakMm": 7.4115792180579545,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -98.97913178699775,
+          "monthlyMaeMm": 88.05715602548845,
+          "annualComponentsMm": {
+            "saturation": 10.898630839549526,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport": {
+          "annualMm": 873.9741911123197,
+          "peakMonth": 7,
+          "peakMm": 269.48307121987705,
+          "jjaMm": 644.5337097500658,
+          "jjaPercent": 73.74745344936998,
+          "maySepPercent": 85.50666722362854,
+          "annualBiasPercent": -18.13536178753622,
+          "monthlyMaeMm": 45.4177327721305,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 572.6780237800349,
+            "front": 219.70075030407327,
+            "convergence": 67.82308623971728,
+            "orographic": 13.772330788494152
+          }
+        },
+        "transport-bulk": {
+          "annualMm": 1643.0843480835251,
+          "peakMonth": 7,
+          "peakMm": 469.9105799487788,
+          "jjaMm": 1185.9087007914777,
+          "jjaPercent": 72.1757651805708,
+          "maySepPercent": 86.71573828631738,
+          "annualBiasPercent": 53.90672525149307,
+          "monthlyMaeMm": 79.54639664076039,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 958.2883075093304,
+            "front": 350.48917365751464,
+            "convergence": 326.6964029475508,
+            "orographic": 7.610463969129118
+          }
+        }
+      }
+    }
+  ],
+  "checks": {
+    "control": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 7.182825356721878e-08,
+        "heatJm2": 0.00024241209030151367,
+        "routingM3": 0.004308869928480341
+      },
+      "strictContinuation": true
+    },
+    "bulk": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 2.7241185307502747e-08,
+        "heatJm2": 0.0002377629280090332,
+        "routingM3": 0.0019512013116180782
+      },
+      "strictContinuation": true
+    },
+    "transport": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 1.0814983397722244e-07,
+        "heatJm2": 0.00018420815467834473,
+        "routingM3": 0.0005216579087347628
+      },
+      "strictContinuation": true
+    },
+    "transport-bulk": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 4.761386662721634e-08,
+        "heatJm2": 0.00017762184143066406,
+        "routingM3": 0.0013604113030396547
+      },
+      "strictContinuation": true
+    }
+  }
+}

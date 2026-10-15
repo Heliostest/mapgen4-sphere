@@ -6,6 +6,8 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
     panel.innerHTML=`<summary>Water cycle</summary>
       <label><input id="water-enabled" type="checkbox"> Enable water cycle</label>
       <label><input id="water-unified" type="checkbox"> Experimental shared moisture solver</label>
+      <label><input id="water-buoyant-convection" type="checkbox"> Buoyancy-driven convection (experimental)</label>
+      <p class="planet-note" data-info-for="water-buoyant-convection">Warm surfaces can lift moist air even without sunlight. Dry air and colder surfaces still limit convection. Requires the shared moisture solver and separate thermal reservoirs. Switching preserves the current state. This is a simplified closure, not a validated monsoon model.</p>
       <label><input id="water-bulk-ocean" type="checkbox"> Wind-driven ocean evaporation (experimental)</label>
       <p class="planet-note" data-info-for="water-bulk-ocean">Open-ocean evaporation responds to wind, humidity and sea temperature, including darkness and cold liquid seawater. It spends ocean heat and water; ice blocks it. Requires separate thermal reservoirs. Switching preserves the current state. Regional rainfall and temperature are not calibrated.</p>
       <p class="planet-note" data-info-for="water-unified">Experimental: changes both initialization and Play. Regional rain patterns and monsoons are not calibrated and can change strongly with time step. Initialization can take a minute. Initialize rain and water stores from one spinup and one recorded orbit of the shared moisture solver. Short initialization is not equilibrium; very long or stiff orbits use an explicitly compressed, prescribed-temperature reference. Changing this option restarts the environment.</p>
@@ -41,6 +43,8 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
         runtime.waterEnabled=enabled.checked;if(enabled.checked)runtime.enabled=true;runtime.invalidate();
     }));
     const unified=el<HTMLInputElement>('water-unified');
+    const buoyant=el<HTMLInputElement>('water-buoyant-convection');
+    buoyant.addEventListener('change',()=>change(()=>runtime.configureSurfacePhysics({buoyantConvection:buoyant.checked})));
     const bulk=el<HTMLInputElement>('water-bulk-ocean'),exchange=el<HTMLInputElement>('water-ocean-exchange');
     const validExchange=()=>Number.isFinite(exchange.valueAsNumber)&&exchange.valueAsNumber>=0&&exchange.valueAsNumber<=.005&&exchange.checkValidity();
     bulk.addEventListener('change',()=>{
@@ -78,6 +82,8 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
         refresh() {
             enabled.checked=runtime.waterEnabled;
             unified.checked=runtime.waterConfig.moistureScheme==='transport';
+            buoyant.checked=unified.checked&&!!runtime.waterConfig.buoyantConvection;
+            buoyant.disabled=!unified.checked||!runtime.water||!runtime.environment||!runtime.config.separateReservoirs;
             bulk.checked=runtime.waterConfig.oceanEvaporationCoefficient!==undefined;
             bulk.disabled=!runtime.water||!runtime.environment||!runtime.config.separateReservoirs;
             exchange.disabled=!bulk.checked||bulk.disabled;

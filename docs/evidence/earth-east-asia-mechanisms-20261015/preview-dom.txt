@@ -1,0 +1,123 @@
+- banner:
+  - strong: 浮力对流实验
+  - text: 共享水汽 + 浮力触发 · 同正式第零天库存 · 雨季偏差仍未通过
+  - text: 视角
+  - combobox "视角":
+    - option "非洲与欧洲"
+    - option "南北美洲"
+    - option "亚洲与澳大利亚" [selected]
+    - option "青藏高原与喜马拉雅"
+    - option "中亚与闭流湖盆"
+    - option "澳洲内流区"
+    - option "安第斯山与亚马孙"
+    - option "太平洋"
+    - option "南极"
+    - option "北极"
+    - option "格陵兰"
+  - text: 起伏
+  - combobox "起伏":
+    - option "真实比例 1×"
+    - option "适度增强 12×" [selected]
+    - option "强调地形 40×"
+    - option "自定义" [disabled]
+  - link "下载场景":
+    - /url: preview-simulation.json
+  - link "NOAA 高程来源":
+    - /url: https://www.ncei.noaa.gov/products/etopo-global-relief-model
+  - link "冰厚来源":
+    - /url: https://doi.org/10.5880/GFZ.1.2.2024.002
+  - link "内流分类来源":
+    - /url: ../../scenes/earth-land-sea/drainage-source.json
+  - status: 拖动旋转 · 滚轮缩放
+- iframe [active] [id="world"]:
+  - heading "地球控制台" [level=3]
+  - generic "显示与播放"
+  - generic: 显示图层
+  - combobox "显示图层":
+    - option "地球地表" [selected]
+    - option "昼夜"
+    - option "太阳辐射"
+    - option "气温（日均）"
+    - option "降水"
+    - option "土壤湿度"
+    - option "水流诊断"
+    - option "侵蚀与沉积"
+    - option "地表风场"
+  - button "显示图层说明": i
+  - generic: 观察方式
+  - combobox "观察方式":
+    - option "跟随地表" [selected]
+    - option "太空视角"
+  - button "实时演化"
+  - button "立即生成气候"
+  - button "立即生成气候说明": i
+  - button "环境对比"
+  - button "播放"
+  - generic: 时间速度
+  - combobox "时间速度":
+    - option "每秒推进 1 分钟"
+    - option "每秒推进 1 小时" [selected]
+    - option "每秒推进 1 天"
+    - option "每秒推进 10 天"
+  - generic: 已运行时间（天）
+  - spinbutton "已运行时间（天）"
+  - button "查看地表信息"
+  - paragraph: 开启后点击地球，查看位置、海拔、气候和水流。
+  - generic "地表图例"
+  - generic "行星与气候"
+  - generic "时间与季节"
+  - generic "大小与重力"
+  - generic "自转与公转"
+  - generic "物理地形尺度"
+  - generic "气温与四季"
+  - generic "水循环 水循环说明" [active]:
+    - text: 水循环
+    - button "水循环说明": i
+  - checkbox "启用水循环" [checked]
+  - text: 启用水循环
+  - button "启用水循环说明": i
+  - checkbox "实验：共享水汽求解器" [checked]
+  - text: 实验：共享水汽求解器
+  - button "实验：共享水汽求解器说明": i
+  - checkbox "浮力驱动对流（实验）" [checked]
+  - text: 浮力驱动对流（实验）
+  - button "浮力驱动对流（实验）说明": i
+  - checkbox "风驱动海面蒸发（实验）"
+  - text: 风驱动海面蒸发（实验）
+  - button "风驱动海面蒸发（实验）说明": i
+  - generic: 平均降水
+  - status "平均降水": 1.953 毫米/天
+  - generic: 平均陆地降雪
+  - status "平均陆地降雪": 暂无雨雪相态数据
+  - generic: 平均蒸发
+  - status "平均蒸发": 1.547 毫米/天
+  - generic: 大气 / 土壤 / 地表蓄水
+  - status "大气 / 土壤 / 地表蓄水": 13.86 / 7.22 / 0.55 mm
+  - generic: 海洋储水量
+  - status "海洋储水量": 688718.88 mm
+  - generic: 水量守恒残差
+  - status "水量守恒残差": 1.16e-10 mm
+  - generic: 最大网格流出量
+  - status "最大网格流出量": 2.47e+4 m³/s
+  - generic: 本轮水循环演化时间
+  - status "本轮水循环演化时间": 0.00 天 · 采样于第 0.000
+  - paragraph: 1152 等面积网格 · 30.00 分钟共用步长 · 初始通量估算，尚未推进时间
+  - generic "水循环参数"
+  - button "重置温度与水循环"
+  - button "重置温度与水循环说明": i
+  - generic "冰雪、海流与植被 冰雪、海流与植被说明":
+    - text: 冰雪、海流与植被
+    - button "冰雪、海流与植被说明": i
+  - option "经典" [selected]
+  - option "细分：均衡（实验）"
+  - option "细分：精细（实验）"
+  - generic "辐射参考"
+  - paragraph: 绘制地形时暂停模拟。隐藏页面后需点击播放继续。重置地形会清除绘制内容及已应用的侵蚀。
+  - button "恢复地球物理参数"
+  - generic "地形编辑"
+  - generic "画面设置"
+  - generic "保存与恢复 保存与恢复说明":
+    - text: 保存与恢复
+    - button "保存与恢复说明": i
+  - text: 选择本地文件…
+  - generic "可编辑的球面地形"

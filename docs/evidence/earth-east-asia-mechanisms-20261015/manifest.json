@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-15",
+  "baselineCommit": "104e7fef5594636cd437e5fa64cc0c90933a7cc6",
+  "formalSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6",
+  "observationSha256": "01ed704dd31cec9376d27fafd902cfeb5c77862f7d8b3cf2e9e6b5d4226dbbc4",
+  "initialInventoriesSha": "dd26c15fb145f1a69bae75f9c0c8f1e91178dfd3bfcb8e001ffa3ddcf8d6d098",
+  "initialStockShaByProfile": {
+    "transport-only": "17d1223047ad7c1fa12aa8764ebfe25fd795f4b20ecae7ebc36054c0ee84baac",
+    "radiation-only": "1c502ca0fe73508bd2f91641de668e2c9061c39eacd773fc0aa634c7e9cce3c0",
+    "shared-core": "17d1223047ad7c1fa12aa8764ebfe25fd795f4b20ecae7ebc36054c0ee84baac",
+    "control": "1c502ca0fe73508bd2f91641de668e2c9061c39eacd773fc0aa634c7e9cce3c0",
+    "buoyancy-old": "17d1223047ad7c1fa12aa8764ebfe25fd795f4b20ecae7ebc36054c0ee84baac",
+    "buoyancy": "17d1223047ad7c1fa12aa8764ebfe25fd795f4b20ecae7ebc36054c0ee84baac",
+    "balanced": "17d1223047ad7c1fa12aa8764ebfe25fd795f4b20ecae7ebc36054c0ee84baac",
+    "boundary": "17d1223047ad7c1fa12aa8764ebfe25fd795f4b20ecae7ebc36054c0ee84baac"
+  },
+  "initialStateNote": "Full restored state differs only in the optional water.landPrecipitationKgM2S diagnostic serialized by transport mode. Physical inventories and all other state fields are identical; verify-start.ts checks this independently of the annual integration.",
+  "decompressedBundleSha256": {
+    "baseline": "7c43cb0e1dc70badaa902ecf4bc758d00f68a0004188d3aac08c6536cab910e1",
+    "buoyancy": "876e62ab750adbfde39cf6e7ba84df741283c403a7c39ed2bc833d10714beab2"
+  },
+  "bundleUse": {
+    "transport-only": "baseline",
+    "radiation-only": "baseline",
+    "shared-core": "baseline",
+    "control": "baseline",
+    "buoyancy-old": "baseline",
+    "buoyancy": "buoyancy",
+    "balanced": "baseline",
+    "boundary": "baseline"
+  },
+  "provenanceNote": "Archived programs are the exact executed integration bundles. The buoyancy bundle predates the UI migration addition; that UI-only entry point is not called by this audit. Source hashes below identify the final implementation, normalized to LF.",
+  "sourceSha256LF": {
+    "water.ts": "3319588a3569a735adc889aee5d022235964bc4be24fcabd32c6965976a98dad",
+    "water-panel.ts": "7307fba0a0ec3827e96115535be27e728d93862532c228ac95a7831d167fdf18",
+    "thermal-runtime.ts": "0c8ea1bf4794666dd467200d0d44006fc73ecc45ead9fa7d2417726c6363c6ee",
+    "scenes/earth-land-sea/sidebar-zh.js": "7e64c74bee44174f97fe97ca16f0a5d557819c638957969910c07fb2b2e3910b",
+    "tests/moisture.test.ts": "aa8cec44631327cd130d1a695d5bb1e8209dce4f31986445a6ccf3d0bcf45a1d",
+    "tests/simulation.test.ts": "6bc49e52e522b39d32794e46de01cad575f88fe89c0128955cfed2a828bff9a9",
+    "tests/planet-controls.ts": "09ce87fd526966f852c66a8db493c2add72511104c3af9169af6589e5c3ce9dd"
+  },
+  "checks": {
+    "completedFullTerrainOrbits": 8,
+    "regionsPerOrbit": 13,
+    "sameInitialInventories": true,
+    "strictContinuationAll": true,
+    "monthlyComponentSums": true,
+    "browserChecks": 43,
+    "previewConsoleErrorsAndWarnings": 0
+  },
+  "evidenceSha256": {
+    "audit.ts": "5f498dcc31ec3604c365a5eacdb063ad99c41269a1aaa62d30f03e149e6ad15f",
+    "balanced.json": "e45315e71cd9944c8c4fb6cab127c08598db4e13c36da594b09bda403744d213",
+    "boundary.json": "60029f8d5b14fbb59e2b289354eac0589becadb0972826518324ae91b5e24025",
+    "browser-controls.txt": "3c892e9c8def503b8a613be6484446c4ced5120f794c6d58b16ae1c078c7d941",
+    "bundles/baseline.mjs.gz": "b8491810a2ed1ff2bf5b27af671f9a354a5789f9202b7bca825012882b6ce618",
+    "bundles/buoyancy.mjs.gz": "8f3d69d0e6779e3552e3e6ba75830560157f7dfa07f5eb5fa18fc816db373f0d",
+    "buoyancy-old.json": "c4fd1182430ba3d88abdb9caea8469a57c0b63b5c0137cc74aa447cc7e21b2a4",
+    "buoyancy.json": "99e0720c54deea8d5d93a2d5a2e966e189cf22e641dd56219edd47c3c1b01c24",
+    "causal-comparison.png": "425f1e32330508d2221de435c63aad4022ac304912c70a3b3e1d8074a1d968b3",
+    "causal-comparison.svg": "d8a1e1a7ee873acfc7e65f42fc68d1a0a4b1aa7904dccdc8c153b55f02e7c6fb",
+    "control.json": "5a95f67f837a378028bee25cf776a924e15955607e0e47219b983a4c1a2442b1",
+    "metrics.json": "86d3271718458b05b9740a9dec3637eaac5b1a3e418504628b535ee5c041caa8",
+    "METRICS.md": "7fb4384c432288a930c9e9f9040958abb63a1dd2a2ed5476c2b1a61d28db3bae",
+    "PLAN.md": "1c0f9335fe490e39e4d8116c3998d5d1743fa6bd8daf5897f3499020d14d8a8f",
+    "plot.py": "f8f1b8198ed53e97090a0c4b4bbed94e45077ba7bf9c4a548d6dbfba9ad5c878",
+    "preview-console.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "preview-dom.txt": "fba921d2288d1cbfe59fe7b754f06e6daed8c1371b8fd4d400e6f519d3054ceb",
+    "preview.jpg": "c69ec02aaece9c72c5ee19a6cafb2dcea07983dbae7c9facad789c6e6b27184a",
+    "preview.mjs": "520f238a1c0f4061e6db3c14f49ac4d1808f24cdf7128ae7666922e446a92069",
+    "profiles.json": "d9001e584e8440053aefa2315c162e95f619cd6c176fd2b74316ff87fe549447",
+    "radiation-only.json": "996d7972db42bd5ffffbb04b8827ea505e56d1004204ac36dd1139a84e716dce",
+    "regional-monthly.png": "afb4cb1f845dc9ac603c37ce77be46331c21af3224dd6e4ae1a6c9d9f4f121c5",
+    "regional-monthly.svg": "40ce216021220932c350e55fb24f54cf58b5182b1900b709812448c29947562d",
+    "REPORT.md": "b0a116fcab04f46001cfd3527a1cdbe503d1db484cddb134e10b548d81566c3b",
+    "reproduce.mjs": "8e89a2a050d0daf3b2c2b8a98eaec79598bfa0908355634aad5f90d067e7f9eb",
+    "shared-core.json": "f6844d92b9ac8e8dca6a4c38ae4b4f61ade28db6ba41f94fb4de13d268e1e05b",
+    "summarize.py": "11b93f6a68084111efbfb8e14fea849322d21767af3efe32b9d58555caea6e1f",
+    "transport-only.json": "93715225af4ffa2ad2918f5398f439483abcb7273dbd06e6b92ef4795da54500",
+    "verify-start.ts": "2154db6d8064b07973560e9b82c74e906b063e8e127240fd41161f3083f8c4b1",
+    "verify.py": "b01a413bd5311524fd71086a8b975e336d7e6e69d347cb2135371e4df6d34825"
+  }
+}

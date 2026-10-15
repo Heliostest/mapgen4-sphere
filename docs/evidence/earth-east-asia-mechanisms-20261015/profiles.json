@@ -1,0 +1,61 @@
+{
+  "transport-only": {
+    "water": {
+      "moistureScheme": "transport"
+    }
+  },
+  "radiation-only": {
+    "thermal": {
+      "airRadiationFraction": 0.5
+    }
+  },
+  "shared-core": {
+    "water": {
+      "moistureScheme": "transport"
+    },
+    "thermal": {
+      "airRadiationFraction": 0.5
+    }
+  },
+  "control": {},
+  "buoyancy-old": {
+    "water": {
+      "moistureScheme": "transport",
+      "buoyantConvection": true
+    },
+    "thermal": {
+      "airRadiationFraction": 0.5
+    }
+  },
+  "buoyancy": {
+    "water": {
+      "moistureScheme": "transport",
+      "buoyantConvection": true
+    },
+    "thermal": {
+      "airRadiationFraction": 0.5
+    }
+  },
+  "balanced": {
+    "water": {
+      "moistureScheme": "transport"
+    },
+    "thermal": {
+      "airRadiationFraction": 0.5
+    },
+    "environment": {
+      "circulationScheme": "balanced-pressure"
+    }
+  },
+  "boundary": {
+    "water": {
+      "moistureScheme": "transport"
+    },
+    "thermal": {
+      "airRadiationFraction": 0.5
+    },
+    "environment": {
+      "circulationScheme": "boundary-pressure"
+    }
+  }
+}

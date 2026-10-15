@@ -471,7 +471,10 @@ export class WaterModel {
             const vapor=this.atmosphereKgM2[i],saturated=Math.max(0,vapor-moistureCapacity(parcelT))*rainFraction;
             const cloud=(surface:number,depth:number)=>{
                 const buoyant=Math.max(0,Math.min(1,(surface-parcelT)/8)),thermalInstability=Math.max(0,Math.min(1,(surface-290)/12)),unstable=config.buoyantConvection?1:thermalInstability;
-                const convection=depth*unstable*heating*moistParcel*buoyant,convergence=(6+10*thermalInstability)*convergenceDay;
+                // In the buoyancy experiment, stored surface warmth is the
+                // trigger. Requiring sunlight as well suppresses warm-water
+                // convection in darkness and counts solar forcing twice.
+                const convection=depth*unstable*(config.buoyantConvection?1:heating)*moistParcel*buoyant,convergence=(6+10*thermalInstability)*convergenceDay;
                 const liftK=Math.max(0,Math.min(24,convection+convergence-subsidence)),rain=Math.max(0,vapor-moistureCapacity(parcelT-liftK))*rainFraction,extra=Math.max(0,rain-saturated),requested=convection+convergence;
                 return {rain,convection:requested>0?extra*convection/requested:0,convergence:requested>0?extra*convergence/requested:0};
             };

@@ -1,0 +1,2098 @@
+{
+  "regions": [
+    {
+      "name": "East Asia",
+      "bounds": {
+        "south": 30,
+        "north": 45,
+        "west": 110,
+        "east": 135
+      },
+      "modelCells": 15,
+      "observed": {
+        "annualMm": 693.9131228302148,
+        "peakMonth": 7,
+        "peakMm": 155.62547772188435,
+        "jjaMm": 382.8640914367516,
+        "jjaPercent": 55.17464345899537,
+        "maySepPercent": 74.14378004795331
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 6.411192244305527,
+          "peakMonth": 12,
+          "peakMm": 3.980892738133892,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -99.0760814238306,
+          "monthlyMaeMm": 57.29182754882578,
+          "annualComponentsMm": {
+            "saturation": 6.411192244305529,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 173.03121800452965,
+          "peakMonth": 7,
+          "peakMm": 38.164913368621164,
+          "jjaMm": 90.12005478760432,
+          "jjaPercent": 52.083118772963346,
+          "maySepPercent": 75.03819767420494,
+          "annualBiasPercent": -75.06442632201573,
+          "monthlyMaeMm": 43.406825402140434,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 5.569157703231489,
+            "front": 60.46672103270884,
+            "convergence": 5.237758909283272,
+            "orographic": 101.75758035930613
+          }
+        },
+        "radiation-only": {
+          "annualMm": 10.373116811978896,
+          "peakMonth": 12,
+          "peakMm": 4.943277711304649,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -98.50512744741434,
+          "monthlyMaeMm": 56.961667168186324,
+          "annualComponentsMm": {
+            "saturation": 10.373116811978901,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 659.8694531734236,
+          "peakMonth": 7,
+          "peakMm": 177.12911408388018,
+          "jjaMm": 438.3705390725015,
+          "jjaPercent": 66.43291896060707,
+          "maySepPercent": 83.41880112924501,
+          "annualBiasPercent": -4.906042058685911,
+          "monthlyMaeMm": 18.5013218570271,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 339.0127551162118,
+            "front": 129.64345042472303,
+            "convergence": 88.16661388810057,
+            "orographic": 103.04663374438802
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 721.3678653178737,
+          "peakMonth": 7,
+          "peakMm": 169.57627598108988,
+          "jjaMm": 453.068297601897,
+          "jjaPercent": 62.80683121395359,
+          "maySepPercent": 84.04193546426336,
+          "annualBiasPercent": 3.956510056429141,
+          "monthlyMaeMm": 20.4058173886239,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 463.4674498879995,
+            "front": 82.56407993746534,
+            "convergence": 89.73223513633074,
+            "orographic": 85.60410035607813
+          }
+        },
+        "buoyancy": {
+          "annualMm": 721.8857034233232,
+          "peakMonth": 7,
+          "peakMm": 169.55246801414998,
+          "jjaMm": 453.0433934249328,
+          "jjaPercent": 62.758327430022845,
+          "maySepPercent": 84.07997269775657,
+          "annualBiasPercent": 4.031135840034072,
+          "monthlyMaeMm": 20.346007465336537,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 464.503459391633,
+            "front": 82.01455908732557,
+            "convergence": 89.83178757447753,
+            "orographic": 85.53589736988687
+          }
+        },
+        "balanced": {
+          "annualMm": 228.5839376350486,
+          "peakMonth": 4,
+          "peakMm": 59.544191872614036,
+          "jjaMm": 62.532290399009206,
+          "jjaPercent": 27.35637991276828,
+          "maySepPercent": 51.262806444552254,
+          "annualBiasPercent": -67.05870949626383,
+          "monthlyMaeMm": 42.287746896916765,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 10.157277659981997,
+            "front": 121.78619484427993,
+            "convergence": 1.1698204977681392,
+            "orographic": 95.47064463301861
+          }
+        },
+        "boundary": {
+          "annualMm": 224.05590343361885,
+          "peakMonth": 4,
+          "peakMm": 52.17585168511088,
+          "jjaMm": 70.31809387340488,
+          "jjaPercent": 31.384173679779007,
+          "maySepPercent": 53.76961011555944,
+          "annualBiasPercent": -67.71124567874179,
+          "monthlyMaeMm": 41.42648445654658,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 37.078000756374124,
+            "front": 129.0648886963936,
+            "convergence": 2.1529431554637504,
+            "orographic": 55.760070825387324
+          }
+        }
+      }
+    },
+    {
+      "name": "South China",
+      "bounds": {
+        "south": 20,
+        "north": 27,
+        "west": 105,
+        "east": 120
+      },
+      "modelCells": 4,
+      "observed": {
+        "annualMm": 1583.502297210763,
+        "peakMonth": 6,
+        "peakMm": 280.7349447013412,
+        "jjaMm": 711.1600632280139,
+        "jjaPercent": 44.910579825534604,
+        "maySepPercent": 66.8731784212478
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 131.95852476756357,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 144.74360585144672,
+          "peakMonth": 6,
+          "peakMm": 40.005321882798796,
+          "jjaMm": 88.48840889982756,
+          "jjaPercent": 61.13458924786287,
+          "maySepPercent": 84.24260813396269,
+          "annualBiasPercent": -90.85927402149001,
+          "monthlyMaeMm": 119.89655761327634,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0.10955453777754398,
+            "front": 3.928677977456703,
+            "convergence": 0.14228499978686257,
+            "orographic": 140.5630883364257
+          }
+        },
+        "radiation-only": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 131.95852476756357,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 1049.617960335507,
+          "peakMonth": 8,
+          "peakMm": 214.07230313375024,
+          "jjaMm": 587.7027490744033,
+          "jjaPercent": 55.99206294893678,
+          "maySepPercent": 82.10353136286136,
+          "annualBiasPercent": -33.71541284251111,
+          "monthlyMaeMm": 50.17664002960677,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 595.2712460713605,
+            "front": 92.83242698781235,
+            "convergence": 122.4906895908882,
+            "orographic": 239.0235976854457
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 1187.3316670775791,
+          "peakMonth": 8,
+          "peakMm": 226.33122209022613,
+          "jjaMm": 610.4972984731617,
+          "jjaPercent": 51.417587469539995,
+          "maySepPercent": 77.01055724732146,
+          "annualBiasPercent": -25.01863311666884,
+          "monthlyMaeMm": 42.48530930230508,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 787.5415416508163,
+            "front": 85.1310646965915,
+            "convergence": 131.3313243928588,
+            "orographic": 183.32773633731273
+          }
+        },
+        "buoyancy": {
+          "annualMm": 1186.6031900304854,
+          "peakMonth": 8,
+          "peakMm": 226.16825461088982,
+          "jjaMm": 610.1739875738067,
+          "jjaPercent": 51.421906893586765,
+          "maySepPercent": 77.01802206628315,
+          "annualBiasPercent": -25.064637284037396,
+          "monthlyMaeMm": 42.49780523091525,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 787.5511869245845,
+            "front": 84.51763056913994,
+            "convergence": 131.26269711071717,
+            "orographic": 183.27167542604352
+          }
+        },
+        "balanced": {
+          "annualMm": 2142.7097264134723,
+          "peakMonth": 7,
+          "peakMm": 436.8019512753048,
+          "jjaMm": 1198.9197330386878,
+          "jjaPercent": 55.953436821583544,
+          "maySepPercent": 81.31417857355031,
+          "annualBiasPercent": 35.314595386929156,
+          "monthlyMaeMm": 83.06745060187544,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1110.3487096365873,
+            "front": 137.4171954066965,
+            "convergence": 724.7020007624383,
+            "orographic": 170.24182060774964
+          }
+        },
+        "boundary": {
+          "annualMm": 1754.5641684767686,
+          "peakMonth": 6,
+          "peakMm": 353.81564122184307,
+          "jjaMm": 946.9641123571465,
+          "jjaPercent": 53.9714721963835,
+          "maySepPercent": 78.50024796050928,
+          "annualBiasPercent": 10.802754853423346,
+          "monthlyMaeMm": 49.1936133614662,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 973.2086615078259,
+            "front": 169.94797220295084,
+            "convergence": 470.64651338144853,
+            "orographic": 140.7610213845425
+          }
+        }
+      }
+    },
+    {
+      "name": "Yangtze",
+      "bounds": {
+        "south": 27,
+        "north": 33,
+        "west": 110,
+        "east": 122
+      },
+      "modelCells": 6,
+      "observed": {
+        "annualMm": 1390.0649450023823,
+        "peakMonth": 6,
+        "peakMm": 233.3592923553139,
+        "jjaMm": 572.110093983274,
+        "jjaPercent": 41.15707658409396,
+        "maySepPercent": 59.66847122297089
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 115.8387454168652,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 281.7150427038033,
+          "peakMonth": 6,
+          "peakMm": 64.56172047196743,
+          "jjaMm": 152.81573442385672,
+          "jjaPercent": 54.24479039428789,
+          "maySepPercent": 78.22224914235255,
+          "annualBiasPercent": -79.73367764458513,
+          "monthlyMaeMm": 92.36249185821491,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0.1467365193356247,
+            "front": 54.95180819017435,
+            "convergence": 0.18885365234280446,
+            "orographic": 226.42764434195072
+          }
+        },
+        "radiation-only": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 115.8387454168652,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 990.015664407437,
+          "peakMonth": 7,
+          "peakMm": 224.54430154066398,
+          "jjaMm": 605.5130973736865,
+          "jjaPercent": 61.161971385181026,
+          "maySepPercent": 82.89913672334389,
+          "annualBiasPercent": -28.779179133551892,
+          "monthlyMaeMm": 45.532034189333416,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 448.3538585963362,
+            "front": 105.67818840066097,
+            "convergence": 160.01623430781012,
+            "orographic": 275.9673831026297
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 1074.2493651153327,
+          "peakMonth": 7,
+          "peakMm": 219.47678565032024,
+          "jjaMm": 600.4688948176658,
+          "jjaPercent": 55.89660225242012,
+          "maySepPercent": 78.21452191786831,
+          "annualBiasPercent": -22.719483792644546,
+          "monthlyMaeMm": 38.14783882562117,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 622.6818191037632,
+            "front": 61.64476639640079,
+            "convergence": 163.01033222635962,
+            "orographic": 226.9124473888096
+          }
+        },
+        "buoyancy": {
+          "annualMm": 1074.3428491243128,
+          "peakMonth": 7,
+          "peakMm": 219.41644573930745,
+          "jjaMm": 600.3165287495947,
+          "jjaPercent": 55.8775561487571,
+          "maySepPercent": 78.22423291742818,
+          "annualBiasPercent": -22.712758638592124,
+          "monthlyMaeMm": 38.121140403362254,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 623.4995206610187,
+            "front": 61.03653295243778,
+            "convergence": 163.03535851245033,
+            "orographic": 226.77143699840587
+          }
+        },
+        "balanced": {
+          "annualMm": 927.9834421422131,
+          "peakMonth": 6,
+          "peakMm": 206.5561235608783,
+          "jjaMm": 520.2240826409197,
+          "jjaPercent": 56.0596298399466,
+          "maySepPercent": 78.45474392064743,
+          "annualBiasPercent": -33.2417204333843,
+          "monthlyMaeMm": 41.852534793788884,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 326.28501438932454,
+            "front": 140.30192883702998,
+            "convergence": 227.90920528404203,
+            "orographic": 233.48729363181647
+          }
+        },
+        "boundary": {
+          "annualMm": 753.0834240424545,
+          "peakMonth": 6,
+          "peakMm": 196.70277515659257,
+          "jjaMm": 413.6578388504924,
+          "jjaPercent": 54.928554479400255,
+          "maySepPercent": 76.73437231164094,
+          "annualBiasPercent": -45.82386767251627,
+          "monthlyMaeMm": 53.08179341332731,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 324.02461399313046,
+            "front": 147.56431201220408,
+            "convergence": 130.5915196251208,
+            "orographic": 150.90297841199913
+          }
+        }
+      }
+    },
+    {
+      "name": "North China",
+      "bounds": {
+        "south": 34,
+        "north": 41,
+        "west": 110,
+        "east": 120
+      },
+      "modelCells": 4,
+      "observed": {
+        "annualMm": 579.9903988149629,
+        "peakMonth": 7,
+        "peakMm": 148.70993726681485,
+        "jjaMm": 349.1295307382819,
+        "jjaPercent": 60.19574314533892,
+        "maySepPercent": 79.38047399067197
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 48.33253323458024,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 154.8035804116869,
+          "peakMonth": 6,
+          "peakMm": 32.738838758731646,
+          "jjaMm": 79.23997790681415,
+          "jjaPercent": 51.187432290701665,
+          "maySepPercent": 74.59376170072834,
+          "annualBiasPercent": -73.30928568335237,
+          "monthlyMaeMm": 35.432234866939666,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1.0288995311288367,
+            "front": 49.054520887640976,
+            "convergence": 1.1243488721488812,
+            "orographic": 103.59581112076822
+          }
+        },
+        "radiation-only": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 48.33253323458024,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 547.1510466245428,
+          "peakMonth": 7,
+          "peakMm": 142.7676786471785,
+          "jjaMm": 357.85784505907634,
+          "jjaPercent": 65.40384913210991,
+          "maySepPercent": 82.95542828683227,
+          "annualBiasPercent": -5.662051002485125,
+          "monthlyMaeMm": 23.30000269189816,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 274.19452392590057,
+            "front": 97.03921312132887,
+            "convergence": 78.41721307519072,
+            "orographic": 97.5000965021223
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 567.6274313859207,
+          "peakMonth": 6,
+          "peakMm": 136.72561239308155,
+          "jjaMm": 349.8199573594227,
+          "jjaPercent": 61.62844464815616,
+          "maySepPercent": 83.78663408018205,
+          "annualBiasPercent": -2.1315813941579442,
+          "monthlyMaeMm": 25.947348625583146,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 362.76372133603576,
+            "front": 48.407592361916365,
+            "convergence": 77.64194283599373,
+            "orographic": 78.81417485197466
+          }
+        },
+        "buoyancy": {
+          "annualMm": 567.5913026355712,
+          "peakMonth": 6,
+          "peakMm": 136.71275178467374,
+          "jjaMm": 349.7768468795423,
+          "jjaPercent": 61.624772130118544,
+          "maySepPercent": 83.82852670606037,
+          "annualBiasPercent": -2.1378105921624813,
+          "monthlyMaeMm": 25.943325968672895,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 363.0462790055563,
+            "front": 48.1103449397977,
+            "convergence": 77.68329711633005,
+            "orographic": 78.7513815738871
+          }
+        },
+        "balanced": {
+          "annualMm": 181.70276372582472,
+          "peakMonth": 4,
+          "peakMm": 51.62907543671061,
+          "jjaMm": 49.49657858284894,
+          "jjaPercent": 27.24041041969808,
+          "maySepPercent": 49.942680965373754,
+          "annualBiasPercent": -68.67141868260578,
+          "monthlyMaeMm": 38.52377746510847,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 3.668574884255956,
+            "front": 91.05038823484117,
+            "convergence": 0.6355515721574246,
+            "orographic": 86.34824903457019
+          }
+        },
+        "boundary": {
+          "annualMm": 167.63783910668678,
+          "peakMonth": 4,
+          "peakMm": 45.50519771849084,
+          "jjaMm": 47.46388642994186,
+          "jjaPercent": 28.313348992607366,
+          "maySepPercent": 51.12249496903798,
+          "annualBiasPercent": -71.09644582924051,
+          "monthlyMaeMm": 38.62381337941243,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 22.0749339406558,
+            "front": 93.96193348765574,
+            "convergence": 1.7976119211829242,
+            "orographic": 49.80335975719213
+          }
+        }
+      }
+    },
+    {
+      "name": "Northeast China",
+      "bounds": {
+        "south": 41,
+        "north": 49,
+        "west": 119,
+        "east": 133
+      },
+      "modelCells": 9,
+      "observed": {
+        "annualMm": 549.573818376296,
+        "peakMonth": 7,
+        "peakMm": 138.74193843485253,
+        "jjaMm": 346.1399095431501,
+        "jjaPercent": 62.983333261000865,
+        "maySepPercent": 82.41010911453583
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 19.667329596549145,
+          "peakMonth": 12,
+          "peakMm": 9.24728799446014,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 1.8059227931953015,
+          "annualBiasPercent": -96.42134888181975,
+          "monthlyMaeMm": 44.37750709539845,
+          "annualComponentsMm": {
+            "saturation": 19.667329596549138,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 30.869453952564538,
+          "peakMonth": 6,
+          "peakMm": 9.65478664709871,
+          "jjaMm": 15.051886850391522,
+          "jjaPercent": 48.759809206605865,
+          "maySepPercent": 76.56014303657379,
+          "annualBiasPercent": -94.38301954707966,
+          "monthlyMaeMm": 43.22536370197762,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1.5496373020419245,
+            "front": 27.6654770633211,
+            "convergence": 1.4513658846763045,
+            "orographic": 0.2029737025252159
+          }
+        },
+        "radiation-only": {
+          "annualMm": 29.504642380224745,
+          "peakMonth": 12,
+          "peakMm": 12.989714565248073,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 1.5774663110901588,
+          "annualBiasPercent": -94.63135953830633,
+          "monthlyMaeMm": 44.380431728112505,
+          "annualComponentsMm": {
+            "saturation": 29.50464238022478,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 379.23505047478596,
+          "peakMonth": 7,
+          "peakMm": 149.78418062983462,
+          "jjaMm": 312.84295795588616,
+          "jjaPercent": 82.49315498771018,
+          "maySepPercent": 92.14434822036806,
+          "annualBiasPercent": -30.994702113862015,
+          "monthlyMaeMm": 19.675521926938057,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 232.8503393992046,
+            "front": 66.19632407932527,
+            "convergence": 76.39339403096,
+            "orographic": 3.794992965296179
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 478.0509586909485,
+          "peakMonth": 7,
+          "peakMm": 154.2504410682604,
+          "jjaMm": 374.9529783157543,
+          "jjaPercent": 78.4336840035823,
+          "maySepPercent": 94.0308253472034,
+          "annualBiasPercent": -13.014240725051318,
+          "monthlyMaeMm": 18.268243271492725,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 363.082960624777,
+            "front": 43.270402439094084,
+            "convergence": 71.6975956270773,
+            "orographic": 0
+          }
+        },
+        "buoyancy": {
+          "annualMm": 478.41414566846294,
+          "peakMonth": 7,
+          "peakMm": 154.21644505055644,
+          "jjaMm": 374.93893512725606,
+          "jjaPercent": 78.3712058938754,
+          "maySepPercent": 94.05125677565216,
+          "annualBiasPercent": -12.94815552132247,
+          "monthlyMaeMm": 18.228694436532482,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 363.74853964783836,
+            "front": 42.96834719598374,
+            "convergence": 71.69725882464084,
+            "orographic": 0
+          }
+        },
+        "balanced": {
+          "annualMm": 112.48693064377521,
+          "peakMonth": 6,
+          "peakMm": 33.9137704828335,
+          "jjaMm": 49.68549497485225,
+          "jjaPercent": 44.17001574360384,
+          "maySepPercent": 68.416560437916,
+          "annualBiasPercent": -79.53197061386305,
+          "monthlyMaeMm": 36.4239073110434,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 40.02792491468428,
+            "front": 47.76629387386951,
+            "convergence": 16.398802928240542,
+            "orographic": 8.29390892698087
+          }
+        },
+        "boundary": {
+          "annualMm": 90.30684240820734,
+          "peakMonth": 4,
+          "peakMm": 25.3796531759622,
+          "jjaMm": 26.2583399172997,
+          "jjaPercent": 29.076799960080617,
+          "maySepPercent": 56.06602304851138,
+          "annualBiasPercent": -83.56784122740473,
+          "monthlyMaeMm": 38.43984550658827,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 19.604843287131988,
+            "front": 57.38103168061326,
+            "convergence": 5.200961608450534,
+            "orographic": 8.120005832011607
+          }
+        }
+      }
+    },
+    {
+      "name": "Korea Japan",
+      "bounds": {
+        "south": 30,
+        "north": 45,
+        "west": 125,
+        "east": 145
+      },
+      "modelCells": 10,
+      "observed": {
+        "annualMm": 1067.584503145411,
+        "peakMonth": 7,
+        "peakMm": 182.98038845952271,
+        "jjaMm": 468.8324691338285,
+        "jjaPercent": 43.91525614623603,
+        "maySepPercent": 63.51959883937804
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 3.986100414277574,
+          "peakMonth": 12,
+          "peakMm": 3.4812684678270784,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -99.62662436532814,
+          "monthlyMaeMm": 88.63320022759444,
+          "annualComponentsMm": {
+            "saturation": 3.9861004142775824,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 81.36373014394405,
+          "peakMonth": 7,
+          "peakMm": 27.24363254437129,
+          "jjaMm": 44.245111643244144,
+          "jjaPercent": 54.37940414600981,
+          "maySepPercent": 70.32109224849881,
+          "annualBiasPercent": -92.37870820490339,
+          "monthlyMaeMm": 82.1850644167889,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 13.504755088962732,
+            "front": 56.22761400797106,
+            "convergence": 11.081836422636659,
+            "orographic": 0.549524624373576
+          }
+        },
+        "radiation-only": {
+          "annualMm": 11.721042546130882,
+          "peakMonth": 12,
+          "peakMm": 7.17783234596928,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -98.90209697578062,
+          "monthlyMaeMm": 87.98862171660669,
+          "annualComponentsMm": {
+            "saturation": 11.721042546130892,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 941.8560233620772,
+          "peakMonth": 7,
+          "peakMm": 303.59652915577374,
+          "jjaMm": 731.2087919944664,
+          "jjaPercent": 77.63487983909917,
+          "maySepPercent": 89.60493484371713,
+          "annualBiasPercent": -11.776911280830838,
+          "monthlyMaeMm": 54.206760458717476,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 660.9560784564742,
+            "front": 179.5297103800617,
+            "convergence": 86.65346392427706,
+            "orographic": 14.716770601263732
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 1139.3183825500141,
+          "peakMonth": 7,
+          "peakMm": 289.6754537989362,
+          "jjaMm": 785.5512832355989,
+          "jjaPercent": 68.94923274013922,
+          "maySepPercent": 90.15724560866943,
+          "annualBiasPercent": 6.719269452980492,
+          "monthlyMaeMm": 54.90791021724422,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 919.0751368584386,
+            "front": 144.83499355490636,
+            "convergence": 74.99679762560879,
+            "orographic": 0.4114545110603027
+          }
+        },
+        "buoyancy": {
+          "annualMm": 1141.9801735931073,
+          "peakMonth": 7,
+          "peakMm": 289.64591853688745,
+          "jjaMm": 785.4319134183498,
+          "jjaPercent": 68.77806914520066,
+          "maySepPercent": 90.16045367479009,
+          "annualBiasPercent": 6.968597823264133,
+          "monthlyMaeMm": 54.66028914186591,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 922.3703354642495,
+            "front": 144.03011378040532,
+            "convergence": 75.16821654573103,
+            "orographic": 0.41150780272142523
+          }
+        },
+        "balanced": {
+          "annualMm": 212.0070804913118,
+          "peakMonth": 4,
+          "peakMm": 37.86342450967597,
+          "jjaMm": 88.60180668491546,
+          "jjaPercent": 41.79190925113769,
+          "maySepPercent": 61.552952147051506,
+          "annualBiasPercent": -80.14142394661238,
+          "monthlyMaeMm": 71.29811855450826,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 75.37913975457887,
+            "front": 129.44548419557066,
+            "convergence": 1.0335109819676678,
+            "orographic": 6.148945559194733
+          }
+        },
+        "boundary": {
+          "annualMm": 285.45279495622975,
+          "peakMonth": 7,
+          "peakMm": 52.829302587324634,
+          "jjaMm": 131.13007285644738,
+          "jjaPercent": 45.9375683732767,
+          "maySepPercent": 62.89140135254849,
+          "annualBiasPercent": -73.26180793040704,
+          "monthlyMaeMm": 65.17764234909843,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 102.79928951745845,
+            "front": 175.90687021489796,
+            "convergence": 0.3255531446632741,
+            "orographic": 6.4210820792101355
+          }
+        }
+      }
+    },
+    {
+      "name": "Europe",
+      "bounds": {
+        "south": 45,
+        "north": 60,
+        "west": -10,
+        "east": 30
+      },
+      "modelCells": 16,
+      "observed": {
+        "annualMm": 758.7129106626134,
+        "peakMonth": 7,
+        "peakMm": 82.9924143853896,
+        "jjaMm": 233.37633508299868,
+        "jjaPercent": 30.7595049198757,
+        "maySepPercent": 48.42888886181804
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 347.830682682575,
+          "peakMonth": 10,
+          "peakMm": 68.39725829661549,
+          "jjaMm": 33.58602520645783,
+          "jjaPercent": 9.655854666825908,
+          "maySepPercent": 26.15963359055448,
+          "annualBiasPercent": -54.15516491227215,
+          "monthlyMaeMm": 34.425666351099714,
+          "annualComponentsMm": {
+            "saturation": 347.8306826825748,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 68.68523269219592,
+          "peakMonth": 6,
+          "peakMm": 17.387277795345952,
+          "jjaMm": 39.11109343778999,
+          "jjaPercent": 56.94250700592564,
+          "maySepPercent": 78.79747191281145,
+          "annualBiasPercent": -90.94713801137107,
+          "monthlyMaeMm": 57.50230649753478,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 68.68508223549603,
+            "convergence": 0,
+            "orographic": 0.00015045669994332407
+          }
+        },
+        "radiation-only": {
+          "annualMm": 289.43599384655886,
+          "peakMonth": 10,
+          "peakMm": 52.933918516234286,
+          "jjaMm": 27.89672324032744,
+          "jjaPercent": 9.638304783584228,
+          "maySepPercent": 28.591275610579732,
+          "annualBiasPercent": -61.85171099912045,
+          "monthlyMaeMm": 39.1064097346712,
+          "annualComponentsMm": {
+            "saturation": 289.43599384655886,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 230.10646937962963,
+          "peakMonth": 7,
+          "peakMm": 52.5247334125936,
+          "jjaMm": 133.18234528045946,
+          "jjaPercent": 57.87857492208758,
+          "maySepPercent": 83.81094668193012,
+          "annualBiasPercent": -69.67147044081948,
+          "monthlyMaeMm": 44.050536773581975,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 27.642489951785407,
+            "front": 191.67617567235501,
+            "convergence": 10.787276271460184,
+            "orographic": 0.0005274840291046778
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 260.7244082598203,
+          "peakMonth": 7,
+          "peakMm": 58.89012190975276,
+          "jjaMm": 154.43862916977488,
+          "jjaPercent": 59.23443462795083,
+          "maySepPercent": 84.99508549682844,
+          "annualBiasPercent": -65.63595997962925,
+          "monthlyMaeMm": 41.499041866899425,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 77.44825768669443,
+            "front": 170.81255202682877,
+            "convergence": 12.463309353533417,
+            "orographic": 0.000289192763625021
+          }
+        },
+        "buoyancy": {
+          "annualMm": 260.0888639044659,
+          "peakMonth": 7,
+          "peakMm": 58.86694751713065,
+          "jjaMm": 154.3669522669712,
+          "jjaPercent": 59.351619269509456,
+          "maySepPercent": 85.29571938060943,
+          "annualBiasPercent": -65.71972609806782,
+          "monthlyMaeMm": 41.55200389651228,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 78.11362223543654,
+            "front": 169.47068475095259,
+            "convergence": 12.504388703258066,
+            "orographic": 0.0001682148187353188
+          }
+        },
+        "balanced": {
+          "annualMm": 536.7588403307836,
+          "peakMonth": 7,
+          "peakMm": 101.56278489060783,
+          "jjaMm": 267.60300027278913,
+          "jjaPercent": 49.855350329745065,
+          "maySepPercent": 68.90488719397239,
+          "annualBiasPercent": -29.254025760282452,
+          "monthlyMaeMm": 24.301315685897805,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 130.20526794312673,
+            "front": 281.39062931846513,
+            "convergence": 114.97005759408404,
+            "orographic": 10.192885475107598
+          }
+        },
+        "boundary": {
+          "annualMm": 519.702991747429,
+          "peakMonth": 7,
+          "peakMm": 97.52260733187943,
+          "jjaMm": 256.49816149136865,
+          "jjaPercent": 49.354759461539615,
+          "maySepPercent": 68.3696062164159,
+          "annualBiasPercent": -31.502023434193017,
+          "monthlyMaeMm": 24.450727175184994,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 132.65801858633205,
+            "front": 287.0972334935243,
+            "convergence": 89.51324601037827,
+            "orographic": 10.43449365719455
+          }
+        }
+      }
+    },
+    {
+      "name": "East North America",
+      "bounds": {
+        "south": 30,
+        "north": 45,
+        "west": -90,
+        "east": -65
+      },
+      "modelCells": 11,
+      "observed": {
+        "annualMm": 1131.4230808131167,
+        "peakMonth": 6,
+        "peakMm": 110.2179127589474,
+        "jjaMm": 319.57450910680564,
+        "jjaPercent": 28.245358834039155,
+        "maySepPercent": 45.71495051194968
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 30.426373424833375,
+          "peakMonth": 12,
+          "peakMm": 12.49856446027745,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -97.31078727835684,
+          "monthlyMaeMm": 91.74972561569028,
+          "annualComponentsMm": {
+            "saturation": 30.42637342483335,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 115.79440224923333,
+          "peakMonth": 7,
+          "peakMm": 34.21954509136175,
+          "jjaMm": 74.33992997220862,
+          "jjaPercent": 64.19993413170438,
+          "maySepPercent": 79.6215746823375,
+          "annualBiasPercent": -89.76559660016696,
+          "monthlyMaeMm": 84.63572321365696,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 19.093178875452328,
+            "front": 72.79866442792078,
+            "convergence": 23.902558945860136,
+            "orographic": 0
+          }
+        },
+        "radiation-only": {
+          "annualMm": 26.16875751229655,
+          "peakMonth": 12,
+          "peakMm": 9.341794104645038,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -97.68709354121626,
+          "monthlyMaeMm": 92.10452694173502,
+          "annualComponentsMm": {
+            "saturation": 26.168757512296544,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 632.7223281490413,
+          "peakMonth": 7,
+          "peakMm": 165.4577145374803,
+          "jjaMm": 413.44564918786966,
+          "jjaPercent": 65.34393221073118,
+          "maySepPercent": 84.83842107794375,
+          "annualBiasPercent": -44.07730062442031,
+          "monthlyMaeMm": 57.20358606885028,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 370.03259894580117,
+            "front": 145.46405769409597,
+            "convergence": 117.22567150914479,
+            "orographic": 0
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 712.5084483420032,
+          "peakMonth": 7,
+          "peakMm": 160.88443300374269,
+          "jjaMm": 424.7349396963233,
+          "jjaPercent": 59.61121453151542,
+          "maySepPercent": 81.82002278968909,
+          "annualBiasPercent": -37.02546285073601,
+          "monthlyMaeMm": 54.6822287065984,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 520.1069382337157,
+            "front": 90.62756398835539,
+            "convergence": 101.77394611993192,
+            "orographic": 0
+          }
+        },
+        "buoyancy": {
+          "annualMm": 713.1433138926703,
+          "peakMonth": 7,
+          "peakMm": 160.86364237602024,
+          "jjaMm": 424.69545227404706,
+          "jjaPercent": 59.55260941252612,
+          "maySepPercent": 81.7887962421056,
+          "annualBiasPercent": -36.969350724208525,
+          "monthlyMaeMm": 54.61872005065988,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 521.8648000575125,
+            "front": 89.44205644527186,
+            "convergence": 101.83645738988564,
+            "orographic": 0
+          }
+        },
+        "balanced": {
+          "annualMm": 388.8181987624329,
+          "peakMonth": 6,
+          "peakMm": 107.73609706256711,
+          "jjaMm": 213.69145999181626,
+          "jjaPercent": 54.95922276065614,
+          "maySepPercent": 75.59682220941569,
+          "annualBiasPercent": -65.63458839084298,
+          "monthlyMaeMm": 61.88374017089032,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 230.12871766673507,
+            "front": 120.48602834328177,
+            "convergence": 38.203452752415984,
+            "orographic": 0
+          }
+        },
+        "boundary": {
+          "annualMm": 342.6945745341495,
+          "peakMonth": 6,
+          "peakMm": 80.6966540500973,
+          "jjaMm": 165.55157711887426,
+          "jjaPercent": 48.30878263652728,
+          "maySepPercent": 68.0620851954697,
+          "annualBiasPercent": -69.71119112331824,
+          "monthlyMaeMm": 65.72737552324726,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 189.08694167006718,
+            "front": 135.11305339768634,
+            "convergence": 18.494579466396,
+            "orographic": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "India",
+      "bounds": {
+        "south": 8,
+        "north": 28,
+        "west": 70,
+        "east": 90
+      },
+      "modelCells": 11,
+      "observed": {
+        "annualMm": 1128.7486524588617,
+        "peakMonth": 7,
+        "peakMm": 271.76097683428674,
+        "jjaMm": 686.3808253238915,
+        "jjaPercent": 60.80900507200449,
+        "maySepPercent": 81.28373611139047
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 91.35116923398748,
+          "peakMonth": 7,
+          "peakMm": 41.3393856553657,
+          "jjaMm": 87.90646687893508,
+          "jjaPercent": 96.22916446068784,
+          "maySepPercent": 99.95369765719565,
+          "annualBiasPercent": -91.90686349569602,
+          "monthlyMaeMm": 86.4497902687395,
+          "annualComponentsMm": {
+            "saturation": 91.3511692339876,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 217.08983195235479,
+          "peakMonth": 7,
+          "peakMm": 49.293709159486156,
+          "jjaMm": 124.72368011987298,
+          "jjaPercent": 57.4525665242794,
+          "maySepPercent": 76.97231071318818,
+          "annualBiasPercent": -80.76721230369161,
+          "monthlyMaeMm": 75.97156837554223,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1.2488661703218045,
+            "front": 4.464901848637338,
+            "convergence": 7.939080782180773,
+            "orographic": 203.43698315121486
+          }
+        },
+        "radiation-only": {
+          "annualMm": 59.567500436868016,
+          "peakMonth": 7,
+          "peakMm": 28.01091536342484,
+          "jjaMm": 57.14673224034582,
+          "jjaPercent": 95.93609236787127,
+          "maySepPercent": 99.53245430324057,
+          "annualBiasPercent": -94.7226957651638,
+          "monthlyMaeMm": 89.09842933516613,
+          "annualComponentsMm": {
+            "saturation": 59.56750043686792,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 846.0399232888234,
+          "peakMonth": 8,
+          "peakMm": 161.28677833949413,
+          "jjaMm": 433.5764714147453,
+          "jjaPercent": 51.24775551126443,
+          "maySepPercent": 75.85192561178792,
+          "annualBiasPercent": -25.046207457629,
+          "monthlyMaeMm": 38.21090450459057,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 392.6826645062918,
+            "front": 49.071724635489886,
+            "convergence": 83.23540981622449,
+            "orographic": 321.05012433081714
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 887.5998616997235,
+          "peakMonth": 8,
+          "peakMm": 164.52814618428562,
+          "jjaMm": 440.63894372529114,
+          "jjaPercent": 49.64387250821362,
+          "maySepPercent": 74.42291851660862,
+          "annualBiasPercent": -21.36425945969641,
+          "monthlyMaeMm": 39.308400733384794,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 449.6620955816624,
+            "front": 36.01578692095308,
+            "convergence": 83.94853719634193,
+            "orographic": 317.97344200076594
+          }
+        },
+        "buoyancy": {
+          "annualMm": 887.0785272151484,
+          "peakMonth": 8,
+          "peakMm": 164.46485635679286,
+          "jjaMm": 440.48876288602173,
+          "jjaPercent": 49.6561182997937,
+          "maySepPercent": 74.44693649996948,
+          "annualBiasPercent": -21.410446401620064,
+          "monthlyMaeMm": 39.34538940913363,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 449.47707363717655,
+            "front": 35.873494717994504,
+            "convergence": 83.96260579731357,
+            "orographic": 317.76535306266413
+          }
+        },
+        "balanced": {
+          "annualMm": 983.8796565483431,
+          "peakMonth": 5,
+          "peakMm": 143.1496487925722,
+          "jjaMm": 413.126603965177,
+          "jjaPercent": 41.98954630432264,
+          "maySepPercent": 67.1922965181473,
+          "annualBiasPercent": -12.834477861385396,
+          "monthlyMaeMm": 57.62775975129185,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 337.6057499262739,
+            "front": 42.676410165214804,
+            "convergence": 191.99504275708227,
+            "orographic": 411.60245369977247
+          }
+        },
+        "boundary": {
+          "annualMm": 985.7352280102143,
+          "peakMonth": 6,
+          "peakMm": 148.1112892110779,
+          "jjaMm": 399.27147792132877,
+          "jjaPercent": 40.50494154777143,
+          "maySepPercent": 62.16002553121017,
+          "annualBiasPercent": -12.670085952006005,
+          "monthlyMaeMm": 67.43814698363768,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 448.9092396915756,
+            "front": 122.86307041456642,
+            "convergence": 137.92334099787433,
+            "orographic": 276.03957690619774
+          }
+        }
+      }
+    },
+    {
+      "name": "Australia southwest",
+      "bounds": {
+        "south": -36,
+        "north": -28,
+        "west": 112,
+        "east": 122
+      },
+      "modelCells": 4,
+      "observed": {
+        "annualMm": 447.5225081576082,
+        "peakMonth": 7,
+        "peakMm": 69.74443676604768,
+        "jjaMm": 188.14014264050354,
+        "jjaPercent": 42.040375447271245,
+        "maySepPercent": 62.43796020655214
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 37.29354234646735,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 38.98101754124641,
+          "peakMonth": 12,
+          "peakMm": 18.06729735885523,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -91.2895962033896,
+          "monthlyMaeMm": 34.17216759423504,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 38.98101754124644,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "radiation-only": {
+          "annualMm": 0,
+          "peakMonth": null,
+          "peakMm": 0,
+          "jjaMm": 0,
+          "jjaPercent": null,
+          "maySepPercent": null,
+          "annualBiasPercent": -100.0,
+          "monthlyMaeMm": 37.29354234646735,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 521.7589725768343,
+          "peakMonth": 1,
+          "peakMm": 138.65294382543908,
+          "jjaMm": 3.856545749093084,
+          "jjaPercent": 0.7391431583910459,
+          "maySepPercent": 4.628827292720851,
+          "annualBiasPercent": 16.58831970817467,
+          "monthlyMaeMm": 51.445601391402334,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 408.71246244950754,
+            "front": 100.94933795760781,
+            "convergence": 12.097172169719116,
+            "orographic": 0
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 761.4416280715145,
+          "peakMonth": 1,
+          "peakMm": 152.6065818887916,
+          "jjaMm": 3.6124091013584283,
+          "jjaPercent": 0.4744170752139587,
+          "maySepPercent": 4.43461913118359,
+          "annualBiasPercent": 70.1459958307506,
+          "monthlyMaeMm": 68.35415160396953,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 715.1839503788763,
+            "front": 35.51956285348551,
+            "convergence": 10.738114839152821,
+            "orographic": 0
+          }
+        },
+        "buoyancy": {
+          "annualMm": 769.108819614063,
+          "peakMonth": 1,
+          "peakMm": 152.60567485372235,
+          "jjaMm": 3.8390023021619575,
+          "jjaPercent": 0.4991494316874899,
+          "maySepPercent": 4.515427621377939,
+          "annualBiasPercent": 71.85924855051063,
+          "monthlyMaeMm": 67.91403326970294,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 726.0939755045554,
+            "front": 32.289468484653746,
+            "convergence": 10.725375624854136,
+            "orographic": 0
+          }
+        },
+        "balanced": {
+          "annualMm": 412.6083123431138,
+          "peakMonth": 3,
+          "peakMm": 49.760480688500614,
+          "jjaMm": 129.41136076877643,
+          "jjaPercent": 31.36421562471128,
+          "maySepPercent": 44.64313951222552,
+          "annualBiasPercent": -7.801662526032837,
+          "monthlyMaeMm": 15.83781514041394,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 154.37942713850117,
+            "front": 184.6333560954523,
+            "convergence": 41.66743570298785,
+            "orographic": 31.928093406172355
+          }
+        },
+        "boundary": {
+          "annualMm": 344.32720300616955,
+          "peakMonth": 3,
+          "peakMm": 43.68363905179357,
+          "jjaMm": 100.74552447374194,
+          "jjaPercent": 29.258659668529532,
+          "maySepPercent": 42.39616718969667,
+          "annualBiasPercent": -23.059243562135055,
+          "monthlyMaeMm": 17.162224272133898,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 154.54679306772996,
+            "front": 163.94182730233433,
+            "convergence": 6.407515920073117,
+            "orographic": 19.4310667160321
+          }
+        }
+      }
+    },
+    {
+      "name": "Australia north",
+      "bounds": {
+        "south": -20,
+        "north": -10,
+        "west": 120,
+        "east": 145
+      },
+      "modelCells": 11,
+      "observed": {
+        "annualMm": 871.8157706190335,
+        "peakMonth": 1,
+        "peakMm": 221.95560966384747,
+        "jjaMm": 12.073637644606853,
+        "jjaPercent": 1.3848840605434285,
+        "maySepPercent": 3.220391480036264
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 61.77070190321493,
+          "peakMonth": 1,
+          "peakMm": 31.98050609271657,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -92.9147069845554,
+          "monthlyMaeMm": 67.50375572631822,
+          "annualComponentsMm": {
+            "saturation": 61.77070190321495,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 360.45944449548233,
+          "peakMonth": 2,
+          "peakMm": 121.25485069749308,
+          "jjaMm": 3.2233918995339916,
+          "jjaPercent": 0.8942453717770158,
+          "maySepPercent": 1.999734967042793,
+          "annualBiasPercent": -58.65417251634049,
+          "monthlyMaeMm": 42.613027176962596,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 33.83546137525671,
+            "front": 29.489899717616037,
+            "convergence": 295.29091606014083,
+            "orographic": 1.8431673424692037
+          }
+        },
+        "radiation-only": {
+          "annualMm": 26.890195637304963,
+          "peakMonth": 1,
+          "peakMm": 13.607967554839094,
+          "jjaMm": 0,
+          "jjaPercent": 0.0,
+          "maySepPercent": 0.0,
+          "annualBiasPercent": -96.9156103223263,
+          "monthlyMaeMm": 70.41046458181071,
+          "annualComponentsMm": {
+            "saturation": 26.890195637304966,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 1265.158320818794,
+          "peakMonth": 3,
+          "peakMm": 272.0098011580536,
+          "jjaMm": 26.651482884966917,
+          "jjaPercent": 2.1065729439868384,
+          "maySepPercent": 6.257752087198562,
+          "annualBiasPercent": 45.117622719816964,
+          "monthlyMaeMm": 36.49931693298179,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1071.3156621029434,
+            "front": 40.983424107365224,
+            "convergence": 152.72085994852415,
+            "orographic": 0.13837465996058734
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 1262.3124429015854,
+          "peakMonth": 3,
+          "peakMm": 267.1675219016048,
+          "jjaMm": 30.591961529617766,
+          "jjaPercent": 2.423485698936648,
+          "maySepPercent": 8.48926153946961,
+          "annualBiasPercent": 44.79119160752041,
+          "monthlyMaeMm": 40.34920890053221,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1081.7597780384488,
+            "front": 36.4874635051897,
+            "convergence": 143.94994215506875,
+            "orographic": 0.11525920287776699
+          }
+        },
+        "buoyancy": {
+          "annualMm": 1262.2021619823045,
+          "peakMonth": 3,
+          "peakMm": 267.29666800219917,
+          "jjaMm": 30.260424246663913,
+          "jjaPercent": 2.3974308678999194,
+          "maySepPercent": 8.478817582554319,
+          "annualBiasPercent": 44.778542040605295,
+          "monthlyMaeMm": 40.243182521167974,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1082.4862962305392,
+            "front": 35.101424792588354,
+            "convergence": 144.4999836170588,
+            "orographic": 0.1144573421180155
+          }
+        },
+        "balanced": {
+          "annualMm": 2835.545497660782,
+          "peakMonth": 1,
+          "peakMm": 463.15149610251245,
+          "jjaMm": 60.156677848105495,
+          "jjaPercent": 2.121520458681847,
+          "maySepPercent": 8.872450866209034,
+          "annualBiasPercent": 225.24595140638493,
+          "monthlyMaeMm": 164.2024031909418,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1370.4361810435325,
+            "front": 98.31434266893497,
+            "convergence": 1366.6397605055429,
+            "orographic": 0.15521344277111027
+          }
+        },
+        "boundary": {
+          "annualMm": 2010.3985706254095,
+          "peakMonth": 1,
+          "peakMm": 301.1664208650587,
+          "jjaMm": 114.40877653805016,
+          "jjaPercent": 5.690850471628571,
+          "maySepPercent": 15.03846443068075,
+          "annualBiasPercent": 130.5990139634575,
+          "monthlyMaeMm": 94.88190000053135,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1498.6405912075768,
+            "front": 79.05765605791102,
+            "convergence": 431.09400006475056,
+            "orographic": 1.6063232951715203
+          }
+        }
+      }
+    },
+    {
+      "name": "Amazon",
+      "bounds": {
+        "south": -10,
+        "north": 5,
+        "west": -75,
+        "east": -50
+      },
+      "modelCells": 19,
+      "observed": {
+        "annualMm": 2329.83355395087,
+        "peakMonth": 4,
+        "peakMm": 268.4560379994884,
+        "jjaMm": 451.0433123779476,
+        "jjaPercent": 19.35946504045666,
+        "maySepPercent": 35.00963578953915
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 807.0392922122679,
+          "peakMonth": 4,
+          "peakMm": 242.75783175621712,
+          "jjaMm": 5.8034661483531895,
+          "jjaPercent": 0.7191057739511844,
+          "maySepPercent": 4.8792372069007115,
+          "annualBiasPercent": -65.36064600650496,
+          "monthlyMaeMm": 126.89952181155013,
+          "annualComponentsMm": {
+            "saturation": 807.0392922122679,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 939.4341673541834,
+          "peakMonth": 5,
+          "peakMm": 122.34907286192987,
+          "jjaMm": 312.59393800174007,
+          "jjaPercent": 33.27470395100997,
+          "maySepPercent": 51.732464573594925,
+          "annualBiasPercent": -59.678056582148706,
+          "monthlyMaeMm": 115.86661554972386,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 3.5687814139210117,
+            "front": 134.31858975543452,
+            "convergence": 638.0751626710293,
+            "orographic": 163.47163351379885
+          }
+        },
+        "radiation-only": {
+          "annualMm": 592.8058726869174,
+          "peakMonth": 3,
+          "peakMm": 146.1692103591835,
+          "jjaMm": 5.8887278083937105,
+          "jjaPercent": 0.9933652954048524,
+          "maySepPercent": 11.003300991188647,
+          "annualBiasPercent": -74.55587023881371,
+          "monthlyMaeMm": 144.75230677199602,
+          "annualComponentsMm": {
+            "saturation": 592.8058726869175,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 1770.3295872810766,
+          "peakMonth": 3,
+          "peakMm": 191.8393814306304,
+          "jjaMm": 428.9358343012175,
+          "jjaPercent": 24.22915130509622,
+          "maySepPercent": 41.001747567352815,
+          "annualBiasPercent": -24.014761300050868,
+          "monthlyMaeMm": 52.440027044822436,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1345.5335208883012,
+            "front": 10.684720412223417,
+            "convergence": 388.5218553347918,
+            "orographic": 25.58949064576046
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 1765.6244773750873,
+          "peakMonth": 3,
+          "peakMm": 191.27329283139792,
+          "jjaMm": 425.5260650925729,
+          "jjaPercent": 24.100598431054408,
+          "maySepPercent": 40.76279162205262,
+          "annualBiasPercent": -24.216711774066944,
+          "monthlyMaeMm": 51.61353322442009,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1360.4875766298712,
+            "front": 4.962667026344165,
+            "convergence": 390.5981398796671,
+            "orographic": 9.576093839204809
+          }
+        },
+        "buoyancy": {
+          "annualMm": 1764.931679209595,
+          "peakMonth": 3,
+          "peakMm": 191.23170484682194,
+          "jjaMm": 424.9978544581177,
+          "jjaPercent": 24.080130662533534,
+          "maySepPercent": 40.75032719322778,
+          "annualBiasPercent": -24.24644772513167,
+          "monthlyMaeMm": 51.64969382885706,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1359.464778841243,
+            "front": 5.036690882378329,
+            "convergence": 390.96106264421485,
+            "orographic": 9.469146841758562
+          }
+        },
+        "balanced": {
+          "annualMm": 1796.3473481819376,
+          "peakMonth": 3,
+          "peakMm": 199.54608664202988,
+          "jjaMm": 419.8810509538933,
+          "jjaPercent": 23.374157084867246,
+          "maySepPercent": 41.4689649657776,
+          "annualBiasPercent": -22.89803942707669,
+          "monthlyMaeMm": 67.40905921450681,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1055.6423980924699,
+            "front": 5.870126191002709,
+            "convergence": 721.5696054126355,
+            "orographic": 13.265218485829585
+          }
+        },
+        "boundary": {
+          "annualMm": 1412.982632007448,
+          "peakMonth": 3,
+          "peakMm": 158.91763914970429,
+          "jjaMm": 315.2963195472795,
+          "jjaPercent": 22.314238859350503,
+          "maySepPercent": 39.108947532050024,
+          "annualBiasPercent": -39.352636173886765,
+          "monthlyMaeMm": 78.76835680585658,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1183.200317977771,
+            "front": 8.174049499522607,
+            "convergence": 186.32376537848003,
+            "orographic": 35.28449915167434
+          }
+        }
+      }
+    },
+    {
+      "name": "Congo",
+      "bounds": {
+        "south": -5,
+        "north": 5,
+        "west": 10,
+        "east": 30
+      },
+      "modelCells": 12,
+      "observed": {
+        "annualMm": 1481.628168187081,
+        "peakMonth": 10,
+        "peakMm": 182.83432042885724,
+        "jjaMm": 296.61166864775294,
+        "jjaPercent": 20.01930545169688,
+        "maySepPercent": 38.695847981304944
+      },
+      "profiles": {
+        "control": {
+          "annualMm": 1887.6870061940224,
+          "peakMonth": 10,
+          "peakMm": 624.2002877535145,
+          "jjaMm": 35.16996890045611,
+          "jjaPercent": 1.8631250194048976,
+          "maySepPercent": 19.027088370262433,
+          "annualBiasPercent": 27.406257975224293,
+          "monthlyMaeMm": 128.01970480744106,
+          "annualComponentsMm": {
+            "saturation": 1887.687006194023,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "transport-only": {
+          "annualMm": 712.5674876102854,
+          "peakMonth": 8,
+          "peakMm": 90.17386525044105,
+          "jjaMm": 199.55144428158968,
+          "jjaPercent": 28.004567672715314,
+          "maySepPercent": 42.62537600273345,
+          "annualBiasPercent": -51.906456497639184,
+          "monthlyMaeMm": 64.08839004806629,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 9.143460289498686,
+            "front": 172.95769521146428,
+            "convergence": 504.4718856063046,
+            "orographic": 25.994446503017716
+          }
+        },
+        "radiation-only": {
+          "annualMm": 1644.618233902192,
+          "peakMonth": 4,
+          "peakMm": 513.7785382751606,
+          "jjaMm": 50.27900094189165,
+          "jjaPercent": 3.0571837223642153,
+          "maySepPercent": 20.369127851482702,
+          "annualBiasPercent": 11.000740213689753,
+          "monthlyMaeMm": 106.34510170351678,
+          "annualComponentsMm": {
+            "saturation": 1644.6182339021925,
+            "convection": 0,
+            "front": 0,
+            "convergence": 0,
+            "orographic": 0
+          }
+        },
+        "shared-core": {
+          "annualMm": 1733.500379541148,
+          "peakMonth": 10,
+          "peakMm": 158.22721355000252,
+          "jjaMm": 407.18996576787174,
+          "jjaPercent": 23.489465048496477,
+          "maySepPercent": 39.39247113096477,
+          "annualBiasPercent": 16.99969106704131,
+          "monthlyMaeMm": 34.5097609894439,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1415.524295749052,
+            "front": 1.434467787226687,
+            "convergence": 316.54161600486964,
+            "orographic": 0
+          }
+        },
+        "buoyancy-old": {
+          "annualMm": 1746.4987876700013,
+          "peakMonth": 12,
+          "peakMm": 159.3615524665974,
+          "jjaMm": 415.2726073537748,
+          "jjaPercent": 23.77743461865145,
+          "maySepPercent": 39.606324141774074,
+          "annualBiasPercent": 17.876996750609564,
+          "monthlyMaeMm": 33.74703446221409,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1451.5695003182836,
+            "front": 0.32502911417922475,
+            "convergence": 294.60425823753866,
+            "orographic": 0
+          }
+        },
+        "buoyancy": {
+          "annualMm": 1746.96392091598,
+          "peakMonth": 12,
+          "peakMm": 159.4781191541403,
+          "jjaMm": 415.5236163789234,
+          "jjaPercent": 23.785472121316232,
+          "maySepPercent": 39.615907262497345,
+          "annualBiasPercent": 17.90839013634329,
+          "monthlyMaeMm": 33.76083198783122,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 1451.4455563474828,
+            "front": 0.3277899872234562,
+            "convergence": 295.1905745812736,
+            "orographic": 0
+          }
+        },
+        "balanced": {
+          "annualMm": 1414.3575898623335,
+          "peakMonth": 9,
+          "peakMm": 177.92292039011693,
+          "jjaMm": 350.94206043988333,
+          "jjaPercent": 24.812824066227996,
+          "maySepPercent": 45.43106414196308,
+          "annualBiasPercent": -4.540314484372942,
+          "monthlyMaeMm": 23.00949838901141,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 892.8945167496937,
+            "front": 93.6816855602108,
+            "convergence": 427.00782103604377,
+            "orographic": 0.7735665163850661
+          }
+        },
+        "boundary": {
+          "annualMm": 1075.453480432438,
+          "peakMonth": 3,
+          "peakMm": 116.69476523650526,
+          "jjaMm": 227.41403112742597,
+          "jjaPercent": 21.145873370178986,
+          "maySepPercent": 37.92113556088969,
+          "annualBiasPercent": -27.414077058999087,
+          "monthlyMaeMm": 36.21285026874181,
+          "annualComponentsMm": {
+            "saturation": 0,
+            "convection": 981.4086010887684,
+            "front": 21.905693830204253,
+            "convergence": 70.12111943204853,
+            "orographic": 2.0180660814166793
+          }
+        }
+      }
+    }
+  ],
+  "checks": {
+    "control": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 7.182825356721878e-08,
+        "heatJm2": 0.00024241209030151367,
+        "routingM3": 0.004308869928480341
+      },
+      "strictContinuation": true
+    },
+    "transport-only": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 1.5343539416790009e-07,
+        "heatJm2": 0.0002683401107788086,
+        "routingM3": 0.0005884213495050972
+      },
+      "strictContinuation": true
+    },
+    "radiation-only": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 9.906943887472153e-08,
+        "heatJm2": 0.0002154707908630371,
+        "routingM3": 0.001164674471340277
+      },
+      "strictContinuation": true
+    },
+    "shared-core": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 2.530869096517563e-07,
+        "heatJm2": 0.00019985437393188477,
+        "routingM3": 0.00167879532182269
+      },
+      "strictContinuation": true
+    },
+    "buoyancy-old": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 1.4924444258213043e-07,
+        "heatJm2": 0.00020635128021240234,
+        "routingM3": 0.00023654651585769404
+      },
+      "strictContinuation": true
+    },
+    "buoyancy": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 1.2048985809087753e-07,
+        "heatJm2": 0.00021517276763916016,
+        "routingM3": 0.0006267351202564886
+      },
+      "strictContinuation": true
+    },
+    "balanced": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 1.2631062418222427e-07,
+        "heatJm2": 0.00021606683731079102,
+        "routingM3": 0.007336678479077818
+      },
+      "strictContinuation": true
+    },
+    "boundary": {
+      "sampledMaxAbsBudget": {
+        "waterMm": 3.4226104617118835e-08,
+        "heatJm2": 0.00021082162857055664,
+        "routingM3": 0.002246345810821282
+      },
+      "strictContinuation": true
+    }
+  }
+}
