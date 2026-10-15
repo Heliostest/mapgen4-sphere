@@ -72,6 +72,23 @@ try {
     check(document.querySelector<HTMLOutputElement>('#geomorph-age')!.dataset.years===geologicalAge,'Climate playback cannot advance geological time');
     document.querySelector<HTMLButtonElement>('#water-reset')!.click();
     check(geology===null,'Environmental resets clear obsolete geological preview');
+    document.querySelector<HTMLInputElement>('#environment-conductive-ice')!.click();
+    const bulk=document.querySelector<HTMLInputElement>('#water-bulk-ocean')!;
+    const exchange=document.querySelector<HTMLInputElement>('#water-ocean-exchange')!;
+    for(const action of [()=>bulk.click(),()=>{exchange.value='.0006';exchange.dispatchEvent(new Event('change'));},()=>bulk.click()]) {
+        play.click();advance(now+1000);presented=queued;
+        const shown=JSON.stringify(controls.simulation().runtime.state);
+        advance(now+1000);check(queued>presented,'Bulk switch reproduction queues an unpresented frame');
+        action();
+        check(queued===presented&&play.textContent==='Play','Bulk controls pause at the visible time');
+        check(JSON.stringify(controls.simulation().runtime.state)===shown,'Bulk controls preserve every visible stock and budget origin');
+    }
+    bulk.click();exchange.value='.01';exchange.dispatchEvent(new Event('change'));
+    check(controls.simulation().runtime.waterConfig.oceanEvaporationCoefficient===.0006,'Invalid exchange input cannot change the live coefficient');
+    bulk.click();
+    check(exchange.value==='.0006'||exchange.value==='0.0006','Disabling bulk restores the last applied coefficient after invalid input');
+    bulk.click();
+    check(bulk.checked&&controls.simulation().runtime.waterConfig.oceanEvaporationCoefficient===.0006,'Bulk can be enabled again after rejecting an invalid value');
     document.querySelector('pre')!.textContent=JSON.stringify({status:failures.length?'FAIL':'PASS',checks,failures},null,2);
 } catch(error) {
     document.querySelector('pre')!.textContent=JSON.stringify({status:'FAIL',error:String(error)});

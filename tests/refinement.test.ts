@@ -9,9 +9,10 @@ import {TerrainWater} from '../terrain-water.ts';
 import {makeSurfacePartition} from '../refinement-topology.ts';
 import {sampleTerrainGrid} from '../thermal.ts';
 import {makeSphereMesh} from '../sphere-mesh.ts';
-function fixture(coast=false,transport=false,refined=true,coastThreshold=4,conductive=false) {
+function fixture(coast=false,transport=false,refined=true,coastThreshold=4,conductive=false,oceanDepthM=10) {
     const g=makeThermalGrid(8,4),rt=new ThermalRuntime(g);
     rt.enabled=rt.waterEnabled=true;rt.config.separateReservoirs=true;
+    rt.config.oceanDepthM=oceanDepthM;
     if(conductive)rt.environmentConfig.conductiveSeaIce=true;
     if(transport)rt.waterConfig.moistureScheme='transport';
     const directions:number[]=[],elevation:number[]=[];
@@ -22,6 +23,40 @@ function fixture(coast=false,transport=false,refined=true,coastThreshold=4,condu
     rt.setTerrain(new Float64Array(g.count).fill(coast?.5:1),new Float64Array(g.count).fill(coast?.005:.3275),{directions,elevation});
     if(refined)rt.refinement='balanced';rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,0);return rt;
 }
+
+test('refined strong bulk evaporation cannot overdraw a shallow sea patch heat reservoir',()=>{
+    const rt=fixture(true,false,true,4,false,.1),r=rt.refinedSurface!,w=rt.water!,m=rt.model!,e=rt.environment!;
+    rt.configureSurfacePhysics({oceanEvaporationCoefficient:.005});
+    r.seaK.fill(333.15);m.oceanTemperatureK.fill(333.15);m.temperatureK.fill(280);
+    w.config.windMps=100;
+    w.setWinds(new Float64Array(w.grid.count).fill(100),new Float64Array(w.grid.count));
+    const before=e.enthalpy(),total=w.diagnostics().totalMm;
+    w.step(1800,m.temperatureK,new Float64Array(w.grid.count),e);m.applyHeat(e.heatJm2);
+    assert.ok(r.seaK.every(v=>Number.isFinite(v)&&v>=0),'Each refined donor temperature must stay nonnegative');
+    assert.ok(m.oceanTemperatureK.every(v=>Number.isFinite(v)&&v>=0));
+    assert.ok(Math.abs(e.enthalpy()-before)<.001);assert.ok(Math.abs(w.diagnostics().totalMm-total)<1e-7);
+});
+
+test('bulk exchange on refined coasts spends sea heat and leaves land heat unchanged',()=>{
+    const rt=fixture(true),r=rt.refinedSurface!,w=rt.water!,m=rt.model!,e=rt.environment!;
+    rt.configureSurfacePhysics({oceanEvaporationCoefficient:.0012});
+    const landBefore=r.landK.slice(),before=e.enthalpy(),total=w.diagnostics().totalMm;
+    w.setWinds(new Float64Array(w.grid.count).fill(5),new Float64Array(w.grid.count));
+    // Zero sunlight isolates marine bulk exchange from the land/lake closure.
+    w.step(60,m.temperatureK,new Float64Array(w.grid.count),e);m.applyHeat(e.heatJm2);
+    assert.ok(w.evaporationKgM2S.some(v=>v>0));
+    assert.deepEqual(r.landK,landBefore);
+    assert.ok(Math.abs(e.enthalpy()-before)<.001);assert.ok(Math.abs(w.diagnostics().totalMm-total)<1e-7);
+});
+
+test('refined bulk exchange resumes exactly after a saved runtime step',()=>{
+    const rt=fixture(true);rt.configureSurfacePhysics({oceanEvaporationCoefficient:.0012});
+    const m=rt.model!;
+    for(let i=0;i<10;i++)rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,m.timeS+m.stepS,null);
+    const restored=ThermalRuntime.fromSnapshot(rt.snapshot(),DEFAULT_PLANET,DEFAULT_ORBIT);
+    const next=m.timeS+m.stepS;rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,next,null);restored.sync(DEFAULT_PLANET,DEFAULT_ORBIT,next,null);
+    assert.deepEqual(restored.snapshot(),rt.snapshot());
+});
 test('refined surface closures preserve stocks and sunlight separately on mixed coast patches',()=>{
     const rt=fixture(true,false,true,3,true),r=rt.refinedSurface!,m=rt.model!,p=r.partition;
     rt.configureSurfacePhysics({separateSurfaceAlbedo:true,liquidOceanEvaporation:true});

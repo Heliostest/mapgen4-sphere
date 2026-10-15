@@ -1,6 +1,7 @@
 import {deriveOrbit,STEFAN_BOLTZMANN as SIGMA} from './astronomy.ts';
 import type {ThermalModel} from './thermal.ts';
-import {FUSION_J_KG as LF,VAPORIZATION_J_KG as LV,type WaterModel} from './water.ts';
+import {FUSION_J_KG as LF,VAPORIZATION_J_KG as LV,moistureCapacity,type WaterModel} from './water.ts';
+import {bulkOceanEvaporation} from './ocean-evaporation.ts';
 import type {EnvironmentModel} from './environment.ts';
 import {makeSurfacePartition,partitionCell,type SurfacePartition,type RefinementQuality,MAX_SURFACE_PATCHES} from './refinement-topology.ts';
 import {type SurfaceTerrain} from './surface-grid.ts';
@@ -227,7 +228,14 @@ export class RefinedSurface {
             this.surface[t]-=surface;this.soil[t]-=soil;landEvap+=surface-lake+soil;lakeEvap+=lake;lh-=LV*(surface-lake+soil);sh-=LV*lake;
             if(l>0)this.landK[t]-=LV*(surface-lake+soil)/(l*m.config.landHeatCapacity);if(s>0)this.seaK[t]-=LV*lake/(s*m.config.oceanDepthM*4.2e6);
             const ice=s>0?Math.min(1,Math.max(this.ice[t]/(s*917*.5),this.shelfSea[t]/(s*917*5))):0;
-            this.oceanDemand[t]=seaPotential*deficit*(w.config.liquidOceanEvaporation?1:Math.max(0,Math.min(1,(this.seaK[t]-273.15)/5)))*Math.max(0,s-lakeArea)*(1-ice);ocean+=this.oceanDemand[t];
+            const oceanEvaporation=w.config.oceanEvaporationCoefficient===undefined?seaPotential*deficit*(w.config.liquidOceanEvaporation?1:Math.max(0,Math.min(1,(this.seaK[t]-273.15)/5))):
+                dt*bulkOceanEvaporation(m.temperatureK[k],this.seaK[t],w.atmosphereKgM2[k]/moistureCapacity(m.temperatureK[k]),Math.hypot(w.windEastMps[k],w.windNorthMps[k]),w.config.oceanEvaporationCoefficient);
+            this.oceanDemand[t]=oceanEvaporation*Math.max(0,s-lakeArea)*(1-ice);
+            if(w.config.oceanEvaporationCoefficient!==undefined) {
+                const available=Math.max(0,this.seaK[t]*s*m.config.oceanDepthM*4.2e6);
+                this.oceanDemand[t]=Math.min(this.oceanDemand[t],available*(1-4*Number.EPSILON)/LV);
+            }
+            ocean+=this.oceanDemand[t];
         }
         m.applySurfaceCellHeat(k,lh,sh);
         this.aggregateCell(k);return {landEvap,lakeEvap,oceanDemand:ocean};

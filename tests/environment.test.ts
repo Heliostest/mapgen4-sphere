@@ -10,6 +10,54 @@ import {OceanTransport} from '../ocean.ts';
 import {VegetationModel} from '../vegetation.ts';
 import {generateSurfaceReference} from '../surface.ts';
 
+test('initial bulk diagnostics exclude seeded frozen ocean before Play',()=>{
+    const grid=makeThermalGrid(8,4),rt=new ThermalRuntime(grid);
+    rt.enabled=rt.waterEnabled=true;rt.config.separateReservoirs=true;
+    rt.waterConfig.oceanEvaporationCoefficient=.0012;
+    rt.setTerrain(new Float64Array(32),new Float64Array(32));
+    rt.sync(DEFAULT_PLANET,DEFAULT_ORBIT,0,null);
+    const w=rt.water!,e=rt.environment!;
+    let frozen=0,open=0;
+    for(let i=0;i<32;i++) {
+        if(e.oceanFrozenCover[i]===1){frozen++;assert.equal(w.evaporationKgM2S[i],0);}
+        else if(w.evaporationKgM2S[i]>0)open++;
+    }
+    assert.ok(frozen>0&&open>0);assert.equal(w.elapsedS,0);
+    const restored=ThermalRuntime.fromSnapshot(rt.snapshot(),DEFAULT_PLANET,DEFAULT_ORBIT);
+    assert.deepEqual(restored.snapshot(),rt.snapshot());
+});
+
+test('strong bulk evaporation cannot spend more sensible heat than a shallow ocean contains',()=>{
+    const grid=makeThermalGrid(8,4),land=new Float64Array(32),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,separateReservoirs:true,oceanDepthM:.1},land,0,grid);
+    m.temperatureK.fill(280);m.oceanTemperatureK.fill(333.15);
+    const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,land,land,m.temperatureK,{...DEFAULT_WATER,initialOceanDepthM:.1,oceanEvaporationCoefficient:.005,windMps:100,moistureDiffusivityM2s:0});
+    w.setWinds(new Float64Array(32).fill(100),land);
+    const e=new EnvironmentModel(m,w,{...DEFAULT_ENVIRONMENT,vegetation:false,oceanStrengthMps:0});
+    for(let i=0;i<3;i++) {
+        const before=e.enthalpy();e.step(1800);
+        assert.ok(m.oceanTemperatureK.every(v=>Number.isFinite(v)&&v>=0),'Evaporation must leave a nonnegative donor temperature');
+        assert.ok(Math.abs(e.enthalpy()-before)<.001);assert.ok(Math.abs(w.diagnostics().residualMm)<1e-7);
+    }
+});
+
+test('bulk exchange evaporates cold open sea at night, spends latent heat and respects ice cover',()=>{
+    for(const cover of [0,.5,1]) {
+        const grid=makeThermalGrid(8,4),land=new Float64Array(32),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,separateReservoirs:true},land,0,grid);
+        m.temperatureK.fill(270);m.oceanTemperatureK.fill(271.35);
+        const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,land,land,m.temperatureK,{...DEFAULT_WATER,oceanEvaporationCoefficient:.0012,moistureDiffusivityM2s:0});
+        w.setWinds(new Float64Array(32).fill(8),land);
+        const e=new EnvironmentModel(m,w,{...DEFAULT_ENVIRONMENT,vegetation:false});
+        e.oceanFrozenCover.fill(cover);
+        const before=e.enthalpy(),total=w.diagnostics().totalMm;
+        w.step(60,m.temperatureK,new Float64Array(32),e);
+        m.applyHeat(e.heatJm2);m.applyLandHeat(e.landHeatJm2);m.applyOceanHeat(e.oceanHeatJm2);
+        // Summing 32 reservoirs of order 1e10 J/m² loses a few double-precision ulps.
+        assert.ok(Math.abs(e.enthalpy()-before)<32*Number.EPSILON*Math.abs(before),`Latent heat residual ${e.enthalpy()-before} J/m²`);assert.ok(Math.abs(w.diagnostics().totalMm-total)<1e-7);
+        if(cover===1){assert.equal(w.evaporationKgM2S[0],0);assert.equal(m.oceanTemperatureK[0],271.35);}
+        else {assert.ok(w.evaporationKgM2S[0]>0);assert.ok(m.oceanTemperatureK[0]<271.35);}
+    }
+});
+
 test('separate surface albedo keeps land snow from reflecting adjacent open-water sunlight',()=>{
     const land=new Float64Array(n).fill(.5),m=new ThermalModel(DEFAULT_PLANET,DEFAULT_ORBIT,{...DEFAULT_THERMAL,separateReservoirs:true},land,0,g);
     const w=new WaterModel(g,DEFAULT_PLANET.radiusM,land,new Float64Array(n),m.temperatureK,DEFAULT_WATER);

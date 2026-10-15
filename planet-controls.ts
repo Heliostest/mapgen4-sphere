@@ -173,7 +173,8 @@ export function installPlanetControls(options:Options) {
         emit();
     });
     const waterPanel=installWaterPanel(root,thermal,mutate=>{
-        pause(false);mutate();
+        // Reconcile queued frames before a stock-preserving physics change.
+        pause(false);sendView();mutate();
         if(!thermal.waterEnabled&&(layer==='surface'||waterLayer())){layer='original';layerSelect.value=layer;}
         emit();
     });
