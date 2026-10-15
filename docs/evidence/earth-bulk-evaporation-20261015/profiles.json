@@ -1,0 +1,72 @@
+{
+  "control": {},
+  "bulk": {
+    "water": {
+      "oceanEvaporationCoefficient": 0.0012
+    }
+  },
+  "transport": {
+    "thermal": {
+      "airRadiationFraction": 0.5
+    },
+    "water": {
+      "moistureScheme": "transport",
+      "liquidOceanEvaporation": true
+    },
+    "environment": {
+      "conductiveSeaIce": true,
+      "underIceOcean": true,
+      "separateSurfaceAlbedo": true
+    }
+  },
+  "transport-bulk": {
+    "thermal": {
+      "airRadiationFraction": 0.5
+    },
+    "water": {
+      "moistureScheme": "transport",
+      "liquidOceanEvaporation": true,
+      "oceanEvaporationCoefficient": 0.0012
+    },
+    "environment": {
+      "conductiveSeaIce": true,
+      "underIceOcean": true,
+      "separateSurfaceAlbedo": true
+    }
+  },
+  "transport-bulk03": {
+    "thermal": {
+      "airRadiationFraction": 0.5
+    },
+    "water": {
+      "moistureScheme": "transport",
+      "liquidOceanEvaporation": true,
+      "oceanEvaporationCoefficient": 0.0003
+    },
+    "environment": {
+      "conductiveSeaIce": true,
+      "underIceOcean": true,
+      "separateSurfaceAlbedo": true
+    }
+  },
+  "transport-bulk06": {
+    "thermal": {
+      "airRadiationFraction": 0.5
+    },
+    "water": {
+      "moistureScheme": "transport",
+      "liquidOceanEvaporation": true,
+      "oceanEvaporationCoefficient": 0.0006
+    },
+    "environment": {
+      "conductiveSeaIce": true,
+      "underIceOcean": true,
+      "separateSurfaceAlbedo": true
+    }
+  },
+  "cold-open-water": {
+    "water": {
+      "liquidOceanEvaporation": true
+    }
+  }
+}

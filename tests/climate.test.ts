@@ -10,6 +10,17 @@ import {WaterModel} from '../water.ts';
 const grid=makeThermalGrid(48,24),n=grid.count,field=(x:number)=>new Float64Array(n).fill(x);
 const mean=(a:ArrayLike<number>,row:number)=>Array.from({length:grid.width},(_,i)=>a[row*grid.width+i]).reduce((a,b)=>a+b,0)/grid.width;
 const generated=(land=field(1),height=field(0),planet={...DEFAULT_PLANET},orbit={...DEFAULT_ORBIT})=>generateClimate(grid,planet,orbit,DEFAULT_THERMAL,DEFAULT_WATER,land,height,0);
+
+test('initial bulk marine evaporation uses the same wind-driven flux as playback',()=>{
+    const config={...DEFAULT_WATER,oceanEvaporationCoefficient:.0012,moistureDiffusivityM2s:0};
+    const c=generateClimate(grid,DEFAULT_PLANET,DEFAULT_ORBIT,DEFAULT_THERMAL,config,field(0),field(0),0);
+    const faster=generateClimate(grid,DEFAULT_PLANET,DEFAULT_ORBIT,DEFAULT_THERMAL,{...config,windMps:20},field(0),field(0),0);
+    const k=12*48;
+    assert.ok(Math.abs(faster.evaporationMmDay[k]/c.evaporationMmDay[k]-2)<1e-12);
+    const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,field(0),field(0),c.temperatureK,config,c);
+    w.setWinds(c.windEastMps,c.windNorthMps);w.step(60,c.temperatureK,c.absorbedWm2);
+    for(let i=0;i<n;i++)assert.ok(Math.abs(w.evaporationKgM2S[i]*86400-c.evaporationMmDay[i])<1e-10);
+});
 test('reference climate has latitude bands at zero elapsed time and reproduces exactly',()=>{
     const c=generated();assert.ok(mean(c.temperatureK,11)>mean(c.temperatureK,0)+15);
     assert.deepEqual(c,generated());assert.ok(c.rainMmDay.some(x=>x>0));

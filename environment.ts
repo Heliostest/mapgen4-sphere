@@ -26,6 +26,7 @@ export class EnvironmentModel {
     readonly landHeatJm2:Float64Array;readonly oceanHeatJm2:Float64Array;
     get landTemperatureK() {return this.thermal.config.separateReservoirs?this.thermal.landTemperatureK:undefined;}
     get oceanTemperatureK() {return this.thermal.config.separateReservoirs?this.thermal.oceanTemperatureK:undefined;}
+    get oceanHeatCapacityJm2K() {return this.thermal.config.separateReservoirs?this.thermal.oceanCapacity:this.thermal.capacity;}
     get surfaceAlbedo() {return this.thermal.surfaceAlbedo?{...this.thermal.surfaceAlbedo,mean:this.thermal.albedo}:undefined;}
     readonly vegetation:Float64Array;
     readonly initialEnthalpy:number;

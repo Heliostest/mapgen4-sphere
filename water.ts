@@ -3,8 +3,11 @@ import type {ThermalGrid} from './thermal.ts';
 import type {GeneratedClimate} from './climate.ts';
 import {TerrainWater,type TerrainWaterCheckpoint,type RoutingNetwork} from './terrain-water.ts';
 import {GlacierModel,type GlacierCheckpoint} from './glacier.ts';
+import {bulkOceanEvaporation} from './ocean-evaporation.ts';
 
 export interface WaterConfig {
+    /** Missing: legacy sunlight-limited evaporation. Present: neutral bulk C_E. */
+    oceanEvaporationCoefficient?:number;
     /** Missing in old saves: retain their saturation-only closure and winds. */
     moistureScheme?:'transport';
     /** Ice cover, rather than a freshwater-temperature ramp, gates marine liquid. */
@@ -28,7 +31,7 @@ export const DEFAULT_WATER:Readonly<WaterConfig>=Object.freeze({
 export function moistureCapacity(t:number) {return 20*Math.exp(.06*(Math.max(250,Math.min(330,t))-288.15));}
 const DAY=86400,WATER_DENSITY=1000;
 export const VAPORIZATION_J_KG=2.45e6,FUSION_J_KG=334000;
-export interface WaterCoupling {heatJm2:Float64Array;landEvaporation:Float64Array;iceCover:Float64Array;landTemperatureK?:Float64Array;oceanTemperatureK?:Float64Array;landHeatJm2?:Float64Array;oceanHeatJm2?:Float64Array;oceanFrozenCover?:Float64Array;surfaceAlbedo?:{land:ArrayLike<number>;ocean:ArrayLike<number>;mean:ArrayLike<number>};}
+export interface WaterCoupling {heatJm2:Float64Array;landEvaporation:Float64Array;iceCover:Float64Array;landTemperatureK?:Float64Array;oceanTemperatureK?:Float64Array;oceanHeatCapacityJm2K?:Float64Array;landHeatJm2?:Float64Array;oceanHeatJm2?:Float64Array;oceanFrozenCover?:Float64Array;surfaceAlbedo?:{land:ArrayLike<number>;ocean:ArrayLike<number>;mean:ArrayLike<number>};}
 export interface WaterCheckpoint {
     snowfallKgM2S:Float64Array|null;
     /** Optional in transport saves; old coarse rain was uniform, while old
@@ -140,6 +143,7 @@ export class WaterModel {
     constructor(readonly grid:ThermalGrid,readonly radiusM:number,land:ArrayLike<number>,heightM:ArrayLike<number>,initialTemperatureK:ArrayLike<number>,config:WaterConfig,reference?:GeneratedClimate,initialTotalMm?:number) {
         finiteInRange(radiusM,'water radius',1);
         finiteInRange(config.evaporationFraction,'evaporation fraction',0,1);
+        if(config.oceanEvaporationCoefficient!==undefined)finiteInRange(config.oceanEvaporationCoefficient,'ocean evaporation coefficient',0,.005);
         finiteInRange(config.soilCapacityKgM2,'soil capacity',1,1000);
         finiteInRange(config.initialOceanDepthM,'initial ocean depth',0,10000);
         finiteInRange(config.windMps,'zonal wind',-100,100);
@@ -314,7 +318,7 @@ export class WaterModel {
             const landT=coupling?.landTemperatureK?.[i]??t,oceanT=coupling?.oceanTemperatureK?.[i]??t;
             finiteInRange(landT,'land evaporation temperature',0);finiteInRange(oceanT,'ocean evaporation temperature',0);
             const landLiquid=Math.max(0,Math.min(1,(landT-273.15)/5)),oceanLiquid=config.liquidOceanEvaporation?1:Math.max(0,Math.min(1,(oceanT-273.15)/5));
-            const deficit=Math.max(0,1-this.atmosphereKgM2[i]/moistureCapacity(t));
+            const columnHumidity=this.atmosphereKgM2[i]/moistureCapacity(t),deficit=Math.max(0,1-columnHumidity);
             const potential=dt*config.evaporationFraction*q/VAPORIZATION_J_KG;
             if(this.surfaceSolver) {
                 const e=this.surfaceSolver.evaporate(i,dt,potential,deficit);
@@ -331,7 +335,17 @@ export class WaterModel {
             this.surfaceKgM2[i]-=surface;this.soilKgM2[i]-=soil;
             this.atmosphereKgM2[i]+=surface+soil;this.evaporationKgM2S[i]=(surface+soil)/dt;
             if(split&&coupling?.landHeatJm2&&coupling.oceanHeatJm2){coupling.landHeatJm2[i]=-VAPORIZATION_J_KG*(surface-lakeEvap+soil);coupling.oceanHeatJm2[i]=-VAPORIZATION_J_KG*lakeEvap;}
-            this.oceanDemand[i]=oceanPotential*oceanDeficit*oceanLiquid*(1-land[i]-this.inlandWaterFraction[i])*(1-(coupling?.oceanFrozenCover?.[i]??coupling?.iceCover[i]??0));oceanRequest+=this.oceanDemand[i]/n;
+            const oceanEvaporation=config.oceanEvaporationCoefficient===undefined?oceanPotential*oceanDeficit*oceanLiquid:
+                dt*bulkOceanEvaporation(t,oceanT,columnHumidity,Math.hypot(this.windEastMps[i],this.windNorthMps[i]),config.oceanEvaporationCoefficient);
+            this.oceanDemand[i]=oceanEvaporation*(1-land[i]-this.inlandWaterFraction[i])*(1-(coupling?.oceanFrozenCover?.[i]??coupling?.iceCover[i]??0));
+            if(config.oceanEvaporationCoefficient!==undefined&&coupling?.oceanHeatCapacityJm2K) {
+                // A thin warm reservoir can exhaust its sensible heat before
+                // its water. Leave roundoff headroom; do not clamp temperature
+                // after the transfer, which would silently create energy.
+                const available=oceanT*coupling.oceanHeatCapacityJm2K[i]-VAPORIZATION_J_KG*(split?lakeEvap:surface+soil);
+                this.oceanDemand[i]=Math.min(this.oceanDemand[i],Math.max(0,available)*(1-4*Number.EPSILON)/VAPORIZATION_J_KG);
+            }
+            oceanRequest+=this.oceanDemand[i]/n;
         }
         const fraction=oceanRequest>0?Math.min(1,this.oceanGlobalKgM2/oceanRequest):0;
         if(this.config.compensatedOceanTransfers)this.addOceanWater(-Math.min(this.oceanGlobalKgM2,oceanRequest*fraction));

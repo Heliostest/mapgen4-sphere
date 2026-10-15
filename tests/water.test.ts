@@ -10,6 +10,29 @@ const mixed=Float64Array.from({length:n},(_,i)=>i%3?1:0);
 const model=(land=mixed,config={},radius=DEFAULT_PLANET.radiusM,height=field(0))=>new WaterModel(grid,radius,land,height,field(288.15),{...DEFAULT_WATER,...config});
 const near=(a:number,b:number,tol=1e-8)=>assert.ok(Math.abs(a-b)<tol,`${a} != ${b}`);
 
+test('bulk ocean evaporation responds to actual wind and works without sunlight',()=>{
+    const run=(speed:number)=>{
+        const m=model(field(0),{oceanEvaporationCoefficient:.0012,moistureDiffusivityM2s:0});
+        m.setWinds(field(speed),field(0));
+        m.step(60,field(288.15),field(0));
+        near(m.diagnostics().residualMm,0,1e-7);
+        return m.evaporationKgM2S[0];
+    };
+    assert.ok(run(2)>0,'Open water must exchange moisture with dry moving air at night');
+    near(run(4)/run(2),2,1e-12);
+    near(run(0),0);
+});
+
+test('bulk ocean evaporation stops at saturation and cannot overdraw the ocean',()=>{
+    const saturated=model(field(0),{oceanEvaporationCoefficient:.0012,moistureDiffusivityM2s:0});
+    saturated.atmosphereKgM2.fill(20);saturated.setWinds(field(10),field(0));
+    saturated.step(60,field(288.15),field(100));
+    near(saturated.evaporationKgM2S[0],0);
+    const dry=model(field(0),{oceanEvaporationCoefficient:.0012,initialOceanDepthM:0,moistureDiffusivityM2s:0});
+    dry.setWinds(field(10),field(0));dry.step(60,field(288.15),field(0));
+    near(dry.evaporationKgM2S[0],0);near(dry.oceanGlobalKgM2,0);
+});
+
 test('opt-in ocean accumulation conserves repeated rain and evaporation across restore',()=>{
     const config={moistureScheme:'transport',compensatedOceanTransfers:true,windMps:0,moistureDiffusivityM2s:0};
     const original=model(field(0),config),temperature=field(280),sun=field(250);

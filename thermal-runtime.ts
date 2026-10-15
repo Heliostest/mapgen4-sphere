@@ -1,7 +1,8 @@
 ﻿import type {PlanetConfig} from './planet.ts';
 import {deriveOrbit,type OrbitConfig} from './astronomy.ts';
 import {DEFAULT_THERMAL,ThermalModel,makeThermalGrid,thermalCell,type ThermalCheckpoint} from './thermal.ts';
-import {DEFAULT_WATER,WaterModel,type WaterCheckpoint} from './water.ts';
+import {DEFAULT_WATER,WaterModel,moistureCapacity,VAPORIZATION_J_KG,type WaterCheckpoint} from './water.ts';
+import {bulkOceanEvaporation} from './ocean-evaporation.ts';
 import {generateClimate,generateThermalClimate,circulationWinds} from './climate.ts';
 import {generateSurfaceReference,surfaceCover,type SurfaceReference} from './surface.ts';
 import {makeSurfaceGrid,SurfaceTerrainSampler,resampleClimateField,surfaceCell,type SurfaceTerrain} from './surface-grid.ts';
@@ -141,10 +142,14 @@ export class ThermalRuntime {
     }
     private modelKey(planet:PlanetConfig,orbit:OrbitConfig) {return JSON.stringify([planet,orbit,this.config,this.waterEnabled,this.waterConfig,this.environmentConfig,this.iceInventory,this.refinement]);}
     /** Opt-in closure migration: preserve every stock and budget origin. */
-    configureSurfacePhysics(options:{separateSurfaceAlbedo?:boolean;liquidOceanEvaporation?:boolean}) {
+    configureSurfacePhysics(options:{separateSurfaceAlbedo?:boolean;liquidOceanEvaporation?:boolean;oceanEvaporationCoefficient?:number|null}) {
         if(!this.model||!this.water||!this.environment||!this.config.separateReservoirs)throw new Error('Surface physics requires separate thermal/water reservoirs');
+        const coefficient=options.oceanEvaporationCoefficient;
+        if(coefficient!==undefined&&coefficient!==null&&(!Number.isFinite(coefficient)||coefficient<0||coefficient>.005))throw new RangeError('Invalid ocean evaporation coefficient');
         if(options.separateSurfaceAlbedo!==undefined)this.environmentConfig.separateSurfaceAlbedo=options.separateSurfaceAlbedo;
         if(options.liquidOceanEvaporation!==undefined)this.water.config.liquidOceanEvaporation=this.waterConfig.liquidOceanEvaporation=options.liquidOceanEvaporation;
+        if(coefficient===null){delete this.waterConfig.oceanEvaporationCoefficient;delete this.water.config.oceanEvaporationCoefficient;}
+        else if(coefficient!==undefined)this.water.config.oceanEvaporationCoefficient=this.waterConfig.oceanEvaporationCoefficient=coefficient;
         this.refreshEnvironment();this.key=this.modelKey(this.model.planet,this.model.orbit);this.presented=this.checkpoint();this.texture=this.surfaceTexture=this.waterTexture=null;this.refinedDisplay=null;
     }
     initializeLakeLevels(levels:readonly {lakeId:number;levelM:number}[]) {
@@ -440,6 +445,18 @@ export class ThermalRuntime {
                 this.vegetation=new VegetationModel(this.surfaceReference);
                 this.model.stepS=Math.min(this.model.stepS,w.maxStepS);
                 this.refreshEnvironment();
+                if(!modern&&w.config.oceanEvaporationCoefficient!==undefined) {
+                    // The analytic reference precedes ice seeding and surface
+                    // phase adjustment. Keep its land estimate, but diagnose
+                    // marine exchange from the actual initialized open sea.
+                    // Transport mode already carries recorded reference fluxes.
+                    const m=this.model,e=this.environment;
+                    for(let i=0;i<this.grid.count;i++) {
+                        const landEstimate=reference.absorbedWm2[i]*w.config.evaporationFraction/VAPORIZATION_J_KG*Math.max(0,Math.min(1,(reference.temperatureK[i]-273.15)/5))*(1-reference.humidityFraction[i])*w.land[i];
+                        const marine=w.oceanGlobalKgM2>0?Math.max(0,1-w.land[i]-w.inlandWaterFraction[i])*(1-e.oceanFrozenCover[i]):0;
+                        w.evaporationKgM2S[i]=landEstimate+marine*bulkOceanEvaporation(m.temperatureK[i],m.oceanTemperatureK[i],w.atmosphereKgM2[i]/moistureCapacity(m.temperatureK[i]),Math.hypot(w.windEastMps[i],w.windNorthMps[i]),w.config.oceanEvaporationCoefficient);
+                    }
+                }
             }
             if(this.refinement&&this.water&&this.environment&&this.config.separateReservoirs)this.enableRefinement(this.refinement);
             this.key=this.modelKey(planet,orbit);this.presented=this.checkpoint();this.texture=null;this.waterTexture=null;this.lastTarget=timeS;

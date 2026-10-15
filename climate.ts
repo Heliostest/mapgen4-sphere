@@ -4,6 +4,7 @@ import {DEFAULT_PLANET,type PlanetConfig} from './planet.ts';
 import type {WaterConfig} from './water.ts';
 import {referenceMoisture} from './reference-moisture.ts';
 import type {EnvironmentConfig} from './environment.ts';
+import {bulkOceanEvaporation} from './ocean-evaporation.ts';
 
 const clamp=(x:number,lo=0,hi=1)=>Math.max(lo,Math.min(hi,x));
 export type ClimateGrid=Pick<ThermalGrid,'width'|'height'|'count'|'sinLat'>&{edges:readonly {a:number;b:number}[]};
@@ -101,7 +102,11 @@ export function generateThermalClimate(grid:ClimateGrid,planet:PlanetConfig,orbi
         soilFraction[i]=clamp(.1+.75*wetness,.05,.9);
         humidityFraction[i]=clamp(.3+.45*wetness+.1*ocean,.2,.95);
         surfaceMm[i]=20*wetness*wetness;
-        evaporationMmDay[i]=potential*clamp((temperatureK[i]-273.15)/5)*(1-humidityFraction[i])*(land[i]+(water.initialOceanDepthM>0?1-land[i]:0));
+        const solarEvaporation=potential*clamp((temperatureK[i]-273.15)/5)*(1-humidityFraction[i]);
+        const marineEvaporation=water.oceanEvaporationCoefficient===undefined?solarEvaporation:
+            86400*bulkOceanEvaporation(temperatureK[i],temperatureK[i],humidityFraction[i],speed,water.oceanEvaporationCoefficient);
+        evaporationMmDay[i]=water.oceanEvaporationCoefficient===undefined?solarEvaporation*(land[i]+(water.initialOceanDepthM>0?1-land[i]:0)):
+            solarEvaporation*land[i]+(water.initialOceanDepthM>0?marineEvaporation*(1-land[i]):0);
     }
     const result={temperatureK,radiationScale,absorbedWm2,windEastMps:winds.eastMps,windNorthMps:winds.northMps,rainMmDay,evaporationMmDay,soilFraction,humidityFraction,surfaceMm};
     for(const field of Object.values(result))closePoles(field);

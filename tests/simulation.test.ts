@@ -23,6 +23,22 @@ function advance(rt:ThermalRuntime,batches:number) {
     for(let j=0;j<batches;j++)rt.sync(planet,orbit,rt.model!.timeS+rt.maxAdvanceS,rt.model!.timeS);
 }
 
+test('switching bulk ocean exchange preserves stocks and resumes exactly after saving',()=>{
+    const a=runtime(true,true);advance(a,1);
+    const before=a.snapshot();
+    a.configureSurfacePhysics({oceanEvaporationCoefficient:.0012});
+    assert.equal(a.water!.config.oceanEvaporationCoefficient,.0012);
+    assert.deepEqual(a.snapshot().state,before.state);
+    const restored=ThermalRuntime.fromSnapshot(a.snapshot(),planet,orbit);
+    assert.equal(restored.waterConfig.oceanEvaporationCoefficient,.0012);
+    advance(a,2);advance(restored,2);assert.deepEqual(restored.snapshot(),a.snapshot());
+    const evolved=a.snapshot();a.configureSurfacePhysics({oceanEvaporationCoefficient:null});
+    assert.equal(a.waterConfig.oceanEvaporationCoefficient,undefined);
+    assert.deepEqual(a.snapshot().state,evolved.state);
+    const bad=a.snapshot();bad.waterConfig.oceanEvaporationCoefficient=-.001;
+    assert.throws(()=>ThermalRuntime.fromSnapshot(bad,planet,orbit),/ocean evaporation coefficient/);
+});
+
 test('optional uplift closures roundtrip without new stocks and preserve exact continuation',()=>{
     const initial=runtime(true,true).snapshot();
     const switches={upliftScheme:'eddy-front' as const,consistentLiftTemperature:true,buoyantConvection:false,coldFrontDisplacement:true};

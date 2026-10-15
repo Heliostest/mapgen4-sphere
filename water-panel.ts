@@ -6,6 +6,8 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
     panel.innerHTML=`<summary>Water cycle</summary>
       <label><input id="water-enabled" type="checkbox"> Enable water cycle</label>
       <label><input id="water-unified" type="checkbox"> Experimental shared moisture solver</label>
+      <label><input id="water-bulk-ocean" type="checkbox"> Wind-driven ocean evaporation (experimental)</label>
+      <p class="planet-note" data-info-for="water-bulk-ocean">Open-ocean evaporation responds to wind, humidity and sea temperature, including darkness and cold liquid seawater. It spends ocean heat and water; ice blocks it. Requires separate thermal reservoirs. Switching preserves the current state. Regional rainfall and temperature are not calibrated.</p>
       <p class="planet-note" data-info-for="water-unified">Experimental: changes both initialization and Play. Regional rain patterns and monsoons are not calibrated and can change strongly with time step. Initialization can take a minute. Initialize rain and water stores from one spinup and one recorded orbit of the shared moisture solver. Short initialization is not equilibrium; very long or stiff orbits use an explicitly compressed, prescribed-temperature reference. Changing this option restarts the environment.</p>
       <p class="planet-note" data-info-for="water-enabled">Rain, humidity and soil initialize before Play. Coupled initialization uses the shared moisture solver; older configurations use geographic estimates. Play continues with conservative evaporation, vapor transport, condensation and routing. Evaporation cools its donor surface and condensation warms the air. Snowfall accumulates; energy-limited melt feeds surface outflow. No groundwater or weather prediction.</p>
       <label><span>Mean precipitation</span><output id="water-rain"></output></label>
@@ -20,6 +22,8 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
       <p class="planet-note" data-info-for="water-panel">Precipitation includes liquid rain and the recorded frozen transfer to land. Snowfall is mm water equivalent per whole globe area, from the latest simulated step; unavailable before Play or when an older save lacks phase. Stores include ocean inventory. Outflow is transferred volume from a coarse cell, independent of the artistic river lines.</p>
       <details><summary>Water parameters</summary>
         <label><span>Evaporation energy fraction (0–1)</span><input id="water-efficiency" type="number" min="0" max="1" step="any"></label>
+        <label><span>Ocean exchange coefficient</span><input id="water-ocean-exchange" type="number" min="0" max="0.005" step="0.0001" value="0.0012" disabled></label>
+        <p class="planet-note" data-info-for="water-ocean-exchange">Used only for wind-driven ocean evaporation. The energy fraction above continues to control land and lake evaporation. Zero stops ocean evaporation. The coefficient is effective: column humidity approximates near-surface humidity.</p>
         <label><span>Soil capacity (mm per land area)</span><input id="water-soil-capacity" type="number" min="1" max="1000" step="any"></label>
         <label><span>Initial ocean water depth (m)</span><input id="water-depth" type="number" min="0" max="10000" step="any"></label>
         <label><span>Wind belt strength (m/s; negative reverses)</span><input id="water-wind" type="number" min="-100" max="100" step="any"></label>
@@ -37,6 +41,19 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
         runtime.waterEnabled=enabled.checked;if(enabled.checked)runtime.enabled=true;runtime.invalidate();
     }));
     const unified=el<HTMLInputElement>('water-unified');
+    const bulk=el<HTMLInputElement>('water-bulk-ocean'),exchange=el<HTMLInputElement>('water-ocean-exchange');
+    const validExchange=()=>Number.isFinite(exchange.valueAsNumber)&&exchange.valueAsNumber>=0&&exchange.valueAsNumber<=.005&&exchange.checkValidity();
+    bulk.addEventListener('change',()=>{
+        // Disabled number inputs bypass native validity checks. Restore the
+        // applied value before disabling so a rejected edit cannot trap users.
+        if(!bulk.checked&&!validExchange()){exchange.value=String(runtime.waterConfig.oceanEvaporationCoefficient??.0012);exchange.removeAttribute('aria-invalid');}
+        if(bulk.checked&&!validExchange()){bulk.checked=false;exchange.setAttribute('aria-invalid','true');return;}
+        change(()=>runtime.configureSurfacePhysics({oceanEvaporationCoefficient:bulk.checked?exchange.valueAsNumber:null}));
+    });
+    exchange.addEventListener('change',()=>{
+        if(!validExchange()){exchange.setAttribute('aria-invalid','true');return;}
+        exchange.removeAttribute('aria-invalid');if(bulk.checked)change(()=>runtime.configureSurfacePhysics({oceanEvaporationCoefficient:exchange.valueAsNumber}));
+    });
     unified.addEventListener('change',()=>change(()=>{
         if(unified.checked){runtime.waterConfig.moistureScheme='transport';runtime.config.separateReservoirs=true;runtime.config.airRadiationFraction??=.5;}
         else {delete runtime.waterConfig.moistureScheme;delete runtime.config.airRadiationFraction;}
@@ -56,11 +73,14 @@ export function installWaterPanel(root:HTMLElement,runtime:ThermalRuntime,change
     el('water-reset').addEventListener('click',()=>change(()=>runtime.invalidate()));
     const value=(id:string,text:string,n?:number)=>{const o=el<HTMLOutputElement>(id);o.value=text;if(n===undefined)delete o.dataset.value;else o.dataset.value=String(n);};
     return {
-        restoreInputs(){for(const [id,key] of specs){const input=el<HTMLInputElement>(id);input.value=String(runtime.waterConfig[key]);input.removeAttribute('aria-invalid');}},
+        restoreInputs(){for(const [id,key] of specs){const input=el<HTMLInputElement>(id);input.value=String(runtime.waterConfig[key]);input.removeAttribute('aria-invalid');}exchange.value=String(runtime.waterConfig.oceanEvaporationCoefficient??.0012);exchange.removeAttribute('aria-invalid');},
         reveal(){panel.open=true;},
         refresh() {
             enabled.checked=runtime.waterEnabled;
             unified.checked=runtime.waterConfig.moistureScheme==='transport';
+            bulk.checked=runtime.waterConfig.oceanEvaporationCoefficient!==undefined;
+            bulk.disabled=!runtime.water||!runtime.environment||!runtime.config.separateReservoirs;
+            exchange.disabled=!bulk.checked||bulk.disabled;
             const w=runtime.water,d=w?.diagnostics(),m=runtime.model;
             value('water-rain',d?`${d.rainMmDay.toFixed(3)} mm/day`:'Unavailable',d?.rainMmDay);
             const snowfall=m&&m.steps>0&&w?.snowfallKgM2S?w.snowfallKgM2S.reduce((sum,v)=>sum+v,0)*86400/w.grid.count:undefined;
