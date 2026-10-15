@@ -142,14 +142,19 @@ export class ThermalRuntime {
     }
     private modelKey(planet:PlanetConfig,orbit:OrbitConfig) {return JSON.stringify([planet,orbit,this.config,this.waterEnabled,this.waterConfig,this.environmentConfig,this.iceInventory,this.refinement]);}
     /** Opt-in closure migration: preserve every stock and budget origin. */
-    configureSurfacePhysics(options:{separateSurfaceAlbedo?:boolean;liquidOceanEvaporation?:boolean;oceanEvaporationCoefficient?:number|null}) {
+    configureSurfacePhysics(options:{separateSurfaceAlbedo?:boolean;liquidOceanEvaporation?:boolean;oceanEvaporationCoefficient?:number|null;buoyantConvection?:boolean}) {
         if(!this.model||!this.water||!this.environment||!this.config.separateReservoirs)throw new Error('Surface physics requires separate thermal/water reservoirs');
         const coefficient=options.oceanEvaporationCoefficient;
         if(coefficient!==undefined&&coefficient!==null&&(!Number.isFinite(coefficient)||coefficient<0||coefficient>.005))throw new RangeError('Invalid ocean evaporation coefficient');
+        if(options.buoyantConvection!==undefined){
+            if(typeof options.buoyantConvection!=='boolean')throw new RangeError('Invalid buoyant convection switch');
+            if(this.waterConfig.moistureScheme!=='transport')throw new Error('Buoyant convection requires transport moisture');
+        }
         if(options.separateSurfaceAlbedo!==undefined)this.environmentConfig.separateSurfaceAlbedo=options.separateSurfaceAlbedo;
         if(options.liquidOceanEvaporation!==undefined)this.water.config.liquidOceanEvaporation=this.waterConfig.liquidOceanEvaporation=options.liquidOceanEvaporation;
         if(coefficient===null){delete this.waterConfig.oceanEvaporationCoefficient;delete this.water.config.oceanEvaporationCoefficient;}
         else if(coefficient!==undefined)this.water.config.oceanEvaporationCoefficient=this.waterConfig.oceanEvaporationCoefficient=coefficient;
+        if(options.buoyantConvection!==undefined)this.water.config.buoyantConvection=this.waterConfig.buoyantConvection=options.buoyantConvection;
         this.refreshEnvironment();this.key=this.modelKey(this.model.planet,this.model.orbit);this.presented=this.checkpoint();this.texture=this.surfaceTexture=this.waterTexture=null;this.refinedDisplay=null;
     }
     initializeLakeLevels(levels:readonly {lakeId:number;levelM:number}[]) {

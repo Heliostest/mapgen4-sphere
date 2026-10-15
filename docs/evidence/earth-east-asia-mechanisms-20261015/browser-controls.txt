@@ -1,0 +1,121 @@
+- heading "Planet physics" [level=3]
+- text: Display layer
+- combobox "Display layer":
+  - option "Terrain editing"
+  - option "Planet surface (terrain, ice, vegetation & rivers)"
+  - option "Day / night"
+  - option "Solar energy"
+  - option "Temperature (daily mean)"
+  - option "Precipitation" [selected]
+  - option "Soil moisture"
+  - option "Surface outflow"
+  - option "Terrain change (erosion)"
+  - option "Surface wind (estimated)"
+- button "About Display layer": i
+- text: View
+- combobox "View":
+  - option "Follow surface" [selected]
+  - option "From space"
+- button "Live planet"
+- button "Generate climate now"
+- button "About Generate climate now": i
+- button "Compare environment…"
+- button "Play"
+- text: Time speed
+- combobox "Time speed":
+  - option "1 minute / second"
+  - option "1 hour / second"
+  - option "1 day / second" [selected]
+  - option "10 days / second"
+- text: Elapsed time (days)
+- spinbutton "Elapsed time (days)": "5.467472"
+- text: Spin phase (°)
+- slider "Spin phase (°)": "173.7"
+- text: Season phase (°)
+- slider "Season phase (°)": "5.4"
+- paragraph: Spin 173.7° · season 5.4° · Sun latitude 2.1°
+- button "Reset time"
+- 'button "Inspect: off"'
+- paragraph: Inspect a surface point to read its location and solar energy.
+- generic "Physical size"
+- text: Radius (km)
+- spinbutton "Radius (km)": "6371.0084"
+- text: Mean density (kg/m³)
+- spinbutton "Mean density (kg/m³)": "5513.4"
+- text: Mass
+- status "Mass": 5.972e+24 kg
+- text: Surface gravity
+- status "Surface gravity": 9.82 m/s²
+- text: Escape speed
+- status "Escape speed": 11.19 km/s
+- paragraph: Physical radius is independent of render → sphere_radius and zoom.
+- generic "Rotation & solar orbit"
+- generic "Physical terrain scale"
+- generic "Seasonal temperature"
+- checkbox "Enable thermal model" [checked]
+- text: Enable thermal model
+- button "About Enable thermal model": i
+- text: Global mean
+- status "Global mean": "-50.4 °C"
+- text: Temperature range
+- status "Temperature range": "-75.1 to -41.7 °C"
+- text: Time since thermal reset
+- status "Time since thermal reset": 1.33 d · sampled at day 5.467
+- paragraph: Daily-mean model · Evolving from generated climate · 1152 cells · 30.0 min step · energy residual 5.5e-5 J/m² · field lag 0.0 min
+- generic "Thermal parameters"
+- button "Reset temperature & water"
+- button "About Reset temperature & water": i
+- generic "Water cycle About Water cycle":
+  - text: Water cycle
+  - button "About Water cycle": i
+- checkbox "Enable water cycle" [checked]
+- text: Enable water cycle
+- button "About Enable water cycle": i
+- checkbox "Experimental shared moisture solver" [checked]
+- text: Experimental shared moisture solver
+- button "About Experimental shared moisture solver": i
+- checkbox "Buoyancy-driven convection (experimental)"
+- text: Buoyancy-driven convection (experimental)
+- button "About Buoyancy-driven convection (experimental)": i
+- checkbox "Wind-driven ocean evaporation (experimental)" [checked]
+- text: Wind-driven ocean evaporation (experimental)
+- button "About Wind-driven ocean evaporation (experimental)": i
+- text: Mean precipitation
+- status "Mean precipitation": 0.000 mm/day
+- text: Mean land snowfall
+- status "Mean land snowfall": 0.000 mm/day
+- text: Mean evaporation
+- status "Mean evaporation": 0.000 mm/day
+- text: Atmosphere / soil / surface
+- status "Atmosphere / soil / surface": 0.00 / 0.00 / 0.00 mm
+- text: Ocean inventory
+- status "Ocean inventory": 0.00 mm
+- text: Water budget residual
+- status "Water budget residual": 0.00e+0 mm
+- text: Largest cell outflow
+- status "Largest cell outflow": 0.00e+0 m³/s
+- text: Time since water reset
+- status "Time since water reset": 1.33 d · sampled at day 5.467
+- paragraph: 1152 equal-area cells · 30.00 min shared step · fluxes from the latest simulated step
+- generic "Water parameters"
+- button "Reset temperature & water"
+- button "About Reset temperature & water": i
+- generic "Ice, ocean & vegetation About Ice, ocean & vegetation":
+  - text: Ice, ocean & vegetation
+  - button "About Ice, ocean & vegetation": i
+- option "Classic" [selected]
+- 'option "Refined: balanced"'
+- 'option "Refined: high"'
+- generic "Erosion & deposition preview About Erosion & deposition preview":
+  - text: Erosion & deposition preview
+  - button "About Erosion & deposition preview": i
+- generic "Radiation reference"
+- text: Stellar irradiance
+- status "Stellar irradiance": 1361.2 W/m²
+- text: Radiative Teq
+- status "Radiative Teq": 254.6 K (-18.6 °C)
+- paragraph: Global blackbody reference, not surface air temperature. The optional thermal model has its own effective emissivity and heat transport.
+- paragraph
+- paragraph: Painting pauses time. Hidden tabs pause until you press Play. Terrain Reset clears painting and applied erosion.
+- button "Earth preset"
+- generic: "{ \"status\": \"PASS\", \"checks\": 43, \"failures\": [] }"

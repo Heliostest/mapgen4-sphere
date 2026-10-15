@@ -89,6 +89,22 @@ try {
     check(exchange.value==='.0006'||exchange.value==='0.0006','Disabling bulk restores the last applied coefficient after invalid input');
     bulk.click();
     check(bulk.checked&&controls.simulation().runtime.waterConfig.oceanEvaporationCoefficient===.0006,'Bulk can be enabled again after rejecting an invalid value');
+    const buoyant=document.querySelector<HTMLInputElement>('#water-buoyant-convection');
+    check(!!buoyant,'The buoyancy convection experiment is available in the water panel');
+    if(buoyant){
+        check(buoyant.disabled,'Convection control requires the shared moisture solver');
+        document.querySelector<HTMLInputElement>('#water-unified')!.click();
+        check(!buoyant.disabled,'Shared moisture enables the convection control');
+        for(const enabled of [true,false]){
+            play.click();advance(now+1000);presented=queued;
+            const shown=JSON.stringify(controls.simulation().runtime.state);
+            advance(now+1000);check(queued>presented,'Convection switch reproduction queues an unpresented frame');
+            buoyant.click();
+            check(queued===presented&&play.textContent==='Play','Convection switch pauses at the visible time');
+            check(JSON.stringify(controls.simulation().runtime.state)===shown,'Convection switch preserves every visible stock and budget origin');
+            check(controls.simulation().runtime.waterConfig.buoyantConvection===enabled,'Convection selection is persisted');
+        }
+    }
     document.querySelector('pre')!.textContent=JSON.stringify({status:failures.length?'FAIL':'PASS',checks,failures},null,2);
 } catch(error) {
     document.querySelector('pre')!.textContent=JSON.stringify({status:'FAIL',error:String(error)});

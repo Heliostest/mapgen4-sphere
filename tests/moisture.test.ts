@@ -94,6 +94,29 @@ test('relative buoyancy ablation can lift moist cold air but not air over a cold
  assert.ok(run(289,false).precipitationKgM2S.every(v=>v===0));
  assert.ok(run(280,true).precipitationKgM2S.every(v=>v===0));
 });
+test('buoyancy-driven convection uses stored surface warmth even without sunlight',()=>{
+ // A warm surface can lift moist air after sunset or in polar night. A
+ // colder surface and a dry column must still suppress this mechanism.
+ const run=(surface:number,humidity:number,enabled:boolean,landFraction=1)=>{
+  const w=new WaterModel(grid,DEFAULT_PLANET.radiusM,field(landFraction),field(0),field(285),{...config,windMps:0,buoyantConvection:enabled});
+  w.atmosphereKgM2.fill(humidity*moistureCapacity(285));w.setWinds(field(0),field(0));
+  const total=w.diagnostics().totalMm,heat=field(0),dt=1800;
+  w.step(dt,field(285),field(0),{heatJm2:heat,landEvaporation:field(0),iceCover:field(0),landTemperatureK:field(landFraction>0?surface:285),oceanTemperatureK:field(landFraction<1?surface:285)});
+  assert.ok(Math.abs(w.diagnostics().totalMm-total)<1e-7);
+  for(let k=0;k<n;k++){
+   assert.ok(Math.abs(heat[k]-2.45e6*w.precipitationKgM2S[k]*dt)<1e-8,'Condensation heats the air exactly once');
+   assert.ok(w.atmosphereKgM2[k]>=0);
+  }
+  return w;
+ };
+ assert.ok(run(293,.9,true).precipitationComponents.convection.some(v=>v>0),'Stored surface warmth can drive moist convection in darkness');
+ assert.ok(run(293,.9,true,0).precipitationComponents.convection.some(v=>v>0),'Warm ocean water supports moist convection without sunlight');
+ assert.ok(run(280,.9,true,0).precipitationKgM2S.every(v=>v===0),'A cold ocean surface cannot supply convective lift');
+ assert.ok(run(280,.9,true).precipitationKgM2S.every(v=>v===0),'A stable surface does not supply convective lift');
+ assert.ok(run(300,.3,true).precipitationKgM2S.every(v=>v===0),'Heat without sufficient moisture does not create rain');
+ assert.ok(run(293,.9,false).precipitationKgM2S.every(v=>v===0),'Absent opt-in retains the legacy sunlight gate');
+});
+
 test('terrain lapse alone cannot amplify horizontal eddy moisture exchange',()=>{
  const run=(mountain:boolean)=>{
   const h=field(0),t=field(300);if(mountain){h[2*16+8]=4000;t[2*16+8]*=Math.exp(-.0065*4000/288.15);}

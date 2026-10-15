@@ -54,6 +54,21 @@ test('optional uplift closures roundtrip without new stocks and preserve exact c
     for(const key of Object.keys(switches))assert.equal(key in DEFAULT_WATER,false,'Formal defaults are opt-out');
 });
 
+test('switching buoyant convection preserves current stocks and saved continuation',()=>{
+    const initial=runtime(true,true).snapshot();initial.waterConfig.moistureScheme='transport';initial.config.airRadiationFraction=.5;
+    const a=ThermalRuntime.fromSnapshot(initial,planet,orbit);advance(a,1);
+    const before=a.snapshot();a.configureSurfacePhysics({buoyantConvection:true});
+    assert.equal(a.water!.config.buoyantConvection,true);
+    assert.deepEqual(a.snapshot().state,before.state);
+    const restored=ThermalRuntime.fromSnapshot(JSON.parse(JSON.stringify(a.snapshot(),(_,v)=>ArrayBuffer.isView(v)?Array.from(v as Float64Array):v)),planet,orbit);
+    advance(a,1);advance(restored,1);assert.deepEqual(a.snapshot(),restored.snapshot());
+    const evolved=a.snapshot();a.configureSurfacePhysics({buoyantConvection:false});
+    assert.equal(a.water!.config.buoyantConvection,false);assert.deepEqual(a.snapshot().state,evolved.state);
+    const invalid=a.snapshot();assert.throws(()=>a.configureSurfacePhysics({buoyantConvection:'yes'} as any),/convection/);
+    assert.deepEqual(a.snapshot(),invalid);
+    assert.throws(()=>runtime(true,true).configureSurfacePhysics({buoyantConvection:true}),/transport/);
+});
+
 test('pressure-driven winds retain reversed offsets and exact JSON continuation without changing stocks',()=>{
     const initial=runtime(true,true).snapshot();initial.environmentConfig.dynamicCirculation=true;initial.environmentConfig.circulationScheme='thermal-pressure';initial.waterConfig.moistureScheme='transport';
     initial.environmentConfig.boundaryLayerDepthM=1000;
