@@ -1,0 +1,194 @@
+{
+  "product": "NCEP-NCAR Reanalysis 1, monthly climatological means",
+  "provider": "NOAA PSL, Boulder, Colorado, USA",
+  "accessDate": "2026-10-15",
+  "documentation": "https://psl.noaa.gov/data/gridded/data.ncep.reanalysis.html",
+  "period": [
+    1991,
+    2020
+  ],
+  "files": [
+    {
+      "name": "air.2m",
+      "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.derived/surface_gauss/air.2m.mon.ltm.1991-2020.nc",
+      "path": "build/earth-monsoon-forcing/raw/air.2m.mon.ltm.1991-2020.nc",
+      "bytes": 964084,
+      "sha256": "c86a3c575010ca2c9414b24022361c43be6966dcdc62c821c1918e9c44ca9be9",
+      "variable": "air",
+      "units": "degK",
+      "shape": [
+        12,
+        94,
+        192
+      ],
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "period": "1991/01/01 - 2020/12/31",
+      "title": "monthly mean air.2m from the NCEP Reanalysis",
+      "minimumValidYears": 30
+    },
+    {
+      "name": "skt.sfc",
+      "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.derived/surface_gauss/skt.sfc.mon.ltm.1991-2020.nc",
+      "path": "build/earth-monsoon-forcing/raw/skt.sfc.mon.ltm.1991-2020.nc",
+      "bytes": 1112235,
+      "sha256": "69ed66e09396ae130cc4dea3d0034359659ea0f560f06f0598b6320706311e34",
+      "variable": "skt",
+      "units": "degC",
+      "shape": [
+        12,
+        94,
+        192
+      ],
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "period": "1991/01/01 - 2020/12/31",
+      "title": "monthly mean skt.sfc from the NCEP Reanalysis",
+      "minimumValidYears": 30
+    },
+    {
+      "name": "uwnd.10m",
+      "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.derived/surface_gauss/uwnd.10m.mon.ltm.1991-2020.nc",
+      "path": "build/earth-monsoon-forcing/raw/uwnd.10m.mon.ltm.1991-2020.nc",
+      "bytes": 1155868,
+      "sha256": "45b9eadc8181b29cb9ebcbcc21503867bc69ec1272ac925d9dcf7f3b1cc18875",
+      "variable": "uwnd",
+      "units": "m/s",
+      "shape": [
+        12,
+        94,
+        192
+      ],
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "period": "1991/01/01 - 2020/12/31",
+      "title": "monthly mean uwnd.10m from the NCEP Reanalysis",
+      "minimumValidYears": 30
+    },
+    {
+      "name": "vwnd.10m",
+      "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.derived/surface_gauss/vwnd.10m.mon.ltm.1991-2020.nc",
+      "path": "build/earth-monsoon-forcing/raw/vwnd.10m.mon.ltm.1991-2020.nc",
+      "bytes": 1169158,
+      "sha256": "78130fd7e5c6f5dcec0ce0009d93639afd9645d77ace60d14c13581ac763fd0b",
+      "variable": "vwnd",
+      "units": "m/s",
+      "shape": [
+        12,
+        94,
+        192
+      ],
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "period": "1991/01/01 - 2020/12/31",
+      "title": "monthly mean vwnd.10m from the NCEP Reanalysis",
+      "minimumValidYears": 30
+    },
+    {
+      "name": "pres.sfc",
+      "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.derived/surface_gauss/pres.sfc.mon.ltm.1991-2020.nc",
+      "path": "build/earth-monsoon-forcing/raw/pres.sfc.mon.ltm.1991-2020.nc",
+      "bytes": 1002816,
+      "sha256": "59d60796d6d2ff76634e23f94aa0d11cf111319d4315d617b9c142ecf388a7af",
+      "variable": "pres",
+      "units": "Pascals",
+      "shape": [
+        12,
+        94,
+        192
+      ],
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "period": "1991/01/01 - 2020/12/31",
+      "title": "monthly mean pres.sfc from the NCEP Reanalysis",
+      "minimumValidYears": 30
+    },
+    {
+      "name": "uwnd",
+      "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.derived/pressure/uwnd.mon.ltm.1991-2020.nc",
+      "path": "build/earth-monsoon-forcing/raw/uwnd.mon.ltm.1991-2020.nc",
+      "bytes": 10927383,
+      "sha256": "39996c7f68ebbe852109990bacda3af5a9df61d398d52b579fcec63727c60b16",
+      "variable": "uwnd",
+      "units": "m/s",
+      "shape": [
+        12,
+        17,
+        73,
+        144
+      ],
+      "dimensions": [
+        "time",
+        "level",
+        "lat",
+        "lon"
+      ],
+      "period": "1991/01/01 - 2020/12/31",
+      "title": "monthly mean u wind from the NCEP Reanalysis",
+      "minimumValidYears": 30
+    },
+    {
+      "name": "vwnd",
+      "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.derived/pressure/vwnd.mon.ltm.1991-2020.nc",
+      "path": "build/earth-monsoon-forcing/raw/vwnd.mon.ltm.1991-2020.nc",
+      "bytes": 11405646,
+      "sha256": "7ca58b72fc39bce5754c9dca4f90cd1f58830f4edf82bd1e54f8f22af4c28915",
+      "variable": "vwnd",
+      "units": "m/s",
+      "shape": [
+        12,
+        17,
+        73,
+        144
+      ],
+      "dimensions": [
+        "time",
+        "level",
+        "lat",
+        "lon"
+      ],
+      "period": "1991/01/01 - 2020/12/31",
+      "title": "monthly mean v wind from the NCEP Reanalysis",
+      "minimumValidYears": 30
+    },
+    {
+      "name": "shum",
+      "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.derived/pressure/shum.mon.ltm.1991-2020.nc",
+      "path": "build/earth-monsoon-forcing/raw/shum.mon.ltm.1991-2020.nc",
+      "bytes": 5045372,
+      "sha256": "03bb3f078aea64ee9e227c8e792e6636c060c314a5c2b9e9927ae67f34ac13f6",
+      "variable": "shum",
+      "units": "grams/kg",
+      "shape": [
+        12,
+        8,
+        73,
+        144
+      ],
+      "dimensions": [
+        "time",
+        "level",
+        "lat",
+        "lon"
+      ],
+      "period": "1991/01/01 - 2020/12/31",
+      "title": "monthly mean shum from the NCEP Reanalysis",
+      "minimumValidYears": 30
+    }
+  ]
+}

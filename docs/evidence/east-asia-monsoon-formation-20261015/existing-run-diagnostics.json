@@ -1,0 +1,36 @@
+{
+  "baseCommit": "6bbbad414f5602cf532e41adbcc6a46a5286b9b3",
+  "note": "Read-only extraction of existing first-orbit diagnostic data, not a new integration or an observed pressure-level wind comparison. Northward is positive.",
+  "rows": [
+    {
+      "profile": "shared-core",
+      "source": "docs/evidence/earth-east-asia-mechanisms-20261015/shared-core.json",
+      "sourceSha256": "f6844d92b9ac8e8dca6a4c38ae4b4f61ade28db6ba41f94fb4de13d268e1e05b",
+      "julyNorthwardWindMps": {
+        "East Asia": -0.5408438717873395,
+        "South China": 0.11777524435011207,
+        "Yangtze": 9.152152641085384e-05
+      }
+    },
+    {
+      "profile": "buoyancy",
+      "source": "docs/evidence/earth-east-asia-mechanisms-20261015/buoyancy.json",
+      "sourceSha256": "99e0720c54deea8d5d93a2d5a2e966e189cf22e641dd56219edd47c3c1b01c24",
+      "julyNorthwardWindMps": {
+        "East Asia": -0.5582390602883981,
+        "South China": 0.08293600126605075,
+        "Yangtze": -0.053853210671594216
+      }
+    },
+    {
+      "profile": "boundary",
+      "source": "docs/evidence/earth-east-asia-mechanisms-20261015/boundary.json",
+      "sourceSha256": "60029f8d5b14fbb59e2b289354eac0589becadb0972826518324ae91b5e24025",
+      "julyNorthwardWindMps": {
+        "East Asia": 1.7551287951142522,
+        "South China": -1.1946503822960626,
+        "Yangtze": -0.6164285385812742
+      }
+    }
+  ]
+}
