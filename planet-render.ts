@@ -20,6 +20,7 @@ export interface PlanetView {
     geomorph?:GeomorphView|null;
     terrainWater?:TerrainWaterView|null;
     weather?:ThermalTexture|null;
+    probeDirection?:Direction|null;
 }
 
 export function makePlanetView(planet:PlanetConfig,orbit:OrbitConfig,timeS:number,layer:PlanetLayer,camera:PlanetCamera):PlanetView {
@@ -46,6 +47,15 @@ export const planet_fragment=`
     uniform bool u_terrain_water;
     uniform sampler2D u_weather;
     uniform bool u_weather_visible;
+    uniform bool u_probe_visible;
+    uniform vec3 u_probe_direction;
+    vec3 probe_color(vec3 base,vec3 normal) {
+        if(!u_probe_visible) return base;
+        float d=length(normalize(normal)-u_probe_direction);
+        float halo=max(1.0-smoothstep(0.004,0.007,abs(d-0.018)),1.0-smoothstep(0.006,0.010,d));
+        float ink=max(1.0-smoothstep(0.001,0.003,abs(d-0.018)),1.0-smoothstep(0.003,0.005,d));
+        return mix(mix(base,vec3(0.09,0.15,0.18),halo),vec3(1.0,0.68,0.14),ink);
+    }
     vec3 surface_color(vec3 base,vec3 n,float elevation) {
         if(u_planet_layer!=9) return base;
         vec3 body=normalize(n);

@@ -512,7 +512,7 @@ const frag_drape = `
         biome_color=surface_color(biome_color,body_normal,v_em.x);
         vec3 base_color=mix(biome_color, water_color.rgb, water_color.a);
         vec3 color=weather_color(planet_color(base_color,body_normal) * light / outline,body_normal);
-        out_fragcolor = vec4(planet_lighting(color,body_normal), 1);
+        out_fragcolor = vec4(probe_color(planet_lighting(color,body_normal),body_normal), 1);
     }`;
 
 const vert_final = `
@@ -927,6 +927,8 @@ export default class Renderer {
             gl.uniform3fv(program.u_sun_direction, this.planetView?.sunDirection ?? [0,0,1]);
             gl.uniform1i(program.u_terrain_water,this.activeTerrainWater?1:0);
             gl.uniform1i(program.u_weather_visible,view?.weather?1:0);
+            gl.uniform1i(program.u_probe_visible,view?.probeDirection?1:0);
+            gl.uniform3fv(program.u_probe_direction,view?.probeDirection??[0,0,1]);
 
             this.texture_colormap.activate(gl.TEXTURE0, program.u_colormap);
             this.fbo_land.texture.activate(gl.TEXTURE1, program.u_elevation);

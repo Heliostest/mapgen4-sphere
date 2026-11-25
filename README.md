@@ -14,6 +14,8 @@ pnpm start
 
 Open [localhost:8000](http://localhost:8000/embed.html). `npm install`, `npm run build`, and `npm start` also work. The server binds to loopback and disables caching. The sphere generates its mesh at startup; old planar point files are not used.
 
+Experimental [ExoPlaSim comparison](experiments/exoplasim/README.md): run `node experiments/exoplasim/serve.mjs` and open [localhost:8017/experiments/exoplasim/](http://localhost:8017/experiments/exoplasim/) to compare the existing terrain's first-year monthly temperature, precipitation and winds on the same globe.
+
 The default view is a **live planet**: after terrain generation, Natural surface and From space start automatically at one simulated hour per second. Climate, water, vegetation, ice feedback, grounded glaciers, evolving winds/ocean currents, terrain rivers/lakes and cloud cover are enabled together. **Live planet** restores this combination at any time, preserving authored terrain. Clouds remain a soft overlay without rain or snow symbols. Geological erosion capture/application stays manual. Open `embed.html?mode=editor` for the original paused editing start.
 
 - Left drag paints Ocean, Water, Valley, or Mountains. The four original brush sizes and keyboard shortcuts still work.

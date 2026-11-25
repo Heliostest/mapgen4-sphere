@@ -29,6 +29,9 @@ import {encodeSimulationDocument,decodeSimulationDocument} from './simulation-do
 import {prepareTerrain} from './terrain-preparation.ts';
 import type {TerrainDocument} from './terrain-document.ts';
 import type {Mesh} from "./types.d.ts";
+import {displayTextures,type ClimateFrame} from './experiments/exoplasim/data.ts';
+import {uvToDirection,directionToUV,type Direction} from './sphere.ts';
+import {physicalHeight} from './planet.ts';
 
 
 
@@ -38,6 +41,8 @@ import type {Mesh} from "./types.d.ts";
 function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
     let render = new Renderer(mesh);
     let planetControls:ReturnType<typeof installPlanetControls>|undefined;
+    let comparison:{textures:ReturnType<typeof displayTextures>;layer:'temperature'|'precipitation'|'wind'}|null=null;
+    let comparisonProbe:Direction|null=null;
     let sessionPanel:ReturnType<typeof installTerrainSessionPanel>|undefined;
     const gate=new GenerationGate(),application=new TerrainApplication(),identity=meshIdentity(mesh,param);
     let documentRevision=0;
@@ -116,7 +121,10 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         startMode:new URLSearchParams(location.search).get('mode')==='editor'?'editor':'live',
         container:document.getElementById('sliders'),
         canvas:document.getElementById('mapgen4') as HTMLCanvasElement,
-        onView:view=>{render.updatePlanet(view);redraw();},
+        onView:view=>{
+            if(comparison)view={...view,...comparison.textures,layer:comparison.layer,weather:null,terrainWater:null,probeDirection:comparisonProbe};
+            render.updatePlanet(view);redraw();
+        },
         sampleTerrain:coords=>render.sampleTerrain(coords),
         canInspect:()=>!Painting.navigating(),
         presentedTimeS:()=>render.presentedPlanetTimeS,
@@ -188,6 +196,38 @@ function main({mesh, t_peaks}: { mesh: Mesh; t_peaks: number[]; }) {
         document.querySelector(`#slider-${name} input`).addEventListener('input',()=>planetControls.refresh());
     }
     Painting.inspecting=()=>planetControls.isInspecting();
+    // A read-only experimental viewer reuses the actual renderer. It cannot
+    // write a comparison field into thermal or water reservoirs.
+    if(new URLSearchParams(location.search).has('comparison')) {
+        Painting.inspecting=()=>true;
+        (window as any).mapgen4Comparison={
+            show:(frame:ClimateFrame,layer:'temperature'|'precipitation'|'wind')=>{
+                if(!['temperature','precipitation','wind'].includes(layer))throw new Error('Invalid comparison layer');
+                comparison={textures:displayTextures(frame),layer};planetControls.pause();planetControls.repaint();
+            },
+            clear:()=>{comparison=null;planetControls.repaint();},
+            pick:(coords:[number,number])=>{
+                const hit=render.sampleTerrain(coords);if(!hit)return null;
+                return {latitude:(.5-hit.uv[1])*180,longitude:(hit.uv[0]-.5)*360,elevationM:physicalHeight(Math.max(-1,Math.min(1,hit.elevation)),planetControls.settings().planet)};
+            },
+            setProbe:(uv:[number,number]|null)=>{
+                if(uv&&(!uv.every(Number.isFinite)||uv[1]<0||uv[1]>1))throw new Error('Invalid probe location');
+                comparisonProbe=uv?uvToDirection(...uv):null;planetControls.repaint();
+            },
+            focus:(uv:[number,number])=>{
+                const d=uvToDirection(...uv),m=render.planetView?.model;
+                const transformed:Direction=m?[m[0]*d[0]+m[4]*d[1]+m[8]*d[2],m[1]*d[0]+m[5]*d[1]+m[9]*d[2],m[2]*d[0]+m[6]*d[1]+m[10]*d[2]]:d;
+                const [u,v]=directionToUV(transformed);
+                // A saved camera tilt can put a southern target outside the y
+                // slider's range. Remove that view offset when centering a point.
+                for(const [name,value] of [['tilt_deg',0],['x',u*1000],['y',v*1000]] as const){
+                    param.render[name]=value;(document.querySelector(`#slider-${name} input`) as HTMLInputElement).value=String(value);
+                }
+                redraw();
+            },
+            snapshot:()=>planetControls.simulation().runtime,
+        };
+    }
     Painting.onBeforePaint=()=>planetControls.pause();
     Painting.onReset=()=>{planetControls.pause();planetControls.clearIceInventory();drainage=undefined;application.reset();};
 
