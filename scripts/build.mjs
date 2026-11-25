@@ -6,6 +6,7 @@ await mkdir('build', {recursive:true});
 await Promise.all([
     build({entryPoints:['mapgen4.ts'],bundle:true,minify:true,sourcemap:true,outfile:'build/_bundle.js'}),
     build({entryPoints:['worker.ts'],bundle:true,minify:true,sourcemap:true,outfile:'build/_worker.js'}),
+    build({entryPoints:['experiments/exoplasim/viewer.ts'],bundle:true,format:'esm',minify:true,outfile:'build/exoplasim-viewer.js'}),
 ]);
 await writeFile('build/version.json',JSON.stringify({implementation:'sphere-original-renderer',builtAt:new Date().toISOString()}));
 console.log('Built spherical Mapgen4 with the original WebGL renderer.');

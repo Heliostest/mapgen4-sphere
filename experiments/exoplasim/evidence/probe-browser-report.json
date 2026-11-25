@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "Clicking the rendered globe selects geographic coordinates, physical elevation and both model series",
+    "Dragging, including out-and-back movement, and background clicks preserve the selected location",
+    "Coordinate location centers on the correct point; all 24 monthly values and annual aggregates match raw result data",
+    "Chart clicks and keyboard activation synchronize the global month; model, layer and camera changes preserve the probe",
+    "CSV download contains both models and all 12 unrounded monthly totals",
+    "The geographic marker is visible at the selected location and naturally disappears behind the globe",
+    "Coordinate focus handles an imported nonzero camera tilt without reading another location’s elevation",
+    "Poles and both sides of the dateline are selectable; the 390px layout has readable charts and no horizontal overflow",
+    "Clearing removes the probe; every interaction preserves the complete physical runtime exactly"
+  ],
+  "errors": [],
+  "physicalStateUnchanged": true
+}

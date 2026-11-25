@@ -1,0 +1,1325 @@
+{
+  "seed": [
+    14963991,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "upstream": "daface8c0846dfa2beeda9c98756b2cfc4350937",
+  "cases": {
+    "original-2": {
+      "scenario": "original",
+      "days": 2,
+      "first": {
+        "day": 0.03125,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 45
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "landGlacierFraction": 1,
+        "airC": 14.284764256693734,
+        "skinC": -2.704711285476492,
+        "landSkinC": -2.0803542173609344,
+        "oceanSkinC": -2.9172586164192467,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": 0,
+        "oceanIceThicknessM": 1.4981207936888934,
+        "albedo": 0.21544731366422853,
+        "landAlbedo": 0.6456358089271603,
+        "toaShortwave": 156.8079870072384,
+        "toaLongwave": -274.21825460959695,
+        "toaNet": -117.41026754741445,
+        "surfaceNet": -81.7435237240768,
+        "surfacePressurePa": 98550.07167400104,
+        "precipitationMmDay": 0
+      },
+      "last": {
+        "day": 2,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 3,
+          "hour": 0,
+          "minute": 0
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "landGlacierFraction": 1,
+        "airC": -3.6544772587207035,
+        "skinC": -10.313426179906514,
+        "landSkinC": -11.632925493765015,
+        "oceanSkinC": -9.86423440861023,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": 0,
+        "oceanIceThicknessM": 1.4055522022348323,
+        "albedo": 0.2466134157924395,
+        "landAlbedo": 0.7683522309897994,
+        "toaShortwave": 284.6834584527948,
+        "toaLongwave": -254.5675013418829,
+        "toaNet": 30.11595725256137,
+        "surfaceNet": 132.0441203950444,
+        "surfacePressurePa": 98622.01586585498,
+        "precipitationMmDay": 0.26561251999691365
+      },
+      "yearly": [],
+      "nativeSummary": {
+        "dls": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.253968471410465
+        },
+        "dicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "diced": {
+          "count": 2048,
+          "min": 0,
+          "max": 2.7984654261931396,
+          "mean": 1.0473606367555226
+        },
+        "dglac": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.4267501034822512
+        },
+        "xts": {
+          "count": 2048,
+          "min": 225.09768193545497,
+          "max": 273.16,
+          "mean": 265.529569191275
+        },
+        "xicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "xiced": {
+          "count": 2048,
+          "min": 0,
+          "max": 2.7984654261931396,
+          "mean": 1.0473606367555226
+        },
+        "xclsst": {
+          "count": 28672,
+          "min": -999,
+          "max": -999,
+          "mean": -999
+        },
+        "ysst": {
+          "count": 2048,
+          "min": 271.25,
+          "max": 271.25,
+          "mean": 271.2499999999944
+        },
+        "yclsst": {
+          "count": 28672,
+          "min": 271.25,
+          "max": 271.25,
+          "mean": 271.25
+        },
+        "dts": {
+          "count": 2048,
+          "min": 0,
+          "max": 273.16,
+          "mean": 196.64062132118607
+        }
+      },
+      "files": {
+        "aero_namelist": {
+          "sha256": "138b56338fa4dff0f184ce9ff64a5c2bc784fef761fad1b85fa2c50fbc8888d3",
+          "text": " &aero_nl\n l_source     =     1\n l_bulk       =     1\n apart    =     5E-09\n rhop    =     1000\n fcoeff  =     10E-13\n l_aerorad = 1\n aerofile = 0\n /END\n "
+        },
+        "carbonmod_namelist": {
+          "sha256": "62566ed4a94fa33e8c5ea85da03809efac75474529ffa83f96a35c298a831741",
+          "text": " &carbonmod_nl\n NCARBON     =     1\n VOLCANCO2   =     1.0\n KACT        =     0.09\n KRUN        =     0.045\n BETA        =     0.5\n FREQUENCY   =     4\n PEARTH      =    79.0\n NSUPPLY     =     0\n WMAX        =    80.9\n ZETA        =     0.0\n /END\n"
+        },
+        "fluxmod_namelist": {
+          "sha256": "5f2e44ed7aa7ab262fb0f408885e333f057a0eae109025745d05f5bebaa173d5",
+          "text": " &fluxmod_nl\n /END\n"
+        },
+        "glacier_namelist": {
+          "sha256": "e84e06e9c19e26b3c6e1b88a224dd36529a95c42a2ca5b9b0f63f41175608f44",
+          "text": " &glacier_nl\n NGLACIER = 0\n GLACELIM = 2\n ICESHEETH = 0\n /END\n"
+        },
+        "hurricane_namelist": {
+          "sha256": "2037ee1a0a94080703d385946aec2fd140b6a4acfa96fb76f0b7e71cab88a685",
+          "text": " &hurricane_nl\n HC_CAPTURE = 0\n  NKTRIGGER = 0\n NSTORMDIAG = 0\n /END\n"
+        },
+        "icemod_namelist": {
+          "sha256": "38d0dacf996323422e1962f559c7f7b7b9ccaa26991690d2b65b73ad2c71b2b6",
+          "text": " &icemod_nl\n NICE        =     1\n /END\n"
+        },
+        "landmod_namelist": {
+          "sha256": "ef179ed66d414a92d85b609e39aba441d326f8494961a029fc084b2954990e2d",
+          "text": " &landmod_nl\n NWETSOIL = 0\n DSOILZ = 0.4,0.8,1.6,3.2,6.4\n /END\n"
+        },
+        "miscmod_namelist": {
+          "sha256": "0799eff28b38789263426dddf0eebbc71909ea3932f878dffd4a2b4271c26ecf",
+          "text": " &miscmod_nl\n /END\n"
+        },
+        "oceanmod_namelist": {
+          "sha256": "13e2ebf17047eb68e29b4388c476d895113d6be5d25f04d9b79bab668264ef8c",
+          "text": " &oceanmod_nl\n NOCEAN      =     1\n NLSG        =     0\n MLDEPTH = 10\n /END\n"
+        },
+        "planet_namelist": {
+          "sha256": "ca8fd43582a701f941534304f373d8a948085e681c0ef76c8055eec26341d594",
+          "text": " &planet_nl\n ECCEN = 0\n MVELP       =   102.7\n OBLIQ = 23.43928\n GSOL0 = 1361.1664654085753\n NFIXORB = 1\n GA = 9.82023798253731\n PLARAD = 6371008.4\n NGENKEPLERIAN = 0\n GASCON = 287.0000002469167\n SIDEREAL_YEAR = 31536000\n /END\n"
+        },
+        "plasim_namelist": {
+          "sha256": "8ef7430c35dd3c116b1e1bbeedd90929fb7296ceff486f43810e963f5d72c5d9",
+          "text": " &plasim_nl\n NOUTPUT = 0\n NGUI        =     0\n N_START_YEAR = 1\n N_DAYS_PER_YEAR = 365\n N_RUN_YEARS = 1000\n N_RUN_MONTHS = 0\n N_RUN_DAYS = 0\n KICK        =     1\n MPSTEP = 45\n NADV        =     1\n NDIAG = 1000000\n NGUIDBG     =     0\n NQSPEC      =     1\n NVEG = 2\n NWPD        =     0\n NLOWIO      =     1\n NSTPW = 160\n NPRINT      =     0\n NSYNC = 0\n NSNAPSHOT = 0\n NSTPS = 480 \n NFILTER = 2\n NGPTFILTER = 1\n NSPVFILTER = 1\n PSURF = 101099.99999999999\n SYNCSTR     =     0\n L_AERO       =     0\n N_RUN_STEPS = 0\n SEED = 14963991,2,3,4,5,6,7,8\n FIXEDLON = 180\n NEQSIG = 0\n FILTERKAPPA = 8\n NFILTEREXP = 8\n LANDHOSKN0 = 15\n /END\n"
+        },
+        "radmod_namelist": {
+          "sha256": "7d6df6d5cf6b7704ae987b614149ba5b40286d05add79029e7f76225d858ae17",
+          "text": " &radmod_nl\n CO2 = 300\n NFIXED = 0\n NSTARTEMP = 1\n STARBBTEMP = 5778\n NO3 = 1\n NRADINT = 1\n NPBROADEN = 1\n NECHAM = 1\n NECHAM6 = 0\n /END\n"
+        },
+        "rainmod_namelist": {
+          "sha256": "f1a8ecb3fc2699e15ea03f137acc952064d2965a01f83c84cd9eb8a9bca78c46",
+          "text": " &rainmod_nl\n NCLOUDS     =     1\n NSTORAIN    =     0\n /END\n"
+        },
+        "seamod_namelist": {
+          "sha256": "28d0de42dfc453d1275ddf96b70ac892e708d9d789ab3534e3f19da740cf8f3a",
+          "text": " &seamod_nl\n /END\n"
+        },
+        "surfmod_namelist": {
+          "sha256": "798910a1d8016651331d452cb2a02027320e2bcba3d1f2bd4292a1df487e2b4f",
+          "text": " &surfmod_nl\n /END\n"
+        },
+        "vegmod_namelist": {
+          "sha256": "71bfbe78d9d5bc1ddeaa7d989d7855f21b4cdb373c840e97a1a6959b910e6db9",
+          "text": " &vegmod_nl\n NCVEG = 1\n FORGROW = 1.0\n RINIDSC = 1.0\n RINIDMR = 2.0\n RINISOIL = 0.0\n RINIVEG = 0.0\n RINIDAGG = 0.5\n /END\n"
+        },
+        "N032_surf_0172.sra": {
+          "sha256": "5fd942c1c5510c05bb07e35dac18c27f4d8f7dd93585fe628a5f6478a5ef9b9e"
+        },
+        "N032_surf_0129.sra": {
+          "sha256": "4d51914eb51d902b799e72a13669b74d0f2391c86d5daf3837cab9f514368b42"
+        }
+      }
+    },
+    "production-2": {
+      "scenario": "production",
+      "days": 2,
+      "first": {
+        "day": 0.03125,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 45
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "landGlacierFraction": 0,
+        "airC": 14.639292577468836,
+        "skinC": -2.6025939882038074,
+        "landSkinC": -1.679403256669957,
+        "oceanSkinC": -2.9168720447212877,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": 0,
+        "oceanIceThicknessM": 1.49812068787706,
+        "albedo": 0.1254371972656697,
+        "landAlbedo": 0.29122127905002215,
+        "toaShortwave": 166.1320503864118,
+        "toaLongwave": -274.37191731869547,
+        "toaNet": -108.23986680998433,
+        "surfaceNet": -76.86083735929688,
+        "surfacePressurePa": 98550.0014294229,
+        "precipitationMmDay": 0
+      },
+      "last": {
+        "day": 2,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 3,
+          "hour": 0,
+          "minute": 0
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "landGlacierFraction": 0,
+        "airC": -1.054580278206629,
+        "skinC": -8.700800976073538,
+        "landSkinC": -5.272706035227088,
+        "oceanSkinC": -9.867813359077047,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": 0,
+        "oceanIceThicknessM": 1.403735753235416,
+        "albedo": 0.12629184025441534,
+        "landAlbedo": 0.2945864329370345,
+        "toaShortwave": 292.75216946103427,
+        "toaLongwave": -257.65374019644315,
+        "toaNet": 35.09842882893647,
+        "surfaceNet": 138.5997230896572,
+        "surfacePressurePa": 98620.50138733117,
+        "precipitationMmDay": 0.2763103894550464
+      },
+      "yearly": [],
+      "nativeSummary": {
+        "dls": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.253968471410465
+        },
+        "dicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "diced": {
+          "count": 2048,
+          "min": 0,
+          "max": 2.7995461583435794,
+          "mean": 1.045986459123358
+        },
+        "dglac": {
+          "count": 2048,
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "xts": {
+          "count": 2048,
+          "min": 217.63042713638018,
+          "max": 273.16,
+          "mean": 265.52989321736345
+        },
+        "xicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "xiced": {
+          "count": 2048,
+          "min": 0,
+          "max": 2.7995461583435794,
+          "mean": 1.045986459123358
+        },
+        "xclsst": {
+          "count": 28672,
+          "min": -999,
+          "max": -999,
+          "mean": -999
+        },
+        "ysst": {
+          "count": 2048,
+          "min": 271.25,
+          "max": 271.25,
+          "mean": 271.2499999999944
+        },
+        "yclsst": {
+          "count": 28672,
+          "min": 271.25,
+          "max": 271.25,
+          "mean": 271.25
+        },
+        "dts": {
+          "count": 2048,
+          "min": 0,
+          "max": 273.16,
+          "mean": 196.64094534727488
+        }
+      },
+      "files": {
+        "aero_namelist": {
+          "sha256": "138b56338fa4dff0f184ce9ff64a5c2bc784fef761fad1b85fa2c50fbc8888d3",
+          "text": " &aero_nl\n l_source     =     1\n l_bulk       =     1\n apart    =     5E-09\n rhop    =     1000\n fcoeff  =     10E-13\n l_aerorad = 1\n aerofile = 0\n /END\n "
+        },
+        "carbonmod_namelist": {
+          "sha256": "62566ed4a94fa33e8c5ea85da03809efac75474529ffa83f96a35c298a831741",
+          "text": " &carbonmod_nl\n NCARBON     =     1\n VOLCANCO2   =     1.0\n KACT        =     0.09\n KRUN        =     0.045\n BETA        =     0.5\n FREQUENCY   =     4\n PEARTH      =    79.0\n NSUPPLY     =     0\n WMAX        =    80.9\n ZETA        =     0.0\n /END\n"
+        },
+        "fluxmod_namelist": {
+          "sha256": "5f2e44ed7aa7ab262fb0f408885e333f057a0eae109025745d05f5bebaa173d5",
+          "text": " &fluxmod_nl\n /END\n"
+        },
+        "glacier_namelist": {
+          "sha256": "72b078958aa15b774b19081877b017d9df1c5fdead3f6b84deb7c6a00b1d404f",
+          "text": " &glacier_nl\n NGLACIER = 0\n GLACELIM = 2\n ICESHEETH = -1\n /END\n"
+        },
+        "hurricane_namelist": {
+          "sha256": "2037ee1a0a94080703d385946aec2fd140b6a4acfa96fb76f0b7e71cab88a685",
+          "text": " &hurricane_nl\n HC_CAPTURE = 0\n  NKTRIGGER = 0\n NSTORMDIAG = 0\n /END\n"
+        },
+        "icemod_namelist": {
+          "sha256": "38d0dacf996323422e1962f559c7f7b7b9ccaa26991690d2b65b73ad2c71b2b6",
+          "text": " &icemod_nl\n NICE        =     1\n /END\n"
+        },
+        "landmod_namelist": {
+          "sha256": "ef179ed66d414a92d85b609e39aba441d326f8494961a029fc084b2954990e2d",
+          "text": " &landmod_nl\n NWETSOIL = 0\n DSOILZ = 0.4,0.8,1.6,3.2,6.4\n /END\n"
+        },
+        "miscmod_namelist": {
+          "sha256": "0799eff28b38789263426dddf0eebbc71909ea3932f878dffd4a2b4271c26ecf",
+          "text": " &miscmod_nl\n /END\n"
+        },
+        "oceanmod_namelist": {
+          "sha256": "13e2ebf17047eb68e29b4388c476d895113d6be5d25f04d9b79bab668264ef8c",
+          "text": " &oceanmod_nl\n NOCEAN      =     1\n NLSG        =     0\n MLDEPTH = 10\n /END\n"
+        },
+        "planet_namelist": {
+          "sha256": "ca8fd43582a701f941534304f373d8a948085e681c0ef76c8055eec26341d594",
+          "text": " &planet_nl\n ECCEN = 0\n MVELP       =   102.7\n OBLIQ = 23.43928\n GSOL0 = 1361.1664654085753\n NFIXORB = 1\n GA = 9.82023798253731\n PLARAD = 6371008.4\n NGENKEPLERIAN = 0\n GASCON = 287.0000002469167\n SIDEREAL_YEAR = 31536000\n /END\n"
+        },
+        "plasim_namelist": {
+          "sha256": "8ef7430c35dd3c116b1e1bbeedd90929fb7296ceff486f43810e963f5d72c5d9",
+          "text": " &plasim_nl\n NOUTPUT = 0\n NGUI        =     0\n N_START_YEAR = 1\n N_DAYS_PER_YEAR = 365\n N_RUN_YEARS = 1000\n N_RUN_MONTHS = 0\n N_RUN_DAYS = 0\n KICK        =     1\n MPSTEP = 45\n NADV        =     1\n NDIAG = 1000000\n NGUIDBG     =     0\n NQSPEC      =     1\n NVEG = 2\n NWPD        =     0\n NLOWIO      =     1\n NSTPW = 160\n NPRINT      =     0\n NSYNC = 0\n NSNAPSHOT = 0\n NSTPS = 480 \n NFILTER = 2\n NGPTFILTER = 1\n NSPVFILTER = 1\n PSURF = 101099.99999999999\n SYNCSTR     =     0\n L_AERO       =     0\n N_RUN_STEPS = 0\n SEED = 14963991,2,3,4,5,6,7,8\n FIXEDLON = 180\n NEQSIG = 0\n FILTERKAPPA = 8\n NFILTEREXP = 8\n LANDHOSKN0 = 15\n /END\n"
+        },
+        "radmod_namelist": {
+          "sha256": "7d6df6d5cf6b7704ae987b614149ba5b40286d05add79029e7f76225d858ae17",
+          "text": " &radmod_nl\n CO2 = 300\n NFIXED = 0\n NSTARTEMP = 1\n STARBBTEMP = 5778\n NO3 = 1\n NRADINT = 1\n NPBROADEN = 1\n NECHAM = 1\n NECHAM6 = 0\n /END\n"
+        },
+        "rainmod_namelist": {
+          "sha256": "f1a8ecb3fc2699e15ea03f137acc952064d2965a01f83c84cd9eb8a9bca78c46",
+          "text": " &rainmod_nl\n NCLOUDS     =     1\n NSTORAIN    =     0\n /END\n"
+        },
+        "seamod_namelist": {
+          "sha256": "28d0de42dfc453d1275ddf96b70ac892e708d9d789ab3534e3f19da740cf8f3a",
+          "text": " &seamod_nl\n /END\n"
+        },
+        "surfmod_namelist": {
+          "sha256": "798910a1d8016651331d452cb2a02027320e2bcba3d1f2bd4292a1df487e2b4f",
+          "text": " &surfmod_nl\n /END\n"
+        },
+        "vegmod_namelist": {
+          "sha256": "71bfbe78d9d5bc1ddeaa7d989d7855f21b4cdb373c840e97a1a6959b910e6db9",
+          "text": " &vegmod_nl\n NCVEG = 1\n FORGROW = 1.0\n RINIDSC = 1.0\n RINIDMR = 2.0\n RINISOIL = 0.0\n RINIVEG = 0.0\n RINIDAGG = 0.5\n /END\n"
+        },
+        "N032_surf_0172.sra": {
+          "sha256": "5fd942c1c5510c05bb07e35dac18c27f4d8f7dd93585fe628a5f6478a5ef9b9e"
+        },
+        "N032_surf_0129.sra": {
+          "sha256": "4d51914eb51d902b799e72a13669b74d0f2391c86d5daf3837cab9f514368b42"
+        }
+      }
+    },
+    "all-ocean-2": {
+      "scenario": "all-ocean",
+      "days": 2,
+      "first": {
+        "day": 0.03125,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 45
+        },
+        "landFraction": 0,
+        "maskErrors": 0,
+        "airC": 15.368173323319752,
+        "skinC": -3.3730315051711273,
+        "landSkinC": null,
+        "oceanSkinC": -3.3730315051703315,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": 0,
+        "oceanIceThicknessM": 1.641116579542521,
+        "albedo": 0.06899999827146533,
+        "toaShortwave": 158.09050673370265,
+        "toaLongwave": -272.0362958873192,
+        "toaNet": -113.94578908462833,
+        "surfaceNet": -86.62062854648919,
+        "surfacePressurePa": 101100.00046384384,
+        "precipitationMmDay": 0
+      },
+      "last": {
+        "day": 2,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 3,
+          "hour": 0,
+          "minute": 0
+        },
+        "landFraction": 0,
+        "maskErrors": 0,
+        "airC": 10.01369331917482,
+        "skinC": -18.477753209009762,
+        "landSkinC": null,
+        "oceanSkinC": -18.477753209008995,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": 0,
+        "oceanIceThicknessM": 1.5725536090334005,
+        "albedo": 0.06899999827146533,
+        "toaShortwave": 297.9186480417652,
+        "toaLongwave": -224.00733239255882,
+        "toaNet": 73.91131526244028,
+        "surfaceNet": 112.00429235366187,
+        "surfacePressurePa": 101100.00375094784,
+        "precipitationMmDay": 0
+      },
+      "yearly": [],
+      "files": {
+        "aero_namelist": {
+          "sha256": "138b56338fa4dff0f184ce9ff64a5c2bc784fef761fad1b85fa2c50fbc8888d3",
+          "text": " &aero_nl\n l_source     =     1\n l_bulk       =     1\n apart    =     5E-09\n rhop    =     1000\n fcoeff  =     10E-13\n l_aerorad = 1\n aerofile = 0\n /END\n "
+        },
+        "carbonmod_namelist": {
+          "sha256": "62566ed4a94fa33e8c5ea85da03809efac75474529ffa83f96a35c298a831741",
+          "text": " &carbonmod_nl\n NCARBON     =     1\n VOLCANCO2   =     1.0\n KACT        =     0.09\n KRUN        =     0.045\n BETA        =     0.5\n FREQUENCY   =     4\n PEARTH      =    79.0\n NSUPPLY     =     0\n WMAX        =    80.9\n ZETA        =     0.0\n /END\n"
+        },
+        "fluxmod_namelist": {
+          "sha256": "5f2e44ed7aa7ab262fb0f408885e333f057a0eae109025745d05f5bebaa173d5",
+          "text": " &fluxmod_nl\n /END\n"
+        },
+        "glacier_namelist": {
+          "sha256": "e84e06e9c19e26b3c6e1b88a224dd36529a95c42a2ca5b9b0f63f41175608f44",
+          "text": " &glacier_nl\n NGLACIER = 0\n GLACELIM = 2\n ICESHEETH = 0\n /END\n"
+        },
+        "hurricane_namelist": {
+          "sha256": "2037ee1a0a94080703d385946aec2fd140b6a4acfa96fb76f0b7e71cab88a685",
+          "text": " &hurricane_nl\n HC_CAPTURE = 0\n  NKTRIGGER = 0\n NSTORMDIAG = 0\n /END\n"
+        },
+        "icemod_namelist": {
+          "sha256": "38d0dacf996323422e1962f559c7f7b7b9ccaa26991690d2b65b73ad2c71b2b6",
+          "text": " &icemod_nl\n NICE        =     1\n /END\n"
+        },
+        "landmod_namelist": {
+          "sha256": "ef179ed66d414a92d85b609e39aba441d326f8494961a029fc084b2954990e2d",
+          "text": " &landmod_nl\n NWETSOIL = 0\n DSOILZ = 0.4,0.8,1.6,3.2,6.4\n /END\n"
+        },
+        "miscmod_namelist": {
+          "sha256": "0799eff28b38789263426dddf0eebbc71909ea3932f878dffd4a2b4271c26ecf",
+          "text": " &miscmod_nl\n /END\n"
+        },
+        "oceanmod_namelist": {
+          "sha256": "13e2ebf17047eb68e29b4388c476d895113d6be5d25f04d9b79bab668264ef8c",
+          "text": " &oceanmod_nl\n NOCEAN      =     1\n NLSG        =     0\n MLDEPTH = 10\n /END\n"
+        },
+        "planet_namelist": {
+          "sha256": "ca8fd43582a701f941534304f373d8a948085e681c0ef76c8055eec26341d594",
+          "text": " &planet_nl\n ECCEN = 0\n MVELP       =   102.7\n OBLIQ = 23.43928\n GSOL0 = 1361.1664654085753\n NFIXORB = 1\n GA = 9.82023798253731\n PLARAD = 6371008.4\n NGENKEPLERIAN = 0\n GASCON = 287.0000002469167\n SIDEREAL_YEAR = 31536000\n /END\n"
+        },
+        "plasim_namelist": {
+          "sha256": "8ef7430c35dd3c116b1e1bbeedd90929fb7296ceff486f43810e963f5d72c5d9",
+          "text": " &plasim_nl\n NOUTPUT = 0\n NGUI        =     0\n N_START_YEAR = 1\n N_DAYS_PER_YEAR = 365\n N_RUN_YEARS = 1000\n N_RUN_MONTHS = 0\n N_RUN_DAYS = 0\n KICK        =     1\n MPSTEP = 45\n NADV        =     1\n NDIAG = 1000000\n NGUIDBG     =     0\n NQSPEC      =     1\n NVEG = 2\n NWPD        =     0\n NLOWIO      =     1\n NSTPW = 160\n NPRINT      =     0\n NSYNC = 0\n NSNAPSHOT = 0\n NSTPS = 480 \n NFILTER = 2\n NGPTFILTER = 1\n NSPVFILTER = 1\n PSURF = 101099.99999999999\n SYNCSTR     =     0\n L_AERO       =     0\n N_RUN_STEPS = 0\n SEED = 14963991,2,3,4,5,6,7,8\n FIXEDLON = 180\n NEQSIG = 0\n FILTERKAPPA = 8\n NFILTEREXP = 8\n LANDHOSKN0 = 15\n /END\n"
+        },
+        "radmod_namelist": {
+          "sha256": "7d6df6d5cf6b7704ae987b614149ba5b40286d05add79029e7f76225d858ae17",
+          "text": " &radmod_nl\n CO2 = 300\n NFIXED = 0\n NSTARTEMP = 1\n STARBBTEMP = 5778\n NO3 = 1\n NRADINT = 1\n NPBROADEN = 1\n NECHAM = 1\n NECHAM6 = 0\n /END\n"
+        },
+        "rainmod_namelist": {
+          "sha256": "f1a8ecb3fc2699e15ea03f137acc952064d2965a01f83c84cd9eb8a9bca78c46",
+          "text": " &rainmod_nl\n NCLOUDS     =     1\n NSTORAIN    =     0\n /END\n"
+        },
+        "seamod_namelist": {
+          "sha256": "28d0de42dfc453d1275ddf96b70ac892e708d9d789ab3534e3f19da740cf8f3a",
+          "text": " &seamod_nl\n /END\n"
+        },
+        "surfmod_namelist": {
+          "sha256": "798910a1d8016651331d452cb2a02027320e2bcba3d1f2bd4292a1df487e2b4f",
+          "text": " &surfmod_nl\n /END\n"
+        },
+        "vegmod_namelist": {
+          "sha256": "71bfbe78d9d5bc1ddeaa7d989d7855f21b4cdb373c840e97a1a6959b910e6db9",
+          "text": " &vegmod_nl\n NCVEG = 1\n FORGROW = 1.0\n RINIDSC = 1.0\n RINIDMR = 2.0\n RINISOIL = 0.0\n RINIVEG = 0.0\n RINIDAGG = 0.5\n /END\n"
+        },
+        "N032_surf_0172.sra": {
+          "sha256": "0106f364180ca0a7543397e67cd2926ba179c368060905ba687ff4911dfbcd7a"
+        },
+        "N032_surf_0129.sra": {
+          "sha256": "79e6f6efac3746b6144f7597ddb98909549cd6b8ead913a7682e5f3316175ba8"
+        }
+      }
+    },
+    "all-land-2": {
+      "scenario": "all-land",
+      "days": 2,
+      "first": {
+        "day": 0.03125,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 45
+        },
+        "landFraction": 0.999999999999997,
+        "maskErrors": 0,
+        "airC": 15.368150313222543,
+        "skinC": 0.02029329254185086,
+        "landSkinC": 0.020293292542646668,
+        "oceanSkinC": null,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": null,
+        "oceanIceThicknessM": null,
+        "albedo": 0.2912212908268015,
+        "toaShortwave": 259.0779557694995,
+        "toaLongwave": -282.79582986323885,
+        "toaNet": -23.717874724182504,
+        "surfaceNet": 1.008347890545593,
+        "surfacePressurePa": 101100.0004595273,
+        "precipitationMmDay": 0
+      },
+      "last": {
+        "day": 2,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 3,
+          "hour": 0,
+          "minute": 0
+        },
+        "landFraction": 0.999999999999997,
+        "maskErrors": 0,
+        "airC": 6.147503916243181,
+        "skinC": 0.6930699996937051,
+        "landSkinC": 0.6930699996945009,
+        "oceanSkinC": null,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": null,
+        "oceanIceThicknessM": null,
+        "albedo": 0.29146571528254434,
+        "toaShortwave": 254.62701291762497,
+        "toaLongwave": -272.5820739671593,
+        "toaNet": -17.955060896749934,
+        "surfaceNet": 12.19023038080371,
+        "surfacePressurePa": 101100.01521295116,
+        "precipitationMmDay": 0.6340780855475177
+      },
+      "yearly": [],
+      "files": {
+        "aero_namelist": {
+          "sha256": "138b56338fa4dff0f184ce9ff64a5c2bc784fef761fad1b85fa2c50fbc8888d3",
+          "text": " &aero_nl\n l_source     =     1\n l_bulk       =     1\n apart    =     5E-09\n rhop    =     1000\n fcoeff  =     10E-13\n l_aerorad = 1\n aerofile = 0\n /END\n "
+        },
+        "carbonmod_namelist": {
+          "sha256": "62566ed4a94fa33e8c5ea85da03809efac75474529ffa83f96a35c298a831741",
+          "text": " &carbonmod_nl\n NCARBON     =     1\n VOLCANCO2   =     1.0\n KACT        =     0.09\n KRUN        =     0.045\n BETA        =     0.5\n FREQUENCY   =     4\n PEARTH      =    79.0\n NSUPPLY     =     0\n WMAX        =    80.9\n ZETA        =     0.0\n /END\n"
+        },
+        "fluxmod_namelist": {
+          "sha256": "5f2e44ed7aa7ab262fb0f408885e333f057a0eae109025745d05f5bebaa173d5",
+          "text": " &fluxmod_nl\n /END\n"
+        },
+        "glacier_namelist": {
+          "sha256": "e84e06e9c19e26b3c6e1b88a224dd36529a95c42a2ca5b9b0f63f41175608f44",
+          "text": " &glacier_nl\n NGLACIER = 0\n GLACELIM = 2\n ICESHEETH = 0\n /END\n"
+        },
+        "hurricane_namelist": {
+          "sha256": "2037ee1a0a94080703d385946aec2fd140b6a4acfa96fb76f0b7e71cab88a685",
+          "text": " &hurricane_nl\n HC_CAPTURE = 0\n  NKTRIGGER = 0\n NSTORMDIAG = 0\n /END\n"
+        },
+        "icemod_namelist": {
+          "sha256": "38d0dacf996323422e1962f559c7f7b7b9ccaa26991690d2b65b73ad2c71b2b6",
+          "text": " &icemod_nl\n NICE        =     1\n /END\n"
+        },
+        "landmod_namelist": {
+          "sha256": "ef179ed66d414a92d85b609e39aba441d326f8494961a029fc084b2954990e2d",
+          "text": " &landmod_nl\n NWETSOIL = 0\n DSOILZ = 0.4,0.8,1.6,3.2,6.4\n /END\n"
+        },
+        "miscmod_namelist": {
+          "sha256": "0799eff28b38789263426dddf0eebbc71909ea3932f878dffd4a2b4271c26ecf",
+          "text": " &miscmod_nl\n /END\n"
+        },
+        "oceanmod_namelist": {
+          "sha256": "13e2ebf17047eb68e29b4388c476d895113d6be5d25f04d9b79bab668264ef8c",
+          "text": " &oceanmod_nl\n NOCEAN      =     1\n NLSG        =     0\n MLDEPTH = 10\n /END\n"
+        },
+        "planet_namelist": {
+          "sha256": "ca8fd43582a701f941534304f373d8a948085e681c0ef76c8055eec26341d594",
+          "text": " &planet_nl\n ECCEN = 0\n MVELP       =   102.7\n OBLIQ = 23.43928\n GSOL0 = 1361.1664654085753\n NFIXORB = 1\n GA = 9.82023798253731\n PLARAD = 6371008.4\n NGENKEPLERIAN = 0\n GASCON = 287.0000002469167\n SIDEREAL_YEAR = 31536000\n /END\n"
+        },
+        "plasim_namelist": {
+          "sha256": "8ef7430c35dd3c116b1e1bbeedd90929fb7296ceff486f43810e963f5d72c5d9",
+          "text": " &plasim_nl\n NOUTPUT = 0\n NGUI        =     0\n N_START_YEAR = 1\n N_DAYS_PER_YEAR = 365\n N_RUN_YEARS = 1000\n N_RUN_MONTHS = 0\n N_RUN_DAYS = 0\n KICK        =     1\n MPSTEP = 45\n NADV        =     1\n NDIAG = 1000000\n NGUIDBG     =     0\n NQSPEC      =     1\n NVEG = 2\n NWPD        =     0\n NLOWIO      =     1\n NSTPW = 160\n NPRINT      =     0\n NSYNC = 0\n NSNAPSHOT = 0\n NSTPS = 480 \n NFILTER = 2\n NGPTFILTER = 1\n NSPVFILTER = 1\n PSURF = 101099.99999999999\n SYNCSTR     =     0\n L_AERO       =     0\n N_RUN_STEPS = 0\n SEED = 14963991,2,3,4,5,6,7,8\n FIXEDLON = 180\n NEQSIG = 0\n FILTERKAPPA = 8\n NFILTEREXP = 8\n LANDHOSKN0 = 15\n /END\n"
+        },
+        "radmod_namelist": {
+          "sha256": "7d6df6d5cf6b7704ae987b614149ba5b40286d05add79029e7f76225d858ae17",
+          "text": " &radmod_nl\n CO2 = 300\n NFIXED = 0\n NSTARTEMP = 1\n STARBBTEMP = 5778\n NO3 = 1\n NRADINT = 1\n NPBROADEN = 1\n NECHAM = 1\n NECHAM6 = 0\n /END\n"
+        },
+        "rainmod_namelist": {
+          "sha256": "f1a8ecb3fc2699e15ea03f137acc952064d2965a01f83c84cd9eb8a9bca78c46",
+          "text": " &rainmod_nl\n NCLOUDS     =     1\n NSTORAIN    =     0\n /END\n"
+        },
+        "seamod_namelist": {
+          "sha256": "28d0de42dfc453d1275ddf96b70ac892e708d9d789ab3534e3f19da740cf8f3a",
+          "text": " &seamod_nl\n /END\n"
+        },
+        "surfmod_namelist": {
+          "sha256": "798910a1d8016651331d452cb2a02027320e2bcba3d1f2bd4292a1df487e2b4f",
+          "text": " &surfmod_nl\n /END\n"
+        },
+        "vegmod_namelist": {
+          "sha256": "71bfbe78d9d5bc1ddeaa7d989d7855f21b4cdb373c840e97a1a6959b910e6db9",
+          "text": " &vegmod_nl\n NCVEG = 1\n FORGROW = 1.0\n RINIDSC = 1.0\n RINIDMR = 2.0\n RINISOIL = 0.0\n RINIVEG = 0.0\n RINIDAGG = 0.5\n /END\n"
+        },
+        "N032_surf_0172.sra": {
+          "sha256": "c5367fbaa8f214cfccc15e643765593e14201d15325e563931819e038c377b70"
+        },
+        "N032_surf_0129.sra": {
+          "sha256": "79e6f6efac3746b6144f7597ddb98909549cd6b8ead913a7682e5f3316175ba8"
+        }
+      }
+    },
+    "sst-only-365": {
+      "scenario": "sst-only",
+      "days": 365,
+      "first": {
+        "day": 0.03125,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 45
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "airC": 14.783471083008521,
+        "skinC": 12.844721632540654,
+        "landSkinC": -2.08219797056654,
+        "oceanSkinC": 17.926232010042554,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": 0,
+        "oceanIceThicknessM": 0.0019123128157681514,
+        "albedo": 0.21545560187005214,
+        "toaShortwave": 286.18814154950746,
+        "toaLongwave": -334.0341279330101,
+        "toaNet": -47.845986478944766,
+        "surfaceNet": -206.62017434970758,
+        "surfacePressurePa": 98550.06299731474,
+        "precipitationMmDay": 0
+      },
+      "last": {
+        "day": 365,
+        "date": {
+          "year": 2,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 0
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "airC": -0.7637856429377052,
+        "skinC": -0.4249465662803118,
+        "landSkinC": -20.959485319490398,
+        "oceanSkinC": 6.565542733995642,
+        "globalSeaIceFraction": 0.160532097541824,
+        "oceanSeaIceFraction": 0.21518138495477818,
+        "oceanIceThicknessM": 0.31945019510331113,
+        "albedo": 0.3269835206889444,
+        "toaShortwave": 220.53591031378338,
+        "toaLongwave": -206.9285077331784,
+        "toaNet": 13.607402503221586,
+        "surfaceNet": 1.9459136584567074,
+        "surfacePressurePa": 98658.93181885383,
+        "precipitationMmDay": 2.493805109617204
+      },
+      "yearly": [
+        {
+          "year": 1,
+          "kind": "One instantaneous global sample at each day boundary; diagnostic estimates, not the production all-step mean",
+          "airC": 4.925014506320962,
+          "skinC": 5.377532364481164,
+          "toaNet": 8.018932934750838,
+          "surfaceNet": 12.776254229567225,
+          "precipitationMmDay": 2.2905251451244513
+        }
+      ],
+      "nativeSummary": {
+        "dls": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.253968471410465
+        },
+        "dicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.16069887672031205
+        },
+        "diced": {
+          "count": 2048,
+          "min": 0,
+          "max": 4.003481517342184,
+          "mean": 0.23829495423158206
+        },
+        "xts": {
+          "count": 2048,
+          "min": 192.0197091395363,
+          "max": 303.5370453629032,
+          "mean": 281.7748072464148
+        },
+        "xicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.16069887672031205
+        },
+        "xiced": {
+          "count": 2048,
+          "min": 0,
+          "max": 4.003481517342184,
+          "mean": 0.23829495423158206
+        },
+        "xclsst": {
+          "count": 28672,
+          "min": 270.686,
+          "max": 306.475,
+          "mean": 285.6482468261848
+        },
+        "ysst": {
+          "count": 2048,
+          "min": 271.25,
+          "max": 303.5370453629032,
+          "mean": 285.6383995837167
+        },
+        "yclsst": {
+          "count": 28672,
+          "min": 271.25,
+          "max": 306.475,
+          "mean": 285.64854446848386
+        },
+        "dts": {
+          "count": 2048,
+          "min": 0,
+          "max": 298.88428329045723,
+          "mean": 208.70870009602174
+        }
+      },
+      "files": {
+        "aero_namelist": {
+          "sha256": "138b56338fa4dff0f184ce9ff64a5c2bc784fef761fad1b85fa2c50fbc8888d3",
+          "text": " &aero_nl\n l_source     =     1\n l_bulk       =     1\n apart    =     5E-09\n rhop    =     1000\n fcoeff  =     10E-13\n l_aerorad = 1\n aerofile = 0\n /END\n "
+        },
+        "carbonmod_namelist": {
+          "sha256": "62566ed4a94fa33e8c5ea85da03809efac75474529ffa83f96a35c298a831741",
+          "text": " &carbonmod_nl\n NCARBON     =     1\n VOLCANCO2   =     1.0\n KACT        =     0.09\n KRUN        =     0.045\n BETA        =     0.5\n FREQUENCY   =     4\n PEARTH      =    79.0\n NSUPPLY     =     0\n WMAX        =    80.9\n ZETA        =     0.0\n /END\n"
+        },
+        "fluxmod_namelist": {
+          "sha256": "5f2e44ed7aa7ab262fb0f408885e333f057a0eae109025745d05f5bebaa173d5",
+          "text": " &fluxmod_nl\n /END\n"
+        },
+        "glacier_namelist": {
+          "sha256": "e84e06e9c19e26b3c6e1b88a224dd36529a95c42a2ca5b9b0f63f41175608f44",
+          "text": " &glacier_nl\n NGLACIER = 0\n GLACELIM = 2\n ICESHEETH = 0\n /END\n"
+        },
+        "hurricane_namelist": {
+          "sha256": "2037ee1a0a94080703d385946aec2fd140b6a4acfa96fb76f0b7e71cab88a685",
+          "text": " &hurricane_nl\n HC_CAPTURE = 0\n  NKTRIGGER = 0\n NSTORMDIAG = 0\n /END\n"
+        },
+        "icemod_namelist": {
+          "sha256": "38d0dacf996323422e1962f559c7f7b7b9ccaa26991690d2b65b73ad2c71b2b6",
+          "text": " &icemod_nl\n NICE        =     1\n /END\n"
+        },
+        "landmod_namelist": {
+          "sha256": "ef179ed66d414a92d85b609e39aba441d326f8494961a029fc084b2954990e2d",
+          "text": " &landmod_nl\n NWETSOIL = 0\n DSOILZ = 0.4,0.8,1.6,3.2,6.4\n /END\n"
+        },
+        "miscmod_namelist": {
+          "sha256": "0799eff28b38789263426dddf0eebbc71909ea3932f878dffd4a2b4271c26ecf",
+          "text": " &miscmod_nl\n /END\n"
+        },
+        "oceanmod_namelist": {
+          "sha256": "13e2ebf17047eb68e29b4388c476d895113d6be5d25f04d9b79bab668264ef8c",
+          "text": " &oceanmod_nl\n NOCEAN      =     1\n NLSG        =     0\n MLDEPTH = 10\n /END\n"
+        },
+        "planet_namelist": {
+          "sha256": "ca8fd43582a701f941534304f373d8a948085e681c0ef76c8055eec26341d594",
+          "text": " &planet_nl\n ECCEN = 0\n MVELP       =   102.7\n OBLIQ = 23.43928\n GSOL0 = 1361.1664654085753\n NFIXORB = 1\n GA = 9.82023798253731\n PLARAD = 6371008.4\n NGENKEPLERIAN = 0\n GASCON = 287.0000002469167\n SIDEREAL_YEAR = 31536000\n /END\n"
+        },
+        "plasim_namelist": {
+          "sha256": "8ef7430c35dd3c116b1e1bbeedd90929fb7296ceff486f43810e963f5d72c5d9",
+          "text": " &plasim_nl\n NOUTPUT = 0\n NGUI        =     0\n N_START_YEAR = 1\n N_DAYS_PER_YEAR = 365\n N_RUN_YEARS = 1000\n N_RUN_MONTHS = 0\n N_RUN_DAYS = 0\n KICK        =     1\n MPSTEP = 45\n NADV        =     1\n NDIAG = 1000000\n NGUIDBG     =     0\n NQSPEC      =     1\n NVEG = 2\n NWPD        =     0\n NLOWIO      =     1\n NSTPW = 160\n NPRINT      =     0\n NSYNC = 0\n NSNAPSHOT = 0\n NSTPS = 480 \n NFILTER = 2\n NGPTFILTER = 1\n NSPVFILTER = 1\n PSURF = 101099.99999999999\n SYNCSTR     =     0\n L_AERO       =     0\n N_RUN_STEPS = 0\n SEED = 14963991,2,3,4,5,6,7,8\n FIXEDLON = 180\n NEQSIG = 0\n FILTERKAPPA = 8\n NFILTEREXP = 8\n LANDHOSKN0 = 15\n /END\n"
+        },
+        "radmod_namelist": {
+          "sha256": "7d6df6d5cf6b7704ae987b614149ba5b40286d05add79029e7f76225d858ae17",
+          "text": " &radmod_nl\n CO2 = 300\n NFIXED = 0\n NSTARTEMP = 1\n STARBBTEMP = 5778\n NO3 = 1\n NRADINT = 1\n NPBROADEN = 1\n NECHAM = 1\n NECHAM6 = 0\n /END\n"
+        },
+        "rainmod_namelist": {
+          "sha256": "f1a8ecb3fc2699e15ea03f137acc952064d2965a01f83c84cd9eb8a9bca78c46",
+          "text": " &rainmod_nl\n NCLOUDS     =     1\n NSTORAIN    =     0\n /END\n"
+        },
+        "seamod_namelist": {
+          "sha256": "28d0de42dfc453d1275ddf96b70ac892e708d9d789ab3534e3f19da740cf8f3a",
+          "text": " &seamod_nl\n /END\n"
+        },
+        "surfmod_namelist": {
+          "sha256": "798910a1d8016651331d452cb2a02027320e2bcba3d1f2bd4292a1df487e2b4f",
+          "text": " &surfmod_nl\n /END\n"
+        },
+        "vegmod_namelist": {
+          "sha256": "71bfbe78d9d5bc1ddeaa7d989d7855f21b4cdb373c840e97a1a6959b910e6db9",
+          "text": " &vegmod_nl\n NCVEG = 1\n FORGROW = 1.0\n RINIDSC = 1.0\n RINIDMR = 2.0\n RINISOIL = 0.0\n RINIVEG = 0.0\n RINIDAGG = 0.5\n /END\n"
+        },
+        "N032_surf_0172.sra": {
+          "sha256": "5fd942c1c5510c05bb07e35dac18c27f4d8f7dd93585fe628a5f6478a5ef9b9e"
+        },
+        "N032_surf_0129.sra": {
+          "sha256": "4d51914eb51d902b799e72a13669b74d0f2391c86d5daf3837cab9f514368b42"
+        },
+        "N032_surf_0169.sra": {
+          "sha256": "4396e6a70fc58cbca72ebe479ac51ef4b90fcc97623ba963951892799f1e1d90"
+        }
+      }
+    },
+    "original-1095": {
+      "scenario": "original",
+      "days": 1095,
+      "first": {
+        "day": 0.03125,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 45
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "airC": 14.284764256693734,
+        "skinC": -2.704711285476492,
+        "landSkinC": -2.0803542173609344,
+        "oceanSkinC": -2.9172586164192467,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": 0,
+        "oceanIceThicknessM": 1.4981207936888934,
+        "albedo": 0.21544731366422853,
+        "toaShortwave": 156.8079870072384,
+        "toaLongwave": -274.21825460959695,
+        "toaNet": -117.41026754741445,
+        "surfaceNet": -81.7435237240768,
+        "surfacePressurePa": 98550.07167400104,
+        "precipitationMmDay": 0
+      },
+      "last": {
+        "day": 1095,
+        "date": {
+          "year": 4,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 0
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "airC": -14.601832152986447,
+        "skinC": -14.559420931865588,
+        "landSkinC": -34.770562391939166,
+        "oceanSkinC": -7.679024453471925,
+        "globalSeaIceFraction": 0.34442919440014186,
+        "oceanSeaIceFraction": 0.4616818206749692,
+        "oceanIceThicknessM": 1.6465176666898629,
+        "albedo": 0.4370357338636561,
+        "toaShortwave": 201.1746585613742,
+        "toaLongwave": -183.6144279591577,
+        "toaNet": 17.560230293438643,
+        "surfaceNet": 20.32880397939856,
+        "surfacePressurePa": 98668.79673935089,
+        "precipitationMmDay": 1.3940724853296114
+      },
+      "yearly": [
+        {
+          "year": 1,
+          "kind": "One instantaneous global sample at each day boundary; diagnostic estimates, not the production all-step mean",
+          "airC": -10.612068100087054,
+          "skinC": -9.937222796897183,
+          "toaNet": 22.272832275873107,
+          "surfaceNet": 27.207291053680013,
+          "precipitationMmDay": 1.2675145340797096
+        },
+        {
+          "year": 2,
+          "kind": "One instantaneous global sample at each day boundary; diagnostic estimates, not the production all-step mean",
+          "airC": -10.151508373058205,
+          "skinC": -10.217238064357808,
+          "toaNet": 5.61450481536894,
+          "surfaceNet": 7.430309927382325,
+          "precipitationMmDay": 1.5145342747088821
+        },
+        {
+          "year": 3,
+          "kind": "One instantaneous global sample at each day boundary; diagnostic estimates, not the production all-step mean",
+          "airC": -11.896582807061089,
+          "skinC": -12.237159233723432,
+          "toaNet": 5.511396021221845,
+          "surfaceNet": 8.111683155480439,
+          "precipitationMmDay": 1.4436455010501332
+        }
+      ],
+      "nativeSummary": {
+        "dls": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.253968471410465
+        },
+        "dicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.34442919440014186
+        },
+        "diced": {
+          "count": 2048,
+          "min": 0,
+          "max": 9,
+          "mean": 1.2280635918356362
+        },
+        "xts": {
+          "count": 2048,
+          "min": 166.2817612126373,
+          "max": 293.15244072993715,
+          "mean": 266.952375657358
+        },
+        "xicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.34442919440014186
+        },
+        "xiced": {
+          "count": 2048,
+          "min": 0,
+          "max": 9,
+          "mean": 1.2280635918356362
+        },
+        "xclsst": {
+          "count": 28672,
+          "min": -999,
+          "max": -999,
+          "mean": -999
+        },
+        "ysst": {
+          "count": 2048,
+          "min": 271.25,
+          "max": 293.19226561591387,
+          "mean": 276.4537122612613
+        },
+        "yclsst": {
+          "count": 28672,
+          "min": 271.25,
+          "max": 271.25,
+          "mean": 271.25
+        },
+        "dts": {
+          "count": 2048,
+          "min": 0,
+          "max": 293.15244072993715,
+          "mean": 198.06342778726955
+        }
+      },
+      "files": {
+        "aero_namelist": {
+          "sha256": "138b56338fa4dff0f184ce9ff64a5c2bc784fef761fad1b85fa2c50fbc8888d3",
+          "text": " &aero_nl\n l_source     =     1\n l_bulk       =     1\n apart    =     5E-09\n rhop    =     1000\n fcoeff  =     10E-13\n l_aerorad = 1\n aerofile = 0\n /END\n "
+        },
+        "carbonmod_namelist": {
+          "sha256": "62566ed4a94fa33e8c5ea85da03809efac75474529ffa83f96a35c298a831741",
+          "text": " &carbonmod_nl\n NCARBON     =     1\n VOLCANCO2   =     1.0\n KACT        =     0.09\n KRUN        =     0.045\n BETA        =     0.5\n FREQUENCY   =     4\n PEARTH      =    79.0\n NSUPPLY     =     0\n WMAX        =    80.9\n ZETA        =     0.0\n /END\n"
+        },
+        "fluxmod_namelist": {
+          "sha256": "5f2e44ed7aa7ab262fb0f408885e333f057a0eae109025745d05f5bebaa173d5",
+          "text": " &fluxmod_nl\n /END\n"
+        },
+        "glacier_namelist": {
+          "sha256": "e84e06e9c19e26b3c6e1b88a224dd36529a95c42a2ca5b9b0f63f41175608f44",
+          "text": " &glacier_nl\n NGLACIER = 0\n GLACELIM = 2\n ICESHEETH = 0\n /END\n"
+        },
+        "hurricane_namelist": {
+          "sha256": "2037ee1a0a94080703d385946aec2fd140b6a4acfa96fb76f0b7e71cab88a685",
+          "text": " &hurricane_nl\n HC_CAPTURE = 0\n  NKTRIGGER = 0\n NSTORMDIAG = 0\n /END\n"
+        },
+        "icemod_namelist": {
+          "sha256": "38d0dacf996323422e1962f559c7f7b7b9ccaa26991690d2b65b73ad2c71b2b6",
+          "text": " &icemod_nl\n NICE        =     1\n /END\n"
+        },
+        "landmod_namelist": {
+          "sha256": "ef179ed66d414a92d85b609e39aba441d326f8494961a029fc084b2954990e2d",
+          "text": " &landmod_nl\n NWETSOIL = 0\n DSOILZ = 0.4,0.8,1.6,3.2,6.4\n /END\n"
+        },
+        "miscmod_namelist": {
+          "sha256": "0799eff28b38789263426dddf0eebbc71909ea3932f878dffd4a2b4271c26ecf",
+          "text": " &miscmod_nl\n /END\n"
+        },
+        "oceanmod_namelist": {
+          "sha256": "13e2ebf17047eb68e29b4388c476d895113d6be5d25f04d9b79bab668264ef8c",
+          "text": " &oceanmod_nl\n NOCEAN      =     1\n NLSG        =     0\n MLDEPTH = 10\n /END\n"
+        },
+        "planet_namelist": {
+          "sha256": "ca8fd43582a701f941534304f373d8a948085e681c0ef76c8055eec26341d594",
+          "text": " &planet_nl\n ECCEN = 0\n MVELP       =   102.7\n OBLIQ = 23.43928\n GSOL0 = 1361.1664654085753\n NFIXORB = 1\n GA = 9.82023798253731\n PLARAD = 6371008.4\n NGENKEPLERIAN = 0\n GASCON = 287.0000002469167\n SIDEREAL_YEAR = 31536000\n /END\n"
+        },
+        "plasim_namelist": {
+          "sha256": "8ef7430c35dd3c116b1e1bbeedd90929fb7296ceff486f43810e963f5d72c5d9",
+          "text": " &plasim_nl\n NOUTPUT = 0\n NGUI        =     0\n N_START_YEAR = 1\n N_DAYS_PER_YEAR = 365\n N_RUN_YEARS = 1000\n N_RUN_MONTHS = 0\n N_RUN_DAYS = 0\n KICK        =     1\n MPSTEP = 45\n NADV        =     1\n NDIAG = 1000000\n NGUIDBG     =     0\n NQSPEC      =     1\n NVEG = 2\n NWPD        =     0\n NLOWIO      =     1\n NSTPW = 160\n NPRINT      =     0\n NSYNC = 0\n NSNAPSHOT = 0\n NSTPS = 480 \n NFILTER = 2\n NGPTFILTER = 1\n NSPVFILTER = 1\n PSURF = 101099.99999999999\n SYNCSTR     =     0\n L_AERO       =     0\n N_RUN_STEPS = 0\n SEED = 14963991,2,3,4,5,6,7,8\n FIXEDLON = 180\n NEQSIG = 0\n FILTERKAPPA = 8\n NFILTEREXP = 8\n LANDHOSKN0 = 15\n /END\n"
+        },
+        "radmod_namelist": {
+          "sha256": "7d6df6d5cf6b7704ae987b614149ba5b40286d05add79029e7f76225d858ae17",
+          "text": " &radmod_nl\n CO2 = 300\n NFIXED = 0\n NSTARTEMP = 1\n STARBBTEMP = 5778\n NO3 = 1\n NRADINT = 1\n NPBROADEN = 1\n NECHAM = 1\n NECHAM6 = 0\n /END\n"
+        },
+        "rainmod_namelist": {
+          "sha256": "f1a8ecb3fc2699e15ea03f137acc952064d2965a01f83c84cd9eb8a9bca78c46",
+          "text": " &rainmod_nl\n NCLOUDS     =     1\n NSTORAIN    =     0\n /END\n"
+        },
+        "seamod_namelist": {
+          "sha256": "28d0de42dfc453d1275ddf96b70ac892e708d9d789ab3534e3f19da740cf8f3a",
+          "text": " &seamod_nl\n /END\n"
+        },
+        "surfmod_namelist": {
+          "sha256": "798910a1d8016651331d452cb2a02027320e2bcba3d1f2bd4292a1df487e2b4f",
+          "text": " &surfmod_nl\n /END\n"
+        },
+        "vegmod_namelist": {
+          "sha256": "71bfbe78d9d5bc1ddeaa7d989d7855f21b4cdb373c840e97a1a6959b910e6db9",
+          "text": " &vegmod_nl\n NCVEG = 1\n FORGROW = 1.0\n RINIDSC = 1.0\n RINIDMR = 2.0\n RINISOIL = 0.0\n RINIVEG = 0.0\n RINIDAGG = 0.5\n /END\n"
+        },
+        "N032_surf_0172.sra": {
+          "sha256": "5fd942c1c5510c05bb07e35dac18c27f4d8f7dd93585fe628a5f6478a5ef9b9e"
+        },
+        "N032_surf_0129.sra": {
+          "sha256": "4d51914eb51d902b799e72a13669b74d0f2391c86d5daf3837cab9f514368b42"
+        }
+      }
+    },
+    "no-glacier-sst-365": {
+      "scenario": "no-glacier-sst",
+      "days": 365,
+      "first": {
+        "day": 0.03125,
+        "date": {
+          "year": 1,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 45
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "landGlacierFraction": 0,
+        "airC": 15.13811358913324,
+        "skinC": 12.946696890410237,
+        "landSkinC": -1.6806708560727657,
+        "oceanSkinC": 17.926232050753583,
+        "globalSeaIceFraction": 0,
+        "oceanSeaIceFraction": 0,
+        "oceanIceThicknessM": 0.0019123128157681514,
+        "albedo": 0.1254371972656697,
+        "landAlbedo": 0.29122127905002215,
+        "toaShortwave": 295.5122155529081,
+        "toaLongwave": -334.18781704296873,
+        "toaNet": -38.67560154329046,
+        "surfaceNet": -201.87675210508857,
+        "surfacePressurePa": 98549.99210681938,
+        "precipitationMmDay": 0
+      },
+      "last": {
+        "day": 365,
+        "date": {
+          "year": 2,
+          "month": 1,
+          "day": 1,
+          "hour": 0,
+          "minute": 0
+        },
+        "landFraction": 0.253968471410465,
+        "maskErrors": 0,
+        "landGlacierFraction": 0,
+        "airC": 13.62386464514276,
+        "skinC": 13.780106332765968,
+        "landSkinC": 2.364934171120183,
+        "oceanSkinC": 17.666126847559667,
+        "globalSeaIceFraction": 0.0706117028273091,
+        "oceanSeaIceFraction": 0.09464975690881361,
+        "oceanIceThicknessM": 0.08841524178867516,
+        "albedo": 0.1978518445926755,
+        "landAlbedo": 0.4235783046369949,
+        "toaShortwave": 236.47231289562666,
+        "toaLongwave": -229.27740200982436,
+        "toaNet": 7.19491049070813,
+        "surfaceNet": 19.667046583108846,
+        "surfacePressurePa": 98651.80789741602,
+        "precipitationMmDay": 2.61265570426585
+      },
+      "yearly": [
+        {
+          "year": 1,
+          "kind": "One instantaneous global sample at each day boundary; diagnostic estimates, not the production all-step mean",
+          "airC": 14.237191143360716,
+          "skinC": 14.788507822903716,
+          "toaNet": 4.934481619020895,
+          "surfaceNet": 14.0001716372085,
+          "precipitationMmDay": 2.6018143956273643
+        }
+      ],
+      "nativeSummary": {
+        "dls": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.253968471410465
+        },
+        "dicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.0706117028273091
+        },
+        "diced": {
+          "count": 2048,
+          "min": 0,
+          "max": 3.283101660224065,
+          "mean": 0.06595705353982186
+        },
+        "dglac": {
+          "count": 2048,
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "xts": {
+          "count": 2048,
+          "min": 230.12934056414147,
+          "max": 305.89231852158855,
+          "mean": 290.0288361066356
+        },
+        "xicec": {
+          "count": 2048,
+          "min": 0,
+          "max": 1,
+          "mean": 0.0706117028273091
+        },
+        "xiced": {
+          "count": 2048,
+          "min": 0,
+          "max": 3.283101660224065,
+          "mean": 0.06595705353982186
+        },
+        "xclsst": {
+          "count": 28672,
+          "min": 270.686,
+          "max": 306.475,
+          "mean": 285.6482468261848
+        },
+        "ysst": {
+          "count": 2048,
+          "min": 271.25,
+          "max": 305.8709237655242,
+          "mean": 291.05251023081973
+        },
+        "yclsst": {
+          "count": 28672,
+          "min": 271.25,
+          "max": 306.475,
+          "mean": 285.64854446848386
+        },
+        "dts": {
+          "count": 2048,
+          "min": 0,
+          "max": 305.89231852158855,
+          "mean": 216.96272895624335
+        }
+      },
+      "files": {
+        "aero_namelist": {
+          "sha256": "138b56338fa4dff0f184ce9ff64a5c2bc784fef761fad1b85fa2c50fbc8888d3",
+          "text": " &aero_nl\n l_source     =     1\n l_bulk       =     1\n apart    =     5E-09\n rhop    =     1000\n fcoeff  =     10E-13\n l_aerorad = 1\n aerofile = 0\n /END\n "
+        },
+        "carbonmod_namelist": {
+          "sha256": "62566ed4a94fa33e8c5ea85da03809efac75474529ffa83f96a35c298a831741",
+          "text": " &carbonmod_nl\n NCARBON     =     1\n VOLCANCO2   =     1.0\n KACT        =     0.09\n KRUN        =     0.045\n BETA        =     0.5\n FREQUENCY   =     4\n PEARTH      =    79.0\n NSUPPLY     =     0\n WMAX        =    80.9\n ZETA        =     0.0\n /END\n"
+        },
+        "fluxmod_namelist": {
+          "sha256": "5f2e44ed7aa7ab262fb0f408885e333f057a0eae109025745d05f5bebaa173d5",
+          "text": " &fluxmod_nl\n /END\n"
+        },
+        "glacier_namelist": {
+          "sha256": "72b078958aa15b774b19081877b017d9df1c5fdead3f6b84deb7c6a00b1d404f",
+          "text": " &glacier_nl\n NGLACIER = 0\n GLACELIM = 2\n ICESHEETH = -1\n /END\n"
+        },
+        "hurricane_namelist": {
+          "sha256": "2037ee1a0a94080703d385946aec2fd140b6a4acfa96fb76f0b7e71cab88a685",
+          "text": " &hurricane_nl\n HC_CAPTURE = 0\n  NKTRIGGER = 0\n NSTORMDIAG = 0\n /END\n"
+        },
+        "icemod_namelist": {
+          "sha256": "38d0dacf996323422e1962f559c7f7b7b9ccaa26991690d2b65b73ad2c71b2b6",
+          "text": " &icemod_nl\n NICE        =     1\n /END\n"
+        },
+        "landmod_namelist": {
+          "sha256": "ef179ed66d414a92d85b609e39aba441d326f8494961a029fc084b2954990e2d",
+          "text": " &landmod_nl\n NWETSOIL = 0\n DSOILZ = 0.4,0.8,1.6,3.2,6.4\n /END\n"
+        },
+        "miscmod_namelist": {
+          "sha256": "0799eff28b38789263426dddf0eebbc71909ea3932f878dffd4a2b4271c26ecf",
+          "text": " &miscmod_nl\n /END\n"
+        },
+        "oceanmod_namelist": {
+          "sha256": "13e2ebf17047eb68e29b4388c476d895113d6be5d25f04d9b79bab668264ef8c",
+          "text": " &oceanmod_nl\n NOCEAN      =     1\n NLSG        =     0\n MLDEPTH = 10\n /END\n"
+        },
+        "planet_namelist": {
+          "sha256": "ca8fd43582a701f941534304f373d8a948085e681c0ef76c8055eec26341d594",
+          "text": " &planet_nl\n ECCEN = 0\n MVELP       =   102.7\n OBLIQ = 23.43928\n GSOL0 = 1361.1664654085753\n NFIXORB = 1\n GA = 9.82023798253731\n PLARAD = 6371008.4\n NGENKEPLERIAN = 0\n GASCON = 287.0000002469167\n SIDEREAL_YEAR = 31536000\n /END\n"
+        },
+        "plasim_namelist": {
+          "sha256": "8ef7430c35dd3c116b1e1bbeedd90929fb7296ceff486f43810e963f5d72c5d9",
+          "text": " &plasim_nl\n NOUTPUT = 0\n NGUI        =     0\n N_START_YEAR = 1\n N_DAYS_PER_YEAR = 365\n N_RUN_YEARS = 1000\n N_RUN_MONTHS = 0\n N_RUN_DAYS = 0\n KICK        =     1\n MPSTEP = 45\n NADV        =     1\n NDIAG = 1000000\n NGUIDBG     =     0\n NQSPEC      =     1\n NVEG = 2\n NWPD        =     0\n NLOWIO      =     1\n NSTPW = 160\n NPRINT      =     0\n NSYNC = 0\n NSNAPSHOT = 0\n NSTPS = 480 \n NFILTER = 2\n NGPTFILTER = 1\n NSPVFILTER = 1\n PSURF = 101099.99999999999\n SYNCSTR     =     0\n L_AERO       =     0\n N_RUN_STEPS = 0\n SEED = 14963991,2,3,4,5,6,7,8\n FIXEDLON = 180\n NEQSIG = 0\n FILTERKAPPA = 8\n NFILTEREXP = 8\n LANDHOSKN0 = 15\n /END\n"
+        },
+        "radmod_namelist": {
+          "sha256": "7d6df6d5cf6b7704ae987b614149ba5b40286d05add79029e7f76225d858ae17",
+          "text": " &radmod_nl\n CO2 = 300\n NFIXED = 0\n NSTARTEMP = 1\n STARBBTEMP = 5778\n NO3 = 1\n NRADINT = 1\n NPBROADEN = 1\n NECHAM = 1\n NECHAM6 = 0\n /END\n"
+        },
+        "rainmod_namelist": {
+          "sha256": "f1a8ecb3fc2699e15ea03f137acc952064d2965a01f83c84cd9eb8a9bca78c46",
+          "text": " &rainmod_nl\n NCLOUDS     =     1\n NSTORAIN    =     0\n /END\n"
+        },
+        "seamod_namelist": {
+          "sha256": "28d0de42dfc453d1275ddf96b70ac892e708d9d789ab3534e3f19da740cf8f3a",
+          "text": " &seamod_nl\n /END\n"
+        },
+        "surfmod_namelist": {
+          "sha256": "798910a1d8016651331d452cb2a02027320e2bcba3d1f2bd4292a1df487e2b4f",
+          "text": " &surfmod_nl\n /END\n"
+        },
+        "vegmod_namelist": {
+          "sha256": "71bfbe78d9d5bc1ddeaa7d989d7855f21b4cdb373c840e97a1a6959b910e6db9",
+          "text": " &vegmod_nl\n NCVEG = 1\n FORGROW = 1.0\n RINIDSC = 1.0\n RINIDMR = 2.0\n RINISOIL = 0.0\n RINIVEG = 0.0\n RINIDAGG = 0.5\n /END\n"
+        },
+        "N032_surf_0172.sra": {
+          "sha256": "5fd942c1c5510c05bb07e35dac18c27f4d8f7dd93585fe628a5f6478a5ef9b9e"
+        },
+        "N032_surf_0129.sra": {
+          "sha256": "4d51914eb51d902b799e72a13669b74d0f2391c86d5daf3837cab9f514368b42"
+        },
+        "N032_surf_0169.sra": {
+          "sha256": "4396e6a70fc58cbca72ebe479ac51ef4b90fcc97623ba963951892799f1e1d90"
+        }
+      }
+    }
+  },
+  "correctedProduction": {
+    "airC": 0.3349290984951381,
+    "initialization": {
+      "landFraction": 0.253968471410465,
+      "landGlacierFraction": 0,
+      "landAlbedo": 0.29122127905002215,
+      "forcedGlacierSeeding": false,
+      "seaTemperatureInput": "native cold start, no SST input; native mixed-layer initialization 271.25 K",
+      "validation": "First-step diagnostics, not a climate-accuracy check"
+    },
+    "modelSteps": 11680,
+    "worldSha256": "afb80a8ab730785eed0cb709a66d938ad20a9690b04ecfa1246d1deb393adca6"
+  }
+}
